@@ -1,0 +1,1235 @@
+{
+  "manifest_version": "0.4.0-structure-frozen",
+  "spec_source": "schema/spec.md",
+  "generated": "2026-09-30",
+  "note": "Machine-checkable column manifest for the T0-T7 tables + the evidence/configuration layer (SRC/EV/VONT/FAM). This is the authoritative column set the team populates against. STRUCTURE is locked at v0.4.0 (T3/T6 generation method columns added 2026-09-30, see methodology/T3_T6_generation_method.md section 11); CONTENT is draft/pending. Change the structure only by editing spec.md and regenerating this file (raise an issue + tag the team first). 'required' = must be present and non-empty on every row; 'optional' = column may be present, value may be blank; 'conditional' = required when the noted trigger holds; 'derived' = computed, not authored. 'fk' maps a column to its referenced table.column.",
+  "value_rules": {
+    "required": "column present on every row; value non-empty",
+    "optional": "column may be present; value may be blank",
+    "conditional": "required only when its trigger condition holds (see spec.md)",
+    "derived": "computed from other columns; not authored by hand",
+    "fk": "maps a column to its referenced table.column (or {targets:[...], literals:[...]}); non-empty values must resolve",
+    "enum_values": "maps a column to its allowed closed-vocabulary values; non-empty values must be members"
+  },
+  "tables": {
+    "T0": {
+      "name": "NbS Registry",
+      "location": "recipes/<nbs_id>/T0_nbs_registry.{csv,json}",
+      "per_nbs": true,
+      "primary_key": "nbs_id",
+      "required": [
+        "nbs_id",
+        "nbs_name",
+        "cluster",
+        "description_short",
+        "description_technical",
+        "farming_systems_applicable",
+        "implementation_scale",
+        "establishment_period_years",
+        "economic_archetype",
+        "recurrent_cost_level",
+        "time_to_benefit_years",
+        "carbon_credit_eligible",
+        "is_active",
+        "evidence_quality",
+        "primary_references"
+      ],
+      "optional": [
+        "aliases",
+        "upfront_cost_usd_ha"
+      ],
+      "conditional": [],
+      "derived": [],
+      "fk": {
+        "farming_systems_applicable": {
+          "targets": [
+            "T7.context_id"
+          ],
+          "literals": [
+            "all"
+          ]
+        }
+      }
+    },
+    "T1": {
+      "name": "Data Registry",
+      "location": "T1_data_registry.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "dataset_id",
+      "required": [
+        "dataset_id",
+        "dataset_name",
+        "description",
+        "analytical_module",
+        "grain_type",
+        "geographic_coverage",
+        "data_format",
+        "access_type",
+        "license",
+        "citation",
+        "version",
+        "limitations"
+      ],
+      "optional": [
+        "time_period",
+        "download_url",
+        "gee_asset_id",
+        "doi",
+        "preprocessing_notes",
+        "access_params"
+      ],
+      "conditional": [
+        "hazard_type",
+        "scenario_type",
+        "spatial_resolution_m",
+        "admin_level"
+      ],
+      "derived": [],
+      "fk": {},
+      "enum_values": {
+        "hazard_type": [
+          "drought",
+          "flood",
+          "heat_stress",
+          "fire",
+          "wind_cyclone",
+          "waterlogging",
+          "frost",
+          "multi"
+        ],
+        "scenario_type": [
+          "baseline",
+          "future_ssp126",
+          "future_ssp245",
+          "future_ssp585",
+          "multi_scenario"
+        ],
+        "grain_type": [
+          "grid",
+          "admin",
+          "vector"
+        ],
+        "admin_level": [
+          "admin0",
+          "admin1",
+          "admin2"
+        ]
+      }
+    },
+    "T2": {
+      "name": "Climate Risk Formulation",
+      "location": "T2_climate_risk.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "variable_id",
+      "required": [
+        "variable_id",
+        "dataset_id",
+        "risk_component",
+        "variable",
+        "scenario_type",
+        "use_in_simplified_mode",
+        "use_in_advanced_mode",
+        "double_count_risk",
+        "normalisation_method",
+        "weight_default",
+        "weight_adjustable",
+        "directionality",
+        "evidence_ids"
+      ],
+      "optional": [
+        "normalisation_params",
+        "justification"
+      ],
+      "conditional": [
+        "hazard_type"
+      ],
+      "derived": [],
+      "fk": {
+        "dataset_id": "T1.dataset_id",
+        "variable": "VONT.canonical_variable_id",
+        "evidence_ids": "EV.evidence_id"
+      },
+      "enum_values": {
+        "hazard_type": [
+          "drought",
+          "flood",
+          "heat_stress",
+          "fire",
+          "wind_cyclone",
+          "waterlogging",
+          "frost"
+        ],
+        "scenario_type": [
+          "baseline",
+          "future_ssp126",
+          "future_ssp245",
+          "future_ssp585"
+        ]
+      }
+    },
+    "T3": {
+      "name": "NbS x Hazard x Farming System",
+      "location": "recipes/<nbs_id>/T3_nbs_hazard_farming.{csv,json}",
+      "per_nbs": true,
+      "primary_key": "record_id",
+      "required": [
+        "record_id",
+        "nbs_id",
+        "hazard_type",
+        "farming_system",
+        "risk_role",
+        "mitigation_mechanism",
+        "confidence",
+        "timescale_of_effect",
+        "landscape_scale_only",
+        "evidence_ids",
+        "evidence_level",
+        "agreement_level",
+        "context_dependent"
+      ],
+      "optional": [
+        "caveats",
+        "justification",
+        "suitability_family_id",
+        "scope_type",
+        "scope_id",
+        "applicability",
+        "family_spread"
+      ],
+      "conditional": [
+        "asset_risk_weight",
+        "asset_sensitivity",
+        "mitigation_potential"
+      ],
+      "derived": [],
+      "fk": {
+        "nbs_id": "T0.nbs_id",
+        "farming_system": {
+          "targets": [
+            "T7.context_id"
+          ],
+          "literals": [
+            "all"
+          ]
+        },
+        "evidence_ids": "EV.evidence_id",
+        "suitability_family_id": "FAM.suitability_family_id",
+        "scope_id": {
+          "targets": [
+            "T7.context_id"
+          ],
+          "literals": [
+            "low",
+            "lower_middle",
+            "upper_middle",
+            "high",
+            "lic_lmic"
+          ]
+        }
+      },
+      "enum_values": {
+        "hazard_type": [
+          "drought",
+          "flood",
+          "heat_stress",
+          "fire",
+          "wind_cyclone",
+          "waterlogging",
+          "sedimentation",
+          "extreme_rainfall",
+          "landslide"
+        ],
+        "mitigation_potential": [
+          "very_negative",
+          "negative",
+          "none",
+          "low",
+          "moderate",
+          "high",
+          "very_high"
+        ],
+        "risk_role": [
+          "livelihood_mitigation",
+          "asset_threat",
+          "both"
+        ],
+        "confidence": [
+          "very_low",
+          "low",
+          "medium",
+          "high",
+          "very_high"
+        ],
+        "timescale_of_effect": [
+          "immediate",
+          "short_term_1_3yr",
+          "medium_term_3_7yr",
+          "long_term_7yr_plus"
+        ],
+        "scope_type": [
+          "aez",
+          "farming_system",
+          "admin_country",
+          "admin_region",
+          "hydrobasin",
+          "income_group"
+        ],
+        "evidence_level": [
+          "limited",
+          "medium",
+          "robust"
+        ],
+        "agreement_level": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "asset_sensitivity": [
+          "none",
+          "low",
+          "moderate",
+          "high",
+          "very_high"
+        ]
+      },
+      "note": "v0.4.0 (T3/T6 generation method): rows are generated per cell x applicability scope; blank scope_type/scope_id = global row; blank suitability_family_id = NbS roll-up row. mitigation_potential required when risk_role in {livelihood_mitigation, both}; asset_sensitivity + asset_risk_weight required when risk_role in {asset_threat, both}. confidence is derived (IPCC evidence x agreement matrix), never authored."
+    },
+    "T4": {
+      "name": "Suitability Variable Mappings",
+      "location": "recipes/<nbs_id>/T4_suitability_mappings.{csv,json}",
+      "per_nbs": true,
+      "primary_key": "mapping_id",
+      "required": [
+        "mapping_id",
+        "nbs_id",
+        "suitability_family_id",
+        "dataset_id",
+        "variable",
+        "suitability_dimension",
+        "relationship_type",
+        "relationship_params",
+        "is_scenario_candidate",
+        "has_future_projection",
+        "weight_default",
+        "weight_adjustable",
+        "evidence_ids"
+      ],
+      "optional": [
+        "uncertainty_pct",
+        "context_overrides",
+        "n_sources",
+        "corpus_n",
+        "justification"
+      ],
+      "conditional": [
+        "scenario_label",
+        "scenario_description",
+        "baseline_dataset_id",
+        "future_dataset_ids"
+      ],
+      "derived": [
+        "paper_support_pct"
+      ],
+      "fk": {
+        "nbs_id": "T0.nbs_id",
+        "suitability_family_id": "FAM.suitability_family_id",
+        "dataset_id": "T1.dataset_id",
+        "variable": "VONT.canonical_variable_id",
+        "evidence_ids": "EV.evidence_id"
+      },
+      "enum_values": {
+        "suitability_dimension": [
+          "biophysical_constraint",
+          "system_constraint",
+          "operational_constraint"
+        ],
+        "relationship_type": [
+          "trapezoidal",
+          "gaussian",
+          "linear_increasing",
+          "linear_decreasing",
+          "sigmoid",
+          "inverted_sigmoid",
+          "threshold",
+          "ranked_classes",
+          "piecewise"
+        ]
+      }
+    },
+    "T5": {
+      "name": "Opportunity Space Variables",
+      "location": "T5_opportunity_space.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "variable_id",
+      "required": [
+        "variable_id",
+        "variable",
+        "mcda_role",
+        "theme",
+        "dataset_id",
+        "directionality_of_concern",
+        "ttl_priority_label",
+        "ttl_priority_description",
+        "is_climate_risk_component",
+        "aggregation_method",
+        "normalisation_method",
+        "weight_default",
+        "has_future_projection",
+        "is_active"
+      ],
+      "optional": [
+        "evidence_ids"
+      ],
+      "conditional": [],
+      "derived": [],
+      "fk": {
+        "variable": "VONT.canonical_variable_id",
+        "dataset_id": "T1.dataset_id",
+        "evidence_ids": "EV.evidence_id"
+      },
+      "enum_values": {
+        "mcda_role": [
+          "priority",
+          "descriptor"
+        ],
+        "theme": [
+          "climate_hazard",
+          "nbs_response",
+          "people_production",
+          "equity_inclusion",
+          "context"
+        ]
+      }
+    },
+    "T6": {
+      "name": "NbS Scorecard",
+      "location": "recipes/<nbs_id>/T6_nbs_scorecard.{csv,json}",
+      "per_nbs": true,
+      "primary_key": "record_id",
+      "required": [
+        "record_id",
+        "nbs_id",
+        "variable_id",
+        "variable_type",
+        "effect_confidence",
+        "effect_mechanism",
+        "timescale_of_effect",
+        "evidence_ids",
+        "evidence_level",
+        "agreement_level",
+        "context_dependent"
+      ],
+      "optional": [
+        "conditionality",
+        "economic_archetype_id",
+        "justification",
+        "suitability_family_id",
+        "scope_type",
+        "scope_id",
+        "applicability",
+        "family_spread",
+        "magnitude_summary"
+      ],
+      "conditional": [
+        "effect_direction",
+        "economic_indicator_type",
+        "economic_value_range"
+      ],
+      "derived": [],
+      "fk": {
+        "nbs_id": "T0.nbs_id",
+        "variable_id": {
+          "targets": [
+            "T5.variable_id"
+          ]
+        },
+        "evidence_ids": "EV.evidence_id",
+        "suitability_family_id": "FAM.suitability_family_id",
+        "scope_id": {
+          "targets": [
+            "T7.context_id"
+          ],
+          "literals": [
+            "low",
+            "lower_middle",
+            "upper_middle",
+            "high",
+            "lic_lmic"
+          ]
+        }
+      },
+      "enum_values": {
+        "economic_indicator_type": [
+          "establishment_cost",
+          "recurrent_cost",
+          "income_potential",
+          "cost_reduction",
+          "market_access",
+          "carbon_revenue",
+          "subsidy_dependency",
+          "cost_per_beneficiary",
+          "cost_per_hectare_restored",
+          "cost_per_tco2e_avoided",
+          "cost_per_farmer_reached"
+        ],
+        "variable_type": [
+          "opportunity_space_variable",
+          "climate_hazard_mitigation",
+          "economic_indicator"
+        ],
+        "effect_direction": [
+          "strong_negative",
+          "moderate_negative",
+          "slight_negative",
+          "no_relationship",
+          "slight_positive",
+          "moderate_positive",
+          "strong_positive"
+        ],
+        "effect_confidence": [
+          "very_low",
+          "low",
+          "medium",
+          "high",
+          "very_high"
+        ],
+        "timescale_of_effect": [
+          "immediate",
+          "short_term_1_3yr",
+          "medium_term_3_7yr",
+          "long_term_7yr_plus"
+        ],
+        "scope_type": [
+          "aez",
+          "farming_system",
+          "admin_country",
+          "admin_region",
+          "hydrobasin",
+          "income_group"
+        ],
+        "evidence_level": [
+          "limited",
+          "medium",
+          "robust"
+        ],
+        "agreement_level": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "note": "v0.4.0: variable_id for climate_hazard_mitigation rows is the T5 climate_hazard priority id (drought_hazard), never the bare T3 hazard_type. Same scope/family row semantics as T3. magnitude_summary only when >=2 independent sources share metric+unit; economic_value_range under the hard gates in methodology/T3_T6_generation_method.md section 7.7."
+    },
+    "T6E": {
+      "name": "NbS Economic Profile",
+      "location": "recipes/<nbs_id>/T6E_economic_profile.{csv,json}",
+      "per_nbs": true,
+      "primary_key": "record_id",
+      "required": [
+        "record_id",
+        "nbs_id",
+        "variable_id",
+        "variable_type",
+        "effect_confidence",
+        "effect_mechanism",
+        "timescale_of_effect",
+        "evidence_ids",
+        "evidence_level",
+        "agreement_level",
+        "context_dependent"
+      ],
+      "optional": [
+        "conditionality",
+        "economic_archetype_id",
+        "justification",
+        "suitability_family_id",
+        "scope_type",
+        "scope_id",
+        "applicability",
+        "family_spread",
+        "magnitude_summary"
+      ],
+      "conditional": [
+        "effect_direction",
+        "economic_indicator_type",
+        "economic_value_range"
+      ],
+      "derived": [],
+      "fk": {
+        "nbs_id": "T0.nbs_id",
+        "variable_id": {
+          "targets": [],
+          "literals": [
+            "establishment_cost",
+            "recurrent_cost",
+            "income_potential",
+            "cost_reduction",
+            "market_access",
+            "carbon_revenue",
+            "subsidy_dependency",
+            "cost_per_beneficiary",
+            "cost_per_hectare_restored",
+            "cost_per_farmer_reached"
+          ]
+        },
+        "evidence_ids": "EV.evidence_id",
+        "suitability_family_id": "FAM.suitability_family_id",
+        "scope_id": {
+          "targets": [
+            "T7.context_id"
+          ],
+          "literals": [
+            "low",
+            "lower_middle",
+            "upper_middle",
+            "high",
+            "lic_lmic"
+          ]
+        }
+      },
+      "enum_values": {
+        "economic_indicator_type": [
+          "establishment_cost",
+          "recurrent_cost",
+          "income_potential",
+          "cost_reduction",
+          "market_access",
+          "carbon_revenue",
+          "subsidy_dependency",
+          "cost_per_beneficiary",
+          "cost_per_hectare_restored",
+          "cost_per_tco2e_avoided",
+          "cost_per_farmer_reached"
+        ],
+        "variable_type": [
+          "opportunity_space_variable",
+          "climate_hazard_mitigation",
+          "economic_indicator"
+        ],
+        "effect_direction": [
+          "strong_negative",
+          "moderate_negative",
+          "slight_negative",
+          "no_relationship",
+          "slight_positive",
+          "moderate_positive",
+          "strong_positive"
+        ],
+        "effect_confidence": [
+          "very_low",
+          "low",
+          "medium",
+          "high",
+          "very_high"
+        ],
+        "timescale_of_effect": [
+          "immediate",
+          "short_term_1_3yr",
+          "medium_term_3_7yr",
+          "long_term_7yr_plus"
+        ],
+        "scope_type": [
+          "aez",
+          "farming_system",
+          "admin_country",
+          "admin_region",
+          "hydrobasin",
+          "income_group"
+        ],
+        "evidence_level": [
+          "limited",
+          "medium",
+          "robust"
+        ],
+        "agreement_level": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "note": "Cost / economic-indicator rows split out of the T6 scorecard (Pete 2026-10-23, row review D8): same columns as T6, generated by the same cell synthesis; feeds the economic / econometric profiles, not the scorecard. cost_per_tco2e_avoided is feasibility-level and not generated."
+    },
+    "T7": {
+      "name": "Geographic Context",
+      "location": "T7_geographic_context.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "context_id",
+      "required": [
+        "context_id",
+        "context_type",
+        "context_name",
+        "dataset_id",
+        "geometry_field",
+        "value_in_dataset",
+        "description",
+        "is_active"
+      ],
+      "optional": [
+        "parent_context_id"
+      ],
+      "conditional": [],
+      "derived": [],
+      "fk": {
+        "dataset_id": "T1.dataset_id"
+      }
+    },
+    "SRC": {
+      "name": "Source Register",
+      "location": "registers/SRC_source_register.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "source_id",
+      "required": [
+        "source_id",
+        "citation",
+        "benchmark_tier",
+        "source_kind"
+      ],
+      "optional": [
+        "doi",
+        "study_country",
+        "region",
+        "coords",
+        "aez",
+        "farming_system",
+        "method_type",
+        "spatial_scale",
+        "analysis_resolution_m",
+        "nbs_ids",
+        "vars_extracted",
+        "extraction_status",
+        "extraction_status_by_family",
+        "extraction_date",
+        "extraction_run_id",
+        "extractor",
+        "study_income_group",
+        "is_seminal",
+        "venue_type",
+        "url",
+        "artifact_sha1",
+        "retrieved_at",
+        "access_status",
+        "license",
+        "source_category",
+        "library_path"
+      ],
+      "conditional": [],
+      "derived": [],
+      "fk": {
+        "aez": "T7.context_id",
+        "farming_system": "T7.context_id",
+        "nbs_ids": "T0.nbs_id",
+        "vars_extracted": "VONT.canonical_variable_id"
+      },
+      "enum_values": {
+        "benchmark_tier": [
+          "high",
+          "medium",
+          "low",
+          "external"
+        ],
+        "extraction_status": [
+          "pending",
+          "in_progress",
+          "swept",
+          "signed_off"
+        ],
+        "study_income_group": [
+          "low",
+          "lower_middle",
+          "upper_middle",
+          "high"
+        ],
+        "venue_type": [
+          "peer_reviewed_journal",
+          "institutional_report",
+          "preprint",
+          "grey"
+        ],
+        "source_kind": [
+          "paper",
+          "grey_lit",
+          "website",
+          "tool",
+          "codebase"
+        ],
+        "access_status": [
+          "open_access",
+          "paywalled",
+          "unknown"
+        ],
+        "source_category": [
+          "stock",
+          "updated_lit",
+          "grey",
+          "tool"
+        ]
+      }
+    },
+    "EV": {
+      "name": "Evidence Register",
+      "location": "registers/EV_evidence_register.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "evidence_id",
+      "required": [
+        "evidence_id",
+        "source_id",
+        "nbs_id",
+        "suitability_family_id",
+        "variable",
+        "use_role",
+        "evidence_type",
+        "claim_basis",
+        "claim_scope",
+        "extraction_confidence",
+        "quote",
+        "locator_type"
+      ],
+      "optional": [
+        "relationship",
+        "context",
+        "lineage_of",
+        "reviewer_ok",
+        "raw_name",
+        "observed_dataset",
+        "attribution",
+        "justification_quote",
+        "justification_page",
+        "selection_justification",
+        "selection_justification_page",
+        "review_state",
+        "ruleset_version"
+      ],
+      "conditional": [
+        "taxon",
+        "page",
+        "locator",
+        "commit_sha"
+      ],
+      "derived": [],
+      "fk": {
+        "source_id": "SRC.source_id",
+        "nbs_id": "T0.nbs_id",
+        "suitability_family_id": "FAM.suitability_family_id",
+        "variable": "VONT.canonical_variable_id"
+      },
+      "enum_values": {
+        "locator_type": [
+          "page",
+          "section",
+          "char_span",
+          "file_line"
+        ],
+        "use_role": [
+          "structural_suitability",
+          "operational_risk",
+          "dataset",
+          "nbs_effect",
+          "asset_vulnerability",
+          "climate_risk",
+          "priority_need"
+        ]
+      }
+    },
+    "VONT": {
+      "name": "Variable Ontology",
+      "location": "registers/VONT_variable_ontology.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "canonical_variable_id",
+      "required": [
+        "canonical_variable_id",
+        "label",
+        "canonical_unit",
+        "group_id",
+        "candidate_dataset_ids",
+        "min_meaningful_resolution_m",
+        "resolution_sensitivity",
+        "derive_then_aggregate"
+      ],
+      "optional": [
+        "aliases",
+        "unit_conversions",
+        "context_sensitivity",
+        "review_status",
+        "raised_by",
+        "raised_date",
+        "composite_of",
+        "comment"
+      ],
+      "conditional": [],
+      "derived": [],
+      "fk": {
+        "composite_of": "VONT.canonical_variable_id"
+      },
+      "enum_values": {
+        "review_status": [
+          "canonical",
+          "pending_review",
+          "rejected"
+        ]
+      }
+    },
+    "BIND": {
+      "name": "Dataset Binding Registry",
+      "location": "registers/BIND_dataset_binding.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "binding_id",
+      "required": [
+        "binding_id",
+        "variable",
+        "scope_type",
+        "preference_rank",
+        "status"
+      ],
+      "optional": [
+        "dataset_id",
+        "fitness_note",
+        "band"
+      ],
+      "conditional": [
+        "scope_id"
+      ],
+      "derived": [],
+      "fk": {
+        "variable": "VONT.canonical_variable_id",
+        "scope_id": "T7.context_id",
+        "dataset_id": "T1.dataset_id"
+      }
+    },
+    "FAM": {
+      "name": "Subpractice / Suitability-Family Registry",
+      "location": "registers/FAM_family_registry.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "subpractice_id",
+      "required": [
+        "subpractice_id",
+        "nbs_id",
+        "name",
+        "definition",
+        "suitability_family_id",
+        "dominant_limiting_factor",
+        "spatial_product_type",
+        "grouping_rationale",
+        "references"
+      ],
+      "optional": [],
+      "conditional": [],
+      "derived": [],
+      "fk": {
+        "nbs_id": "T0.nbs_id"
+      }
+    },
+    "TOOL": {
+      "name": "Tools / Methods Registry",
+      "location": "registers/TOOL_tool_registry.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "tool_id",
+      "required": [
+        "tool_id",
+        "name",
+        "tool_type",
+        "url"
+      ],
+      "optional": [
+        "organisation",
+        "repo_commit",
+        "license",
+        "language",
+        "nbs_ids",
+        "spatial_method",
+        "membership_functions",
+        "weighting_scheme",
+        "variables_used",
+        "datasets_used",
+        "workflow_summary",
+        "validation",
+        "benchmark_tier",
+        "combined_score",
+        "maturity",
+        "source_id",
+        "evidence_ids",
+        "locator",
+        "review_status",
+        "notes"
+      ],
+      "conditional": [],
+      "derived": [],
+      "fk": {
+        "source_id": "SRC.source_id"
+      },
+      "enum_values": {
+        "tool_type": [
+          "codebase",
+          "platform",
+          "method_framework",
+          "r_package",
+          "gee_app",
+          "webgis"
+        ],
+        "language": [
+          "python",
+          "r",
+          "gee_js",
+          "javascript",
+          "other",
+          "na"
+        ],
+        "spatial_method": [
+          "mcda_ahp",
+          "fuzzy",
+          "rule_based",
+          "ml",
+          "optimization",
+          "process_model",
+          "other"
+        ],
+        "validation": [
+          "validated",
+          "partial",
+          "unvalidated"
+        ],
+        "benchmark_tier": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "maturity": [
+          "active",
+          "archived",
+          "prototype"
+        ],
+        "review_status": [
+          "canonical",
+          "pending_review",
+          "rejected"
+        ]
+      }
+    },
+    "SRCH": {
+      "name": "Search-Protocol Register",
+      "location": "registers/SRCH_search_register.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "search_id",
+      "required": [
+        "search_id",
+        "nbs_id",
+        "table",
+        "category",
+        "search_terms",
+        "search_date",
+        "ruleset_version"
+      ],
+      "optional": [
+        "suitability_family_id",
+        "screening_steps",
+        "inclusion_criteria",
+        "limits",
+        "n_retrieved",
+        "n_screened",
+        "n_included",
+        "run_id",
+        "searched_by",
+        "discovery_log_ref",
+        "note"
+      ],
+      "conditional": [],
+      "derived": [],
+      "fk": {
+        "nbs_id": "T0.nbs_id"
+      },
+      "enum_values": {
+        "table": [
+          "T4",
+          "T3",
+          "T6"
+        ],
+        "category": [
+          "stock",
+          "updated_lit",
+          "grey",
+          "tool"
+        ]
+      }
+    },
+    "XW": {
+      "name": "Target Crosswalk (evidence outcome variable -> T3 hazard / T5 priority / T6 economic indicator)",
+      "location": "registers/XW_target_crosswalk.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "xw_id",
+      "required": [
+        "xw_id",
+        "ev_variable",
+        "target_table",
+        "target_key",
+        "polarity",
+        "proximity",
+        "weight_factor",
+        "rationale"
+      ],
+      "optional": [
+        "ratified_by",
+        "ratified_date",
+        "note"
+      ],
+      "conditional": [],
+      "derived": [],
+      "fk": {
+        "ev_variable": "VONT.canonical_variable_id",
+        "target_key": {
+          "targets": [
+            "T5.variable_id",
+            "T3.hazard_type"
+          ],
+          "literals": [
+            "establishment_cost",
+            "recurrent_cost",
+            "income_potential",
+            "cost_reduction",
+            "market_access",
+            "carbon_revenue",
+            "subsidy_dependency",
+            "cost_per_beneficiary",
+            "cost_per_hectare_restored",
+            "cost_per_tco2e_avoided",
+            "cost_per_farmer_reached"
+          ]
+        }
+      },
+      "enum_values": {
+        "target_table": [
+          "T3",
+          "T6"
+        ],
+        "polarity": [
+          "same",
+          "inverted"
+        ],
+        "proximity": [
+          "direct",
+          "proxy",
+          "component"
+        ]
+      },
+      "note": "v0.4.0. The ONLY place an EV outcome variable becomes a consumer key. Many-to-many allowed. No row without a VONT id. Ratified by the consumer owner (Namita T6, Brayden T3; Pete pilot). weight_factor defaults: direct 1.0, proxy 0.7, component 0.7."
+    },
+    "BANDS": {
+      "name": "Magnitude Bands (metric -> strength class)",
+      "location": "registers/BANDS_magnitude_bands.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "band_id",
+      "required": [
+        "band_id",
+        "metric",
+        "strength_class",
+        "basis"
+      ],
+      "optional": [
+        "centre",
+        "income_band",
+        "unit",
+        "abs_min",
+        "abs_max",
+        "source_scale_value",
+        "note"
+      ],
+      "conditional": [],
+      "derived": [],
+      "fk": {},
+      "enum_values": {
+        "metric": [
+          "smd_hedges_g",
+          "pct_change",
+          "ln_response_ratio",
+          "ordinal_rating",
+          "absolute",
+          "narrative"
+        ],
+        "strength_class": [
+          "slight",
+          "moderate",
+          "strong",
+          "unspecified"
+        ]
+      },
+      "note": "v0.4.0. Machine-readable magnitude->strength_class bands used at extraction (check_bands.py verifies). abs_min inclusive, abs_max exclusive, on |magnitude|. ordinal_rating rows map a source scale value (source_scale_value) to a class per adapter."
+    },
+    "T4_NUMERIC_POLICY": {
+      "name": "T4 numeric compilation policy",
+      "location": "lookups/t4_numeric_compilation_policy.{csv,json}",
+      "per_nbs": false,
+      "primary_key": "evidence_id",
+      "required": [
+        "evidence_id",
+        "nbs_id",
+        "action",
+        "applicability_note"
+      ],
+      "optional": [
+        "encoding",
+        "field",
+        "input_unit",
+        "ordinal_scale",
+        "threshold_direction",
+        "reason",
+        "range_order",
+        "harmonization"
+      ],
+      "conditional": [],
+      "derived": [],
+      "enum_values": {
+        "action": [
+          "compile",
+          "hold"
+        ]
+      },
+      "fk": {
+        "evidence_id": "EV.evidence_id"
+      }
+    },
+    "T4_RUN": {
+      "name": "T4 approved run policy",
+      "location": "recipes/<nbs_id>/T4_run_policy.{csv,json}",
+      "per_nbs": true,
+      "primary_key": "policy_row_id",
+      "required": [
+        "policy_row_id",
+        "policy_id",
+        "nbs_id",
+        "system",
+        "output_label",
+        "variable_group",
+        "rule_id",
+        "function_id",
+        "function_fingerprint",
+        "group_weight",
+        "criterion_weight",
+        "aggregation",
+        "sensitivity_aggregation",
+        "missing_values",
+        "gate_policy",
+        "applicability",
+        "decision_reference"
+      ],
+      "optional": [],
+      "conditional": [],
+      "derived": [],
+      "fk": {},
+      "enum_values": {
+        "aggregation": [
+          "weighted_linear_combination"
+        ],
+        "sensitivity_aggregation": [
+          "minimum"
+        ],
+        "missing_values": [
+          "propagate_unknown"
+        ],
+        "gate_policy": [
+          "separate_host_and_legal_masks"
+        ],
+        "applicability": [
+          "target_transfer_required"
+        ]
+      }
+    }
+  }
+}
