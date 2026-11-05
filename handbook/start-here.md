@@ -26,8 +26,8 @@ Suitability is reasoned by families of sub-practices sharing a limiting factor. 
 
 ## Read the status before implementation
 
-The first repository snapshot preserves draft, pending, rejected and incomplete configuration. Some evidence references and policy dependencies still resolve to the pinned CIAT baseline; it is not yet a complete definition bundle. The missing mangrove identity record requires an explicit method correction.
+The first repository snapshot preserves draft, pending, rejected and incomplete configuration. Some evidence references and policy dependencies resolve to a pinned external baseline; this is not yet a complete definition bundle. The mangrove family records have no matching T0 identity record in this snapshot.
 
-Use an accepted analytical manifest and compatible runtime version for an implementation. Record the AOI, dataset versions, transformations, grid, input pins and output hashes. The Haiti example will distinguish exploratory reproduction (H1) from a run satisfying the agreed gates and spatial semantics (H2). Two pilot applications and reproducible notebooks remain contracted deliverables.
+Use an accepted analytical manifest and compatible runtime version for an implementation. Record the AOI, dataset versions, transformations, grid, input pins and output hashes. Worked examples must distinguish exploratory reproduction from runs satisfying all required gates and spatial semantics.
 
 See the [pinned source map and unresolved-reference index](../data-model/baseline.md) for the exact baseline, file hashes and preserved holds.
