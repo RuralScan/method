@@ -1,12 +1,12 @@
 # Draft definition baseline and unresolved references
 
-Source: [CIAT/nbs_ruralscan at `dd80226700432e9abd4aa9262262b9ad5ad6dfd5`](https://github.com/CIAT/nbs_ruralscan/tree/dd80226700432e9abd4aa9262262b9ad5ad6dfd5). This commit is immutable. CIAT remains the working authority; this proposed snapshot is not an accepted release and must not be edited as a second live configuration.
+Source: [CIAT/nbs_ruralscan at `dd80226700432e9abd4aa9262262b9ad5ad6dfd5`](https://github.com/CIAT/nbs_ruralscan/tree/dd80226700432e9abd4aa9262262b9ad5ad6dfd5). This immutable source identifies the technical origin of the included draft definitions. The current files remove project administration and personal labels from that source; numerical configuration, identifiers and scientific statuses are preserved. This remains an incomplete reference, not an executable analytical release.
 
-## Source-to-destination map
+## Source versions
 
-These 15 existing files are proposed for byte-preserving import. Hashes identify source bytes; any later documentation repair needs its own reviewed diff.
+The hashes below identify the upstream source bytes, not the current edited copies. Source links provide the original technical and review provenance. Descriptive notes and personal labels have been edited for a reusable reference; analytical fields, values and scientific statuses retain their source meaning. Person-valued `raised_by` labels are blank in this reference; original metadata remains in the pinned source. Scientific review statuses are unchanged, and no new review event is implied.
 
-| Destination | Pinned source | SHA-256 |
+| Local file | Pinned source | Upstream SHA-256 |
 |---|---|---|
 | `LICENSE` | [LICENSE](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/LICENSE) | `2c7cec6f2a5b382f97d69f9e1924779bedd44ccfa53baab6f0e720ac55855c18` |
 | `data-model/spec.md` | [schema/spec.md](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/spec.md) | `9535ec70971d550fc827ffe8f8f0c4295e525d9db807cf25e9deaf8691d76dc1` |
@@ -26,12 +26,12 @@ These 15 existing files are proposed for byte-preserving import. Hashes identify
 
 ## Status and dependency index
 
-- **Incomplete identity link:** FAM includes two mangrove family records, but this baseline has no mangrove T0 CSV. Do not fabricate one or claim closed foreign-key validation.
+- **Incomplete identity link:** FAM includes two mangrove family records, but this baseline has no mangrove T0 CSV. The affected foreign-key chain is therefore incomplete.
 - **Variable statuses:** VONT has 68 canonical, 31 pending_review, 18 pending, 45 blank and 2 rejected records. Preserve every status; blank does not mean approved.
 - **Dataset availability:** 16 of 46 BIND rows require an upload. T1 is metadata, with per-source restrictions; no underlying dataset is bundled or licensed by this snapshot.
-- **Evidence provenance:** resolve claim references against pinned [EV](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/registers/EV_evidence_register.csv) and [SRC](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/registers/SRC_source_register.csv). These registers remain outside this method snapshot. Their inclusion in source history is not a new publication or scientific approval.
-- **Other configuration dependencies:** [lookups](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/lookups) and the remaining [registers](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/registers) are linked source material, not imported or accepted by this tranche. In particular, compilation policies, crosswalks, confidence conventions and source-specific adjudications need their separate ownership/approval gates.
-- **Analytical outputs held:** all T4 mappings, function-bound run policies, compiled T3/T6/T6E files and accepted analytical manifests remain outside this first snapshot. No runtime can treat it as a complete recipe bundle.
-- **Specification status:** source prose contains historical counts and relative links. Use the pinned source above to resolve them. Corrections must preserve field meaning and be recorded separately from the exact-byte import.
+- **Evidence provenance:** resolve claim references against pinned [EV](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/registers/EV_evidence_register.csv) and [SRC](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/registers/SRC_source_register.csv). These registers remain external dependencies of this method snapshot.
+- **Other configuration dependencies:** [lookups](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/lookups) and the remaining [registers](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/registers) are external dependencies. Compilation policies, crosswalks, confidence conventions and source-specific adjudications must be resolved before building a complete analytical bundle.
+- **Analytical outputs held:** all T4 mappings, function-bound run policies, compiled T3/T6/T6E files and accepted analytical manifests are not included. This is not a complete recipe bundle.
+- **Specification status:** source prose contains historical counts and relative links. Use the pinned source above to resolve them. Historical counts and missing relative targets have not yet been fully reconciled; the versioned source and included structure manifest remain available for comparison.
 
-The [start-here guide](../handbook/start-here.md) is the initial conceptual entrypoint. A larger concept/cookbook module follows M11–M13; it is not a missing requirement for staging this labelled baseline.
+The [start-here guide](../handbook/start-here.md) explains the conceptual workflow.

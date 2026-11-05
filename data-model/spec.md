@@ -13,11 +13,6 @@
 > **XW** (target crosswalk) and **BANDS** (magnitude bands); `schema/lookups/` (IPCC matrix, WB income groups). EV `use_role` +
 > `asset_vulnerability`. SRCH `table` enum re-adds `T3`/`T6`. Ruleset v1.6.0. Seed T3/T6 rows frozen as benchmark.
 
-> **v0.3.0-G (June 2026)** — doc-only: Table-overview owners refreshed to current roles
-> (Brayden = M2/M2b + T1 download + T7 farming_system classifier; Pete = M1/M3/M4 + T4/T5 method
-> lead; Namita = Variable Cards + expert elicitation + T6 lit-sourced; MFL team = T6 domain;
-> Benson = QA across). T7 prose updated to match. No structural or content change.
->
 > **v0.3.0-F (June 2026)** — additive: `iplc_lands` priority row added under T5
 > `equity_inclusion` (issue #31). VONT canonical + BIND `iplc_lands__global` → `landmark_iplc_lands`
 > shipped. T5 now 16 rows (12 priorities + 4 descriptors). No structural change.
@@ -106,7 +101,7 @@
 > Bumped to `v0.3.0-structure-frozen`. Companion docs: `opportunity_space_T5.md`,
 > `M2b_project_risk.md`.
 >
-> **v0.2.9 (June 2026)** — focused T1 (Data Registry) reshape to unblock Brayden's data-download
+> **v0.2.9 (June 2026)** — focused T1 (Data Registry) reshape for the data-download
 > layer. **Mixed migration** — additive fields + one field re-classification + one rename target;
 > all draft-0 T1 rows migrated in lockstep with CSV+JSON.
 >
@@ -140,10 +135,10 @@
 >   bioclim's 19 bands, CHELSA bands) needs to resolve to the right layer per variable. Pairs with
 >   `T1.access_params` for the parent dataset.
 >
-> Bumped to `v0.2.9-structure-frozen`. **Unblocks Brayden's T1 → Python download layer.**
+> Bumped to `v0.2.9-structure-frozen`. **Supports the T1 → Python download layer.**
 >
 > **v0.2.8 (June 2026)** — T5 opportunity-space theme ratification. Equity / gender is **its own
-> T5 theme** (`equity_gender`), not folded into `people_production` (Pete decision). Pilot
+> T5 theme** (`equity_gender`), not folded into `people_production`. Pilot
 > theme-weight defaults shift from 4 × 0.25 to 5 × 0.20 (TTL-adjustable at M4); update the
 > `theme_weights` lookup when populating it. Manifest now enum-polices `T5.theme` with all five
 > values. Additive — existing T5 rows valid; no row needs re-tagging this batch (none currently
@@ -197,7 +192,7 @@
 > `biophysical_constraint`) are fixed in this release.
 >
 > **v0.2.5 (June 2026)** — additive fields for the **paper-first extraction loop** (T4 method §3 update)
-> and Namita's attribution requirement. Additions:
+> and source-attribution requirements. Additions:
 >
 > - **EV:** `raw_name` (preserve the paper's surface name pre-harmonisation), `observed_dataset`
 >   (which dataset the paper actually used for the variable — audit-grade), `attribution` (free-text
@@ -227,7 +222,7 @@
 > (`SRC.aez`, `SRC.farming_system` → T7; `SRC.nbs_ids` → T0). Closed enums are policed by value, open
 > vocabularies by FK. Additive.
 >
-> **v0.2.3 (June 2026)** — documented **value governance** (inline enums vs FK-governed vocabularies) and made
+> **v0.2.3 (June 2026)** — documented **controlled-vocabulary rules** (inline enums vs FK-governed vocabularies) and made
 > `farming_system` (T3) + `farming_systems_applicable` (T0) explicit FKs to **T7** (`context_type =
 > farming_system`); registered the previously-unregistered `irrigated_paddy` + `dryland_cereal` farming systems
 > in T7; validator now catches farming-system drift. Additive.
@@ -257,7 +252,7 @@
 > [`structure/columns.json`](structure/columns.json) and enforced by `src/nbs_ruralscan/schema_tools/structure.py`. Change the
 > structure only by editing this spec, regenerating the manifest, and raising an issue — never by reshaping data files.
 
-> In-repo Markdown port of `NbS_Schema_Reference_v01_1.docx` (Pete Steward, 7 May 2026).
+> In-repo Markdown port of `NbS_Schema_Reference_v01_1.docx` (7 May 2026).
 > Source archived at [`design/NbS_Schema_Reference_v01.docx`](design/NbS_Schema_Reference_v01.docx).
 > Entity-relationship diagram: [`design/NbS_ERD_v01.html`](design/NbS_ERD_v01.html) (also published on the Pages site).
 > Worked draft-0 examples (Agroforestry · Water Harvesting): CSV + JSON for every table — see [`README.md`](README.md).
@@ -267,12 +262,12 @@ analytical backbone of the Rural NbS Scan. They are the authoritative starting p
 
 - **Pipeline implementation** — building the data pipeline and MCDA engine. Code always *reads* from these
   files rather than hardcoding values.
-- **Methodology team** — populating the tables for each NbS via human-validated research. Pete coordinates T4 (suitability) generation; Namita coordinates expert-opinion elicitation + Variable Cards + T6 scorecards; Brayden owns the M2/M2b risk-side population and the T1 dataset-download layer.
+- **Table authors and reviewers** — populating the tables for each NbS via human-validated research.
 - **Future expansion** — adding an NbS means appending rows, not changing the schema or the code.
 
 All tables link via three foreign keys: `nbs_id` (from T0), `dataset_id` (from T1), `variable_id` (from T5).
 
-### Value governance — where each field's allowed values live
+### Controlled vocabularies — where each field's allowed values live
 
 A field's controlled vocabulary sits in one of two places:
 
@@ -292,16 +287,16 @@ the vocabularies to lock up front.)
 
 ## Table overview
 
-| Table | Primary purpose | Owner | QA | Per-NbS? | Location in repo |
-|---|---|---|---|---|---|
-| **T0** NbS Registry | Master record per NbS, economic archetype, evidence quality | Namita (content) · Pete (oversight) | Benson | yes (`nbs_id`) | `recipes/<nbs_id>/` |
-| **T1** Data Registry | Dataset catalog, access routes, citations, limitations | Brayden (download layer) · Namita (lit-sourced rows) | Benson | no | schema root |
-| **T2** Climate Risk Formulation | Risk variables, hazard/exposure formula, double-count guard | Brayden (M2 owner) · Namita (lit) | Benson | no | schema root |
-| **T3** NbS × Hazard × Farming | Qualitative mitigation-potential matrix · `risk_role` + asset-threat weights for M2b | Brayden (M2/M2b risk side) · Namita (lit) | Benson | yes (`nbs_id`) | `recipes/<nbs_id>/` |
-| **T4** Suitability Mappings | Response functions, scenario flags, context overrides | Pete (method lead) · Namita (lit-sourced rows + expert elicitation) · MFL review | Benson | yes (`nbs_id`) | `recipes/<nbs_id>/` |
-| **T5** Opportunity Space Vars | TTL-facing priority layers (`mcda_role = priority` \| `descriptor`) | Pete (M4 lead) · Namita (Variable Cards + expert input) | Benson | no | schema root |
-| **T6** NbS Scorecard | Likert effects (linked to T5 priorities), economic profile + cost-effectiveness denominators | Namita (lit-sourced) · MFL team (Sarah · Chris · Evert · Hannes — domain content) | Benson | yes (`nbs_id`) | `recipes/<nbs_id>/` |
-| **T7** Geographic Context | AEZ / farming-system (EO-derived, 6 classes) / admin context definitions | Brayden (classifier + analytical context) · Pete (vocab review) | Benson | no | schema root |
+| Table | Primary purpose | Per-NbS? | Location in repo |
+|---|---|---|---|
+| **T0** NbS Registry | Master record per NbS, economic archetype, evidence quality | yes (`nbs_id`) | `recipes/<nbs_id>/` |
+| **T1** Data Registry | Dataset catalog, access routes, citations, limitations | no | schema root |
+| **T2** Climate Risk Formulation | Risk variables, hazard/exposure formula, double-count guard | no | schema root |
+| **T3** NbS × Hazard × Farming | Qualitative mitigation-potential matrix · `risk_role` + asset-threat weights for M2b | yes (`nbs_id`) | `recipes/<nbs_id>/` |
+| **T4** Suitability Mappings | Response functions, scenario flags, context overrides | yes (`nbs_id`) | `recipes/<nbs_id>/` |
+| **T5** Opportunity Space Vars | TTL-facing priority layers (`mcda_role = priority` \| `descriptor`) | no | schema root |
+| **T6** NbS Scorecard | Likert effects (linked to T5 priorities), economic profile + cost-effectiveness denominators | yes (`nbs_id`) | `recipes/<nbs_id>/` |
+| **T7** Geographic Context | AEZ / farming-system (EO-derived, 6 classes) / admin context definitions | no | schema root |
 
 **Placement rule (draft-0):** tables that carry an `nbs_id` column (T0, T3, T4, T6) live under
 `schema/recipes/<nbs_id>/`; cross-NbS tables (T1, T2, T5, T7) live at the schema root. Adding an NbS adds a
@@ -421,12 +416,12 @@ agreement note · key evidence_ids), IPCC evidence-table style.
 | `record_id` | string | Required | Unique row identifier. Pattern `<nbs>[__<family>]__<hazard>__<farming_system>[__<scope_type>-<scope_id>]`. | `agroforestry__drought__cropping_rainfed__aez-semi_arid` |
 | `nbs_id` | string | Required | FK → `T0.nbs_id`. | `agroforestry` |
 | `suitability_family_id` | string | Optional *(v0.4.0)* | FK → `FAM.suitability_family_id`. Family-level row (emitted when ≥ 2 independent sources). **Blank = NbS roll-up row** (pooled over all the NbS's units). | `agroforestry__regeneration_farmland` |
-| `hazard_type` | enum | Required | `drought` \| `flood` \| `heat_stress` \| `fire` \| `wind_cyclone` \| `waterlogging`. Frost is out of T3 for every NbS (Pete 2026-10-23). Erosion is **not** a hazard here (→ T6 `soil_erosion_risk`). | `drought` |
+| `hazard_type` | enum | Required | `drought` \| `flood` \| `heat_stress` \| `fire` \| `wind_cyclone` \| `waterlogging`. Frost is out of T3 for every NbS (2026-10-23). Erosion is **not** a hazard here (→ T6 `soil_erosion_risk`). | `drought` |
 | `farming_system` | string | Required | FK → T7 (`context_type = farming_system`), or `all`. A **cell key**, not a scope. | `cropping_rainfed` |
 | `scope_type` | enum | Optional *(v0.4.0)* | `aez` \| `admin_country` \| `admin_region` \| `hydrobasin` \| `income_group` (`farming_system` is a key here, so unused as a scope on T3). **Blank = global row.** Precedence at runtime: `admin_region` > `admin_country` > `hydrobasin` > `farming_system` > `aez` > `income_group` > global. | `aez` |
 | `scope_id` | string | Conditional *(v0.4.0)* | FK → `T7.context_id`, or an income band literal (`low` \| `lower_middle` \| `upper_middle` \| `high` \| `lic_lmic`). Required when `scope_type` set. | `semi_arid` |
 | `risk_role` | enum | Required | `livelihood_mitigation` (→ M2) \| `asset_threat` (→ M2b) \| `both`. | `livelihood_mitigation` |
-| `mitigation_potential` | enum | **Conditional** *(v0.4.0: was Required)* | Required when `risk_role ∈ {livelihood_mitigation, both}`; blank on pure `asset_threat` rows. 7-point plus two outcomes: `very_negative` \| `negative` \| `none` \| `low` \| `moderate` \| `high` \| `very_high`, plus `conflicting_evidence` (v0.4.2, Pete 2026-10-19 — material weight on both signs states the conflict rather than a near-tie class) and blank for a data-deficient cell. Derived from the modal-sign weighted-median rank; **`very_high` only when rank = 3 and `confidence ≥ high`**. | `moderate` |
+| `mitigation_potential` | enum | **Conditional** *(v0.4.0: was Required)* | Required when `risk_role ∈ {livelihood_mitigation, both}`; blank on pure `asset_threat` rows. 7-point plus two outcomes: `very_negative` \| `negative` \| `none` \| `low` \| `moderate` \| `high` \| `very_high`, plus `conflicting_evidence` (v0.4.2, 2026-10-19 — material weight on both signs states the conflict rather than a near-tie class) and blank for a data-deficient cell. Derived from the modal-sign weighted-median rank; **`very_high` only when rank = 3 and `confidence ≥ high`**. | `moderate` |
 | `asset_sensitivity` | enum | Conditional *(v0.4.0)* | Required when `risk_role ∈ {asset_threat, both}`. How badly the hazard damages the NbS asset: `none` \| `low` \| `moderate` \| `high` \| `very_high`. Sourced from WOCAT tolerance ratings + literature (`asset_vulnerability` units). | `high` |
 | `asset_risk_weight` | float | Conditional | Required when `risk_role` includes `asset_threat` **and the NbS has an `asset_threat` row for all 7 hazards**; otherwise blank (M2b falls back to equal weights). **Derived** normalisation of `asset_sensitivity` ranks across the NbS's hazards (sum = 1), never extracted. | `0.40` |
 | `mitigation_mechanism` | string | Required | How the NbS mitigates (or is damaged by) the hazard, 1–3 sentences written by the prose writer from the cited units' quotes. | `Tree canopy reduces evapotranspiration…` |
@@ -618,7 +613,7 @@ T6 row and are identical across NbS.
 
 ## T6 — NbS Scorecard — Effects and Economic Profile
 
-> **Split 2026-10-23 (Pete, row review D8).** Effect rows (one per T5 priority) stay in
+> **Split 2026-10-23 (row review D8).** Effect rows (one per T5 priority) stay in
 > `T6_nbs_scorecard`. The cost / economic-indicator rows (`variable_type = economic_indicator`:
 > establishment and recurrent cost, cost per hectare restored, cost per beneficiary, cost
 > reduction) are written to **`T6E_economic_profile`** — same columns, same generator — because
@@ -644,7 +639,7 @@ narrative without a full CBA — **scoping-grade, not CBA**.
 | `variable_id` | string | Required | FK → `T5.variable_id` (a `priority` row) **or** an `economic_indicator_type` literal. *(v0.4.0: for `climate_hazard_mitigation` rows this is the T5 climate-hazard priority id, e.g. `drought_hazard` — the bare T3 `hazard_type` is no longer accepted.)* | `rural_poverty` |
 | `variable_type` | enum | Required | `opportunity_space_variable` \| `climate_hazard_mitigation` \| `economic_indicator`. | `opportunity_space_variable` |
 | `scope_type` · `scope_id` | enum · string | Optional / Conditional *(v0.4.0)* | As T3; `farming_system` **is** a valid scope on T6 (it is not a cell key here). | `income_group` · `lic_lmic` |
-| `effect_direction` | enum | Conditional | **Blank for `variable_type = economic_indicator` rows** (a cost has no direction of benefit — v0.4.1, 2026-10-01); required otherwise. Likert: `strong_negative` \| `moderate_negative` \| `slight_negative` \| `no_relationship` \| `slight_positive` \| `moderate_positive` \| `strong_positive` \| `conflicting_evidence` (v0.4.2, Pete 2026-10-19: the IPCC outcome — material weight on BOTH signs, minority ≥ 1/3 of the signed weight, states the conflict instead of a near-tie class; `no_relationship` stays reserved for genuine nulls, never cancellation). Sign is in the **benefit frame** — positive = the NbS improves the priority concern (reduces a `high_is_bad` variable, raises a `low_is_bad` one) — reached from the outcome-as-measured direction via `XW.polarity`. Derived from the modal-sign weighted-median rank (±1 slight, ±2 moderate, ±3 strong); **`no_relationship` only when the evidence reports a null**, never from cancellation. | `moderate_positive` |
+| `effect_direction` | enum | Conditional | **Blank for `variable_type = economic_indicator` rows** (a cost has no direction of benefit — v0.4.1, 2026-10-01); required otherwise. Likert: `strong_negative` \| `moderate_negative` \| `slight_negative` \| `no_relationship` \| `slight_positive` \| `moderate_positive` \| `strong_positive` \| `conflicting_evidence` (v0.4.2, 2026-10-19: the IPCC outcome — material weight on BOTH signs, minority ≥ 1/3 of the signed weight, states the conflict instead of a near-tie class; `no_relationship` stays reserved for genuine nulls, never cancellation). Sign is in the **benefit frame** — positive = the NbS improves the priority concern (reduces a `high_is_bad` variable, raises a `low_is_bad` one) — reached from the outcome-as-measured direction via `XW.polarity`. Derived from the modal-sign weighted-median rank (±1 slight, ±2 moderate, ±3 strong); **`no_relationship` only when the evidence reports a null**, never from cancellation. | `moderate_positive` |
 | `evidence_level` · `agreement_level` | enum | Required *(v0.4.0)* | IPCC axes, as T3. | `medium` · `high` |
 | `effect_confidence` | enum | Required | **Derived** via the IPCC matrix: `very_low` \| `low` \| `medium` \| `high` \| `very_high`. *(v0.4.0: `expert_opinion` removed.)* | `high` |
 | `context_dependent` · `family_spread` | boolean | Required · Optional *(v0.4.0)* | As T3. | `false` |
@@ -666,8 +661,8 @@ narrative without a full CBA — **scoping-grade, not CBA**.
 ## T7 — Geographic Context
 
 AEZ, farming-system, administrative and hydrological context definitions used to resolve context-specific
-overrides in T4. Populated by Brayden (analytical context + EO-derived farming-system classifier — see
-`methodology/farming_system_classifier.md`) with Pete reviewing the controlled vocab; Benson QA. Provides
+overrides in T4. The EO-derived farming-system classifier is described in
+`methodology/farming_system_classifier.md`. T7 provides
 the controlled vocabulary the pipeline looks up by `context_type` + `value_in_dataset` when reading
 raster/vector data.
 
@@ -739,9 +734,9 @@ One row per **atomic claim**. The structured replacement for free-text justifica
 | `reviewer_ok` | boolean | Optional | Human-validated. | `false` |
 | `raw_name` | string | Optional *(paper-first sweep)* | The paper's surface name **before** harmonisation to the canonical variable. Preserves the mapping audit (`gradient` → `slope`). | `Slope degree` |
 | `observed_dataset` | string | Optional *(paper-first sweep)* | Which dataset the paper actually used to operationalise the variable. Free-text or T1 `dataset_id` when catalogued. Feeds resolution-audit decisions. | `SRTM 90m` · `worldclim_v2_bioclim` |
-| `attribution` | string | Optional *(Namita's attribution requirement)* | Free-text citation pointer when the paper *attributes* the threshold/variable selection to a source not in our screened corpus. Pairs with `lineage_of` (which targets corpus sources). | `Harrison (2016) — slope >35% cut` |
-| `justification_quote` · `justification_page` | string/int | Optional *(Namita's attribution requirement)* | A *second* verbatim quote (different from the threshold quote) capturing the paper's rationale for **why** the threshold was chosen. Often on a different page from the threshold itself. | `"…mechanisation-limited beyond this gradient", p.5` |
-| `selection_justification` · `selection_justification_page` | string/int | Optional *(Namita's attribution requirement)* | Quote + page explaining why the paper **selected the variable at all** (typically the AHP-weight prose or criteria-table commentary). Separate from threshold reasoning. | `"slope ranked second-most-important due to erosion + mechanisation interaction", p.6` |
+| `attribution` | string | Optional *(source-attribution requirement)* | Free-text citation pointer when the paper *attributes* the threshold/variable selection to a source not in our screened corpus. Pairs with `lineage_of` (which targets corpus sources). | `Harrison (2016) — slope >35% cut` |
+| `justification_quote` · `justification_page` | string/int | Optional *(source-attribution requirement)* | A *second* verbatim quote (different from the threshold quote) capturing the paper's rationale for **why** the threshold was chosen. Often on a different page from the threshold itself. | `"…mechanisation-limited beyond this gradient", p.5` |
+| `selection_justification` · `selection_justification_page` | string/int | Optional *(source-attribution requirement)* | Quote + page explaining why the paper **selected the variable at all** (typically the AHP-weight prose or criteria-table commentary). Separate from threshold reasoning. | `"slope ranked second-most-important due to erosion + mechanisation interaction", p.6` |
 
 ### VONT — Variable Ontology
 
@@ -760,7 +755,7 @@ Canonical variables: harmonisation + data-catalog link + resolution validity.
 | `resolution_sensitivity` | enum | Required | `low` \| `medium` \| `high` (derivatives = high). | `high` |
 | `derive_then_aggregate` | boolean | Required | Compute native then summarise to grid (slope, TWI…). | `true` |
 | `context_sensitivity` | enum | Optional | How generalisable / politically sensitive the variable is. `low` (generalisable physical — slope, climate; global default fine) \| `medium` (context-dependent but apolitical — soils, land cover) \| `high` (nationally-derived / sovereignty-sensitive — population, poverty, production stats; prefer a **country-endorsed** source). A **flag** read by variable cards, the data-gap prompt and the M6 hand-off — it does not change the analysis. | `high` |
-| `review_status` | enum | Optional *(paper-first sweep)* | `canonical` \| `pending_review` \| `rejected`. Default `canonical`. `pending_review` rows are queued for Pete/Namita ontology sign-off — EV rows may point at them, but no T4 synthesis until status flips to `canonical`. | `pending_review` |
+| `review_status` | enum | Optional *(paper-first sweep)* | `canonical` \| `pending_review` \| `rejected`. Default `canonical`. `pending_review` rows are queued for ontology review — EV rows may point at them, but no T4 synthesis until status flips to `canonical`. | `pending_review` |
 | `raised_by` | string | Optional *(paper-first sweep)* | The `evidence_id` that surfaced this variable during a sweep. Audit trail for `pending_review` entries. | `ev_cec_nath21` |
 | `raised_date` | date | Optional *(paper-first sweep)* | ISO date the entry was raised. | `2026-06-05` |
 | `composite_of` | string[] | Optional | If this canonical aggregates other canonicals (e.g. `soil_fertility = [soil_n, soil_p, soil_k, soil_organic_carbon]`), the list of member canonical_variable_ids. FK → VONT. **Decision deferred per-family** — at synthesis time the recipe chooses whether to use the composite or the individual atoms. | `['soil_n','soil_p','soil_k','soil_organic_carbon']` |
@@ -831,7 +826,7 @@ unmapped variable is catalogued, feeds no cell, and is listed in the run report.
 | `proximity` | enum | Required | `direct` \| `proxy` \| `component`. Proxies/components are named as such in the traceable account. | `direct` |
 | `weight_factor` | float | Required | Synthesis weight multiplier. Defaults: direct 1.0 · proxy 0.7 · component 0.7. | `1.0` |
 | `rationale` | string | Required | Why this mapping (cite the proximate-over-distal principle where relevant). | |
-| `ratified_by` · `ratified_date` | string · date | Optional | Namita for T6 targets, Brayden for T3 targets, Pete tie-break / pilot. | `pete` · `2026-09-30` |
+| `ratified_by` · `ratified_date` | string · date | Optional | Identifier of the reviewer who approved the mapping, and the approval date. | `reviewer_01` · `2026-09-30` |
 
 ### BANDS — Magnitude bands (metric → strength class) *(v0.4.0)*
 
@@ -925,8 +920,7 @@ new NbS later requires only adding rows, not code changes.
 
 ---
 
-*Ported from `NbS_Schema_Reference_v01_1.docx` — v0.1 Draft, Peter Steward (Team Lead), 7 May 2026.
-For queries: P.Steward@cgiar.org*
+*Ported from `NbS_Schema_Reference_v01_1.docx` — v0.1 Draft, 7 May 2026.*
 
 ### T4 numeric harmonization policy (2026-10-20; issue #365)
 
