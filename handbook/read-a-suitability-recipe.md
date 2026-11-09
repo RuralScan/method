@@ -8,9 +8,11 @@ A site receives **350 mm of rain per year**. Can an analyst use that number to s
 |---|---|---|
 | Practice and family | The practice is `water_harvesting_conservation`. Its `bench_terraces` subpractice belongs to `water_harvesting__terracing`, whose spatial product type is `area_suitability`. | The family defines which siting question the evidence must address. An area-suitability map, where supported, describes candidate areas for investigation. |
 | Variable | `annual_precipitation` means **mean annual precipitation**, in mm/year. | A seasonal total in mm measures a different quantity. |
-| Dataset binding | The global binding identifies band `BIO12` of `chelsa_bioclim_v21_baseline` as the annual input. | A dataset can supply a value at the site. The rule still needs evidence for how that value affects suitability. Check the applicable geographic binding when working in another context. |
+| Draft definition snapshot | The global binding identifies band `BIO12` of `chelsa_bioclim_v21_baseline` as the annual input. | A dataset can supply a value at the site. The rule still needs evidence for how that value affects suitability. Check the applicable geographic binding when working in another context. |
 
 Look up the identifiers in the definition tables. A dataset binding identifies the input, while T4 holds the relationship for the practice family. [Practice](../data-model/configuration/recipes/water_harvesting_conservation/T0_nbs_registry.csv) · [Families](../data-model/configuration/FAM_family_registry.csv) · [Variables](../data-model/configuration/VONT_variable_ontology.csv) · [Bindings](../data-model/configuration/BIND_dataset_binding.csv) · [Datasets](../data-model/configuration/T1_data_registry.csv)
+
+The reviewed terrace run records a different dataset ID, `worldclim_v2_precip`. Use the run record to identify the input associated with that decision. The catalogued CHELSA binding above illustrates how to look up a global default. Neither input supplies the missing calibration. [Terrace run record](https://github.com/CIAT/nbs_ruralscan/blob/2023cb82c94a93120600a7feb17d8cd1e12ce54f/methodology/audits/t4_water_block_20261109/terrace_rainfall_run.json)
 
 ## Read what the sources support
 
