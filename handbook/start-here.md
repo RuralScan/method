@@ -18,6 +18,8 @@ The M2b addendum screens risk to the proposed investment, including asset hazard
 
 ## Follow a rule back to evidence
 
+Trace a bench-terrace rainfall claim through its family, input dataset, evidence and scoring decision. [Read a suitability recipe](read-a-suitability-recipe.md)
+
 A source is discovered, screened, acquired and catalogued. An extraction records a claim with its location and context. Review checks that extraction. Compilation combines eligible claims under explicit policies into candidate analytical tables. A separate acceptance decision produces a versioned release for runtime.
 
 An approved extraction is not automatically a transferable threshold or an executable rule. Species/crop claims, operational barriers and source-specific assumptions retain their scopes. Missing information remains unknown; it must not become a default zero or an invented threshold.
