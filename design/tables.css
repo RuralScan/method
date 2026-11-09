@@ -1,0 +1,63 @@
+/* Rural Scan schema colours. Apply the attribute to a text label. */
+
+[data-ruralscan-table="T0"] {
+  --ruralscan-table-fill: #e1f5ee;
+  --ruralscan-table-ink: #085041;
+}
+
+[data-ruralscan-table="T1"] {
+  --ruralscan-table-fill: #e6f1fb;
+  --ruralscan-table-ink: #0c447c;
+}
+
+[data-ruralscan-table="T2"] {
+  --ruralscan-table-fill: #faece7;
+  --ruralscan-table-ink: #712b13;
+}
+
+[data-ruralscan-table="T3"] {
+  --ruralscan-table-fill: #faeeda;
+  --ruralscan-table-ink: #633806;
+}
+
+[data-ruralscan-table="T4"] {
+  --ruralscan-table-fill: #eeedfe;
+  --ruralscan-table-ink: #3c3489;
+}
+
+[data-ruralscan-table="T5"] {
+  --ruralscan-table-fill: #eaf3de;
+  --ruralscan-table-ink: #27500a;
+}
+
+[data-ruralscan-table="T6"],
+[data-ruralscan-table="T6E"] {
+  --ruralscan-table-fill: #fbeaf0;
+  --ruralscan-table-ink: #72243e;
+}
+
+[data-ruralscan-table="T7"] {
+  --ruralscan-table-fill: #f1efe8;
+  --ruralscan-table-ink: #444441;
+}
+
+[data-ruralscan-table="register"] {
+  --ruralscan-table-fill: #ecebf3;
+  --ruralscan-table-ink: #38346a;
+}
+
+[data-ruralscan-table] {
+  color: var(--ruralscan-table-ink, CanvasText);
+  background-color: var(--ruralscan-table-fill, Canvas);
+  border: 1px solid currentColor;
+  border-radius: 0.25em;
+  padding: 0.1em 0.35em;
+}
+
+
+@media print {
+  [data-ruralscan-table] {
+    color: #000;
+    background: transparent;
+  }
+}
