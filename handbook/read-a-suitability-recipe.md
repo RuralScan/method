@@ -50,3 +50,7 @@ print(mapping["n_sources"], mapping["evidence_ids"], calibration["status"])
 Expected output is `1 ['ev_wh_precip_wocatgl13_benchterraces'] held`.
 
 **At 350 mm/year**, the analyst can report that the site falls within a documented use range for forward-sloping benches. Leave the rainfall suitability score unassigned. Scoring this family would require a supported response to annual rainfall, calibration for the intended context and a released decision that permits its use.
+
+## Reuse these definitions
+
+The definition snapshot fixes the field specification, table structure, seven shared configuration tables and five practice identity tables to one Git revision. A consumer can verify each file against its SHA-256 before using it. The snapshot describes the draft definitions used in this example. Read its files at the recorded source revision. Scientific decisions, compiler settings and compiled rows carry their own revisions. [Definition snapshot](../data-model/definition-snapshot.json) · [Definition coverage at the pinned revision](https://github.com/RuralScan/method/blob/747081661229d2598e6c2439c9774bb84b389c65/data-model/baseline.md)
