@@ -11,6 +11,7 @@ It supports early investment scoping. It does not replace feasibility studies, e
 - [Understand the approach](handbook/start-here.md): seven modules and the evidence-to-rule chain.
 - [Work through the Haiti notebook and prepare a scoping brief](handbook/implement-a-scan.md).
 - [Read the data model](data-model/spec.md): fields, controlled vocabularies, table structure and configuration.
+- [Label schema tables in figures, notebooks and printouts](design/README.md).
 - [Inspect the baseline](data-model/baseline.md): source versions, dependencies and known limitations.
 - [Run the implementation](https://github.com/RuralScan/runtime): data access, computation and reproducible notebooks.
 - [Explore the evidence workflow](https://github.com/RuralScan/evidence): discovery, extraction, review and compilation.
