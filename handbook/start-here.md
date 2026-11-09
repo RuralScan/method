@@ -2,6 +2,8 @@
 
 Rural Scan turns a question about rural investment into a transparent set of spatial opportunities, risks and priorities. A recipe defines the nature-based solution being considered; versioned analytical tables describe how data and evidence enter the analysis.
 
+For an executable first pass, open the Haiti notebook, inspect its holds, and use the module checklist to prepare a scoping brief. [Implement a rural scan](implement-a-scan.md)
+
 ## Follow the seven modules
 
 | Module | Question |
