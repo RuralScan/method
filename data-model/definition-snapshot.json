@@ -2,7 +2,7 @@
   "format_version": 1,
   "kind": "method_definitions",
   "status": "draft_reference",
-  "source_revision": "747081661229d2598e6c2439c9774bb84b389c65",
+  "source_revision": "92f86f035792cacb066eecdc12f439a87ef6d0c0",
   "structure_version": "0.4.0-structure-frozen",
   "sha256": {
     "data-model/configuration/BIND_dataset_binding.csv": "9a7623b215c67a3ba75894d2664b19df4d7920c308a65d9c3c53e86f62a5b6e3",
@@ -13,7 +13,8 @@
     "data-model/configuration/T7_geographic_context.csv": "bdba18eb0c6350646035eba2d72d22e93d14e9fb354ba1c219c0ed3bbef719a0",
     "data-model/configuration/VONT_variable_ontology.csv": "d54f48922f52806351b7f2f0b0b9904b11170ddc7fadddafc56cec57088e8d2c",
     "data-model/configuration/recipes/agroforestry/T0_nbs_registry.csv": "77515030198f36185a8ec12fbe12fe3a4f39ae4b665b4780288d5bf1b22bb19b",
-    "data-model/configuration/recipes/forest_restoration/T0_nbs_registry.csv": "57cdf9b661a3ace63ba8bc147362d7064ab6b591408257742dfa26f5aa1e219d",
+    "data-model/configuration/recipes/forest_restoration/T0_nbs_registry.csv": "b9a620d556598c8e021a594698d73de084b77371ba4194945d700bcec3a1da86",
+    "data-model/configuration/recipes/mangrove_restoration/T0_nbs_registry.csv": "a69f3a04d56ddd1e0b0b31a086658667928905a1a1439dafcfbe38d80009d257",
     "data-model/configuration/recipes/riparian_buffer/T0_nbs_registry.csv": "3448d1af7042bf13573c1495abc94b4e023726ea7b91ea927b7f201d28600a06",
     "data-model/configuration/recipes/water_harvesting_conservation/T0_nbs_registry.csv": "10c18ae2c25d95d1bb37b079edf4050148719d51aff27973798ac81f8d0ca068",
     "data-model/configuration/recipes/wetland_management/T0_nbs_registry.csv": "f54f294d9c8129a53f2aa20873c0f2647ef853e5cce41057f54aa2b23f44c45c",

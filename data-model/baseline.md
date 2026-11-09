@@ -1,10 +1,12 @@
 # Draft definition baseline and unresolved references
 
-Source: [CIAT/nbs_ruralscan at `dd80226700432e9abd4aa9262262b9ad5ad6dfd5`](https://github.com/CIAT/nbs_ruralscan/tree/dd80226700432e9abd4aa9262262b9ad5ad6dfd5). This immutable source identifies the technical origin of the included draft definitions. The current files remove project administration and personal labels from that source; numerical configuration, identifiers and scientific statuses are preserved. This remains an incomplete reference, not an executable analytical release.
+Each of the six practices in the candidate analytical release has a T0 definition. Start with T0 for the practice scope and listed references, then use FAM for its sub-practices and suitability families. [Browse practice definitions](configuration/recipes) · [Family register](configuration/FAM_family_registry.csv) · [Candidate table counts by practice](https://github.com/RuralScan/evidence/blob/b0fd4ea66d817509c16584a3c1f128194c144478/workflows/recipe_release/counts.md)
 
 ## Source versions
 
-The hashes below identify the upstream source bytes, not the current edited copies. Source links provide the original technical and review provenance. Descriptive notes and personal labels have been edited for a reusable reference; analytical fields, values and scientific statuses retain their source meaning. Person-valued `raised_by` labels are blank in this reference; original metadata remains in the pinned source. Scientific review statuses are unchanged, and no new review event is implied.
+All six T0 files match the practice definitions in the [pinned recipe source](https://github.com/CIAT/nbs_ruralscan/tree/157a26c2729c05cccf2b1d9374a63e28c97acac6/schema/recipes). The shared draft definitions retain their [earlier source revision](https://github.com/CIAT/nbs_ruralscan/tree/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema). The table records upstream file hashes. Use the [method snapshot](definition-snapshot.json) for the exact distributed files and the method Git revision that contains them.
+
+The historical terrace replay pins the five-identity snapshot, including the earlier forest scope. The current reference adds the mangrove record and aligns the forest record with that separate coastal practice. [Historical replay snapshot](https://github.com/RuralScan/method/blob/aad360c25efd64d6a2754138e79ca558d2b472c7/data-model/definition-snapshot.json)
 
 | Local file | Pinned source | Upstream SHA-256 |
 |---|---|---|
@@ -18,20 +20,39 @@ The hashes below identify the upstream source bytes, not the current edited copi
 | `data-model/configuration/FAM_family_registry.csv` | [schema/registers/FAM_family_registry.csv](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/registers/FAM_family_registry.csv) | `3050387be3fd30d2913effcde7dc51fe60de833366be95fb111518959e214136` |
 | `data-model/configuration/VONT_variable_ontology.csv` | [schema/registers/VONT_variable_ontology.csv](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/registers/VONT_variable_ontology.csv) | `077931150bc3c8b806080c25a82d2103268a8155e609b7dc51b286984bf9d1be` |
 | `data-model/configuration/BIND_dataset_binding.csv` | [schema/registers/BIND_dataset_binding.csv](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/registers/BIND_dataset_binding.csv) | `6aeb5481a121cca768efd69ebe277b95a85e2c7f1ef9941e9cc74536c9bcfa35` |
-| `data-model/configuration/recipes/agroforestry/T0_nbs_registry.csv` | [schema/recipes/agroforestry/T0_nbs_registry.csv](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/recipes/agroforestry/T0_nbs_registry.csv) | `77515030198f36185a8ec12fbe12fe3a4f39ae4b665b4780288d5bf1b22bb19b` |
-| `data-model/configuration/recipes/forest_restoration/T0_nbs_registry.csv` | [schema/recipes/forest_restoration/T0_nbs_registry.csv](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/recipes/forest_restoration/T0_nbs_registry.csv) | `57cdf9b661a3ace63ba8bc147362d7064ab6b591408257742dfa26f5aa1e219d` |
-| `data-model/configuration/recipes/riparian_buffer/T0_nbs_registry.csv` | [schema/recipes/riparian_buffer/T0_nbs_registry.csv](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/recipes/riparian_buffer/T0_nbs_registry.csv) | `3448d1af7042bf13573c1495abc94b4e023726ea7b91ea927b7f201d28600a06` |
-| `data-model/configuration/recipes/water_harvesting_conservation/T0_nbs_registry.csv` | [schema/recipes/water_harvesting_conservation/T0_nbs_registry.csv](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/recipes/water_harvesting_conservation/T0_nbs_registry.csv) | `10c18ae2c25d95d1bb37b079edf4050148719d51aff27973798ac81f8d0ca068` |
-| `data-model/configuration/recipes/wetland_management/T0_nbs_registry.csv` | [schema/recipes/wetland_management/T0_nbs_registry.csv](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/recipes/wetland_management/T0_nbs_registry.csv) | `f54f294d9c8129a53f2aa20873c0f2647ef853e5cce41057f54aa2b23f44c45c` |
+| `data-model/configuration/recipes/agroforestry/T0_nbs_registry.csv` | [schema/recipes/agroforestry/T0_nbs_registry.csv](https://github.com/CIAT/nbs_ruralscan/blob/157a26c2729c05cccf2b1d9374a63e28c97acac6/schema/recipes/agroforestry/T0_nbs_registry.csv) | `77515030198f36185a8ec12fbe12fe3a4f39ae4b665b4780288d5bf1b22bb19b` |
+| `data-model/configuration/recipes/forest_restoration/T0_nbs_registry.csv` | [schema/recipes/forest_restoration/T0_nbs_registry.csv](https://github.com/CIAT/nbs_ruralscan/blob/157a26c2729c05cccf2b1d9374a63e28c97acac6/schema/recipes/forest_restoration/T0_nbs_registry.csv) | `b9a620d556598c8e021a594698d73de084b77371ba4194945d700bcec3a1da86` |
+| `data-model/configuration/recipes/mangrove_restoration/T0_nbs_registry.csv` | [schema/recipes/mangrove_restoration/T0_nbs_registry.csv](https://github.com/CIAT/nbs_ruralscan/blob/157a26c2729c05cccf2b1d9374a63e28c97acac6/schema/recipes/mangrove_restoration/T0_nbs_registry.csv) | `a69f3a04d56ddd1e0b0b31a086658667928905a1a1439dafcfbe38d80009d257` |
+| `data-model/configuration/recipes/riparian_buffer/T0_nbs_registry.csv` | [schema/recipes/riparian_buffer/T0_nbs_registry.csv](https://github.com/CIAT/nbs_ruralscan/blob/157a26c2729c05cccf2b1d9374a63e28c97acac6/schema/recipes/riparian_buffer/T0_nbs_registry.csv) | `3448d1af7042bf13573c1495abc94b4e023726ea7b91ea927b7f201d28600a06` |
+| `data-model/configuration/recipes/water_harvesting_conservation/T0_nbs_registry.csv` | [schema/recipes/water_harvesting_conservation/T0_nbs_registry.csv](https://github.com/CIAT/nbs_ruralscan/blob/157a26c2729c05cccf2b1d9374a63e28c97acac6/schema/recipes/water_harvesting_conservation/T0_nbs_registry.csv) | `10c18ae2c25d95d1bb37b079edf4050148719d51aff27973798ac81f8d0ca068` |
+| `data-model/configuration/recipes/wetland_management/T0_nbs_registry.csv` | [schema/recipes/wetland_management/T0_nbs_registry.csv](https://github.com/CIAT/nbs_ruralscan/blob/157a26c2729c05cccf2b1d9374a63e28c97acac6/schema/recipes/wetland_management/T0_nbs_registry.csv) | `f54f294d9c8129a53f2aa20873c0f2647ef853e5cce41057f54aa2b23f44c45c` |
+
+## Verify the definition files
+
+From a full method checkout, verify the exact Git objects named by the manifest. To inspect a historical file, open it at the manifest’s `source_revision`; the commit containing the manifest can have a different tree.
+
+```sh
+python3 - <<'VERIFY'
+import hashlib, json, subprocess
+from pathlib import Path
+
+manifest = json.loads(Path("data-model/definition-snapshot.json").read_bytes())
+for name, expected in manifest["sha256"].items():
+    pinned = subprocess.check_output(["git", "show", f"{manifest['source_revision']}:{name}"])
+    if hashlib.sha256(pinned).hexdigest() != expected:
+        raise SystemExit(f"Definition mismatch: {name}")
+print(f"Verified {len(manifest['sha256'])} definition files.")
+VERIFY
+```
 
 ## Status and dependency index
 
-- **Incomplete identity link:** FAM includes two mangrove family records, but this baseline has no mangrove T0 CSV. The affected foreign-key chain is therefore incomplete.
+- **Practice coverage.** The 56 FAM sub-practices belong to 28 suitability families across six T0 practices. Planting and ecological mangrove restoration share the tidal-coastal family. Mangrove establishment time, time to benefit and recurrent cost require local evidence. Their missing values must stay unset until the site, intervention and outcome are specified. [Mangrove definition](configuration/recipes/mangrove_restoration/T0_nbs_registry.csv)
 - **Variable statuses:** VONT has 68 canonical, 31 pending_review, 18 pending, 45 blank and 2 rejected records. Preserve every status; blank does not mean approved.
 - **Dataset availability:** 16 of 46 BIND rows require an upload. T1 is metadata, with per-source restrictions; no underlying dataset is bundled or licensed by this snapshot.
 - **Evidence provenance:** resolve claim references against pinned [EV](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/registers/EV_evidence_register.csv) and [SRC](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/registers/SRC_source_register.csv). These registers remain external dependencies of this method snapshot.
 - **Other configuration dependencies:** [lookups](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/lookups) and the remaining [registers](https://github.com/CIAT/nbs_ruralscan/blob/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema/registers) are external dependencies. Compilation policies, crosswalks, confidence conventions and source-specific adjudications must be resolved before building a complete analytical bundle.
 - **Analytical outputs held:** all T4 mappings, function-bound run policies, compiled T3/T6/T6E files and accepted analytical manifests are not included. This is not a complete recipe bundle.
-- **Specification status:** source prose contains historical counts and relative links. Use the pinned source above to resolve them. Historical counts and missing relative targets have not yet been fully reconciled; the versioned source and included structure manifest remain available for comparison.
+- **Specification status:** source prose contains historical counts and relative links. Use the earlier shared-definition source to resolve them. Historical counts and missing relative targets have not yet been fully reconciled; the versioned source and included structure manifest remain available for comparison.
 
 The [start-here guide](../handbook/start-here.md) explains the conceptual workflow.

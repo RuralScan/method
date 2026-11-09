@@ -30,7 +30,7 @@ Suitability is reasoned by families of sub-practices sharing a limiting factor. 
 
 ## Read the status before implementation
 
-The first repository snapshot preserves draft, pending, rejected and incomplete configuration. Some evidence references and policy dependencies resolve to a pinned external baseline; this is not yet a complete definition bundle. The mangrove family records have no matching T0 identity record in this snapshot.
+Choose one of the six practice definitions in T0, then find its sub-practices in the family register. For mangroves, planting and restoring tidal exchange share one coastal family. The candidate release contains 12 hazard-response rows, 14 scorecard rows and four economic-profile rows for this practice. It contains zero compiled suitability mappings for mangroves. [Practice definitions](../data-model/configuration/recipes) · [Family register](../data-model/configuration/FAM_family_registry.csv) · [Pinned release counts](https://github.com/RuralScan/evidence/blob/b0fd4ea66d817509c16584a3c1f128194c144478/workflows/recipe_release/counts.md)
 
 Use an accepted analytical manifest and compatible runtime version for an implementation. Record the AOI, dataset versions, transformations, grid, input pins and output hashes. Worked examples must distinguish exploratory reproduction from runs satisfying all required gates and spatial semantics.
 
