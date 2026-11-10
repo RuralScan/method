@@ -2,7 +2,7 @@
 
 Use the Haiti planted-silvoarable agroforestry example to work through one decision: **which locations merit a closer look at terrain and soils, and what information is still needed there?** The published notebook computes a partial first-pass index. The remaining modules below describe how to turn a suitability result into an investment-scoping brief. [Haiti first-pass notebook](https://github.com/RuralScan/runtime/blob/e690d4e413d925c28c273945a5268ddbfb2d67cc/notebooks/01_agroforestry.ipynb)
 
-Before adapting the notebook to another intervention, choose the matching family, check its spatial product type and inspect its compiled suitability mappings. [Choose a recipe](../cookbook/README.md)
+In the cookbook, choose **Agroforestry → Trees planted on cropland**. In the evidence workbook, inspect its slope mapping (`agroforestry__planted_silvoarable__slope`) and follow a claim to its source and locator. Then use the notebook to see how a particular scoring package combines slope and soil inputs. Record the workbook release and runtime package separately. [Agroforestry recipe](../cookbook/agroforestry.md)
 
 ## 1. Check the inputs before making a map
 
@@ -41,7 +41,7 @@ With Earth Engine inputs, the quick overview uses an approximate Haiti bounding 
 
 ## 3. Build the scoping brief
 
-Use one suitability family and one area of interest at a time. Record the analytical release and spatial scoring package separately: a released table can contain a documented hold with no selectable function. [Pinned method definitions](https://github.com/RuralScan/method/blob/58d6f7e16680db9266f5ba8b6a65e1e7c93c3e93/data-model/definition-snapshot.json) · [Field definitions](../data-model/spec.md)
+Use one suitability family and one area of interest at a time. When citing a mapping, include its family, geographic context and any conditions on applying it. [Method definitions for the six-practice workbook](https://github.com/RuralScan/method/blob/247d5cf98d3dd6daf010aa5bfe51fad21ea35849/data-model/definition-snapshot.json) · [Field definitions](../data-model/spec.md)
 
 | Module | Analyst action | Output to retain |
 |---|---|---|

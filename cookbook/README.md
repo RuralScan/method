@@ -11,6 +11,12 @@ Start with the intervention you are considering. Open its recipe to choose a fam
 | [Water Harvesting and Conservation](water_harvesting_conservation.md) | Retain rainfall in fields, reshape slopes or collect runoff for storage or use. | 7 | 17 |
 | [Wetland Management & Restoration](wetland_management.md) | Restore wetland hydrology, rewet peat or assess wetland creation. | 5 | 4 |
 
+## Try the Haiti example
+
+Choose **Trees planted on cropland** in the [agroforestry guide](agroforestry.md). Trace its slope evidence in the workbook, then follow the link to the first-pass notebook.
+
+On GitHub, select **Download raw file**, open the saved HTML in a browser, then choose **Overview → Trace the Haiti example**. [Open the evidence workbook](https://github.com/RuralScan/evidence/blob/1532768de6c688e2c8eb26097eb7618848390b1d/publication/workbook/index.html)
+
 ## What the counts mean
 
 The family register contains 56 entries grouped into 28 families. Of those entries, 3 record cross-family context. The candidate contains 806 analytical rows. A source can contribute to several rows.
@@ -27,7 +33,7 @@ T3 distinguishes how a practice may mitigate livelihood risk from hazards to the
 
 Of 49 T4 mappings, 20 offer function options, 10 have a selected function and 0 are spatially validated. These counts overlap. Use an accepted analytical release and compatible runtime for spatial execution.
 
-Candidate release `2ff6f85ed5493b25a8b2279c572d792cc23ed5251fa99463f1421a4380730f2b`. [Browse the pinned analytical rows](https://github.com/RuralScan/evidence/blob/950f91ea29cea43a5a1a7928bddaef7758965cc7/publication/recipes/README.md) · [Pinned method definitions](https://github.com/RuralScan/method/blob/247d5cf98d3dd6daf010aa5bfe51fad21ea35849/data-model/definition-snapshot.json)
+Candidate release `2ff6f85ed5493b25a8b2279c572d792cc23ed5251fa99463f1421a4380730f2b`. [Browse the pinned analytical rows](https://github.com/RuralScan/evidence/blob/1532768de6c688e2c8eb26097eb7618848390b1d/publication/recipes/README.md) · [Pinned method definitions](https://github.com/RuralScan/method/blob/247d5cf98d3dd6daf010aa5bfe51fad21ea35849/data-model/definition-snapshot.json)
 
 [Follow the seven modules](../handbook/start-here.md) · [Implement a scan](../handbook/implement-a-scan.md) · [Trace a worked suitability mapping](../handbook/read-a-suitability-recipe.md) · [Reproduce these guides](../handbook/reproduce-recipe-guides.md)
 

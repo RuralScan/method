@@ -8,6 +8,7 @@ import unittest
 
 from markdown_it import MarkdownIt
 
+from build import EVIDENCE_REVISION
 from print_edition import render_edition
 
 
@@ -116,6 +117,16 @@ class PrintEditionTest(unittest.TestCase):
                         any(re.fullmatch(pattern, url) for url in hrefs), href
                     )
         self.assertTrue(all(href.startswith(("#", "https://")) for href in hrefs))
+
+    def test_haiti_handoff_uses_the_same_workbook_in_both_editions(self):
+        workbook = (
+            f"https://github.com/RuralScan/evidence/blob/{EVIDENCE_REVISION}"
+            "/publication/workbook/index.html"
+        )
+        for page in ("README.md", "agroforestry.md"):
+            self.assertIn(workbook, self.source[page].links)
+            self.assertIn("Trace the Haiti example", "".join(self.source[page].text))
+        self.assertIn(workbook, self.edition.links)
 
     def test_family_identifiers_and_styles_are_available_offline(self):
         text = "".join(self.edition.text)

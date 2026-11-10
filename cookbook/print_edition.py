@@ -9,7 +9,7 @@ from markdown_it import MarkdownIt
 
 
 # These handbook pages accompany this cookbook edition.
-HANDBOOK = "https://github.com/RuralScan/method/blob/098041f9a683c60626fcb25b6cf375e17044e40b/handbook/"
+HANDBOOK = "https://github.com/RuralScan/method/blob/25cb657a523c53911c4c1179d69f39f0ec907083/handbook/"
 FAMILY_DETAILS = re.compile(
     r"^<details>\s*<summary>([^<]+)</summary>\s*(.*?)^</details>\s*$",
     re.MULTILINE | re.DOTALL,

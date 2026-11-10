@@ -30,7 +30,7 @@ Each count is an analytical row in the pinned candidate. The family named on the
 | **Practice-wide** | 2 | 0 | 11 | 2 |
 | **All scopes** | 7 | 2 | 22 | 2 |
 
-[Inspect individual rows, context and evidence references](https://github.com/RuralScan/evidence/blob/950f91ea29cea43a5a1a7928bddaef7758965cc7/publication/recipes/riparian_buffer.md)
+[Inspect individual rows, context and evidence references](https://github.com/RuralScan/evidence/blob/1532768de6c688e2c8eb26097eb7618848390b1d/publication/recipes/riparian_buffer.md)
 
 ## Check suitability before mapping
 
@@ -41,7 +41,7 @@ Read each mapping’s evidence and limitations. A row can offer several function
 | Natural or restored riparian vegetation | `distance_to_waterbody` | 0 | 0 | 0 |
 | Planted riparian buffers | `distance_to_waterbody` | 0 | 0 | 0 |
 
-[Open the candidate’s T4 section](https://github.com/RuralScan/evidence/blob/950f91ea29cea43a5a1a7928bddaef7758965cc7/publication/recipes/riparian_buffer.md#t4-suitability-mappings) · [Prepare a scoping brief](../handbook/implement-a-scan.md)
+[Open the candidate’s T4 section](https://github.com/RuralScan/evidence/blob/1532768de6c688e2c8eb26097eb7618848390b1d/publication/recipes/riparian_buffer.md#t4-suitability-mappings) · [Prepare a scoping brief](../handbook/implement-a-scan.md)
 
 <details>
 <summary>Family IDs for configuration and evidence lookup</summary>

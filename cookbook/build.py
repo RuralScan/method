@@ -15,7 +15,7 @@ from tempfile import TemporaryDirectory
 
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
-EVIDENCE_REVISION = "950f91ea29cea43a5a1a7928bddaef7758965cc7"
+EVIDENCE_REVISION = "1532768de6c688e2c8eb26097eb7618848390b1d"
 EVIDENCE_URL = "https://github.com/RuralScan/evidence.git"
 
 
@@ -61,11 +61,12 @@ def build(root, args):
         [
             "/src/",
             "/schema/",
+            "/pipeline/acquisition_queue.csv",
             "/pipeline/t4_audit/agroforestry/importance_2026-10-21/source_weight_trees.csv",
         ],
         args.ciat_repo,
     )
-    summary = checker.verify(source, store, pin, build=True)
+    summary = checker.verify(source, store, pin, build=True, check_workbook=True)
     from nbs_ruralscan.runtime.schema_loader import load_recipe_release
 
     release = load_recipe_release(store, pin["release_id"])
@@ -120,6 +121,7 @@ def build(root, args):
                 "analytical_rows": sum(
                     summary["totals"][k] for k in ("T3", "T4", "T6", "T6E")
                 ),
+                "workbook_sha256": summary["public_workbook"]["sha256"],
                 "pages": markdown_pages,
                 "print_edition": edition_name,
             },
