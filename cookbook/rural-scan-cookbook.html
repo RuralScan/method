@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Rural Scan recipe cookbook</title><style>
+/* Rural Scan schema colours. Apply the attribute to a text label. */
+
+[data-ruralscan-table="T0"] {
+  --ruralscan-table-fill: #e1f5ee;
+  --ruralscan-table-ink: #085041;
+}
+
+[data-ruralscan-table="T1"] {
+  --ruralscan-table-fill: #e6f1fb;
+  --ruralscan-table-ink: #0c447c;
+}
+
+[data-ruralscan-table="T2"] {
+  --ruralscan-table-fill: #faece7;
+  --ruralscan-table-ink: #712b13;
+}
+
+[data-ruralscan-table="T3"] {
+  --ruralscan-table-fill: #faeeda;
+  --ruralscan-table-ink: #633806;
+}
+
+[data-ruralscan-table="T4"] {
+  --ruralscan-table-fill: #eeedfe;
+  --ruralscan-table-ink: #3c3489;
+}
+
+[data-ruralscan-table="T5"] {
+  --ruralscan-table-fill: #eaf3de;
+  --ruralscan-table-ink: #27500a;
+}
+
+[data-ruralscan-table="T6"],
+[data-ruralscan-table="T6E"] {
+  --ruralscan-table-fill: #fbeaf0;
+  --ruralscan-table-ink: #72243e;
+}
+
+[data-ruralscan-table="T7"] {
+  --ruralscan-table-fill: #f1efe8;
+  --ruralscan-table-ink: #444441;
+}
+
+[data-ruralscan-table="register"] {
+  --ruralscan-table-fill: #ecebf3;
+  --ruralscan-table-ink: #38346a;
+}
+
+[data-ruralscan-table] {
+  color: var(--ruralscan-table-ink, CanvasText);
+  background-color: var(--ruralscan-table-fill, Canvas);
+  border: 1px solid currentColor;
+  border-radius: 0.25em;
+  padding: 0.1em 0.35em;
+}
+
+
+@media print {
+  [data-ruralscan-table] {
+    color: #000;
+    background: transparent;
+  }
+}
+/* Layout for the single-file reading and print edition. */
+:root {
+  color-scheme: light;
+  font: 1rem/1.55 system-ui, sans-serif;
+  color: #1d312d;
+  background: white;
+}
+body { max-width: 68rem; margin: auto; padding: 2rem clamp(1rem, 4vw, 4rem); }
+h1, h2 { font-family: Georgia, serif; line-height: 1.12; }
+h1 { font-size: clamp(2.2rem, 5vw, 4rem); margin: 0 0 .5em; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.2rem; margin: 1.8em 0 .35em; }
+section.practice, section.overview { border-top: 3px solid #2e6354; }
+section.practice { margin-top: 3rem; }
+p, li { max-width: 85ch; }
+a { color: #19574d; text-underline-offset: .15em; }
+a:focus-visible { outline: 3px solid #8f4507; outline-offset: 2px; }
+code { font-size: .92em; overflow-wrap: anywhere; }
+table { width: 100%; border-collapse: collapse; margin: 1em 0; line-height: 1.36; }
+th, td {
+  border-bottom: 1px solid #afbdb6;
+  padding: .5em .6em;
+  text-align: start;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+thead th { background: #edf3f0; font-weight: 650; }
+tbody th { font-weight: 550; }
+[data-ruralscan-table] { box-decoration-break: clone; }
+.family-ids ul { padding-inline-start: 1.5em; }
+@media (max-width: 42rem) {
+  table { font-size: .875rem; }
+  th, td { padding: .4em .2em; }
+}
+@page {
+  margin: 13mm 13mm 15mm;
+  @bottom-left { content: "Rural Scan recipe cookbook"; font: 8pt sans-serif; color: #455550; }
+  @bottom-right { content: counter(page); font: 8pt sans-serif; }
+}
+@media print {
+  :root { color: #111; font: 10pt/1.27 Arial, sans-serif; }
+  body { max-width: none; margin: 0; padding: 0; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 20pt; margin: .4em 0; }
+  h3 { font-size: 13pt; margin: 1em 0 .3em; }
+  h1, h2, h3 { break-after: avoid; }
+  p, li { max-width: none; widows: 2; orphans: 2; }
+  p, ul, table { margin-block: .6em; }
+  section.practice { break-before: page; margin: 0; }
+  section.practice, section.overview { border-color: #333; }
+  .back-link { display: none; }
+  th, td { padding: .28em .4em; }
+  table { font-size: 9pt; line-height: 1.22; }
+  thead { display: table-header-group; }
+  table, tr, .family-ids { break-inside: avoid; }
+  h3 + p:has(+ table) { break-after: avoid; }
+  table:has(td code) { table-layout: fixed; }
+  table:has(td code) th:nth-child(1) { width: 19%; }
+  table:has(td code) th:nth-child(2) { width: 40%; }
+  thead th { border-bottom: 1.2pt solid #333; }
+  a { color: inherit; }
+}
+</style></head><body><header class="edition-header"><h1>Rural Scan recipe cookbook</h1></header><main><section id="overview" class="overview" aria-labelledby="overview-title"><h2 class="title" id="overview-title">Choose a recipe</h2>
+<p>Start with the intervention you are considering. Open its recipe to choose a family of sub-practices with similar siting constraints, see what spatial product it supports and inspect its compiled evidence.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Practice</th>
+<th scope="col">Decision to scope</th>
+<th style="text-align:right" scope="col">Registered families</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T4">T4</span> mappings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row"><a href="#agroforestry">Agroforestry</a></th>
+<td>Integrate trees with crops or livestock, or retain woody regrowth on farms.</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">26</td>
+</tr>
+<tr>
+<th scope="row"><a href="#forest_restoration">Forest Restoration</a></th>
+<td>Choose a recovery pathway for degraded land or protect existing forest.</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row"><a href="#mangrove_restoration">Mangrove Restoration</a></th>
+<td>Restore coastal mangrove habitat through planting or recovery of tidal exchange.</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row"><a href="#riparian_buffer">Riparian Buffers</a></th>
+<td>Establish or restore vegetation along watercourses.</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row"><a href="#water_harvesting_conservation">Water Harvesting and Conservation</a></th>
+<td>Retain rainfall in fields, reshape slopes or collect runoff for storage or use.</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">17</td>
+</tr>
+<tr>
+<th scope="row"><a href="#wetland_management">Wetland Management &amp; Restoration</a></th>
+<td>Restore wetland hydrology, rewet peat or assess wetland creation.</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">4</td>
+</tr>
+</tbody>
+</table>
+<h3>What the counts mean</h3>
+<p>The family register contains 56 entries grouped into 28 families. Of those entries, 3 record cross-family context. The candidate contains 804 analytical rows. A source can contribute to several rows.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Scope of the row</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T3">T3</span> hazard responses</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T4">T4</span> suitability mappings</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6">T6</span> scorecard effects</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6E">T6E</span> economic profiles</th>
+<th style="text-align:right" scope="col">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Assigned to a family</th>
+<td style="text-align:right">168</td>
+<td style="text-align:right">47</td>
+<td style="text-align:right">218</td>
+<td style="text-align:right">46</td>
+<td style="text-align:right">479</td>
+</tr>
+<tr>
+<th scope="row">Practice-wide</th>
+<td style="text-align:right">120</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">177</td>
+<td style="text-align:right">28</td>
+<td style="text-align:right">325</td>
+</tr>
+<tr>
+<th scope="row"><strong>All rows</strong></th>
+<td style="text-align:right">288</td>
+<td style="text-align:right">47</td>
+<td style="text-align:right">395</td>
+<td style="text-align:right">74</td>
+<td style="text-align:right"><strong>804</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Practice-wide rows appear once per practice. Check the record for any geographic or farming-system conditions before applying it.</p>
+<p>T3 distinguishes how a practice may mitigate livelihood risk from hazards to the investment itself. T6 records scorecard effects. T6E supplies indicative economic profiles. For T4, a zero count means the release has no compiled suitability mapping in that scope. Local suitability remains undetermined.</p>
+<p>Of 47 T4 mappings, 20 offer function options, 10 have a selected function and 0 are spatially validated. These counts overlap. Use an accepted analytical release and compatible runtime for spatial execution.</p>
+<p>Candidate release <code>26501e7f7037bfb6f26be9b5dad23f0eb1249967a968cc1b3b037d7fda714f8f</code>. <a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/README.md">Browse the pinned analytical rows</a> · <a href="https://github.com/RuralScan/method/blob/247d5cf98d3dd6daf010aa5bfe51fad21ea35849/data-model/definition-snapshot.json">Pinned method definitions</a></p>
+<p><a href="https://github.com/RuralScan/method/blob/c4b3b61e61453a4c7e9119baceb11ca6be26a9f0/handbook/start-here.md">Follow the seven modules</a> · <a href="https://github.com/RuralScan/method/blob/c4b3b61e61453a4c7e9119baceb11ca6be26a9f0/handbook/implement-a-scan.md">Implement a scan</a> · <a href="https://github.com/RuralScan/method/blob/c4b3b61e61453a4c7e9119baceb11ca6be26a9f0/handbook/read-a-suitability-recipe.md">Trace a worked suitability mapping</a> · <a href="https://github.com/RuralScan/method/blob/c4b3b61e61453a4c7e9119baceb11ca6be26a9f0/handbook/reproduce-recipe-guides.md">Reproduce these guides</a></p>
+</section><section id="agroforestry" class="practice" aria-labelledby="agroforestry-title"><h2 class="title" id="agroforestry-title">Agroforestry</h2>
+<p class="back-link"><a href="#overview">Choose another practice</a></p>
+<p>Start with how trees become established. A planted system, regrowth from existing rootstock, a field boundary and a shade crop each need different site information.</p>
+<h3>Choose a family</h3>
+<table>
+<thead>
+<tr>
+<th scope="col">Family</th>
+<th scope="col">What determines the choice?</th>
+<th scope="col">Registered variants</th>
+<th scope="col">Intended spatial product</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Homegardens</th>
+<td>Check household access to water and proximity to settlements at the local site.</td>
+<td>Multistrata homegardens</td>
+<td>Qualitative guidance</td>
+</tr>
+<tr>
+<th scope="row">Linear plantings and boundaries</th>
+<td>Locate the field boundary, prevailing wind or contour line that sets the planting position.</td>
+<td>Windbreaks &amp; shelterbelts, Contour &amp; vegetative buffers</td>
+<td>Applicability zone</td>
+</tr>
+<tr>
+<th scope="row">Regeneration on farmland</th>
+<td>Look for remnant trees, rootstock or seed supply that can support regrowth.</td>
+<td>Farmer-managed natural regeneration (FMNR), Parkland tree retention, Assisted natural regeneration on farmland</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Shaded perennial crops</th>
+<td>Locate the host crop and consider the conditions under which shade would help it.</td>
+<td>Shaded perennial-crop system</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Trees planted on cropland</th>
+<td>Check whether planting can fit cultivable land and field operations.</td>
+<td>Alley cropping, Tree intercropping, Planted boundary / live fence on cropland</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Trees with livestock</th>
+<td>Check the grazing system and forage conditions alongside tree establishment.</td>
+<td>Planted silvopasture, Agrosilvopasture</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Cross-family context</th>
+<td>Read shared observations here. Choose a specific intervention family when defining a map.</td>
+<td>Cross-cutting envelope (family-agnostic)</td>
+<td>Qualitative guidance</td>
+</tr>
+</tbody>
+</table>
+<section class="family-ids"><h3>Family IDs for configuration and evidence lookup</h3><p>Use <code>agroforestry</code> for the practice ID.</p>
+<ul>
+<li>Homegardens · <code>agroforestry__homegardens_proximity</code></li>
+<li>Linear plantings and boundaries · <code>agroforestry__linear_boundary</code></li>
+<li>Regeneration on farmland · <code>agroforestry__regeneration_farmland</code></li>
+<li>Shaded perennial crops · <code>agroforestry__shaded_perennial</code></li>
+<li>Trees planted on cropland · <code>agroforestry__planted_silvoarable</code></li>
+<li>Trees with livestock · <code>agroforestry__silvopastoral</code></li>
+<li>Cross-family context · <code>agroforestry__cross_family</code></li>
+</ul>
+</section><p><a href="https://github.com/RuralScan/method/blob/92f86f035792cacb066eecdc12f439a87ef6d0c0/data-model/configuration/recipes/agroforestry/T0_nbs_registry.csv">Practice definition (T0)</a> · <a href="https://github.com/RuralScan/method/blob/92f86f035792cacb066eecdc12f439a87ef6d0c0/data-model/configuration/FAM_family_registry.csv">Variant definitions and grouping rationale (FAM)</a></p>
+<h3>Interpret the spatial output</h3>
+<ul>
+<li><strong>Applicability zone.</strong> A zone in which to inspect individual locations. Field layouts and structure footprints need local delineation.</li>
+<li><strong>Area suitability.</strong> A potential area surface at a resolution supported by the inputs.</li>
+<li><strong>Qualitative guidance.</strong> A qualitative assessment or contextual evidence. No pixel-area footprint is assigned.</li>
+</ul>
+<p>For shaded perennial crops, check where the host crop is grown. For regeneration, check local evidence of viable woody regrowth. Record tenure, finance and access separately when assessing implementation.</p>
+<h3>Inspect compiled evidence</h3>
+<p>Each count is an analytical row in the pinned candidate. The family named on the row determines where it is counted. Rows with no family ID appear once under <strong>Practice-wide</strong>, including rows limited to a particular geography or farming system.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Scope</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T3">T3</span> hazard responses</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T4">T4</span> suitability mappings</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6">T6</span> scorecard effects</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6E">T6E</span> economic profiles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Homegardens</th>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Linear plantings and boundaries</th>
+<td style="text-align:right">8</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Regeneration on farmland</th>
+<td style="text-align:right">10</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">12</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<th scope="row">Shaded perennial crops</th>
+<td style="text-align:right">11</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<th scope="row">Trees planted on cropland</th>
+<td style="text-align:right">7</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<th scope="row">Trees with livestock</th>
+<td style="text-align:right">11</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<th scope="row">Cross-family context</th>
+<td style="text-align:right">10</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<th scope="row"><strong>Practice-wide</strong></th>
+<td style="text-align:right">38</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">49</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<th scope="row"><strong>All scopes</strong></th>
+<td style="text-align:right">95</td>
+<td style="text-align:right">26</td>
+<td style="text-align:right">113</td>
+<td style="text-align:right">16</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/agroforestry.md">Inspect individual rows, context and evidence references</a></p>
+<h3>Check suitability before mapping</h3>
+<p>Read each mapping’s evidence and limitations. A row can offer several functions. Selection identifies the effective function. The spatial validation count uses the producer’s execution-readiness flag.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Family</th>
+<th scope="col">Variables in T4</th>
+<th style="text-align:right" scope="col">Mappings with options</th>
+<th style="text-align:right" scope="col">With selected function</th>
+<th style="text-align:right" scope="col">Spatially validated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Linear plantings and boundaries</th>
+<td><code>land_cover</code></td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Regeneration on farmland</th>
+<td><code>land_cover</code></td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Shaded perennial crops</th>
+<td><code>land_cover</code></td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Trees planted on cropland</th>
+<td><code>accessibility_travel_time</code>, <code>annual_precipitation</code>, <code>conflict_fragility_index</code>, <code>electrification_index</code>, <code>extension_governance</code>, <code>finance_credit_access</code>, <code>labour_availability</code>, <code>land_cover</code>, <code>market_value_chain</code>, <code>mean_annual_temperature</code>, <code>protected_area_status</code>, <code>slope</code>, <code>soil_organic_carbon</code>, <code>soil_ph</code>, <code>tenure_security</code></td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Trees with livestock</th>
+<td><code>land_cover</code></td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Cross-family context</th>
+<td><code>annual_precipitation</code>, <code>elevation</code>, <code>ndvi</code>, <code>slope</code>, <code>soil_organic_carbon</code></td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<p>Access, finance and tenure can appear in compiled records. Evaluate these implementation factors through the investment-risk screen and local follow-up. The core suitability assessment uses its structural constraints and hard exclusions.</p>
+<p><a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/agroforestry.md#t4-suitability-mappings">Open the candidate’s T4 section</a> · <a href="https://github.com/RuralScan/method/blob/c4b3b61e61453a4c7e9119baceb11ca6be26a9f0/handbook/implement-a-scan.md">Prepare a scoping brief</a></p>
+</section><section id="forest_restoration" class="practice" aria-labelledby="forest_restoration-title"><h2 class="title" id="forest_restoration-title">Forest Restoration</h2>
+<p class="back-link"><a href="#overview">Choose another practice</a></p>
+<p>Distinguish recovery toward an ecological baseline from production forestry. Check whether seed sources and residual trees can support recovery, whether planting is needed, or whether existing forest needs protection.</p>
+<h3>Choose a family</h3>
+<table>
+<thead>
+<tr>
+<th scope="col">Family</th>
+<th scope="col">What determines the choice?</th>
+<th scope="col">Registered variants</th>
+<th scope="col">Intended spatial product</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Active planting</th>
+<td>Check land history, existing canopy and whether the intended trees can establish.</td>
+<td>Reforestation, Afforestation, Enrichment planting</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Assisted regeneration</th>
+<td>Identify surviving regeneration potential and the intervention needed for recovery.</td>
+<td>Assisted natural regeneration (ANR)</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Passive regeneration</th>
+<td>Look for seed sources and residual cover, and assess whether the pressure preventing recovery can be removed.</td>
+<td>Passive natural regeneration, Secondary succession</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Plantation forestry</th>
+<td>Confirm that production forestry is the objective and assess establishment of the target species.</td>
+<td>Plantation forestry (tree farming)</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Protection and community forest management</th>
+<td>Locate existing forest and the pressures that threaten it.</td>
+<td>Forest protection / avoided degradation, Community-based forest management</td>
+<td>Applicability zone</td>
+</tr>
+<tr>
+<th scope="row">Cross-family context</th>
+<td>Read shared observations here. Choose a specific intervention family when defining a map.</td>
+<td>Cross-cutting envelope (family-agnostic)</td>
+<td>Qualitative guidance</td>
+</tr>
+</tbody>
+</table>
+<section class="family-ids"><h3>Family IDs for configuration and evidence lookup</h3><p>Use <code>forest_restoration</code> for the practice ID.</p>
+<ul>
+<li>Active planting · <code>forest_restoration__active_planting</code></li>
+<li>Assisted regeneration · <code>forest_restoration__assisted_regeneration</code></li>
+<li>Passive regeneration · <code>forest_restoration__passive_regeneration</code></li>
+<li>Plantation forestry · <code>forest_restoration__plantation</code></li>
+<li>Protection and community forest management · <code>forest_restoration__protection_cbfm</code></li>
+<li>Cross-family context · <code>forest_restoration__cross_family</code></li>
+</ul>
+</section><p><a href="https://github.com/RuralScan/method/blob/92f86f035792cacb066eecdc12f439a87ef6d0c0/data-model/configuration/recipes/forest_restoration/T0_nbs_registry.csv">Practice definition (T0)</a> · <a href="https://github.com/RuralScan/method/blob/92f86f035792cacb066eecdc12f439a87ef6d0c0/data-model/configuration/FAM_family_registry.csv">Variant definitions and grouping rationale (FAM)</a></p>
+<h3>Interpret the spatial output</h3>
+<ul>
+<li><strong>Applicability zone.</strong> A zone in which to inspect individual locations. Field layouts and structure footprints need local delineation.</li>
+<li><strong>Area suitability.</strong> A potential area surface at a resolution supported by the inputs.</li>
+<li><strong>Qualitative guidance.</strong> A qualitative assessment or contextual evidence. No pixel-area footprint is assigned.</li>
+</ul>
+<p>Confirm prior land cover and the intended ecological baseline before proposing tree planting. On non-forest ecosystems, assess the risk of harm from afforestation.</p>
+<h3>Inspect compiled evidence</h3>
+<p>Each count is an analytical row in the pinned candidate. The family named on the row determines where it is counted. Rows with no family ID appear once under <strong>Practice-wide</strong>, including rows limited to a particular geography or farming system.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Scope</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T3">T3</span> hazard responses</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T4">T4</span> suitability mappings</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6">T6</span> scorecard effects</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6E">T6E</span> economic profiles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Active planting</th>
+<td style="text-align:right">7</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<th scope="row">Assisted regeneration</th>
+<td style="text-align:right">5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<th scope="row">Passive regeneration</th>
+<td style="text-align:right">8</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<th scope="row">Plantation forestry</th>
+<td style="text-align:right">6</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<th scope="row">Protection and community forest management</th>
+<td style="text-align:right">10</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<th scope="row">Cross-family context</th>
+<td style="text-align:right">2</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<th scope="row"><strong>Practice-wide</strong></th>
+<td style="text-align:right">18</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">24</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<th scope="row"><strong>All scopes</strong></th>
+<td style="text-align:right">56</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">71</td>
+<td style="text-align:right">16</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/forest_restoration.md">Inspect individual rows, context and evidence references</a></p>
+<h3>Check suitability before mapping</h3>
+<p>This candidate contains zero compiled T4 mappings for this practice. The family definitions describe the intended product. A local suitability score would require supported mappings and spatial validation.</p>
+<p><a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/forest_restoration.md#t4-suitability-mappings">Open the candidate’s T4 section</a> · <a href="https://github.com/RuralScan/method/blob/c4b3b61e61453a4c7e9119baceb11ca6be26a9f0/handbook/implement-a-scan.md">Prepare a scoping brief</a></p>
+</section><section id="mangrove_restoration" class="practice" aria-labelledby="mangrove_restoration-title"><h2 class="title" id="mangrove_restoration-title">Mangrove Restoration</h2>
+<p class="back-link"><a href="#overview">Choose another practice</a></p>
+<p>Both variants belong to one family. Check tidal exchange, intertidal elevation and sediment conditions, then establish whether propagules can reach the site.</p>
+<h3>Choose a family</h3>
+<table>
+<thead>
+<tr>
+<th scope="col">Family</th>
+<th scope="col">What determines the choice?</th>
+<th scope="col">Registered variants</th>
+<th scope="col">Intended spatial product</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Tidal mangrove systems</th>
+<td>Check the coastal water and sediment regime. For natural recovery, also check propagule supply.</td>
+<td>Mangrove restoration, Ecological mangrove restoration (EMR)</td>
+<td>Area suitability</td>
+</tr>
+</tbody>
+</table>
+<section class="family-ids"><h3>Family IDs for configuration and evidence lookup</h3><p>Use <code>mangrove_restoration</code> for the practice ID.</p>
+<ul>
+<li>Tidal mangrove systems · <code>mangrove_restoration__tidal_coastal</code></li>
+</ul>
+</section><p><a href="https://github.com/RuralScan/method/blob/92f86f035792cacb066eecdc12f439a87ef6d0c0/data-model/configuration/recipes/mangrove_restoration/T0_nbs_registry.csv">Practice definition (T0)</a> · <a href="https://github.com/RuralScan/method/blob/92f86f035792cacb066eecdc12f439a87ef6d0c0/data-model/configuration/FAM_family_registry.csv">Variant definitions and grouping rationale (FAM)</a></p>
+<h3>Interpret the spatial output</h3>
+<ul>
+<li><strong>Area suitability.</strong> A potential area surface at a resolution supported by the inputs.</li>
+</ul>
+<p>Verify local tidal connectivity before choosing planting or hydrological restoration. Establishment time, time to benefit and recurrent cost need site-specific evidence.</p>
+<h3>Inspect compiled evidence</h3>
+<p>Each count is an analytical row in the pinned candidate. The family named on the row determines where it is counted. Rows with no family ID appear once under <strong>Practice-wide</strong>, including rows limited to a particular geography or farming system.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Scope</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T3">T3</span> hazard responses</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T4">T4</span> suitability mappings</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6">T6</span> scorecard effects</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6E">T6E</span> economic profiles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Tidal mangrove systems</th>
+<td style="text-align:right">4</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row"><strong>Practice-wide</strong></th>
+<td style="text-align:right">8</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<th scope="row"><strong>All scopes</strong></th>
+<td style="text-align:right">12</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">4</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/mangrove_restoration.md">Inspect individual rows, context and evidence references</a></p>
+<h3>Check suitability before mapping</h3>
+<p>This candidate contains zero compiled T4 mappings for this practice. The family definitions describe the intended product. A local suitability score would require supported mappings and spatial validation.</p>
+<p><a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/mangrove_restoration.md#t4-suitability-mappings">Open the candidate’s T4 section</a> · <a href="https://github.com/RuralScan/method/blob/c4b3b61e61453a4c7e9119baceb11ca6be26a9f0/handbook/implement-a-scan.md">Prepare a scoping brief</a></p>
+</section><section id="riparian_buffer" class="practice" aria-labelledby="riparian_buffer-title"><h2 class="title" id="riparian_buffer-title">Riparian Buffers</h2>
+<p class="back-link"><a href="#overview">Choose another practice</a></p>
+<p>Identify the watercourse and the condition of its banks. Choose between restoring existing riparian vegetation and establishing a planted strip.</p>
+<h3>Choose a family</h3>
+<table>
+<thead>
+<tr>
+<th scope="col">Family</th>
+<th scope="col">What determines the choice?</th>
+<th scope="col">Registered variants</th>
+<th scope="col">Intended spatial product</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Natural or restored riparian vegetation</th>
+<td>Identify bank degradation, existing vegetation, regeneration potential and connection to the watercourse.</td>
+<td>Riparian natural regeneration, Riparian reforestation</td>
+<td>Linear corridor</td>
+</tr>
+<tr>
+<th scope="row">Planted riparian buffers</th>
+<td>Inspect slope and available width beside the watercourse and the runoff entering from adjoining fields.</td>
+<td>Planted grass/herbaceous filter strip, Planted woody/forested riparian buffer</td>
+<td>Linear corridor</td>
+</tr>
+</tbody>
+</table>
+<section class="family-ids"><h3>Family IDs for configuration and evidence lookup</h3><p>Use <code>riparian_buffer</code> for the practice ID.</p>
+<ul>
+<li>Natural or restored riparian vegetation · <code>riparian_buffer__natural_restored</code></li>
+<li>Planted riparian buffers · <code>riparian_buffer__planted</code></li>
+</ul>
+</section><p><a href="https://github.com/RuralScan/method/blob/92f86f035792cacb066eecdc12f439a87ef6d0c0/data-model/configuration/recipes/riparian_buffer/T0_nbs_registry.csv">Practice definition (T0)</a> · <a href="https://github.com/RuralScan/method/blob/92f86f035792cacb066eecdc12f439a87ef6d0c0/data-model/configuration/FAM_family_registry.csv">Variant definitions and grouping rationale (FAM)</a></p>
+<h3>Interpret the spatial output</h3>
+<ul>
+<li><strong>Linear corridor.</strong> A reach or corridor along a network. Report its length or reach-level coverage and document any width assumption.</li>
+</ul>
+<p>Check how accurately the stream network, adjacent land use and buffer width can be resolved. Confirm the width on the ground before estimating a planted footprint.</p>
+<h3>Inspect compiled evidence</h3>
+<p>Each count is an analytical row in the pinned candidate. The family named on the row determines where it is counted. Rows with no family ID appear once under <strong>Practice-wide</strong>, including rows limited to a particular geography or farming system.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Scope</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T3">T3</span> hazard responses</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T4">T4</span> suitability mappings</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6">T6</span> scorecard effects</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6E">T6E</span> economic profiles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Natural or restored riparian vegetation</th>
+<td style="text-align:right">3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Planted riparian buffers</th>
+<td style="text-align:right">2</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row"><strong>Practice-wide</strong></th>
+<td style="text-align:right">2</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<th scope="row"><strong>All scopes</strong></th>
+<td style="text-align:right">7</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">22</td>
+<td style="text-align:right">2</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/riparian_buffer.md">Inspect individual rows, context and evidence references</a></p>
+<h3>Check suitability before mapping</h3>
+<p>This candidate contains zero compiled T4 mappings for this practice. The family definitions describe the intended product. A local suitability score would require supported mappings and spatial validation.</p>
+<p><a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/riparian_buffer.md#t4-suitability-mappings">Open the candidate’s T4 section</a> · <a href="https://github.com/RuralScan/method/blob/c4b3b61e61453a4c7e9119baceb11ca6be26a9f0/handbook/implement-a-scan.md">Prepare a scoping brief</a></p>
+</section><section id="water_harvesting_conservation" class="practice" aria-labelledby="water_harvesting_conservation-title"><h2 class="title" id="water_harvesting_conservation-title">Water Harvesting and Conservation</h2>
+<p class="back-link"><a href="#overview">Choose another practice</a></p>
+<p>Identify where water originates and where it will be used. A field receiving rainfall, a short slope feeding a basin and a channel supplying storage belong to different families.</p>
+<h3>Choose a family</h3>
+<table>
+<thead>
+<tr>
+<th scope="col">Family</th>
+<th scope="col">What determines the choice?</th>
+<th scope="col">Registered variants</th>
+<th scope="col">Intended spatial product</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">In-field water conservation</th>
+<td>Examine how rainfall infiltrates and is retained in the cultivated soil.</td>
+<td>Contour bunds / ridges, Planting pits / Zai, Conservation tillage / mulching</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Microcatchments</th>
+<td>Locate the short runoff-producing slope and the adjacent basin or planting strip it supplies.</td>
+<td>Semi-circular bunds, Eyebrow terraces, Runoff strips</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Rooftop harvesting</th>
+<td>Inspect the roof and domestic storage arrangement at building scale.</td>
+<td>Rooftop / domestic harvesting</td>
+<td>Qualitative guidance</td>
+</tr>
+<tr>
+<th scope="row">Runoff capture and storage</th>
+<td>Trace the contributing drainage area, then check storage terrain and the chosen structure’s siting requirements.</td>
+<td>Macro-catchment water harvesting, Farm ponds, Check dams, Percolation tanks, Sand dams, Subsurface dams, Small communal tanks / reservoirs</td>
+<td>Applicability zone</td>
+</tr>
+<tr>
+<th scope="row">Spate or floodwater harvesting</th>
+<td>Locate an ephemeral channel and examine the floodwater and sediment it carries.</td>
+<td>Spate / floodwater harvesting</td>
+<td>Linear corridor</td>
+</tr>
+<tr>
+<th scope="row">Terracing</th>
+<td>Inspect slope and the soil depth needed to reshape it. For stone structures, check material availability.</td>
+<td>Bench terraces, Stone bunds / fanya juu</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Cross-family context</th>
+<td>Read shared observations here. Choose a specific intervention family when defining a map.</td>
+<td>Cross-cutting envelope (family-agnostic)</td>
+<td>Qualitative guidance</td>
+</tr>
+</tbody>
+</table>
+<section class="family-ids"><h3>Family IDs for configuration and evidence lookup</h3><p>Use <code>water_harvesting_conservation</code> for the practice ID.</p>
+<ul>
+<li>In-field water conservation · <code>water_harvesting__in_situ</code></li>
+<li>Microcatchments · <code>water_harvesting__micro_catchment</code></li>
+<li>Rooftop harvesting · <code>water_harvesting__rooftop</code></li>
+<li>Runoff capture and storage · <code>water_harvesting__runoff_catchment</code></li>
+<li>Spate or floodwater harvesting · <code>water_harvesting__spate</code></li>
+<li>Terracing · <code>water_harvesting__terracing</code></li>
+<li>Cross-family context · <code>water_harvesting__cross_family</code></li>
+</ul>
+</section><p><a href="https://github.com/RuralScan/method/blob/92f86f035792cacb066eecdc12f439a87ef6d0c0/data-model/configuration/recipes/water_harvesting_conservation/T0_nbs_registry.csv">Practice definition (T0)</a> · <a href="https://github.com/RuralScan/method/blob/92f86f035792cacb066eecdc12f439a87ef6d0c0/data-model/configuration/FAM_family_registry.csv">Variant definitions and grouping rationale (FAM)</a></p>
+<h3>Interpret the spatial output</h3>
+<ul>
+<li><strong>Applicability zone.</strong> A zone in which to inspect individual locations. Field layouts and structure footprints need local delineation.</li>
+<li><strong>Area suitability.</strong> A potential area surface at a resolution supported by the inputs.</li>
+<li><strong>Qualitative guidance.</strong> A qualitative assessment or contextual evidence. No pixel-area footprint is assigned.</li>
+<li><strong>Linear corridor.</strong> A reach or corridor along a network. Report its length or reach-level coverage and document any width assumption.</li>
+</ul>
+<p>For bench terraces, check the slope and soil information for the proposed design. The documented annual rainfall range in the worked example supports a siting observation. Its numerical calibration remains on hold.</p>
+<p><a href="https://github.com/RuralScan/method/blob/c4b3b61e61453a4c7e9119baceb11ca6be26a9f0/handbook/read-a-suitability-recipe.md">Trace the bench-terrace rainfall decision</a></p>
+<h3>Inspect compiled evidence</h3>
+<p>Each count is an analytical row in the pinned candidate. The family named on the row determines where it is counted. Rows with no family ID appear once under <strong>Practice-wide</strong>, including rows limited to a particular geography or farming system.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Scope</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T3">T3</span> hazard responses</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T4">T4</span> suitability mappings</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6">T6</span> scorecard effects</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6E">T6E</span> economic profiles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">In-field water conservation</th>
+<td style="text-align:right">11</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<th scope="row">Microcatchments</th>
+<td style="text-align:right">7</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<th scope="row">Rooftop harvesting</th>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Runoff capture and storage</th>
+<td style="text-align:right">13</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<th scope="row">Spate or floodwater harvesting</th>
+<td style="text-align:right">5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<th scope="row">Terracing</th>
+<td style="text-align:right">11</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<th scope="row">Cross-family context</th>
+<td style="text-align:right">5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<th scope="row"><strong>Practice-wide</strong></th>
+<td style="text-align:right">40</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">54</td>
+<td style="text-align:right">8</td>
+</tr>
+<tr>
+<th scope="row"><strong>All scopes</strong></th>
+<td style="text-align:right">92</td>
+<td style="text-align:right">17</td>
+<td style="text-align:right">111</td>
+<td style="text-align:right">21</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/water_harvesting_conservation.md">Inspect individual rows, context and evidence references</a></p>
+<h3>Check suitability before mapping</h3>
+<p>Read each mapping’s evidence and limitations. A row can offer several functions. Selection identifies the effective function. The spatial validation count uses the producer’s execution-readiness flag.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Family</th>
+<th scope="col">Variables in T4</th>
+<th style="text-align:right" scope="col">Mappings with options</th>
+<th style="text-align:right" scope="col">With selected function</th>
+<th style="text-align:right" scope="col">Spatially validated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">In-field water conservation</th>
+<td><code>annual_precipitation</code>, <code>aridity_index</code>, <code>slope</code>, <code>soil_depth_to_bedrock</code></td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Microcatchments</th>
+<td><code>annual_precipitation</code>, <code>slope</code>, <code>soil_depth_to_bedrock</code></td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Runoff capture and storage</th>
+<td><code>annual_precipitation</code>, <code>catchment_area</code>, <code>drainage_density</code>, <code>runoff_potential_index</code>, <code>slope</code>, <code>stream_order</code></td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Terracing</th>
+<td><code>annual_precipitation</code>, <code>runoff_potential_index</code>, <code>slope</code>, <code>soil_depth_to_bedrock</code></td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/water_harvesting_conservation.md#t4-suitability-mappings">Open the candidate’s T4 section</a> · <a href="https://github.com/RuralScan/method/blob/c4b3b61e61453a4c7e9119baceb11ca6be26a9f0/handbook/implement-a-scan.md">Prepare a scoping brief</a></p>
+</section><section id="wetland_management" class="practice" aria-labelledby="wetland_management-title"><h2 class="title" id="wetland_management-title">Wetland Management &amp; Restoration</h2>
+<p class="back-link"><a href="#overview">Choose another practice</a></p>
+<p>Check present and former wetland extent, soil and water source. Creation, restoration of a former wetland, peatland rewetting and engineered treatment answer different siting questions.</p>
+<h3>Choose a family</h3>
+<table>
+<thead>
+<tr>
+<th scope="col">Family</th>
+<th scope="col">What determines the choice?</th>
+<th scope="col">Registered variants</th>
+<th scope="col">Intended spatial product</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Coastal wetlands</th>
+<td>Check tidal inundation, salinity and elevation.</td>
+<td>Tidal marsh / coastal wetland restoration</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Constructed treatment wetlands</th>
+<td>Identify the inflow or drainage source and assess the engineered site.</td>
+<td>Constructed / treatment wetland</td>
+<td>Qualitative guidance</td>
+</tr>
+<tr>
+<th scope="row">Peatland rewetting and paludiculture</th>
+<td>Confirm peat soils, drainage state and water table. Paludiculture also requires a suitable wet crop.</td>
+<td>Peatland rewetting, Paludiculture</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Restoration and rewetting</th>
+<td>Check former wetland extent, altered drainage and hydraulic connectivity.</td>
+<td>Wetland restoration / rewetting, Drainage blocking / re-flooding, Floodplain wetland reconnection</td>
+<td>Area suitability</td>
+</tr>
+<tr>
+<th scope="row">Wetland creation or reconstruction</th>
+<td>Check water supply, terrain and soils where a wetland could be established.</td>
+<td>Wetland creation, Wetland reconstruction</td>
+<td>Area suitability</td>
+</tr>
+</tbody>
+</table>
+<section class="family-ids"><h3>Family IDs for configuration and evidence lookup</h3><p>Use <code>wetland_management</code> for the practice ID.</p>
+<ul>
+<li>Coastal wetlands · <code>wetland_management__coastal</code></li>
+<li>Constructed treatment wetlands · <code>wetland_management__constructed</code></li>
+<li>Peatland rewetting and paludiculture · <code>wetland_management__peatland</code></li>
+<li>Restoration and rewetting · <code>wetland_management__restoration_rewetting</code></li>
+<li>Wetland creation or reconstruction · <code>wetland_management__creation</code></li>
+</ul>
+</section><p><a href="https://github.com/RuralScan/method/blob/92f86f035792cacb066eecdc12f439a87ef6d0c0/data-model/configuration/recipes/wetland_management/T0_nbs_registry.csv">Practice definition (T0)</a> · <a href="https://github.com/RuralScan/method/blob/92f86f035792cacb066eecdc12f439a87ef6d0c0/data-model/configuration/FAM_family_registry.csv">Variant definitions and grouping rationale (FAM)</a></p>
+<h3>Interpret the spatial output</h3>
+<ul>
+<li><strong>Area suitability.</strong> A potential area surface at a resolution supported by the inputs.</li>
+<li><strong>Qualitative guidance.</strong> A qualitative assessment or contextual evidence. No pixel-area footprint is assigned.</li>
+</ul>
+<p>For reconnection, verify former wetland extent and hydraulic connectivity. For peatland work, establish peat presence, drainage history and water-table conditions.</p>
+<h3>Inspect compiled evidence</h3>
+<p>Each count is an analytical row in the pinned candidate. The family named on the row determines where it is counted. Rows with no family ID appear once under <strong>Practice-wide</strong>, including rows limited to a particular geography or farming system.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Scope</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T3">T3</span> hazard responses</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T4">T4</span> suitability mappings</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6">T6</span> scorecard effects</th>
+<th style="text-align:right" scope="col"><span data-ruralscan-table="T6E">T6E</span> economic profiles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Coastal wetlands</th>
+<td style="text-align:right">3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<th scope="row">Constructed treatment wetlands</th>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Peatland rewetting and paludiculture</th>
+<td style="text-align:right">3</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<th scope="row">Restoration and rewetting</th>
+<td style="text-align:right">5</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<th scope="row">Wetland creation or reconstruction</th>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<th scope="row"><strong>Practice-wide</strong></th>
+<td style="text-align:right">14</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">31</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<th scope="row"><strong>All scopes</strong></th>
+<td style="text-align:right">26</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">64</td>
+<td style="text-align:right">15</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/wetland_management.md">Inspect individual rows, context and evidence references</a></p>
+<h3>Check suitability before mapping</h3>
+<p>Read each mapping’s evidence and limitations. A row can offer several functions. Selection identifies the effective function. The spatial validation count uses the producer’s execution-readiness flag.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Family</th>
+<th scope="col">Variables in T4</th>
+<th style="text-align:right" scope="col">Mappings with options</th>
+<th style="text-align:right" scope="col">With selected function</th>
+<th style="text-align:right" scope="col">Spatially validated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Peatland rewetting and paludiculture</th>
+<td><code>groundwater_seepage</code>, <code>water_table_depth</code></td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Restoration and rewetting</th>
+<td><code>distance_to_waterbody</code></td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<th scope="row">Wetland creation or reconstruction</th>
+<td><code>distance_to_waterbody</code></td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/wetland_management.md#t4-suitability-mappings">Open the candidate’s T4 section</a> · <a href="https://github.com/RuralScan/method/blob/c4b3b61e61453a4c7e9119baceb11ca6be26a9f0/handbook/implement-a-scan.md">Prepare a scoping brief</a></p>
+</section></main></body></html>

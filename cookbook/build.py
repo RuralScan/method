@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["numpy==2.4.6", "requests==2.34.2"]
+# dependencies = ["markdown-it-py==4.0.0", "numpy==2.4.6", "requests==2.34.2"]
 # ///
 
 """Rebuild the family guides from pinned definitions and a verified candidate release."""
@@ -37,7 +37,7 @@ def evidence_tools(root, local):
 
 
 def check_pages(folder, rendered):
-    existing = {f.name for f in folder.glob("*.md")}
+    existing = {f.name for f in folder.iterdir() if f.suffix in {".md", ".html"}}
     if existing != rendered.keys():
         changed = sorted(existing ^ rendered.keys())
         raise ValueError("Cookbook page inventory differs: " + ", ".join(changed))
@@ -49,6 +49,7 @@ def check_pages(folder, rendered):
 def build(root, args):
     from families import family_profiles
     from pages import pages
+    from print_edition import render_edition
 
     checker, pin = evidence_tools(root, args.evidence_repo)
     source = root / "producer"
@@ -94,6 +95,13 @@ def build(root, args):
                     f"Family readiness differs from the candidate for {practice}: {key}"
                 )
     rendered = pages(profiles, pin, EVIDENCE_REVISION, manifest["source_revision"])
+    markdown_pages = len(rendered)
+    edition_name = "rural-scan-cookbook.html"
+    rendered[edition_name] = render_edition(
+        rendered,
+        (HERE.parent / "design" / "tables.css").read_text(encoding="utf-8"),
+        (HERE / "edition.css").read_text(encoding="utf-8"),
+    )
     if args.out:
         checker.write_index(args.out, rendered)
     else:
@@ -112,7 +120,8 @@ def build(root, args):
                 "analytical_rows": sum(
                     summary["totals"][k] for k in ("T3", "T4", "T6", "T6E")
                 ),
-                "pages": len(rendered),
+                "pages": markdown_pages,
+                "print_edition": edition_name,
             },
             indent=2,
         )

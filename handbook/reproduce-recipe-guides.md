@@ -2,9 +2,15 @@
 
 The cookbook combines the method’s practice and family definitions with the analytical rows in one candidate release. Each practice page links to the evidence workbench at the revision used for the build. Choose the practice page directly to read the guide. [Open the cookbook](../cookbook/README.md)
 
+## Read or print all six guides
+
+Open `cookbook/rural-scan-cookbook.html` from your checkout in a browser. On GitHub, open the file and select **Download raw file**, then open the saved HTML. The practice links work offline. Follow the evidence and handbook links when connected.
+
+Use the browser’s **Print** command to print on A4 or US Letter, or choose **Save as PDF**. Use the default scale and turn off browser headers and footers. Each practice starts on a new page. The family IDs and release identifier appear in the printed document.
+
 ## Check a published guide
 
-From the root of the method repository, use Git, uv and Python 3.12. This command rebuilds the candidate in temporary storage and compares the resulting seven Markdown pages with this checkout. The first run downloads pinned software and Git inputs.
+From the root of the method repository, use Git, uv and Python 3.12. This command rebuilds the candidate in temporary storage and compares the resulting seven Markdown pages and standalone print edition with this checkout. The first run downloads pinned software and Git inputs.
 
 ```sh
 uv run --python 3.12 --locked --script cookbook/build.py
@@ -28,4 +34,4 @@ The T4 readiness counts come from the candidate’s readiness report, restricted
 
 ## Refresh a guide
 
-When a new candidate is available, update the evidence revision in the builder and use its pinned method and producer revisions. Generate the pages in a new directory. Review changes to family membership, spatial product types, scope counts and readiness alongside the practice-specific text before replacing the checked-in pages. Run the default check again. Candidate compilation, evidence review and runtime adoption have separate release histories.
+When a new candidate is available, update the evidence revision in the builder and use its pinned method and producer revisions. Generate the Markdown and HTML together in a new directory. Review changes to family membership, spatial product types, scope counts and readiness alongside the practice-specific text before replacing the checked-in pages. Run the default check again. Candidate compilation, evidence review and runtime adoption have separate release histories.
