@@ -45,7 +45,7 @@ Each count is an analytical row in the pinned candidate. The family named on the
 | **Practice-wide** | 40 | 0 | 54 | 8 |
 | **All scopes** | 92 | 17 | 111 | 21 |
 
-[Inspect individual rows, context and evidence references](https://github.com/RuralScan/evidence/blob/8285769cb6df6cffc6bfbbbddead3ceadd07c635/publication/recipes/water_harvesting_conservation.md)
+[Inspect individual rows, context and evidence references](https://github.com/RuralScan/evidence/blob/950f91ea29cea43a5a1a7928bddaef7758965cc7/publication/recipes/water_harvesting_conservation.md)
 
 ## Check suitability before mapping
 
@@ -58,7 +58,7 @@ Read each mapping’s evidence and limitations. A row can offer several function
 | Runoff capture and storage | `annual_precipitation`, `catchment_area`, `drainage_density`, `runoff_potential_index`, `slope`, `stream_order` | 0 | 0 | 0 |
 | Terracing | `annual_precipitation`, `runoff_potential_index`, `slope`, `soil_depth_to_bedrock` | 0 | 0 | 0 |
 
-[Open the candidate’s T4 section](https://github.com/RuralScan/evidence/blob/8285769cb6df6cffc6bfbbbddead3ceadd07c635/publication/recipes/water_harvesting_conservation.md#t4-suitability-mappings) · [Prepare a scoping brief](../handbook/implement-a-scan.md)
+[Open the candidate’s T4 section](https://github.com/RuralScan/evidence/blob/950f91ea29cea43a5a1a7928bddaef7758965cc7/publication/recipes/water_harvesting_conservation.md#t4-suitability-mappings) · [Prepare a scoping brief](../handbook/implement-a-scan.md)
 
 <details>
 <summary>Family IDs for configuration and evidence lookup</summary>

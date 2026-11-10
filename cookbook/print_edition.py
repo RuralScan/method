@@ -8,8 +8,8 @@ from xml.etree import ElementTree as ET
 from markdown_it import MarkdownIt
 
 
-# These handbook pages accompany the original six practice guides.
-HANDBOOK = "https://github.com/RuralScan/method/blob/c4b3b61e61453a4c7e9119baceb11ca6be26a9f0/handbook/"
+# These handbook pages accompany this cookbook edition.
+HANDBOOK = "https://github.com/RuralScan/method/blob/098041f9a683c60626fcb25b6cf375e17044e40b/handbook/"
 FAMILY_DETAILS = re.compile(
     r"^<details>\s*<summary>([^<]+)</summary>\s*(.*?)^</details>\s*$",
     re.MULTILINE | re.DOTALL,

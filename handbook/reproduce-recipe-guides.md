@@ -24,13 +24,13 @@ uv run --offline --python 3.12 --locked --script cookbook/build.py --offline \
   --method-repo /path/to/method
 ```
 
-To inspect regenerated pages separately, append `--out /path/to/new-directory`. A successful run reports the candidate release ID, six practices, 28 families, 56 family-register entries and 806 analytical rows. Three register entries capture cross-family context. The build reads the pinned evidence checker and the candidate’s method lock. It validates the release members, method definition files and all six T0 identities before grouping analytical rows. A changed pin, missing family, mismatch in readiness counts or stale published page stops the check. [Pinned evidence release](https://github.com/RuralScan/evidence/blob/8285769cb6df6cffc6bfbbbddead3ceadd07c635/workflows/recipe_release/pin.json)
+To inspect regenerated pages separately, append `--out /path/to/new-directory`. A successful run reports the candidate release ID, six practices, 28 families, 56 family-register entries and 806 analytical rows. Three register entries capture cross-family context. The build reads the pinned evidence checker and the candidate’s method lock. It validates the release members, method definition files and all six T0 identities before grouping analytical rows. A changed pin, missing family, mismatch in readiness counts or stale published page stops the check. [Pinned evidence release](https://github.com/RuralScan/evidence/blob/950f91ea29cea43a5a1a7928bddaef7758965cc7/workflows/recipe_release/pin.json)
 
 ## How rows are counted
 
 T3, T4, T6 and T6E each carry an analytical row ID. A row with a family ID is counted once under its practice and that family. A row without a family ID appears once in the practice-wide count, even if it carries a geographic or farming-system condition. Several subpractices can share one family. Multiplying a family’s row count by its number of subpractices would overstate coverage.
 
-The T4 readiness counts come from the candidate’s readiness report, restricted to compiled mapping IDs. One mapping can have functions available and a function selected, so these counts overlap. Extra reference-only entries in that report do not increase the mappings count. The original analytical records retain the context, units, evidence IDs and limitations. [Evidence recipe index](https://github.com/RuralScan/evidence/blob/8285769cb6df6cffc6bfbbbddead3ceadd07c635/publication/recipes/README.md)
+The T4 readiness counts come from the candidate’s readiness report, restricted to compiled mapping IDs. One mapping can have functions available and a function selected, so these counts overlap. Extra reference-only entries in that report do not increase the mappings count. The original analytical records retain the context, units, evidence IDs and limitations. [Evidence recipe index](https://github.com/RuralScan/evidence/blob/950f91ea29cea43a5a1a7928bddaef7758965cc7/publication/recipes/README.md)
 
 ## Refresh a guide
 
