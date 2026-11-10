@@ -37,7 +37,7 @@ Each count is an analytical row in the pinned candidate. The family named on the
 | **Practice-wide** | 14 | 0 | 31 | 5 |
 | **All scopes** | 26 | 4 | 64 | 15 |
 
-[Inspect individual rows, context and evidence references](https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/wetland_management.md)
+[Inspect individual rows, context and evidence references](https://github.com/RuralScan/evidence/blob/8285769cb6df6cffc6bfbbbddead3ceadd07c635/publication/recipes/wetland_management.md)
 
 ## Check suitability before mapping
 
@@ -49,7 +49,7 @@ Read each mapping’s evidence and limitations. A row can offer several function
 | Restoration and rewetting | `distance_to_waterbody` | 1 | 0 | 0 |
 | Wetland creation or reconstruction | `distance_to_waterbody` | 1 | 0 | 0 |
 
-[Open the candidate’s T4 section](https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/wetland_management.md#t4-suitability-mappings) · [Prepare a scoping brief](../handbook/implement-a-scan.md)
+[Open the candidate’s T4 section](https://github.com/RuralScan/evidence/blob/8285769cb6df6cffc6bfbbbddead3ceadd07c635/publication/recipes/wetland_management.md#t4-suitability-mappings) · [Prepare a scoping brief](../handbook/implement-a-scan.md)
 
 <details>
 <summary>Family IDs for configuration and evidence lookup</summary>

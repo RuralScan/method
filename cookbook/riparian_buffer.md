@@ -17,7 +17,7 @@ Identify the watercourse and the condition of its banks. Choose between restorin
 
 - **Linear corridor.** A reach or corridor along a network. Report its length or reach-level coverage and document any width assumption.
 
-Check how accurately the stream network, adjacent land use and buffer width can be resolved. Confirm the width on the ground before estimating a planted footprint.
+The two distance-to-waterbody mappings retain reported widths. For natural or restored vegetation, those widths describe study areas or guidance for particular banks. For planted strips, they describe planting zones or designs for particular services. Both mappings leave the distance score unassigned. Confirm stream position and local width before estimating a footprint.
 
 ## Inspect compiled evidence
 
@@ -25,18 +25,23 @@ Each count is an analytical row in the pinned candidate. The family named on the
 
 | Scope | T3 hazard responses | T4 suitability mappings | T6 scorecard effects | T6E economic profiles |
 |---|---:|---:|---:|---:|
-| Natural or restored riparian vegetation | 3 | 0 | 6 | 0 |
-| Planted riparian buffers | 2 | 0 | 5 | 0 |
+| Natural or restored riparian vegetation | 3 | 1 | 6 | 0 |
+| Planted riparian buffers | 2 | 1 | 5 | 0 |
 | **Practice-wide** | 2 | 0 | 11 | 2 |
-| **All scopes** | 7 | 0 | 22 | 2 |
+| **All scopes** | 7 | 2 | 22 | 2 |
 
-[Inspect individual rows, context and evidence references](https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/riparian_buffer.md)
+[Inspect individual rows, context and evidence references](https://github.com/RuralScan/evidence/blob/8285769cb6df6cffc6bfbbbddead3ceadd07c635/publication/recipes/riparian_buffer.md)
 
 ## Check suitability before mapping
 
-This candidate contains zero compiled T4 mappings for this practice. The family definitions describe the intended product. A local suitability score would require supported mappings and spatial validation.
+Read each mapping’s evidence and limitations. A row can offer several functions. Selection identifies the effective function. The spatial validation count uses the producer’s execution-readiness flag.
 
-[Open the candidate’s T4 section](https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/riparian_buffer.md#t4-suitability-mappings) · [Prepare a scoping brief](../handbook/implement-a-scan.md)
+| Family | Variables in T4 | Mappings with options | With selected function | Spatially validated |
+|---|---|---:|---:|---:|
+| Natural or restored riparian vegetation | `distance_to_waterbody` | 0 | 0 | 0 |
+| Planted riparian buffers | `distance_to_waterbody` | 0 | 0 | 0 |
+
+[Open the candidate’s T4 section](https://github.com/RuralScan/evidence/blob/8285769cb6df6cffc6bfbbbddead3ceadd07c635/publication/recipes/riparian_buffer.md#t4-suitability-mappings) · [Prepare a scoping brief](../handbook/implement-a-scan.md)
 
 <details>
 <summary>Family IDs for configuration and evidence lookup</summary>

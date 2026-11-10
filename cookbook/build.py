@@ -15,7 +15,7 @@ from tempfile import TemporaryDirectory
 
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
-EVIDENCE_REVISION = "8ef5b58f5245481548ff04834c8601745d9a49f6"
+EVIDENCE_REVISION = "8285769cb6df6cffc6bfbbbddead3ceadd07c635"
 EVIDENCE_URL = "https://github.com/RuralScan/evidence.git"
 
 
