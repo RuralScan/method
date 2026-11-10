@@ -9,7 +9,7 @@ It supports early investment scoping. It does not replace feasibility studies, e
 ## Start here
 
 - [Understand the approach](handbook/start-here.md): seven modules and the evidence-to-rule chain.
-- [Choose a practice and suitability family](cookbook/README.md). Compare the possible spatial outputs and inspect which candidate rows apply to your family.
+- [Choose a practice and suitability family](cookbook/README.md). Compare spatial outputs and family-level evidence counts. [Download the six-practice print edition](cookbook/rural-scan-cookbook.html).
 - [Work through the Haiti notebook and prepare a scoping brief](handbook/implement-a-scan.md).
 - [Read the data model](data-model/spec.md): fields, controlled vocabularies, table structure and configuration.
 - [Label schema tables in figures, notebooks and printouts](design/README.md).

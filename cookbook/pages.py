@@ -334,5 +334,6 @@ def pages(profiles, pin, evidence_revision, definition_revision):
         "",
         "[Follow the seven modules](../handbook/start-here.md) · [Implement a scan](../handbook/implement-a-scan.md) · [Trace a worked suitability mapping](../handbook/read-a-suitability-recipe.md) · [Reproduce these guides](../handbook/reproduce-recipe-guides.md)",
     ]
+    lines += ["", "[Download the print edition](rural-scan-cookbook.html)"]
     result["README.md"] = "\n".join(lines) + "\n"
     return result

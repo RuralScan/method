@@ -1,0 +1,62 @@
+/* Layout for the single-file reading and print edition. */
+:root {
+  color-scheme: light;
+  font: 1rem/1.55 system-ui, sans-serif;
+  color: #1d312d;
+  background: white;
+}
+body { max-width: 68rem; margin: auto; padding: 2rem clamp(1rem, 4vw, 4rem); }
+h1, h2 { font-family: Georgia, serif; line-height: 1.12; }
+h1 { font-size: clamp(2.2rem, 5vw, 4rem); margin: 0 0 .5em; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.2rem; margin: 1.8em 0 .35em; }
+section.practice, section.overview { border-top: 3px solid #2e6354; }
+section.practice { margin-top: 3rem; }
+p, li { max-width: 85ch; }
+a { color: #19574d; text-underline-offset: .15em; }
+a:focus-visible { outline: 3px solid #8f4507; outline-offset: 2px; }
+code { font-size: .92em; overflow-wrap: anywhere; }
+table { width: 100%; border-collapse: collapse; margin: 1em 0; line-height: 1.36; }
+th, td {
+  border-bottom: 1px solid #afbdb6;
+  padding: .5em .6em;
+  text-align: start;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+thead th { background: #edf3f0; font-weight: 650; }
+tbody th { font-weight: 550; }
+[data-ruralscan-table] { box-decoration-break: clone; }
+.family-ids ul { padding-inline-start: 1.5em; }
+@media (max-width: 42rem) {
+  table { font-size: .875rem; }
+  th, td { padding: .4em .2em; }
+}
+@page {
+  margin: 13mm 13mm 15mm;
+  @bottom-left { content: "Rural Scan recipe cookbook"; font: 8pt sans-serif; color: #455550; }
+  @bottom-right { content: counter(page); font: 8pt sans-serif; }
+}
+@media print {
+  :root { color: #111; font: 10pt/1.27 Arial, sans-serif; }
+  body { max-width: none; margin: 0; padding: 0; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 20pt; margin: .4em 0; }
+  h3 { font-size: 13pt; margin: 1em 0 .3em; }
+  h1, h2, h3 { break-after: avoid; }
+  p, li { max-width: none; widows: 2; orphans: 2; }
+  p, ul, table { margin-block: .6em; }
+  section.practice { break-before: page; margin: 0; }
+  section.practice, section.overview { border-color: #333; }
+  .back-link { display: none; }
+  th, td { padding: .28em .4em; }
+  table { font-size: 9pt; line-height: 1.22; }
+  thead { display: table-header-group; }
+  table, tr, .family-ids { break-inside: avoid; }
+  h3 + p:has(+ table) { break-after: avoid; }
+  table:has(td code) { table-layout: fixed; }
+  table:has(td code) th:nth-child(1) { width: 19%; }
+  table:has(td code) th:nth-child(2) { width: 40%; }
+  thead th { border-bottom: 1.2pt solid #333; }
+  a { color: inherit; }
+}

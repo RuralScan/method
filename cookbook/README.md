@@ -30,3 +30,5 @@ Of 47 T4 mappings, 20 offer function options, 10 have a selected function and 0 
 Candidate release `26501e7f7037bfb6f26be9b5dad23f0eb1249967a968cc1b3b037d7fda714f8f`. [Browse the pinned analytical rows](https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/README.md) · [Pinned method definitions](https://github.com/RuralScan/method/blob/247d5cf98d3dd6daf010aa5bfe51fad21ea35849/data-model/definition-snapshot.json)
 
 [Follow the seven modules](../handbook/start-here.md) · [Implement a scan](../handbook/implement-a-scan.md) · [Trace a worked suitability mapping](../handbook/read-a-suitability-recipe.md) · [Reproduce these guides](../handbook/reproduce-recipe-guides.md)
+
+[Download the print edition](rural-scan-cookbook.html)
