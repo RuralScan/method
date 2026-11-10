@@ -2,6 +2,8 @@
 
 Use the Haiti planted-silvoarable agroforestry example to work through one decision: **which locations merit a closer look at terrain and soils, and what information is still needed there?** The published notebook computes a partial first-pass index. The remaining modules below describe how to turn a suitability result into an investment-scoping brief. [Haiti first-pass notebook](https://github.com/RuralScan/runtime/blob/e690d4e413d925c28c273945a5268ddbfb2d67cc/notebooks/01_agroforestry.ipynb)
 
+Before adapting the notebook to another intervention, choose the matching family, check its spatial product type and inspect its compiled suitability mappings. [Choose a recipe](../cookbook/README.md)
+
 ## 1. Check the inputs before making a map
 
 Start with a pinned runtime checkout. This check reads the supplied run configuration and scoring package locally; it needs Git and Python 3.11 or newer. Run these commands in a terminal on macOS or Linux.
