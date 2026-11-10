@@ -1,6 +1,6 @@
 /* ============================================================================
    review-mode.js — client-side review mode for the evidence dashboard.
-   A lean port of the review pattern in Pete's ENSO Explorer: comment pins,
+   Browser feedback supports comment pins,
    text highlights, region screengrabs, a notes dashboard and exports.
    Everything lives in this viewer's browser (localStorage `nbs_dashboard_feedback`);
    nothing is sent anywhere unless the reviewer opens the GitHub issue link.

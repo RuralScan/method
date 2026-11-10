@@ -1617,7 +1617,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
         <ol class="shell-review-steps">
           <li><b>Set your own GitHub handle in Review queue.</b> Choose <b>Other…</b> if it is missing. Your handle attributes decisions; it is not a login. Use practice, evidence type and search to narrow the queue.</li>
           <li><b>Start with To review.</b> <b>Waiting for answers</b> holds your outstanding questions; <b>My reviewed</b> shows your decisions. More filters contains technical filters and dropped history. Site observations are deferred by default and can be included there.</li>
-          <li><b>Read the claim and inspect its source.</b> Check the page or table, units, context, practice and intended use. Open the source region or full paper when the excerpt lacks context. A restricted source may require the synced library or its SharePoint link; ask Pete or Namita if access is missing.</li>
+          <li><b>Read the claim and inspect its source.</b> Check the page or table, units, context, practice and intended use. Open the source region or full paper when the excerpt lacks context. A restricted source may require the synced library or its SharePoint link; contact the library maintainer if access is missing.</li>
           <li><b>Keep</b> when the extraction is faithful and relevant. <b>Drop</b> when it is unsuitable or incorrect: select a coded reason and explain it. Drop quarantines the record; it does not erase it. <b>Query</b> when clarification is needed: state what needs checking. A query is not approval.</li>
           <li><b>Review answers on the evidence card.</b> Answered records return to To review. Read the answer and source, then Keep, Drop or Query. There is no separate answer-approval step; deciding one record does not approve the other records sharing its answer.</li>
           <li><b>Submit reviews when ready.</b> The bottom Submit reviews bar sends saved decisions and discussion updates through validation and a pull request. Wait for the result and inspect the link. Required checks and approvals still apply; an auto-merge request is not confirmation of merge. Reviewer disagreements remain pending.</li>
@@ -1631,7 +1631,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       <section id="review-pipeline-panel" hidden><div id="pipeline-records-app"><p>Loading pipeline records…</p></div></section>
       <section id="review-queue-panel">
     <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-secondary); margin-right:10px;" title="Your reviewer identity — every QA decision is attributed to this handle">&#128100; Reviewer
-      <select id="vf-reviewer" onchange="if(this.value==='__other__'){var h=prompt('Git handle:');setVfReviewer((h||'').trim());}else{setVfReviewer(this.value);}" style="font-size:12px; padding:4px 9px; border-radius:5px; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); font-weight:600;"><option value="">— pick reviewer —</option><option value="peetmate">peetmate</option><option value="bensonkenduiywo">bensonkenduiywo</option><option value="bjyberg">bjyberg</option><option value="Namita-J">Namita-J</option><option value="Mlolita26">Mlolita26</option><option value="__other__">Other…</option></select>
+      <select id="vf-reviewer" onchange="if(this.value==='__other__'){var h=prompt('Git handle:');setVfReviewer((h||'').trim());}else{setVfReviewer(this.value);}" style="font-size:12px; padding:4px 9px; border-radius:5px; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); font-weight:600;"><option value="">— pick reviewer —</option><option value="__other__">Other…</option></select>
     </label>
       <div class="card-container">
         <h2 class="card-title" style="display:flex; align-items:center; gap:12px;">
@@ -2168,7 +2168,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
         // 3) non-OA crop lives in the access-controlled library — link (can't embed an
         // auth'd SharePoint image). Copyright-safe: same access control as the PDF.
         var spCrop=vfSharePointUrl(window._cropSharePointMap[eid]);
-        box.innerHTML=spCrop?('<div style="font-size:10.5px; color:var(--text-secondary); padding:8px 4px;"><b style="color:#fbbf24;">Restricted (copyright) source.</b> The crop can\'t be published on the public site, so it opens in the team library instead — <a href="'+spCrop+'" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);">open highlighted source region in SharePoint ↗</a><div style="font-size:9.5px; color:var(--text-muted); margin-top:4px;">Needs CGIAR library access. To see restricted crops inline instead, make the library available offline in OneDrive + run the local server (see the <a href="https://github.com/CIAT/nbs_ruralscan/blob/main/docs/REVIEWER_GUIDE.md" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);">reviewer guide</a>). If the link won\'t open, ask Pete / Namita to share the file.</div></div>'):('<div style="font-size:10.5px; color:var(--text-muted); padding:8px 4px;">Highlighted crop is in the library but its link could not be built.</div>');
+        box.innerHTML=spCrop?('<div style="font-size:10.5px; color:var(--text-secondary); padding:8px 4px;"><b style="color:#fbbf24;">Restricted (copyright) source.</b> The crop can\'t be published on the public site, so it opens in the team library instead — <a href="'+spCrop+'" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);">open highlighted source region in SharePoint ↗</a><div style="font-size:9.5px; color:var(--text-muted); margin-top:4px;">Needs CGIAR library access. To see restricted crops inline instead, make the library available offline in OneDrive + run the local server (see the <a href="https://github.com/CIAT/nbs_ruralscan/blob/main/docs/REVIEWER_GUIDE.md" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);">reviewer guide</a>). If the link won\'t open, request access from the library maintainer.</div></div>'):('<div style="font-size:10.5px; color:var(--text-muted); padding:8px 4px;">Highlighted crop is in the library but its link could not be built.</div>');
       } else {
         // 4) no committed crop, no server, no library crop → SharePoint PDF link.
         var evAll=((dashboardData||{}).registers||{}).EV_evidence_register||[]; var ev=evAll.find(function(e){return e.evidence_id===eid;})||{};
@@ -3077,7 +3077,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     var rlAll=(dashboardData.review_log)||[];
     var _gapsCount=((dashboardData.gaps)||[]).filter(_vfGapInScope).length;
     // ===== Orthogonal review-status axes: origin × reviewed-by-me × reviewed-by-others =====
-    // (Pete 2026-07) Replaces the mode-encodes-status split. Every permutation is a toggle combo,
+    // Replaces the mode-encodes-status split. Every permutation is a toggle combo,
     // composed with scope + verdict + tables. Universe includes ACTIVE (flagged∪passed) AND DROPPED
     // units. Active is the default; dropped evidence is available through the explicit history filter.
     if(window._vfAxStatus===undefined)window._vfAxStatus='active';
@@ -3950,7 +3950,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
                        : (key.toUpperCase() === 'AHP' ? 'Analytical Hierarchy Process (AHP / MCDA)' 
                        : key.toUpperCase() === 'EMPIRICAL' ? 'Empirical literature / Primary measurements'
                        : key.toUpperCase() === 'SYNTHESIS' ? 'Meta-analyses & Sourcing Guidelines'
-                       : key.toUpperCase() === 'EXPERT' ? 'Expert Elicitation Protocol (Namita)'
+                       : key.toUpperCase() === 'EXPERT' ? 'Expert Elicitation Protocol'
                        : key.toUpperCase() === 'FAO_LANDEVAL' ? 'FAO Land Suitability Evaluation Methodology'
                        : key.toUpperCase() === 'ADOPTION_STUDY' ? 'Adoption / Dis-adoption Study'
                        : key.toUpperCase() === 'MEL_REPORT' ? 'MEL / MELIA Monitoring Report'
