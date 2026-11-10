@@ -1041,7 +1041,7 @@
   body[data-records] .tab-content:not(#tab-overview):not(#tab-methods) {display:none}
 </style>
 </head>
-<body data-theme="dark">
+<body data-theme="dark" data-records="loading">
 
 <header class="app-header">
   <div class="brand-group">
@@ -1750,7 +1750,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
   </div>
 </main>
 
-<!-- Report-missing-evidence (gap) modal — a DIRECT child of <body data-records="loading">, not of any tab pane:
+<!-- Report-missing-evidence (gap) modal — a DIRECT child of <body>, not of any tab pane:
      it is opened from the QA/QC tab's action bar, and a modal nested inside an inactive
      tab (display:none) can never show itself (a child display:block cannot override an
      ancestor's display:none). -->
