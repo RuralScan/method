@@ -15,7 +15,7 @@ It supports early investment scoping. It does not replace feasibility studies, e
 - [Label schema tables in figures, notebooks and printouts](design/README.md).
 - [Browse all six practice definitions](data-model/configuration/recipes). [Check their source versions, dependencies and limitations](data-model/baseline.md).
 - [Run the implementation](https://github.com/RuralScan/runtime): data access, computation and reproducible notebooks.
-- [Open the public evidence workbook](https://github.com/RuralScan/evidence/blob/950f91ea29cea43a5a1a7928bddaef7758965cc7/workflows/public_workbook/README.md) to trace a compiled row to its claims and sources. Download the HTML for offline use.
+- [Open the public evidence workbook](https://github.com/RuralScan/evidence/blob/1532768de6c688e2c8eb26097eb7618848390b1d/workflows/public_workbook/README.md) to trace a compiled row to its claims and sources. Download the HTML for offline use.
 - [Explore the evidence workflow](https://github.com/RuralScan/evidence): discovery, extraction, review and compilation.
 
 ## How the repositories fit together

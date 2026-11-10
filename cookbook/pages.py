@@ -178,6 +178,15 @@ def cell(value):
     return " ".join(value.split()).replace("|", r"\|")
 
 
+def haiti_workbook_link(evidence_revision):
+    workbook = f"{EVIDENCE}/{evidence_revision}/publication/workbook/index.html"
+    return (
+        "On GitHub, select **Download raw file**, open the saved HTML in a browser, "
+        "then choose **Overview → Trace the Haiti example**. "
+        f"[Open the evidence workbook]({workbook})"
+    )
+
+
 def recipe_page(practice, profile, definition_revision, evidence_revision):
     families = sorted(
         profile["families"].items(),
@@ -236,10 +245,20 @@ def recipe_page(practice, profile, definition_revision, evidence_revision):
             "",
             f"[Inspect individual rows, context and evidence references]({evidence_page})",
             "",
-            "## Check suitability before mapping",
-            "",
         ]
     )
+    if practice == "agroforestry":
+        lines += [
+            "## Trace the Haiti example",
+            "",
+            "For **Trees planted on cropland**, follow the T4 slope mapping "
+            "(`agroforestry__planted_silvoarable__slope`) to a claim and its source. "
+            "The Haiti notebook shows how its pinned scoring package combines slope and soil inputs.",
+            "",
+            haiti_workbook_link(evidence_revision),
+            "",
+        ]
+    lines += ["## Check suitability before mapping", ""]
     mappings = [(fid, f) for fid, f in families if f["counts"]["T4"]]
     if mappings:
         lines += [
@@ -299,6 +318,17 @@ def pages(profiles, pin, evidence_revision, definition_revision):
         result[filename] = recipe_page(
             practice, profile, definition_revision, evidence_revision
         )
+
+    if "agroforestry" in profiles:
+        lines += [
+            "",
+            "## Try the Haiti example",
+            "",
+            "Choose **Trees planted on cropland** in the [agroforestry guide](agroforestry.md). "
+            "Trace its slope evidence in the workbook, then follow the link to the first-pass notebook.",
+            "",
+            haiti_workbook_link(evidence_revision),
+        ]
 
     totals = {t: sum(p["totals"][t] for p in profiles.values()) for t in TABLES}
     families = [f for p in profiles.values() for f in p["families"].values()]
