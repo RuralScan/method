@@ -24,7 +24,7 @@ PRACTICES = {
     "riparian_buffer": (
         "Establish or restore vegetation along watercourses.",
         "Identify the watercourse and the condition of its banks. Choose between restoring existing riparian vegetation and establishing a planted strip.",
-        "Check how accurately the stream network, adjacent land use and buffer width can be resolved. Confirm the width on the ground before estimating a planted footprint.",
+        "The two distance-to-waterbody mappings retain reported widths. For natural or restored vegetation, those widths describe study areas or guidance for particular banks. For planted strips, they describe planting zones or designs for particular services. Both mappings leave the distance score unassigned. Confirm stream position and local width before estimating a footprint.",
     ),
     "water_harvesting_conservation": (
         "Retain rainfall in fields, reshape slopes or collect runoff for storage or use.",

@@ -42,7 +42,7 @@ Each count is an analytical row in the pinned candidate. The family named on the
 | **Practice-wide** | 38 | 0 | 49 | 5 |
 | **All scopes** | 95 | 26 | 113 | 16 |
 
-[Inspect individual rows, context and evidence references](https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/agroforestry.md)
+[Inspect individual rows, context and evidence references](https://github.com/RuralScan/evidence/blob/950f91ea29cea43a5a1a7928bddaef7758965cc7/publication/recipes/agroforestry.md)
 
 ## Check suitability before mapping
 
@@ -59,7 +59,7 @@ Read each mapping’s evidence and limitations. A row can offer several function
 
 Access, finance and tenure can appear in compiled records. Evaluate these implementation factors through the investment-risk screen and local follow-up. The core suitability assessment uses its structural constraints and hard exclusions.
 
-[Open the candidate’s T4 section](https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/agroforestry.md#t4-suitability-mappings) · [Prepare a scoping brief](../handbook/implement-a-scan.md)
+[Open the candidate’s T4 section](https://github.com/RuralScan/evidence/blob/950f91ea29cea43a5a1a7928bddaef7758965cc7/publication/recipes/agroforestry.md#t4-suitability-mappings) · [Prepare a scoping brief](../handbook/implement-a-scan.md)
 
 <details>
 <summary>Family IDs for configuration and evidence lookup</summary>

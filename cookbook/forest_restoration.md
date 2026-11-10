@@ -40,13 +40,13 @@ Each count is an analytical row in the pinned candidate. The family named on the
 | **Practice-wide** | 18 | 0 | 24 | 4 |
 | **All scopes** | 56 | 0 | 71 | 16 |
 
-[Inspect individual rows, context and evidence references](https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/forest_restoration.md)
+[Inspect individual rows, context and evidence references](https://github.com/RuralScan/evidence/blob/950f91ea29cea43a5a1a7928bddaef7758965cc7/publication/recipes/forest_restoration.md)
 
 ## Check suitability before mapping
 
 This candidate contains zero compiled T4 mappings for this practice. The family definitions describe the intended product. A local suitability score would require supported mappings and spatial validation.
 
-[Open the candidate’s T4 section](https://github.com/RuralScan/evidence/blob/8ef5b58f5245481548ff04834c8601745d9a49f6/publication/recipes/forest_restoration.md#t4-suitability-mappings) · [Prepare a scoping brief](../handbook/implement-a-scan.md)
+[Open the candidate’s T4 section](https://github.com/RuralScan/evidence/blob/950f91ea29cea43a5a1a7928bddaef7758965cc7/publication/recipes/forest_restoration.md#t4-suitability-mappings) · [Prepare a scoping brief](../handbook/implement-a-scan.md)
 
 <details>
 <summary>Family IDs for configuration and evidence lookup</summary>
