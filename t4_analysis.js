@@ -111,7 +111,7 @@
       if (!['agroforestry','forest_restoration','mangrove_restoration'].includes(nbs)) return;
       if (payloads[nbs]) { payload = payloads[nbs]; return display(); }
       const file = nbs === 'agroforestry' ? 't4_analysis.json' : 't4_analysis_' + nbs + '.json';
-      if (!pending[nbs]) pending[nbs] = fetch('https://raw.githubusercontent.com/CIAT/nbs_ruralscan/bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06/docs/'+file, {cache:'no-cache'}).then(r => {if (!r.ok) throw Error('T4 analysis snapshot unavailable'); return r.json();}).then(data => {payloads[nbs] = data; if (activeNbs === nbs) {payload = data; display();}}).catch(() => {el('t4-analysis-load').textContent = 'T4 analysis snapshot unavailable. Showing existing recipe table.'; delete pending[nbs];});
+      if (!pending[nbs]) pending[nbs] = fetch('data/bec50bc0f9dc/'+file, {cache:'no-cache'}).then(r => {if (!r.ok) throw Error('T4 analysis snapshot unavailable'); return r.json();}).then(data => {payloads[nbs] = data; if (activeNbs === nbs) {payload = data; display();}}).catch(() => {el('t4-analysis-load').textContent = 'T4 analysis snapshot unavailable. Showing existing recipe table.'; delete pending[nbs];});
     },
     openFromHash() {
       if (!location.hash.startsWith('#t4/')) return;

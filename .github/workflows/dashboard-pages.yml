@@ -1,0 +1,40 @@
+name: Publish dashboard
+on:
+  push:
+    branches: [gh-pages]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: dashboard-pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: CIAT/nbs_ruralscan
+          ref: bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06
+          path: producer
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/dashboard_data.json
+            /docs/t4_analysis*.json
+      - name: Assemble public dashboard and immutable data
+        run: |
+          mkdir -p site/data/bec50bc0f9dc
+          git archive HEAD -- index.html dashboard.html '*.css' '*.js' review vendor LICENSE | tar -x -C site
+          cp producer/docs/dashboard_data.json producer/docs/t4_analysis*.json site/data/bec50bc0f9dc/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - uses: actions/deploy-pages@v4
+        id: deploy
