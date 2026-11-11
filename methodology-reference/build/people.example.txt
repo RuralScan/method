@@ -1,0 +1,7 @@
+# Personal names that appear in recorded review notes and must not reach public pages.
+# Copy to people.local.txt (not committed) and list one name per line, longest forms included.
+# Optional replacement after "=>"; the default replacement is "a reviewer".
+#
+# Jane Example
+# Jane
+# J. Original Author => the original author
