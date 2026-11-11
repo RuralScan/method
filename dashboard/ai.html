@@ -1,0 +1,58 @@
+<h2 id="ai-system">How people and AI build a RuralScan recipe</h2>
+<p>A recipe starts with a question about one practice family. An assistant can find sources, propose evidence records and flag conflicts. A reviewer decides what each passage supports. The compiler reads the registered evidence, method definitions and recorded decisions to produce candidate analytical tables.</p>
+
+<nav class="choices" aria-label="Maintainer tasks"><a href="#setup">Set up</a><a href="#maintain">Add or update a practice</a><a href="#reviews">Review and constrain agents</a><a href="#audit">Audit a run</a></nav>
+<figure aria-labelledby="ai-workflow-title">
+  <figcaption id="ai-workflow-title"><strong>From a scoping question to a traceable rule</strong></figcaption>
+  <ol>
+    <li><strong>Frame and search.</strong> Choose the family, target table and question. Record terms, channels, returned records, omissions and screening reasons in a versioned search run.</li>
+    <li><strong>Verify the source.</strong> Match the DOI to the title, or verify a DOI-less title against the publisher copy. Record the edition, source ID and file fingerprint.</li>
+    <li><strong>Extract a claim.</strong> Give the assistant the verified source, permitted role, registry IDs and versioned instructions. It proposes one finding with a quotation, page or section, units and scope. Automated checks flag missing or unsupported values.</li>
+    <li><strong>Review the evidence.</strong> A person checks the original passage, records a decision or asks a question. The answer returns to the same record for a verdict.</li>
+    <li><strong>Translate and compile.</strong> Review which findings support a family rule, hazard relationship, scorecard effect or indicative cost. Document decisions and unresolved calibration. Compile using the pinned method and producer inputs.</li>
+    <li><strong>Publish an edition.</strong> Verify rows, evidence IDs and source locators against the release pin. Readers use the dashboard to inspect the candidate. A country pilot separately tests spatial execution.</li>
+  </ol>
+</figure>
+<p><strong>Where the parts live.</strong> The method repository defines modules, tables and recipe guides. The evidence repository provides runnable examples, instruction archives and release checks. CIAT holds the live search, source and evidence registers and human review queue. The pilot runtime consumes compatible releases. <a href="https://github.com/RuralScan/evidence/blob/e47349055f1c34a5dd755b37ab9c4e7012882823/README.md">Evidence workbench</a> · <a href="https://github.com/RuralScan/method/blob/7d3ff6f8e7185766ac9fc266bb4d873cad1c64b7/handbook/start-here.md">Scan modules</a></p>
+
+<h3 id="setup">Set up and rehearse a run</h3>
+<p>Use Git and Python 3.10 or newer for the offline screening example. For the review preview and full terrace replay, install uv and make Python 3.12 available. Start in a private working directory. The first clone, dependency installation and full replay need network access.</p>
+<pre><code>git clone https://github.com/RuralScan/evidence.git
+cd evidence
+git checkout --detach e47349055f1c34a5dd755b37ab9c4e7012882823
+work=$(mktemp -d)
+python3 workflows/discovery/screen.py stage workflows/discovery/example/plan.json \
+  workflows/discovery/example/decisions.json --out "$work/screen"
+cat "$work/screen/report.md"</code></pre>
+<p>The frozen exercise returns three distinct records, three screened and one included for reuse. A replay adds no search coverage. To rehearse review, run the following from the same checkout.</p>
+<pre><code>uv run --python 3.12 --locked --script workflows/review_preview/preview.py --example</code></pre>
+<p>The preview uses disposable records. Expect one keep, one recoverable drop, one unresolved conflict and a byte-identical second replay. To trace a real source, the <a href="https://github.com/RuralScan/evidence/blob/e47349055f1c34a5dd755b37ab9c4e7012882823/examples/terrace-rainfall/README.md">full terrace replay</a> downloads the manual, stages the passage and independently rebuilds the historical row from its original inputs.</p>
+
+<h3 id="maintain">Continue the work</h3>
+<details><summary>Add a practice or family</summary>
+<p>In the producing CIAT checkout, start with a stable practice ID and the draft recipe scaffold. Use the manifest for T0 identity and analytical table headers. Document the limiting factor shared by each proposed family, its member practices and its spatial product. Ask the scientific reviewer to check the grouping and define the first search question. A new practice enters a dashboard edition through reviewed records and a new release pin. <a href="https://github.com/CIAT/nbs_ruralscan/blob/e5c8da02e72810956cfd179cb32cd137fc4ba398/.agents/skills/source-command-new-recipe/SKILL.md">New recipe instructions</a></p>
+</details>
+<details><summary>Change search terms or extend coverage</summary>
+<p>Copy the discovery plan to a private run directory. Set a fresh run ID, practice, family, one table, one process and inclusion criteria. Change the query in the capture step, record the language and limits, and list the resulting capture files in the new plan. Generate a fresh worksheet against those inputs. Inspect borderline exclusions and duplicate records before staging. Register actual per-scope counts and retain the earlier terms, results and exclusions. <a href="https://github.com/RuralScan/evidence/blob/e47349055f1c34a5dd755b37ab9c4e7012882823/workflows/discovery/README.md#run-a-new-search">Capture, worksheet and staging commands</a></p>
+</details>
+<details><summary>Update an existing practice</summary>
+<p>Start at its recipe row. Follow the family, variable and evidence IDs to the source passage and existing review history. Record what changed: source edition, interpretation, contextual applicability or calibration. Stage new evidence or propose an audited correction to the existing ID. Give the reviewer the old and proposed values, units, locator and rationale. Preserve earlier decisions and holds. After review, rebuild the affected recipe against pinned inputs and compare row IDs, scope, values and evidence links before issuing a new candidate. <a href="https://github.com/RuralScan/evidence/blob/e47349055f1c34a5dd755b37ab9c4e7012882823/workflows/extraction/README.md#recheck-the-historical-record-in-ciat">Check an existing claim</a> · <a href="https://github.com/RuralScan/evidence/blob/e47349055f1c34a5dd755b37ab9c4e7012882823/workflows/recipe_release/README.md">Rebuild and compare a candidate</a></p>
+</details>
+
+<h3 id="reviews">Human review and its effect on later agents</h3>
+<p>For an authorised live review, start <code>uv run python3 -m nbs_ruralscan.schema_tools.review_server</code> from the CIAT checkout and open <code>http://localhost:8765/dashboard.html</code>. Choose QA/QC. Select a card under <strong>To review</strong>. Compare the excerpt with the original page, table headings, units, family and role. Inspect earlier decisions and source context before voting.</p>
+<ul>
+  <li><strong>Keep</strong> a supported claim in its recorded scope. A claim about observed use can be kept while the numerical calibration remains held.</li>
+  <li><strong>Drop</strong> an unsupported claim with a coded reason. Its retained record allows reopening. Reclassify species-specific evidence with its taxon when that is the appropriate scope.</li>
+  <li><strong>Query</strong> an ambiguous interpretation. In <strong>Waiting for answers</strong>, track the question. Check the source-backed answer on the card and make the decision. Disagreements stay open for resolution.</li>
+</ul>
+<p>Use the live dashboard’s Apply and submit action for agreed decisions. For the next assisted run, give the agent the current ruleset, the relevant reviewed records, the permitted family and role, and any exclusions or calibration holds. Require a page-anchored reason for a proposed change. Route a challenge back to review. After a sweep, examine coded defects, update the versioned instructions and regression check for recurring errors, and record which feedback was incorporated. Recheck later sweeps against those defects. <a href="https://github.com/CIAT/nbs_ruralscan/blob/e5c8da02e72810956cfd179cb32cd137fc4ba398/methodology/extraction_retrospective.md">Retrospective and examples</a> · <a href="https://github.com/RuralScan/evidence/blob/e47349055f1c34a5dd755b37ab9c4e7012882823/examples/evidence-challenge/README.md">Practise three review decisions</a></p>
+
+<figure class="feedback"><figcaption><strong>How review changes the next agent run</strong></figcaption>
+<ol class="steps"><li><b>Record the decision</b><span>Keep the WOCAT siting observation. Hold numerical calibration. Attach the evidence ID and page.</span></li>
+<li><b>Constrain the next task</b><span>Supply the reviewed scope and hold in the agent brief. Ask for independently located support for any proposed breakpoints.</span></li>
+<li><b>Check for recurrence</b><span>Test that a site description alone leaves the rainfall score unassigned. Log recurring errors against the extraction ruleset.</span></li>
+<li><b>Return to a reviewer</b><span>Present new evidence, the previous decision and the proposed change together. Retain the hold until a reviewed decision supersedes it.</span></li></ol></figure>
+<h3 id="audit">What the audit can establish</h3>
+<p>For forward-sloping bench terraces, WOCAT PDF page 129 (printed page 116) records use at 200–600 mm/year. At 350 mm/year the site falls within that observation. The historical reviewers retained one supporting source, kept the seasonal model and stone-line guidance in context, and held the numerical rainfall score. The candidate still records that hold. An agent proposing rainfall cutoffs must supply new evidence and return the proposed change for review. <a href="https://github.com/CIAT/nbs_ruralscan/blob/2023cb82c94a93120600a7feb17d8cd1e12ce54f/methodology/audits/t4_water_block_20261109/terrace_rainfall.md">Historical decision and source locators</a> · <a href="https://github.com/CIAT/nbs_ruralscan/blob/e5c8da02e72810956cfd179cb32cd137fc4ba398/schema/recipes/water_harvesting_conservation/T4_suitability_mappings.json#L1810">Candidate mapping</a></p>
+<p>Record each stage as manual, AI-assisted or replay. For assisted stages, retain the actual prompt, provider, model version, settings, input editions, output files, checks and unresolved holds in the private run directory. Use the run-record tool to hash the files and verify them against a separately retained digest. Historical instruction archives identify rules used; some original prompts and model settings are unavailable. Keep that gap explicit. <a href="https://github.com/RuralScan/evidence/blob/e47349055f1c34a5dd755b37ab9c4e7012882823/workflows/run_record/README.md">Create and verify a run record</a> · <a href="https://github.com/RuralScan/evidence/blob/e47349055f1c34a5dd755b37ab9c4e7012882823/rulesets/README.md">Archived rulesets and known gaps</a></p>
