@@ -32,6 +32,9 @@ jobs:
           mkdir -p site/data/bec50bc0f9dc
           git archive HEAD -- index.html dashboard.html '*.css' '*.js' review vendor LICENSE | tar -x -C site
           cp producer/docs/dashboard_data.json producer/docs/t4_analysis*.json site/data/bec50bc0f9dc/
+          mv site/dashboard.html site/legacy.html
+      - name: Build and verify pinned methodology editions
+        run: python3 publish_editions.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
