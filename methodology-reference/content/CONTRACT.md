@@ -58,6 +58,7 @@ Formulas go in fenced blocks tagged `formula`, written in plain text with Unicod
 - Source citation, placed at the end of the sentence or paragraph it supports:
   `[src: <path at P> §<section heading or number>]`, e.g. `[src: methodology/modules/M2_climate_risk.md §4]`.
   For the product repos: `[src: method:handbook/implement-a-scan.md §Inputs]`, `[src: evidence:workflows/discovery/README.md §Screening]`.
+  For the runtime repository (published main branch): `[src: runtime:docs/DESIGN.md §Boundary]`.
 - Pinned rule table, rendered from the file at `P` so numbers are never retyped:
   `{{csv:schema/lookups/design_weights.csv}}` on its own line. Optional filters:
   `{{csv:schema/lookups/effect_locus.csv|cols=nbs_id,suitability_family_id,locus}}`,
@@ -119,9 +120,9 @@ substance. Do not pad.
 
 ## Chapter slugs (the complete set; link only to these)
 
-Part 1 Method: `scope-and-framework` · `m0-setup` · `m1-suitability` · `farming-systems-and-data` ·
+Part 1 Method: `scope-and-framework` · `scoping-walkthrough` · `m0-setup` · `m1-suitability` · `farming-systems-and-data` ·
 `m2-climate-risk` · `m2b-project-risk` · `m3-characterisation` · `m4-hotspots` · `m5-scorecard` ·
-`m6-handoff`
+`m6-handoff` · `implementing-the-method`
 
 Part 2 Evidence methods: `evidence-principles` · `discovery` · `acquisition` · `extraction` ·
 `review-and-quality` · `suitability-synthesis` · `effect-synthesis` · `cost-profiles` ·

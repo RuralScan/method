@@ -4,7 +4,7 @@ A static, generated reference for technical readers: the scan method, the eviden
 model, six practices with every compiled row, the evidence base, and edition checks. Review build; it
 is not published to Pages.
 
-- `content/` authored chapters (25) and the chapter contract. Each chapter cites the pinned files it rests on.
+- `content/` authored chapters (27) and the chapter contract. Each chapter cites the pinned files it rests on.
 - `build/` the generator. It reads the release pin, the recipe tables and registers at the pinned producer
   revision, the method cookbook names and the published readiness columns. Nothing analytical is typed in.
 - `site/` the built pages (generated, not committed).

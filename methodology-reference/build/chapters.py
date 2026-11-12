@@ -7,9 +7,8 @@ from core import (
     BLOCKED_KEYS,
     CIAT_URL,
     CONTENT,
-    EVIDENCE_URL,
-    METHOD_URL,
     PRACTICE_IDS,
+    REPO_URLS,
     TABLE_NAMES,
     esc,
     pinned_csv,
@@ -21,6 +20,7 @@ from core import (
 
 METHOD_CH = [
     "scope-and-framework",
+    "scoping-walkthrough",
     "m0-setup",
     "m1-suitability",
     "farming-systems-and-data",
@@ -30,6 +30,7 @@ METHOD_CH = [
     "m4-hotspots",
     "m5-scorecard",
     "m6-handoff",
+    "implementing-the-method",
 ]
 EVIDENCE_CH = [
     "evidence-principles",
@@ -124,15 +125,18 @@ def _csv_table(spec, slug):
     return table([esc(words(c)) for c in columns], body, caption=caption, cls="rule")
 
 
+def _locate(target):
+    """Return (url, path) for a source path, honouring the method:/evidence:/runtime: prefixes."""
+    for prefix, base in REPO_URLS.items():
+        if target.startswith(prefix):
+            return base + target[len(prefix) :], target[len(prefix) :]
+    return CIAT_URL + target, target
+
+
 def _src(match):
     target = match.group(1).strip()
     section = (match.group(2) or "").strip()
-    if target.startswith("method:"):
-        href, label = METHOD_URL + target[7:], target[7:]
-    elif target.startswith("evidence:"):
-        href, label = EVIDENCE_URL + target[9:], target[9:]
-    else:
-        href, label = CIAT_URL + target, target
+    href, label = _locate(target)
     tail = f" §{esc(section)}" if section else ""
     return f'<cite class="src"><a href="{esc(href)}">{esc(label.split("/")[-1])}</a>{tail}</cite>'
 
@@ -246,18 +250,9 @@ def chapter_body(slug):
     if sources:
         items = []
         for s in sources:
-            if s.startswith("method:"):
-                items.append(
-                    f'<li><a href="{METHOD_URL}{esc(s[7:])}"><code>{esc(s)}</code></a></li>'
-                )
-            elif s.startswith("evidence:"):
-                items.append(
-                    f'<li><a href="{EVIDENCE_URL}{esc(s[9:])}"><code>{esc(s)}</code></a></li>'
-                )
-            else:
-                items.append(
-                    f'<li><a href="{CIAT_URL}{esc(s)}"><code>{esc(s)}</code></a></li>'
-                )
+            items.append(
+                f'<li><a href="{esc(_locate(s)[0])}"><code>{esc(s)}</code></a></li>'
+            )
         html += f'<h2 id="chapter-sources">Sources for this chapter</h2><ul class="sources">{"".join(items)}</ul>'
         toc.append(("chapter-sources", "Sources for this chapter"))
     return html, toc

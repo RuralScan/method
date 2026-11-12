@@ -49,6 +49,25 @@ CIAT_URL = f"https://github.com/CIAT/nbs_ruralscan/blob/{PRODUCER}/"
 METHOD_URL = f"https://github.com/RuralScan/method/blob/{METHOD_REV}/"
 EVIDENCE_URL = f"https://github.com/RuralScan/evidence/blob/{EVIDENCE_REV}/"
 
+
+def _published(repo):
+    """Revision of the published default branch, so links never point at local work."""
+    try:
+        return subprocess.check_output(
+            ["git", "-C", str(repo), "rev-parse", "origin/main"],
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except (subprocess.CalledProcessError, OSError):
+        return "main"
+
+
+RUNTIME_REV = _published(RUNTIME)
+RUNTIME_URL = f"https://github.com/RuralScan/runtime/blob/{RUNTIME_REV}/"
+REPO_URLS = {"method:": METHOD_URL, "evidence:": EVIDENCE_URL, "runtime:": RUNTIME_URL}
+# The visual methodology is published from the producer repository's documentation site.
+VISUAL_URL = "https://ciat.github.io/nbs_ruralscan/redesign/"
+
 TABLE_FILES = {
     "T4": "T4_suitability_mappings.json",
     "T3": "T3_nbs_hazard_farming.json",

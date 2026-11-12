@@ -27,8 +27,10 @@ from core import (
     RELEASE,
     ROW_TABLES,
     RUNTIME,
+    RUNTIME_URL,
     SIDE,
     TABLE_NAMES,
+    VISUAL_URL,
     code,
     esc,
     link,
@@ -50,6 +52,37 @@ MODULES = [
     ("M6", "Implementation hand-off", "m6-handoff", ["T0", "T6"]),
 ]
 TERRACE = "water_harvesting__terracing__annual_precipitation"
+
+
+STAGES = [
+    ("01-setup.html", "Setup", "m0-setup"),
+    ("02-practices.html", "Explore the practices", "scoping-walkthrough"),
+    ("03-opportunity.html", "Opportunity space", "m1-suitability"),
+    ("04-risk.html", "Project risk", "m2b-project-risk"),
+    ("05-hotspots.html", "Priority hotspots", "m4-hotspots"),
+    ("06-comparison.html", "NbS comparison", "m5-scorecard"),
+    ("07-next.html", "Next steps", "m6-handoff"),
+]
+
+
+def stages_block():
+    """The seven stages of the visual methodology, each with its screen and its chapter."""
+    items = "".join(
+        f"<li><strong>{esc(name)}</strong> {link(VISUAL_URL + screen, 'screen')} · "
+        f"{link(chapter_file(slug_), 'method')}</li>"
+        for screen, name, slug_ in STAGES
+    )
+    return (
+        "<p>The same method is also shown as seven stages a task team would walk through, in the "
+        f"{link(VISUAL_URL + 'index.html', 'visual methodology')}: an interactive mock-up of what a full "
+        "realisation of the method could look like. Every number and map on its screens is example data, "
+        "not a result. "
+        f"{link(chapter_file('scoping-walkthrough'), 'The scoping walkthrough')} follows the stages one by one, "
+        "links each to the chapter behind it and records where the screens and the written specification differ. "
+        f"{link(chapter_file('implementing-the-method'), 'Implementing the method')} states what any software "
+        f"implementation must respect and points to the {link(RUNTIME_URL + 'README.md', 'runtime repository')}.</p>"
+        f'<ol class="pipeline">{items}</ol>'
+    )
 
 
 def flow_figure():
@@ -223,6 +256,7 @@ def build():
         "stated in the chapters, and the runtime that reads the tables for a country application is maintained separately.</p>"
         f"<figure>{flow_figure()}<figcaption>Seven modules and one addendum. Each box lists the tables that configure it. "
         "Select a module to read its chapter.</figcaption></figure>"
+        + stages_block()
         + chapter_index(METHOD_CH, 2)
         + "<p>Each module chapter follows the same order: the question it answers, inputs, method with formulas, "
         "outputs, assumptions and limits, and where its rules are configured. Each states what is specified, "
@@ -308,13 +342,15 @@ def build():
         '<h2 id="method">The method in one figure</h2>'
         f"<figure>{flow_figure()}<figcaption>Modules M0 to M6 and the M2b addendum. Risk to livelihoods (M2) is a need layer. "
         "Risk to the investment (M2b) is a filter. The two are never summed.</figcaption></figure>"
-        '<h2 id="parts">Parts of the reference</h2>'
+        '<h2 id="stages">The method as seven stages</h2>'
+        + stages_block()
+        + '<h2 id="parts">Parts of the reference</h2>'
         + table(
             ["Part", "What it holds", "Start here if you want to"],
             [
                 [
                     link("method.html", "2 Method"),
-                    f"{len(METHOD_CH)} chapters: scope, the seven modules and the project-risk addendum, farming systems and data.",
+                    f"{len(METHOD_CH)} chapters: scope, a stage-by-stage walkthrough, the seven modules and the project-risk addendum, farming systems and data, implementation requirements.",
                     "understand or re-implement the analysis",
                 ],
                 [
