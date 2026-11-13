@@ -630,6 +630,7 @@ def generate(out, evidence, ciat, write, sidecar, review_views):
             {
                 "label": label,
                 "path": source_file(source),
+                "id": source["id"],
                 "search": (label + " " + source["id"]).lower(),
             }
         )
@@ -653,6 +654,7 @@ def generate(out, evidence, ciat, write, sidecar, review_views):
             {
                 "label": label,
                 "path": claim_file({"id": identifier}),
+                "id": identifier,
                 "search": (label + " " + (reason or "")).lower(),
             }
         )
@@ -662,6 +664,7 @@ def generate(out, evidence, ciat, write, sidecar, review_views):
             {
                 "label": label,
                 "path": claim_file(c),
+                "id": c["id"],
                 "search": (label + " " + c["practice"] + " " + c["source_id"]).lower(),
             }
         )

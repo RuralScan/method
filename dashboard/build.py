@@ -128,7 +128,7 @@ def overview(ciat, practices, coverage):
         f"<li><b>{name}</b><span>{text}</span></li>" for name, text in steps
     )
     return f"""<div class="hero"><div><p class="lead">Shortlist practices and locations for local assessment across rural, agricultural and forestry landscapes.</p><p>This candidate cookbook covers six practices. Use the recipe to see what supports a siting decision and what still needs local investigation.</p><p><a href="methods.html#M6">Country pilot and implementation handoff →</a></p></div>
-    <aside class="walk"><h2>Can bench terraces work at 350 mm/year?</h2><p>Forward-sloping benches have been documented in this rainfall range. Their rainfall suitability score remains unassigned.</p><a class="action" href="terrace.html">Follow the evidence →</a></aside></div>
+    <aside class="walk"><h2>Can rainfall alone justify a bench-terrace suitability score?</h2><p>At 350 mm/year the site falls within the documented range for forward-sloping benches. The numerical rainfall score remains unassigned.</p><a class="action" href="terrace.html">Follow the evidence →</a></aside></div>
     <h2>Choose a practice</h2><nav class="tiles" aria-label="Practice recipes">{choices}</nav>
     <h2>Research effort</h2>{progress.summary(ciat)}{coverage}
     <figure><h2>How the scan works</h2><ol class="steps">{figure}</ol><figcaption>Figure 1.1. Evidence supports the recipes. The country runtime applies them to an area.</figcaption></figure>
