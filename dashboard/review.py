@@ -58,6 +58,30 @@ def _log(revision, path, line=None):
     return f"{CIAT}/blob/{revision}/{path}{anchor}"
 
 
+def _historical_id(eid, entry, sidecar):
+    parts = [
+        f"<code>{recipes.esc(eid)}</code>",
+        _link_event(entry["latest_event"], sidecar, FINDING_LOG),
+    ]
+    if entry["disposition"] == "renamed":
+        parts.extend(
+            [
+                _finding_link(entry["current_evidence_id"], "Open renamed finding"),
+                recipes.link(f"{CIAT}/commit/{entry['rename_commit']}", "ID change"),
+            ]
+        )
+    elif entry.get("deferred_register"):
+        parts.append(
+            recipes.link(
+                _log(sidecar["producer_revision"], entry["deferred_register"]),
+                "Open deferred register",
+            )
+        )
+    else:
+        parts.append("Current finding ID unverified")
+    return " · ".join(parts)
+
+
 def _link_event(event, sidecar, path):
     parts = [
         recipes.esc(str(event.get("date") or "Date unrecorded")),
@@ -65,6 +89,15 @@ def _link_event(event, sidecar, path):
     ]
     if event.get("reason"):
         parts.append(recipes.esc(recipes.words(event["reason"])))
+    if event.get("historical_evidence_id"):
+        parts.append("Logged under " + recipes.esc(event["historical_evidence_id"]))
+    parts.append(
+        {
+            "automated": "Automated update",
+            "human": "Human review",
+            "unverified": "Reviewer unverified",
+        }[event["actor_kind"]]
+    )
     parts.append(
         recipes.link(
             _log(sidecar["producer_revision"], path, event.get("line")),
@@ -85,7 +118,7 @@ def _live(identifier, finding):
             LIVE + "review.html?" + query,
             "Open this finding in the live CIAT review batch",
         )
-    if identifier == recipes.WOCAT:
+    if finding["live_queue_available"]:
         return recipes.link(
             LIVE + "dashboard.html#review-evidence=" + identifier,
             "Open this finding in the live CIAT evidence queue",
@@ -98,11 +131,14 @@ def finding_details(claim, sidecar):
     record = sidecar["findings"][identifier]
     status = STATUS[record["status"]]
     event = record.get("latest_event")
-    applied = (
-        _link_event(event, sidecar, FINDING_LOG)
-        if event
-        else "No applied finding decision recorded."
-    )
+    applied = "No applied finding decision recorded."
+    if event:
+        applied = "Latest log entry · " + _link_event(event, sidecar, FINDING_LOG)
+    disposition = record["status_event"]
+    if disposition and disposition != event:
+        applied += "</p><p>Decision behind this status · " + _link_event(
+            disposition, sidecar, FINDING_LOG
+        )
     pin = sidecar["producer_revision"]
     source = claim.get("url") or _log(pin, "schema/registers/EV_evidence_register.csv")
     body = (
@@ -112,8 +148,14 @@ def finding_details(claim, sidecar):
         + recipes.link(source, "Evidence register at this edition")
         + "</p>"
     )
+    if (
+        record["status"] == "unreviewed"
+        and event
+        and event["actor_kind"] == "automated"
+    ):
+        body += "<p>This automated entry supplies no human sign-off.</p>"
     if record.get("reconciliation_required"):
-        body += "<p>The latest logged decision and the effective register state differ. Reconciliation is required.</p>"
+        body += "<p>The register and review history need reconciliation in CIAT.</p>"
     if record["excluded"]:
         body += "<p>This finding is retained in the evidence register and excluded from active synthesis.</p>"
     if identifier in sidecar["history"]:
@@ -439,7 +481,7 @@ def generate(pub, sidecar, write):
         write(recipes.claim_file({"id": eid}), "Review", "Excluded finding", body)
     exclusions_by_reason = defaultdict(list)
     for eid in excluded:
-        event = sidecar["findings"][eid]["latest_event"] or {}
+        event = sidecar["findings"][eid]["status_event"] or {}
         reason = (
             recipes.words(event.get("reason"))
             if event.get("decision") == "drop"
@@ -462,8 +504,19 @@ def generate(pub, sidecar, write):
         + recipes.link(
             "review-applied.html", "Trace the applied agroforestry drought decision"
         )
-        + ".</p><h2>Browse by recorded exclusion reason</h2>"
-        + groups,
+        + ".</p><p>"
+        + recipes.link(
+            "evidence.html#find",
+            "Search findings by evidence ID, source or exclusion reason",
+        )
+        + "</p><h2>Browse by recorded exclusion reason</h2>"
+        + groups
+        + "<h2>Historical finding IDs outside this edition’s register</h2>"
+        + "<p>Follow each log entry to its renamed finding or deferred register where available.</p>"
+        + recipes.listing(
+            _historical_id(eid, entry, sidecar)
+            for eid, entry in sidecar["unmatched_finding_reviews"].items()
+        ),
     )
     write(
         "review-applied.html",
@@ -509,7 +562,7 @@ def generate(pub, sidecar, write):
         + '<h2>Choose a table</h2><nav class="tiles" aria-label="Review tables">'
         + "".join(paths)
         + "</nav>"
-        + f"<p>Live batch membership was checked against CIAT <code>{recipes.esc(sidecar['live_navigation_revision'][:8])}</code>.</p>"
+        + f"<p>Live batch and queue links use CIAT <code>{recipes.esc(sidecar['live_navigation_revision'][:8])}</code>. Human reviewers record decisions in CIAT. An automated check alone cannot sign off a finding.</p>"
         + "<p>"
         + recipes.link("review-status.json", "Download edition review records (JSON)")
         + " · "

@@ -13,7 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from cookbook.pages import FAMILIES, PRACTICES, PRODUCTS
 
-EVIDENCE = "84c739a51d8147bfc6f3d157703c2be7c9363590"
+EVIDENCE = "253c0ed0de222e248cf21a32f3b4ededcca955c0"
 EVIDENCE_BASE = f"https://github.com/RuralScan/evidence/blob/{EVIDENCE}/"
 TABLES = {
     "T4": "Site suitability",
@@ -633,6 +633,29 @@ def generate(out, evidence, ciat, write, sidecar, review_views):
                 "search": (label + " " + source["id"]).lower(),
             }
         )
+    for identifier, finding in sidecar["findings"].items():
+        if not finding["excluded"]:
+            continue
+        event = finding["status_event"] or {}
+        reason = event.get("reason") if event.get("decision") == "drop" else None
+        label = " · ".join(
+            filter(
+                None,
+                [
+                    "Rejected (excluded)",
+                    identifier,
+                    finding["source_id"],
+                    words(reason or ""),
+                ],
+            )
+        )
+        catalogue.append(
+            {
+                "label": label,
+                "path": claim_file({"id": identifier}),
+                "search": (label + " " + (reason or "")).lower(),
+            }
+        )
     for c in claims.values():
         label = f"{claim_name(c)} · {locator(c)} · {c['id']}"
         catalogue.append(
@@ -661,7 +684,7 @@ def generate(out, evidence, ciat, write, sidecar, review_views):
         "evidence",
         "Evidence",
         search
-        + "<p>Browse the pinned candidate workbook by finding or source. Search progress uses its own dated snapshot.</p>"
+        + "<p>Search active findings, excluded findings and sources by name or ID. Excluded records show the recorded reason when available.</p>"
         + listing(
             [
                 link(

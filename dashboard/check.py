@@ -63,10 +63,24 @@ def check(directory):
     }
     if excluded - pages.keys():
         raise ValueError("Missing excluded-finding history")
-    if {r["path"] for r in catalogue} | excluded != {
+    paths = {r["path"] for r in catalogue}
+    if len(paths) != len(catalogue) or paths != {
         p for p in pages if p.startswith(("claim-", "source-"))
     }:
         raise ValueError("Evidence catalogue is incomplete")
+    if {
+        r["path"] for r in catalogue if "rejected (excluded)" in r["search"]
+    } != excluded:
+        raise ValueError("Excluded findings must be searchable and labelled")
+    for eid, finding in status["findings"].items():
+        card = "claim-" + eid + ".html"
+        if finding["live_queue_available"] and not finding["live_batch"]:
+            target = (
+                "https://ciat.github.io/nbs_ruralscan/dashboard.html#review-evidence="
+                + eid
+            )
+            if target not in pages[card].links:
+                raise ValueError(f"Missing live CIAT queue link for {eid}")
     for table in ("t3", "t4", "t6"):
         lane = f"review-{table}.html"
         if lane not in pages["review.html"].links:
