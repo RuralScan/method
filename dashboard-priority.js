@@ -51,6 +51,7 @@
       window.DashboardShell.openReviewQueue();
       vfSimpleQueue('todo');
       history.replaceState(null, '', hash);
+      document.getElementById('review-queue').scrollIntoView({block: 'start'});
       return true;
     }
     const match = /^#review-(priority|evidence)=(.*)$/.exec(hash);

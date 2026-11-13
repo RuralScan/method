@@ -160,7 +160,7 @@ def add_version_selectors(site, editions):
         if header < 0 or "</head>" not in contents:
             raise ValueError(f"Missing dashboard shell in {path}")
         contents = contents[:header] + control + contents[header:]
-        assets = (f'<link rel="stylesheet" href="{base}edition-selector.css">'
+        assets = (f'<link rel="stylesheet" href="{base}edition-selector.css?v=2">'
                   f'<script defer src="{base}edition-selector.js"></script>')
         path.write_text(contents.replace("</head>", assets + "</head>", 1))
 

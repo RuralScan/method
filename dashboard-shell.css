@@ -116,3 +116,14 @@
 #hazard-rating summary { cursor: pointer; }
 #hazard-rating ol { padding-left: 1.75rem; }
 .hazard-result { column-gap: 1.5rem; }
+
+/* Leave room to read and activate a finding on small and short screens. */
+#review-queue, #vf-cards > details, .finding-ciat {
+  scroll-margin-block: calc(var(--shell-header-height, 0px) + var(--dp-main-tabs-height, 0px) + var(--shell-subnav-height, 0px) + 12px) 72px;
+}
+#vf-filterbar { position: static !important; }
+#vf-cards code { overflow-wrap: anywhere; }
+#hazard-panel .dr-filters label { min-width: 0; max-width: 100%; }
+@media (max-width: 760px), (max-height: 800px) {
+  #vf-actionbar { position: static !important; }
+}

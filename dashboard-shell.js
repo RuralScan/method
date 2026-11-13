@@ -45,7 +45,7 @@
       else if (location.hash === '#evidence-explorer' || location.hash.startsWith('#t4/')) { open('btn-interrogator'); setView('query', 'explorer'); }
       else if (location.hash === '#pipeline-records') { open('btn-qaqc'); setView('review', 'pipeline'); }
       else if (location.hash === '#review-help') { open('btn-qaqc'); setView('review', 'help'); }
-      else if (['#review', '#review-queue'].includes(location.hash)) { open('btn-qaqc'); setView('review', 'queue'); }
+      else if (['#review', '#review-queue'].includes(location.hash)) { open('btn-qaqc'); setView('review', 'queue'); byId('review-queue').scrollIntoView({block: 'start'}); }
       else if (location.hash.startsWith('#methods/')) { open('btn-methods'); setView('method', location.hash.slice('#methods/'.length)); }
       else { var tab = { '#overview': 'btn-overview', '#progress': 'btn-search', '#bibliography': 'btn-stocktake', '#datasets': 'btn-variables' }[location.hash]; if (tab) open(tab); }
     } finally { restoringRoute = false; }
@@ -68,6 +68,8 @@
     var mainNav = document.querySelector('.tab-nav');
     var controls = document.querySelector('#query-explorer-panel .sidebar-panel');
     var headerHeight = header && getComputedStyle(header).position === 'sticky' ? header.getBoundingClientRect().height : 0;
+    var versionBar = document.querySelector('.edition-selector');
+    if (versionBar && getComputedStyle(versionBar).position === 'sticky') headerHeight += versionBar.getBoundingClientRect().height;
     document.documentElement.style.setProperty('--shell-header-height', headerHeight + 'px');
     document.documentElement.style.setProperty('--dp-header-height', headerHeight + 'px');
     document.documentElement.style.setProperty('--dp-main-tabs-height', (mainNav ? mainNav.getBoundingClientRect().height : 0) + 'px');
@@ -170,7 +172,7 @@
     observer.observe(byId('dashboard-content'), { childList: true, subtree: true });
     if (window.ResizeObserver) {
       var resize = new ResizeObserver(measure);
-      [document.querySelector('.app-header'), document.querySelector('.tab-nav'), controls].forEach(function (node) { if (node) resize.observe(node); });
+      [document.querySelector('.edition-selector'), document.querySelector('.app-header'), document.querySelector('.tab-nav'), controls].forEach(function (node) { if (node) resize.observe(node); });
       document.querySelectorAll('.shell-subnav').forEach(function (node) { resize.observe(node); });
     }
     window.addEventListener('resize', measure);

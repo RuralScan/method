@@ -31,12 +31,11 @@
   font: 15px/1.5 system-ui, sans-serif;
 }
 .edition-correction a { color: #483406; text-decoration: underline; }
+@media screen {
+  body:has(.app-header) .edition-selector { position: sticky; top: 0; z-index: 1901; }
+  .app-header { top: var(--edition-bar-height, 0px); }
+}
 @media screen and (max-width: 760px) {
-  body:has(#dp-source-drawer) .edition-selector {
-    position: fixed;
-    inset: 0 0 auto;
-    z-index: 1901;
-  }
   body #dp-source-drawer { top: var(--edition-bar-height, 0); }
 }
 

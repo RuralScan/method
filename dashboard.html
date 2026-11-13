@@ -1031,7 +1031,7 @@
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.0.2">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.6.0">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.6.1">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
   #loading-container, #error-container {display:flex;align-items:center;gap:.65rem;padding:.6rem 0;color:var(--text-secondary);font-size:.9rem}
@@ -1592,13 +1592,8 @@
 
     <!-- TAB 5: SEARCH & DISCOVERY LOGS -->
     <div id="tab-qaqc" class="tab-content">
-<header class="shell-intro"><h2>5. Evidence review</h2><p>Help the team check whether each extracted claim faithfully represents its source and belongs in the intended practice and analytical table. Review the source context before deciding; an automated check is not human approval.</p></header>
+<header class="shell-intro"><h2>5. Evidence review</h2><p>Choose a table, open a finding and compare the extraction with its source. Record your decision in CIAT.</p></header>
       <nav class="shell-subnav" aria-label="Evidence review views"><button type="button" data-review-view="queue" aria-pressed="true">5.1 Review queue</button><button type="button" data-review-view="help" aria-pressed="false">5.2 How to review</button><button type="button" data-review-view="pipeline" aria-pressed="false">5.3 Pipeline records</button></nav>
-      <div id="readonly-banner" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:9px 16px; background:rgba(245,158,11,0.12); border-bottom:1px solid rgba(245,158,11,0.35); color:var(--text-primary); font-size:12.5px;">
-        <span style="font-size:15px;">&#9888;&#65039;</span>
-        <span><b>Public dashboard.</b> Inspect the source and finding here. Record decisions through the <a href="https://ciat.github.io/nbs_ruralscan/dashboard.html#review-queue">CIAT review system</a>. Offline choices stay in this browser until exported.</span>
-        <button class="shell-link" type="button" onclick="DashboardShell.openReviewHelp()">How to review</button>
-      </div>
       <section id="review-help-panel" hidden><h3>5.2 How to review</h3>
         <p>Review checks the extraction against its source. It does not approve a spatial model, a proposed investment or every other claim from the same paper.</p>
         <h4>5.2.1 Get connected</h4>
@@ -1627,11 +1622,16 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       </section>
       <section id="review-pipeline-panel" hidden><div id="pipeline-records-app"><p>Loading pipeline records…</p></div></section>
       <section id="review-queue-panel">
-        <div class="review-start">
+        <div class="review-start" id="review-queue">
           <nav aria-label="Review findings by table"><a href="#review-t3">T3 · Hazard findings</a><a href="#review-t4">T4 · Suitability findings</a><a href="#review-t6">T6 · Scorecard findings</a></nav>
           <p id="review-table-description"></p>
           <p>For current assignments and decisions in CIAT, open <a href="https://ciat.github.io/nbs_ruralscan/review.html?batch=ratings_top60_2026-11-12">T3/T6 priority findings</a> or <a href="https://ciat.github.io/nbs_ruralscan/review.html?batch=t4_limits_2026-11-10">T4 suitability cutoffs</a>.</p>
         </div>
+      <div id="readonly-banner" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:9px 16px; background:rgba(245,158,11,0.12); border-bottom:1px solid rgba(245,158,11,0.35); color:var(--text-primary); font-size:12.5px;">
+        <span style="font-size:15px;">&#9888;&#65039;</span>
+        <span><b>Public dashboard.</b> Inspect the source and finding here. Record decisions through the <a href="https://ciat.github.io/nbs_ruralscan/dashboard.html#review-queue">CIAT review system</a>. Offline choices stay in this browser until exported.</span>
+        <button class="shell-link" type="button" onclick="DashboardShell.openReviewHelp()">How to review</button>
+      </div>
     <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-secondary); margin-right:10px;" title="Your reviewer identity — every QA decision is attributed to this handle">&#128100; Reviewer
       <select id="vf-reviewer" onchange="if(this.value==='__other__'){var h=prompt('Git handle:');setVfReviewer((h||'').trim());}else{setVfReviewer(this.value);}" style="font-size:12px; padding:4px 9px; border-radius:5px; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); font-weight:600;"><option value="">— pick reviewer —</option><option value="__other__">Other…</option></select>
     </label>
@@ -5882,7 +5882,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
 <script src="dashboard-feedback.js?v=1.5.0"></script>
 <script src="dashboard-relationships.js?v=1.2.1"></script>
 <script src="dashboard-tables.js?v=1"></script>
-<script src="dashboard-priority.js?v=1.6.0"></script>
-<script src="dashboard-shell.js?v=1.6.0"></script>
+<script src="dashboard-priority.js?v=1.6.1"></script>
+<script src="dashboard-shell.js?v=1.6.1"></script>
 </body>
 </html>
