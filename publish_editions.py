@@ -1,7 +1,10 @@
 """Rebuild every shared dashboard edition, then leave the latest at the site root."""
+from datetime import date
+from html import escape
 import json
 from pathlib import Path
 import re
+from shutil import copyfile
 import subprocess
 import sys
 from tempfile import TemporaryDirectory
@@ -30,13 +33,90 @@ def fetch(repo, revision):
         git(repo, "fetch", "--no-tags", "--depth=1", "--filter=blob:none", "origin", revision)
 
 
+# Routes common to the pre-cookbook dashboard and edition-based dashboard.
+LEGACY = {
+    "index.html": "#overview",
+    "progress.html": "#progress",
+    "methods.html": "#methods/rural",
+    "ai.html": "#methods/evidence",
+    "searches.html": "#methods/search",
+    "table-T1.html": "#datasets",
+}
+
+
+def add_version_selectors(site, editions):
+    """Decorate the published dashboard shell after all pinned builds complete."""
+    pages = {}
+    labels = {}
+    for item in editions:
+        key = item["edition"]
+        labels[key] = f'{item["label"]} · {date.fromisoformat(item["date"]):%d %b %Y}'
+        pages[key] = {p.name for p in (site / "editions" / key).glob("*.html")}
+        if "index.html" not in pages[key]:
+            raise ValueError(f"No dashboard entry for {key}")
+    latest = editions[-1]["edition"]
+    labels[latest] += " (latest)"
+    legacy_title = "Original evidence dashboard · 10 Nov 2026"
+    for asset in ("edition-selector.css", "edition-selector.js"):
+        copyfile(Path(__file__).with_name(asset), site / asset)
+
+    def decorate(path, current, page):
+        legacy = current == "legacy"
+        base = "" if legacy else "../../"
+        options, links = [], []
+        for target, label in reversed(labels.items()):
+            match = not legacy and page in pages[target]
+            dest = page if match else "index.html"
+            suffix = " (opens overview)" if not match and not legacy else ""
+            href = f"{base}editions/{target}/{dest}"
+            name = escape(label + suffix)
+            selected = " selected" if target == current else ""
+            same = " data-match" if match else ""
+            options.append(f'<option value="{href}"{selected}{same}>{name}</option>')
+            links.append(f'<a href="{href}">{name}</a>')
+        legacy_dest = LEGACY.get(page, "#overview")
+        legacy_url = base + "legacy.html" + legacy_dest
+        legacy_label = legacy_title
+        if not legacy and page not in LEGACY:
+            legacy_label += " (opens overview)"
+        selected = " selected" if legacy else ""
+        options.append(f'<option value="{legacy_url}"{selected}>{legacy_label}</option>')
+        links.append(f'<a href="{legacy_url}">{legacy_label}</a>')
+        kind = ' data-legacy="true"' if legacy else ""
+        note = ("Switching opens the matching section when available, otherwise the overview."
+                if legacy else "Switching opens the same page when available.")
+        control = (
+            '<div class="edition-selector"><label for="dashboard-version">View version</label>'
+            f'<select id="dashboard-version" aria-describedby="dashboard-version-note"{kind}>'
+            + "".join(options) + f'</select><span id="dashboard-version-note">{note}</span>'
+            + "<noscript>" + " · ".join(links) + "</noscript></div>"
+        )
+        contents = path.read_text()
+        header = contents.find("<header")
+        if header < 0 or "</head>" not in contents:
+            raise ValueError(f"Missing dashboard shell in {path}")
+        contents = contents[:header] + control + contents[header:]
+        assets = (f'<link rel="stylesheet" href="{base}edition-selector.css">'
+                  f'<script defer src="{base}edition-selector.js"></script>')
+        path.write_text(contents.replace("</head>", assets + "</head>", 1))
+
+    for key, names in pages.items():
+        # workbook.html is also the downloadable, byte-verified release artefact.
+        for name in names - {"workbook.html"}:
+            decorate(site / "editions" / key / name, key, name)
+    for name in ("index.html", "dashboard.html"):
+        decorate(site / name, latest, "index.html")
+    decorate(site / "legacy.html", "legacy", "index.html")
+
+
 def main():
     site = Path("site").resolve()
     ciat = Path("producer").resolve()
     with TemporaryDirectory() as tmp:
         method = repository(Path(tmp), "method", "RuralScan/method")
         evidence = repository(Path(tmp), "evidence", "RuralScan/evidence")
-        for edition in json.loads(Path("editions.json").read_text()):
+        editions = json.loads(Path("editions.json").read_text())
+        for edition in editions:
             fetch(method, edition["method"])
             git(method, "checkout", "--quiet", "--detach", edition["method"])
             fetch(evidence, edition["evidence"])
@@ -48,6 +128,8 @@ def main():
             subprocess.run([sys.executable, "-B", str(method/"dashboard/build.py"),
                             "--out", str(site), "--evidence", str(evidence), "--ciat", str(ciat)], check=True)
             subprocess.run([sys.executable, "-B", str(method/"dashboard/check.py"), str(target)], check=True)
+
+        add_version_selectors(site, editions)
 
 
 if __name__ == "__main__":

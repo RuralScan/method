@@ -4,6 +4,17 @@
     "method": "f729a5db8d78ff529920b74c92aacbeff57a6776",
     "evidence": "e47349055f1c34a5dd755b37ab9c4e7012882823",
     "producer": "e5c8da02e72810956cfd179cb32cd137fc4ba398",
-    "progress": "bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06"
+    "progress": "bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06",
+    "date": "2026-11-11",
+    "label": "Methodology draft"
+  },
+  {
+    "edition": "2ff6f85e-d1568d72ffa3",
+    "method": "e871bbaf7deab547af0993147497f8439e79183c",
+    "evidence": "84c739a51d8147bfc6f3d157703c2be7c9363590",
+    "producer": "e5c8da02e72810956cfd179cb32cd137fc4ba398",
+    "progress": "bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06",
+    "date": "2026-11-13",
+    "label": "Evidence and rating review"
   }
 ]
