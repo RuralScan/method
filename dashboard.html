@@ -2604,33 +2604,39 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       .map(s => Object.hasOwn(aliases, s.toLowerCase()) ? aliases[s.toLowerCase()] : s))];
   }
   const vfEventCache = new WeakMap();
-  function vfArchivedHistory() {
-    if (window._vfSimpleView !== 'mine' || !window._vfReviewer || !reviewData.deferred_reviews) return '';
-    const scope = window._vfScope;
+  function vfPersonalHistory() {
+    const scope = window._vfScope || {};
+    const who = window._vfReviewer;
+    const query = (window._vfSearch || '').trim().toLowerCase();
+    const inScope = row => who && row.table === scope.table &&
+      (scope.nbs === 'all' || row.nbs_id === scope.nbs) && vfReviewCredits(row.reviewer).includes(who);
+    const matchesSearch = row => [row.evidence_id, row.source_id, row.record_id, row.note, row.decision, row.date]
+      .join(' ').toLowerCase().includes(query);
     const decisions = new Map();
-    for (const r of reviewData.deferred_reviews) {
-      if (r.table !== scope.table || (scope.nbs !== 'all' && r.nbs_id !== scope.nbs) ||
-          !vfReviewCredits(r.reviewer).includes(window._vfReviewer)) continue;
-      if (r.decision === 'reopen') decisions.delete(r.evidence_id);
-      else decisions.set(r.evidence_id, r);
+    for (const row of reviewData.deferred_reviews || []) {
+      if (!inScope(row)) continue;
+      if (row.decision === 'reopen') decisions.delete(row.evidence_id);
+      else decisions.set(row.evidence_id, row);
     }
-    if (!decisions.size) return '';
+    return {
+      archived: [...decisions.values()].filter(matchesSearch),
+      ratings: (reviewData.row_reviews || []).filter(row => inScope(row) && matchesSearch(row))
+    };
+  }
+  function vfArchivedHistory(rows) {
+    if (!rows.length) return '';
     const source = 'https://github.com/CIAT/nbs_ruralscan/blob/' + reviewData.revision + '/' + reviewData.deferred_register;
-    return '<details id="vf-archived-history"><summary>Your archived ' + vfEsc(scope.table) + ' finding reviews (' +
-      decisions.size + ')</summary><p>CIAT archived these findings in September, before the current rating method.</p><ul>' +
-      [...decisions.values()].map(r => '<li><code>' + vfEsc(r.evidence_id) + '</code> · ' + vfEsc(r.date) + ' · ' +
+    return '<details id="vf-archived-history"><summary>Your archived ' + vfEsc(rows[0].table) + ' finding reviews (' +
+      rows.length + ')</summary><p>CIAT archived these findings in September, before the current rating method.</p><ul>' +
+      rows.map(r => '<li><code>' + vfEsc(r.evidence_id) + '</code> · ' + vfEsc(r.date) + ' · ' +
         vfEsc(r.decision === 'flag' ? 'query' : r.decision) + (r.note ? '<br>' + vfEsc(r.note) : '') + '</li>').join('') +
       '</ul><a href="' + source + '">Open the archived CIAT evidence register</a></details>';
   }
-  function vfRatingHistory() {
-    const scope = window._vfScope || {};
-    if (window._vfSimpleView !== 'mine' || !window._vfReviewer || !reviewData.row_reviews) return '';
-    const rows = reviewData.row_reviews.filter(r => r.table === scope.table &&
-      (scope.nbs === 'all' || r.nbs_id === scope.nbs) && vfReviewCredits(r.reviewer).includes(window._vfReviewer));
+  function vfRatingHistory(rows) {
     if (!rows.length) return '';
     const source = 'https://github.com/CIAT/nbs_ruralscan/blob/' + reviewData.revision + '/pipeline/metrics/row_review_log.csv';
-    return '<details id="vf-rating-history"><summary>Your ' + vfEsc(scope.table) + ' rating reviews (' + rows.length +
-      ')</summary><p>Decisions on compiled ratings. The finding count above covers source evidence.</p><ul>' +
+    return '<details id="vf-rating-history"><summary>Your ' + vfEsc(rows[0].table) + ' rating reviews (' + rows.length +
+      ')</summary><p>These decisions apply to compiled ratings.</p><ul>' +
       rows.map(r => '<li>' + vfEsc(r.record_id.replace(/__/g, ' · ').replace(/_/g, ' ')) + ' — ' +
         vfEsc(r.decision) + ' · ' + vfEsc(r.date.slice(0,10)) + (r.note ? '<br>' + vfEsc(r.note) : '') + '</li>').join('') +
       '</ul><a href="' + source + '">View rating review log in CIAT</a></details>';
@@ -3294,6 +3300,9 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     // ---- sidebar presets (set the toggles; keep familiar labels + counts) ----
     var _gb=document.getElementById('vf-gaps-btn'); if(_gb){ var _gon=(mode==='gaps'); _gb.style.background=_gon?'var(--accent-amber)':'transparent'; _gb.style.color=_gon?'#0b0b0b':'var(--accent-amber)'; _gb.textContent=(_gon?'← Back to review':'⚠ Gaps ('+_gapsCount+')'); }
     var _sb=document.getElementById('vf-stats-btn'); if(_sb){ var _on=(mode==='stats'); _sb.style.background=_on?'var(--accent-emerald)':'transparent'; _sb.style.color=_on?'#fff':'var(--accent-emerald)'; _sb.textContent=_on?'← Back to review':'📊 Stats'; }
+    const personal = vfPersonalHistory();
+    const extraReviews = personal.archived.length + personal.ratings.length;
+    const isMyHistory = window._vfSimpleView === 'mine';
     var fd=document.getElementById('vf-verdict-filters'); var host=document.getElementById('vf-cards'); var statsHost=document.getElementById('vf-stats');
     if(mode==='stats'){ if(fd)fd.style.display='none'; if(host)host.style.display='none'; var dcs=document.getElementById('vf-decided-count'); if(dcs)dcs.innerHTML=''; if(statsHost){statsHost.style.display='block'; renderQaqcStats(statsHost);} _vfSyncStickyBars(); return; }
     if(mode==='gaps'){ if(fd)fd.style.display='none'; if(statsHost)statsHost.style.display='none'; if(host){host.style.display='block'; renderVfGaps(host);} _vfSyncStickyBars(); return; }
@@ -3321,10 +3330,16 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
         _extra=verdicts.map(function(v){ var active=window._vfVerdictFilter===v?'active rose':''; var n=(v==='all')?0:_axN('verdict',v); return '<button class="pill-btn '+active+'" onclick="window._vfSimpleView=\'advanced\';window._vfVerdictFilter=\''+v+'\'; renderVfWorklist();" style="font-size:11px; padding:3px 10px; border-radius:4px; text-transform:capitalize;">'+(v==='all'?'All':(v+' ('+n+')'))+'</button>'; }).join('')+'<span style="width:1px; height:16px; background:var(--border-color); margin:0 5px;"></span>'; }
       _bar+='<div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; margin:3px 0 0; padding-top:4px; border-top:1px solid var(--border-color);" title="The AI verify verdict on a flagged unit (mismatch / unsupported / conflict), plus a tabular-quotes-only toggle."><span style="font-size:9px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.05em; font-weight:700; min-width:118px; flex:0 0 118px;">Verdict</span>'+_extra+_tblPill+'</div>';
       var matches=function(u,view){var search=(window._vfSearch||'').trim().toLowerCase();return (!window.DashboardPriority||DashboardPriority.matches(u.ev))&&vfSimpleMatch(u,view)&&(!search||[u.ev.source_id,u.ev.variable,u.ev.quote,u.ev.evidence_id].join(' ').toLowerCase().indexOf(search)>=0);};
-      var summary='<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">'+[['todo','To review'],['waiting','Waiting for answers'],['mine','My reviewed']].map(function(q){return '<button class="pill-btn '+(window._vfSimpleView===q[0]?'active sky':'')+'" onclick="vfSimpleQueue(\''+q[0]+'\')">'+q[1]+' ('+_uni.filter(function(u){return matches(u,q[0]);}).length+')</button>';}).join('')+'</div>';
+      const summary = '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">' +
+        [['todo','To review'],['waiting','Waiting for answers'],['mine','My reviewed']].map(([view,label]) => {
+          const count = _uni.filter(u => matches(u, view)).length + (view === 'mine' ? extraReviews : 0);
+          const active = window._vfSimpleView === view ? 'active sky' : '';
+          return '<button class="pill-btn ' + active + '" onclick="vfSimpleQueue(\'' + view + '\')">' +
+            label + ' (' + count + ')</button>';
+        }).join('') + '</div>';
       var maintenance='<details><summary>Team maintenance</summary>'+[['unresolved','Decision / status checks'],['approval_only','Missing review history'],['dropped','Dropped history'],['all','All records']].map(function(q){return '<button class="pill-btn" onclick="vfReviewQueue(\''+q[0]+'\')">'+q[1]+'</button>';}).join('')+'</details>';
       var cl=window._vfClarificationError?'<p>'+vfEsc(window._vfClarificationError)+'</p>':'';
-      fd.innerHTML=(window.DashboardPriority?DashboardPriority.controls():'')+summary+vfArchivedHistory()+vfRatingHistory()+cl+'<details '+(window._vfMoreFilters?'open':'')+' ontoggle="window._vfMoreFilters=this.open"><summary style="cursor:pointer">More filters'+((window._vfScope.observations||'hide')==='hide'?' · site observations hidden':'')+(window._vfSimpleView==='advanced'?' — custom view active':'')+'</summary><button class="pill-btn" onclick="vfSimpleQueue(\'advanced\')">Use custom filters</button>'+(window._vfAdvancedScopeHtml||'')+_bar+maintenance+'<details><summary>Review a whole source</summary><div id="vf-bulk"></div></details></details>'; }
+      fd.innerHTML=(window.DashboardPriority?DashboardPriority.controls():'')+summary+(isMyHistory?vfArchivedHistory(personal.archived)+vfRatingHistory(personal.ratings):'')+cl+'<details '+(window._vfMoreFilters?'open':'')+' ontoggle="window._vfMoreFilters=this.open"><summary style="cursor:pointer">More filters'+((window._vfScope.observations||'hide')==='hide'?' · site observations hidden':'')+(window._vfSimpleView==='advanced'?' — custom view active':'')+'</summary><button class="pill-btn" onclick="vfSimpleQueue(\'advanced\')">Use custom filters</button>'+(window._vfAdvancedScopeHtml||'')+_bar+maintenance+'<details><summary>Review a whole source</summary><div id="vf-bulk"></div></details></details>'; }
     // ---- apply the toggle filters to the universe (secondary filters via the shared _sec) ----
     var _list=_uni.filter(function(u){
       if(window._vfSimpleView!=='advanced')return _sec(u,'any','any');
@@ -3339,10 +3354,30 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       _list.sort((a,b)=>String(b.myEvent?.date || '').localeCompare(String(a.myEvent?.date || '')) || a.ev.evidence_id.localeCompare(b.ev.evidence_id));
     }
     // decided-count line — reflects the current toggle combo.
-    var dc=document.getElementById('vf-decided-count');if(dc)dc.textContent=_list.length+' records'+(window._vfSimpleView==='waiting'?' — no action needed until answers arrive.':window._vfSimpleView==='mine'?(' — your reviewed findings.'+(_list.some(u=>u.formerlyCited)?' Includes findings cited in earlier CIAT ratings.':'')):' — check each passage before choosing Keep, Drop or Query.');
+    const countLine = document.getElementById('vf-decided-count');
+    if (countLine) {
+      if (isMyHistory) {
+        const groups = [[_list.length, 'finding card'], [personal.archived.length, 'archived finding review'],
+          [personal.ratings.length, 'rating decision']];
+        countLine.textContent = groups.filter(([count]) => count).map(([count, label]) =>
+          count + ' ' + label + (count === 1 ? '' : 's')).join(' · ');
+        if (_list.some(u => u.formerlyCited)) countLine.textContent += '. Includes findings cited in earlier CIAT ratings.';
+      } else {
+        countLine.textContent = _list.length + ' records' + (window._vfSimpleView === 'waiting' ?
+          ' — no action needed until answers arrive.' : ' — check each passage before choosing Keep, Drop or Query.');
+      }
+    }
     _vfRenderBulk(evAll);
     if(!host)return; host.innerHTML='';
     if(!_list.length){
+      if (isMyHistory) {
+        if (!extraReviews) {
+          host.textContent = window._vfReviewer ? 'No review history for ' + window._vfReviewer + ' matches this queue and its filters.' :
+            'Choose your reviewer handle to see your review history.';
+        }
+        _vfSyncStickyBars();
+        return;
+      }
       if((window._vfScope||{}).source==='tool'&&!_uni.length){
         var _nTool=((reviewData.registers||{}).TOOL_tool_registry||[]).length;
         host.innerHTML='<div style="color:var(--text-muted); padding:14px; line-height:1.5;"><b style="color:var(--accent-amber);">No tool-derived evidence extracted yet.</b><br>Tools / methods / codebases <b>are evidence-reviewable like any source</b> — their thresholds, weights and criteria become EV rows (provenance via <code>locator=file_line</code>+<code>commit_sha</code> for code, or section/anchor for docs) and are reviewed here under this channel. This is empty only because no tool has been extracted yet. <b>'+_nTool+'</b> tool(s) are catalogued in <code>TOOL_tool_registry</code> — browse them under <b>Bibliography</b>; extracting their criteria populates this channel.</div>';
