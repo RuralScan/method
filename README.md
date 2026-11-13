@@ -11,6 +11,7 @@ It supports early investment scoping. It does not replace feasibility studies, e
 [Open the methodology dashboard](https://ruralscan.github.io/method/) to follow a bench-terrace decision, inspect the six candidate recipes or learn how researchers and agents maintain the evidence. [Build and verify a dashboard edition](dashboard/README.md).
 
 - [Understand the approach](handbook/start-here.md): seven modules and the evidence-to-rule chain.
+- Download the bench-terrace evidence tables and their field definitions from the [machine-readable evidence catalogue](https://ruralscan.github.io/method/catalog.json).
 - [Choose a practice and suitability family](cookbook/README.md). Compare spatial outputs and family-level evidence counts. [Download the six-practice print edition](cookbook/rural-scan-cookbook.html).
 - [Work through the Haiti notebook and prepare a scoping brief](handbook/implement-a-scan.md).
 - [Read the data model](data-model/spec.md): fields, controlled vocabularies, table structure and configuration.

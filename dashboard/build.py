@@ -132,7 +132,7 @@ def overview(ciat, practices, coverage):
     <h2>Choose a practice</h2><nav class="tiles" aria-label="Practice recipes">{choices}</nav>
     <h2>Research effort</h2>{progress.summary(ciat)}{coverage}
     <figure><h2>How the scan works</h2><ol class="steps">{figure}</ol><figcaption>Figure 1.1. Evidence supports the recipes. The country runtime applies them to an area.</figcaption></figure>
-    <p><a href="ai.html">How people and AI maintain the evidence</a> · <a href="model.html">Explore the data model</a></p>"""
+    <p><a href="ai.html">How people and AI maintain the evidence</a> · <a href="model.html">Explore the data model</a> · <a href="catalog.json">Machine-readable evidence catalogue</a></p>"""
 
 
 def entry(overview_html, edition):
@@ -203,7 +203,13 @@ def build(out, evidence, ciat):
                 + "<h2>Recorded research effort</h2>"
                 + body
             )
-        (target / relative).write_text(shell(relative, section, title, body, edition))
+        page = shell(relative, section, title, body, edition)
+        if relative == "index.html":
+            page = page.replace(
+                "</head>",
+                '<link rel="describedby" type="application/ld+json" href="catalog.json"></head>',
+            )
+        (target / relative).write_text(page)
 
     sidecar = load_review_status(target, evidence)
     pub = recipes.generate(target, evidence, ciat, write, sidecar, review)
@@ -302,6 +308,7 @@ def build(out, evidence, ciat):
     for path in [HERE / "site.css", HERE / "site.js", METHOD / "design/tables.css"]:
         shutil.copyfile(path, target / path.name)
     home = entry((target / "index.html").read_text(), edition)
+    shutil.copyfile(target / "catalog.json", out / "catalog.json")
     for name in ["index.html", "dashboard.html"]:
         (out / name).write_text(home)
     review_url = f"editions/{edition}/review.html"

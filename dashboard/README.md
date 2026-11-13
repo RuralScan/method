@@ -15,6 +15,15 @@ python3 -m http.server --directory /tmp/ruralscan-site
 
 The publisher adds the top version selector after all editions pass their build checks. Set a display label and ISO date for each edition entry. The selector preserves a matching page and falls back to the selected edition’s overview when needed.
 
+The overview advertises `catalog.json` to humans and clients. Its first dataset is the bench-terrace example. The edition-specific Frictionless Tabular Data Package contains CSV field types, units, null meanings, joins, SHA-256 digests, citation and CIAT revision. Read the finding’s human review status separately from the T4 calibration decision. Run the same acceptance test on a built site or a public URL:
+
+```sh
+python3 -B dashboard/check_terrace.py /tmp/ruralscan-site
+python3 -B dashboard/check_terrace.py https://ruralscan.github.io/method/
+```
+
+For CDH catalogue submission, map each table to a structure and each CSV to a data asset. The licence for the extracted data and its licensor still need confirmation. [CDH metadata standard v0.5.0](https://github.com/CGIAR-Climate-Data-Hub/cdh-metadata-standard/tree/v0.5.0).
+
 The last command serves the new pages locally. The publishing branch adds the previous dashboard, its libraries and its pinned records at the site root for historical deep links. Every new build has an edition directory. The site root opens the current overview and resolves saved hashes. Each claim, source, synthesis row and search event can be reached by following native links without the optional search catalogue.
 
 To release a new edition, verify the paired method definitions and cookbook with the pinned evidence release checker. Update source pins, reader-facing examples and the expected edition inventory together. Run the historical terrace replay, verify the full candidate rebuild, run the link checks and exercise the keyboard, history and search-retry journeys. Commit the reviewed dashboard source. On the gh-pages branch append the edition ID and source revisions to editions.json. Its workflow rebuilds each listed edition, checks local references and publishes only after those checks pass. Preserve earlier list entries for shared URLs.

@@ -7,6 +7,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+import check_terrace
+
 
 class Links(HTMLParser):
     def __init__(self):
@@ -27,6 +29,7 @@ class Links(HTMLParser):
 def check(directory):
     if not directory.is_dir():
         raise ValueError("Expected a built edition directory")
+    check_terrace.check(str(directory.parent.parent))
     pages = {}
     for path in directory.glob("*.html"):
         parser = Links()

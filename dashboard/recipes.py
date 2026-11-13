@@ -10,6 +10,8 @@ from collections import Counter, defaultdict
 from html import escape
 from pathlib import Path
 
+import terrace_package
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from cookbook.pages import FAMILIES, PRACTICES, PRODUCTS
 
@@ -159,7 +161,14 @@ def terrace_note():
             EVIDENCE_BASE + "workflows/recipe_release/README.md",
             "Rebuild the candidate and verify its method definitions",
         )
-        + "</p></section>"
+        + '</p><h3 id="downloads">Download the worked evidence tables</h3>'
+        "<p>Join the mapping to its finding by <code>evidence_id</code>, then to WOCAT by "
+        "<code>source_id</code>. The finding carries its human review status. The mapping "
+        "records the calibration hold and leaves the score at 350 mm/year blank.</p>"
+        '<p><a href="bench-terrace/mappings.csv">T4 mapping (CSV)</a> · '
+        '<a href="bench-terrace/findings.csv">Finding and review status (CSV)</a> · '
+        '<a href="bench-terrace/sources.csv">Cited source (CSV)</a> · '
+        '<a href="bench-terrace/datapackage.json">Field definitions, joins, citation and checksums (JSON)</a></p></section>'
     )
 
 
@@ -339,6 +348,16 @@ def generate(out, evidence, ciat, write, sidecar, review_views):
         raw_rows.update((r[key], r) for r in records)
     if len(raw_rows) != len(rows):
         raise ValueError("Ambiguous row IDs")
+    terrace_claim = claims[WOCAT]
+    terrace_package.generate(
+        out,
+        pin,
+        raw_rows[TERRACE],
+        terrace_claim,
+        sources[terrace_claim["source_id"]],
+        sidecar["findings"][WOCAT],
+        EVIDENCE,
+    )
     fam_rows = csv.DictReader(
         io.StringIO(
             snapshot(
