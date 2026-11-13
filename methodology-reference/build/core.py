@@ -111,6 +111,8 @@ LIVE_SNAPSHOT = _site_constant(
 LIVE_REVIEWS = _site_constant(
     "QUEUE_PIN", _SITE_SCRIPT
 )  # review history shown in its queues
+# The live dashboard takes the provisional status of hazard ratings from a third revision.
+LIVE_RATING_STATUS = _site_constant("LIVE_REVIEW_PIN", _SITE_SCRIPT)
 # Newest first, as the live selector lists them.
 SITE_DRAFTS = [
     (

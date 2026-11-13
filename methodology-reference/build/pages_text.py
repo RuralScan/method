@@ -21,6 +21,7 @@ from core import (
     EVIDENCE_REV,
     EVIDENCE_URL,
     LIVE_LABEL,
+    LIVE_RATING_STATUS,
     LIVE_REVIEWS,
     LIVE_SNAPSHOT,
     METHOD_REV,
@@ -109,13 +110,22 @@ def live_pins():
                 "Live dashboard, analytical snapshot",
                 link(ciat + LIVE_SNAPSHOT, code(LIVE_SNAPSHOT[:12])),
                 _committed(LIVE_SNAPSHOT),
-                "Tables, progress and evidence shown in the live dashboard",
+                "Tables, progress and evidence shown outside the review queues",
             ],
             [
                 "Live dashboard, review history",
                 link(ciat + LIVE_REVIEWS, code(LIVE_REVIEWS[:12])),
                 _committed(LIVE_REVIEWS),
-                "Review queues, reviewer histories and decision logs in the live dashboard",
+                "Findings, sources, reviewer histories and decision logs shown in the review queues",
+            ],
+            [
+                "Live dashboard, hazard-rating review status",
+                link(ciat + LIVE_RATING_STATUS, code(LIVE_RATING_STATUS[:12])),
+                _committed(LIVE_RATING_STATUS),
+                (
+                    "Provisional status of hazard ratings, used after checking that the effect evidence "
+                    "is unchanged at the analytical snapshot"
+                ),
             ],
             [
                 "Published site",
@@ -401,10 +411,10 @@ def build():
         "without access to the authors.</p>"
         '<h2 id="walkthrough">Start here: one finding, end to end</h2>'
         "<p><strong>Can annual rainfall alone set a bench-terrace suitability score?</strong> One source documents a use range "
-        "for forward-sloping benches. The finding is kept as extracted. No response curve is supported, so the numerical "
+        "for forward-sloping benches. The finding is retained as extracted; its review is not yet recorded in the finding review log. No response curve is supported, so the numerical "
         "calibration is held and no score is assigned. Approving a finding confirms the extraction; it does not approve a score.</p><ol>"
         f"<li>{link(live('review-evidence=' + terrace_finding), 'The rainfall finding as reviewers see it')}, in the live dashboard: "
-        "the extracted values, the quoted passage and page, and the review decision.</li>"
+        "the extracted values, the quoted passage and page, and its review status.</li>"
         f"<li>{link(source_file(data.EV_BY_ID[terrace_finding]['source_id']), 'The source')} and where in it the finding sits.</li>"
         f"<li>{link('practice-water_harvesting_conservation.html#fam-water_harvesting__terracing', 'The terracing family')} and its mappings.</li>"
         f"<li>{link(terrace['file'], 'The annual precipitation row')}: role, status, why the calibration is held.</li>"
@@ -412,7 +422,8 @@ def build():
         '<p class="basis">Step 1 opens the live dashboard, which is built from a later revision than this reference. '
         f"{link('review.html#pins', 'Which revision is which')}.</p>"
         '<h2 id="review">Review queues</h2>'
-        "<p>Human review of findings and ratings happens in the live dashboard. Choose a reviewer there to see that reviewer’s "
+        "<p>Human review of findings and ratings is recorded in the CIAT review system. The live dashboard publishes the "
+        "queues read-only; choose a reviewer there to see that reviewer’s "
         "history under “My reviewed”.</p>"
         + review_queues()
         + f"<p>{link('review.html', 'How finding reviews, archived finding reviews and rating decisions are kept apart')}.</p>"
@@ -782,7 +793,8 @@ def build():
     log = "https://github.com/CIAT/nbs_ruralscan/blob/" + LIVE_REVIEWS + "/"
     body = (
         "<p>Reviewers check each extracted finding against its source, and check each compiled rating. "
-        "That work happens in the live dashboard. This reference shows the result at its own revision and links to the queues.</p>"
+        "Decisions are recorded in the CIAT review system. The live dashboard publishes the queues and reviewers’ histories "
+        "read-only. This reference shows the result at its own revision and links to the queues.</p>"
         + review_queues()
         + "<p>In the live dashboard, choose a reviewer to see that reviewer’s history under “My reviewed”. "
         "The history lists three kinds of record separately.</p>"
@@ -799,10 +811,10 @@ def build():
                     "<strong>Finding review</strong>",
                     (
                         "One extracted finding: its values, quote, page and scope, checked against the source. "
-                        "Includes findings that an earlier version of a table cited; those are marked as previously cited."
+                        "Includes findings that an earlier version of a hazard or scorecard table cited; those are marked as previously cited."
                     ),
                     (
-                        "Whether the finding stays in the evidence that synthesis reads. Keeping a finding confirms the extraction. "
+                        "Whether the finding stays in the evidence that synthesis reads: Drop removes it, Keep and Query leave it in, Reclassify changes its scope. Keeping a finding confirms the extraction. "
                         "It does not approve a score or a rating."
                     ),
                     link(log + "pipeline/metrics/review_log.csv", "Finding review log"),
@@ -810,10 +822,13 @@ def build():
                 [
                     "<strong>Archived finding review</strong>",
                     (
-                        "A finding reviewed before effect ratings were generated by synthesis, and set aside in an archive register. "
-                        "No rating has cited it."
+                        "A finding reviewed before effect ratings were generated by synthesis, from the evidence archived when hazard and scorecard extraction was paused. "
+                        "No version of the hazard or scorecard table has cited it."
                     ),
-                    "Nothing in the current tables. It is kept so that a reviewer’s earlier work stays visible.",
+                    (
+                        "No current rating. Where the finding was later restored to the live evidence register, the earlier decision "
+                        "still applies to it there. It is listed so that a reviewer’s earlier work stays visible."
+                    ),
                     link(
                         log
                         + "schema/registers/_deferred/EV_T3_T6_deferred_2026-09.csv",
@@ -824,7 +839,10 @@ def build():
                 [
                     "<strong>Rating decision</strong>",
                     "One compiled rating: a hazard response or scorecard row, not a single finding.",
-                    "The review state of that rating.",
+                    (
+                        "Nothing in the tables or registers. The decision is logged against the rating. A hold or reject is followed up "
+                        "by correcting the evidence, routing or wording and regenerating the rating."
+                    ),
                     link(
                         log + "pipeline/metrics/row_review_log.csv", "Rating review log"
                     ),
@@ -834,11 +852,12 @@ def build():
         )
         + '<h2 id="writer">Where decisions are written</h2>'
         "<p>Review decisions are written in one place only: the CIAT review system. The live dashboard and this reference "
-        "publish them read-only. A choice made in the public dashboard stays in that browser until it is exported and "
-        "submitted through the CIAT review system.</p>"
+        "publish them read-only. A choice made in the public dashboard stays in that browser until it is downloaded and "
+        "returned to CIAT for consensus review. Until then it is not a recorded decision.</p>"
         '<h2 id="pins">Which revision is which</h2>'
-        "<p>The live dashboard pins its analytical snapshot and its review history separately, and this reference pins a third "
-        "revision. A review state shown on a row or finding page here is the state at this reference’s revision and can be older "
+        "<p>The live dashboard pins its analytical snapshot and its review history separately. Both are later than this "
+        "reference’s revision; only the provisional status of hazard ratings is taken from the same revision as this reference. "
+        "A review state shown on a row or finding page here is the state at this reference’s revision and can be older "
         "than the live queues.</p>"
         + live_pins()
         + f"<p>The country pilot is separate again and pins its own release. {link('editions.html#pilot', 'Editions')}.</p>"
@@ -905,9 +924,11 @@ def build():
         )
     )
     body += (
-        '<h2 id="live">The live dashboard uses two revisions of its own</h2>'
+        '<h2 id="live">The live dashboard pins its own revisions</h2>'
         "<p>The live evidence dashboard is a separate product from this reference. It pins the revision of its analytical "
-        "snapshot and the revision of its review history separately. Both are later than the revision this reference is built on.</p>"
+        "snapshot and the revision of its review history separately. Both are later than the revision this reference is built on. "
+        "Its hazard-rating review status is taken from an assessment made at this reference’s revision, after checking that "
+        "the effect evidence is unchanged at the analytical snapshot.</p>"
         + live_pins()
         + f"<p>{link('review.html', 'Review queues and review records')}.</p>"
     )
