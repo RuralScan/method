@@ -1592,27 +1592,20 @@
 
     <!-- TAB 5: SEARCH & DISCOVERY LOGS -->
     <div id="tab-qaqc" class="tab-content">
-<header class="shell-intro"><h2>5. Evidence review</h2><p>Choose a table, open a finding and compare the extraction with its source. Record your decision in CIAT.</p></header>
+<header class="shell-intro"><h2>5. Evidence review</h2><p>Choose a table, open a finding and compare the extraction with its source. Choose <b>Submit private review</b> on the finding to send your decision.</p></header>
       <nav class="shell-subnav" aria-label="Evidence review views"><button type="button" data-review-view="queue" aria-pressed="true">5.1 Review queue</button><button type="button" data-review-view="help" aria-pressed="false">5.2 How to review</button><button type="button" data-review-view="pipeline" aria-pressed="false">5.3 Pipeline records</button></nav>
       <section id="review-help-panel" hidden><h3>5.2 How to review</h3>
         <p>Review checks the extraction against its source. It does not approve a spatial model, a proposed investment or every other claim from the same paper.</p>
         <h4>5.2.1 Get connected</h4>
-        <p>To save evidence decisions, use the local review server and confirm <b>Live review server connected</b>. The public website and a static preview are read-only. You need repository write access and access to the source library; choosing a reviewer name does not grant either.</p>
-        <details><summary>First-time setup and starting a session</summary>
-          <p>Follow the <a href="https://github.com/CIAT/nbs_ruralscan/blob/main/docs/REVIEWER_GUIDE.md" target="_blank" rel="noopener noreferrer">reviewer setup guide ↗</a> to install the tools, clone the repository and sync the library. From your repository folder, hydrate the sources and start the server:</p>
-          <pre><code>python3 scripts/hydrate-corpus.py
-uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
-          <p>Open <code>http://localhost:8765/dashboard.html</code> and choose <b>5. Evidence review</b>. If that port is already occupied, leave the other application running; the guide explains using another port.</p>
-          <p>Before updating an existing checkout, finish submitting saved decisions. Keep the local decision store. Then update, hydrate the corpus, restart the server and hard-reload the page. Do not clear decisions to remove a version warning.</p>
-        </details>
+        <p>Start the <a href="https://github.com/RuralScan/evidence/tree/main/workflows/submissions">RuralScan submission desk</a> on your computer. Confirm your GitHub account at the top of the form. You need access to the private inbox and the source library.</p>
         <h4>5.2.2 Work through the queue</h4>
         <ol class="shell-review-steps">
-          <li><b>Set your own GitHub handle in Review queue.</b> Choose <b>Other…</b> if it is missing. Your handle attributes decisions; it is not a login. Use practice, evidence type and search to narrow the queue.</li>
+          <li><b>Set your own GitHub handle in Review queue.</b> Choose <b>Other…</b> if it is missing. This selector filters historical decisions. The private desk uses your signed-in GitHub account. Use practice, evidence type and search to narrow the queue.</li>
           <li><b>Start with To review.</b> <b>Waiting for answers</b> holds your outstanding questions; <b>My reviewed</b> shows your decisions. More filters contains technical filters and dropped history. Site observations are deferred by default and can be included there.</li>
           <li><b>Read the claim and inspect its source.</b> Check the page or table, units, context, practice and intended use. Open the source region or full paper when the excerpt lacks context. A restricted source may require the synced library or its SharePoint link; contact the library maintainer if access is missing.</li>
           <li><b>Keep</b> when the extraction is faithful and relevant. <b>Drop</b> when it is unsuitable or incorrect: select a coded reason and explain it. Drop quarantines the record; it does not erase it. <b>Query</b> when clarification is needed: state what needs checking. A query is not approval.</li>
           <li><b>Review answers on the evidence card.</b> Answered records return to To review. Read the answer and source, then Keep, Drop or Query. There is no separate answer-approval step; deciding one record does not approve the other records sharing its answer.</li>
-          <li><b>Submit reviews when ready.</b> The bottom Submit reviews bar sends saved decisions and discussion updates through validation and a pull request. Wait for the result and inspect the link. Required checks and approvals still apply; an auto-merge request is not confirmation of merge. Reviewer disagreements remain pending.</li>
+          <li><b>Choose Submit private review</b> on a finding. Select Keep, Hold or Drop and submit. The private desk returns a receipt and lists it under My reviewed. You can also submit a downloaded CSV through the desk.</li>
         </ol>
         <h4>5.2.3 If something needs attention</h4>
         <ul><li><b>Missing sources:</b> hydrate the corpus and use Recheck. A source-cache presence count is not a completed quote check; submission runs the provenance guardrail.</li><li><b>Missing extraction:</b> use Report missing evidence under More actions and identify the source and location.</li><li><b>Submission failed:</b> decisions remain saved locally. Read the reported error before retrying; do not start a second submission while one is still running.</li><li><b>Interface feedback:</b> use Feedback in the dashboard header. These notes stay in this browser at this address until exported; they do not Keep, Drop, Query or submit an evidence decision.</li></ul>
@@ -1626,11 +1619,11 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
           <nav aria-label="Review findings by table"><a href="#review-t3">T3 · Hazard findings</a><a href="#review-t4">T4 · Suitability findings</a><a href="#review-t6">T6 · Scorecard findings</a></nav>
           <p id="review-table-description"></p>
           <a id="review-log-source"></a>
-          <p>For current assignments and decisions in CIAT, open <a href="https://ciat.github.io/nbs_ruralscan/review.html?batch=ratings_top60_2026-11-12">T3/T6 priority findings</a> or <a href="https://ciat.github.io/nbs_ruralscan/review.html?batch=t4_limits_2026-11-10">T4 suitability cutoffs</a>.</p>
+          <p>Browse the source CIAT assignments in <a href="https://ciat.github.io/nbs_ruralscan/review.html?batch=ratings_top60_2026-11-12">T3/T6 priority findings</a> or <a href="https://ciat.github.io/nbs_ruralscan/review.html?batch=t4_limits_2026-11-10">T4 suitability cutoffs</a>.</p>
         </div>
       <div id="readonly-banner" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:9px 16px; background:rgba(245,158,11,0.12); border-bottom:1px solid rgba(245,158,11,0.35); color:var(--text-primary); font-size:12.5px;">
         <span style="font-size:15px;">&#9888;&#65039;</span>
-        <span><b>Public dashboard.</b> Inspect the source and finding here. Record decisions through the <a href="https://ciat.github.io/nbs_ruralscan/dashboard.html#review-queue">CIAT review system</a>. Offline choices stay in this browser until exported.</span>
+        <span><b>Public dashboard.</b> Inspect the source and finding here. Use <b>Submit private review</b> on a finding to send your vote to the RuralScan inbox. <a href="https://github.com/RuralScan/evidence/tree/main/workflows/submissions">Set up your submission desk</a>. Offline choices stay in this browser until exported.</span>
         <button class="shell-link" type="button" onclick="DashboardShell.openReviewHelp()">How to review</button>
       </div>
     <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-secondary); margin-right:10px;" title="Your reviewer identity — every QA decision is attributed to this handle">&#128100; Reviewer
@@ -1701,6 +1694,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
             </div>
             <div id="vf-decided-count" style="font-size:12px; color:var(--text-secondary); margin-top:12px;"></div>
             <div id="vf-subset-banner" style="display:none; margin-top:10px;"></div>
+            <p id="private-review-history" hidden><a href="http://127.0.0.1:8934/?view=mine">My private RuralScan submissions</a></p>
             <div id="vf-cards" style="margin-top:12px;"></div>
             <div id="vf-actionbar" style="position:sticky; bottom:0; z-index:19; background:var(--bg-primary); border-bottom:1px solid var(--border-color); padding:6px 0 7px; display:flex; align-items:center; gap:9px; flex-wrap:wrap;">
               <span id="vf-pending-count" style="font-size:11.5px; font-weight:700;" title="Your decisions saved locally but NOT yet applied + submitted to main. Applies EVERY pending decision (AI-flagged + AI-passed), not just the current queue. Click Apply & submit to main to ship them."></span>
@@ -3080,6 +3074,10 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     var _decChipS=_myDecC?('<span style="font-size:9px; font-weight:700; text-transform:uppercase; padding:1px 7px; border-radius:3px; color:#fff; background:'+(_myDecC==='ok'?'var(--accent-emerald)':(_myDecC==='drop'?'var(--accent-rose)':'var(--accent-amber)'))+';">you: '+vfEsc(_myDecC==='flag'?'query':_myDecC)+'</span>'):'';
     var _revChipS=_rk.length?('<span style="font-size:10px; color:var(--text-muted);">'+_rk.map(function(rv){return vfEsc(rv)+'='+vfEsc(_allr[rv]);}).join(' · ')+'</span>'):'';
     var _summaryHtml='<summary style="cursor:pointer; display:flex; align-items:center; gap:9px; flex-wrap:wrap; padding:9px 14px; border-left:4px solid '+_aiCol+'; border-radius:8px; background:var(--bg-secondary);">'+_aiBadge+_dropBadgeD+(window.DashboardPriority?DashboardPriority.badge(ev):'')+'<code style="color:var(--accent-sky); font-size:11.5px;">'+vfEsc(ev.evidence_id||'')+'</code><span style="font-size:11px; color:var(--text-secondary);">'+vfEsc(ev.variable||'')+' · '+vfEsc((ev.use_role||'').replace(/_/g,' '))+'</span>'+_decChipS+'<span style="margin-left:auto; display:inline-flex; gap:8px; align-items:center;">'+_revChipS+'</span></summary>';
+    const intakeLane = ev.use_role === 'structural_suitability' ? 'T4' :
+      (DashboardTables.matches(ev, 'T3') || DashboardTables.matches(ev, 'T6') ? 'T3/T6' : '');
+    const intakeParams = new URLSearchParams({lane:intakeLane, finding:ev.evidence_id, revision:reviewData.revision});
+    const intakeLink = intakeLane && reviewData.revision ? '<a class="finding-submit" href="http://127.0.0.1:8934/?'+vfEsc(intakeParams.toString())+'">Submit private review</a> · ' : '';
     var _card='<div data-vfeid="'+vfEsc(ev.evidence_id||'')+'" style="border:1px solid '+(dec?'var(--accent-emerald)':'var(--border-color)')+'; border-left:4px solid '+_aiCol+'; border-radius:8px; padding:14px 16px; margin-bottom:10px; background:var(--bg-secondary);">'
       +(_collap?'':('<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px;">'
       +_aiBadge+_dropBadgeD+(window.DashboardPriority?DashboardPriority.badge(ev):'')
@@ -3090,7 +3088,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       +(_collap && opts.formerlyCited?'<p>Previously cited in this table. <a href="https://github.com/CIAT/nbs_ruralscan/blob/'+vfEsc(reviewData.formerly_cited[window._vfScope.table][ev.evidence_id])+'">View the earlier CIAT table</a>.</p>':'')
       +(opts.myEvent?'<p><strong>Your CIAT decision</strong> · '+vfEsc(opts.myEvent.date)+' · '+vfEsc(opts.myEvent.decision)+(opts.myEvent.reason?' · '+vfEsc(opts.myEvent.reason.replace(/_/g,' ')):'')+(opts.myEvent.note?'<br>'+vfEsc(opts.myEvent.note):'')+'</p>':'')
       +_chipRow
-      +'<p><a class="finding-ciat" href="'+vfEsc(DashboardTables.ciatUrl(ev.evidence_id))+'">Open this finding in CIAT</a></p>'
+      +'<p>'+intakeLink+'<a class="finding-ciat" href="'+vfEsc(DashboardTables.ciatUrl(ev.evidence_id))+'">CIAT source record</a></p>'
       +(ev._reviewConflict?'<p style="border-left:3px solid var(--accent-amber);padding:8px"><b>Reviewers disagree:</b> this record has both Keep and Drop decisions. Check the reviewer notes below and give your judgement.</p>':'')
       +vfClarificationHtml(ev)
       +(window.DashboardPriority?DashboardPriority.card(ev):'')
@@ -3303,6 +3301,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     const personal = vfPersonalHistory();
     const extraReviews = personal.archived.length + personal.ratings.length;
     const isMyHistory = window._vfSimpleView === 'mine';
+    document.getElementById('private-review-history').hidden = !isMyHistory;
     var fd=document.getElementById('vf-verdict-filters'); var host=document.getElementById('vf-cards'); var statsHost=document.getElementById('vf-stats');
     if(mode==='stats'){ if(fd)fd.style.display='none'; if(host)host.style.display='none'; var dcs=document.getElementById('vf-decided-count'); if(dcs)dcs.innerHTML=''; if(statsHost){statsHost.style.display='block'; renderQaqcStats(statsHost);} _vfSyncStickyBars(); return; }
     if(mode==='gaps'){ if(fd)fd.style.display='none'; if(statsHost)statsHost.style.display='none'; if(host){host.style.display='block'; renderVfGaps(host);} _vfSyncStickyBars(); return; }
