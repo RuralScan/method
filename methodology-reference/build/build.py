@@ -172,6 +172,58 @@ def run_checks():
         not wrong,
         ", ".join(wrong[:5]),
     )
+
+    # The live dashboard stays the reference point for every draft page.
+    option = re.compile(r"<option value=\"([^\"]*)\"( selected)?>([^<]*)</option>")
+    bad = []
+    for name, html in core.PAGES.items():
+        options = option.findall(html.split("</select>")[0])
+        ok = (
+            len(options) == len(core.SITE_DRAFTS) + 2
+            and options[0][2].startswith(core.LIVE_LABEL)
+            and options[0][0].startswith(core.SITE_URL + "dashboard.html#")
+            and [o[1] for o in options].count(" selected") == 1
+            and all(o[2].startswith("Draft · ") for o in options[1:])
+        )
+        if not ok:
+            bad.append(name)
+    check(
+        "Version selector on every page: live dashboard first, every other version labelled Draft",
+        not bad,
+        ", ".join(bad[:5]),
+    )
+
+    queue = f'href="{core.live("review-queue")}"'
+    tables = [f'href="{core.live(anchor)}"' for _, anchor, _ in core.REVIEW_QUEUES]
+    bad = [n for n, h in core.PAGES.items() if queue not in h]
+    bad += [
+        n
+        for n in ("index.html", "review.html")
+        if not all(link in core.PAGES[n] for link in tables)
+    ]
+    check(
+        "Review queue is reachable from every page, and the T3, T4 and T6 queues from the overview",
+        not bad,
+        ", ".join(bad[:5]),
+    )
+
+    kinds = ("Finding review", "Archived finding review", "Rating decision")
+    review = core.PAGES["review.html"]
+    check(
+        "Finding reviews, archived finding reviews and rating decisions are listed separately",
+        all(f"<strong>{k}</strong>" in review for k in kinds),
+    )
+
+    start = core.PAGES["index.html"].split('id="walkthrough"')[1]
+    first = re.search(r"<ol>\s*<li><a href=\"([^\"]+)\"", start)
+    check(
+        "The walkthrough starts with the bench-terrace rainfall finding in the live dashboard",
+        first
+        and first.group(1)
+        == core.live("review-evidence=ev_wh_precip_wocatgl13_benchterraces")
+        and start.index("<ol>") < start.index('id="contents"'),
+        first.group(1) if first else "no first step",
+    )
     return results
 
 

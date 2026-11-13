@@ -215,6 +215,7 @@ def build():
         ("evidence-base.html", "Evidence base at this edition"),
         ("sources.html", "Sources"),
         ("searches.html", "Search records"),
+        ("review.html", "Review queues and records"),
     ]
     kept = [u for u in data.EV if data.retained(u)]
     dropped = len(data.EV) - len(kept)

@@ -1,5 +1,17 @@
 // Progressive enhancement only. Every page reads fully without this file.
 (function () {
+  // Version selector: open the chosen version, and show this page as selected on return.
+  var version = document.getElementById('dashboard-version');
+  if (version) {
+    version.addEventListener('change', function () {
+      window.location.assign(version.value);
+    });
+    window.addEventListener('pageshow', function () {
+      for (var i = 0; i < version.options.length; i += 1) {
+        if (version.options[i].defaultSelected) version.selectedIndex = i;
+      }
+    });
+  }
   // Bring the current section tab into view on narrow screens.
   var current = document.querySelector('.tabs a[aria-current]');
   if (current && current.scrollIntoView) {

@@ -21,9 +21,22 @@ names that appear in recorded review notes. The build removes them from public p
     uv run --with markdown python3 -B build/build.py --out site
     python3 -m http.server 8137 --directory site
 
+The build also reads the published site branch of this repository at one fixed revision (`SITE_REV` in
+`build/core.py`) for the live dashboard's label, its two producer revisions and the list of drafts. Run
+`git fetch origin gh-pages` once so that revision is available locally.
+
 The build takes its edition from the evidence release pin. It fails if row counts differ from the counts the
 release states, a link or anchor is broken, a chapter directive does not resolve, markup is unbalanced, or a
 personal attribution reaches a page.
+
+## How it sits beside the live dashboard
+
+The live evidence dashboard stays the default view of the site. Every page of this reference carries the
+site's version selector, with the live dashboard listed first and every other version labelled Draft, and
+a Review queue link to the live queues. The overview starts with one finding followed end to end, opening
+in the live dashboard. Review decisions are written only in the CIAT review system; this reference links to
+the queues and does not copy or re-implement them. `review.html` explains how finding reviews, archived
+finding reviews and rating decisions are kept apart, and which producer revision each product uses.
 
 ## Editing chapters
 

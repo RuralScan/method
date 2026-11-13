@@ -11,6 +11,7 @@ import json
 import os
 import re
 import subprocess
+from datetime import date
 from functools import cache
 from html import escape
 from pathlib import Path
@@ -67,6 +68,68 @@ RUNTIME_URL = f"https://github.com/RuralScan/runtime/blob/{RUNTIME_REV}/"
 REPO_URLS = {"method:": METHOD_URL, "evidence:": EVIDENCE_URL, "runtime:": RUNTIME_URL}
 # The visual methodology is published from the producer repository's documentation site.
 VISUAL_URL = "https://ciat.github.io/nbs_ruralscan/redesign/"
+
+# The live evidence dashboard. Everything about it is read from one published site revision,
+# so its label, its two producer revisions and the list of drafts are never retyped here.
+SITE_URL = "https://ruralscan.github.io/method/"
+SITE_REV = "146b19f1285927a1d6c9ac51331e7d14686efef3"
+# How this draft would be listed beside the others (same fields as the site's edition catalogue).
+DRAFT_LABEL = "Methodology reference"
+DRAFT_DATE = "2026-11-13"
+
+
+def _site(path):
+    try:
+        return subprocess.check_output(
+            ["git", "-C", str(METHOD), "show", f"{SITE_REV}:{path}"],
+            text=True,
+            stderr=subprocess.DEVNULL,
+        )
+    except (subprocess.CalledProcessError, OSError):
+        raise SystemExit(
+            f"Published site revision {SITE_REV[:8]} is not in {METHOD}. "
+            "Run: git fetch origin gh-pages"
+        ) from None
+
+
+def _site_constant(name, script):
+    found = re.search(rf'^\s*{name} = "([^"]+)"', script, re.MULTILINE)
+    if not found:
+        raise SystemExit(f"{name} is not defined in the published site build script")
+    return found.group(1)
+
+
+def _draft_label(label, day):
+    return f"Draft · {label} · {date.fromisoformat(day):%d %b %Y}"
+
+
+_SITE_SCRIPT = _site("publish_editions.py")
+LIVE_LABEL = _site_constant("legacy_title", _SITE_SCRIPT)
+LIVE_SNAPSHOT = _site_constant(
+    "LIVE_PIN", _SITE_SCRIPT
+)  # analytical snapshot of the live dashboard
+LIVE_REVIEWS = _site_constant(
+    "QUEUE_PIN", _SITE_SCRIPT
+)  # review history shown in its queues
+# Newest first, as the live selector lists them.
+SITE_DRAFTS = [
+    (
+        f"{SITE_URL}editions/{e['edition']}/index.html",
+        _draft_label(e["label"], e["date"]),
+    )
+    for e in reversed(json.loads(_site("editions.json")))
+]
+THIS_DRAFT = _draft_label(DRAFT_LABEL, DRAFT_DATE)
+REVIEW_QUEUES = [
+    ("T3", "review-t3", "Hazard findings"),
+    ("T4", "review-t4", "Suitability findings"),
+    ("T6", "review-t6", "Scorecard findings"),
+]
+
+
+def live(fragment="overview"):
+    return f"{SITE_URL}dashboard.html#{fragment}"
+
 
 TABLE_FILES = {
     "T4": "T4_suitability_mappings.json",
@@ -305,6 +368,33 @@ def edition_line():
     )
 
 
+def version_bar(filename):
+    """The site's version selector: live dashboard first, every draft labelled Draft."""
+    match = re.match(r"row-(t3|t4|t6)-", filename)
+    target = live(f"review-{match.group(1)}" if match else "overview")
+    name = LIVE_LABEL + (
+        "" if match or filename == "index.html" else " (opens overview)"
+    )
+    options = [f'<option value="{esc(target)}">{esc(name)}</option>']
+    options.append(
+        f'<option value="{esc(filename)}" selected>{esc(THIS_DRAFT)} (this page)</option>'
+    )
+    options += [
+        f'<option value="{esc(url)}">{esc(label)}</option>'
+        for url, label in SITE_DRAFTS
+    ]
+    links = [link(target, esc(LIVE_LABEL))] + [
+        link(url, esc(label)) for url, label in SITE_DRAFTS
+    ]
+    return (
+        '<div class="edition-selector"><label for="dashboard-version">View version</label>'
+        f'<select id="dashboard-version" aria-describedby="dashboard-version-note">{"".join(options)}</select>'
+        '<span id="dashboard-version-note">Design preview. Draft for approval, not published.</span> '
+        f'<a href="{esc(target)}">Return to live dashboard</a>'
+        f"<noscript>{' · '.join(links)}</noscript></div>"
+    )
+
+
 def page(filename, section, title, body, crumbs=(), lead=None, toc=None):
     """Register one page. `section` is the nav file the page belongs to."""
     nav = []
@@ -346,10 +436,12 @@ def page(filename, section, title, body, crumbs=(), lead=None, toc=None):
 <link rel="stylesheet" href="site.css"></head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+{version_bar(filename)}
 <header class="mast"><div class="wrap">
 <a class="brand" href="index.html">Rural NbS Scan</a>
 <span class="sub">Methodology reference</span>
 <span class="ed">{edition_line()} · <a href="editions.html">about editions</a></span>
+<a class="review-entry" href="{live("review-queue")}">Review queue</a>
 </div>
 <nav class="tabs" aria-label="Sections"><div class="wrap">{"".join(nav)}</div></nav></header>
 <div class="wrap layout{" with-side" if side else ""}">
