@@ -42,7 +42,7 @@ LIVE_REVIEW_PIN = "e5c8da02e72810956cfd179cb32cd137fc4ba398"
 
 
 # Public review queues track a separate CIAT revision from the analytical dashboard.
-QUEUE_PIN = "16e76d3e76bf9695cf5cda1ef9027e54a121d1f1"
+QUEUE_PIN = "e43c42bd581dba791ce1f1697b6b41952ab0cfe3"
 REVIEW_TABLES = {"T3": "T3_nbs_hazard_farming", "T6": "T6_nbs_scorecard"}
 
 
