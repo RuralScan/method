@@ -1592,20 +1592,20 @@
 
     <!-- TAB 5: SEARCH & DISCOVERY LOGS -->
     <div id="tab-qaqc" class="tab-content">
-<header class="shell-intro"><h2>5. Evidence review</h2><p>Choose a table, open a finding and compare the extraction with its source. Choose <b>Submit private review</b> on the finding to send your decision.</p></header>
+<header class="shell-intro"><h2>5. Evidence review</h2><p>Choose a table, open a finding and compare the extraction with its source. Choose <b>Submit review</b> on the finding to send your decision.</p></header>
       <nav class="shell-subnav" aria-label="Evidence review views"><button type="button" data-review-view="queue" aria-pressed="true">5.1 Review queue</button><button type="button" data-review-view="help" aria-pressed="false">5.2 How to review</button><button type="button" data-review-view="pipeline" aria-pressed="false">5.3 Pipeline records</button></nav>
       <section id="review-help-panel" hidden><h3>5.2 How to review</h3>
         <p>Review checks the extraction against its source. It does not approve a spatial model, a proposed investment or every other claim from the same paper.</p>
         <h4>5.2.1 Get connected</h4>
-        <p>Start the <a href="https://github.com/RuralScan/evidence/tree/main/workflows/submissions">RuralScan submission desk</a> on your computer. Confirm your GitHub account at the top of the form. You need access to the private inbox and the source library.</p>
+        <p>Sign in to GitHub. Open a finding and check the original passage before submitting a review. Votes, notes and GitHub names are public. Restricted sources stay in the source library.</p>
         <h4>5.2.2 Work through the queue</h4>
         <ol class="shell-review-steps">
-          <li><b>Set your own GitHub handle in Review queue.</b> Choose <b>Other…</b> if it is missing. This selector filters historical decisions. The private desk uses your signed-in GitHub account. Use practice, evidence type and search to narrow the queue.</li>
+          <li><b>Set your own GitHub handle in Review queue.</b> Choose <b>Other…</b> if it is missing. This selector filters historical decisions. GitHub credits the account that creates the issue. Use practice, evidence type and search to narrow the queue.</li>
           <li><b>Start with To review.</b> <b>Waiting for answers</b> holds your outstanding questions; <b>My reviewed</b> shows your decisions. More filters contains technical filters and dropped history. Site observations are deferred by default and can be included there.</li>
           <li><b>Read the claim and inspect its source.</b> Check the page or table, units, context, practice and intended use. Open the source region or full paper when the excerpt lacks context. A restricted source may require the synced library or its SharePoint link; contact the library maintainer if access is missing.</li>
           <li><b>Keep</b> when the extraction is faithful and relevant. <b>Drop</b> when it is unsuitable or incorrect: select a coded reason and explain it. Drop quarantines the record; it does not erase it. <b>Query</b> when clarification is needed: state what needs checking. A query is not approval.</li>
           <li><b>Review answers on the evidence card.</b> Answered records return to To review. Read the answer and source, then Keep, Drop or Query. There is no separate answer-approval step; deciding one record does not approve the other records sharing its answer.</li>
-          <li><b>Choose Submit private review</b> on a finding. Select Keep, Hold or Drop and submit. The private desk returns a receipt and lists it under My reviewed. You can also submit a downloaded CSV through the desk.</li>
+          <li><b>Choose Submit review</b> on a finding. Select Keep, Hold or Drop and continue to GitHub. Choose <b>Create</b> to publish your review. The issue number is your receipt. Find it through <b>My reviewed</b>.</li>
         </ol>
         <h4>5.2.3 If something needs attention</h4>
         <ul><li><b>Missing sources:</b> hydrate the corpus and use Recheck. A source-cache presence count is not a completed quote check; submission runs the provenance guardrail.</li><li><b>Missing extraction:</b> use Report missing evidence under More actions and identify the source and location.</li><li><b>Submission failed:</b> decisions remain saved locally. Read the reported error before retrying; do not start a second submission while one is still running.</li><li><b>Interface feedback:</b> use Feedback in the dashboard header. These notes stay in this browser at this address until exported; they do not Keep, Drop, Query or submit an evidence decision.</li></ul>
@@ -1623,7 +1623,7 @@
         </div>
       <div id="readonly-banner" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:9px 16px; background:rgba(245,158,11,0.12); border-bottom:1px solid rgba(245,158,11,0.35); color:var(--text-primary); font-size:12.5px;">
         <span style="font-size:15px;">&#9888;&#65039;</span>
-        <span><b>Public dashboard.</b> Inspect the source and finding here. Use <b>Submit private review</b> on a finding to send your vote to the RuralScan inbox. <a href="https://github.com/RuralScan/evidence/tree/main/workflows/submissions">Set up your submission desk</a>. Offline choices stay in this browser until exported.</span>
+        <span>Choose <b>Submit review</b> on a finding to post your vote with your GitHub account. <a href="https://github.com/RuralScan/evidence/tree/main/workflows/submissions">Submit a CSV or extraction proposal</a>.</span>
         <button class="shell-link" type="button" onclick="DashboardShell.openReviewHelp()">How to review</button>
       </div>
     <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-secondary); margin-right:10px;" title="Your reviewer identity — every QA decision is attributed to this handle">&#128100; Reviewer
@@ -1655,7 +1655,7 @@
               </div>
               <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.6;">
                 <b style="color:var(--text-primary);">To review:</b> set your handle &#8594; choose <b style="color:var(--accent-emerald);">ok</b> (keep) or <b style="color:var(--accent-rose);">drop</b> (remove) + a reason &#8594; <b>Apply &amp; submit to main</b> writes it to the register, re-gates, and opens a PR subject to checks and required approvals.
-                <span style="color:var(--text-muted);">Working offline? Download your votes as CSV and return the file privately for CIAT consensus review.</span>
+                <span style="color:var(--text-muted);">Working offline? Download your votes as CSV and submit it to RuralScan/evidence using the submission desk.</span>
                 <br><span style="color:var(--text-muted);">Per card: <b style="color:var(--accent-emerald);">ok</b> = keep · <b style="color:var(--accent-rose);">drop</b> = remove (needs a coded reason) · <b style="color:var(--accent-amber);">&#9873; query</b> = keep tentatively but raise an open question (write it in the note).</span>
               </div>
               <div style="font-size:11px; color:var(--text-muted); line-height:1.6;"><b style="color:var(--text-secondary);">Keys:</b> <code style="font-size:10.5px;">j</code>/<code style="font-size:10.5px;">&#8595;</code> next &middot; <code style="font-size:10.5px;">&#8593;</code> prev &middot; <code style="font-size:10.5px;">k</code> ok &middot; <code style="font-size:10.5px;">d</code> drop &middot; <code style="font-size:10.5px;">q</code> query <span style="color:var(--text-muted);">(ignored while you're typing in a field)</span></div>
@@ -1694,7 +1694,7 @@
             </div>
             <div id="vf-decided-count" style="font-size:12px; color:var(--text-secondary); margin-top:12px;"></div>
             <div id="vf-subset-banner" style="display:none; margin-top:10px;"></div>
-            <p id="private-review-history" hidden><a href="http://127.0.0.1:8934/?view=mine">My private RuralScan submissions</a></p>
+            <p id="public-review-history" hidden><a href="https://github.com/RuralScan/evidence/issues?q=is%3Aissue+author%3A%40me+submission+in%3Abody">My public RuralScan submissions</a></p>
             <div id="vf-cards" style="margin-top:12px;"></div>
             <div id="vf-actionbar" style="position:sticky; bottom:0; z-index:19; background:var(--bg-primary); border-bottom:1px solid var(--border-color); padding:6px 0 7px; display:flex; align-items:center; gap:9px; flex-wrap:wrap;">
               <span id="vf-pending-count" style="font-size:11.5px; font-weight:700;" title="Your decisions saved locally but NOT yet applied + submitted to main. Applies EVERY pending decision (AI-flagged + AI-passed), not just the current queue. Click Apply & submit to main to ship them."></span>
@@ -2391,7 +2391,7 @@
       if(h)h.innerHTML='<b style="color:var(--accent-amber);">Read-only</b> — decisions stay in this browser. Run the local review server (<code style="font-size:9.5px;">uv run python3 -m nbs_ruralscan.schema_tools.review_server</code>) to enable <b>Apply</b>, or use <b>Download CSV</b>.'; } }
   async function applyVfDecisions(){
     await (window._vfSaveQueue || Promise.resolve());
-    if(!window._reviewApi){ vfNotice('Download your votes as CSV and return the file privately for CIAT consensus review.'); return; }
+    if(!window._reviewApi){ vfNotice('Download your votes as CSV and submit it to RuralScan/evidence using the submission desk.'); return; }
     const btn=document.getElementById('vf-apply-btn');
     if(btn){btn.disabled=true; btn.textContent='Applying…';}
     const reviewer=window._vfReviewer || 'reviewer';
@@ -3076,8 +3076,7 @@
     var _summaryHtml='<summary style="cursor:pointer; display:flex; align-items:center; gap:9px; flex-wrap:wrap; padding:9px 14px; border-left:4px solid '+_aiCol+'; border-radius:8px; background:var(--bg-secondary);">'+_aiBadge+_dropBadgeD+(window.DashboardPriority?DashboardPriority.badge(ev):'')+'<code style="color:var(--accent-sky); font-size:11.5px;">'+vfEsc(ev.evidence_id||'')+'</code><span style="font-size:11px; color:var(--text-secondary);">'+vfEsc(ev.variable||'')+' · '+vfEsc((ev.use_role||'').replace(/_/g,' '))+'</span>'+_decChipS+'<span style="margin-left:auto; display:inline-flex; gap:8px; align-items:center;">'+_revChipS+'</span></summary>';
     const intakeLane = ev.use_role === 'structural_suitability' ? 'T4' :
       (DashboardTables.matches(ev, 'T3') || DashboardTables.matches(ev, 'T6') ? 'T3/T6' : '');
-    const intakeParams = new URLSearchParams({lane:intakeLane, finding:ev.evidence_id, revision:reviewData.revision});
-    const intakeLink = intakeLane && reviewData.revision ? '<a class="finding-submit" href="http://127.0.0.1:8934/?'+vfEsc(intakeParams.toString())+'">Submit private review</a> · ' : '';
+    const intakeLink = intakeLane && reviewData.revision ? '<button type="button" class="finding-submit pill-btn" data-finding="'+vfEsc(ev.evidence_id)+'" data-lane="'+vfEsc(intakeLane)+'" data-revision="'+vfEsc(reviewData.revision)+'">Submit review</button> · ' : '';
     var _card='<div data-vfeid="'+vfEsc(ev.evidence_id||'')+'" style="border:1px solid '+(dec?'var(--accent-emerald)':'var(--border-color)')+'; border-left:4px solid '+_aiCol+'; border-radius:8px; padding:14px 16px; margin-bottom:10px; background:var(--bg-secondary);">'
       +(_collap?'':('<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px;">'
       +_aiBadge+_dropBadgeD+(window.DashboardPriority?DashboardPriority.badge(ev):'')
@@ -3301,7 +3300,7 @@
     const personal = vfPersonalHistory();
     const extraReviews = personal.archived.length + personal.ratings.length;
     const isMyHistory = window._vfSimpleView === 'mine';
-    document.getElementById('private-review-history').hidden = !isMyHistory;
+    document.getElementById('public-review-history').hidden = !isMyHistory;
     var fd=document.getElementById('vf-verdict-filters'); var host=document.getElementById('vf-cards'); var statsHost=document.getElementById('vf-stats');
     if(mode==='stats'){ if(fd)fd.style.display='none'; if(host)host.style.display='none'; var dcs=document.getElementById('vf-decided-count'); if(dcs)dcs.innerHTML=''; if(statsHost){statsHost.style.display='block'; renderQaqcStats(statsHost);} _vfSyncStickyBars(); return; }
     if(mode==='gaps'){ if(fd)fd.style.display='none'; if(statsHost)statsHost.style.display='none'; if(host){host.style.display='block'; renderVfGaps(host);} _vfSyncStickyBars(); return; }
@@ -6043,5 +6042,15 @@
 <script src="dashboard-tables.js?v=3"></script>
 <script src="dashboard-priority.js?v=1.7"></script>
 <script src="dashboard-shell.js?v=1.6.1"></script>
+<dialog id="finding-submission" aria-labelledby="finding-submission-title">
+  <form><h2 id="finding-submission-title">Submit finding review</h2><output></output>
+    <p>Your GitHub name, vote and note will appear on a public issue in RuralScan/evidence.</p>
+    <label>Decision <select name="verdict" required><option value="">Choose a decision</option><option value="approve">Keep</option><option value="hold">Hold for clarification</option><option value="reject">Drop</option></select></label>
+    <label>Reason <select name="reason"></select></label>
+    <label>Review note <textarea name="note" rows="3" maxlength="1000"></textarea></label>
+    <p><button type="button" data-cancel>Cancel</button> <button type="submit">Continue to GitHub</button></p>
+  </form>
+</dialog>
+<script src="review/submission.js"></script>
 </body>
 </html>
