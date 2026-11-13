@@ -86,8 +86,18 @@ def check(directory):
             )
             if target not in pages[card].links:
                 raise ValueError(f"Missing live CIAT queue link for {eid}")
+    queue = "https://ciat.github.io/nbs_ruralscan/dashboard.html#review-queue"
+    for name in ("index.html", "review.html", "review-queue.html", "terrace.html"):
+        if queue not in pages[name].links:
+            raise ValueError(f"{name} must link directly to the CIAT reviewer queue")
     for table in ("t3", "t4", "t6"):
         lane = f"review-{table}.html"
+        for name in (p for p in pages if p.startswith(f"review-{table}-")):
+            practice = name.removeprefix(f"review-{table}-").removesuffix(".html")
+            batch = ("t4_limits_2026-11-10" if table == "t4"
+                     else f"ratings_{practice}_2026-11-12")
+            if "https://ciat.github.io/nbs_ruralscan/review.html?batch=" + batch not in pages[name].links:
+                raise ValueError(f"{name} must open its CIAT finding cards directly")
         if lane not in pages["review.html"].links:
             raise ValueError(f"Review entry point is missing {table}")
     for key, record in status["rows"].items():

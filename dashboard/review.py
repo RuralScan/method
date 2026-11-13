@@ -31,6 +31,35 @@ STATUS = {
 }
 CIAT = "https://github.com/CIAT/nbs_ruralscan"
 LIVE = "https://ciat.github.io/nbs_ruralscan/"
+QUEUE_URL = LIVE + "dashboard.html#review-queue"
+HELP_URL = LIVE + "dashboard.html#review-help"
+RATINGS_BATCH = "ratings_top60_2026-11-12"
+T4_BATCH = "t4_limits_2026-11-10"
+
+
+def batch_url(batch):
+    return LIVE + "review.html?" + urlencode({"batch": batch})
+
+
+def reviewer_actions(table=None, practice=None):
+    if table == "T4":
+        batch = T4_BATCH
+        label = "Review T4 suitability cutoffs across practices"
+    else:
+        batch = f"ratings_{practice}_2026-11-12" if practice else RATINGS_BATCH
+        label = (
+            f"Review {recipes.practice_name(practice).lower()} findings"
+            if practice else "Review priority T3 and T6 findings"
+        )
+    return (
+        '<nav class="review-actions" aria-label="Human review in CIAT">'
+        + f'<a class="action" href="{recipes.esc(batch_url(batch))}">{recipes.esc(label)}</a>'
+        + recipes.link(QUEUE_URL, "Open all review queues")
+        + recipes.link(HELP_URL, "How to review")
+        + "</nav>"
+    )
+
+
 FINDING_LOG = "pipeline/metrics/review_log.csv"
 RATING_LOG = "pipeline/metrics/row_review_log.csv"
 METHOD_LOG = "methodology/decisions/open_decisions.csv"
@@ -393,36 +422,21 @@ def generate(pub, sidecar, write):
             name = recipes.practice_name(practice)
             path = _table_url(table, practice)
             subsets.append(recipes.link(path, f"{name} ({len(subset)})"))
-            links = []
-            for row in subset:
-                item = _row_link(row)
-                if table == "T4":
-                    item += " · Calibration: " + recipes.esc(
-                        row["fields"]["Reviewed numerical calibration"]
-                    )
-                else:
-                    record = sidecar["rows"][row["id"]]
-                    item += (
-                        " · "
-                        + recipes.esc(record["rating"])
-                        + " / "
-                        + recipes.esc(record["confidence"])
-                    )
-                    if record["provisional"]:
-                        item += " · <strong>Provisional</strong>"
-                    elif record["coverage"] == "unavailable":
-                        item += " · Rating-setter coverage unavailable"
-                links.append(item)
+            # Keep edition records accessible behind the review task.
             listing = (
-                recipes.listing(links)
-                if links
-                else "<p>No compiled rows in this scope and edition.</p>"
+                f"<details><summary>Browse {len(subset)} published {label.lower()}</summary>"
+                + recipes.row_table(subset, sidecar, review_details=True)
+                + "</details>"
+                if subset else "<p>No compiled rows in this scope and edition.</p>"
             )
             write(
                 path,
                 "Review",
                 f"{name} · {label}",
-                listing
+                reviewer_actions(table, practice)
+                + "<p>Read the extracted finding against its source passage. "
+                "Use the CIAT card to approve, hold or reject it.</p>"
+                + listing
                 + "<p>"
                 + recipes.link(_table_url(table), "All practices")
                 + " · "
@@ -444,7 +458,8 @@ def generate(pub, sidecar, write):
             _table_url(table),
             "Review",
             label,
-            "<p>Worked example · "
+            reviewer_actions(table)
+            + "<h2>Browse published records</h2><p>Worked example · "
             + example
             + " · "
             + example_finding
@@ -557,15 +572,33 @@ def generate(pub, sidecar, write):
     write(
         "review.html",
         "Review",
-        "Review evidence and recipe decisions",
-        f"<p>Cookbook edition <code>{recipes.esc(pub['release_id'][:8])}</code> · evidence revision "
-        f"<code>{recipes.esc(pub['source_revision'][:8])}</code>. Inspect the applied decision for a finding, "
-        "the review history of a rating, or the calibration of a suitability mapping. Available CIAT cards open the live review workspace.</p>"
-        + '<p><a class="action" href="review-queue.html">Open the edition review queue</a> · '
-        '<a href="review-coverage.html">Review coverage and downloadable evidence tables</a></p>'
-        + '<h2>Choose a table</h2><nav class="tiles" aria-label="Review tables">'
+        "Review evidence",
+        '<section class="review-start" aria-label="Reviewer workspace">'
+        "<h2>Continue your review</h2>"
+        "<p>Open <strong>To review</strong> to check the next finding against its source. "
+        "Return to a question in <strong>Waiting for answers</strong>, or find a past decision in <strong>My reviewed</strong>.</p>"
+        + f'<a class="action" href="{QUEUE_URL}">Open the CIAT review queue</a> '
+        + recipes.link(HELP_URL, "How to review")
+        + "</section><h2>Review a batch of finding cards</h2>"
+        + "<p>Read the passage beside each finding, then approve, hold or reject it. "
+        "The browser saves your choices locally. Export your CSV when you finish. "
+        "Use the connected CIAT review server to apply decisions.</p>"
+        + '<nav class="choices" aria-label="Finding review batches">'
+        + recipes.link(batch_url(RATINGS_BATCH), "T3 and T6 · Priority findings")
+        + recipes.link(batch_url(T4_BATCH), "T4 · Suitability cutoffs")
+        + "</nav><details><summary>Choose T3 and T6 finding cards by practice</summary>"
+        + recipes.listing(
+            recipes.link(batch_url(f"ratings_{practice}_2026-11-12"), recipes.practice_name(practice))
+            for practice in practices
+        )
+        + "</details><h2>Browse published ratings and mappings</h2>"
+        + f"<p>Evidence revision <code>{recipes.esc(pub['source_revision'][:8])}</code>. "
+        "Inspect the findings behind a rating, its review history, or a mapping’s calibration.</p>"
+        + '<nav class="tiles" aria-label="Published records by table">'
         + "".join(paths)
         + "</nav>"
+        + '<p><a href="review-queue.html">Unresolved findings and held mappings in this edition</a> · '
+        '<a href="review-coverage.html">Review coverage and downloadable evidence tables</a></p>'
         + f"<p>Live batch and queue links use CIAT <code>{recipes.esc(sidecar['live_navigation_revision'][:8])}</code>. Human reviewers record decisions in CIAT. An automated check alone cannot sign off a finding.</p>"
         + "<p>"
         + recipes.link("review-status.json", "Download edition review records (JSON)")

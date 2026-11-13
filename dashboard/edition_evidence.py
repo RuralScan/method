@@ -557,6 +557,7 @@ def publish_views(
             by_practice[row["practice"]].setdefault(eid, []).append(row)
 
     queue = [
+        review.reviewer_actions(),
         f"<p>Evidence revision <code>{escape(revision[:8])}</code>. Start with a finding that can change a published hazard or scorecard rating, or inspect a held suitability mapping.</p>",
         (
             f'<p><a href="#setters">Unresolved rating-setting findings ({len(setters)})</a> · '
@@ -611,7 +612,7 @@ def publish_views(
         ),
         '<p><a href="review.html">Browse all reviewed and unreviewed records</a></p>',
     ]
-    write("review-queue.html", "Review", "Edition review queue", "".join(queue))
+    write("review-queue.html", "Review", "Unresolved evidence in this edition", "".join(queue))
     metric_rows = "".join(
         "<tr>"
         + "".join(

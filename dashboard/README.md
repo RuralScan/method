@@ -11,7 +11,7 @@ python3 -B dashboard/check.py /tmp/ruralscan-site/editions/*
 python3 -m http.server --directory /tmp/ruralscan-site
 ```
 
-[Open Review](https://ruralscan.github.io/method/review.html) from the dashboard header. Review links the published T3/T6 ratings and T4 calibrations to applied finding decisions. The builder verifies the review-status manifest, producer revision, candidate release ID and workbook digest before rendering. Each live review link belongs to CIAT. A historical setter replay identifies which findings can change a headline rating at the candidate pin. The separate live batch can use a later scientific revision.
+The header’s **Review queue** opens the original CIAT QA/QC queue. [Review options](https://ruralscan.github.io/method/review.html) also opens the T3/T6 and T4 finding-card batches and provides access to the published edition. Review links the published T3/T6 ratings and T4 calibrations to applied finding decisions. The builder verifies the review-status manifest, producer revision, candidate release ID and workbook digest before rendering. Each live review link belongs to CIAT. A historical setter replay identifies which findings can change a headline rating at the candidate pin. The separate live batch can use a later scientific revision.
 
 The publisher adds the top version selector after all editions pass their build checks. Set a display label and ISO date for each edition entry. The selector preserves a matching page and falls back to the selected edition’s overview when needed.
 

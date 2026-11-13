@@ -72,7 +72,10 @@ def document(title, content):
 def shell(filename, section, title, body, edition):
     section = section.lower()
     number = None if section == "review" else [t[0] for t in TABS].index(section) + 1
-    review_link = nav_link("review.html", "Review", section == "review")
+    review_link = (
+        nav_link("review.html", "Review options", filename == "review.html")
+        + nav_link(review.QUEUE_URL, "Review queue", False)
+    )
     nav = "".join(
         nav_link(url, f"{i}. {label}", key == section)
         for i, (key, label, url) in enumerate(TABS, 1)

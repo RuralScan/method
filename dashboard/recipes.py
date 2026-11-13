@@ -155,7 +155,7 @@ def listing(links):
     return "<ul>" + "".join("<li>" + item + "</li>" for item in links) + "</ul>"
 
 
-def row_table(rows, sidecar):
+def row_table(rows, sidecar, *, review_details=False):
     if not rows:
         return "<p>No compiled row in this edition.</p>"
     fields = list(rows[0]["fields"])
@@ -163,7 +163,8 @@ def row_table(rows, sidecar):
     tr = []
     for row in rows:
         values = row["fields"]
-        first = link(row_file(row), values[fields[0]])
+        destination = row_file(row) + ("#review-details" if review_details else "")
+        first = link(destination, values[fields[0]])
         review_record = sidecar["rows"].get(row["id"])
         if review_record and review_record["provisional"]:
             first += (
