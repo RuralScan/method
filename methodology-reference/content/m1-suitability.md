@@ -379,7 +379,7 @@ This measures sensitivity to weights only. It does not represent uncertainty in 
 
 ### 12. Classify and define the opportunity space
 
-The specification's classification step divides the surface into four classes by quartile (labelled unsuitable, marginal, moderate, highly suitable) and defines the opportunity space as the top two classes. [src: methodology/modules/M1_suitability.md §6.8 Classification & fingerprint extraction] [src: src/nbs_ruralscan/runtime/mcda.py]
+The specification's classification step divides the surface into four classes by quartile or natural breaks (the reference implementation labels them unsuitable, marginal, moderate, highly suitable) and defines the opportunity space as the top two classes. [src: methodology/modules/M1_suitability.md §6.8 Classification & fingerprint extraction] [src: src/nbs_ruralscan/runtime/mcda.py]
 
 Two consequences must be understood before using that mask:
 
