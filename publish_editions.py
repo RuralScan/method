@@ -34,6 +34,42 @@ def fetch(repo, revision):
         git(repo, "fetch", "--no-tags", "--depth=1", "--filter=blob:none", "origin", revision)
 
 
+LIVE_PIN = "bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06"
+LIVE_REVIEW_EDITION = "2ff6f85e-a3151a5dbc32"
+LIVE_REVIEW_PIN = "e5c8da02e72810956cfd179cb32cd137fc4ba398"
+
+
+def live_rating_reviews(site, ciat, recipes):
+    """Reuse the assessed ratings only after proving the producer inputs match."""
+    assessed = json.loads((site / "editions" / LIVE_REVIEW_EDITION / "review-status.json").read_text())
+    if assessed["producer_revision"] != LIVE_REVIEW_PIN:
+        raise ValueError("Unexpected historical assessment revision")
+    # The later CIAT commit changed structural T4 records. The effect compiler
+    # reads only nbs_effect and asset_vulnerability units. Verify both populations.
+    ev = "schema/registers/EV_evidence_register"
+    git(ciat, "diff", "--quiet", LIVE_REVIEW_PIN, LIVE_PIN, "--", "schema",
+        "src/nbs_ruralscan/recipe", "scripts/synthesise-t3t6.py", "pipeline/metrics/review_log.csv",
+        "pipeline/metrics/row_review_log.csv", f":(exclude){ev}.csv", f":(exclude){ev}.json")
+    def effect_units(pin):
+        raw = subprocess.check_output(["git", "-C", str(ciat), "show", f"{pin}:{ev}.json"])
+        return [unit for unit in json.loads(raw) if unit.get("use_role") in {"nbs_effect", "asset_vulnerability"}]
+    if effect_units(LIVE_PIN) != effect_units(LIVE_REVIEW_PIN):
+        raise ValueError("Live T3 evidence differs from the assessed population")
+    statuses = {}
+    for recipe in recipes.values():
+        for row in recipe["T3_nbs_hazard_farming"]:
+            key = row["record_id"]
+            review = assessed["rows"][key]
+            rating = row.get("asset_sensitivity") or row.get("mitigation_potential")
+            if (review["table"] != "T3" or review["producer_revision"] != LIVE_REVIEW_PIN
+                    or review["evidence_ids"] != row["evidence_ids"] or review["rating"] != rating
+                    or review["confidence"] != row["confidence"]):
+                raise ValueError(f"Live hazard rating differs from assessed row {key}")
+            statuses[key] = {"provisional": review["provisional"], "coverage": review["coverage"],
+                             "unresolved": len(review["unresolved_setter_ids"])}
+    return statuses
+
+
 HUMAN_REVIEW_CORRECTION = "2ff6f85e-d1568d72ffa3"
 
 
@@ -52,7 +88,7 @@ LEGACY = {
 }
 
 
-def add_version_selectors(site, editions):
+def add_version_selectors(site, editions, ciat):
     """Decorate the published dashboard shell after all pinned builds complete."""
     pages = {}
     labels = {}
@@ -64,7 +100,8 @@ def add_version_selectors(site, editions):
             raise ValueError(f"No dashboard entry for {key}")
     # The legacy source drawer accepts progress source keys, IDs and aliases.
     legacy_snapshot = site / "data/bec50bc0f9dc/dashboard_data.json"
-    sources = json.loads(legacy_snapshot.read_text())["progress_overview"]["sources"]
+    snapshot = json.loads(legacy_snapshot.read_text())
+    sources = snapshot["progress_overview"]["sources"]
     legacy_keys = {}
     candidates = {}
     for source in sources:
@@ -172,15 +209,16 @@ def add_version_selectors(site, editions):
     # adding an edition never promotes a design or invalidates a shared draft URL.
     live = site / "legacy.html"
     decorate(live, "legacy", "index.html")
-    # Only navigation crosses editions. Ratings and queue records use the live
-    # dashboard snapshot; never apply another revision's review status to them.
+    # Navigation can use a later edition. Rating status uses a separately verified assessment.
     status = json.loads((site / "editions" / latest / "review-status.json").read_text())
     batches = {eid: finding["live_batch"] for eid, finding in status["findings"].items()
                if finding.get("live_batch")}
     navigation = json.dumps(batches, separators=(",", ":")).replace("<", "\\u003c")
     batch_data = f'<script type="application/json" id="ciat-review-batches">{navigation}</script>'
+    t3 = json.dumps(live_rating_reviews(site, ciat, snapshot["recipes"]), separators=(",", ":")).replace("<", "\\u003c")
+    rating_data = f'<script type="application/json" id="live-t3-reviews">{t3}</script>'
     link = f'<link rel="describedby" type="application/ld+json" href="editions/{latest}/catalog.json">'
-    live.write_text(live.read_text().replace("</head>", link + batch_data + "</head>", 1))
+    live.write_text(live.read_text().replace("</head>", link + batch_data + rating_data + "</head>", 1))
     for name in ("index.html", "dashboard.html"):
         copyfile(live, site / name)
     (site / "review.html").write_text(
@@ -216,7 +254,7 @@ def main():
                             "--out", str(site), "--evidence", str(evidence), "--ciat", str(ciat)], check=True)
             subprocess.run([sys.executable, "-B", str(method/"dashboard/check.py"), str(target)], check=True)
 
-        add_version_selectors(site, editions)
+        add_version_selectors(site, editions, ciat)
 
 
 if __name__ == "__main__":

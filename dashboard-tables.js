@@ -37,6 +37,17 @@
     if (batches[id]) return base + 'review.html?' + new URLSearchParams({batch: batches[id], unit: id});
     return base + 'dashboard.html#review-evidence=' + encodeURIComponent(id);
   }
+  let ratingReviews;
+  function ratingStatus(id) {
+    if (!ratingReviews) ratingReviews = JSON.parse(document.getElementById('live-t3-reviews')?.textContent || '{}');
+    const review = ratingReviews[id];
+    if (review?.provisional) {
+      return '<p><strong>Provisional.</strong> ' + review.unresolved + (review.unresolved === 1 ?
+        ' finding that sets this rating is held or unreviewed.' : ' findings that set this rating are held or unreviewed.') + '</p>';
+    }
+    if (review?.coverage === 'assessed') return '<p>All findings identified as setting this rating have been checked for outstanding review. None are held or unreviewed.</p>';
+    return '<p>Review coverage is incomplete for this rating. Its provisional status is unknown.</p>';
+  }
   const pretty = text => String(text ?? '').replace(/_/g, ' ').replace(/^\w/, c => c.toUpperCase());
   const lensNames = {asset_threat: 'Threat to the investment', livelihood_mitigation: 'Livelihood risk mitigation'};
   const esc = value => vfEsc(String(value ?? ''));
@@ -90,6 +101,7 @@
     const rating = lens === 'asset_threat' ? row.asset_sensitivity : row.mitigation_potential;
     select('rating').innerHTML = '<p class="hazard-result"><strong>' + (lens === 'asset_threat' ? 'Asset sensitivity' : 'Mitigation potential') +
       ' · ' + esc(pretty(rating) || 'No rating recorded') + '</strong><span>Confidence · ' + esc(pretty(row.confidence) || 'Unreported') + '</span></p>' +
+      ratingStatus(row.record_id) +
       (row.mitigation_mechanism ? '<p>' + cited(row.mitigation_mechanism) + '</p>' : '') +
       (row.caveats ? '<details><summary>Limitations and applicability</summary><p>' + cited(row.caveats) + '</p></details>' : '') +
       '<details><summary>Source findings (' + ids.length + ')</summary><ol>' + list + '</ol></details><p><a href="#review-t3">Open T3 review queue</a></p>';

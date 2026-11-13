@@ -127,3 +127,8 @@
 @media (max-width: 760px), (max-height: 800px) {
   #vf-actionbar { position: static !important; }
 }
+@media (max-width: 760px) {
+  #vf-cards { overflow-wrap: anywhere; }
+  #vf-cards span { min-width: 0; max-width: 100%; white-space: normal !important; }
+  #vf-cards pre { white-space: pre-wrap; }
+}
