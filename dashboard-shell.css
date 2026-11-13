@@ -132,3 +132,9 @@
   #vf-cards span { min-width: 0; max-width: 100%; white-space: normal !important; }
   #vf-cards pre { white-space: pre-wrap; }
 }
+
+#finding-submission { max-width:min(34rem,88vw); color:var(--text-primary); background:var(--bg-primary); border:1px solid var(--border-color); border-radius:10px; padding:1.4rem; }
+#finding-submission::backdrop { background:rgba(0,0,0,.6); }
+#finding-submission output { overflow-wrap:anywhere; }
+#finding-submission label { display:block; margin:.8rem 0; }
+#finding-submission select, #finding-submission textarea { display:block; width:100%; box-sizing:border-box; padding:.45rem; font:inherit; }
