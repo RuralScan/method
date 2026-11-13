@@ -7,6 +7,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+import check_edition_evidence
 import check_terrace
 
 
@@ -30,6 +31,7 @@ def check(directory):
     if not directory.is_dir():
         raise ValueError("Expected a built edition directory")
     check_terrace.check(str(directory.parent.parent))
+    check_edition_evidence.check(directory)
     pages = {}
     for path in directory.glob("*.html"):
         parser = Links()

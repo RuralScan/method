@@ -15,9 +15,10 @@ python3 -m http.server --directory /tmp/ruralscan-site
 
 The publisher adds the top version selector after all editions pass their build checks. Set a display label and ISO date for each edition entry. The selector preserves a matching page and falls back to the selected edition’s overview when needed.
 
-The overview advertises `catalog.json` to humans and clients. Its first dataset is the bench-terrace example. The edition-specific Frictionless Tabular Data Package contains CSV field types, units, null meanings, joins, SHA-256 digests, citation and CIAT revision. Read the finding’s human review status separately from the T4 calibration decision. Run the same acceptance test on a built site or a public URL:
+The overview advertises `catalog.json` to humans and clients. It includes the bench-terrace example and the complete public T3, T4 and T6 evidence package. Review links to the edition queue and coverage report. The queue groups confirmed unresolved rating setters by practice and lists held T4 mappings. Each entry identifies its historical edition. CIAT cards open the live finding workflow. The coverage report links all ten CSV tables and their keys, units and SHA-256 digests. Use the version selector to revisit an earlier edition. The edition-specific Frictionless Tabular Data Package contains CSV field types, units, null meanings, joins, SHA-256 digests, citation and CIAT revision. Read the finding’s human review status separately from the T4 calibration decision. Run the same acceptance test on a built site or a public URL:
 
 ```sh
+python3 -B dashboard/check_edition_evidence.py /tmp/ruralscan-site/editions/*
 python3 -B dashboard/check_terrace.py /tmp/ruralscan-site
 python3 -B dashboard/check_terrace.py https://ruralscan.github.io/method/
 ```

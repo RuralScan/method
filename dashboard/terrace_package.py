@@ -1,72 +1,13 @@
 """Publish the bench-terrace trace as a versioned Frictionless Tabular Data Package."""
 
-import csv
-import json
-from hashlib import sha256
+from packages import RIGHTS, SITE, catalog_entry, field, save, table
 
-SITE = "https://ruralscan.github.io/method/"
 TITLE = "Bench-terrace rainfall evidence and calibration"
 SCOPE = (
     "One T4 mapping, its one direct finding and its source. WOCAT reports where "
     "forward-sloping bench terraces are used. This example describes no surveyed "
     "geographic extent. The two contextual findings are documented in the walkthrough."
 )
-RIGHTS = (
-    "Public read access. A reuse licence for the extracted data awaits confirmation. "
-    "The source publication retains its own terms."
-)
-
-
-def field(name, description, kind="string", *, required=True, choices=None, unit=None):
-    constraints = {"required": required}
-    if choices:
-        constraints["enum"] = choices
-    result = {
-        "name": name,
-        "type": kind,
-        "description": description,
-        "constraints": constraints,
-    }
-    if unit:
-        result["unit"] = unit
-    return result
-
-
-def table(directory, name, title, fields, record, *, joins=()):
-    columns = [f["name"] for f in fields]
-    if set(columns) != record.keys():
-        raise ValueError(f"Export fields differ from schema for {name}")
-    path = directory / (name + ".csv")
-    with path.open("w", encoding="utf-8", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=columns)
-        writer.writeheader()
-        writer.writerow(record)
-    schema = {"fields": fields, "primaryKey": columns[0], "missingValues": [""]}
-    if joins:
-        schema["foreignKeys"] = [
-            {"fields": key, "reference": {"resource": target, "fields": key}}
-            for key, target in joins
-        ]
-    data = path.read_bytes()
-    return {
-        "name": name,
-        "title": title,
-        "path": path.name,
-        "profile": "tabular-data-resource",
-        "format": "csv",
-        "mediatype": "text/csv",
-        "encoding": "utf-8",
-        "schema": schema,
-        "bytes": len(data),
-        "hash": "sha256:" + sha256(data).hexdigest(),
-        "accessRights": RIGHTS,
-    }
-
-
-def save(path, data):
-    path.write_text(
-        json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
-    )
 
 
 def generate(out, pin, mapping, claim, source, review, evidence_revision):
@@ -103,12 +44,14 @@ def generate(out, pin, mapping, claim, source, review, evidence_revision):
             field("publication_url", "Publisher copy of the cited source."),
             field("publication_sha256", "SHA-256 of the PDF used for this finding."),
         ],
-        {
-            "source_id": source["id"],
-            "citation": source["citation"],
-            "publication_url": source["publisher_url"],
-            "publication_sha256": profile["source_artifact_sha256"],
-        },
+        [
+            {
+                "source_id": source["id"],
+                "citation": source["citation"],
+                "publication_url": source["publisher_url"],
+                "publication_sha256": profile["source_artifact_sha256"],
+            }
+        ],
     )
     finding_table = table(
         directory,
@@ -137,15 +80,17 @@ def generate(out, pin, mapping, claim, source, review, evidence_revision):
                 choices=["unreviewed", "held", "signed_off", "rejected"],
             ),
         ],
-        {
-            "evidence_id": claim["id"],
-            "source_id": source["id"],
-            "design": profile["structure"],
-            "reported_minimum": minimum,
-            "reported_maximum": maximum,
-            "source_locator": profile["locator"],
-            "finding_review_status": review["status"],
-        },
+        [
+            {
+                "evidence_id": claim["id"],
+                "source_id": source["id"],
+                "design": profile["structure"],
+                "reported_minimum": minimum,
+                "reported_maximum": maximum,
+                "source_locator": profile["locator"],
+                "finding_review_status": review["status"],
+            }
+        ],
         joins=[("source_id", "sources")],
     )
     mapping_table = table(
@@ -175,15 +120,17 @@ def generate(out, pin, mapping, claim, source, review, evidence_revision):
                 required=False,
             ),
         ],
-        {
-            "mapping_id": mapping["mapping_id"],
-            "evidence_id": claim["id"],
-            "calibration_status": decision["status"],
-            "decision_date": decision["reviewed_date"],
-            "decision_url": ciat_blob + decision["decision_ref"],
-            "example_rainfall": 350,
-            "example_score": None,
-        },
+        [
+            {
+                "mapping_id": mapping["mapping_id"],
+                "evidence_id": claim["id"],
+                "calibration_status": decision["status"],
+                "decision_date": decision["reviewed_date"],
+                "decision_url": ciat_blob + decision["decision_ref"],
+                "example_rainfall": 350,
+                "example_score": None,
+            }
+        ],
         joins=[("evidence_id", "findings")],
     )
     metadata_url = edition_url + "bench-terrace/datapackage.json"
@@ -224,47 +171,4 @@ def generate(out, pin, mapping, claim, source, review, evidence_revision):
         "resources": [source_table, finding_table, mapping_table],
     }
     save(directory / "datapackage.json", package)
-    dataset = {
-        "@type": "Dataset",
-        "@id": metadata_url,
-        "name": TITLE,
-        "description": SCOPE,
-        "identifier": package["name"],
-        "version": out.name,
-        "url": package["homepage"],
-        "citation": package["citation"],
-        "keywords": package["keywords"],
-        "conditionsOfAccess": RIGHTS,
-        "distribution": [
-            {
-                "@type": "DataDownload",
-                "name": "Tabular Data Package metadata, joins and checksums",
-                "encodingFormat": "application/json",
-                "contentUrl": metadata_url,
-                "sha256": sha256(
-                    (directory / "datapackage.json").read_bytes()
-                ).hexdigest(),
-            }
-        ]
-        + [
-            {
-                "@type": "DataDownload",
-                "name": r["title"],
-                "encodingFormat": r["mediatype"],
-                "contentUrl": edition_url + "bench-terrace/" + r["path"],
-                "sha256": r["hash"].split(":", 1)[1],
-            }
-            for r in package["resources"]
-        ],
-    }
-    save(
-        out / "catalog.json",
-        {
-            "@context": "https://schema.org",
-            "@type": "DataCatalog",
-            "@id": edition_url + "catalog.json",
-            "name": "RuralScan published evidence packages",
-            "version": out.name,
-            "dataset": [dataset],
-        },
-    )
+    return catalog_entry(directory, package)

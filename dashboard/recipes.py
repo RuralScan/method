@@ -27,6 +27,51 @@ TERRACE = "water_harvesting__terracing__annual_precipitation"
 WOCAT = "ev_wh_precip_wocatgl13_benchterraces"
 
 
+REPORTED_FIELDS = [
+    "outcome_raw",
+    "metric",
+    "direction",
+    "magnitude",
+    "magnitude_low",
+    "magnitude_high",
+    "value_with",
+    "value_without",
+    "unit",
+    "threshold",
+    "abs_min",
+    "opt_low",
+    "opt_high",
+    "abs_max",
+    "observed_min",
+    "observed_max",
+    "observed_classes",
+    "condition",
+    "significance",
+    "design",
+]
+
+PARAMETER_FIELDS = [
+    "abs_min",
+    "opt_low",
+    "opt_high",
+    "abs_max",
+    "threshold",
+    "above_is_suitable",
+    "unit",
+    "class_labels",
+    "class_map",
+    "class_requirements",
+    "unmapped_policy",
+    "interpretation",
+    "host_crop",
+    "footprint_rule",
+    "score_interpretation",
+    "outside_domain",
+    "profile_selection",
+    "legal_mask_contract",
+]
+
+
 def snapshot(repo, revision, path):
     return subprocess.check_output(
         ["git", "-C", str(repo), "show", f"{revision}:{path}"]
@@ -193,26 +238,7 @@ def suitability_relationship(raw):
     result += structured_fields(calibration, ["status", "reason"])
     result += structured_fields(
         params,
-        [
-            "abs_min",
-            "opt_low",
-            "opt_high",
-            "abs_max",
-            "threshold",
-            "above_is_suitable",
-            "unit",
-            "class_labels",
-            "class_map",
-            "class_requirements",
-            "unmapped_policy",
-            "interpretation",
-            "host_crop",
-            "footprint_rule",
-            "score_interpretation",
-            "outside_domain",
-            "profile_selection",
-            "legal_mask_contract",
-        ],
+        PARAMETER_FIELDS,
     )
     for profile in params.get("profiles", []):
         intervals = profile.get("intervals") or []
@@ -320,7 +346,6 @@ def generate(out, evidence, ciat, write, sidecar, review_views):
         for r in json.loads(
             snapshot(ciat, revision, "schema/registers/EV_evidence_register.json")
         )
-        if r["evidence_id"] in claims
     }
     raw_rows = {}
     direct, contextual, source_rows, source_claims = (
@@ -349,7 +374,7 @@ def generate(out, evidence, ciat, write, sidecar, review_views):
     if len(raw_rows) != len(rows):
         raise ValueError("Ambiguous row IDs")
     terrace_claim = claims[WOCAT]
-    terrace_package.generate(
+    terrace = terrace_package.generate(
         out,
         pin,
         raw_rows[TERRACE],
@@ -530,28 +555,7 @@ def generate(out, evidence, ciat, write, sidecar, review_views):
         if isinstance(rel, dict):
             finding = structured_fields(
                 rel,
-                [
-                    "outcome_raw",
-                    "metric",
-                    "direction",
-                    "magnitude",
-                    "magnitude_low",
-                    "magnitude_high",
-                    "value_with",
-                    "value_without",
-                    "unit",
-                    "threshold",
-                    "abs_min",
-                    "opt_low",
-                    "opt_high",
-                    "abs_max",
-                    "observed_min",
-                    "observed_max",
-                    "observed_classes",
-                    "condition",
-                    "significance",
-                    "design",
-                ],
+                REPORTED_FIELDS,
             )
             if finding:
                 body += "<h2>Reported finding</h2>" + finding
@@ -723,4 +727,4 @@ def generate(out, evidence, ciat, write, sidecar, review_views):
         )
         + '<p><a href="workbook.html" download>Download this edition’s evidence workbook</a></p>',
     )
-    return pub
+    return pub, raw_rows, evidence_values, terrace

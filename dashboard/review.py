@@ -111,18 +111,20 @@ def _link_event(event, sidecar, path):
     return " · ".join(parts)
 
 
-def _live(identifier, finding):
+def live_url(identifier, finding):
     if finding.get("live_batch"):
         query = urlencode({"batch": finding["live_batch"], "unit": identifier})
-        return recipes.link(
-            LIVE + "review.html?" + query,
-            "Open this finding in the live CIAT review batch",
-        )
+        return LIVE + "review.html?" + query
     if finding["live_queue_available"]:
-        return recipes.link(
-            LIVE + "dashboard.html#review-evidence=" + identifier,
-            "Open this finding in the live CIAT evidence queue",
-        )
+        return LIVE + "dashboard.html#review-evidence=" + identifier
+    return None
+
+
+def _live(identifier, finding):
+    url = live_url(identifier, finding)
+    if url:
+        location = "review batch" if finding.get("live_batch") else "evidence queue"
+        return recipes.link(url, "Open this finding in the live CIAT " + location)
     return "No matching live CIAT review card verified for this finding."
 
 
@@ -559,6 +561,8 @@ def generate(pub, sidecar, write):
         f"<p>Cookbook edition <code>{recipes.esc(pub['release_id'][:8])}</code> · evidence revision "
         f"<code>{recipes.esc(pub['source_revision'][:8])}</code>. Inspect the applied decision for a finding, "
         "the review history of a rating, or the calibration of a suitability mapping. Available CIAT cards open the live review workspace.</p>"
+        + '<p><a class="action" href="review-queue.html">Open the edition review queue</a> · '
+        '<a href="review-coverage.html">Review coverage and downloadable evidence tables</a></p>'
         + '<h2>Choose a table</h2><nav class="tiles" aria-label="Review tables">'
         + "".join(paths)
         + "</nav>"

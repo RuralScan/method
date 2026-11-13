@@ -7,6 +7,8 @@ from hashlib import sha256
 from html import escape
 from pathlib import Path
 
+import edition_evidence
+import packages
 import progress
 import recipes
 import reference
@@ -212,13 +214,29 @@ def build(out, evidence, ciat):
         (target / relative).write_text(page)
 
     sidecar = load_review_status(target, evidence)
-    pub = recipes.generate(target, evidence, ciat, write, sidecar, review)
+    pub, raw_rows, evidence_values, terrace = recipes.generate(
+        target, evidence, ciat, write, sidecar, review
+    )
     manifest = json.loads((target / "review-status-manifest.json").read_bytes())
     if (
         sha256((target / "workbook.html").read_bytes()).hexdigest()
         != manifest["workbook_sha256"]
     ):
         raise ValueError("Review join and workbook digest differ")
+    edition_data = edition_evidence.generate(
+        target, pub, raw_rows, evidence_values, sidecar, recipes.EVIDENCE, write
+    )
+    packages.save(
+        target / "catalog.json",
+        {
+            "@context": "https://schema.org",
+            "@type": "DataCatalog",
+            "@id": packages.SITE + "editions/" + target.name + "/catalog.json",
+            "name": "RuralScan published evidence packages",
+            "version": target.name,
+            "dataset": [edition_data, terrace],
+        },
+    )
     review.generate(pub, sidecar, write)
     family_rows = sum(bool(row["family"]) for row in pub["rows"])
     total = len(pub["rows"])
