@@ -14,3 +14,5 @@ input,button,select{font:inherit;border:1px solid #82988c;border-radius:3px;padd
 .effort{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:0 1.25rem}.effort>div{padding:.25rem 0;border-top:2px solid var(--pine)}.effort h3{margin:.5rem 0}.effort figcaption{grid-column:1/-1}.feedback .steps{counter-reset:review}
 figure[aria-labelledby="ai-workflow-title"] ol{grid-template-columns:repeat(3,1fr)}
 @media(max-width:680px){figure[aria-labelledby="ai-workflow-title"] ol{grid-template-columns:1fr}}
+
+.provisional{display:inline-block;color:#71440d;background:#fbefd5;padding:.1rem .4rem;font-weight:600;font-size:.85rem;border-radius:.2rem}.mast .review a{display:inline-block;font-weight:650;padding:.25rem .6rem;border:1px solid #b5d2bf;border-radius:.2rem}

@@ -10,6 +10,7 @@ from pathlib import Path
 import progress
 import recipes
 import reference
+import review
 
 HERE = Path(__file__).resolve().parent
 METHOD = HERE.parent
@@ -40,7 +41,11 @@ SUBTABS = {
         ("Recorded searches", "searches.html"),
     ],
 }
-REVIEW = "https://ciat.github.io/nbs_ruralscan/dashboard.html#review-queue"
+SUBTABS["review"] = [
+    ("Hazard ratings (T3)", "review-t3.html"),
+    ("Suitability mappings (T4)", "review-t4.html"),
+    ("Scorecard ratings (T6)", "review-t6.html"),
+]
 
 
 def edition_id():
@@ -64,7 +69,8 @@ def document(title, content):
 
 def shell(filename, section, title, body, edition):
     section = section.lower()
-    number = [t[0] for t in TABS].index(section) + 1
+    number = None if section == "review" else [t[0] for t in TABS].index(section) + 1
+    review_link = nav_link("review.html", "Review", section == "review")
     nav = "".join(
         nav_link(url, f"{i}. {label}", key == section)
         for i, (key, label, url) in enumerate(TABS, 1)
@@ -78,8 +84,12 @@ def shell(filename, section, title, body, edition):
         active = "evidence.html"
     if filename.startswith("row-"):
         active = "synthesis-" + filename.split("-")[1] + ".html"
+    if section == "review" and filename.startswith(
+        ("review-t3-", "review-t4-", "review-t6-")
+    ):
+        active = "-".join(filename.split("-")[:2]) + ".html"
     sub = "".join(
-        nav_link(href, f"{number}.{i} {name}", active == href)
+        nav_link(href, f"{number}.{i} {name}" if number else name, active == href)
         for i, (name, href) in enumerate(SUBTABS.get(section, []), 1)
     )
     subnav = (
@@ -87,7 +97,7 @@ def shell(filename, section, title, body, edition):
     )
     return document(
         title,
-        f'<a class="skip" href="#main">Skip to content</a><header class="mast"><div class="wrap"><a class="brand" href="index.html">RuralScan</a><small>Rural nature-based solutions · Methodology dashboard</small><a class="review" href="{REVIEW}">Reviewer workspace ↗</a></div></header><div class="bar"><div class="wrap"><nav class="tabs" aria-label="Dashboard sections">{nav}</nav>{subnav}</div></div><main id="main"><h1>{escape(title)}</h1>{body}</main><footer>Candidate cookbook 2ff6f85e · Progress bec50bc0 · {reference.link("edition.html", "Edition and build sources")} · {escape(edition)}</footer>',
+        f'<a class="skip" href="#main">Skip to content</a><header class="mast"><div class="wrap"><a class="brand" href="index.html">RuralScan</a><small>Rural nature-based solutions · Methodology dashboard</small><span class="review">{review_link}</span></div></header><div class="bar"><div class="wrap"><nav class="tabs" aria-label="Dashboard sections">{nav}</nav>{subnav}</div></div><main id="main"><h1>{escape(title)}</h1>{body}</main><footer>Candidate cookbook 2ff6f85e · Progress bec50bc0 · {reference.link("edition.html", "Edition and build sources")} · {escape(edition)}</footer>',
     )
 
 
@@ -129,6 +139,7 @@ def entry(overview_html, edition):
     base = f"editions/{edition}/"
     routes = {
         "overview": "index.html",
+        "review": "review.html",
         "progress": "progress.html",
         "methods/rural": "methods.html",
         "methods/evidence": "ai.html",
@@ -143,6 +154,34 @@ if(oldHash) location.replace(Object.hasOwn(routes,oldHash) ? new URL(routes[oldH
     return overview_html.replace(
         '<meta charset="utf-8">', '<meta charset="utf-8">' + bridge
     )
+
+
+def load_review_status(target, evidence):
+    directory = "publication/workbook/"
+    manifest = recipes.snapshot(
+        evidence, recipes.EVIDENCE, directory + "review-status-manifest.json"
+    )
+    status = recipes.snapshot(
+        evidence, recipes.EVIDENCE, directory + "review-status.json"
+    )
+    metadata = json.loads(manifest)
+    replay = recipes.snapshot(
+        evidence, recipes.EVIDENCE, directory + "replayed-setters.json"
+    )
+    if sha256(replay).hexdigest() != metadata["replayed_setters_sha256"]:
+        raise ValueError("Historical assessment differs from review manifest")
+    (target / "replayed-setters.json").write_bytes(replay)
+    if metadata["schema_version"] != 1:
+        raise ValueError("Unsupported review status schema")
+    if sha256(status).hexdigest() != metadata["status_sha256"]:
+        raise ValueError("Review status digest differs from release manifest")
+    sidecar = json.loads(status)
+    for key in ("schema_version", "producer_revision", "release_id"):
+        if metadata[key] != sidecar[key]:
+            raise ValueError(f"Review manifest mismatch: {key}")
+    (target / "review-status.json").write_bytes(status)
+    (target / "review-status-manifest.json").write_bytes(manifest)
+    return sidecar
 
 
 def build(out, evidence, ciat):
@@ -166,7 +205,15 @@ def build(out, evidence, ciat):
             )
         (target / relative).write_text(shell(relative, section, title, body, edition))
 
-    pub = recipes.generate(target, evidence, ciat, write)
+    sidecar = load_review_status(target, evidence)
+    pub = recipes.generate(target, evidence, ciat, write, sidecar, review)
+    manifest = json.loads((target / "review-status-manifest.json").read_bytes())
+    if (
+        sha256((target / "workbook.html").read_bytes()).hexdigest()
+        != manifest["workbook_sha256"]
+    ):
+        raise ValueError("Review join and workbook digest differ")
+    review.generate(pub, sidecar, write)
     family_rows = sum(bool(row["family"]) for row in pub["rows"])
     total = len(pub["rows"])
     coverage = (
@@ -257,6 +304,12 @@ def build(out, evidence, ciat):
     home = entry((target / "index.html").read_text(), edition)
     for name in ["index.html", "dashboard.html"]:
         (out / name).write_text(home)
+    review_url = f"editions/{edition}/review.html"
+    (out / "review.html").write_text(
+        '<!doctype html><html lang="en"><meta charset="utf-8"><title>RuralScan Review</title>'
+        f'<link rel="canonical" href="{review_url}"><meta http-equiv="refresh" content="0;url={review_url}">'
+        f'<p><a href="{review_url}">Open Review in the current dashboard edition</a></p></html>'
+    )
     print(f"{edition} · {len(seen):,} static pages")
     return target
 

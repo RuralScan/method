@@ -13,7 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from cookbook.pages import FAMILIES, PRACTICES, PRODUCTS
 
-EVIDENCE = "e47349055f1c34a5dd755b37ab9c4e7012882823"
+EVIDENCE = "84c739a51d8147bfc6f3d157703c2be7c9363590"
 EVIDENCE_BASE = f"https://github.com/RuralScan/evidence/blob/{EVIDENCE}/"
 TABLES = {
     "T4": "Site suitability",
@@ -108,7 +108,7 @@ def listing(links):
     return "<ul>" + "".join("<li>" + item + "</li>" for item in links) + "</ul>"
 
 
-def row_table(rows):
+def row_table(rows, sidecar):
     if not rows:
         return "<p>No compiled row in this edition.</p>"
     fields = list(rows[0]["fields"])
@@ -117,6 +117,13 @@ def row_table(rows):
     for row in rows:
         values = row["fields"]
         first = link(row_file(row), values[fields[0]])
+        review_record = sidecar["rows"].get(row["id"])
+        if review_record and review_record["provisional"]:
+            first += (
+                ' <a class="provisional" href="'
+                + row_file(row)
+                + '#review-details">Provisional</a>'
+            )
         rest = "".join(f"<td>{esc(values[k])}</td>" for k in fields[1:])
         tr.append(f'<tr id="{esc(row["id"])}"><th scope="row">{first}</th>{rest}</tr>')
     return (
@@ -270,7 +277,7 @@ def decision(raw, table):
     return "".join(parts)
 
 
-def generate(out, evidence, ciat, write):
+def generate(out, evidence, ciat, write, sidecar, review_views):
     """write(relative_filename, section, title, html_body) supplies the shared shell."""
     out = Path(out)
     workbook = snapshot(evidence, EVIDENCE, "publication/workbook/index.html")
@@ -285,6 +292,11 @@ def generate(out, evidence, ciat, write):
     pin = json.loads(snapshot(evidence, EVIDENCE, "workflows/recipe_release/pin.json"))
     if any(pub[key] != pin[key] for key in ("source_revision", "release_id")):
         raise ValueError("Workbook differs from candidate pin")
+    if (
+        sidecar["producer_revision"] != pin["source_revision"]
+        or sidecar["release_id"] != pin["release_id"]
+    ):
+        raise ValueError("Review status belongs to another analytical edition")
     revision = pin["source_revision"]
     rows = pub["rows"]
     if Counter(r["table"] for r in rows) != Counter(pub["totals"]):
@@ -375,7 +387,7 @@ def generate(out, evidence, ciat, write):
                 group = by_family[practice, family, table]
                 body += (
                     f"<h3>{link('table-' + table + '.html', name + ' (' + table + ')')} · {len(group)} rows</h3>"
-                    + row_table(group)
+                    + row_table(group, sidecar)
                 )
             body += "</section>"
         write(recipe_file(practice), "recipes", practice_name(practice), body)
@@ -407,7 +419,7 @@ def generate(out, evidence, ciat, write):
         for practice in practices:
             content += (
                 f'<h2 id="{practice}">{esc(practice_name(practice))}</h2>'
-                + row_table(indexed[practice, table])
+                + row_table(indexed[practice, table], sidecar)
             )
         write(synth_file, "synthesis", f"{name} ({table})", content)
     write(
@@ -433,6 +445,8 @@ def generate(out, evidence, ciat, write):
         if key == TERRACE:
             body += terrace_note()
         body += entries(row["fields"].items())
+        if table in {"T3", "T4", "T6"}:
+            body += review_views.row_details(row, sidecar)
         body += decision(raw_rows[key], table)
         protocol = (
             "T4_generation_method.md" if table == "T4" else "T3_T6_generation_method.md"
@@ -545,6 +559,7 @@ def generate(out, evidence, ciat, write):
                 ("Extraction confidence", words(claim["confidence"])),
             ]
         )
+        body += review_views.finding_details(claim, sidecar)
         for title, matches in [
             ("Synthesis rows citing this finding", direct[key]),
             ("Rows using this finding as context", contextual[key]),

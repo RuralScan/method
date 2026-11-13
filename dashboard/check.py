@@ -55,10 +55,32 @@ def check(directory):
     if missing:
         raise ValueError(f"{len(missing)} broken references: {missing[:12]}")
     catalogue = json.loads((directory / "recipe-catalogue.json").read_text())
-    if {r["path"] for r in catalogue} != {
+    status = json.loads((directory / "review-status.json").read_bytes())
+    excluded = {
+        "claim-" + eid + ".html"
+        for eid, f in status["findings"].items()
+        if f["excluded"]
+    }
+    if excluded - pages.keys():
+        raise ValueError("Missing excluded-finding history")
+    if {r["path"] for r in catalogue} | excluded != {
         p for p in pages if p.startswith(("claim-", "source-"))
     }:
         raise ValueError("Evidence catalogue is incomplete")
+    for table in ("t3", "t4", "t6"):
+        lane = f"review-{table}.html"
+        if lane not in pages["review.html"].links:
+            raise ValueError(f"Review entry point is missing {table}")
+    for key, record in status["rows"].items():
+        table = record["table"].lower()
+        path = f"row-{table}-{key}.html"
+        if "review-details" not in pages[path].targets:
+            raise ValueError(f"Missing review detail for {key}")
+        if (
+            record["provisional"]
+            and "<strong>Provisional</strong>" not in (directory / path).read_text()
+        ):
+            raise ValueError(f"Missing provisional label for {key}")
     print(
         f"{len(pages):,} pages verified, including workbook, all analytical rows, search records and local anchors."
     )
