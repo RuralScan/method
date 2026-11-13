@@ -52,5 +52,14 @@
     "progress": "bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06",
     "date": "2026-11-13",
     "label": "Evidence tables and review queue"
+  },
+  {
+    "edition": "2ff6f85e-a3151a5dbc32",
+    "method": "aef6cb907626702579bc4c2b8930d1a52e5042af",
+    "evidence": "253c0ed0de222e248cf21a32f3b4ededcca955c0",
+    "producer": "e5c8da02e72810956cfd179cb32cd137fc4ba398",
+    "progress": "bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06",
+    "date": "2026-11-13",
+    "label": "Human review queues and finding cards"
   }
 ]

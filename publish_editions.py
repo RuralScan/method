@@ -126,6 +126,13 @@ def add_version_selectors(site, editions):
         )
         review_record = (page.startswith(("review", "claim-", "row-"))
                          or page in {"terrace.html", "method-decisions.html"})
+        if not legacy and current != latest and page.startswith("review"):
+            control += (
+                '<nav class="archived-review-links" aria-label="Live reviewer workspace">'
+                '<a href="https://ciat.github.io/nbs_ruralscan/dashboard.html#review-queue">Open the CIAT review queue</a>'
+                f'<a href="{base}editions/{latest}/review.html">Choose a finding review batch</a>'
+                '</nav>'
+            )
         if current == HUMAN_REVIEW_CORRECTION and latest != current and review_record:
             if page in pages[latest]:
                 corrected_path, caption = page, "Open this page in the corrected edition"

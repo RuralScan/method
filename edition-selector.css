@@ -39,3 +39,13 @@
   }
   body #dp-source-drawer { top: var(--edition-bar-height, 0); }
 }
+
+.archived-review-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1.25rem;
+  padding: .5rem max(1rem, calc((100% - 1120px) / 2));
+  background: #e8efe6;
+  font: 600 15px/1.5 system-ui, sans-serif;
+}
+.archived-review-links a { color: #154f43; }
