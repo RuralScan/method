@@ -34,5 +34,14 @@
     "progress": "bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06",
     "date": "2026-11-13",
     "label": "Reviewed evidence and search"
+  },
+  {
+    "edition": "2ff6f85e-4ee7b60379c2",
+    "method": "5d3bcda5faa902c7988a0fa4582eaa8d25ef8ed9",
+    "evidence": "253c0ed0de222e248cf21a32f3b4ededcca955c0",
+    "producer": "e5c8da02e72810956cfd179cb32cd137fc4ba398",
+    "progress": "bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06",
+    "date": "2026-11-13",
+    "label": "Bench-terrace evidence tables"
   }
 ]
