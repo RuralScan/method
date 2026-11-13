@@ -2,8 +2,8 @@
 (function () {
   'use strict';
   const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const rows = () => (typeof dashboardData !== 'undefined' && dashboardData && dashboardData.review_priorities) || [];
-  const evidence = () => [...(dashboardData.registers.EV_evidence_register || []), ...(dashboardData._evDropped || [])];
+  const rows = () => (typeof reviewData !== 'undefined' && reviewData && reviewData.review_priorities) || [];
+  const evidence = () => [...(reviewData.registers.EV_evidence_register || []), ...(reviewData._evDropped || [])];
   const notes = id => rows().filter(r => r.evidence_id === id);
   const selected = () => window._vfPriority || 'all';
   const batchRoute = id => '#review-priority=' + encodeURIComponent(id);
@@ -42,7 +42,7 @@
   function openFromHash(hash) {
     const table = DashboardTables.tableFromRoute(hash);
     if (table) {
-      if (!dashboardData) return true;
+      if (!reviewData) return true;
       scopeFor([]);
       window._vfPriorityEvidence = '';
       window._vfPriority = 'all';
@@ -56,7 +56,7 @@
     }
     const match = /^#review-(priority|evidence)=(.*)$/.exec(hash);
     if (!match) return false;
-    if (typeof dashboardData === 'undefined' || !dashboardData) return true;
+    if (typeof reviewData === 'undefined' || !reviewData) return true;
     let value; try { value = decodeURIComponent(match[2]); } catch (_) { return true; }
     const unit = match[1] === 'evidence' && evidence().find(e => e.evidence_id === value);
     if (match[1] === 'priority' && value !== 'high' && !rows().some(r => r.batch_id === value) || match[1] === 'evidence' && !unit) {

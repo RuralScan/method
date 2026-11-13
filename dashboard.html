@@ -1625,6 +1625,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
         <div class="review-start" id="review-queue">
           <nav aria-label="Review findings by table"><a href="#review-t3">T3 · Hazard findings</a><a href="#review-t4">T4 · Suitability findings</a><a href="#review-t6">T6 · Scorecard findings</a></nav>
           <p id="review-table-description"></p>
+          <a id="review-log-source"></a>
           <p>For current assignments and decisions in CIAT, open <a href="https://ciat.github.io/nbs_ruralscan/review.html?batch=ratings_top60_2026-11-12">T3/T6 priority findings</a> or <a href="https://ciat.github.io/nbs_ruralscan/review.html?batch=t4_limits_2026-11-10">T4 suitability cutoffs</a>.</p>
         </div>
       <div id="readonly-banner" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:9px 16px; background:rgba(245,158,11,0.12); border-bottom:1px solid rgba(245,158,11,0.35); color:var(--text-primary); font-size:12.5px;">
@@ -1800,6 +1801,31 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
 <script src="vendor/d3/d3.v7.min.js"></script>
 <script>
   let dashboardData = null;
+  let reviewData = null;
+
+  async function loadReviewSnapshot(base) {
+    const meta = document.querySelector('meta[name="ciat-review-snapshot"]');
+    if (!meta) return base;
+    const response = await fetch(meta.content);
+    if (!response.ok) throw Error('Could not load the CIAT review snapshot.');
+    const data = await response.json();
+    const registers = {...base.registers};
+    for (const [name, key] of [['EV_evidence_register', 'evidence_id'], ['SRC_source_register', 'source_id']]) {
+      const rows = new Map(base.registers[name].map(row => [row[key], row]));
+      const {removed, changed} = data.register_changes[name];
+      for (const id of removed) rows.delete(id);
+      for (const row of changed) rows.set(row[key], row);
+      registers[name] = [...rows.values()];
+    }
+    return {...base, ...data, registers};
+  }
+
+  async function setDashboardSnapshots(base) {
+    const queue = await loadReviewSnapshot(base);
+    dashboardData = _segregateDropped(base);
+    reviewData = queue === base ? dashboardData : _segregateDropped(queue);
+  }
+
   let activeSearchCategory = 'all';
   let sourcingGroupMode = 'method'; // 'method' or 'author'
 
@@ -1925,12 +1951,17 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       progress.textContent = (event.loaded / 1048576).toFixed(1) + ' MB received';
     };
     request.onerror = request.onabort = failed;
-    request.onload = () => {
+    request.onload = async () => {
       clearTimeout(stallTimer);
       try {
         if (request.status !== 200 || !request.response?.registers) throw Error('Evidence snapshot unavailable');
         window._dataLastModified = request.getResponseHeader('Last-Modified') || '';
-        dashboardData = _segregateDropped(request.response);
+        await setDashboardSnapshots(request.response);
+        if (reviewData.revision) {
+          const source = document.getElementById('review-log-source');
+          source.href = 'https://github.com/CIAT/nbs_ruralscan/blob/' + reviewData.revision + '/pipeline/metrics/review_log.csv';
+          source.textContent = 'CIAT review log · ' + reviewData.revision.slice(0, 8);
+        }
         delete document.body.dataset.records;
         initDashboard();
         if (window.T4Analysis) window.T4Analysis.openFromHash();
@@ -2076,12 +2107,12 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     if((window._cropManifest||new Set()).has(eid) && !img.dataset.cropFallback){
       img.dataset.cropFallback='1';
       d.textContent='Full page unavailable locally. Showing saved crop; caption may be incomplete. Use source PDF link for context.';
-      img.before(d); img.src='https://raw.githubusercontent.com/CIAT/nbs_ruralscan/bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06/docs/crops/'+encodeURIComponent(eid)+'.jpg'; return;
+      img.before(d); img.src='https://raw.githubusercontent.com/CIAT/nbs_ruralscan/'+(reviewData.revision || 'bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06')+'/docs/crops/'+encodeURIComponent(eid)+'.jpg'; return;
     }
     var spCrop=(window._cropSharePointMap||{})[eid];
     if(spCrop){ var u=vfSharePointUrl(spCrop); if(u){ d.style.cssText='font-size:10.5px; color:var(--text-secondary); padding:8px 4px;'; d.innerHTML='PDF not synced on this machine — <a href="'+u+'" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);">open highlighted source region in SharePoint ↗</a><div style="font-size:9.5px; color:var(--text-muted); margin-top:4px;">needs CGIAR library access. To see crops inline, make the library available offline in OneDrive (see the <a href="https://github.com/CIAT/nbs_ruralscan/blob/main/docs/REVIEWER_GUIDE.md" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);">reviewer guide</a>).</div>'; img.replaceWith(d); return; } }
-    var evAll=((dashboardData||{}).registers||{}).EV_evidence_register||[]; var ev=evAll.find(function(e){return e.evidence_id===eid;})||{};
-    var srcAll=((dashboardData||{}).registers||{}).SRC_source_register||[]; var src=srcAll.find(function(s){return s.source_id===ev.source_id;})||{};
+    var evAll=((reviewData||{}).registers||{}).EV_evidence_register||[]; var ev=evAll.find(function(e){return e.evidence_id===eid;})||{};
+    var srcAll=((reviewData||{}).registers||{}).SRC_source_register||[]; var src=srcAll.find(function(s){return s.source_id===ev.source_id;})||{};
     var pdf=vfSharePointUrl(src.library_path||''); if(pdf&&ev.page)pdf+='#page='+ev.page;
     d.style.cssText='font-size:10.5px; color:var(--text-muted); padding:8px 4px;';
     d.innerHTML=pdf?('PDF not synced on this machine — <a href="'+pdf+'" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);">open in SharePoint'+(ev.page?(' p.'+ev.page):'')+' ↗</a> <span style="color:var(--text-muted);">(needs CGIAR access; or sync the library offline in OneDrive)</span>'):'crop unavailable — PDF not synced and no SharePoint copy for this source.';
@@ -2099,7 +2130,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
   // Task D: report MISSING evidence (a variable/figure a reviewer expected but that was never
   // extracted). Writes a row to the in-repo gaps register via /api/gap; shown in the Gaps queue.
   function openGapModal(){ var m=document.getElementById('gap-modal'); if(!m)return;
-    var dl=document.getElementById('gap-src-list'); if(dl){ var srcs=(((dashboardData||{}).registers||{}).SRC_source_register||[]).map(function(s){return s.source_id;}).filter(Boolean).sort(); dl.innerHTML=srcs.map(function(s){return '<option value="'+vfEsc(s)+'"></option>';}).join(''); }
+    var dl=document.getElementById('gap-src-list'); if(dl){ var srcs=(((reviewData||{}).registers||{}).SRC_source_register||[]).map(function(s){return s.source_id;}).filter(Boolean).sort(); dl.innerHTML=srcs.map(function(s){return '<option value="'+vfEsc(s)+'"></option>';}).join(''); }
     var sc=window._vfScope||{}; var ctx=document.getElementById('gap-scope-ctx');
     if(ctx){ ctx.innerHTML='Filed against your current scope: <b>'+vfEsc(sc.nbs||'—')+'</b> · <b>'+vfEsc((sc.family&&sc.family!=='all')?familyDisplayName(sc.family):'all families and evidence scopes')+'</b> · <b>'+vfEsc(sc.table||'—')+'</b>'; }
     var msg=document.getElementById('gap-msg'); if(msg)msg.textContent='';
@@ -2113,13 +2144,13 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     if(!body.variable && !body.note){ if(msg)msg.innerHTML='<span style="color:var(--accent-rose);">Enter at least a missing variable or a note.</span>'; return; }
     fetch('/api/gap',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json();}).then(function(res){
       if(res.error){ if(msg)msg.innerHTML='<span style="color:var(--accent-rose);">'+vfEsc(res.error)+'</span>'; return; }
-      if(!dashboardData.gaps)dashboardData.gaps=[]; dashboardData.gaps.push({gap_id:res.gap_id,date:'',reporter:body.reporter,nbs_id:body.nbs_id,suitability_family_id:body.suitability_family_id,table:body.table,source_id:body.source_id,location:body.location,variable:body.variable,note:body.note,status:'open'});
+      if(!reviewData.gaps)reviewData.gaps=[]; reviewData.gaps.push({gap_id:res.gap_id,date:'',reporter:body.reporter,nbs_id:body.nbs_id,suitability_family_id:body.suitability_family_id,table:body.table,source_id:body.source_id,location:body.location,variable:body.variable,note:body.note,status:'open'});
       ['gap-variable','gap-location','gap-note'].forEach(function(id){var el=document.getElementById(id); if(el)el.value='';});
       if(msg)msg.innerHTML='<span style="color:var(--accent-emerald);">Logged '+vfEsc(res.gap_id)+' — in pipeline/metrics/gaps.csv. Commit / submit to share it. See it in the ⚠ Gaps queue.</span>';
       if(typeof renderVfWorklist==='function')renderVfWorklist();
     }).catch(function(e){ if(msg)msg.innerHTML='<span style="color:var(--accent-rose);">Error: '+vfEsc(String(e))+'</span>'; }); }
   function renderVfGaps(host){ if(!host)return;
-    var gaps=((dashboardData||{}).gaps||[]).filter(_vfGapInScope).slice().reverse();
+    var gaps=((reviewData||{}).gaps||[]).filter(_vfGapInScope).slice().reverse();
     var dc=document.getElementById('vf-decided-count'); if(dc)dc.innerHTML='<b>'+gaps.length+'</b> reported gap(s) — missing evidence flagged for a re-extraction sweep. <a href="#" onclick="openGapModal();return false;" style="color:var(--accent-amber);">+ report a gap</a>';
     host.innerHTML='';
     if(!gaps.length){ host.innerHTML='<div style="color:var(--text-muted); padding:14px; line-height:1.6;">No gaps reported yet. Use <b style="color:var(--accent-amber);">&#9888; Report missing evidence</b> (in the action bar above) to flag a variable / figure / table that should exist but isn\'t in the register — e.g. after checking every variable in Figure 7 has been extracted.</div>'; return; }
@@ -2145,7 +2176,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     if(!me){ el.innerHTML='<span style="color:var(--text-muted); font-weight:400;">Pick your reviewer handle above the queue to start deciding.</span>'; _vfStyleApply(0); return; }
     // Apply ships EVERY pending decision, across all queues — so this total is scope- and mode-independent.
     // Break it into AI-flagged + AI-passed origin so the reviewer sees exactly what will be submitted.
-    var all=window._vfAllReviews||{}; var byId={}; ((dashboardData.registers.EV_evidence_register)||[]).forEach(function(e){byId[e.evidence_id]=e;}); ((dashboardData._evDropped)||[]).forEach(function(e){byId[e.evidence_id]=e;});
+    var all=window._vfAllReviews||{}; var byId={}; ((reviewData.registers.EV_evidence_register)||[]).forEach(function(e){byId[e.evidence_id]=e;}); ((reviewData._evDropped)||[]).forEach(function(e){byId[e.evidence_id]=e;});
     var nf=0,np=0; Object.keys(all).forEach(function(eid){ var m=all[eid][me]; if(m&&m.decision&&m.applied!==true&&m.applied!=='true'){ var e=byId[eid]; if(e&&/\[VERIFY-FLAG/.test(e.attribution||''))nf++; else np++; } });
     var n=nf+np;
     var nc=window._vfClarificationPending||0;
@@ -2174,7 +2205,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
   function vfToggleCrop(eid,btn){ var box=btn.nextElementSibling; if(!box)return; if(box.style.display==='none'){ if(!box.dataset.loaded){ box.dataset.rot='0'; var q=encodeURIComponent(eid);
       // CODE source (tool / GEE script): render the actual code lines from /api/code — NOT a PDF
       // crop. Needs the live server (it fetches + caches the file from GitHub at the pinned commit).
-      var _evAllC=((dashboardData||{}).registers||{}).EV_evidence_register||[]; var _evC=_evAllC.find(function(e){return e.evidence_id===eid;})||{};
+      var _evAllC=((reviewData||{}).registers||{}).EV_evidence_register||[]; var _evC=_evAllC.find(function(e){return e.evidence_id===eid;})||{};
       if((_evC.locator_type||'')==='file_line'){
         if(!window._reviewApi){ box.innerHTML='<div style="font-size:10.5px; color:var(--text-muted); padding:8px 4px;">Code source — start the local review server to render the file lines, or use the GitHub link above.</div>'; box.dataset.loaded='1'; box.style.display='block'; btn.textContent='💻 hide source code'; return; }
         box.innerHTML='<div style="font-size:10px; color:var(--text-muted); padding:6px 4px;">loading code…</div>';
@@ -2188,7 +2219,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       var manifest=window._cropManifest||new Set();
       if(manifest.has(eid) && !window._reviewApi){
         // 1) committed crop (works on Pages + local, zero setup). Highlight baked in; client-side rotate for sideways tables.
-        box.innerHTML='<div style="display:flex; gap:10px; align-items:center; margin-bottom:5px;"><button onclick="vfRotateCrop(\''+eid+'\',this)" title="rotate 90° — for sideways/landscape tables" style="font-size:10px; padding:2px 9px; border-radius:4px; background:transparent; color:var(--accent-sky); border:1px solid var(--border-color); cursor:pointer;">↻ rotate</button><a href="https://raw.githubusercontent.com/CIAT/nbs_ruralscan/bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06/docs/crops/'+q+'.jpg" target="_blank" rel="noopener noreferrer" style="font-size:10px; color:var(--accent-sky);">open crop ↗</a><span style="font-size:9.5px; color:var(--text-muted);">scroll to see the whole region</span></div><div style="max-height:72vh; overflow:auto; border:1px solid var(--border-color); border-radius:4px;"><img src="https://raw.githubusercontent.com/CIAT/nbs_ruralscan/bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06/docs/crops/'+q+'.jpg" style="max-width:100%; display:block;" alt="source region screengrab" onerror="this.replaceWith(document.createTextNode(\'crop unavailable\'));"></div>';
+        box.innerHTML='<div style="display:flex; gap:10px; align-items:center; margin-bottom:5px;"><button onclick="vfRotateCrop(\''+eid+'\',this)" title="rotate 90° — for sideways/landscape tables" style="font-size:10px; padding:2px 9px; border-radius:4px; background:transparent; color:var(--accent-sky); border:1px solid var(--border-color); cursor:pointer;">↻ rotate</button><a href="https://raw.githubusercontent.com/CIAT/nbs_ruralscan/'+(reviewData.revision || 'bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06')+'/docs/crops/'+q+'.jpg" target="_blank" rel="noopener noreferrer" style="font-size:10px; color:var(--accent-sky);">open crop ↗</a><span style="font-size:9.5px; color:var(--text-muted);">scroll to see the whole region</span></div><div style="max-height:72vh; overflow:auto; border:1px solid var(--border-color); border-radius:4px;"><img src="https://raw.githubusercontent.com/CIAT/nbs_ruralscan/'+(reviewData.revision || 'bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06')+'/docs/crops/'+q+'.jpg" style="max-width:100%; display:block;" alt="source region screengrab" onerror="this.replaceWith(document.createTextNode(\'crop unavailable\'));"></div>';
       } else if(window._reviewApi){
         // 2) Prefer the full page on the live server: old committed crops may omit captions.
         box.innerHTML='<div style="display:flex; gap:10px; align-items:center; margin-bottom:5px;"><button onclick="vfRotateCrop(\''+eid+'\',this)" title="rotate 90° (server re-renders crisp) — for sideways/landscape tables" style="font-size:10px; padding:2px 9px; border-radius:4px; background:transparent; color:var(--accent-sky); border:1px solid var(--border-color); cursor:pointer;">↻ rotate</button><a href="/api/crop?eid='+q+'&full=1" target="_blank" rel="noopener noreferrer" style="font-size:10px; color:var(--accent-sky);">open full page ↗</a><span style="font-size:9.5px; color:var(--text-muted);">scroll to see the whole region</span></div><div style="max-height:72vh; overflow:auto; border:1px solid var(--border-color); border-radius:4px;"><img src="/api/crop?eid='+q+'&full=1" style="max-width:100%; display:block;" alt="source region screengrab" onerror="vfCropOnErr(\''+eid+'\',this)"></div>';
@@ -2199,8 +2230,8 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
         box.innerHTML=spCrop?('<div style="font-size:10.5px; color:var(--text-secondary); padding:8px 4px;"><b style="color:#fbbf24;">Restricted (copyright) source.</b> The crop can\'t be published on the public site, so it opens in the team library instead — <a href="'+spCrop+'" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);">open highlighted source region in SharePoint ↗</a><div style="font-size:9.5px; color:var(--text-muted); margin-top:4px;">Needs CGIAR library access. To see restricted crops inline instead, make the library available offline in OneDrive + run the local server (see the <a href="https://github.com/CIAT/nbs_ruralscan/blob/main/docs/REVIEWER_GUIDE.md" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);">reviewer guide</a>). If the link won\'t open, request access from the library maintainer.</div></div>'):('<div style="font-size:10.5px; color:var(--text-muted); padding:8px 4px;">Highlighted crop is in the library but its link could not be built.</div>');
       } else {
         // 4) no committed crop, no server, no library crop → SharePoint PDF link.
-        var evAll=((dashboardData||{}).registers||{}).EV_evidence_register||[]; var ev=evAll.find(function(e){return e.evidence_id===eid;})||{};
-        var srcAll=((dashboardData||{}).registers||{}).SRC_source_register||[]; var src=srcAll.find(function(s){return s.source_id===ev.source_id;})||{};
+        var evAll=((reviewData||{}).registers||{}).EV_evidence_register||[]; var ev=evAll.find(function(e){return e.evidence_id===eid;})||{};
+        var srcAll=((reviewData||{}).registers||{}).SRC_source_register||[]; var src=srcAll.find(function(s){return s.source_id===ev.source_id;})||{};
         var sp=vfSharePointUrl(src.library_path||''); if(sp&&ev.page)sp+='#page='+ev.page;
         box.innerHTML=sp?('<div style="font-size:10.5px; color:var(--text-secondary); padding:8px 4px;">No committed crop and no local review server — <a href="'+sp+'" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);">open source region in SharePoint'+(ev.page?(' p.'+ev.page):'')+' ↗</a></div>'):('<div style="font-size:10.5px; color:var(--text-muted); padding:8px 4px;">No committed crop, no review server, and no SharePoint copy for this source.</div>');
       }
@@ -2239,7 +2270,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     return '\u00B6 main text';
   }
   function vfReviewingConflict(id){
-    return ((dashboardData.registers||{}).EV_evidence_register||[]).some(function(e){return e.evidence_id===id&&e._reviewConflict;});
+    return ((reviewData.registers||{}).EV_evidence_register||[]).some(function(e){return e.evidence_id===id&&e._reviewConflict;});
   }
   function setVfDecision(id,d){
     window._vfSaveQueue=(window._vfSaveQueue||Promise.resolve()).then(async function(){
@@ -2387,7 +2418,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
         vfUseDecisions(await vfFetchDecisions());
         const response=await fetch('data/bec50bc0f9dc/dashboard_data.json?t='+Date.now());
         if(!response.ok)throw Error('Dashboard data returned HTTP '+response.status);
-        dashboardData=_segregateDropped(await response.json());
+        await setDashboardSnapshots(await response.json());
         renderVfWorklist();
         if(typeof triggerOverviewFilter==='function')triggerOverviewFilter();
         if(typeof renderDiscoveryAudit==='function')renderDiscoveryAudit();
@@ -2496,7 +2527,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     renderVfWorklist();
   }
   function renderQaqcStats(hostEl){
-    var s=(dashboardData&&dashboardData.qaqc_stats)||{};
+    var s=(reviewData&&reviewData.qaqc_stats)||{};
     var fe=s.flag_eval||{}, pe=s.pass_eval||{};
     var live=0; var allr=window._vfAllReviews||{}; Object.keys(allr).forEach(function(eid){ Object.keys(allr[eid]).forEach(function(rv){ if(allr[eid][rv].decision)live++; }); });
     function pct(v){ return (v===null||v===undefined)?'<span style="color:var(--text-muted);">n/a</span>':('<b>'+v+'%</b>'); }
@@ -2538,7 +2569,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
   async function vfRefreshReview(){
     const [all, response]=await Promise.all([vfFetchDecisions(),fetch('data/bec50bc0f9dc/dashboard_data.json?t='+Date.now())]);
     if(!response.ok)throw Error('Could not refresh dashboard data');
-    dashboardData=_segregateDropped(await response.json());
+    await setDashboardSnapshots(await response.json());
     vfUseDecisions(all);
     if(window._reviewApi)await vfLoadClarifications();
     renderVfWorklist();
@@ -2566,9 +2597,55 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
   // All reviews for one unit, MERGING committed review_log (other reviewers, from the register)
   // with the local decisions.json store (_vfAllReviews). decisions.json is per-machine, so on
   // its own it misses other people's committed reviews — the review_log fills that gap.
+  function vfReviewCredits(name) {
+    // CIAT review exports used all four spellings for the same account.
+    const aliases = {'pete':'peetmate', 'peter':'peetmate', 'pete steward':'peetmate', 'peetmate':'peetmate', 'namita-j':'Namita-J'};
+    return [...new Set(String(name || '?').split(',').map(s => s.trim()).filter(Boolean)
+      .map(s => Object.hasOwn(aliases, s.toLowerCase()) ? aliases[s.toLowerCase()] : s))];
+  }
+  const vfEventCache = new WeakMap();
+  function vfArchivedHistory() {
+    if (window._vfSimpleView !== 'mine' || !window._vfReviewer || !reviewData.deferred_reviews) return '';
+    const scope = window._vfScope;
+    const decisions = new Map();
+    for (const r of reviewData.deferred_reviews) {
+      if (r.table !== scope.table || (scope.nbs !== 'all' && r.nbs_id !== scope.nbs) ||
+          !vfReviewCredits(r.reviewer).includes(window._vfReviewer)) continue;
+      if (r.decision === 'reopen') decisions.delete(r.evidence_id);
+      else decisions.set(r.evidence_id, r);
+    }
+    if (!decisions.size) return '';
+    const source = 'https://github.com/CIAT/nbs_ruralscan/blob/' + reviewData.revision + '/' + reviewData.deferred_register;
+    return '<details id="vf-archived-history"><summary>Your archived ' + vfEsc(scope.table) + ' finding reviews (' +
+      decisions.size + ')</summary><p>CIAT archived these findings in September, before the current rating method.</p><ul>' +
+      [...decisions.values()].map(r => '<li><code>' + vfEsc(r.evidence_id) + '</code> · ' + vfEsc(r.date) + ' · ' +
+        vfEsc(r.decision === 'flag' ? 'query' : r.decision) + (r.note ? '<br>' + vfEsc(r.note) : '') + '</li>').join('') +
+      '</ul><a href="' + source + '">Open the archived CIAT evidence register</a></details>';
+  }
+  function vfRatingHistory() {
+    const scope = window._vfScope || {};
+    if (window._vfSimpleView !== 'mine' || !window._vfReviewer || !reviewData.row_reviews) return '';
+    const rows = reviewData.row_reviews.filter(r => r.table === scope.table &&
+      (scope.nbs === 'all' || r.nbs_id === scope.nbs) && vfReviewCredits(r.reviewer).includes(window._vfReviewer));
+    if (!rows.length) return '';
+    const source = 'https://github.com/CIAT/nbs_ruralscan/blob/' + reviewData.revision + '/pipeline/metrics/row_review_log.csv';
+    return '<details id="vf-rating-history"><summary>Your ' + vfEsc(scope.table) + ' rating reviews (' + rows.length +
+      ')</summary><p>Decisions on compiled ratings. The finding count above covers source evidence.</p><ul>' +
+      rows.map(r => '<li>' + vfEsc(r.record_id.replace(/__/g, ' · ').replace(/_/g, ' ')) + ' — ' +
+        vfEsc(r.decision) + ' · ' + vfEsc(r.date.slice(0,10)) + (r.note ? '<br>' + vfEsc(r.note) : '') + '</li>').join('') +
+      '</ul><a href="' + source + '">View rating review log in CIAT</a></details>';
+  }
+  function vfReviewerEvents() {
+    const log = reviewData.review_log || [];
+    if (!vfEventCache.has(log)) {
+      vfEventCache.set(log, log.flatMap(row => vfReviewCredits(row.reviewer)
+        .map(reviewer => ({...row, reviewer}))));
+    }
+    return vfEventCache.get(log);
+  }
   function _vfMergedReviews(eid){ var out={};
-    var rl=(dashboardData.review_log)||[];
-    rl.forEach(function(r){ if(r.evidence_id!==eid)return; var d=(r.decision||'').toLowerCase(); if(d==='ok'||d==='drop'||d==='flag'||d==='query') out[r.reviewer||'?']=d; });
+    var rl=vfReviewerEvents();
+    rl.forEach(function(r){ if(r.evidence_id!==eid)return; var d=(r.decision||'').toLowerCase(); if(d==='reopen')delete out[r.reviewer]; else if(d)out[r.reviewer]=d; });
     var a=(window._vfAllReviews||{})[eid]||{};
     Object.keys(a).forEach(function(rv){ if(a[rv]&&a[rv].decision) out[rv]=a[rv].decision; });  // local pending/applied overrides
     return out; }
@@ -2660,8 +2737,9 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     return done;
   }
   function vfSimpleMatch(u,view){
-    if(view==='advanced')return true;
     if(view==='mine')return u.me;
+    if(u.formerlyCited && !(view==='advanced' && window._vfAxStatus==='dropped')) return false;
+    if(view==='advanced')return true;
     if(u.dropped)return false;
     var pending=u.me&&!u.meApplied;
     var query=u.myDec==='flag'||u.myDec==='query';
@@ -2690,7 +2768,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     if(observations==='only'&&!site)return false;
     if(!sc.nbs)return true;
     if(sc.nbs!=='all'&&ev.nbs_id!==sc.nbs)return false;
-    if(!DashboardTables.matches(ev, sc.table))return false;
+    if(!DashboardTables.matches(ev, sc.table, true))return false;
     if(sc.family&&sc.family!=='all'&&ev.suitability_family_id!==sc.family)return false;
     if(sc.source&&sc.source!=='all'&&_vfChanKey(ev)!==sc.source)return false;
     if(sc.round&&sc.round!=='all'&&_vfRoundKey(ev)!==sc.round)return false;
@@ -2713,9 +2791,9 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     return true; }
   function _vf2ndList(){
     var me=(window._vfReviewer||'').trim();
-    var evAll=(dashboardData.registers.EV_evidence_register)||[];
-    var dropped=(dashboardData._evDropped)||[];
-    var rl=(dashboardData.review_log)||[];
+    var evAll=(reviewData.registers.EV_evidence_register)||[];
+    var dropped=(reviewData._evDropped)||[];
+    var rl=vfReviewerEvents();
     var revBy={}, prior={};
     rl.forEach(function(r){ var d=(r.decision||'').toLowerCase(); if(d==='ok'||d==='drop'){ (revBy[r.evidence_id]=revBy[r.evidence_id]||{})[r.reviewer||'?']=true; prior[r.evidence_id]=r; } });
     var resolved=evAll.filter(function(e){return e.reviewer_ok===true||e.reviewer_ok==='true';}).concat(dropped);
@@ -2753,10 +2831,10 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     var rows=rlAll.slice().reverse();
     var touchedByMe={}; if(me) rlAll.forEach(function(r){ if((r.reviewer||'')===me) touchedByMe[r.evidence_id]=true; });
     var _myDecR={}; if(me) rlAll.forEach(function(r){ if((r.reviewer||'')===me && (r.decision||'')) _myDecR[r.evidence_id]=(r.decision||'').toLowerCase(); });
-    var evAll=(dashboardData.registers.EV_evidence_register)||[]; var present={};
+    var evAll=(reviewData.registers.EV_evidence_register)||[]; var present={};
     evAll.forEach(function(e){ present[e.evidence_id]=(e.reviewer_ok===true||e.reviewer_ok==='true'); });
-    var dropped={}; ((dashboardData._evDropped)||[]).forEach(function(e){ dropped[e.evidence_id]=true; });
-    var _byId2={}; evAll.concat((dashboardData._evDropped)||[]).forEach(function(e){ _byId2[e.evidence_id]=e; });
+    var dropped={}; ((reviewData._evDropped)||[]).forEach(function(e){ dropped[e.evidence_id]=true; });
+    var _byId2={}; evAll.concat((reviewData._evDropped)||[]).forEach(function(e){ _byId2[e.evidence_id]=e; });
     // origin (AI-flagged vs AI-passed) from the EV attribution (active or quarantined row).
     var _flaggedMap={}; Object.keys(_byId2).forEach(function(id){ _flaggedMap[id]=/\[VERIFY-FLAG/.test((_byId2[id].attribution)||''); });
     var _origin=function(id){ return _flaggedMap[id]?'flagged':'passed'; };
@@ -2834,7 +2912,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
   }
   function vfRelatedTableHtml(ev){
     function context(row){try{return typeof row.context==='object' ? row.context||{} : JSON.parse(row.context||'{}');}catch(e){return {};}}
-    var rows=(dashboardData.registers.EV_evidence_register)||[];
+    var rows=(reviewData.registers.EV_evidence_register)||[];
     var rootId=context(ev).table_continuation_of||ev.evidence_id;
     var root=rows.find(function(row){return row.evidence_id===rootId;});
     function compatible(row){return row.review_state!=='dropped' && ['source_id','nbs_id','variable','suitability_family_id','claim_scope'].every(function(k){return (row[k]||'')===(ev[k]||'');});}
@@ -2846,7 +2924,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
   }
   // Review the extracted claim and its intended use, not only relationship fields.
   function vfSourceAuditHtml(ev){
-    var notes=typeof dashboardData==='undefined'?{}:(dashboardData.t4_review_notes||{});
+    var notes=typeof reviewData==='undefined'?{}:(reviewData.t4_review_notes||{});
     var note=notes[ev.evidence_id]; if(!note)return '';
     return '<section style="margin:10px 0;padding:10px;border:1px solid var(--accent-amber)"><b>Bounded source audit — approval unchanged</b><p>'+vfEsc(note.finding)+'</p><p><b>Intended use:</b> '+vfEsc(note.intended_use)+'</p><p><b>Remaining decision:</b> '+vfEsc(note.remaining_decision)+'</p><p>'+vfEsc(note.source_check)+'</p><p>Respond using this evidence card’s existing decision and note controls.</p></section>';
   }
@@ -2886,18 +2964,18 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
 
   // --- Source channel (which discovery pipeline an EV row came from) ---
   // Authoritative from SRC.source_category; friendly labels for the QA/QC view.
-  function _vfSrcCatMap(){ if(window.__vfSrcCat)return window.__vfSrcCat; var m={}; ((dashboardData.registers.SRC_source_register)||[]).forEach(function(s){ m[s.source_id]=(s.source_category||'').trim(); }); window.__vfSrcCat=m; return m; }
+  function _vfSrcCatMap(){ if(window.__vfSrcCat)return window.__vfSrcCat; var m={}; ((reviewData.registers.SRC_source_register)||[]).forEach(function(s){ m[s.source_id]=(s.source_category||'').trim(); }); window.__vfSrcCat=m; return m; }
   function _vfChanKey(ev){ var c=_vfSrcCatMap()[ev.source_id]||''; return c||'unknown'; }
   // --- Search round (which discovery ROUND a source came from) ---
   // Derived from SRC.extraction_run_id: 'round<N>_...' = round N; anything else = round 1
   // (the original sweeps, before the naming convention). No schema column needed.
-  function _vfRoundMap(){ if(window.__vfRound)return window.__vfRound; var m={}; ((dashboardData.registers.SRC_source_register)||[]).forEach(function(s){ var mm=/^round(\d+)_/.exec((s.extraction_run_id||'').trim()); m[s.source_id]=mm?('round'+mm[1]):'round1'; }); window.__vfRound=m; return m; }
+  function _vfRoundMap(){ if(window.__vfRound)return window.__vfRound; var m={}; ((reviewData.registers.SRC_source_register)||[]).forEach(function(s){ var mm=/^round(\d+)_/.exec((s.extraction_run_id||'').trim()); m[s.source_id]=mm?('round'+mm[1]):'round1'; }); window.__vfRound=m; return m; }
   function _vfRoundKey(ev){ return _vfRoundMap()[ev.source_id]||'round1'; }
   function _vfRoundLabel(k){ var n=String(k).replace('round',''); return 'Round '+n+(n==='1'?' (original sweeps)':''); }
   // Open-access gate — same rule as scripts/render-crops.py (license cc-*/other-oa/cc0/
   // public-domain OR access_status open). Drives the Access filter chip + the OA/Restricted
   // card badge. Restricted = copyrighted, crop is team-only via SharePoint.
-  function _vfSrcOAMap(){ if(window.__vfSrcOA)return window.__vfSrcOA; var m={}; ((dashboardData.registers.SRC_source_register)||[]).forEach(function(s){ var lic=(s.license||'').toLowerCase(); var acc=(s.access_status||'').toLowerCase(); m[s.source_id]=(lic.indexOf('cc-')===0||lic==='other-oa'||lic==='cc0'||lic==='public-domain'||['open_access','open','gold','green','hybrid','oa'].indexOf(acc)>=0); }); window.__vfSrcOA=m; return m; }
+  function _vfSrcOAMap(){ if(window.__vfSrcOA)return window.__vfSrcOA; var m={}; ((reviewData.registers.SRC_source_register)||[]).forEach(function(s){ var lic=(s.license||'').toLowerCase(); var acc=(s.access_status||'').toLowerCase(); m[s.source_id]=(lic.indexOf('cc-')===0||lic==='other-oa'||lic==='cc0'||lic==='public-domain'||['open_access','open','gold','green','hybrid','oa'].indexOf(acc)>=0); }); window.__vfSrcOA=m; return m; }
   function _vfIsOA(ev){ return !!_vfSrcOAMap()[ev.source_id]; }
   function _vfChanMeta(key){ return ({
       stock:{label:'Stocktake', color:'#a78bfa'},
@@ -2911,7 +2989,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
   var _VF_RC_PASSED=['confirmed_pass','missed_error','wrong_practice','species_envelope','off_scope','wrong_table','constrained_aoi','relationship_missed','insufficient_context','unusable_value','speculative_evidence','other'];
   var _VF_RC_FLAGGED=['smuggled_number','wrong_variable','wrong_practice','species_envelope','table_error','off_scope','wrong_table','constrained_aoi','quote_too_narrow','relationship_missed','insufficient_context','unusable_value','speculative_evidence','false_flag','accepted_correction','other'];
   var _VF_RC_DESC={smuggled_number:'number came from elsewhere in the paper, not this quote',wrong_variable:'labelled the wrong canonical variable (e.g. SOM != SOC, NDVI != canopy)',wrong_practice:'mapped to the wrong NbS / practice (reforestation, pure forestry, carbon-only)',species_envelope:'a per-species envelope, not a practice-level suitability rule',table_error:'mangled or mis-stitched table extraction — cells merged across rows, or garbled/misread values',off_scope:'not a suitability claim (study-site descriptors, methods, problem statement)',wrong_table:'real claim, wrong table — soft enabling-env (tenure / market / road / extension / finance / labour) belongs to T3 / M2b / next-steps, not T4 suitability',constrained_aoi:'source only covers part of the land (e.g. a "marginal / residual land" bucket) → understates where the NbS can actually go; never use to set the AOI / opportunity-space extent',quote_too_narrow:'quote too short / mid-sentence — does not carry the full claim',relationship_missed:'the suitability relationship / directionality / membership curve was present in the source but NOT captured (e.g. monotonic decline with distance, fine-texture = high suitability)',insufficient_context:'cannot review — no caption / surrounding context, or the table screengrab failed to render',unusable_value:'named a variable but gave no usable rule — a weight / score with no scale ("5 out of what?"), or land cover with no class list (which classes in / out?)',speculative_evidence:'speculation / assumption, not first- or second-hand evidence ("may deter", hand-wavy assumed causation)',false_flag:'verifier was wrong; the number IS supported -> keep (ok)',accepted_correction:'verifier auto-correction was right and accepted -> ok',confirmed_pass:'AI pass was correct (ok)',missed_error:'AI should have flagged this — false negative -> drop',other:'something else; explain in the note'};
-  function vfDetailHtml(o, passed, opts){ opts=opts||{}; var _collap=!!opts.collapsible,_settledC=!!opts.settled,_openC=!!opts.open,_myDecC=(opts.myDec||'').toLowerCase(); var ev=o.ev, verdict=o.verdict, reason=o.reason; var srcAll=(dashboardData.registers.SRC_source_register)||[]; var src=srcAll.find(function(s){return s.source_id===ev.source_id;})||{};
+  function vfDetailHtml(o, passed, opts){ opts=opts||{}; var _collap=!!opts.collapsible,_settledC=!!opts.settled,_openC=!!opts.open,_myDecC=(opts.myDec||'').toLowerCase(); var ev=o.ev, verdict=o.verdict, reason=o.reason; var srcAll=(reviewData.registers.SRC_source_register)||[]; var src=srcAll.find(function(s){return s.source_id===ev.source_id;})||{};
     var _chan=_vfChanMeta(_vfChanKey(ev)); var _chanBadge='<span onclick="vfScopeSet(\'source\',\''+vfEsc(_vfChanKey(ev))+'\')" title="Source channel: '+vfEsc(_chan.label)+' — click to filter the worklist to this channel" style="cursor:pointer; font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:'+_chan.color+'; border:1px solid '+_chan.color+'; border-radius:3px; padding:1px 6px;">'+vfEsc(_chan.label)+'</span>';
     var _rndK=_vfRoundKey(ev); var _roundBadge=(_rndK!=='round1')?('<span onclick="vfScopeSet(\'round\',\''+vfEsc(_rndK)+'\')" title="'+vfEsc(_vfRoundLabel(_rndK))+' — click to filter the worklist to this round" style="cursor:pointer; font-size:9.5px; font-weight:700; color:#fff; background:#f97316; border-radius:3px; padding:2px 6px; margin-left:4px;">'+vfEsc(_vfRoundLabel(_rndK))+'</span>'):'';
     var _oa=_vfIsOA(ev); var _oaCol=_oa?'#34d399':'#fbbf24'; var _oaBadge='<span onclick="vfScopeSet(\'access\',\''+(_oa?'oa':'restricted')+'\')" title="'+(_oa?'Open-access source — crop shown inline / publishable':'Copyrighted (non-open-access) — crop is team-only via SharePoint')+' — click to filter" style="cursor:pointer; font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:'+_oaCol+'; border:1px solid '+_oaCol+'; border-radius:3px; padding:1px 6px;">'+(_oa?'OA':'Restricted')+'</span>';
@@ -2980,7 +3058,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     var cropImg=_showCrop?('<div style="margin-top:8px;"><button onclick="vfToggleCrop(\''+ev.evidence_id+'\',this)" style="font-size:10.5px; padding:3px 9px; border-radius:4px; background:transparent; color:var(--accent-sky); border:1px solid var(--border-color); cursor:pointer;">'+(_isCodeSrc?'💻 show source code':'📷 show source region')+'</button><div class="vf-crop" style="display:none; margin-top:6px;"></div></div>'):'';
     // Default-decode categorical class codes (issue #102): readable class names for any
     // class-coded EV (e.g. a CDL crop mask) so the reviewer never sees bare "61, 205…".
-    var _dc=((dashboardData||{}).decoded_classes||{})[ev.evidence_id];
+    var _dc=((reviewData||{}).decoded_classes||{})[ev.evidence_id];
     var _dcName=function(p){return vfEsc(p[1]||('#'+p[0]));};
     var decodedBlock=_dc?('<div style="margin-top:8px; font-size:10.5px; background:var(--bg-primary); border:1px solid var(--border-color); border-radius:4px; padding:7px 9px;"><b style="color:var(--accent-emerald);">&#128203; Decoded classes ('+_dc.n_included+' included &middot; scheme '+vfEsc(_dc.scheme)+')</b><div style="color:var(--text-secondary); margin-top:3px; line-height:1.5;">'+_dc.included.slice(0,25).map(_dcName).join(', ')+(_dc.included.length>25?(' <span style="color:var(--text-muted);">+'+(_dc.included.length-25)+' more</span>'):'')+'</div>'+((_dc.excluded&&_dc.excluded.length)?('<div style="margin-top:4px; color:var(--accent-rose);"><b>Excluded:</b> '+_dc.excluded.map(_dcName).join(', ')+'</div>'):'')+'</div>'):'';
     // Footer differs by state: pending/unreviewed -> decision buttons; my APPLIED decision -> challenge + re-open.
@@ -3003,6 +3081,8 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       +'<span style="font-weight:700; font-size:10px; color:'+vc+'; text-transform:uppercase;" title="AI verify verdict">'+vfEsc(verdict)+'</span>'
       +'<span style="font-size:11px; color:var(--text-secondary);">'+vfEsc(ev.variable||'')+' · '+vfEsc((ev.use_role||'').replace(/_/g,' '))+' · '+(ev.page?('<a href="#" onclick="vfSetSubset(\'section\',\''+vfEsc(String(ev.page))+'\');return false;" title="subset the worklist to page '+vfEsc(String(ev.page))+' of this source" style="color:var(--accent-sky); text-decoration:none; border-bottom:1px dotted var(--accent-sky);">'+vfEsc(page)+'</a>'):vfEsc(page))+' · '+vfEsc(vfLocHint(ev))+'</span>'
       +'</div>'))
+      +(_collap && opts.formerlyCited?'<p>Previously cited in this table. <a href="https://github.com/CIAT/nbs_ruralscan/blob/'+vfEsc(reviewData.formerly_cited[window._vfScope.table][ev.evidence_id])+'">View the earlier CIAT table</a>.</p>':'')
+      +(opts.myEvent?'<p><strong>Your CIAT decision</strong> · '+vfEsc(opts.myEvent.date)+' · '+vfEsc(opts.myEvent.decision)+(opts.myEvent.reason?' · '+vfEsc(opts.myEvent.reason.replace(/_/g,' ')):'')+(opts.myEvent.note?'<br>'+vfEsc(opts.myEvent.note):'')+'</p>':'')
       +_chipRow
       +'<p><a class="finding-ciat" href="'+vfEsc(DashboardTables.ciatUrl(ev.evidence_id))+'">Open this finding in CIAT</a></p>'
       +(ev._reviewConflict?'<p style="border-left:3px solid var(--accent-amber);padding:8px"><b>Reviewers disagree:</b> this record has both Keep and Drop decisions. Check the reviewer notes below and give your judgement.</p>':'')
@@ -3067,7 +3147,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     if(!fb||!ab)return; ab.style.top='auto'; ab.style.bottom='0'; }
 
   function renderVfWorklist() {
-    if (!dashboardData) return;
+    if (!reviewData) return;
     if(!window._vfSimpleView){window._vfSimpleView='todo';window._vfAxMe='any';window._vfAxOther='any';window._vfAxOrigin='any';}
     if (!window._vfDecisions){ try{ window._vfDecisions=JSON.parse(localStorage.getItem('vfDecisions')||'{}'); }catch(e){ window._vfDecisions={}; } }
     if (!window._vfReasons){ try{ window._vfReasons=JSON.parse(localStorage.getItem('vfReasons')||'{}'); }catch(e){ window._vfReasons={}; } }
@@ -3076,7 +3156,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     _vfInstallKeys();                       // idempotent — one document-level listener, ever
     window._vfFocusIdx=-1;                  // the card list is about to be rebuilt; drop the focus
     syncVfReviewerPicker();
-    var evAll=dashboardData.registers.EV_evidence_register||[]; var srcAll=dashboardData.registers.SRC_source_register||[];
+    var evAll=reviewData.registers.EV_evidence_register||[]; var srcAll=reviewData.registers.SRC_source_register||[];
     var mode=window._vfMode||'flagged';
     var flaggedRows=[];
     evAll.forEach(function(ev){ var attr=ev.attribution||''; var idx=attr.indexOf('[VERIFY-FLAG '); if(idx===-1)return;
@@ -3135,11 +3215,11 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
         +_mkPills('source','Source channel',_srcOpts,function(o){return _vfChanMeta(o).label;},'amber',false)
         +_mkPills('access','Access',['oa','restricted'],function(o){return o==='oa'?'Open-access':'Restricted';},'emerald',false);
     }
-    var _vfPreScope=flaggedRows.map(function(r){return r.ev;}).concat(passedAll, (dashboardData._evDropped||[]).filter(function(e){return e.use_role!=='dataset';})); window._vfPreScope=_vfPreScope;
+    var _vfPreScope=flaggedRows.map(function(r){return r.ev;}).concat(passedAll, (reviewData._evDropped||[]).filter(function(e){return e.use_role!=='dataset';})); window._vfPreScope=_vfPreScope;
     flaggedRows=flaggedRows.filter(function(r){return _inScope(r.ev);}); window._vfFlagged=flaggedRows;
     passedAll=passedAll.filter(_inScope);
-    var rlAll=(dashboardData.review_log)||[];
-    var _gapsCount=((dashboardData.gaps)||[]).filter(_vfGapInScope).length;
+    var rlAll=vfReviewerEvents();
+    var _gapsCount=((reviewData.gaps)||[]).filter(_vfGapInScope).length;
     // ===== Orthogonal review-status axes: origin × reviewed-by-me × reviewed-by-others =====
     // Replaces the mode-encodes-status split. Every permutation is a toggle combo,
     // composed with scope + verdict + tables. Universe includes ACTIVE (flagged∪passed) AND DROPPED
@@ -3156,10 +3236,10 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     // committed decisions per (id,reviewer). A 'reopen' row CLEARS that reviewer's prior decision —
     // the unit is back in play awaiting a fresh call, so it must NOT count as reviewed-by-them, and
     // (for me) it overrides any now-stale store decision so the unit resurfaces in To review / AI-flagged.
-    var _rlByRev={}, _reopMe={};
+    var _rlByRev={}, _reopMe={}, myEvents={};
     rlAll.forEach(function(r){ var d=(r.decision||'').toLowerCase(); if(!d)return; var id=r.evidence_id, who=r.reviewer||'?'; _rlByRev[id]=_rlByRev[id]||{};
-      if(d==='reopen'){ delete _rlByRev[id][who]; if(who===_meH)_reopMe[id]=true; }
-      else { _rlByRev[id][who]=d; if(who===_meH)delete _reopMe[id]; } });
+      if(d==='reopen'){ delete _rlByRev[id][who]; if(who===_meH){_reopMe[id]=true; delete myEvents[id];} }
+      else { _rlByRev[id][who]=d; if(who===_meH){delete _reopMe[id]; myEvents[id]=r;} } });
     var _uMe=function(id){ if(_pend[id])return true; if(_reopMe[id])return false; var s=_store[id]||{}; if(_meH&&s[_meH]&&s[_meH].decision)return true; return !!(_meH&&(_rlByRev[id]||{})[_meH]); };
     var _uOther=function(id){ var s=_store[id]||{}; if(Object.keys(s).some(function(k){return k!==_meH&&s[k]&&s[k].decision;}))return true; return Object.keys(_rlByRev[id]||{}).some(function(k){return k!==_meH;}); };
     var _uMyDec=function(id){ if(_pend[id])return (_pend[id]||'').toLowerCase(); if(_reopMe[id])return ''; var s=_store[id]||{}; if(_meH&&s[_meH]&&s[_meH].decision)return (s[_meH].decision||'').toLowerCase(); return _meH?((_rlByRev[id]||{})[_meH]||''):''; };
@@ -3178,10 +3258,10 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       ev._reviewQueue=_vfReviewBucket(ev,decisions);
       var calls=Object.values(decisions).map(function(d){return d==='keep'?'ok':d;});ev._reviewConflict=calls.indexOf('ok')>=0&&calls.indexOf('drop')>=0;
       if(!isDrop&&vfHasAnswerForReview(id))ev._reviewQueue='first';
-      _uni.push({ev:ev,origin:origin,verdict:verdict,reason:reason,me:_uMe(id),other:_uOther(id),myDec:_uMyDec(id),conflictReviewed:!!_repeatConflicts[id]||!!((_store[id]||{})[_meH]||{}).reviewed_conflict_at,meApplied:_meApplied(id),dropped:isDrop}); };
+      _uni.push({myEvent:myEvents[id],formerlyCited:!DashboardTables.matches(ev,window._vfScope.table),ev:ev,origin:origin,verdict:verdict,reason:reason,me:_uMe(id),other:_uOther(id),myDec:_uMyDec(id),conflictReviewed:!!_repeatConflicts[id]||!!((_store[id]||{})[_meH]||{}).reviewed_conflict_at,meApplied:_meApplied(id),dropped:isDrop}); };
     flaggedRows.forEach(function(r){ _pushU(r.ev,'flagged',r.verdict,r.reason); });
     passedAll.forEach(function(ev){ _pushU(ev,'passed','pass','AI accepted this extraction — spot-check: is the encoded value faithful to the quote?'); });
-    ((dashboardData._evDropped)||[]).forEach(function(ev){ if(ev.use_role==='dataset')return; if(!_vfInScope(ev))return; var o=/\[VERIFY-FLAG/.test(ev.attribution||'')?'flagged':'passed'; _pushU(ev,o,o==='flagged'?'flagged':'pass',''); });
+    ((reviewData._evDropped)||[]).forEach(function(ev){ if(ev.use_role==='dataset')return; if(!_vfInScope(ev))return; var o=/\[VERIFY-FLAG/.test(ev.attribution||'')?'flagged':'passed'; _pushU(ev,o,o==='flagged'?'flagged':'pass',''); });
     // Secondary filters (My-call + verdict + tables) — SHARED by _axN and the rendered _list so a
     // toggle's count always equals what clicking it shows. effOrigin/effMe let _axN evaluate the
     // predicate as if a candidate axis value were applied. A non-'conflict' verdict is ignored when
@@ -3244,7 +3324,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       var summary='<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">'+[['todo','To review'],['waiting','Waiting for answers'],['mine','My reviewed']].map(function(q){return '<button class="pill-btn '+(window._vfSimpleView===q[0]?'active sky':'')+'" onclick="vfSimpleQueue(\''+q[0]+'\')">'+q[1]+' ('+_uni.filter(function(u){return matches(u,q[0]);}).length+')</button>';}).join('')+'</div>';
       var maintenance='<details><summary>Team maintenance</summary>'+[['unresolved','Decision / status checks'],['approval_only','Missing review history'],['dropped','Dropped history'],['all','All records']].map(function(q){return '<button class="pill-btn" onclick="vfReviewQueue(\''+q[0]+'\')">'+q[1]+'</button>';}).join('')+'</details>';
       var cl=window._vfClarificationError?'<p>'+vfEsc(window._vfClarificationError)+'</p>':'';
-      fd.innerHTML=(window.DashboardPriority?DashboardPriority.controls():'')+summary+cl+'<details '+(window._vfMoreFilters?'open':'')+' ontoggle="window._vfMoreFilters=this.open"><summary style="cursor:pointer">More filters'+((window._vfScope.observations||'hide')==='hide'?' · site observations hidden':'')+(window._vfSimpleView==='advanced'?' — custom view active':'')+'</summary><button class="pill-btn" onclick="vfSimpleQueue(\'advanced\')">Use custom filters</button>'+(window._vfAdvancedScopeHtml||'')+_bar+maintenance+'<details><summary>Review a whole source</summary><div id="vf-bulk"></div></details></details>'; }
+      fd.innerHTML=(window.DashboardPriority?DashboardPriority.controls():'')+summary+vfArchivedHistory()+vfRatingHistory()+cl+'<details '+(window._vfMoreFilters?'open':'')+' ontoggle="window._vfMoreFilters=this.open"><summary style="cursor:pointer">More filters'+((window._vfScope.observations||'hide')==='hide'?' · site observations hidden':'')+(window._vfSimpleView==='advanced'?' — custom view active':'')+'</summary><button class="pill-btn" onclick="vfSimpleQueue(\'advanced\')">Use custom filters</button>'+(window._vfAdvancedScopeHtml||'')+_bar+maintenance+'<details><summary>Review a whole source</summary><div id="vf-bulk"></div></details></details>'; }
     // ---- apply the toggle filters to the universe (secondary filters via the shared _sec) ----
     var _list=_uni.filter(function(u){
       if(window._vfSimpleView!=='advanced')return _sec(u,'any','any');
@@ -3255,13 +3335,16 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     // stable seeded order (hash) so cards don't jump between renders.
     if(window._vfPassSeed===undefined)window._vfPassSeed=Math.floor(Math.random()*1e9); var _seed=window._vfPassSeed;
     _list=_list.map(function(u){ var h=0,s=u.ev.evidence_id+'|'+_seed; for(var i=0;i<s.length;i++){h=((h<<5)-h+s.charCodeAt(i))|0;} return {u:u,h:h>>>0}; }).sort(function(a,b){return Number(vfHasAnswerForReview(b.u.ev.evidence_id))-Number(vfHasAnswerForReview(a.u.ev.evidence_id))||a.h-b.h;}).map(function(x){return x.u;});
+    if(window._vfSimpleView==='mine'){
+      _list.sort((a,b)=>String(b.myEvent?.date || '').localeCompare(String(a.myEvent?.date || '')) || a.ev.evidence_id.localeCompare(b.ev.evidence_id));
+    }
     // decided-count line — reflects the current toggle combo.
-    var dc=document.getElementById('vf-decided-count');if(dc)dc.textContent=_list.length+' records'+(window._vfSimpleView==='waiting'?' — no action needed until answers arrive.':window._vfSimpleView==='mine'?' — your saved and applied decisions.':' — check each passage before choosing Keep, Drop or Query.');
+    var dc=document.getElementById('vf-decided-count');if(dc)dc.textContent=_list.length+' records'+(window._vfSimpleView==='waiting'?' — no action needed until answers arrive.':window._vfSimpleView==='mine'?(' — your reviewed findings.'+(_list.some(u=>u.formerlyCited)?' Includes findings cited in earlier CIAT ratings.':'')):' — check each passage before choosing Keep, Drop or Query.');
     _vfRenderBulk(evAll);
     if(!host)return; host.innerHTML='';
     if(!_list.length){
       if((window._vfScope||{}).source==='tool'&&!_uni.length){
-        var _nTool=((dashboardData.registers||{}).TOOL_tool_registry||[]).length;
+        var _nTool=((reviewData.registers||{}).TOOL_tool_registry||[]).length;
         host.innerHTML='<div style="color:var(--text-muted); padding:14px; line-height:1.5;"><b style="color:var(--accent-amber);">No tool-derived evidence extracted yet.</b><br>Tools / methods / codebases <b>are evidence-reviewable like any source</b> — their thresholds, weights and criteria become EV rows (provenance via <code>locator=file_line</code>+<code>commit_sha</code> for code, or section/anchor for docs) and are reviewed here under this channel. This is empty only because no tool has been extracted yet. <b>'+_nTool+'</b> tool(s) are catalogued in <code>TOOL_tool_registry</code> — browse them under <b>Bibliography</b>; extracting their criteria populates this channel.</div>';
         return;
       }
@@ -3275,7 +3358,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       const batch = _list.slice(rendered, rendered + 20);
       host.insertAdjacentHTML('beforeend', batch.map(function(u){
         return vfDetailHtml({ev:u.ev, verdict:u.verdict, reason:u.reason}, u.origin==='passed',
-          {collapsible:true, open:!u.meApplied||vfHasAnswerForReview(u.ev.evidence_id), settled:u.meApplied, myDec:u.myDec});
+          {collapsible:true, myEvent:window._vfSimpleView==='mine'?u.myEvent:null, formerlyCited:u.formerlyCited, open:!u.meApplied||vfHasAnswerForReview(u.ev.evidence_id), settled:u.meApplied, myDec:u.myDec});
       }).join(''));
       rendered += batch.length;
       if (rendered < _list.length) {
@@ -3360,7 +3443,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     var note=(window._vfBulkNote||'').trim();
     if(!reason){ alert('Pick a reason first — a bulk flag needs a coded reason (same set as the cards).'); return; }
     if(reason==='other'&&!note){ alert('Reason "other" needs a note explaining it.'); return; }
-    var rows=_vfBulkRows(dashboardData.registers.EV_evidence_register||[],sid,scope);
+    var rows=_vfBulkRows(reviewData.registers.EV_evidence_register||[],sid,scope);
     if(!rows.length){ alert('No active records match that source/scope.'); return; }
     var verb=decision==='drop'?'DROP':'QUERY (tentatively keep + flag for reconsideration)';
     var where=scope==='page'?(' on page '+(window._vfBulkPage||'')):(scope==='tabular'?' (tabular records only)':(scope==='table'?(' from Table '+(window._vfBulkTable||'')):''));
@@ -3385,7 +3468,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     if(window._cropManifest===undefined){ window._cropManifest=new Set(); }
     if(window._cropSharePoint===undefined){ window._cropSharePoint=new Set(); }
     if(window._cropSharePointMap===undefined){ window._cropSharePointMap={}; }
-    fetch('https://raw.githubusercontent.com/CIAT/nbs_ruralscan/bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06/docs/crops/manifest.json').then(function(r){return r.ok?r.json():null;}).then(function(j){ if(j&&Array.isArray(j.eids)){ window._cropManifest=new Set(j.eids); } if(j&&j.sharepoint&&typeof j.sharepoint==='object'){ window._cropSharePointMap=j.sharepoint; window._cropSharePoint=new Set(Object.keys(j.sharepoint)); } if(j&&(Array.isArray(j.eids)||j.sharepoint)){ if(typeof renderVfWorklist==='function' && window._vfMode){ try{renderVfWorklist();}catch(e){} } } }).catch(function(){});
+    fetch('https://raw.githubusercontent.com/CIAT/nbs_ruralscan/'+(reviewData.revision || 'bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06')+'/docs/crops/manifest.json').then(function(r){return r.ok?r.json():null;}).then(function(j){ if(j&&Array.isArray(j.eids)){ window._cropManifest=new Set(j.eids); } if(j&&j.sharepoint&&typeof j.sharepoint==='object'){ window._cropSharePointMap=j.sharepoint; window._cropSharePoint=new Set(Object.keys(j.sharepoint)); } if(j&&(Array.isArray(j.eids)||j.sharepoint)){ if(typeof renderVfWorklist==='function' && window._vfMode){ try{renderVfWorklist();}catch(e){} } } }).catch(function(){});
     // 1. Meta fields
     const published = window._dataLastModified ? new Date(window._dataLastModified) : null;
     document.getElementById('meta-timestamp-val').textContent = published && !isNaN(published) ? published.toLocaleString() : '—';
@@ -5923,8 +6006,8 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
 <script src="dashboard-progress.js?v=1.4.0"></script>
 <script src="dashboard-feedback.js?v=1.5.0"></script>
 <script src="dashboard-relationships.js?v=1.2.1"></script>
-<script src="dashboard-tables.js?v=2"></script>
-<script src="dashboard-priority.js?v=1.6.1"></script>
+<script src="dashboard-tables.js?v=3"></script>
+<script src="dashboard-priority.js?v=1.7"></script>
 <script src="dashboard-shell.js?v=1.6.1"></script>
 </body>
 </html>

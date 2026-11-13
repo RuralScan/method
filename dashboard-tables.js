@@ -7,11 +7,23 @@
     {id: 'T6', hash: '#review-t6', key: 'T6_nbs_scorecard', description: 'Findings cited in T6 scorecard ratings. Check the reported effect and the conditions under which it applies.'}
   ];
   const compiled = new WeakMap();
-  function matches(ev, table) {
+  function matches(ev, table, includeHistory = false) {
     if (!table || table === 'all') return true;
     if (table === 'T4-suitability') return ev.use_role === 'structural_suitability';
     if (table !== 'T3' && table !== 'T6') return _vfR2T[ev.use_role] === table;
-    const recipes = dashboardData.recipes;
+    const recipes = reviewData.recipes;
+    if (reviewData.membership) {
+      if (!compiled.has(reviewData)) {
+        const groups = {};
+        for (const id of ['T3', 'T6']) {
+          groups[id] = new Set(reviewData.membership[id]);
+          groups[id + '-former'] = new Set(Object.keys(reviewData.formerly_cited[id]));
+        }
+        compiled.set(reviewData, groups);
+      }
+      const groups = compiled.get(reviewData);
+      return groups[table].has(ev.evidence_id) || (includeHistory && groups[table + '-former'].has(ev.evidence_id));
+    }
     if (!compiled.has(recipes)) {
       const sets = {};
       for (const {id, key} of tables.filter(t => t.key)) {

@@ -1,6 +1,8 @@
 """Rebuild every shared dashboard edition, then publish the November 10 evidence dashboard at the site root."""
+import csv
 from datetime import date
 from html import escape
+import io
 import json
 from pathlib import Path
 import re
@@ -37,6 +39,101 @@ def fetch(repo, revision):
 LIVE_PIN = "bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06"
 LIVE_REVIEW_EDITION = "2ff6f85e-a3151a5dbc32"
 LIVE_REVIEW_PIN = "e5c8da02e72810956cfd179cb32cd137fc4ba398"
+
+
+# Public review queues track a separate CIAT revision from the analytical dashboard.
+QUEUE_PIN = "16e76d3e76bf9695cf5cda1ef9027e54a121d1f1"
+REVIEW_TABLES = {"T3": "T3_nbs_hazard_farming", "T6": "T6_nbs_scorecard"}
+
+
+def archived_citations(ciat, membership):
+    """Find the most recent mainline table that cited each formerly used finding."""
+    def output(*args):
+        return subprocess.check_output(["git", "-C", str(ciat), *args])
+
+    # A shallow edition checkout cannot establish when a finding disappeared.
+    with TemporaryDirectory() as tmp:
+        if output("rev-parse", "--is-shallow-repository").strip() == b"true":
+            ciat = repository(Path(tmp), "history", "CIAT/nbs_ruralscan")
+            git(ciat, "fetch", "--no-tags", "--filter=blob:none", "origin", QUEUE_PIN)
+        table_for = {f"{key}.csv": table for table, key in REVIEW_TABLES.items()}
+        versions = output("log", "--first-parent", "--raw", "--no-renames", "--no-abbrev", "--format=%H", QUEUE_PIN,
+                          "--", *(f"schema/recipes/*/{name}" for name in table_for)).decode().splitlines()
+        blobs = {}
+        for line in versions:
+            if line.startswith(":"):
+                change, path = line.split("\t")
+                oid = change.split()[3]
+                if oid.strip("0"):
+                    blobs.setdefault((oid, table_for[Path(path).name]), (revision, path))
+            elif line:
+                revision = line
+
+        # Fetch all historical table blobs together in a partial checkout.
+        promisor = subprocess.run(["git", "-C", str(ciat), "config", "--get", "remote.origin.promisor"],
+                                  capture_output=True).stdout.strip()
+        if promisor == b"true" and blobs:
+            git(ciat, "fetch", "--no-tags", "--no-write-fetch-head", "origin", *sorted({oid for oid, _ in blobs}))
+        current = {key: set(ids) for key, ids in membership.items()}
+        former = {key: {} for key in REVIEW_TABLES}
+        for (oid, table), (revision, path) in blobs.items():
+            for row in csv.DictReader(io.StringIO(output("cat-file", "blob", oid).decode())):
+                for eid in json.loads(row.get("evidence_ids") or "[]"):
+                    if eid not in current[table]:
+                        former[table].setdefault(eid, f"{revision}/{path}")
+        return former
+
+
+def publish_review_queue(site, ciat, base):
+    """Package current queue inputs as a delta against the immutable dashboard data."""
+    fetch(ciat, QUEUE_PIN)
+
+    def blob(path):
+        return subprocess.check_output(["git", "-C", str(ciat), "show", f"{QUEUE_PIN}:{path}"])
+
+    data = json.loads(blob("docs/dashboard_data.json"))
+    logged = list(csv.DictReader(io.StringIO(blob("pipeline/metrics/review_log.csv").decode())))
+    fields = ("date", "evidence_id", "reviewer", "decision")
+    if [[r.get(k, "") for k in fields] for r in data["review_log"]] != [[r[k] for k in fields] for r in logged]:
+        raise ValueError("CIAT dashboard history differs from the committed finding review log")
+    payload = {key: data[key] for key in ("review_priorities", "gaps", "t4_review_notes", "qaqc_stats", "decoded_classes")}
+    payload["review_log"] = logged
+    payload["row_reviews"] = [
+        {k: r[k] for k in ("date", "record_id", "nbs_id", "table", "decision", "reviewer", "reason", "note")}
+        for r in csv.DictReader(io.StringIO(blob("pipeline/metrics/row_review_log.csv").decode()))
+    ]
+    payload["membership"] = {
+        table: sorted({eid for recipe in data["recipes"].values() for row in recipe[key] for eid in row.get("evidence_ids", [])})
+        for table, key in REVIEW_TABLES.items()
+    }
+    payload["formerly_cited"] = archived_citations(ciat, payload["membership"])
+    # The September archive records pre-synthesis T3/T6 lane assignments.
+    # Keep its review history separate from findings demonstrably cited by a rating.
+    archive = "schema/registers/_deferred/EV_T3_T6_deferred_2026-09.csv"
+    deferred = {row["evidence_id"]: row for row in csv.DictReader(io.StringIO(blob(archive).decode()))}
+    known = {table: set(ids) | payload["formerly_cited"][table].keys()
+             for table, ids in payload["membership"].items()}
+    payload["deferred_reviews"] = []
+    for event in logged:
+        row = deferred.get(event["evidence_id"])
+        if not row or event["date"][:10] > "2026-09-17":
+            continue
+        table = {"climate_risk": "T3", "nbs_effect": "T6"}[row["use_role"]]
+        if row["evidence_id"] not in known[table]:
+            payload["deferred_reviews"].append({**event, "table": table, "nbs_id": row["nbs_id"]})
+    payload["deferred_register"] = archive
+    payload["register_changes"] = {}
+    for name, key in (("EV_evidence_register", "evidence_id"), ("SRC_source_register", "source_id")):
+        old = {r[key]: r for r in base["registers"][name]}
+        new = {r[key]: r for r in data["registers"][name]}
+        payload["register_changes"][name] = {
+            "changed": [row for rid, row in new.items() if old.get(rid) != row],
+            "removed": sorted(old.keys() - new.keys()),
+        }
+    payload.update(revision=QUEUE_PIN, base_revision=LIVE_PIN)
+    name = f"data/review-{QUEUE_PIN[:12]}-{LIVE_PIN[:12]}.json"
+    (site / name).write_text(json.dumps(payload, separators=(",", ":")))
+    return name
 
 
 def live_rating_reviews(site, ciat, recipes):
@@ -218,7 +315,9 @@ def add_version_selectors(site, editions, ciat):
     t3 = json.dumps(live_rating_reviews(site, ciat, snapshot["recipes"]), separators=(",", ":")).replace("<", "\\u003c")
     rating_data = f'<script type="application/json" id="live-t3-reviews">{t3}</script>'
     link = f'<link rel="describedby" type="application/ld+json" href="editions/{latest}/catalog.json">'
-    live.write_text(live.read_text().replace("</head>", link + batch_data + rating_data + "</head>", 1))
+    queue_file = publish_review_queue(site, ciat, snapshot)
+    queue_meta = f'<meta name="ciat-review-snapshot" content="{queue_file}">'
+    live.write_text(live.read_text().replace("</head>", link + batch_data + rating_data + queue_meta + "</head>", 1))
     for name in ("index.html", "dashboard.html"):
         copyfile(live, site / name)
     (site / "review.html").write_text(
