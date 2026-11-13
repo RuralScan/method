@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rural NbS Scan — Evidence for rural nature-based solutions</title>
+
 <meta name="description" content="Explore and interrogate the systematic literature reviews, evidence claims, biophysical variables, thresholds, hazard matrices, and cost scorecard parameters supporting the Nature-based Solutions Rural Scan methodology.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='0' y='0' width='24' height='24' rx='5' fill='%230b0f19'/%3E%3Cg fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' transform='translate(2.6 2.6) scale(0.78)'%3E%3Cpath d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'/%3E%3Cpath d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'/%3E%3C/g%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -1030,7 +1031,7 @@
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.0.2">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.5.0">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.6.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
   #loading-container, #error-container {display:flex;align-items:center;gap:.65rem;padding:.6rem 0;color:var(--text-secondary);font-size:.9rem}
@@ -1056,6 +1057,7 @@
   </div>
   <div class="header-actions">
     <div id="dashboard-build" class="dashboard-build" aria-label="Dashboard and data build"></div>
+    <a class="btn-back" href="#review-queue">Review queue</a>
     <button class="btn-back" type="button" onclick="if(window.DashboardProgress)window.DashboardProgress.print()">Print overview</button>
 
     <button class="btn-theme-toggle" id="theme-toggle" aria-label="Toggle Theme" title="Toggle Theme">
@@ -1129,7 +1131,8 @@
         </tbody></table></div>
         <p class="shell-explainer"><a href="https://ciat.github.io/nbs_ruralscan/erd.html" target="_blank" rel="noopener noreferrer">Data-model diagram (v0.3.0 snapshot) ↗</a> · <a href="https://github.com/CIAT/nbs_ruralscan/blob/main/schema/spec.md" target="_blank" rel="noopener noreferrer">Maintained field-level schema specification ↗</a></p>
       </section>
-      <section class="shell-overview-block"><h3>1.3 Choose your task</h3><div class="shell-task-grid">
+      <section class="shell-overview-block"><h3>1.3 Choose your task</h3>
+        <p class="shell-explainer"><a href="#review-evidence=ev_wh_precip_wocatgl13_benchterraces">Inspect the bench-terrace rainfall finding</a> · <a href="catalog.json">Download evidence tables and metadata</a></p><div class="shell-task-grid">
         <button data-shell-open="btn-search"><b>Understand progress</b><span>For funders and project leads: see research effort, completed outputs and remaining review work.</span></button>
         <button data-shell-open="btn-interrogator"><b>Inspect evidence and rules</b><span>For technical reviewers: compare relationships and trace rules back to source evidence.</span></button>
         <button data-shell-open="btn-stocktake"><b>Find a source or dataset</b><span>Check publication details, linked extracts, variable definitions and available spatial datasets.</span></button>
@@ -1141,9 +1144,14 @@
     
     <!-- ================= TAB 2: INTERROGATOR ================= -->
     <div id="tab-interrogator" class="tab-content">
-      <header class="shell-intro"><h2>3. Evidence &amp; rules</h2><p>Inspect how published evidence supports the scan’s analytical rules. Start with Relationships to compare variables and recorded responses. Use Evidence explorer to read extracts and inspect the current compiled suitability analysis. Evidence quality, review approval and synthesis readiness are separate judgements.</p></header>
-      <nav class="shell-subnav" aria-label="Evidence and rules views"><button type="button" data-query-view="relationships" aria-pressed="true">3.1 Relationships</button><button type="button" data-query-view="explorer" aria-pressed="false">3.2 Evidence explorer</button></nav>
+      <header class="shell-intro"><h2>3. Evidence &amp; rules</h2><p>Inspect how published evidence supports the scan’s analytical rules. Use T4 suitability relationships to compare variables and recorded responses. Use T3 hazard ratings to see how a hazard affects an investment or how a practice protects livelihoods. Follow either table back to its source findings. Evidence quality, review approval and synthesis readiness are separate judgements.</p></header>
+      <nav class="shell-subnav" aria-label="Evidence and rules views"><button type="button" data-query-view="relationships" aria-pressed="true">3.1 Suitability relationships (T4)</button><button type="button" data-query-view="explorer" aria-pressed="false">3.2 Evidence explorer</button><button type="button" data-query-view="hazards" aria-pressed="false">3.3 Hazard ratings (T3)</button></nav>
       <section id="relationship-review-root"><p>Loading relationship catalogue…</p></section>
+      <section id="hazard-panel" class="dr-shell" hidden>
+        <h3>3.3 Hazard ratings (T3)</h3>
+        <div class="dr-filters"><label>Practice<select id="hazard-practice"></select></label><label>Hazard<select id="hazard-type"></select></label><label>Risk lens<select id="hazard-lens"></select></label><label>Scope<select id="hazard-scope"></select></label></div>
+        <div id="hazard-rating" aria-live="polite"></div>
+      </section>
       <section id="query-explorer-panel" hidden>
       <p class="shell-explainer">Select a practice and suitability family to inspect its source extracts, compiled rules and source coverage. A family groups sub-practices with shared limiting factors; broad or unassigned evidence is not automatically applicable to every family.</p>
 
@@ -1588,7 +1596,7 @@
       <nav class="shell-subnav" aria-label="Evidence review views"><button type="button" data-review-view="queue" aria-pressed="true">5.1 Review queue</button><button type="button" data-review-view="help" aria-pressed="false">5.2 How to review</button><button type="button" data-review-view="pipeline" aria-pressed="false">5.3 Pipeline records</button></nav>
       <div id="readonly-banner" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:9px 16px; background:rgba(245,158,11,0.12); border-bottom:1px solid rgba(245,158,11,0.35); color:var(--text-primary); font-size:12.5px;">
         <span style="font-size:15px;">&#9888;&#65039;</span>
-        <span><b>Read-only preview.</b> No review server is connected. Evidence decisions cannot be submitted from this preview. Dashboard feedback notes stay in this browser until exported.</span>
+        <span><b>Public dashboard.</b> Inspect the source and finding here. Record decisions through the <a href="https://ciat.github.io/nbs_ruralscan/dashboard.html#review-queue">CIAT review system</a>. Offline choices stay in this browser until exported.</span>
         <button class="shell-link" type="button" onclick="DashboardShell.openReviewHelp()">How to review</button>
       </div>
       <section id="review-help-panel" hidden><h3>5.2 How to review</h3>
@@ -1619,6 +1627,11 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       </section>
       <section id="review-pipeline-panel" hidden><div id="pipeline-records-app"><p>Loading pipeline records…</p></div></section>
       <section id="review-queue-panel">
+        <div class="review-start">
+          <nav aria-label="Review findings by table"><a href="#review-t3">T3 · Hazard findings</a><a href="#review-t4">T4 · Suitability findings</a><a href="#review-t6">T6 · Scorecard findings</a></nav>
+          <p id="review-table-description"></p>
+          <p>For current assignments and decisions in CIAT, open <a href="https://ciat.github.io/nbs_ruralscan/review.html?batch=ratings_top60_2026-11-12">T3/T6 priority findings</a> or <a href="https://ciat.github.io/nbs_ruralscan/review.html?batch=t4_limits_2026-11-10">T4 suitability cutoffs</a>.</p>
+        </div>
     <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-secondary); margin-right:10px;" title="Your reviewer identity — every QA decision is attributed to this handle">&#128100; Reviewer
       <select id="vf-reviewer" onchange="if(this.value==='__other__'){var h=prompt('Git handle:');setVfReviewer((h||'').trim());}else{setVfReviewer(this.value);}" style="font-size:12px; padding:4px 9px; border-radius:5px; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); font-weight:600;"><option value="">— pick reviewer —</option><option value="__other__">Other…</option></select>
     </label>
@@ -1640,7 +1653,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
               </div>
               <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.6;">
                 <b style="color:var(--text-primary);">To review:</b> set your handle &#8594; choose <b style="color:var(--accent-emerald);">ok</b> (keep) or <b style="color:var(--accent-rose);">drop</b> (remove) + a reason &#8594; <b>Apply &amp; submit to main</b> writes it to the register, re-gates, and opens a PR subject to checks and required approvals.
-                <span style="color:var(--text-muted);">No live server? Use <b>Download decisions CSV</b> &#8594; <code style="font-size:10.5px;">review.py apply</code>.</span>
+                <span style="color:var(--text-muted);">Working offline? Download your votes as CSV and return the file privately for CIAT consensus review.</span>
                 <br><span style="color:var(--text-muted);">Per card: <b style="color:var(--accent-emerald);">ok</b> = keep · <b style="color:var(--accent-rose);">drop</b> = remove (needs a coded reason) · <b style="color:var(--accent-amber);">&#9873; query</b> = keep tentatively but raise an open question (write it in the note).</span>
               </div>
               <div style="font-size:11px; color:var(--text-muted); line-height:1.6;"><b style="color:var(--text-secondary);">Keys:</b> <code style="font-size:10.5px;">j</code>/<code style="font-size:10.5px;">&#8595;</code> next &middot; <code style="font-size:10.5px;">&#8593;</code> prev &middot; <code style="font-size:10.5px;">k</code> ok &middot; <code style="font-size:10.5px;">d</code> drop &middot; <code style="font-size:10.5px;">q</code> query <span style="color:var(--text-muted);">(ignored while you're typing in a field)</span></div>
@@ -2071,7 +2084,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
   function vfSetSubset(kind,val){ if(window.DashboardPriority)DashboardPriority.leaveFocus(); if(!window._vfScope)window._vfScope={}; val=(val==null?'':String(val)); window._vfScope[kind]=(window._vfScope[kind]===val?'':val); renderVfWorklist(); }
   // Task (chips): clicking a card's OA / channel / NbS / sub-practice chip sets that scope
   // filter (single-value, like the sidebar pills) so the worklist narrows to matching cards.
-  function vfScopeSet(key,val){ if(window.DashboardPriority)DashboardPriority.leaveFocus(); if(!window._vfScope)window._vfScope={}; window._vfScope[key]=val; if(key==='nbs'){ window._vfScope.family='all'; window._vfScope.round='all'; } renderVfWorklist(); }
+  function vfScopeSet(key,val){ if(window.DashboardPriority)DashboardPriority.leaveFocus(); if(!window._vfScope)window._vfScope={}; window._vfScope[key]=val; if(key==='nbs'){ window._vfScope.family='all'; window._vfScope.round='all'; } if(key==='table')history.replaceState(null,'',DashboardPriority.route()); renderVfWorklist(); }
   // Uniform little pill for the card chip row — matches the OA / channel badge look so the
   // NbS / sub-practice / location / source chips all read as one consistent chip set.
   function _vfChip(label,color,title,onclick,noCaps){ return '<span '+(onclick?('onclick="'+onclick+'" '):'')+'title="'+vfEsc(title||'')+'" style="'+(onclick?'cursor:pointer; ':'')+'font-size:9.5px; font-weight:700; '+(noCaps?'':'text-transform:uppercase; ')+'letter-spacing:.03em; color:'+color+'; border:1px solid '+color+'; border-radius:3px; padding:1px 6px; white-space:nowrap;">'+label+'</span>'; }
@@ -2345,7 +2358,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       if(h)h.innerHTML='<b style="color:var(--accent-amber);">Read-only</b> — decisions stay in this browser. Run the local review server (<code style="font-size:9.5px;">uv run python3 -m nbs_ruralscan.schema_tools.review_server</code>) to enable <b>Apply</b>, or use <b>Download CSV</b>.'; } }
   async function applyVfDecisions(){
     await (window._vfSaveQueue || Promise.resolve());
-    if(!window._reviewApi){ vfNotice('No review server. Use Download decisions CSV + review.py apply.'); return; }
+    if(!window._reviewApi){ vfNotice('Download your votes as CSV and return the file privately for CIAT consensus review.'); return; }
     const btn=document.getElementById('vf-apply-btn');
     if(btn){btn.disabled=true; btn.textContent='Applying…';}
     const reviewer=window._vfReviewer || 'reviewer';
@@ -2635,7 +2648,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     if(observations==='only'&&!site)return false;
     if(!sc.nbs)return true;
     if(sc.nbs!=='all'&&ev.nbs_id!==sc.nbs)return false;
-    if(sc.table&&sc.table!=='all'&&_vfR2T[ev.use_role]!==sc.table)return false;
+    if(!DashboardTables.matches(ev, sc.table))return false;
     if(sc.family&&sc.family!=='all'&&ev.suitability_family_id!==sc.family)return false;
     if(sc.source&&sc.source!=='all'&&_vfChanKey(ev)!==sc.source)return false;
     if(sc.round&&sc.round!=='all'&&_vfRoundKey(ev)!==sc.round)return false;
@@ -2949,6 +2962,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       +'<span style="font-size:11px; color:var(--text-secondary);">'+vfEsc(ev.variable||'')+' · '+vfEsc((ev.use_role||'').replace(/_/g,' '))+' · '+(ev.page?('<a href="#" onclick="vfSetSubset(\'section\',\''+vfEsc(String(ev.page))+'\');return false;" title="subset the worklist to page '+vfEsc(String(ev.page))+' of this source" style="color:var(--accent-sky); text-decoration:none; border-bottom:1px dotted var(--accent-sky);">'+vfEsc(page)+'</a>'):vfEsc(page))+' · '+vfEsc(vfLocHint(ev))+'</span>'
       +'</div>'))
       +_chipRow
+      +'<p><a class="finding-ciat" href="'+vfEsc(DashboardTables.ciatUrl(ev.evidence_id))+'">Open this finding in CIAT</a></p>'
       +(ev._reviewConflict?'<p style="border-left:3px solid var(--accent-amber);padding:8px"><b>Reviewers disagree:</b> this record has both Keep and Drop decisions. Check the reviewer notes below and give your judgement.</p>':'')
       +vfClarificationHtml(ev)
       +(window.DashboardPriority?DashboardPriority.card(ev):'')
@@ -2973,7 +2987,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
   // The action keys route through the SAME guarded entry points as the buttons — vfTryDrop for
   // drop (a drop needs a coded reason) and the note-required rule for query — never around them.
   function _vfCardEls(){ var h=document.getElementById('vf-cards'); if(!h)return [];
-    return Array.prototype.filter.call(h.children,function(el){return el.nodeType===1;}); }
+    return Array.prototype.filter.call(h.children,function(el){return el.hasAttribute('data-vfeid');}); }
   function _vfSetFocus(i){ var cards=_vfCardEls(); if(!cards.length){ window._vfFocusIdx=-1; return; }
     if(i<0)i=0; if(i>cards.length-1)i=cards.length-1; window._vfFocusIdx=i;
     cards.forEach(function(el,k){ if(k===i){ el.style.outline='2px solid var(--accent-sky)'; el.style.outlineOffset='2px'; el.style.borderRadius='8px'; } else { el.style.outline=''; el.style.outlineOffset=''; } });
@@ -3043,6 +3057,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     // T4 remains the default; explicit all-scope is available for review batches.
     if(!window._vfScope.table)window._vfScope.table='T4';
     // Explicit all-practice scope supports priority batches spanning practices.
+    DashboardTables.describe(window._vfScope.table);
     _vfUpdatePending(); _vfRenderSubsetBanner();
     // Task 3: sourceId subsets to one paper/tool; section subsets to one page within it.
     function _inScope(ev){ return _vfInScope(ev); }
@@ -3070,7 +3085,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       var _csHint=(window._vfScope.claimScope&&window._vfScope.claimScope!=='general'&&window._vfScope.claimScope!=='all')?'<div style="font-size:9.5px; color:var(--text-muted); margin:2px 0 4px 0; line-height:1.4;">🧬 <b>Species / crop lane</b> — per-taxon evidence, <b>kept &amp; banked for reuse</b> but filtered out of the practice-level MCDA. Fix a mis-tagged row by re-classifying it (keep), not dropping it.</div>':'';
       var select=function(key,label,options){return '<label>'+label+' <select onchange="vfScopeSet(\''+key+'\',this.value)" style="padding:7px;background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-color);border-radius:5px">'+options.map(function(o){return '<option value="'+vfEsc(o[0])+'"'+(window._vfScope[key]===o[0]?' selected':'')+'>'+vfEsc(o[1])+'</option>';}).join('')+'</select></label>';};
       scEl.innerHTML=select('nbs','Practice',[['all','All practices']].concat(_nbsOpts.map(function(n){return [n,_capNbs(n)];})))
-        +select('table','Evidence type',[['all','All evidence types'],['T4','T4 + operational feasibility'],['T3/T6','T3/T6 effects']])
+        +select('table','Evidence type',[['all','All evidence types'],['T3','T3 hazard findings'],['T4-suitability','T4 suitability findings'],['T6','T6 scorecard findings'],['T4','T4 + operational feasibility'],['T3/T6','T3/T6 effects']])
         +'<label>Search <input id="vf-search" type="search" placeholder="Paper, variable or text" value="'+vfEsc(window._vfSearch||'')+'" oninput="vfSearch(this.value)" style="padding:7px;background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-color);border-radius:5px"></label>';
       window._vfAdvancedScopeHtml=_mkPills('observations','Site observations',['hide','show','only'],function(o){return {hide:'Hide (default)',show:'Include',only:'Only observations'}[o];},'sky',true,'Site descriptions and observed presence are deferred; tested relationships remain in review.')
         +_mkPills('family','Family / evidence scope',_famOpts,_capFam,'emerald',false)
@@ -3199,7 +3214,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     if(window._vfPassSeed===undefined)window._vfPassSeed=Math.floor(Math.random()*1e9); var _seed=window._vfPassSeed;
     _list=_list.map(function(u){ var h=0,s=u.ev.evidence_id+'|'+_seed; for(var i=0;i<s.length;i++){h=((h<<5)-h+s.charCodeAt(i))|0;} return {u:u,h:h>>>0}; }).sort(function(a,b){return Number(vfHasAnswerForReview(b.u.ev.evidence_id))-Number(vfHasAnswerForReview(a.u.ev.evidence_id))||a.h-b.h;}).map(function(x){return x.u;});
     // decided-count line — reflects the current toggle combo.
-    var dc=document.getElementById('vf-decided-count');if(dc)dc.textContent=_list.length+' records'+(window._vfSimpleView==='waiting'?' — no action needed until answers arrive.':window._vfSimpleView==='mine'?' — your saved and applied decisions.':' — Keep, Drop or Query; then Submit reviews.');
+    var dc=document.getElementById('vf-decided-count');if(dc)dc.textContent=_list.length+' records'+(window._vfSimpleView==='waiting'?' — no action needed until answers arrive.':window._vfSimpleView==='mine'?' — your saved and applied decisions.':' — check each passage before choosing Keep, Drop or Query.');
     _vfRenderBulk(evAll);
     if(!host)return; host.innerHTML='';
     if(!_list.length){
@@ -3212,7 +3227,24 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     // One collapsible card per unit. Furled (closed) when I've already applied a decision — the
     // summary row shows my call; expand for the full evidence + challenge / re-open. Unfurled (open)
     // for anything I still need to act on (to-review, 2nd opinion, or my pending unapplied decision).
-    _list.forEach(function(u){host.insertAdjacentHTML('beforeend', vfDetailHtml({ev:u.ev, verdict:u.verdict, reason:u.reason}, u.origin==='passed', {collapsible:true, open:!u.meApplied||vfHasAnswerForReview(u.ev.evidence_id), settled:u.meApplied, myDec:u.myDec})); });
+    // Render long queues a page at a time. Counts and filters use the full list.
+    let rendered = 0;
+    function showNextCards() {
+      const batch = _list.slice(rendered, rendered + 20);
+      host.insertAdjacentHTML('beforeend', batch.map(function(u){
+        return vfDetailHtml({ev:u.ev, verdict:u.verdict, reason:u.reason}, u.origin==='passed',
+          {collapsible:true, open:!u.meApplied||vfHasAnswerForReview(u.ev.evidence_id), settled:u.meApplied, myDec:u.myDec});
+      }).join(''));
+      rendered += batch.length;
+      if (rendered < _list.length) {
+        const more = document.createElement('button');
+        more.type = 'button'; more.className = 'pill-btn';
+        more.textContent = 'Show more findings (' + rendered + ' of ' + _list.length + ')';
+        more.onclick = function() { more.remove(); showNextCards(); };
+        host.appendChild(more);
+      }
+    }
+    showNextCards();
     _vfSyncStickyBars();
   }
 
@@ -5849,7 +5881,8 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
 <script src="dashboard-progress.js?v=1.4.0"></script>
 <script src="dashboard-feedback.js?v=1.5.0"></script>
 <script src="dashboard-relationships.js?v=1.2.1"></script>
-<script src="dashboard-priority.js?v=1.5.1"></script>
-<script src="dashboard-shell.js?v=1.5.0"></script>
+<script src="dashboard-tables.js?v=1"></script>
+<script src="dashboard-priority.js?v=1.6.0"></script>
+<script src="dashboard-shell.js?v=1.6.0"></script>
 </body>
 </html>

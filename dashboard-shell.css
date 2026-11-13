@@ -89,3 +89,30 @@
 .vf-priority-controls a, .vf-priority-note a { color: var(--accent-sky); }
 .vf-priority-controls ul { padding-left: 20px; overflow-wrap: anywhere; }
 .vf-priority-note p { margin: 8px 0; }
+
+.review-start {
+  margin: 16px 0;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+}
+.review-start nav, .hazard-result { display: flex; flex-wrap: wrap; gap: .6rem; }
+.review-start nav a {
+  padding: .5rem .75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.review-start nav a[aria-current], .review-start nav a:hover { border-color: var(--accent-sky); }
+.review-start p { margin: .65rem 0 0; }
+.review-start a, #readonly-banner a, #hazard-panel a, .finding-ciat { color: var(--accent-sky); }
+#hazard-panel { margin-top: 1rem; }
+#hazard-panel[hidden] { display: none; }
+#hazard-panel select { max-width: 100%; }
+#hazard-rating { max-width: 78ch; line-height: 1.65; }
+#hazard-rating p, #hazard-rating details { margin: .8rem 0; }
+#hazard-rating summary { cursor: pointer; }
+#hazard-rating ol { padding-left: 1.75rem; }
+.hazard-result { column-gap: 1.5rem; }

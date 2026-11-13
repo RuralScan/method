@@ -8,20 +8,21 @@
     var button = document.querySelector('[data-' + kind + '-view][aria-pressed="true"]');
     return button ? button.dataset[kind + 'View'] : fallback;
   }
+  var queryRoutes = {relationships: '#relationships', explorer: '#evidence-explorer', hazards: '#hazard-ratings'};
   function syncRoute(tab) {
     if (restoringRoute) return;
     var route = { 'tab-overview': '#overview', 'tab-search': '#progress', 'tab-variables': '#datasets' }[tab];
     if (tab === 'tab-methods') route = '#methods/' + selectedView('method', 'rural');
     if (tab === 'tab-qaqc') route = { queue: window.DashboardPriority ? window.DashboardPriority.route() : '#review-queue', help: '#review-help', pipeline: '#pipeline-records' }[selectedView('review', 'queue')];
     if (tab === 'tab-stocktake') route = location.hash.startsWith('#source=') ? location.hash : '#bibliography';
-    if (tab === 'tab-interrogator') route = location.hash.startsWith('#t4/') ? location.hash : selectedView('query', 'relationships') === 'explorer' ? '#evidence-explorer' : '#relationships';
+    if (tab === 'tab-interrogator') route = location.hash.startsWith('#t4/') ? location.hash : queryRoutes[selectedView('query', 'relationships')];
     if (route && location.hash !== route) history.replaceState(null, '', route);
   }
   function setView(kind, view) {
     var selector = '[data-' + kind + '-view]';
     var views = {
       review: { queue: 'review-queue-panel', help: 'review-help-panel', pipeline: 'review-pipeline-panel' },
-      query: { relationships: 'relationship-review-root', explorer: 'query-explorer-panel' },
+      query: { relationships: 'relationship-review-root', explorer: 'query-explorer-panel', hazards: 'hazard-panel' },
       method: { rural: 'method-rural-panel', evidence: 'method-evidence-panel', search: 'method-search-panel' }
     };
     var panels = views[kind];
@@ -30,6 +31,7 @@
     document.querySelectorAll(selector).forEach(function (button) { button.setAttribute('aria-pressed', String(button.dataset[kind + 'View'] === view)); });
     var route = kind === 'method' ? '#methods/' + view : kind === 'review' ? { queue: window.DashboardPriority ? window.DashboardPriority.route() : '#review-queue', help: '#review-help', pipeline: '#pipeline-records' }[view] : '';
     if (route && location.hash !== route) history.replaceState(null, '', route);
+    if (kind === 'query' && view === 'hazards') DashboardTables.showHazards();
     if (kind === 'review' && view === 'pipeline' && window.DashboardProgress && typeof window.DashboardProgress.renderPipelineRecords === 'function') window.DashboardProgress.renderPipelineRecords();
     syncSubtabs();
   }
@@ -39,10 +41,11 @@
     try {
       if (window.DashboardPriority && window.DashboardPriority.openFromHash(location.hash)) return;
       if (location.hash === '#relationships') { open('btn-interrogator'); setView('query', 'relationships'); }
+      else if (location.hash === '#hazard-ratings') { open('btn-interrogator'); setView('query', 'hazards'); }
       else if (location.hash === '#evidence-explorer' || location.hash.startsWith('#t4/')) { open('btn-interrogator'); setView('query', 'explorer'); }
       else if (location.hash === '#pipeline-records') { open('btn-qaqc'); setView('review', 'pipeline'); }
       else if (location.hash === '#review-help') { open('btn-qaqc'); setView('review', 'help'); }
-      else if (location.hash === '#review-queue') { open('btn-qaqc'); setView('review', 'queue'); }
+      else if (['#review', '#review-queue'].includes(location.hash)) { open('btn-qaqc'); setView('review', 'queue'); }
       else if (location.hash.startsWith('#methods/')) { open('btn-methods'); setView('method', location.hash.slice('#methods/'.length)); }
       else { var tab = { '#overview': 'btn-overview', '#progress': 'btn-search', '#bibliography': 'btn-stocktake', '#datasets': 'btn-variables' }[location.hash]; if (tab) open(tab); }
     } finally { restoringRoute = false; }
@@ -146,7 +149,7 @@
   function init() {
     document.querySelectorAll('[data-shell-open]').forEach(function (button) { button.addEventListener('click', function () { open(button.dataset.shellOpen); }); });
     document.querySelectorAll('[data-review-view]').forEach(function (button) { button.addEventListener('click', function () { setView('review', button.dataset.reviewView); }); });
-    document.querySelectorAll('[data-query-view]').forEach(function (button) { button.addEventListener('click', function () { setView('query', button.dataset.queryView); history.replaceState(null, '', button.dataset.queryView === 'relationships' ? '#relationships' : '#evidence-explorer'); if (button.dataset.queryView === 'explorer' && typeof window.refreshQueryProvenance === 'function') window.refreshQueryProvenance(); }); });
+    document.querySelectorAll('[data-query-view]').forEach(function (button) { button.addEventListener('click', function () { setView('query', button.dataset.queryView); history.replaceState(null, '', queryRoutes[button.dataset.queryView]); if (button.dataset.queryView === 'explorer' && typeof window.refreshQueryProvenance === 'function') window.refreshQueryProvenance(); }); });
     document.querySelectorAll('[data-method-view]').forEach(function (button) { button.addEventListener('click', function () { setView('method', button.dataset.methodView); }); });
     var guide = byId('review-reference-guide');
     ['vf-howto', 'vf-reason-codes'].forEach(function (id) { var item = byId(id); if (item) guide.appendChild(item); });

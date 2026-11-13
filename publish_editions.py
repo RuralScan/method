@@ -1,4 +1,4 @@
-"""Rebuild every shared dashboard edition, then leave the latest at the site root."""
+"""Rebuild every shared dashboard edition, then publish the November 10 evidence dashboard at the site root."""
 from datetime import date
 from html import escape
 import json
@@ -40,6 +40,10 @@ HUMAN_REVIEW_CORRECTION = "2ff6f85e-d1568d72ffa3"
 # Routes common to the pre-cookbook dashboard and edition-based dashboard.
 LEGACY = {
     "index.html": "#overview",
+    "review.html": "#review-queue",
+    "review-t3.html": "#review-t3",
+    "review-t4.html": "#review-t4",
+    "review-t6.html": "#review-t6",
     "progress.html": "#progress",
     "methods.html": "#methods/rural",
     "ai.html": "#methods/evidence",
@@ -54,7 +58,7 @@ def add_version_selectors(site, editions):
     labels = {}
     for item in editions:
         key = item["edition"]
-        labels[key] = f'{item["label"]} · {date.fromisoformat(item["date"]):%d %b %Y}'
+        labels[key] = f'Draft · {item["label"]} · {date.fromisoformat(item["date"]):%d %b %Y}'
         pages[key] = {p.name for p in (site / "editions" / key).glob("*.html")}
         if "index.html" not in pages[key]:
             raise ValueError(f"No dashboard entry for {key}")
@@ -81,8 +85,7 @@ def add_version_selectors(site, editions):
         routes.update({fragment: path for path, fragment in LEGACY.items() if path in names})
         legacy_routes[edition] = routes
     latest = editions[-1]["edition"]
-    labels[latest] += " (latest)"
-    legacy_title = "Original evidence dashboard · 10 Nov 2026"
+    legacy_title = "Live · Evidence dashboard · 10 Nov 2026"
     for asset in ("edition-selector.css", "edition-selector.js"):
         copyfile(Path(__file__).with_name(asset), site / asset)
 
@@ -101,27 +104,30 @@ def add_version_selectors(site, editions):
             options.append(f'<option value="{href}" data-edition="{target}"{selected}{same}>{name}</option>')
             links.append(f'<a href="{href}">{name}</a>')
         legacy_dest = LEGACY.get(page)
+        practice_review = re.fullmatch(r"review-(t[346])-[a-z_]+\.html", page)
+        if practice_review:
+            legacy_dest = "#review-" + practice_review[1]
         if page.startswith("source-") and page.endswith(".html"):
             source_id = page.removeprefix("source-").removesuffix(".html")
             if source_id in legacy_keys:
                 legacy_dest = "#source=" + quote(legacy_keys[source_id], safe="")
         legacy_match = legacy_dest is not None
         legacy_dest = legacy_dest or "#overview"
-        legacy_url = base + "legacy.html" + legacy_dest
+        legacy_url = base + "dashboard.html" + legacy_dest
         legacy_label = legacy_title
         if not legacy and not legacy_match:
             legacy_label += " (opens overview)"
         selected = " selected" if legacy else ""
         fallback = "" if legacy_match else " data-fallback"
-        options.append(f'<option value="{legacy_url}"{selected}{fallback}>{legacy_label}</option>')
-        links.append(f'<a href="{legacy_url}">{legacy_label}</a>')
+        options.insert(0, f'<option value="{legacy_url}"{selected}{fallback}>{legacy_label}</option>')
+        links.insert(0, f'<a href="{legacy_url}">{legacy_label}</a>')
         kind = ' data-legacy="true"' if legacy else ""
-        note = ("Switching opens the matching section when available, otherwise the overview."
-                if legacy else "Switching opens the same page when available.")
+        note = "" if legacy else "Design preview."
         control = (
             '<div class="edition-selector"><label for="dashboard-version">View version</label>'
             f'<select id="dashboard-version" aria-describedby="dashboard-version-note"{kind}>'
             + "".join(options) + f'</select><span id="dashboard-version-note">{note}</span>'
+            + ("" if legacy else f' <a href="{legacy_url}">Return to live dashboard</a>')
             + "<noscript>" + " · ".join(links) + "</noscript></div>"
         )
         review_record = (page.startswith(("review", "claim-", "row-"))
@@ -130,7 +136,7 @@ def add_version_selectors(site, editions):
             control += (
                 '<nav class="archived-review-links" aria-label="Live reviewer workspace">'
                 '<a href="https://ciat.github.io/nbs_ruralscan/dashboard.html#review-queue">Open the CIAT review queue</a>'
-                f'<a href="{base}editions/{latest}/review.html">Choose a finding review batch</a>'
+                f'<a href="{base}dashboard.html#review-queue">Review findings by table</a>'
                 '</nav>'
             )
         if current == HUMAN_REVIEW_CORRECTION and latest != current and review_record:
@@ -162,9 +168,32 @@ def add_version_selectors(site, editions):
         # workbook.html is also the downloadable, byte-verified release artefact.
         for name in names - {"workbook.html"}:
             decorate(site / "editions" / key / name, key, name)
+    # Draft builders write their own root entry points. Publish the live shell last:
+    # adding an edition never promotes a design or invalidates a shared draft URL.
+    live = site / "legacy.html"
+    decorate(live, "legacy", "index.html")
+    # Only navigation crosses editions. Ratings and queue records use the live
+    # dashboard snapshot; never apply another revision's review status to them.
+    status = json.loads((site / "editions" / latest / "review-status.json").read_text())
+    batches = {eid: finding["live_batch"] for eid, finding in status["findings"].items()
+               if finding.get("live_batch")}
+    navigation = json.dumps(batches, separators=(",", ":")).replace("<", "\\u003c")
+    batch_data = f'<script type="application/json" id="ciat-review-batches">{navigation}</script>'
+    link = f'<link rel="describedby" type="application/ld+json" href="editions/{latest}/catalog.json">'
+    live.write_text(live.read_text().replace("</head>", link + batch_data + "</head>", 1))
     for name in ("index.html", "dashboard.html"):
-        decorate(site / name, latest, "index.html")
-    decorate(site / "legacy.html", "legacy", "index.html")
+        copyfile(live, site / name)
+    (site / "review.html").write_text(
+        '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Evidence review queue</title>'
+        '<meta http-equiv="refresh" content="0;url=dashboard.html#review-queue"></head>'
+        '<body><a href="dashboard.html#review-queue">Open the evidence review queue</a></body></html>'
+    )
+    for name in ("index.html", "dashboard.html", "legacy.html"):
+        contents = (site / name).read_text()
+        if ('id="tab-qaqc"' not in contents or 'href="#review-t3"' not in contents
+                or 'href="#review-t4"' not in contents or f' selected>{legacy_title}</option>' not in contents):
+            raise ValueError(f"{name} must open the live evidence dashboard with T3 and T4 review")
+
 
 
 def main():

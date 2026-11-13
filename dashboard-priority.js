@@ -33,13 +33,26 @@
     history.replaceState(null, '', route());
   }
   function route() {
-    return window._vfPriorityEvidence ? cardRoute(window._vfPriorityEvidence) : selected() !== 'all' ? batchRoute(selected()) : '#review-queue';
+    return window._vfPriorityEvidence ? cardRoute(window._vfPriorityEvidence) : selected() !== 'all' ? batchRoute(selected()) : DashboardTables.route((window._vfScope || {}).table);
   }
   function leaveFocus() {
     window._vfPriorityEvidence = '';
     history.replaceState(null, '', route());
   }
   function openFromHash(hash) {
+    const table = DashboardTables.tableFromRoute(hash);
+    if (table) {
+      if (!dashboardData) return true;
+      scopeFor([]);
+      window._vfPriorityEvidence = '';
+      window._vfPriority = 'all';
+      window._vfScope.table = table;
+      window._vfScope.observations = 'hide';
+      window.DashboardShell.openReviewQueue();
+      vfSimpleQueue('todo');
+      history.replaceState(null, '', hash);
+      return true;
+    }
     const match = /^#review-(priority|evidence)=(.*)$/.exec(hash);
     if (!match) return false;
     if (typeof dashboardData === 'undefined' || !dashboardData) return true;
