@@ -24,3 +24,18 @@
 .edition-selector span { color: #e1ece5; }
 .edition-selector a { color: white; }
 @media print { .edition-selector { display: none; } }
+.edition-correction {
+  padding: .55rem max(1rem, calc((100% - 1120px) / 2));
+  background: #fff1cd;
+  color: #3e3014;
+  font: 15px/1.5 system-ui, sans-serif;
+}
+.edition-correction a { color: #483406; text-decoration: underline; }
+@media screen and (max-width: 760px) {
+  body:has(#dp-source-drawer) .edition-selector {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 1901;
+  }
+  body #dp-source-drawer { top: var(--edition-bar-height, 0); }
+}

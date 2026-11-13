@@ -8,6 +8,7 @@ from shutil import copyfile
 import subprocess
 import sys
 from tempfile import TemporaryDirectory
+from urllib.parse import quote
 
 
 def git(repo, *args):
@@ -33,6 +34,9 @@ def fetch(repo, revision):
         git(repo, "fetch", "--no-tags", "--depth=1", "--filter=blob:none", "origin", revision)
 
 
+HUMAN_REVIEW_CORRECTION = "2ff6f85e-d1568d72ffa3"
+
+
 # Routes common to the pre-cookbook dashboard and edition-based dashboard.
 LEGACY = {
     "index.html": "#overview",
@@ -54,6 +58,28 @@ def add_version_selectors(site, editions):
         pages[key] = {p.name for p in (site / "editions" / key).glob("*.html")}
         if "index.html" not in pages[key]:
             raise ValueError(f"No dashboard entry for {key}")
+    # The legacy source drawer accepts progress source keys, IDs and aliases.
+    legacy_snapshot = site / "data/bec50bc0f9dc/dashboard_data.json"
+    sources = json.loads(legacy_snapshot.read_text())["progress_overview"]["sources"]
+    legacy_keys = {}
+    candidates = {}
+    for source in sources:
+        key = source["key"]
+        ids = [s for s in dict.fromkeys([source.get("source_id"), key, *source.get("aliases", [])]) if s]
+        candidates[key] = ids
+        for identifier in ids:
+            legacy_keys.setdefault(identifier, key)
+    legacy_routes = {}
+    for edition, names in pages.items():
+        routes = {}
+        for key, ids in candidates.items():
+            destination = next((f"source-{i}.html" for i in ids if f"source-{i}.html" in names), None)
+            if destination:
+                for identifier in ids:
+                    exact = f"source-{identifier}.html"
+                    routes.setdefault("#source=" + identifier, exact if exact in names else destination)
+        routes.update({fragment: path for path, fragment in LEGACY.items() if path in names})
+        legacy_routes[edition] = routes
     latest = editions[-1]["edition"]
     labels[latest] += " (latest)"
     legacy_title = "Original evidence dashboard · 10 Nov 2026"
@@ -71,16 +97,23 @@ def add_version_selectors(site, editions):
             href = f"{base}editions/{target}/{dest}"
             name = escape(label + suffix)
             selected = " selected" if target == current else ""
-            same = " data-match" if match else ""
-            options.append(f'<option value="{href}"{selected}{same}>{name}</option>')
+            same = " data-match" if match else ("" if legacy else " data-fallback")
+            options.append(f'<option value="{href}" data-edition="{target}"{selected}{same}>{name}</option>')
             links.append(f'<a href="{href}">{name}</a>')
-        legacy_dest = LEGACY.get(page, "#overview")
+        legacy_dest = LEGACY.get(page)
+        if page.startswith("source-") and page.endswith(".html"):
+            source_id = page.removeprefix("source-").removesuffix(".html")
+            if source_id in legacy_keys:
+                legacy_dest = "#source=" + quote(legacy_keys[source_id], safe="")
+        legacy_match = legacy_dest is not None
+        legacy_dest = legacy_dest or "#overview"
         legacy_url = base + "legacy.html" + legacy_dest
         legacy_label = legacy_title
-        if not legacy and page not in LEGACY:
+        if not legacy and not legacy_match:
             legacy_label += " (opens overview)"
         selected = " selected" if legacy else ""
-        options.append(f'<option value="{legacy_url}"{selected}>{legacy_label}</option>')
+        fallback = "" if legacy_match else " data-fallback"
+        options.append(f'<option value="{legacy_url}"{selected}{fallback}>{legacy_label}</option>')
         links.append(f'<a href="{legacy_url}">{legacy_label}</a>')
         kind = ' data-legacy="true"' if legacy else ""
         note = ("Switching opens the matching section when available, otherwise the overview."
@@ -91,6 +124,24 @@ def add_version_selectors(site, editions):
             + "".join(options) + f'</select><span id="dashboard-version-note">{note}</span>'
             + "<noscript>" + " · ".join(links) + "</noscript></div>"
         )
+        review_record = (page.startswith(("review", "claim-", "row-"))
+                         or page in {"terrace.html", "method-decisions.html"})
+        if current == HUMAN_REVIEW_CORRECTION and latest != current and review_record:
+            if page in pages[latest]:
+                corrected_path, caption = page, "Open this page in the corrected edition"
+            else:
+                corrected_path, caption = "review.html", "Open Review in the corrected edition"
+            if corrected_path not in pages[latest]:
+                raise ValueError(f"Corrected edition lacks a review destination for {page}")
+            control += (
+                '<aside class="edition-correction" aria-label="Correction to review status">'
+                '<strong>Correction to human review status.</strong> This archived edition counted '
+                'automated checks as human sign-offs for some findings. '
+                f'<a href="{base}editions/{latest}/{corrected_path}">{caption}</a>.</aside>'
+            )
+        if legacy:
+            route_data = json.dumps(legacy_routes, separators=(",", ":")).replace("<", "\\u003c")
+            control += f'<script type="application/json" id="legacy-version-routes">{route_data}</script>'
         contents = path.read_text()
         header = contents.find("<header")
         if header < 0 or "</head>" not in contents:
