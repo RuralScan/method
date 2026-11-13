@@ -8,7 +8,7 @@ It supports early investment scoping. It does not replace feasibility studies, e
 
 ## Start here
 
-[Open the methodology dashboard](https://ruralscan.github.io/method/) to follow a bench-terrace decision, inspect the six candidate recipes or learn how researchers and agents maintain the evidence. [Build and verify a dashboard edition](dashboard/README.md).
+[Open the live evidence dashboard](https://ruralscan.github.io/method/) to inspect suitability relationships, hazard ratings and their sources. Open [T3 hazard review](https://ruralscan.github.io/method/#review-t3) or [T4 suitability review](https://ruralscan.github.io/method/#review-t4) for finding cards. The version selector includes November 11–13 design drafts. [Build and verify a dashboard draft](dashboard/README.md).
 
 - [Understand the approach](handbook/start-here.md): seven modules and the evidence-to-rule chain.
 - Download the bench-terrace evidence tables and their field definitions from the [machine-readable evidence catalogue](https://ruralscan.github.io/method/catalog.json).

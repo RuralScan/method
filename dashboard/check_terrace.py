@@ -41,8 +41,9 @@ def check(root):
     home.feed(fetch(urljoin(start, "index.html")).decode())
     if not home.catalog:
         raise ValueError("Homepage lacks a machine-readable catalogue link")
-    edition = urljoin(start, home.base)
-    catalog_bytes = fetch(urljoin(edition, home.catalog))
+    catalog_url = urljoin(urljoin(start, home.base), home.catalog)
+    edition = urljoin(catalog_url, "./")
+    catalog_bytes = fetch(catalog_url)
     if catalog_bytes != fetch(urljoin(start, "catalog.json")):
         raise ValueError("Latest catalogue differs from selected edition")
     catalog = json.loads(catalog_bytes)
