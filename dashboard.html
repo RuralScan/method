@@ -1633,7 +1633,15 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
         <button class="shell-link" type="button" onclick="DashboardShell.openReviewHelp()">How to review</button>
       </div>
     <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-secondary); margin-right:10px;" title="Your reviewer identity — every QA decision is attributed to this handle">&#128100; Reviewer
-      <select id="vf-reviewer" onchange="if(this.value==='__other__'){var h=prompt('Git handle:');setVfReviewer((h||'').trim());}else{setVfReviewer(this.value);}" style="font-size:12px; padding:4px 9px; border-radius:5px; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); font-weight:600;"><option value="">— pick reviewer —</option><option value="__other__">Other…</option></select>
+      <select id="vf-reviewer" onchange="chooseVfReviewer(this)" style="font-size:12px; padding:4px 9px; border-radius:5px; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); font-weight:600;">
+        <option value="">— pick reviewer —</option>
+        <option value="peetmate">peetmate</option>
+        <option value="bensonkenduiywo">bensonkenduiywo</option>
+        <option value="bjyberg">bjyberg</option>
+        <option value="Namita-J">Namita-J</option>
+        <option value="Mlolita26">Mlolita26</option>
+        <option value="__other__">Other…</option>
+      </select>
     </label>
       <div class="card-container">
         <h2 class="card-title" style="display:flex; align-items:center; gap:12px;">
@@ -2411,7 +2419,41 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
       lines.push([ev.evidence_id,ev.source_id,ev.variable,ev.use_role,o.verdict,o.reason,(ev.quote||'').replace(/\n/g,' '),rel,((window._vfDecisions||{})[ev.evidence_id]||''),((window._vfReasons||{})[ev.evidence_id]||''),'',((window._vfNotes||{})[ev.evidence_id]||'')].map(q).join(',')); });
     var blob=new Blob([lines.join('\n')],{type:'text/csv'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='flag_worklist.csv'; a.click();
   }
-  function setVfReviewer(v){ v=(v||'').trim(); window._vfReviewer=v; localStorage.setItem('vfReviewer',v); var sel=document.getElementById('vf-reviewer'); if(sel&&v){ if(!Array.prototype.some.call(sel.options,function(o){return o.value===v;})){ var op=document.createElement('option'); op.value=v; op.textContent=v; sel.insertBefore(op,sel.options[sel.options.length-1]); } sel.value=v; } var all=window._vfAllReviews||{}; var d={},rs={},ns={}; Object.keys(all).forEach(function(eid){ var m=all[eid][v]; if(m&&m.decision){ d[eid]=m.decision; rs[eid]=m.reason||''; ns[eid]=m.note||''; } }); window._vfDecisions=d; window._vfReasons=rs; window._vfNotes=ns; localStorage.setItem('vfDecisions',JSON.stringify(d)); renderVfWorklist(); }
+  function syncVfReviewerPicker() {
+    const picker = document.getElementById('vf-reviewer');
+    const handle = window._vfReviewer || '';
+    if (handle && !Array.from(picker.options).some(option => option.value === handle)) {
+      picker.add(new Option(handle, handle), picker.querySelector('option[value="__other__"]'));
+    }
+    picker.value = handle;
+  }
+
+  function chooseVfReviewer(picker) {
+    if (window._vfReviewer === undefined) window._vfReviewer = localStorage.getItem('vfReviewer') || '';
+    let handle = picker.value;
+    if (handle === '__other__') {
+      handle = (prompt('Your GitHub handle') || '').trim();
+      if (!handle || handle === '__other__') {
+        syncVfReviewerPicker();
+        return;
+      }
+      const known = Array.from(picker.options).find(option => option.value.toLowerCase() === handle.toLowerCase());
+      if (known) handle = known.value;
+    }
+    if (handle === window._vfReviewer) {
+      syncVfReviewerPicker();
+      return;
+    }
+    setVfReviewer(handle);
+  }
+
+  function setVfReviewer(handle) {
+    window._vfReviewer = handle;
+    localStorage.setItem('vfReviewer', handle);
+    syncVfReviewerPicker();
+    vfUseDecisions(window._vfAllReviews || {});
+    renderVfWorklist();
+  }
   async function resetVfDecisions(){ var me=(window._vfReviewer||'').trim(); if(!me){ alert('Set your reviewer handle first — reset only clears YOUR decisions.'); return; }
     // Reset = un-decide your PENDING (not-yet-applied) decisions only. Applied decisions are
     // the durable review record (register + review_log) and are never touched here — the old
@@ -3033,7 +3075,7 @@ uv run python3 -m nbs_ruralscan.schema_tools.review_server</code></pre>
     if (window._vfReviewer===undefined){ window._vfReviewer=localStorage.getItem('vfReviewer')||''; }
     _vfInstallKeys();                       // idempotent — one document-level listener, ever
     window._vfFocusIdx=-1;                  // the card list is about to be rebuilt; drop the focus
-    var _ri=document.getElementById('vf-reviewer'); if(_ri && !_ri.value && window._vfReviewer){ _ri.value=window._vfReviewer; }
+    syncVfReviewerPicker();
     var evAll=dashboardData.registers.EV_evidence_register||[]; var srcAll=dashboardData.registers.SRC_source_register||[];
     var mode=window._vfMode||'flagged';
     var flaggedRows=[];
