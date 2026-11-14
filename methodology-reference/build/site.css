@@ -210,3 +210,13 @@ footer p { max-width: none; }
   details > *:not(summary) { display: block; }
   a { color: #000; }
 }
+/* Data access pages */
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0 1rem; margin-top: .6rem; }
+table.result { font-size: .88rem; }
+table.result caption, pre.out { color: var(--muted); }
+pre.out { border-left: 4px solid var(--line); background: var(--panel); }
+pre.shape { font-size: .84rem; line-height: 1.5; }
+#downloads td:first-child { min-width: 20ch; }
+#downloads td:nth-child(4), #downloads td:nth-child(5) { white-space: nowrap; }
+table.matrix td, table.matrix th { white-space: nowrap; }
+table.fields td:nth-child(4) { min-width: 22ch; }

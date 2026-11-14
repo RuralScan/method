@@ -1,8 +1,9 @@
 """Build the methodology reference into a fresh output directory, then check it.
 
-    uv run --with markdown python3 -B build/build.py --out site
+    uv run --with markdown --with duckdb --with pandas python3 -B build/build.py --out site
 
-Reads pinned Git objects only. Writes only under --out.
+Reads pinned Git objects and the verified local copy of the published data package.
+Writes only under --out.
 """
 
 import argparse
@@ -17,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import chapters
 import core
 import data
+import pages_data
 import pages_evidence
 import pages_model
 import pages_practices
@@ -122,7 +124,10 @@ def run_checks():
                 continue
             target, _, frag = href.partition("#")
             target = target or name
-            if target in ("site.css", "site.js", "reproduce.html"):
+            if (
+                target in ("site.css", "site.js", "reproduce.html")
+                or target in core.FILES
+            ):
                 continue
             if target not in core.PAGES:
                 broken.append(f"{name} -> {href}")
@@ -224,6 +229,8 @@ def run_checks():
         and start.index("<ol>") < start.index('id="contents"'),
         first.group(1) if first else "no first step",
     )
+    for name, ok, detail in pages_data.CHECKS:
+        check(name, ok, detail)
     return results
 
 
@@ -243,6 +250,7 @@ def main():
     pages_practices.build()
     pages_model.build()
     pages_evidence.build()
+    pages_data.build()
     pages_text.build()
 
     results = run_checks()
@@ -263,7 +271,10 @@ def main():
         )
         + '<h2 id="rebuild">Rebuild this reference</h2>'
         "<p>From the reference directory, with the method, evidence and producer repositories available locally:</p>"
-        "<pre><code>uv run --with markdown python3 -B build/build.py --out site</code></pre>"
+        "<pre><code>python3 build/fetch_package.py\n"
+        "uv run --with markdown --with duckdb --with pandas python3 -B build/build.py --out site</code></pre>"
+        "<p>The first command downloads the published data package once and verifies it. The build then reads that copy, "
+        "checks every checksum again and runs the query recipes against it. DuckDB and pandas are needed only for those recipes.</p>"
         "<p>The build takes its edition from the release pin, not from constants in the build code. To move "
         "to a new edition, update the pin and rebuild; the row totals are then checked against the counts "
         "the release states.</p>"
@@ -301,6 +312,9 @@ def main():
         (out / name).write_text(html)
     for asset in ("site.css", "site.js"):
         shutil.copy(HERE / asset, out / asset)
+    for name, text in core.FILES.items():
+        (out / name).parent.mkdir(parents=True, exist_ok=True)
+        (out / name).write_text(text)
 
     words = sum(chapters.WORDS.values())
     print(

@@ -212,7 +212,10 @@ def source_page(source):
 
 def build():
     SIDE["evidence-base.html"] = [
-        ("evidence-base.html", "Evidence base at this edition"),
+        ("evidence-base.html", "Get and use the data"),
+        ("data-guide.html", "Field guide and joins"),
+        ("data-queries.html", "Query the data"),
+        ("evidence-counts.html", "Counts and definitions"),
         ("sources.html", "Sources"),
         ("searches.html", "Search records"),
         ("review.html", "Review queues and records"),
@@ -257,7 +260,8 @@ def build():
         "<p>This page counts what the evidence registers hold at one pinned revision, the same revision "
         "the recipe rows were compiled from. Every number has a definition. None is a measure of evidence "
         "strength: a row resting on many findings can still carry low confidence, and the confidence of "
-        "each row is stated on the row.</p>"
+        "each row is stated on the row. To download the tables these counts are taken from, see "
+        f"{link('evidence-base.html#download', 'the downloads')}.</p>"
         '<div class="stats">'
         f"<div><b>{len(data.SRCH):,}</b><span>search records</span></div>"
         f"<div><b>{len(data.SRC):,}</b><span>sources registered</span></div>"
@@ -426,11 +430,15 @@ def build():
         f"The method is described in {link('ch-discovery.html', 'discovery')}.</p>"
     )
     page(
+        "evidence-counts.html",
         "evidence-base.html",
-        "evidence-base.html",
-        "Evidence base at this edition",
+        "Counts and definitions",
         body,
-        lead="What the registers hold, with a definition for every count.",
+        crumbs=[
+            ("evidence-base.html", "Evidence base"),
+            ("", "Counts and definitions"),
+        ],
+        lead="What the registers hold at this edition, with a definition for every count.",
         toc=[
             ("definitions", "Definitions"),
             ("practice", "By practice"),

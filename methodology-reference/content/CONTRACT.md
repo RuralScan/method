@@ -126,7 +126,7 @@ Part 1 Method: `scope-and-framework` · `scoping-walkthrough` · `m0-setup` · `
 
 Part 2 Evidence methods: `evidence-principles` · `discovery` · `acquisition` · `extraction` ·
 `review-and-quality` · `suitability-synthesis` · `effect-synthesis` · `cost-profiles` ·
-`rulesets-and-learning`
+`rulesets-and-learning` · `continue-with-ai`
 
 Part 4 Practices (family schemes): `practice-agroforestry` · `practice-forest_restoration` ·
 `practice-mangrove_restoration` · `practice-riparian_buffer` ·
