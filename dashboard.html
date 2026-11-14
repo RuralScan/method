@@ -2947,7 +2947,11 @@
     if(r.type==='observed_presence'){
       values='Observed conditions at documented sites; not a tested suitability range.';
       purpose='Retained as site context. Does not vote for suitability thresholds or exclude places with different conditions.';
-      question='Check which boxes are selected in the Natural Environment panel, and distinguish topsoil from subsoil. Unselected options are not observations.';
+      if(window.DashboardPriority?.hasAppliedRainfallCorrection(ev)){
+        question='Check both selected rainfall bands on page '+ev.page+' against the extracted classes, minimum and maximum below. Choose Keep if they match, or Query if a discrepancy remains.';
+      } else {
+        question='Check which boxes are selected in the Natural Environment panel, and distinguish topsoil from subsoil. Unselected options are not observations.';
+      }
     } else if(Object.keys(m).length){
       var path=Array.isArray(m.weight_path_pct)?m.weight_path_pct:[];
       values=path.length ? 'Weight in this paper: '+path.map(function(w){return String(w)+'%';}).join(' × ') : 'Paper uses this variable; no numeric importance weight recorded.';
@@ -6052,7 +6056,7 @@
 <script src="dashboard-feedback.js?v=1.5.0"></script>
 <script src="dashboard-relationships.js?v=1.2.1"></script>
 <script src="dashboard-tables.js?v=3"></script>
-<script src="dashboard-priority.js?v=1.7"></script>
+<script src="dashboard-priority.js?v=1.8"></script>
 <script src="dashboard-shell.js?v=1.6.1"></script>
 <dialog id="finding-submission" aria-labelledby="finding-submission-title">
   <form><h2 id="finding-submission-title">Submit finding review</h2><output></output>
