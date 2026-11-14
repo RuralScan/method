@@ -1619,7 +1619,7 @@
           <nav aria-label="Review findings by table"><a href="#review-t3">T3 · Hazard findings</a><a href="#review-t4">T4 · Suitability findings</a><a href="#review-t6">T6 · Scorecard findings</a></nav>
           <p id="review-table-description"></p>
           <a id="review-log-source"></a>
-          <p>Browse the source CIAT assignments in <a href="https://ciat.github.io/nbs_ruralscan/review.html?batch=ratings_top60_2026-11-12">T3/T6 priority findings</a> or <a href="https://ciat.github.io/nbs_ruralscan/review.html?batch=t4_limits_2026-11-10">T4 suitability cutoffs</a>.</p>
+          <p>Open review batches for <a href="#review-priority=ratings_top60_2026-11-12">T3/T6 priority findings</a> or <a href="#review-priority=t4_limits_2026-11-10">T4 suitability cutoffs</a>.</p>
         </div>
       <div id="readonly-banner" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:9px 16px; background:rgba(245,158,11,0.12); border-bottom:1px solid rgba(245,158,11,0.35); color:var(--text-primary); font-size:12.5px;">
         <span style="font-size:15px;">&#9888;&#65039;</span>
@@ -1811,7 +1811,19 @@
       for (const row of changed) rows.set(row[key], row);
       registers[name] = [...rows.values()];
     }
-    return {...base, ...data, registers};
+    // Resolve main once, then read every official record from that immutable revision.
+    const revisionResponse = await fetch('https://api.github.com/repos/RuralScan/evidence/commits/main', {cache:'no-cache'});
+    if (!revisionResponse.ok) throw Error('Could not resolve the RuralScan register revision.');
+    const {sha} = await revisionResponse.json();
+    if (!/^[0-9a-f]{40}$/.test(sha)) throw Error('Invalid RuralScan register revision.');
+    const liveResponse = await fetch('https://raw.githubusercontent.com/RuralScan/evidence/'+sha+'/publication/review-queue.json');
+    if (!liveResponse.ok) throw Error('Could not load official RuralScan review records.');
+    const live = await liveResponse.json();
+    const priority = [...data.review_priorities];
+    for (const [batch_id, batch] of Object.entries(live.batches)) {
+      for (const evidence_id of batch.ids) priority.push({batch_id, batch_label:batch.title, evidence_id, priority:'normal'});
+    }
+    return {...base, ...data, ...live, registers:{...registers,...live.registers}, review_priorities:priority, registerRevision:sha};
   }
 
   async function setDashboardSnapshots(base) {
@@ -1951,10 +1963,10 @@
         if (request.status !== 200 || !request.response?.registers) throw Error('Evidence snapshot unavailable');
         window._dataLastModified = request.getResponseHeader('Last-Modified') || '';
         await setDashboardSnapshots(request.response);
-        if (reviewData.revision) {
+        if (reviewData.registerRevision) {
           const source = document.getElementById('review-log-source');
-          source.href = 'https://github.com/CIAT/nbs_ruralscan/blob/' + reviewData.revision + '/pipeline/metrics/review_log.csv';
-          source.textContent = 'CIAT review log · ' + reviewData.revision.slice(0, 8);
+          source.href = 'https://github.com/RuralScan/evidence/blob/' + reviewData.registerRevision + '/registers/pipeline/metrics/review_log.csv';
+          source.textContent = 'RuralScan review log · ' + reviewData.registerRevision.slice(0, 8);
         }
         delete document.body.dataset.records;
         initDashboard();
@@ -2628,12 +2640,12 @@
   }
   function vfRatingHistory(rows) {
     if (!rows.length) return '';
-    const source = 'https://github.com/CIAT/nbs_ruralscan/blob/' + reviewData.revision + '/pipeline/metrics/row_review_log.csv';
+    const source = 'https://github.com/RuralScan/evidence/blob/' + reviewData.registerRevision + '/registers/pipeline/metrics/row_review_log.csv';
     return '<details id="vf-rating-history"><summary>Your ' + vfEsc(rows[0].table) + ' rating reviews (' + rows.length +
       ')</summary><p>These decisions apply to compiled ratings.</p><ul>' +
       rows.map(r => '<li>' + vfEsc(r.record_id.replace(/__/g, ' · ').replace(/_/g, ' ')) + ' — ' +
         vfEsc(r.decision) + ' · ' + vfEsc(r.date.slice(0,10)) + (r.note ? '<br>' + vfEsc(r.note) : '') + '</li>').join('') +
-      '</ul><a href="' + source + '">View rating review log in CIAT</a></details>';
+      '</ul><a href="' + source + '">View RuralScan rating review log</a></details>';
   }
   function vfReviewerEvents() {
     const log = reviewData.review_log || [];
@@ -3076,7 +3088,7 @@
     var _summaryHtml='<summary style="cursor:pointer; display:flex; align-items:center; gap:9px; flex-wrap:wrap; padding:9px 14px; border-left:4px solid '+_aiCol+'; border-radius:8px; background:var(--bg-secondary);">'+_aiBadge+_dropBadgeD+(window.DashboardPriority?DashboardPriority.badge(ev):'')+'<code style="color:var(--accent-sky); font-size:11.5px;">'+vfEsc(ev.evidence_id||'')+'</code><span style="font-size:11px; color:var(--text-secondary);">'+vfEsc(ev.variable||'')+' · '+vfEsc((ev.use_role||'').replace(/_/g,' '))+'</span>'+_decChipS+'<span style="margin-left:auto; display:inline-flex; gap:8px; align-items:center;">'+_revChipS+'</span></summary>';
     const intakeLane = ev.use_role === 'structural_suitability' ? 'T4' :
       (DashboardTables.matches(ev, 'T3') || DashboardTables.matches(ev, 'T6') ? 'T3/T6' : '');
-    const intakeLink = intakeLane && reviewData.revision ? '<button type="button" class="finding-submit pill-btn" data-finding="'+vfEsc(ev.evidence_id)+'" data-lane="'+vfEsc(intakeLane)+'" data-revision="'+vfEsc(reviewData.revision)+'">Submit review</button> · ' : '';
+    const intakeLink = intakeLane && reviewData.registerRevision ? '<button type="button" class="finding-submit pill-btn" data-finding="'+vfEsc(ev.evidence_id)+'" data-lane="'+vfEsc(intakeLane)+'" data-revision="'+vfEsc(reviewData.registerRevision)+'">Submit review</button> · ' : '';
     var _card='<div data-vfeid="'+vfEsc(ev.evidence_id||'')+'" style="border:1px solid '+(dec?'var(--accent-emerald)':'var(--border-color)')+'; border-left:4px solid '+_aiCol+'; border-radius:8px; padding:14px 16px; margin-bottom:10px; background:var(--bg-secondary);">'
       +(_collap?'':('<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px;">'
       +_aiBadge+_dropBadgeD+(window.DashboardPriority?DashboardPriority.badge(ev):'')
@@ -3085,7 +3097,7 @@
       +'<span style="font-size:11px; color:var(--text-secondary);">'+vfEsc(ev.variable||'')+' · '+vfEsc((ev.use_role||'').replace(/_/g,' '))+' · '+(ev.page?('<a href="#" onclick="vfSetSubset(\'section\',\''+vfEsc(String(ev.page))+'\');return false;" title="subset the worklist to page '+vfEsc(String(ev.page))+' of this source" style="color:var(--accent-sky); text-decoration:none; border-bottom:1px dotted var(--accent-sky);">'+vfEsc(page)+'</a>'):vfEsc(page))+' · '+vfEsc(vfLocHint(ev))+'</span>'
       +'</div>'))
       +(_collap && opts.formerlyCited?'<p>Previously cited in this table. <a href="https://github.com/CIAT/nbs_ruralscan/blob/'+vfEsc(reviewData.formerly_cited[window._vfScope.table][ev.evidence_id])+'">View the earlier CIAT table</a>.</p>':'')
-      +(opts.myEvent?'<p><strong>Your CIAT decision</strong> · '+vfEsc(opts.myEvent.date)+' · '+vfEsc(opts.myEvent.decision)+(opts.myEvent.reason?' · '+vfEsc(opts.myEvent.reason.replace(/_/g,' ')):'')+(opts.myEvent.note?'<br>'+vfEsc(opts.myEvent.note):'')+'</p>':'')
+      +(opts.myEvent?'<p><strong>Your recorded decision</strong> · '+vfEsc(opts.myEvent.date)+' · '+vfEsc(opts.myEvent.decision)+(opts.myEvent.reason?' · '+vfEsc(opts.myEvent.reason.replace(/_/g,' ')):'')+(opts.myEvent.note?'<br>'+vfEsc(opts.myEvent.note):'')+'</p>':'')
       +_chipRow
       +'<p>'+intakeLink+'<a class="finding-ciat" href="'+vfEsc(DashboardTables.ciatUrl(ev.evidence_id))+'">CIAT source record</a></p>'
       +(ev._reviewConflict?'<p style="border-left:3px solid var(--accent-amber);padding:8px"><b>Reviewers disagree:</b> this record has both Keep and Drop decisions. Check the reviewer notes below and give your judgement.</p>':'')
