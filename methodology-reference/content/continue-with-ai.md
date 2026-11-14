@@ -6,6 +6,7 @@ sources:
   - AGENTS.md
   - CLAUDE.md
   - PLAYBOOK.md
+  - ONBOARDING.md
   - pyproject.toml
   - .github/workflows/ci.yml
   - .github/workflows/auto-merge-review.yml
@@ -57,6 +58,7 @@ sources:
   - evidence:workflows/evidence_snapshot/README.md
   - evidence:workflows/run_record/README.md
   - evidence:workflows/submissions/README.md
+  - evidence:workflows/submissions/check_registers.py
   - evidence:.github/workflows/evidence-checks.yml
   - method:dashboard/ai.html
 ---
@@ -65,9 +67,9 @@ sources:
 
 Continuing the evidence base means three kinds of work: finding and acquiring more sources, extracting more findings (evidence units) from them, and re-running synthesis so that suitability rules, hazard rows and scorecard rows reflect the enlarged and reviewed evidence. The rules for each step are set out in [[ch:discovery]], [[ch:acquisition]], [[ch:extraction]], [[ch:review-and-quality]], [[ch:suitability-synthesis]], [[ch:effect-synthesis]] and [[ch:rulesets-and-learning]]. This chapter explains how to set up and operate the system that applies those rules: an AI coding agent of your choice, a set of versioned instruction files, deterministic checks, and people who approve what enters the record.
 
-The governing principle: model output is a proposal; only validated, human-reviewed records enter the registers [src: evidence:README.md §Planned structure] [src: AGENTS.md §Don't] [src: .agents/skills/source-command-extract-evidence/SKILL.md §Close the work]. The chapter describes the producer repository at the revision pinned for this edition, and says explicitly where the public evidence repository has moved on since.
+The governing principle: model output is a proposal; only records that pass the deterministic checks enter the registers, and people then decide which findings are kept, held or dropped [src: evidence:README.md §Planned structure] [src: AGENTS.md §Don't] [src: .agents/skills/source-command-extract-evidence/SKILL.md §Close the work]. The chapter describes the producer repository at the revision pinned for this edition, and says explicitly where the public evidence repository has moved on since.
 
-Read this first if you are starting now. The instructions, the deterministic checks and the synthesis engines are in the producer repository. Since this edition, submitting findings, extraction proposals and review votes has moved to the evidence repository, and the producer repository no longer accepts those writes. A team starting today therefore reads its instructions and runs its tools from the producer repository, and submits through the evidence repository as described under "Submitting work since this edition".
+Read this first if you are starting now. The instructions, the deterministic checks and the synthesis engines are in the producer repository, which can still be read and run. Since this edition, the producer repository's main line refuses writes to its registers, recipe tables, progress ledger and review logs, and its continuous integration rejects changes to them. The evidence repository now accepts two kinds of submission: votes on findings and extraction proposals. Search records, suitability and effect synthesis, row prose, progress stamps, rating decisions and method decisions have no write route in either repository at the time of writing. A team starting today can read the instructions, run the checks and run trial syntheses locally, and can submit finding votes and extraction proposals as described under "Submitting work since this edition". It cannot yet record the other steps. Most of the loop below therefore describes how the evidence base was built up to this edition and what a full route will need to carry.
 
 ## The system in one view
 
@@ -87,7 +89,7 @@ The system has nine moving parts. An orchestrating agent reads versioned instruc
 
 ## Before you start
 
-The prerequisites below are gathered from separate files; no single setup guide exists (see the last list in this chapter).
+The prerequisites below are gathered from separate files. The producer's onboarding guide covers general setup for one platform; no setup guide covers the evidence pipeline end to end (see the last list in this chapter).
 
 - **Python 3.12 or later and uv.** The package declares `requires-python = ">=3.12"`; continuous integration installs Python 3.12 through uv [src: pyproject.toml §project] [src: .github/workflows/ci.yml §checks]. Add dependencies with `uv add`, and run the checks with uv [src: AGENTS.md §Run / preview / deploy].
 - **Git and the GitHub command-line client.** Review submission uses Python, Git and the GitHub CLI; the reviewer must be signed in [src: docs/REVIEWER_GUIDE.md §Each review session] [src: PLAYBOOK.md §Review flagged evidence (QA/QC → main)]. Write access to the producer repository is required for decisions that change the register [src: docs/REVIEWER_GUIDE.md §QA/QC Reviewer Guide].
@@ -103,7 +105,7 @@ bash scripts/setup-repo.sh
 - **Credentials named by steps.** `LENS_TOKEN` for Lens.org discovery [src: scripts/discover-sources.py]; `OPENALEX_API_KEY` when keyed OpenAlex access is used in the evidence repository's capture tool [src: evidence:workflows/discovery/README.md §Capture records]. Unpaywall lookups take a contact email parameter [src: methodology/search_protocol.md §OA-recovery]. DOI verification calls Crossref online [src: src/nbs_ruralscan/schema_tools/verify_metadata.py]. No other credentials are named for the evidence steps.
 - **The review server** runs locally on port 8765, or another port given as an argument [src: docs/REVIEWER_GUIDE.md §Each review session].
 - **Tesseract**, for scanned PDFs only: the OCR adapter adds an invisible Tesseract text layer [src: methodology/search_protocol.md §Scanned PDFs (no text layer)].
-- **An AI coding agent.** No file states which agent, model or effort level to use; see the gaps list below.
+- **An AI coding agent.** The producer's onboarding guide names Claude Code as the agent the team used, and says it reads `AGENTS.md` at the start of every session [src: ONBOARDING.md §5. How to actually work with Claude Code]. No file states which model or effort level to use for each step; see the gaps list below.
 
 ## Where the instructions live
 
@@ -242,7 +244,7 @@ uv run python -m nbs_ruralscan.schema_tools.submit_review --ship <your-handle> -
 
 [src: docs/REVIEWER_GUIDE.md §Each review session]. A compatibility wrapper, `scripts/submit-review.sh`, calls the same module [src: scripts/submit-review.sh]. Focused batches for the one-unit review page are built with `scripts/build-review-batch.py`, which reads the register and cached PDF and never edits evidence; their CSV exports are applied with `scripts/apply-review-export.py` through the same apply function, register and soft-delete rules as the dashboard [src: scripts/build-review-batch.py] [src: scripts/apply-review-export.py]. Consensus, reason codes and re-opening are in [[ch:review-and-quality]].
 
-The two producer guides disagree on one point: the playbook says the Windows submission uses Git Bash, the reviewer guide says Bash is not required [src: PLAYBOOK.md §Review flagged evidence (QA/QC → main)] [src: docs/REVIEWER_GUIDE.md §Each review session]. The wrapper's own comment supports the reviewer guide [src: scripts/submit-review.sh].
+The producer guides disagree on one point: the playbook and the onboarding guide say the Windows submission uses Git Bash, the reviewer guide says Bash is not required [src: PLAYBOOK.md §Review flagged evidence (QA/QC → main)] [src: ONBOARDING.md §4] [src: docs/REVIEWER_GUIDE.md §Each review session]. The wrapper's own comment supports the reviewer guide [src: scripts/submit-review.sh].
 
 ### Synthesise
 
@@ -287,7 +289,7 @@ A third subcommand, `merge`, runs the account check, refuses on any flag, and re
 
 ### Ledger, search register and retrospective
 
-Search and screening stages are stamped by the step that did them, through the ledger module's `mark` command; extraction and review are derived from the register. The ledger check runs in the build [src: src/nbs_ruralscan/schema_tools/ledger.py]:
+Search, screening and verification stages are stamped by the step that did them, through the ledger module's `mark` command; extraction and review are derived from the register. The ledger check runs in the build [src: src/nbs_ruralscan/schema_tools/ledger.py]:
 
 ```sh
 uv run python3 -m nbs_ruralscan.schema_tools.ledger check
@@ -333,7 +335,7 @@ Each rule is explained in full in the linked chapter.
 | Numeric plausibility | Band width, precision, jumps, proxies, transfer | Hold or approval kept separate from qualitative keep [src: .agents/skills/extraction_contracts/T4_review_contract.md] |
 | Suitability rule change | Differences against the accepted recipe; applicability, functions, tails, masks, weights | Batch audit synthesis decision record [src: .agents/skills/source-command-t4-synthesise/SKILL.md §Translating evidence into a rule] |
 | Generated row review | Class, confidence, prose, the evidence it rests on | Row review log [src: scripts/apply-row-review-export.py] |
-| Merge to the main line | The submission's changed files and CI result | Branch protection requires checks and one approval; review-only submissions from allowlisted reviewers are approved by automation [src: .github/workflows/auto-merge-review.yml] |
+| Merge to the main line | The submission's changed files and CI result | At the pinned revision the main line required passing checks and one approval, and an automated workflow approved submissions that changed only review records [src: AGENTS.md §What is locked] [src: .github/workflows/auto-merge-review.yml]. That workflow has since been removed from the producer repository |
 | Ruleset change | Retrospective triage | Version log row and archived snapshot [src: methodology/RULESET_VERSIONS.md §Ruleset versions] |
 
 No pinned file states a separate explicit "start" approval for large sweeps beyond the authorised-scope rule above.
@@ -385,8 +387,8 @@ python3 workflows/submissions/intake.py extraction effects.json --lane T3/T6 --r
 ```
 
 - **Protected register workflow.** A maintainer who has reviewed an extraction labels its issue `approved-extraction`. `workflows/submissions/registers.py`, given issue numbers, the producer clone and a local corpus, previews by default and with `--open-pr` opens a protected register pull request carrying the receipts. It checks reviewer identity, the original issue body, the matching finding and source, and agreement across eligible ballots; opposing votes stay pending, and a receipt ledger prevents duplicate application. A register pull request needs approval and current checks [src: evidence:workflows/submissions/README.md §Apply approved submissions]. The repository's continuous integration verifies the official registers and reproduces the review queue [src: evidence:.github/workflows/evidence-checks.yml].
-- **Authority at the time of writing.** The register command refuses to publish until a retirement marker is present on the producer repository's main line [src: evidence:workflows/submissions/README.md §Apply approved submissions]. When this chapter was written, that marker was present on the producer repository's main line, the producer's own review, ingest and import tools refused new writes for the hazard, suitability and scorecard evidence, and the evidence repository's receipt journal recorded one applied submission [src: evidence:registers/applied-receipts.json]. Both observations are later than the pinned revision. Two guides in the evidence repository still describe the earlier arrangement: the snapshot guide says the producer repository retains authority to update the registers during a preparation stage [src: evidence:workflows/evidence_snapshot/README.md §Register migration seed], and the operator handbook says live registration, correction and review take place in the producer repository [src: evidence:handbook/assisted-evidence-run.md §Run an assisted evidence search and extraction]. Treat the submissions guide as current, and confirm the marker before submitting.
-- **What has no route yet.** The submission desk takes finding votes and extraction proposals for the suitability lane and the hazard and scorecard lane. Reviews of generated rows and method decisions are stated to keep their existing separate workflows [src: evidence:workflows/submissions/README.md §Preview historical CIAT submissions for one revision], and the producer's row-review importer is among the tools that now refuse writes, so no current route for recording a row review was found.
+- **Authority at the time of writing.** The register command refuses to publish until a retirement marker is present on the producer repository's main line [src: evidence:workflows/submissions/README.md §Apply approved submissions]. When this chapter was written, the producer repository's main line carried that marker; its registrar, staging ingest, review server, review apply and both export importers refused writes; and its continuous integration rejected changes to the registers, recipe tables, progress ledger and review logs. The evidence repository's receipt journal recorded one applied submission, an extraction correction [src: evidence:registers/applied-receipts.json]. These observations are later than the pinned revision, so they are not linked to pinned files. Several guides in the evidence repository still describe the earlier arrangement, among them the snapshot guide [src: evidence:workflows/evidence_snapshot/README.md §Register migration seed], the operator handbook [src: evidence:handbook/assisted-evidence-run.md §Run an assisted evidence search and extraction], the review-records guide [src: evidence:handbook/review-records.md] and the run-record guide [src: evidence:workflows/run_record/README.md]. Treat the submissions guide as current.
+- **What has no route yet.** The submission desk takes finding votes and extraction proposals for the suitability lane and the hazard and scorecard lane. Reviews of generated rows and method decisions are stated to keep their existing separate workflows [src: evidence:workflows/submissions/README.md §Preview historical CIAT submissions for one revision], but the producer repository now refuses writes to both logs, and the evidence repository's checks allow changes only to the evidence register, the source register and the finding review log [src: evidence:workflows/submissions/check_registers.py]. No current route was found for recording a row review, a method decision, a search record, a progress stamp or a regenerated suitability, hazard or scorecard table.
 
 ## What is public, what is not, and what is unwritten
 
@@ -412,10 +414,10 @@ python3 workflows/submissions/intake.py extraction effects.json --lane T3/T6 --r
 
 For each item, no file found at the pinned revision or in the evidence repository states this:
 
-- which model, model family or effort level to use for orchestration, sub-agent lanes, independent challenge or prose writing;
+- which model or effort level to use for orchestration, sub-agent lanes or independent challenge (the prose writer's default label names one model family and one command file names another [src: scripts/write-prose.py] [src: .claude/commands/fix-pr-conflicts.md]);
 - expected cost, token use or run time per sweep;
-- how to load the skills into a particular agent other than by reading `AGENTS.md` and the skill files;
-- a single end-to-end setup guide for a new team (the prerequisites above are assembled from several files);
+- how to load the skills into an agent other than the one the team used;
+- an end-to-end setup guide for the evidence pipeline (a general onboarding guide exists for one platform; the prerequisites above are assembled from several files);
 - how a new team obtains access to the team source library;
 - how many sub-agent lanes to run, or how to size a lane;
 - a structured register field for model identity or settings;
@@ -423,7 +425,7 @@ For each item, no file found at the pinned revision or in the evidence repositor
 
 ## Assumptions and limits
 
-- The steps described at the pinned revision assume write access to the producer repository and access to the team library. Since the move described above, new findings and votes are submitted through the evidence repository instead; the team library is still needed to check any quote against its source.
+- The steps described at the pinned revision assume write access to the producer repository and access to the team library. Since then, finding votes and extraction proposals are submitted through the evidence repository; the other steps that write records have no current route. The team library is still needed to check any quote against its source.
 - The pinned files contain internal contradictions, listed where they arise: the T3/T6 skill's version references, duplicate version-log entries, the playbook and reviewer guide on Windows submission, and the setup script against `AGENTS.md`. The playbook's discovery workflow also tells the reader to add candidates to the source register and log quotes in the evidence register, which conflicts with the same playbook's acquisition section, the hydration guide (source row created at the central merge) and the ban on hand-appending evidence [src: PLAYBOOK.md §Perform literature & tools discovery] [src: PLAYBOOK.md §Acquisition queue] [src: docs/HYDRATION.md §The order of operations (pre-SRC sources)] [src: AGENTS.md §Don't]. Follow the stricter rule.
 - Passing every automated check does not prove semantic fidelity; quote matching cannot show that the encoded meaning is right [src: .agents/skills/source-command-extract-evidence/SKILL.md §Close the work].
 - Historical runs cannot be fully reproduced: archives identify instructions, not prompts, models or settings [src: evidence:rulesets/README.md §Which instructions apply to the terrace example?].

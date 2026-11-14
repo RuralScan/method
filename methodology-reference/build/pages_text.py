@@ -26,6 +26,7 @@ from core import (
     LIVE_RATING_STATUS,
     LIVE_REVIEWS,
     LIVE_SNAPSHOT,
+    METHOD,
     METHOD_REV,
     PIN,
     PRACTICE_IDS,
@@ -85,11 +86,11 @@ def review_queues():
     return f'<ul class="queues">{"".join(items)}</ul>'
 
 
-def _committed(revision):
-    """Commit date of a producer revision, when the producer checkout has it."""
+def _committed(revision, repo=CIAT):
+    """Commit date of a revision, when the checkout has it. The producer checkout by default."""
     try:
         return subprocess.check_output(
-            ["git", "-C", str(CIAT), "log", "-1", "--format=%cs", revision],
+            ["git", "-C", str(repo), "log", "-1", "--format=%cs", revision],
             text=True,
             stderr=subprocess.DEVNULL,
         ).strip()
@@ -153,7 +154,7 @@ def live_pins():
                     "https://github.com/RuralScan/method/tree/" + SITE_REV,
                     code(SITE_REV[:12]),
                 ),
-                "",
+                _committed(SITE_REV, METHOD),
                 f"The site revision that serves “{esc(LIVE_LABEL)}”",
             ],
             [
@@ -847,7 +848,7 @@ def build():
                         "Includes findings that an earlier version of a hazard or scorecard table cited; those are marked as previously cited."
                     ),
                     (
-                        "Whether the finding stays in the evidence that synthesis reads: Drop removes it, Keep and Query leave it in, Reclassify changes its scope. Keeping a finding confirms the extraction. "
+                        "Whether the finding stays in the evidence that synthesis reads: Drop removes it from synthesis and keeps it as a record; Keep and Hold leave it in. In earlier records, Query is the same as Hold, and Reclassify changed the finding’s scope. Keeping a finding confirms the extraction. "
                         "It does not approve a score or a rating."
                     ),
                     link(log + "pipeline/metrics/review_log.csv", "Finding review log"),

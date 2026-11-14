@@ -182,13 +182,13 @@ WHERE t.provisional AND rf.kind = 'setter'
 GROUP BY ALL
 ORDER BY unresolved_setters DESC, t.record_id
 LIMIT 5;""",
-        "reading": "The five hazard ratings with the most unresolved rating-setting findings.",
+        "reading": "The first five hazard ratings by number of unresolved rating-setting findings. Ties are broken alphabetically, so other ratings can have the same count as the last one shown.",
     },
     {
         "id": "excluded",
         "title": "Confirm that no row rests on an excluded finding",
         "why": "Excluded findings stay in the table for their history. This shows that none is linked to a row.",
-        "sql": """SELECT f.status, f.excluded, count(*) AS findings,
+        "sql": """SELECT f.status, f.excluded, count(DISTINCT f.evidence_id) AS findings,
        count(rf.evidence_id) AS links_to_rows
 FROM findings f
 LEFT JOIN record_findings rf USING (evidence_id)
@@ -229,7 +229,7 @@ ORDER BY 1;""",
        count(study_context) AS with_study_context,
        count(json_extract_string(study_context, '$.study_country')) AS with_study_country
 FROM findings;""",
-        "reading": "Study country is recorded on few findings in this edition. A filter on it would discard most of the evidence.",
+        "reading": "Study country is recorded on few findings in the package. A filter on it would discard most of the evidence. The native source register records it per source for most sources.",
     },
 ]
 
@@ -618,9 +618,10 @@ def build():
         f"<code>{PACKAGE_SHA256}</code>.</li>"
         f"<li>{link(EDITION_CATALOG_URL, 'Catalogue entry for this edition')} and the "
         f"{link(CATALOG_URL, 'site catalogue')}, in schema.org JSON-LD, which is where a program starts.</li>"
-        "<li>This build downloaded the ten tables and checked each against the checksum in the package. "
+        "<li>The build checked a downloaded copy of each of the ten tables against the checksum in the package. "
         f"{link('reproduce.html#checks', 'Build checks')}.</li></ul>"
-        '<p class="basis">Blank means not reported or not applicable in every table. '
+        '<p class="basis">Blank usually means not reported or not applicable. Three fields differ: a blank rating means no rating was assigned, '
+        "a blank <code>provisional</code> means undetermined, and <code>reported</code> and <code>study_context</code> are blank for excluded findings. "
         "Two fields hold JSON objects: <code>reported</code> and <code>study_context</code> on findings, and <code>parameters</code> on suitability mappings.</p>"
         '<h2 id="native">Tables the package does not carry</h2>'
         "<p>The package covers hazard, suitability and scorecard rows with their findings and sources. The tables below "
@@ -669,7 +670,7 @@ def build():
         '<h2 id="later">Registers after this edition</h2>'
         "<p>The registers continue to change after an edition is fixed. The evidence repository holds a later copy of "
         "the registers and review logs, with a manifest of row counts and checksums. Use it to see current work. "
-        "Do not combine its counts with this edition.</p>"
+        "Its counts describe different records: do not add them to this edition’s, and do not treat a difference as new evidence for this edition.</p>"
         + table(
             [
                 "Register",
@@ -730,8 +731,9 @@ def build():
         "The quote is in the native evidence register.</li>"
         "<li><strong>Source credibility and setting.</strong> The package sources table has the citation, kind and link. "
         "Credibility tier, venue, study design and income group are in the native source register.</li>"
-        f"<li><strong>Study location.</strong> A study country is recorded on {study_country:,} of "
-        f"{len(tables['findings']):,} findings in the package.</li>"
+        f"<li><strong>Study location.</strong> The package records a study country on {study_country:,} of "
+        f"{len(tables['findings']):,} findings. The native source register records one for "
+        f"{sum(1 for s in data.SRC if s.get('study_country')):,} of {len(data.SRC):,} sources; that field is not in the package.</li>"
         "<li><strong>Economic profiles, searches, variables, datasets and rule tables.</strong> Available as native files above, "
         "not yet described in a package with field definitions.</li>"
         "<li><strong>A persistent identifier.</strong> The package is addressed by its edition address. It has no DOI.</li>"
@@ -838,7 +840,7 @@ def build():
         "A <code>record_id</code> opens a row page, an <code>evidence_id</code> is an anchor on its source page, and a "
         "<code>source_id</code> opens a source page.</p>"
         '<h2 id="read">Fields to read with care</h2>'
-        "<p>Four fields carry most of the meaning. The definitions are quoted from the package; the notes under them are this reference’s reading.</p>"
+        "<p>Five fields carry most of the meaning. The definitions are quoted from the package; the notes under them are this reference’s reading.</p>"
         + table(
             [
                 "Field",
@@ -854,7 +856,9 @@ def build():
                     ),
                     esc(_definition(by_name, "findings", "status")),
                     (
-                        "The status is the human decision applied at this edition. Unreviewed means none is applied; it does not mean the finding is wrong. "
+                        "The status is the review state applied at this edition. Signed off needs a recorded human decision. "
+                        "Held and rejected can be set by automated checks as well as by people. "
+                        "Unreviewed means no human decision is applied; it does not mean the finding is wrong. "
                         "Signed off confirms the extraction against its source. It does not approve a score or a rating."
                     ),
                 ],
@@ -872,8 +876,9 @@ def build():
                     ),
                     esc(_definition(by_name, "t3", "provisional")),
                     (
-                        "Blank is the commonest value. It means the findings that can change the rating have not been fully assessed, "
-                        "so the rating is neither confirmed provisional nor cleared."
+                        "Blank is the commonest value. For almost all of these rows no assessment of which findings can change the rating "
+                        "is available at this edition (<code>setter_coverage</code> is <code>unavailable</code>); for a few it is only partial. "
+                        "The rating is neither confirmed provisional nor cleared."
                     ),
                 ],
                 [
@@ -890,8 +895,10 @@ def build():
                     "<br>".join(f"{code(k)} · {v:,}" for k, v in sorted(calib.items())),
                     esc(_definition(by_name, "t4", "calibration")),
                     (
-                        "Held means the evidence was reviewed and does not support a numerical function. Not recorded means no calibration decision is recorded. "
-                        "Neither is a score, and neither means reviewed and accepted."
+                        "Held means reviewers have not approved a numerical score for the mapping. The reason is in <code>calibration_reason</code>: "
+                        "the evidence may not support a shared function, a matching data layer may be missing, or scoring conventions may be unresolved. "
+                        "Not recorded means no calibration decision is recorded; read <code>function_selected</code> and <code>parameters</code> to see whether a function was selected. "
+                        "Neither value is an approved calibration."
                     ),
                 ],
             ],
@@ -989,10 +996,10 @@ def build():
         "Get-FileHash findings.csv -Algorithm SHA256   # Windows PowerShell</code></pre>"
         f"<p>The expected value for <code>findings.csv</code> is <code>{esc(by_name['findings']['hash'].split(':', 1)[1])}</code>.</p>"
         '<h2 id="limits">What a query cannot tell you</h2><ul>'
-        "<li>A count of findings is not strength of evidence. Confidence is stated on each row and is compiled from the level of evidence and its agreement.</li>"
+        "<li>A count of findings is not strength of evidence. Confidence is stated on each hazard and scorecard row and is compiled from the level of evidence and its agreement. Suitability mappings carry no confidence.</li>"
         "<li>A study location is where the evidence was produced. It is not where a practice is suitable.</li>"
         "<li>A held calibration has no score. Do not fill it from the reported range.</li>"
-        "<li>Counts from this edition and from the later registers describe different revisions. Do not add or compare them.</li>"
+        "<li>Counts from this edition and from the later registers describe different records. Do not add them, and do not treat a difference as new evidence for this edition.</li>"
         f"<li>The reported values are as extracted. Units are source-specific and are in the <code>unit</code> key when recorded. {link('ch-extraction.html', 'Extraction')}.</li></ul>"
     )
     page(
@@ -1097,7 +1104,7 @@ def llms(descriptor, resources, tables, counts):
         f"- Recipe release: {RELEASE} (candidate, not released)",
         f"- Producer revision of every table and register: {PRODUCER}",
         f"- Data package edition: {PACKAGE_EDITION}",
-        "- Counts from different revisions must never be added or compared.",
+        "- Counts from different revisions describe different records. Do not add them or treat a difference as new evidence for this edition.",
         "",
         "## Data package (start here)",
         "",
@@ -1118,17 +1125,18 @@ def llms(descriptor, resources, tables, counts):
         "- findings -> sources on source_id",
         "- context-sources -> records on record_id; context-sources -> sources on source_id",
         "- queue -> findings on evidence_id (unresolved_setter) or records on record_id (held_calibration)",
-        "- Blank means not reported or not applicable. `reported`, `study_context` and `parameters` hold JSON objects.",
+        "- Blank usually means not reported or not applicable. A blank rating means none was assigned; a blank provisional means undetermined; `reported` and `study_context` are blank for excluded findings.",
+        "- `reported`, `study_context` and `parameters` hold JSON objects.",
         "",
         "## How to read status",
         "",
         "- findings.status: "
         + ", ".join(f"{k} {v}" for k, v in sorted(counts.items()))
-        + ". Unreviewed means no human decision is applied; it does not mean wrong. Signed off confirms the extraction, not a score or a rating.",
+        + ". Unreviewed means no human decision is applied; it does not mean wrong. Signed off needs a human decision and confirms the extraction, not a score or a rating. Held and rejected can be set by automated checks as well as by people.",
         "- findings.excluded true: dropped from synthesis, kept for history, linked to no row.",
         "- t3.provisional, t6.provisional: true = a finding that can change the rating is unresolved; false = fully assessed and clear; blank = not determined.",
         "- record-findings.kind: direct = cited by the row; context = contextual; setter = can change the rating.",
-        "- t4.calibration Held or Not recorded: there is no score. Never derive one from a reported range.",
+        "- t4.calibration Held: no numerical score is approved for the mapping. Not recorded: no calibration decision is recorded; read function_selected and parameters to see whether a function was selected. Never derive a score from a reported range.",
         "",
         "## Do not conclude",
         "",
