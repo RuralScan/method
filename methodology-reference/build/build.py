@@ -252,22 +252,34 @@ def run_checks():
         ", ".join(wrong[:5]),
     )
 
-    # The live dashboard stays the reference point for every draft page.
+    # The version menu matches the deployed dashboard's: three groups, and this reference once, selected.
+    grouped = re.compile(r'<optgroup label="([^"]+)">(.*?)</optgroup>')
     option = re.compile(r"<option value=\"([^\"]*)\"( selected)?>([^<]*)</option>")
+    drafts = [(url, "", label) for url, label in core.SITE_DRAFTS]
     bad = []
     for name, html in core.PAGES.items():
-        options = option.findall(html.split("</select>")[0])
+        menu = html.split('<select id="dashboard-version"', 1)[1].split("</select>", 1)[
+            0
+        ]
+        groups = [(g, option.findall(items)) for g, items in grouped.findall(menu)]
+        total = sum(len(items) for _, items in groups)
         ok = (
-            len(options) == len(core.SITE_DRAFTS) + 2
-            and options[0][2].startswith(core.LIVE_LABEL)
-            and options[0][0].startswith(core.SITE_URL + "dashboard.html#")
-            and [o[1] for o in options].count(" selected") == 1
-            and all(o[2].startswith("Draft · ") for o in options[1:])
+            [g for g, _ in groups]
+            == [core.LIVE_GROUP, core.REFERENCE_GROUP, core.DRAFTS_GROUP]
+            and total == len(core.SITE_DRAFTS) + 2 == len(option.findall(menu))
+            and len(groups[0][1]) == 1
+            and groups[0][1][0][0].startswith(core.SITE_URL + "dashboard.html#")
+            and groups[0][1][0][1] == ""
+            and groups[0][1][0][2].startswith(core.LIVE_LABEL)
+            and groups[1][1]
+            == [(core.REFERENCE_URL, " selected", core.REFERENCE_LABEL)]
+            and groups[2][1] == drafts
         )
         if not ok:
             bad.append(name)
     check(
-        "Version selector on every page: live dashboard first, every other version labelled Draft",
+        "Version menu on every page: Live, Under review and Earlier drafts as the deployed dashboard lists them, "
+        "with this reference once and selected",
         not bad,
         ", ".join(bad[:5]),
     )

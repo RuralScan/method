@@ -49,7 +49,7 @@ Every product a reviewer moves between should carry the same controls in the sam
 
 | Position | Control | Rule |
 |---|---|---|
-| 1 | **Version** label and menu | Live dashboard first, this reference marked as the page in view, earlier drafts after. |
+| 1 | **Version** label and menu | Three groups, as on the live dashboard: Live, Under review, Earlier drafts. Built from the site's edition catalogue. This reference appears once, selected. |
 | 2 | Note | An "Under review" marker and one short line saying what this version is. |
 | 3 | **Dark theme / Light theme** button | Same moon and sun icons and wording as the visual methodology. |
 | 4 | **Review** button | Switches on the review tool. Reads "Review on" while active. |
