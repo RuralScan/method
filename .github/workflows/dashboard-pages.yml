@@ -30,7 +30,7 @@ jobs:
       - name: Assemble public dashboard and immutable data
         run: |
           mkdir -p site/data/bec50bc0f9dc
-          git archive HEAD -- index.html dashboard.html '*.css' '*.js' review vendor LICENSE | tar -x -C site
+          git archive HEAD -- index.html dashboard.html '*.css' '*.js' assets review vendor LICENSE | tar -x -C site
           cp producer/docs/dashboard_data.json producer/docs/t4_analysis*.json site/data/bec50bc0f9dc/
           mv site/dashboard.html site/legacy.html
       - name: Check out the methodology reference

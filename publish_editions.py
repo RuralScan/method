@@ -267,14 +267,17 @@ def add_version_selectors(site, editions, ciat, reference):
         menu = "".join(f'<optgroup label="{escape(group)}">{items}</optgroup>' for group, items, _ in groups)
         plain_links = " · ".join(f'<strong>{escape(group)}</strong> {items}' for group, _, items in groups)
         kind = ' data-legacy="true"' if legacy else ""
-        note = "" if legacy else "Design preview."
+        label = "Version" if legacy else "View version"
+        note = "Review findings against their sources." if legacy else "Design preview."
         control = (
-            '<div class="edition-selector"><label for="dashboard-version">View version</label>'
+            f'<label for="dashboard-version">{label}</label>'
             f'<select id="dashboard-version" aria-describedby="dashboard-version-note"{kind}>'
             + menu + f'</select><span id="dashboard-version-note">{note}</span>'
             + ("" if legacy else f' <a href="{legacy_url}">Return to live dashboard</a>')
-            + f"<noscript>{plain_links}</noscript></div>"
+            + f"<noscript>{plain_links}</noscript>"
         )
+        if not legacy:
+            control = '<div class="edition-selector">' + control + '</div>'
         review_record = (page.startswith(("review", "claim-", "row-"))
                          or page in {"terrace.html", "method-decisions.html"})
         if not legacy and current != latest and page.startswith("review"):
@@ -304,7 +307,16 @@ def add_version_selectors(site, editions, ciat, reference):
         header = contents.find("<header")
         if header < 0 or "</head>" not in contents:
             raise ValueError(f"Missing dashboard shell in {path}")
-        contents = contents[:header] + control + contents[header:]
+        if legacy:
+            marker = "<!-- Published version menu -->"
+            if contents.count(marker) != 1:
+                raise ValueError("Live dashboard must have one version menu slot")
+            contents = contents.replace(marker, control)
+            if (site / "reference/help.html").is_file():
+                contents = contents.replace('href="https://ciat.github.io/nbs_ruralscan/redesign/help.html"',
+                                            'href="reference/help.html"')
+        else:
+            contents = contents[:header] + control + contents[header:]
         assets = (f'<link rel="stylesheet" href="{base}edition-selector.css?v=2">'
                   f'<script defer src="{base}edition-selector.js"></script>')
         path.write_text(contents.replace("</head>", assets + "</head>", 1))

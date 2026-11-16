@@ -68,6 +68,7 @@
     var mainNav = document.querySelector('.tab-nav');
     var controls = document.querySelector('#query-explorer-panel .sidebar-panel');
     var headerHeight = header && getComputedStyle(header).position === 'sticky' ? header.getBoundingClientRect().height : 0;
+    document.documentElement.style.setProperty('--programme-band-height', headerHeight + 'px');
     var versionBar = document.querySelector('.edition-selector');
     if (versionBar && getComputedStyle(versionBar).position === 'sticky') headerHeight += versionBar.getBoundingClientRect().height;
     document.documentElement.style.setProperty('--shell-header-height', headerHeight + 'px');
@@ -155,8 +156,6 @@
     document.querySelectorAll('[data-method-view]').forEach(function (button) { button.addEventListener('click', function () { setView('method', button.dataset.methodView); }); });
     var guide = byId('review-reference-guide');
     ['vf-howto', 'vf-reason-codes'].forEach(function (id) { var item = byId(id); if (item) guide.appendChild(item); });
-    var theme = byId('theme-toggle'), feedback = byId('rv-toggle');
-    if (theme && feedback) { var group = document.createElement('div'); group.className = 'shell-utilities'; theme.before(group); group.append(theme, feedback); }
     var controls = document.querySelector('#query-explorer-panel .sidebar-panel');
     if (controls) {
       var oldHelp = controls.querySelector(':scope > div:last-child');
