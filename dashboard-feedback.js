@@ -10,7 +10,7 @@
   'use strict';
   var KEY = 'nbs_dashboard_feedback', KEY_ON = 'nbs_dashboard_feedback_on', KEY_NAME = 'nbs_dashboard_feedback_reviewer', KEY_CLEAR_BACKUP = 'nbs_dashboard_feedback_clear_backup';
   var H2C = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-  var ISSUE_URL = 'https://github.com/CIAT/nbs_ruralscan/issues/new';
+  var ISSUE_URL = 'https://github.com/RuralScan/method/issues/new';
   var TYPES = ['Question', 'Suggestion', 'Error', 'Praise'], SEV = ['Low', 'Med', 'High'];
   var TARGETS = '[data-feedback-key], [data-vfeid], .evidence-card, #vf-cards > div, tbody tr, .card-container, .stat-card, .tab-content, .app-header';
   var page = (location.pathname.split('/').pop() || 'index.html');
@@ -136,20 +136,11 @@
   function badge() { var b = document.getElementById('rv-badge'); if (b) { b.textContent = notes.length; b.style.display = notes.length ? '' : 'none'; } }
 
   /* ---------- toggle in the version bar ---------- */
-  function addToggle() {
-    var bar = document.querySelector('.header-actions');
-    var t = el('button', 'vb-review'); t.type = 'button'; t.id = 'rv-toggle'; t.setAttribute('aria-pressed', 'false'); t.setAttribute('data-rv-ui', '');
-    t.title = 'Comment, highlight or capture dashboard feedback';
-    t.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v8H6l-4 3z"/></svg><span>Feedback</span>';
-    if (bar) { var ch = bar.querySelector('.vb-changes'); bar.insertBefore(t, ch || null); }
-    else { t.classList.add('rv-float-toggle'); document.body.appendChild(t); }
-    t.addEventListener('click', function () { enable(!document.body.classList.contains('rv-on')); });
-  }
   function enable(on) {
     setOn(on);
     document.body.classList.toggle('rv-on', on);
-    var t = document.getElementById('rv-toggle'); if (t) { t.setAttribute('aria-pressed', String(on)); t.querySelector('span').textContent = on ? 'Feedback on' : 'Feedback'; }
-    if (on) { pins(); paintHighlights(); toast('Feedback on — notes stay in this browser until exported. QA decisions are separate.'); }
+    var t = document.getElementById('rv-toggle'); t.setAttribute('aria-pressed', String(on)); t.querySelector('span').textContent = on ? 'Review on' : 'Review';
+    if (on) { pins(); paintHighlights(); toast('Review on. Dashboard comments stay in this browser until you export them. Use Review queue for evidence decisions.'); }
     else { exitModes(); closeComposer(); ui.drawer.hidden = true; ui.menu.hidden = true; ui.tip.hidden = true; if (window.CSS && CSS.highlights) CSS.highlights.delete('rv'); }
   }
   function loadH2C() {
@@ -323,13 +314,13 @@
   function pins() {
     if (!ui.layer) return;
     var mine = notes.filter(function (n) { return n.page === page; }), html = '', seen = {};
+    var bar = document.querySelector('.dashboard-version-bar');
+    var chromeBottom = bar ? bar.getBoundingClientRect().bottom : 0;
     mine.forEach(function (n, i) {
       var t = findTarget(n); if (!t || !t.offsetParent && t !== document.body) return;
       var r = t.getBoundingClientRect(), key = Math.round(r.top) + ',' + Math.round(r.right), off = (seen[key] = (seen[key] || 0) + 1) - 1;
       var fixed = !!t.closest('#chrome');
-      var header = document.querySelector('.app-header');
-      var ch = header ? header.getBoundingClientRect().bottom : 0;
-      if (!fixed && (r.top + 6 < ch || r.bottom < ch + 10)) return;   // tucked under the sticky bars
+      if (!fixed && (r.top + 6 < chromeBottom || r.bottom < chromeBottom + 10)) return;
       var top = r.top + (fixed ? 0 : window.scrollY) + 6, left = r.right + (fixed ? 0 : window.scrollX) - 28 - off * 26;
       html += '<button type="button" class="rv-pin rv-' + n.type.toLowerCase() + (fixed ? ' rv-fixed' : '') + '" data-id="' + n.id + '" style="top:' + top + 'px;left:' + left + 'px">' + (notes.indexOf(n) + 1) + '</button>';
     });
@@ -526,7 +517,7 @@
     var url = ISSUE_URL + '?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body), long = url.length > 8000;
     var d = el('div', 'rv-modal'); d.setAttribute('data-rv-ui', ''); d.setAttribute('role', 'dialog'); d.setAttribute('aria-label', 'Submit as GitHub issue');
     d.innerHTML = '<div class="rv-modal-in"><div class="rv-c-head"><div><span class="rv-c-k">GitHub issue</span><div class="rv-c-t">' + esc(title) + '</div></div><button type="button" class="rv-x" data-m="close" aria-label="Close">×</button></div>' +
-      '<div class="rv-c-body"><p>Opens a new issue on <b>CIAT/nbs_ruralscan</b> with all ' + notes.length + ' notes as markdown. You need a GitHub account and must press <b>Submit</b> there yourself.</p>' +
+      '<div class="rv-c-body"><p>Opens a new issue on <b>RuralScan/method</b> with all ' + notes.length + ' notes as markdown. You need a GitHub account and must press <b>Submit</b> there yourself.</p>' +
       '<p class="rv-warn">Screengrabs are not included in the issue. Download the HTML report and attach the images to the issue.</p>' +
       (long ? '<p class="rv-warn">The notes are too long for a link (' + url.length.toLocaleString() + ' characters). The body will be copied to your clipboard; paste it into the issue.</p>' : '') +
       '<details><summary>Preview the issue body</summary><pre class="rv-pre">' + esc(body) + '</pre></details></div>' +
@@ -560,7 +551,10 @@
 
   /* ---------- start ---------- */
   function start() {
-    build(); addToggle(); badge();
+    build(); badge();
+    var toggle = document.getElementById('rv-toggle');
+    toggle.hidden = false;
+    toggle.addEventListener('click', function () { enable(!document.body.classList.contains('rv-on')); });
     var observer = new MutationObserver(function() {
       if (!document.body.classList.contains('rv-on')) return;
       cancelAnimationFrame(pinRaf); pinRaf = requestAnimationFrame(function() { pins(); paintHighlights(); });

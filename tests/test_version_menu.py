@@ -19,7 +19,7 @@ class VersionMenuTest(unittest.TestCase):
         for available in (True, False):
             with self.subTest(available=available), TemporaryDirectory() as tmp:
                 site = Path(tmp)
-                (site / "legacy.html").write_text(shell)
+                (site / "legacy.html").write_bytes(Path(publish.__file__).with_name("dashboard.html").read_bytes())
                 data = site / "data" / publish.LIVE_PIN[:12]
                 data.mkdir(parents=True)
                 (data / "dashboard_data.json").write_text('{"progress_overview":{"sources":[]},"recipes":{}}')
@@ -32,6 +32,7 @@ class VersionMenuTest(unittest.TestCase):
                     entry = site / reference["href"]
                     entry.parent.mkdir()
                     entry.write_text("reference")
+                    (entry.parent / "help.html").write_text("help")
                 with patch.object(publish, "live_rating_reviews", return_value={}), \
                      patch.object(publish, "publish_review_queue", return_value="queue.json"):
                     publish.add_version_selectors(site, editions, None, reference)
@@ -47,6 +48,12 @@ class VersionMenuTest(unittest.TestCase):
                     self.assertEqual(menu.count(" selected"), 1)
                     if page.parent == site:
                         self.assertIn(" selected", groups["Live"])
+                        bar = html.split('aria-label="Dashboard version and tools">', 1)[1].split("</div>", 1)[0]
+                        controls = ['>Version</label>', 'id="dashboard-version-note"', 'id="theme-toggle"',
+                                    'id="rv-toggle"', 'What changed? · history and feedback']
+                        self.assertEqual(sorted(controls, key=bar.index), controls)
+                        help_url = "reference/help.html" if available else "https://ciat.github.io/nbs_ruralscan/redesign/help.html"
+                        self.assertIn(f'href="{help_url}">Help / Contact / Team</a>', html)
                     else:
                         self.assertIn(f'data-edition="{editions[-1]["edition"]}" selected', groups["Earlier drafts"])
                     if available:

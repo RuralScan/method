@@ -111,25 +111,6 @@
     gap: 16px;
   }
 
-  .btn-theme-toggle {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    width: 38px;
-    height: 38px;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-  }
-
-  .btn-theme-toggle:hover {
-    background-color: var(--bg-tertiary);
-    border-color: var(--text-secondary);
-  }
-
   .btn-back {
     display: flex;
     align-items: center;
@@ -1030,8 +1011,8 @@
 <link rel="stylesheet" href="t4_analysis.css">
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
-<link rel="stylesheet" href="dashboard-feedback.css?v=1.0.2">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.6.3">
+<link rel="stylesheet" href="dashboard-feedback.css?v=1.1.0">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.7.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
   #loading-container, #error-container {display:flex;align-items:center;gap:.65rem;padding:.6rem 0;color:var(--text-secondary);font-size:.9rem}
@@ -1045,39 +1026,27 @@
 <body data-theme="dark" data-records="loading">
 
 <header class="app-header">
-  <div class="brand-group">
-    <h1 class="brand-title" id="app-title">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-      </svg>
-      Rural NbS Scan
-    </h1>
-    <span class="brand-subtitle">Evidence for rural nature-based solutions</span>
+  <div class="programme-brand">
+    <a class="programme-logo" href="https://www.worldbank.org/en/programs/nbs-invest" aria-label="NBS Invest programme at the World Bank">
+      <img src="assets/nbs-invest-logo.jpg" alt="NBS Invest" width="780" height="439">
+    </a>
+    <div class="brand-group">
+      <h1 class="brand-title" id="app-title">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+        </svg>
+        Rural NbS Scan
+      </h1>
+      <span class="brand-subtitle">Evidence for rural nature-based solutions</span>
+    </div>
   </div>
   <div class="header-actions">
     <div id="dashboard-build" class="dashboard-build" aria-label="Dashboard and data build"></div>
-    <a class="btn-back" href="#review-queue">Review queue</a>
+    <a class="help-entry" href="https://ciat.github.io/nbs_ruralscan/redesign/help.html">Help / Contact / Team</a>
+    <a class="btn-back review-entry" href="#review-queue">Review queue</a>
     <button class="btn-back" type="button" onclick="if(window.DashboardProgress)window.DashboardProgress.print()">Print overview</button>
 
-    <button class="btn-theme-toggle" id="theme-toggle" aria-label="Toggle Theme" title="Toggle Theme">
-      <!-- Dark mode (Sun) icon -->
-      <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-        <circle cx="12" cy="12" r="5"></circle>
-        <line x1="12" y1="1" x2="12" y2="3"></line>
-        <line x1="12" y1="21" x2="12" y2="23"></line>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-        <line x1="1" y1="12" x2="3" y2="12"></line>
-        <line x1="21" y1="12" x2="23" y2="12"></line>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-      </svg>
-      <!-- Light mode (Moon) icon -->
-      <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-      </svg>
-    </button>
     <a class="btn-back" href="https://github.com/RuralScan/method">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -1087,6 +1056,17 @@
     </a>
   </div>
 </header>
+<div class="edition-selector dashboard-version-bar" role="region" aria-label="Dashboard version and tools">
+  <!-- Published version menu -->
+  <button type="button" class="vb-theme" id="theme-toggle" hidden>
+    <svg viewBox="0 0 16 16" aria-hidden="true"><g class="icon-sun"><circle cx="8" cy="8" r="3"/><path d="M8 1v2m0 10v2M1 8h2m10 0h2M3 3l1.5 1.5m7 7L13 13M3 13l1.5-1.5m7-7L13 3"/></g><path class="icon-moon" d="M13 10A6 6 0 0 1 6 2a6 6 0 1 0 7 8Z"/></svg>
+    <span>Light theme</span>
+  </button>
+  <button type="button" class="vb-review" id="rv-toggle" data-rv-ui aria-pressed="false" title="Comment on the dashboard. Use Review queue for finding decisions." hidden>
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v8H6l-4 3z"/></svg><span>Review</span>
+  </button>
+  <a class="vb-changes" href="https://github.com/RuralScan/method/pulls?q=is%3Apr+is%3Amerged+base%3Agh-pages">What changed? · history and feedback</a>
+</div>
 <main class="main-container">
   
   <nav class="tab-nav" aria-label="Dashboard sections">
@@ -1895,21 +1875,19 @@
   document.addEventListener('DOMContentLoaded', () => {
     // Theme toggler
     const themeToggle = document.getElementById('theme-toggle');
-    const iconSun = document.querySelector('.icon-sun');
-    const iconMoon = document.querySelector('.icon-moon');
-    
+    function showTheme(theme) {
+      document.body.dataset.theme = theme;
+      themeToggle.querySelector('span').textContent = theme === 'dark' ? 'Light theme' : 'Dark theme';
+    }
+    // Share the reference's saved theme across both surfaces on this origin.
+    let savedTheme;
+    try { savedTheme = localStorage.getItem('reference-theme'); } catch {}
+    showTheme(savedTheme === 'light' ? 'light' : 'dark');
+    themeToggle.hidden = false;
     themeToggle.addEventListener('click', () => {
-      const currentTheme = document.body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.body.setAttribute('data-theme', newTheme);
-      
-      if (newTheme === 'dark') {
-        iconSun.style.display = 'none';
-        iconMoon.style.display = 'block';
-      } else {
-        iconSun.style.display = 'block';
-        iconMoon.style.display = 'none';
-      }
+      const next = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+      showTheme(next);
+      try { localStorage.setItem('reference-theme', next); } catch {}
       // Redraw sankey with updated node text colors if rendered
       if (dashboardData) {
         refreshQueryProvenance();
@@ -6053,11 +6031,11 @@
 
 </script>
 <script src="dashboard-progress.js?v=1.4.0"></script>
-<script src="dashboard-feedback.js?v=1.5.0"></script>
+<script src="dashboard-feedback.js?v=1.6.0"></script>
 <script src="dashboard-relationships.js?v=1.2.1"></script>
 <script src="dashboard-tables.js?v=3"></script>
 <script src="dashboard-priority.js?v=1.9"></script>
-<script src="dashboard-shell.js?v=1.6.1"></script>
+<script src="dashboard-shell.js?v=1.7.0"></script>
 <dialog id="finding-submission" aria-labelledby="finding-submission-title">
   <form><h2 id="finding-submission-title">Submit finding review</h2><output></output>
     <p>Your GitHub name, vote and note will appear on a public issue in RuralScan/evidence.</p>
