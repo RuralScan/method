@@ -97,30 +97,50 @@
     if (!list.length) return '';
     return '<span style="font-size:11px;border:1px solid var(--accent-amber);color:var(--accent-amber);padding:2px 6px;border-radius:4px">'+(list.some(r=>r.priority==='high')?'High review priority':'Review priority')+'</span>';
   }
-  function hasAppliedRainfallCorrection(ev) {
-    const rainfall = ev.relationship;
-    return ev.evidence_id === 'ev_fr_precip_wocat1626_1' && !!reviewData.registerRevision
-      && rainfall?.type === 'observed_presence' && rainfall.unit === 'mm' && Number.isFinite(rainfall.observed_max)
-      && (reviewData.review_log || []).some(event => event.evidence_id === ev.evidence_id
-        && event.source_id === ev.source_id && event.decision === 'reopen' && event.reviewer === 'RuralScan receipt #29');
+  function fieldLabel(path) {
+    const names = {observed_min:'Observed minimum', observed_max:'Observed maximum', observed_classes:'Observed classes'};
+    const words = key => key.replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
+    if (path[0] === 'relationship' && path.length === 2 && names[path[1]]) return names[path[1]];
+    return path.map(words).join(' · ');
+  }
+  function fieldValue(change, side) {
+    if (!Object.hasOwn(change, side)) return '<em>Not recorded</em>';
+    const value = change[side];
+    const text = typeof value === 'number' ? value.toLocaleString('en-US', {maximumSignificantDigits:21})
+      : typeof value === 'string' ? value : JSON.stringify(value, null, 2);
+    return esc(text) + (change[side + '_unit'] ? ' '+esc(change[side + '_unit']) : '');
+  }
+  function correction(event) {
+    const rows = event.changes.map(change => '<tr><th scope="row">'+esc(fieldLabel(change.path))+'</th><td>'
+      +fieldValue(change,'before')+'</td><td>'+fieldValue(change,'after')+'</td></tr>');
+    return '<p>'+esc(event.date)+' · <a href="https://github.com/RuralScan/evidence/issues/'+encodeURIComponent(event.receipt)+'">Receipt #'
+      +esc(event.receipt)+'</a></p><table><thead><tr><th scope="col">Field</th><th scope="col">Before</th>'
+      +'<th scope="col">After</th></tr></thead><tbody>'+rows.join('')+'</tbody></table>';
   }
   function card(ev) {
-    return notes(ev.evidence_id).map(r => {
-      const original = '<b>'+esc(r.batch_label)+'</b> · requested by '+esc(r.requested_by)+' · '+esc(r.requested_date)
-        +(r.context_changed?'<p><b>Evidence changed since this request.</b> Check these original review questions against the current record.</p>':'')
+    const history = reviewData.corrections?.[ev.evidence_id] || [];
+    const latest = history.at(-1);
+    const earlier = history.slice(0,-1).reverse();
+    const pending = ev.review_state !== 'dropped' && ev.reviewer_ok !== true && ev.reviewer_ok !== 'true';
+    const applied = latest ? '<section class="vf-applied-correction" aria-label="Applied correction"><strong>Correction applied</strong>'
+      +correction(latest)+'<p>This correction reopened the finding for source review.'
+      +(pending?' Check the changed fields against the source.':'')+'</p>'
+      +(earlier.length ? '<details><summary>Earlier corrections ('+earlier.length+')</summary>'+earlier.map(correction).join('')+'</details>' : '')
+      +'</section>' : '';
+    return applied + notes(ev.evidence_id).map(r => {
+      const reference = '<a href="'+cardRoute(ev.evidence_id)+'">Link to this evidence card</a> · <a href="'+batchRoute(r.batch_id)+'">Open priority batch</a>';
+      if (!r.reason && !r.decision_needed) return '<p>'+esc(r.batch_label)+' · <a href="'+batchRoute(r.batch_id)+'">Open priority batch</a></p>';
+      const original = '<b>'+esc(r.batch_label)+'</b>'+(r.requested_by?' · requested by '+esc(r.requested_by):'')+(r.requested_date?' · '+esc(r.requested_date):'')
+        +(r.context_changed?'<p>Evidence changed since this request.</p>':'')
         +'<p><b>Why prioritized:</b> '+esc(r.reason)+'</p><p><b>Decision needed:</b> '+esc(r.decision_needed)+'</p>';
-      // Receipt #29 resolves the rainfall request only. Other requests on a reopened finding can still be outstanding.
-      const applied = r.batch_id === 't4_source_checked_20261106' && hasAppliedRainfallCorrection(ev);
-      const update = applied
-        ? '<b>Rainfall correction applied</b><p>The register now gives an observed maximum of <strong>'
-          +ev.relationship.observed_max.toLocaleString('en-US')+' mm</strong> for this site in Niger. The correction reopened the finding for source review. '
-          +'<a href="https://github.com/RuralScan/evidence/issues/29">Receipt #29</a> · <a href="https://github.com/RuralScan/evidence/pull/33">Merged correction #33</a></p>'
-        : original;
+      const older = latest && r.requested_date && r.requested_date < latest.date;
       return '<section class="vf-priority-note" style="margin:10px 0;padding:12px;border-left:3px solid var(--accent-amber);font-size:12px;line-height:1.6">'
-        +update+'<details><summary>'+(applied?'Original review request and links':'Request reference and links')+'</summary>'
-        +(applied?original:'')+'<p>Source '+esc(r.source_id)+' · '+sourceLocation(r)+'</p><p>Mapping: '+esc(r.mapping_id)+'</p><a href="'+cardRoute(ev.evidence_id)+'">Link to this evidence card</a> · <a href="'+batchRoute(r.batch_id)+'">Open priority batch</a></details>'
-        +'<p>Review request only. Keep confirms the extraction; changing a live mapping requires a separate reviewed change.</p></section>';
+        +(older ? '<details><summary>Original review request · before this correction</summary>'+original+'</details>'
+          +'<p>Check any remaining questions in the original request.</p>' : original)
+        +'<details><summary>Request reference and links</summary><p>Source '+esc(r.source_id)+' · '+sourceLocation(r)+'</p>'
+        +(r.mapping_id?'<p>Mapping: '+esc(r.mapping_id)+'</p>':'')+reference+'</details>'
+        +(ev.use_role==='structural_suitability'?'<p>Keep confirms the extraction. Changing a live mapping requires a separate reviewed change.</p>':'')+'</section>';
     }).join('');
   }
-  window.DashboardPriority = {matches, set, route, leaveFocus, openFromHash, controls, badge, card, hasAppliedRainfallCorrection};
+  window.DashboardPriority = {matches, set, route, leaveFocus, openFromHash, controls, badge, card};
 })();

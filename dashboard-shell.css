@@ -138,3 +138,21 @@
 #finding-submission output { overflow-wrap:anywhere; }
 #finding-submission label { display:block; margin:.8rem 0; }
 #finding-submission select, #finding-submission textarea { display:block; width:100%; box-sizing:border-box; padding:.45rem; font:inherit; }
+
+.vf-applied-correction {
+  margin: 10px 0;
+  padding: 12px;
+  border-left: 3px solid var(--accent-sky);
+  background: var(--bg-secondary);
+  font-size: 13px;
+}
+.vf-applied-correction p { margin: 6px 0; }
+.vf-applied-correction table { width: 100%; table-layout: fixed; border-collapse: collapse; }
+.vf-applied-correction th, .vf-applied-correction td {
+  padding: 5px 8px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border-color);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
