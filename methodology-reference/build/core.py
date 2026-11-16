@@ -87,6 +87,10 @@ SITE_REV = "46a1a161abadfedae611cf17ee14ff5d487678cd"
 # How this draft would be listed beside the others (same fields as the site's edition catalogue).
 DRAFT_LABEL = "Methodology reference"
 DRAFT_DATE = "2026-11-13"
+# False while the reference is published at an address that nothing links to. Every page then asks
+# search engines not to index it. Set to True in the same change that lists it on the site.
+LISTED = False
+ROBOTS = "" if LISTED else '<meta name="robots" content="noindex">\n'
 
 
 def _site(path):
@@ -473,7 +477,7 @@ def page(filename, section, title, body, crumbs=(), lead=None, toc=None):
     html = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(title)} · Rural NbS Scan methodology reference</title>
+{ROBOTS}<title>{esc(title)} · Rural NbS Scan methodology reference</title>
 <link rel="stylesheet" href="site.css"></head>
 <body>
 <a class="skip" href="#main">Skip to content</a>

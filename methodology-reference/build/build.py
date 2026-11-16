@@ -201,6 +201,16 @@ def run_checks():
         ", ".join(bad[:5]),
     )
 
+    tag = '<meta name="robots" content="noindex">'
+    bad = [n for n, h in core.PAGES.items() if (tag in h) == core.LISTED]
+    check(
+        "Every page asks search engines not to index it while the reference is unlisted"
+        if not core.LISTED
+        else "No page carries a no-index tag now that the reference is listed",
+        not bad,
+        ", ".join(bad[:5]),
+    )
+
     queue = f'href="{core.live("review-queue")}"'
     tables = [f'href="{core.live(anchor)}"' for _, anchor, _ in core.REVIEW_QUEUES]
     bad = [n for n, h in core.PAGES.items() if queue not in h]

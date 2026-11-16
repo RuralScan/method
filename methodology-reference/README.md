@@ -26,6 +26,12 @@ The build also reads the published site branch of this repository at one fixed r
 `build/core.py`) for the live dashboard's label, its producer revisions, the data package edition and the list of drafts. Run
 `git fetch origin gh-pages` once so that revision is available locally.
 
+## Unlisted until approved
+
+While `LISTED` in `build/core.py` is `False`, every page carries a no-index tag, so the reference can be published
+at an address nothing links to without appearing in search results. A build check enforces it. Set `LISTED` to
+`True` in the same change that adds the reference to the site's version list.
+
 ## Pins, and knowing when they have moved
 
 The reference reads other repositories at fixed revisions, all set in `build/core.py`: the scientific edition
