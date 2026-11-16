@@ -1031,7 +1031,7 @@
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.0.2">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.6.2">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.6.3">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
   #loading-container, #error-container {display:flex;align-items:center;gap:.65rem;padding:.6rem 0;color:var(--text-secondary);font-size:.9rem}
@@ -2947,8 +2947,8 @@
     if(r.type==='observed_presence'){
       values='Observed conditions at documented sites; not a tested suitability range.';
       purpose='Retained as site context. Does not vote for suitability thresholds or exclude places with different conditions.';
-      if(window.DashboardPriority?.hasAppliedRainfallCorrection(ev)){
-        question='Check both selected rainfall bands on page '+ev.page+' against the extracted classes, minimum and maximum below. Choose Keep if they match, or Query if a discrepancy remains.';
+      if(ev.variable==='annual_precipitation' && Array.isArray(r.observed_classes) && r.observed_classes.length){
+        question='Check the selected rainfall bands'+(ev.page?' on page '+ev.page:' in the source')+' against the extracted classes and any recorded bounds. Choose Keep if they match, or Query if a discrepancy remains.';
       } else {
         question='Check which boxes are selected in the Natural Environment panel, and distinguish topsoil from subsoil. Unselected options are not observations.';
       }
@@ -6056,7 +6056,7 @@
 <script src="dashboard-feedback.js?v=1.5.0"></script>
 <script src="dashboard-relationships.js?v=1.2.1"></script>
 <script src="dashboard-tables.js?v=3"></script>
-<script src="dashboard-priority.js?v=1.8"></script>
+<script src="dashboard-priority.js?v=1.9"></script>
 <script src="dashboard-shell.js?v=1.6.1"></script>
 <dialog id="finding-submission" aria-labelledby="finding-submission-title">
   <form><h2 id="finding-submission-title">Submit finding review</h2><output></output>
