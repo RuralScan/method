@@ -105,6 +105,9 @@ Formulas go in fenced blocks tagged `formula`, written in plain text with Unicod
    "the review workspace"), with ruleset version numbers where they define behaviour.
    One exception: where a route or feature is planned and not built, a chapter may link to its
    open public plan. The link text describes the plan in words; no issue number is shown.
+   A second exception, for one generated page only: `help.html` names the project contacts and
+   team. That section is read at build time from the visual methodology's help page; no chapter and
+   no file in this folder names a person.
 6. **Voice.** British English. Precise, plain, technical. Short paragraphs. Define each term on
    first use. Prefer "the method does X because Y" to passive description. No marketing, no
    "robust", "cutting-edge", "comprehensive", "seamless". No em dashes.

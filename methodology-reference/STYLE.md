@@ -60,9 +60,9 @@ Below the bar, the header carries the programme logo, the brand, the edition lin
 
 **The review tool is the visual methodology's own.** The build reads `review-mode.js` and `review-mode.css` from the visual methodology at the revision pinned as `VISUAL_REV` in `build/core.py` and changes only the storage keys, the page targets, the page names and the issue address. Do not write a second feedback tool and do not edit the generated files; change the substitutions. The build fails if a substitution no longer matches.
 
-**The logo is read from the same revision,** with its source note written beside it (`assets/nbs-invest-logo.source.txt`). It is shown unmodified, to identify the programme context.
+**The logo is read from the same revision,** with its source note written beside it (`assets/nbs-invest-logo.source.txt`). It is shown unmodified, to identify the programme context. It is the NBS Invest programme mark, not a World Bank corporate logo. Its use on this site awaits confirmation from the programme; `SHOW_PROGRAMME_LOGO` in `build/core.py` removes it from every page if needed.
 
-**Help page.** `help.html` covers finding your way, giving feedback, and contact. It links to the visual methodology's Help / Contact / Team page for named contacts, because this repository carries no personal names or contact details.
+**Help page.** `help.html` covers finding your way, giving feedback, contact, team and the programme. The contact, team and programme sections are read from the visual methodology's help page at `VISUAL_REV`, so the names have one home and this repository carries none. It is the only page that names people.
 
 The check "Shared top bar on every page" enforces all of this.
 

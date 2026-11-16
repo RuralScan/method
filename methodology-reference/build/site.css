@@ -93,6 +93,9 @@ small { color: var(--muted); }
 .programme img { display: block; height: 48px; width: auto; }
 .help-entry { flex: none; font-size: .88rem; font-weight: 600; text-decoration: none; }
 .help-entry:hover { text-decoration: underline; }
+.contacts > div { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--card-shadow); padding: .2rem 1.1rem .8rem; margin-bottom: 1rem; }
+.contacts h3 { margin-top: .9rem; }
+.contacts ul { padding-left: 1.1rem; }
 .review-entry { flex: none; padding: .3rem .8rem; border: 1px solid var(--accent); border-radius: var(--radius-md); color: var(--accent); font-weight: 650; font-size: .88rem; text-decoration: none; }
 .review-entry:hover { background: var(--soft); }
 .queues { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: .6rem 0; list-style: none; }

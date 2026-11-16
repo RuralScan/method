@@ -18,6 +18,7 @@ from chapters import (
 from core import (
     CIAT,
     CIAT_URL,
+    CONTACTS,
     EVIDENCE,
     EVIDENCE_LIVE,
     EVIDENCE_REV,
@@ -33,7 +34,6 @@ from core import (
     PRACTICE_TEXT,
     PRODUCER,
     PRODUCTS,
-    PROGRAMME_URL,
     RELEASE,
     REVIEW_QUEUES,
     ROW_TABLES,
@@ -824,12 +824,7 @@ def build():
         f"{link(live('review-queue'), 'review queue')} of the live dashboard. "
         f"{link('review.html', 'How review records are kept')}.</p>"
         f"<p>You can also {link(issues, 'raise a question or a correction as an issue')} in the method repository.</p>"
-        '<h2 id="contact">Contact and team</h2>'
-        "<p>The project contacts and the team are listed on the "
-        f"{link(VISUAL_URL + 'help.html', 'Help / Contact / Team page of the visual methodology')}.</p>"
-        "<p>The Rural NbS Scan is developed under the NBS Invest programme. "
-        f"{link(PROGRAMME_URL, 'NBS Invest at the World Bank')} has programme information and knowledge "
-        "resources. The programme logo is shown to identify that context.</p>"
+        + CONTACTS
     )
     page(
         "help.html",

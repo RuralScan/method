@@ -89,7 +89,7 @@ DRAFT_LABEL = "Methodology reference"
 DRAFT_DATE = "2026-11-16"
 # False while the reference is published at an address that nothing links to. Every page then asks
 # search engines not to index it. Set to True in the same change that lists it on the site.
-LISTED = False
+LISTED = True
 ROBOTS = "" if LISTED else '<meta name="robots" content="noindex">\n'
 # House style: the live evidence dashboard's fonts, mark and dark default. See STYLE.md.
 FONTS = (
@@ -257,6 +257,66 @@ def _review_tool():
 
 
 FILES["review-mode.js"], FILES["review-mode.css"] = _review_tool()
+
+# The programme logo identifies the programme context. Its use on this site awaits confirmation from the
+# programme. Set to False to remove it from every page; nothing else needs to change.
+SHOW_PROGRAMME_LOGO = True
+
+
+def _contacts():
+    """Contact, team and programme sections of the visual methodology's help page, at the pinned revision.
+
+    The help page is the one page that names people. The names are read here at build time, so they have
+    one home (the visual methodology) and this repository carries none.
+    """
+    html = _visual("help.html").decode()
+    parts = []
+    for pattern in (
+        r"(<h2>Contact us</h2>.*?)</section>",
+        r'id="team">(.*?)</section>',
+        r'id="programme">(.*?)</section>',
+    ):
+        found = re.search(pattern, html, re.DOTALL)
+        if not found:
+            raise SystemExit(
+                f"Help page: nothing matched {pattern!r} in the visual methodology's help.html."
+            )
+        parts.append(found.group(1))
+    text = "".join(parts)
+    for old, new in (
+        ('class="tp-grid"', 'class="grid2 contacts"'),
+        ('class="sub"', 'class="basis"'),
+        ("<h2>Contact us</h2>", '<h2 id="contact">Contact us</h2>'),
+        (
+            "<h2>Project team and counterparts</h2>",
+            '<h2 id="team">Project team and counterparts</h2>',
+        ),
+        ("<h2>About NBS Invest</h2>", '<h2 id="programme">About NBS Invest</h2>'),
+        ("This mock-up does not submit", "This page does not submit"),
+        (' · <a href="history.html">Wireframe history and feedback</a>', ""),
+        (
+            "These pages remain an illustrative methodology mock-up, not an operational World Bank platform.",
+            "This reference is not an operational World Bank platform.",
+        ),
+    ):
+        if old not in text:
+            raise SystemExit(
+                f"Help page: {old!r} is no longer in the visual methodology's help.html."
+            )
+        text = text.replace(old, new)
+    return text
+
+
+CONTACTS = _contacts()
+PROGRAMME_MARK = (
+    (
+        f'<a class="programme" href="{PROGRAMME_URL}" aria-label="NBS Invest programme at the World Bank">'
+        f'<img src="{LOGO}" alt="NBS Invest: Accelerating Nature Based Solutions in Least Developed Countries" '
+        'width="700" height="439"></a>'
+    )
+    if SHOW_PROGRAMME_LOGO
+    else ""
+)
 ASSETS[LOGO] = _visual("assets/nbs-invest-logo.jpg")
 FILES["assets/nbs-invest-logo.source.txt"] = _visual(
     "assets/nbs-invest-logo.source.txt"
@@ -528,8 +588,7 @@ def version_bar(filename):
         '<div class="vbar edition-selector" role="region" aria-label="Versions"><div class="vb-in">'
         '<label for="dashboard-version">Version</label>'
         f'<select id="dashboard-version" aria-describedby="dashboard-version-note">{"".join(options)}</select>'
-        '<span id="dashboard-version-note"><b class="reviewing">Under review</b> Draft for approval · '
-        "not yet in the live version list</span>"
+        '<span id="dashboard-version-note"><b class="reviewing">Under review</b> Draft for approval</span>'
         '<button type="button" class="vb-theme is-dark" id="theme-toggle" aria-pressed="true" hidden>'
         '<svg viewBox="0 0 16 16" aria-hidden="true"><path class="ic-moon" d="M11.5 10.6A5 5 0 0 1 5.4 4.5a5 5 0 1 0 6.1 6.1z"/>'
         '<g class="ic-sun"><circle cx="8" cy="8" r="2.8"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1'
@@ -587,7 +646,7 @@ def page(filename, section, title, body, crumbs=(), lead=None, toc=None):
 <a class="skip" href="#main">Skip to content</a>
 {version_bar(filename)}
 <header class="mast"><div class="wrap">
-<a class="programme" href="{PROGRAMME_URL}" aria-label="NBS Invest programme at the World Bank"><img src="{LOGO}" alt="NBS Invest: Accelerating Nature Based Solutions in Least Developed Countries" width="700" height="439"></a>
+{PROGRAMME_MARK}
 <a class="brand" href="index.html">{BRAND_ICON}Rural NbS Scan</a>
 <span class="sub">Methodology reference</span>
 <span class="ed">{edition_line()} · <a href="editions.html">about editions</a></span>
