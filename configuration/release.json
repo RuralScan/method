@@ -15,6 +15,11 @@
       "origin": "archived compiler baseline",
       "sha256": "15326207e7548869752ae24ce235bf8046a183af209d43e460fe2dec8c763275"
     },
+    "schema/lookups/configuration_vocabulary.csv": {
+      "file": "configuration/lookups/configuration_vocabulary.csv",
+      "origin": "archived compiler baseline",
+      "sha256": "757efa996eb2cab752ed5818b295514d48471e1301b952071cc0eacd9a9f8b1b"
+    },
     "schema/lookups/crop_scope_policy.csv": {
       "file": "configuration/lookups/crop_scope_policy.csv",
       "origin": "archived compiler baseline",

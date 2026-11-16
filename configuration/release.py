@@ -106,7 +106,11 @@ def check_compatibility(root, tables):
         "tables"
     ]
     targets = {
-        "T3": set(rules["T3"]["enum_values"]["hazard_type"]),
+        "T3": {
+            r["code"]
+            for r in tables["configuration_vocabulary"]
+            if (r["table"], r["field"]) == ("T3", "hazard_type")
+        },
         "T6": {
             r["variable_id"]
             for r in read_table(

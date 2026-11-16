@@ -1,6 +1,6 @@
 # Release compiler configuration
 
-RuralScan/method owns VONT (variable definitions), FAM (practice families), BIND (dataset bindings), XW (target crosswalk), BANDS (magnitude bands) and 14 reusable policy tables. The [contract](contract.json) lists every compiler path, authoring file, row key and column. The [release](release.json) identifies each file by SHA-256. Its Git commit identifies the edition. A row keeps its recorded ratification or review status when released, including pending, rejected and blank statuses.
+RuralScan/method owns VONT (variable definitions), FAM (practice families), BIND (dataset bindings), XW (target crosswalk), BANDS (magnitude bands) and 15 policy and vocabulary tables. The [contract](contract.json) lists every compiler path, authoring file, row key and column. The [release](release.json) identifies each file by SHA-256. Its Git commit identifies the edition. The configuration vocabulary projects the archived compiler’s TOOL enums, T3 hazard types and EV use roles. A row keeps its recorded ratification or review status when released, including pending, rejected and blank statuses.
 
 1. Propose the scientific change and record its ruling using the [method decision register](../decisions/README.md). Use an active decided code for the affected scope.
 2. Branch from method main. Edit the authored CSV listed in the contract. Inspect changed keys, pending or superseded entries and effects on other tables.
