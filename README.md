@@ -29,3 +29,5 @@ It supports early investment scoping. It does not replace feasibility studies, e
 Definitions feed evidence compilation. Runtime consumes immutable analytical releases with explicit compatibility and input hashes. A draft configuration or reviewed claim does not by itself establish an executable or transferable analytical rule.
 
 The [licence](LICENSE) covers the included original material. Dataset and publication terms remain with their sources.
+
+[Update compiler registers and rule lookups](configuration/README.md)
