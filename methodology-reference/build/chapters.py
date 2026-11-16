@@ -42,6 +42,7 @@ EVIDENCE_CH = [
     "effect-synthesis",
     "cost-profiles",
     "rulesets-and-learning",
+    "continue-with-ai",
 ]
 PRACTICE_CH = [f"practice-{p}" for p in PRACTICE_IDS]
 GENERATED = {

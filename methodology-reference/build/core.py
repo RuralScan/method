@@ -65,14 +65,25 @@ def _published(repo):
 
 RUNTIME_REV = _published(RUNTIME)
 RUNTIME_URL = f"https://github.com/RuralScan/runtime/blob/{RUNTIME_REV}/"
-REPO_URLS = {"method:": METHOD_URL, "evidence:": EVIDENCE_URL, "runtime:": RUNTIME_URL}
+# The evidence revision whose operating procedures the chapter on continuing the work describes.
+# The build must run against exactly this checkout, so that chapter's text and links agree.
+EVIDENCE_OPERATING = "8c6f793fe120b1387b70105075e4e4aa6b06bde7"
+# The producer revision at which its evidence records became read-only (the retirement marker).
+CIAT_RETIRED = "4d53620f7a9f0f17a42a007fa0a653e5ed55c519"
+CIAT_RETIRED_URL = f"https://github.com/CIAT/nbs_ruralscan/blob/{CIAT_RETIRED}/"
+REPO_URLS = {
+    "method:": METHOD_URL,
+    "evidence:": EVIDENCE_URL,
+    "runtime:": RUNTIME_URL,
+    "retired:": CIAT_RETIRED_URL,
+}
 # The visual methodology is published from the producer repository's documentation site.
 VISUAL_URL = "https://ciat.github.io/nbs_ruralscan/redesign/"
 
 # The live evidence dashboard. Everything about it is read from one published site revision,
-# so its label, its two producer revisions and the list of drafts are never retyped here.
+# so its label, its producer revisions and the list of drafts are never retyped here.
 SITE_URL = "https://ruralscan.github.io/method/"
-SITE_REV = "146b19f1285927a1d6c9ac51331e7d14686efef3"
+SITE_REV = "718aa2343d9002258d5e2c7c01bdfffa679cd6ae"
 # How this draft would be listed beside the others (same fields as the site's edition catalogue).
 DRAFT_LABEL = "Methodology reference"
 DRAFT_DATE = "2026-11-13"
@@ -110,7 +121,7 @@ LIVE_SNAPSHOT = _site_constant(
 )  # analytical snapshot of the live dashboard
 LIVE_REVIEWS = _site_constant(
     "QUEUE_PIN", _SITE_SCRIPT
-)  # review history shown in its queues
+)  # archived finding reviews, review batches and notes built into the live queue
 # The live dashboard takes the provisional status of hazard ratings from a third revision.
 LIVE_RATING_STATUS = _site_constant("LIVE_REVIEW_PIN", _SITE_SCRIPT)
 # Newest first, as the live selector lists them.
@@ -131,6 +142,28 @@ REVIEW_QUEUES = [
 
 def live(fragment="overview"):
     return f"{SITE_URL}dashboard.html#{fragment}"
+
+
+# The published data package for this edition: ten tables with field definitions, keys and
+# checksums. Its address and edition come from the site; its digest is the one the edition's
+# catalogue lists. `build/fetch_package.py` downloads it once; the build reads the copy offline
+# and checks every digest again.
+PACKAGE_EDITION = _site_constant("LIVE_REVIEW_EDITION", _SITE_SCRIPT)
+EDITION_URL = f"{SITE_URL}editions/{PACKAGE_EDITION}/"
+PACKAGE_BASE = EDITION_URL + "evidence-tables/"
+PACKAGE_URL = PACKAGE_BASE + "datapackage.json"
+EDITION_CATALOG_URL = EDITION_URL + "catalog.json"
+CATALOG_URL = SITE_URL + "catalog.json"
+PACKAGE_SHA256 = "6470c8759c782bd9a9bf17dce2acc8b6654a39a3d907818e1a9f1ea1b07d4ec0"
+PACKAGE_DIR = Path(
+    os.environ.get("RURALSCAN_PACKAGE", ROOT / ".cache" / "package" / PACKAGE_EDITION)
+)
+# Direct file addresses at the pinned revisions, for downloads and scripts.
+CIAT_RAW = f"https://raw.githubusercontent.com/CIAT/nbs_ruralscan/{PRODUCER}/"
+EVIDENCE_RAW = f"https://raw.githubusercontent.com/RuralScan/evidence/{EVIDENCE_REV}/"
+# The live review records: the evidence repository's current main branch.
+EVIDENCE_LIVE = "https://github.com/RuralScan/evidence/blob/main/"
+FILES = {}  # extra files written beside the pages: relative path -> text
 
 
 TABLE_FILES = {

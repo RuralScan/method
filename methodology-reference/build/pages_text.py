@@ -18,12 +18,15 @@ from chapters import (
 from core import (
     CIAT,
     CIAT_URL,
+    EVIDENCE,
+    EVIDENCE_LIVE,
     EVIDENCE_REV,
     EVIDENCE_URL,
     LIVE_LABEL,
     LIVE_RATING_STATUS,
     LIVE_REVIEWS,
     LIVE_SNAPSHOT,
+    METHOD,
     METHOD_REV,
     PIN,
     PRACTICE_IDS,
@@ -83,11 +86,11 @@ def review_queues():
     return f'<ul class="queues">{"".join(items)}</ul>'
 
 
-def _committed(revision):
-    """Commit date of a producer revision, when the producer checkout has it."""
+def _committed(revision, repo=CIAT):
+    """Commit date of a revision, when the checkout has it. The producer checkout by default."""
     try:
         return subprocess.check_output(
-            ["git", "-C", str(CIAT), "log", "-1", "--format=%cs", revision],
+            ["git", "-C", str(repo), "log", "-1", "--format=%cs", revision],
             text=True,
             stderr=subprocess.DEVNULL,
         ).strip()
@@ -97,6 +100,9 @@ def _committed(revision):
 
 def live_pins():
     ciat = "https://github.com/CIAT/nbs_ruralscan/tree/"
+    seed = json.loads((EVIDENCE / "registers/manifest.json").read_text())[
+        "source_revision"
+    ]
     return table(
         ["What", "Revision", "Committed", "Used for"],
         [
@@ -113,10 +119,25 @@ def live_pins():
                 "Tables, progress and evidence shown outside the review queues",
             ],
             [
-                "Live dashboard, review history",
+                "Live dashboard, review records",
+                link(
+                    EVIDENCE_LIVE + "publication/review-queue.json",
+                    "Evidence repository, current main branch",
+                ),
+                "Read when the page loads",
+                (
+                    "Findings, sources, finding and rating review histories and the membership of review batches "
+                    "shown in the review queues"
+                ),
+            ],
+            [
+                "Live dashboard, archived reviews and review batches",
                 link(ciat + LIVE_REVIEWS, code(LIVE_REVIEWS[:12])),
                 _committed(LIVE_REVIEWS),
-                "Findings, sources, reviewer histories and decision logs shown in the review queues",
+                (
+                    "Archived finding reviews, the base list of review batches, suitability review notes and links to "
+                    "earlier tables, built into the site"
+                ),
             ],
             [
                 "Live dashboard, hazard-rating review status",
@@ -133,11 +154,18 @@ def live_pins():
                     "https://github.com/RuralScan/method/tree/" + SITE_REV,
                     code(SITE_REV[:12]),
                 ),
-                "",
+                _committed(SITE_REV, METHOD),
                 f"The site revision that serves “{esc(LIVE_LABEL)}”",
             ],
+            [
+                "Evidence repository, starting registers",
+                link(ciat + seed, code(seed[:12])),
+                _committed(seed),
+                "The records the evidence repository started from when it took over writing evidence and review records",
+            ],
         ],
-        caption="Three producer revisions are in play. Counts from different revisions are never combined.",
+        caption="Three producer revisions and the evidence repository’s current records are in play. "
+        "This reference does not combine counts from different sources.",
         ident="pins",
     )
 
@@ -390,7 +418,7 @@ def build():
         (f"{len(fam_registered)}", "suitability families", "practices.html"),
         (f"{len(data.SRCH)}", "recorded searches", "searches.html"),
         (f"{len(data.SRC)}", "sources registered", "sources.html"),
-        (f"{len(kept):,}", "findings retained", "evidence-base.html"),
+        (f"{len(kept):,}", "findings retained", "evidence-counts.html"),
         (f"{len(data.ROWS)}", "recipe rows", "practices.html"),
     ]
     practice_rows = [
@@ -419,12 +447,14 @@ def build():
         f"<li>{link('practice-water_harvesting_conservation.html#fam-water_harvesting__terracing', 'The terracing family')} and its mappings.</li>"
         f"<li>{link(terrace['file'], 'The annual precipitation row')}: role, status, why the calibration is held.</li>"
         f"<li>{link('ch-suitability-synthesis.html', 'Suitability synthesis')}: the rule that keeps a held calibration from becoming a score.</li></ol>"
-        '<p class="basis">Step 1 opens the live dashboard, which is built from a later revision than this reference. '
+        '<p class="basis">Step 1 opens the live dashboard. Its review queue reads the current records of the evidence repository '
+        "each time the page loads, so it can show a later state than this reference. "
         f"{link('review.html#pins', 'Which revision is which')}.</p>"
         '<h2 id="review">Review queues</h2>'
-        "<p>Human review of findings and ratings is recorded in the CIAT review system. The live dashboard publishes the "
-        "queues read-only; choose a reviewer there to see that reviewer’s "
-        "history under “My reviewed”.</p>"
+        "<p>At this site revision, finding reviews are submitted from the live dashboard as public issues in the evidence "
+        "repository and are recorded there once applied. The producer repository keeps the earlier records. Choose a reviewer "
+        "in the live dashboard to filter that reviewer’s history under “My reviewed”; a submission is credited to the GitHub "
+        "account that creates it.</p>"
         + review_queues()
         + f"<p>{link('review.html', 'How finding reviews, archived finding reviews and rating decisions are kept apart')}.</p>"
         '<h2 id="contents">What this reference contains</h2><div class="stats">'
@@ -434,7 +464,8 @@ def build():
         )
         + '</div><p class="basis">Counts are taken from the registers and recipe tables at one pinned revision '
         f"({code(PRODUCER[:8])}). They describe coverage and effort, not evidence strength. "
-        f"{link('evidence-base.html', 'Definitions of each count')}.</p>"
+        f"{link('evidence-counts.html', 'Definitions of each count')}. "
+        f"{link('evidence-base.html', 'Download and query the tables')}.</p>"
         '<h2 id="method">The method in one figure</h2>'
         f"<figure>{flow_figure()}<figcaption>Modules M0 to M6 and the M2b addendum. Risk to livelihoods (M2) is a need layer. "
         "Risk to the investment (M2b) is a filter. The two are never summed.</figcaption></figure>"
@@ -451,7 +482,7 @@ def build():
                 ],
                 [
                     link("evidence-methods.html", "3 Evidence methods"),
-                    f"{len(EVIDENCE_CH)} chapters: discovery, acquisition, extraction, review, three synthesis methods, versioning.",
+                    f"{len(EVIDENCE_CH)} chapters: discovery, acquisition, extraction, review, three synthesis methods, versioning, and how to continue the work with an AI system and human approval.",
                     "judge whether a rule is defensible",
                 ],
                 [
@@ -466,8 +497,8 @@ def build():
                 ],
                 [
                     link("evidence-base.html", "6 Evidence base"),
-                    f"{len(data.SRC)} sources, {len(kept):,} retained findings, {len(data.SRCH)} search records, with definitions.",
-                    "follow a row to its source",
+                    f"Downloads of every evidence table with a field guide and tested queries. {len(data.SRC)} sources, {len(kept):,} retained findings, {len(data.SRCH)} search records, with definitions.",
+                    "download or query the data, or follow a row to its source",
                 ],
                 [
                     link("editions.html", "7 Editions and checks"),
@@ -790,13 +821,16 @@ def build():
     )
 
     # ------------------------------------------------------------ review records
-    log = "https://github.com/CIAT/nbs_ruralscan/blob/" + LIVE_REVIEWS + "/"
+    archive = "https://github.com/CIAT/nbs_ruralscan/blob/" + LIVE_REVIEWS + "/"
+    log = EVIDENCE_LIVE + "registers/"
     body = (
         "<p>Reviewers check each extracted finding against its source, and check each compiled rating. "
-        "Decisions are recorded in the CIAT review system. The live dashboard publishes the queues and reviewers’ histories "
-        "read-only. This reference shows the result at its own revision and links to the queues.</p>"
+        "Finding decisions are recorded in the evidence repository. The live dashboard shows the queues and reviewers’ "
+        "histories from that repository and lets a signed-in reviewer submit a finding review. This reference shows the "
+        "result at its own revision and links to the queues.</p>"
         + review_queues()
         + "<p>In the live dashboard, choose a reviewer to see that reviewer’s history under “My reviewed”. "
+        "This choice only filters the history; a submission is credited to the GitHub account that creates it. "
         "The history lists three kinds of record separately.</p>"
         '<h2 id="kinds">Three kinds of review record</h2>'
         + table(
@@ -814,7 +848,7 @@ def build():
                         "Includes findings that an earlier version of a hazard or scorecard table cited; those are marked as previously cited."
                     ),
                     (
-                        "Whether the finding stays in the evidence that synthesis reads: Drop removes it, Keep and Query leave it in, Reclassify changes its scope. Keeping a finding confirms the extraction. "
+                        "Whether the finding stays in the evidence that synthesis reads: Drop removes it from synthesis and keeps it as a record; Keep and Hold leave it in. In earlier records, Query is the same as Hold, and Reclassify changed the finding’s scope. Keeping a finding confirms the extraction. "
                         "It does not approve a score or a rating."
                     ),
                     link(log + "pipeline/metrics/review_log.csv", "Finding review log"),
@@ -830,11 +864,16 @@ def build():
                         "still applies to it there. It is listed so that a reviewer’s earlier work stays visible."
                     ),
                     link(
-                        log
+                        archive
                         + "schema/registers/_deferred/EV_T3_T6_deferred_2026-09.csv",
                         "Archive register",
                     )
-                    + ", with decisions in the finding review log",
+                    + " in the producer repository, with decisions in "
+                    + link(
+                        archive + "pipeline/metrics/review_log.csv",
+                        "its finding review log",
+                    )
+                    + " at the same revision",
                 ],
                 [
                     "<strong>Rating decision</strong>",
@@ -851,14 +890,36 @@ def build():
             caption="The three kinds are counted and listed separately. They are never added together.",
         )
         + '<h2 id="writer">Where decisions are written</h2>'
-        "<p>Review decisions are written in one place only: the CIAT review system. The live dashboard and this reference "
-        "publish them read-only. A choice made in the public dashboard stays in that browser until it is downloaded and "
-        "returned to CIAT for consensus review. Until then it is not a recorded decision.</p>"
+        "<p>At this site revision, finding decisions are written in the evidence repository. The producer repository has "
+        "stopped writing evidence and review records for the hazard, suitability and scorecard tables and keeps its earlier "
+        "records unchanged.</p><ol>"
+        "<li><strong>Submit.</strong> In the live dashboard, Submit review on a finding opens a public issue in the evidence "
+        "repository under the reviewer’s GitHub account. The vote, the note and the account name are public. A file of votes "
+        "or an extraction proposal is submitted the same way through the evidence repository’s submission desk.</li>"
+        "<li><strong>A submission is a receipt.</strong> It is not yet a recorded decision.</li>"
+        "<li><strong>Apply.</strong> A maintainer applies submissions through a protected pull request. The tool checks that "
+        "the reviewer is eligible, that the submission was not edited, that the finding and its source are unchanged, that "
+        "eligible reviewers agree, and that the receipt has not been applied before. Opposing votes stay pending. "
+        "The pull request needs approval and passing checks.</li>"
+        "<li><strong>Recorded.</strong> Once merged, the decision is in the evidence repository’s finding review log, "
+        "and the live queue shows it the next time the page loads.</li></ol>"
+        "<p><strong>Rating decisions</strong> have a route too, but not yet from the live dashboard. A reviewer starts the "
+        "evidence repository’s local desk on their own computer, opens the row, and chooses Review this rating (approve, "
+        "hold or reject) or Suggest clearer wording. Each creates a public issue under the reviewer’s account, and a "
+        "protected pull request applies it: a rating is appended to the rating review log, and wording is recorded as an "
+        "authored input beside the compiled row. A rating review approves no finding and changes no threshold. The live "
+        "dashboard’s row cards do not yet link to the desk; its My reviewed list already reads applied rating history for "
+        "the hazard, suitability and scorecard tables. At the evidence revision this reference was built against, the "
+        "rating log held only the events copied from the producer repository. This reference does not write decisions.</p>"
+        f"<p>{link(EVIDENCE_LIVE + 'workflows/submissions/README.md', 'How to submit a finding vote or an extraction proposal')} · "
+        f"{link(EVIDENCE_LIVE + 'workflows/submissions/recipe-rows.md', 'How to review a rating or suggest row wording')} · "
+        f"{link('ch-continue-with-ai.html', 'Continue the evidence base with an AI system')}.</p>"
         '<h2 id="pins">Which revision is which</h2>'
-        "<p>The live dashboard pins its analytical snapshot and its review history separately. Both are later than this "
-        "reference’s revision; only the provisional status of hazard ratings is taken from the same revision as this reference. "
+        "<p>The live dashboard pins its analytical snapshot to a producer revision later than this reference’s. Its review "
+        "history is not pinned: it is read from the evidence repository’s current main branch when the page loads. Only the "
+        "provisional status of hazard ratings is taken from the same revision as this reference. "
         "A review state shown on a row or finding page here is the state at this reference’s revision and can be older "
-        "than the live queues.</p>"
+        "than the live queues, which change whenever a decision is applied.</p>"
         + live_pins()
         + f"<p>The country pilot is separate again and pins its own release. {link('editions.html#pilot', 'Editions')}.</p>"
     )
@@ -868,7 +929,7 @@ def build():
         "Review queues and review records",
         body,
         crumbs=[("evidence-base.html", "Evidence base"), ("", "Review")],
-        lead="Where human review happens, what is published, and how three kinds of review record are kept apart.",
+        lead="Where human review happens, how a decision becomes a record, and how three kinds of review record are kept apart.",
         toc=[
             ("kinds", "Three kinds of review record"),
             ("writer", "Where decisions are written"),
@@ -924,9 +985,10 @@ def build():
         )
     )
     body += (
-        '<h2 id="live">The live dashboard pins its own revisions</h2>'
+        '<h2 id="live">The live dashboard pins its analytical revisions and reads current review records</h2>'
         "<p>The live evidence dashboard is a separate product from this reference. It pins the revision of its analytical "
-        "snapshot and the revision of its review history separately. Both are later than the revision this reference is built on. "
+        "snapshot, which is later than the revision this reference is built on. Its review history is read from the evidence "
+        "repository’s current records when the page loads. "
         "Its hazard-rating review status is taken from an assessment made at this reference’s revision, after checking that "
         "the effect evidence is unchanged at the analytical snapshot.</p>"
         + live_pins()
