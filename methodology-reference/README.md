@@ -87,6 +87,10 @@ header. This is a rule, not a preference. `STYLE.md` records it, and the build f
 radius in `build/site.css` differs from the dashboard at the pinned site revision. Read `STYLE.md` before
 changing the stylesheet or the page template.
 
+The top bar is shared with the visual methodology: version menu, theme button, review tool, change history,
+programme logo and help link. The review tool and the logo are read from the visual methodology at a pinned
+revision at build time, so the products use one feedback tool, not three.
+
 ## Editing chapters
 
 Chapters follow `content/CONTRACT.md`: every rule and formula carries a citation to the pinned file that

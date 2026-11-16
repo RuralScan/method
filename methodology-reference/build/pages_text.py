@@ -33,6 +33,7 @@ from core import (
     PRACTICE_TEXT,
     PRODUCER,
     PRODUCTS,
+    PROGRAMME_URL,
     RELEASE,
     REVIEW_QUEUES,
     ROW_TABLES,
@@ -785,6 +786,119 @@ def build():
         "Rural NbS Scan methodology reference",
         body,
         lead=overview_lead,
+    )
+
+    # ------------------------------------------------------------ help and change history
+    issues = "https://github.com/RuralScan/method/issues"
+    body = (
+        "<p>This reference documents the Rural NbS Scan method in full. It is a scoping reference: it shows "
+        "where to look and how strong the evidence is. It holds no maps and no country results, and local "
+        "feasibility work is still needed before any investment decision.</p>"
+        '<h2 id="start">Finding your way</h2><dl class="glossary">'
+        "<div><dt>Where should I start?</dt><dd>On the "
+        f"{link('index.html', 'overview')}. It lists the practices covered and how much evidence each has, then "
+        f"tells the method as {link('index.html#story', 'seven questions')}. Each question links to its technical chapter.</dd></div>"
+        "<div><dt>How do I see the evidence for one practice?</dt><dd>Open "
+        f"{link('practices.html', 'Practices')} and choose one. Every compiled row has its own page listing the "
+        "findings behind it, each with its source and the place in the source it was taken from.</dd></div>"
+        "<div><dt>Are the numbers results?</dt><dd>No. Counts of searches, sources, findings and rows describe "
+        "coverage and effort. Ratings are the method’s reading of published evidence, each with a stated "
+        f"confidence. {link('index.html#status', 'What is established in this edition')}.</dd></div>"
+        "<div><dt>How does this relate to the visual methodology?</dt><dd>The "
+        f"{link(VISUAL_URL + 'index.html', 'visual methodology')} shows what a working tool could look like, "
+        "using example data. This reference is the written method and the evidence behind it. "
+        f"{link(chapter_file('scoping-walkthrough'), 'The scoping walkthrough')} connects the two, screen by screen.</dd></div>"
+        "<div><dt>Which version am I looking at?</dt><dd>The bar at the top of every page names it. The version "
+        "menu lists the live evidence dashboard first, then this reference, then earlier drafts.</dd></div>"
+        "<div><dt>Can I download the data?</dt><dd>Yes. "
+        f"{link('evidence-base.html', 'Get and use the data')} lists every table with its address and checksum, a "
+        "field guide and tested queries.</dd></div></dl>"
+        '<h2 id="feedback">Giving feedback</h2>'
+        "<p>Choose <strong>Review</strong> in the bar at the top of any page. You can pin a comment to a table, "
+        "figure or paragraph, highlight text, or capture part of the screen, and give each note a type and a "
+        "severity. The same review tool is used on the visual methodology and on the live evidence dashboard.</p><ul>"
+        "<li>Notes stay in your browser. Nothing is sent until you choose to share.</li>"
+        "<li>Use Export to save your notes as a file or a readable report, or to open them as a public issue.</li>"
+        "<li>Say what you expected and what needs to change. The page and the item are recorded for you.</li></ul>"
+        "<p>Reviewing an extracted finding or a compiled rating is a different task, done in the "
+        f"{link(live('review-queue'), 'review queue')} of the live dashboard. "
+        f"{link('review.html', 'How review records are kept')}.</p>"
+        f"<p>You can also {link(issues, 'raise a question or a correction as an issue')} in the method repository.</p>"
+        '<h2 id="contact">Contact and team</h2>'
+        "<p>The project contacts and the team are listed on the "
+        f"{link(VISUAL_URL + 'help.html', 'Help / Contact / Team page of the visual methodology')}.</p>"
+        "<p>The Rural NbS Scan is developed under the NBS Invest programme. "
+        f"{link(PROGRAMME_URL, 'NBS Invest at the World Bank')} has programme information and knowledge "
+        "resources. The programme logo is shown to identify that context.</p>"
+    )
+    page(
+        "help.html",
+        "index.html",
+        "Help, contact and team",
+        body,
+        lead="How to find your way around this reference, how to give feedback, and who to contact.",
+    )
+
+    changes = [
+        (
+            "16 November 2026",
+            [
+                "Front page rebuilt: the practices covered, how much evidence each has, and the method told as seven questions.",
+                "The reference takes the live evidence dashboard’s look, and that house style is recorded and checked by the build.",
+                (
+                    "One top bar shared with the visual methodology: version menu, theme switch, review tool and change history. "
+                    "Programme logo and a help page added."
+                ),
+                (
+                    "The chapter on continuing the evidence base with an AI system now describes the routes for recording work "
+                    "in the evidence and method repositories."
+                ),
+                "Published at an address that is not yet listed, with a request to search engines not to index it.",
+            ],
+        ),
+        (
+            "14 November 2026",
+            [
+                "Evidence base rebuilt for use: downloads of every table, a field guide, and queries that the build runs.",
+                "New chapter: continue the evidence base with an AI system.",
+                "Review page updated: finding reviews are submitted from the live dashboard and recorded in the evidence repository.",
+            ],
+        ),
+        (
+            "12 November 2026",
+            [
+                (
+                    "Added the scoping walkthrough, which follows the visual methodology stage by stage, and the chapter on "
+                    "implementing the method."
+                ),
+            ],
+        ),
+        (
+            "11 November 2026",
+            [
+                "First build: the method by module, the evidence methods, the data model, every practice and every compiled row.",
+            ],
+        ),
+    ]
+    body = (
+        "<p>What changed in this reference, newest first. The evidence and the ratings it reports are those of "
+        f"one pinned edition, described under {link('editions.html', 'Editions and checks')}; they do not change "
+        "between these entries unless an entry says so.</p>"
+        + "".join(
+            f"<h2>{esc(day)}</h2><ul>{''.join(f'<li>{esc(x)}</li>' for x in items)}</ul>"
+            for day, items in changes
+        )
+        + '<h2 id="feedback">Feedback</h2>'
+        "<p>Choose <strong>Review</strong> in the bar at the top of any page to leave notes on what you see. "
+        f"{link('help.html#feedback', 'How the review tool works')}. Feedback that has been acted on appears "
+        "in the entries above.</p>"
+    )
+    page(
+        "changes.html",
+        "index.html",
+        "What changed",
+        body,
+        lead="History of this reference and how to give feedback on it.",
     )
 
     # ------------------------------------------------------------ status

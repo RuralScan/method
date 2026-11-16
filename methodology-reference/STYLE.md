@@ -14,7 +14,7 @@ The methodology reference looks like the live evidence dashboard. That is the ho
 
 | Element | Style |
 |---|---|
-| Default theme | Dark, as the dashboard opens. A toggle in the header switches to light; the choice is remembered on the device. |
+| Default theme | Dark, as the dashboard opens. The theme button in the top bar switches to light; the choice is remembered on the device. |
 | Page background | `--bg-primary` |
 | Header, cards, tables, panels | `--bg-secondary`, 1px `--border-color` border |
 | Table headers, code, soft fills | `--bg-tertiary` |
@@ -29,9 +29,32 @@ The methodology reference looks like the live evidence dashboard. That is the ho
 | Tables, buttons, tab pills | 8px radius (`--radius-md`) |
 | Section tabs | Pills. The active tab has the card background, emerald text, a border and the card shadow. |
 | Table headers | Outfit 12px, upper case, 0.03em letter-spacing |
-| Brand | The open-book mark in emerald, then "Rural NbS Scan" in Outfit 22px bold |
-| Version bar | The dashboard's dark green bar, same wording pattern |
+| Brand | The NBS Invest programme logo, unmodified and linked to the programme page, then the open-book mark in emerald and "Rural NbS Scan" in Outfit 22px bold |
+| Top bar | Shared with the visual methodology. See the next section. |
 | Page width | 1400px |
+
+## The top bar is shared with the visual methodology
+
+Every product a reviewer moves between should carry the same controls in the same order, so nobody has to relearn them. The model is the visual methodology's version bar.
+
+| Position | Control | Rule |
+|---|---|---|
+| 1 | **Version** label and menu | Live dashboard first, this reference marked as the page in view, earlier drafts after. |
+| 2 | Note | An "Under review" marker and one short line saying what this version is. |
+| 3 | **Dark theme / Light theme** button | Same moon and sun icons and wording as the visual methodology. |
+| 4 | **Review** button | Switches on the review tool. Reads "Review on" while active. |
+| 5 | **What changed? · history and feedback** | Opens `changes.html`. |
+| 6 | Live dashboard | Link back to the live evidence dashboard. |
+
+Below the bar, the header carries the programme logo, the brand, the edition line, **Help / Contact / Team** and the Review queue button.
+
+**The review tool is the visual methodology's own.** The build reads `review-mode.js` and `review-mode.css` from the visual methodology at the revision pinned as `VISUAL_REV` in `build/core.py` and changes only the storage keys, the page targets, the page names and the issue address. Do not write a second feedback tool and do not edit the generated files; change the substitutions. The build fails if a substitution no longer matches.
+
+**The logo is read from the same revision,** with its source note written beside it (`assets/nbs-invest-logo.source.txt`). It is shown unmodified, to identify the programme context.
+
+**Help page.** `help.html` covers finding your way, giving feedback, and contact. It links to the visual methodology's Help / Contact / Team page for named contacts, because this repository carries no personal names or contact details.
+
+The check "Shared top bar on every page" enforces all of this.
 
 ## Where the reference differs, on purpose
 

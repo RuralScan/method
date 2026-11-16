@@ -128,6 +128,7 @@ def run_checks():
             if (
                 target in ("site.css", "site.js", "reproduce.html")
                 or target in core.FILES
+                or target in core.ASSETS
             ):
                 continue
             if target not in core.PAGES:
@@ -165,6 +166,28 @@ def run_checks():
         or len(re.findall(r"<table\b", h)) != h.count("</table>")
     ]
     check("Page markup is balanced", not unbalanced, ", ".join(unbalanced[:5]))
+
+    # The top bar is the same on every page, and the same set of controls as the visual methodology's.
+    parts = (
+        'id="dashboard-version"',
+        'id="theme-toggle"',
+        'class="vb-changes vb-hist" href="changes.html"',
+        'src="review-mode.js"',
+        f'src="{core.LOGO}"',
+        'href="help.html"',
+    )
+    bad = [n for n, h in core.PAGES.items() if not all(p in h for p in parts)]
+    tool = core.FILES["review-mode.js"]
+    stale = [
+        w
+        for w in ("nbs_v2_review", "CIAT/nbs_ruralscan", "v2 pages", "ENSO")
+        if w in tool
+    ]
+    check(
+        "Shared top bar on every page: programme logo, version menu, theme switch, review tool, help and change history",
+        not bad and not stale and len(core.ASSETS[core.LOGO]) > 1000,
+        ", ".join(bad[:5] + stale),
+    )
 
     # House style: every house token in the stylesheet equals the live dashboard's at the pinned site revision.
     def declared(block):
@@ -376,6 +399,9 @@ def main():
     for name, text in core.FILES.items():
         (out / name).parent.mkdir(parents=True, exist_ok=True)
         (out / name).write_text(text)
+    for name, blob in core.ASSETS.items():
+        (out / name).parent.mkdir(parents=True, exist_ok=True)
+        (out / name).write_bytes(blob)
 
     words = sum(chapters.WORDS.values())
     print(
