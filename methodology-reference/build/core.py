@@ -83,7 +83,7 @@ VISUAL_URL = "https://ciat.github.io/nbs_ruralscan/redesign/"
 # The live evidence dashboard. Everything about it is read from one published site revision,
 # so its label, its producer revisions and the list of drafts are never retyped here.
 SITE_URL = "https://ruralscan.github.io/method/"
-SITE_REV = "46a1a161abadfedae611cf17ee14ff5d487678cd"
+SITE_REV = "9370179c01934144f997df6b7a3adf9fea11f19f"
 # How this draft would be listed beside the others (same fields as the site's edition catalogue).
 DRAFT_LABEL = "Methodology reference"
 DRAFT_DATE = "2026-11-13"
