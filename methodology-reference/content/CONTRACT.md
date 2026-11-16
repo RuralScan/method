@@ -103,6 +103,8 @@ Formulas go in fenced blocks tagged `formula`, written in plain text with Unicod
    into the rule itself. Software/tool names and published sources (WOCAT, IPCC AR6, MapSPAM,
    CHELSA, etc.) are fine. Refer to internal instruments by function ("the extraction ruleset",
    "the review workspace"), with ruleset version numbers where they define behaviour.
+   One exception: where a route or feature is planned and not built, a chapter may link to its
+   open public plan. The link text describes the plan in words; no issue number is shown.
 6. **Voice.** British English. Precise, plain, technical. Short paragraphs. Define each term on
    first use. Prefer "the method does X because Y" to passive description. No marketing, no
    "robust", "cutting-edge", "comprehensive", "seamless". No em dashes.
