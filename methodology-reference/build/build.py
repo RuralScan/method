@@ -231,6 +231,11 @@ def run_checks():
     )
     for name, ok, detail in pages_data.CHECKS:
         check(name, ok, detail)
+    check(
+        "The evidence checkout is the revision whose operating procedures are described",
+        core.EVIDENCE_REV == core.EVIDENCE_OPERATING,
+        f"checkout {core.EVIDENCE_REV[:8]}; described {core.EVIDENCE_OPERATING[:8]}",
+    )
     return results
 
 

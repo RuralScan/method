@@ -59,6 +59,8 @@ Formulas go in fenced blocks tagged `formula`, written in plain text with Unicod
   `[src: <path at P> §<section heading or number>]`, e.g. `[src: methodology/modules/M2_climate_risk.md §4]`.
   For the product repos: `[src: method:handbook/implement-a-scan.md §Inputs]`, `[src: evidence:workflows/discovery/README.md §Screening]`.
   For the runtime repository (published main branch): `[src: runtime:docs/DESIGN.md §Boundary]`.
+  For the producer repository at the revision where its evidence records became read-only (later
+  than `P`; use only for the retirement itself and what it left in place): `[src: retired:AGENTS.md §…]`.
 - Pinned rule table, rendered from the file at `P` so numbers are never retyped:
   `{{csv:schema/lookups/design_weights.csv}}` on its own line. Optional filters:
   `{{csv:schema/lookups/effect_locus.csv|cols=nbs_id,suitability_family_id,locus}}`,

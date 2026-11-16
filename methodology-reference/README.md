@@ -61,5 +61,10 @@ The build also writes two files for programs: `llms.txt` (a plain-text guide for
 `data/assets.json` (every downloadable file with address, revision, row count and checksum).
 
 `content/continue-with-ai.md` describes how to set up and run the agent-plus-human system that extends the evidence
-base: where the instruction files live, the operating loop, the checks, the human approval points, and what is not
-yet written down.
+base: where the instruction files live, the operating loop, the checks, the human approval points, where each kind
+of record is written today and which routes are still planned. It works from two revisions. The scientific edition
+is the producer revision in the evidence repository's release pin. The operating procedures are the evidence
+repository at `EVIDENCE_OPERATING` in `build/core.py`; the build fails unless the evidence checkout is at exactly
+that revision, so the chapter's text and its links cannot drift apart. To move it, check out the newer evidence
+revision, re-read the chapter against the submissions guides, then change the constant. Citations written
+`[src: retired:<path>]` open the producer repository at the revision where its evidence records became read-only.

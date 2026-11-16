@@ -65,7 +65,18 @@ def _published(repo):
 
 RUNTIME_REV = _published(RUNTIME)
 RUNTIME_URL = f"https://github.com/RuralScan/runtime/blob/{RUNTIME_REV}/"
-REPO_URLS = {"method:": METHOD_URL, "evidence:": EVIDENCE_URL, "runtime:": RUNTIME_URL}
+# The evidence revision whose operating procedures the chapter on continuing the work describes.
+# The build must run against exactly this checkout, so that chapter's text and links agree.
+EVIDENCE_OPERATING = "017544fe55929cd03579494bbd4062db67697363"
+# The producer revision at which its evidence records became read-only (the retirement marker).
+CIAT_RETIRED = "4d53620f7a9f0f17a42a007fa0a653e5ed55c519"
+CIAT_RETIRED_URL = f"https://github.com/CIAT/nbs_ruralscan/blob/{CIAT_RETIRED}/"
+REPO_URLS = {
+    "method:": METHOD_URL,
+    "evidence:": EVIDENCE_URL,
+    "runtime:": RUNTIME_URL,
+    "retired:": CIAT_RETIRED_URL,
+}
 # The visual methodology is published from the producer repository's documentation site.
 VISUAL_URL = "https://ciat.github.io/nbs_ruralscan/redesign/"
 
