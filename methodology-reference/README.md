@@ -26,7 +26,35 @@ The build also reads the published site branch of this repository at one fixed r
 `build/core.py`) for the live dashboard's label, its producer revisions, the data package edition and the list of drafts. Run
 `git fetch origin gh-pages` once so that revision is available locally.
 
-`build/fetch_package.py` is the only step that uses the network. It downloads the published data package for the
+## Pins, and knowing when they have moved
+
+The reference reads other repositories at fixed revisions, all set in `build/core.py`: the scientific edition
+(the producer revision in the evidence repository's release pin), `EVIDENCE_OPERATING` (current operating
+procedures), `SITE_REV` (the published site) and `CIAT_RETIRED` (where the producer's evidence records became
+read-only). Those repositories change several times a day. To see what has moved, and whether a plan that a
+chapter links to as "not built yet" has since closed:
+
+    python3 build/staleness.py
+
+It needs only Python and network access, reports and does not fail (`--strict` makes it fail), and names the
+changed files and what to re-read before moving a pin. Move one pin per pull request.
+
+## Continuous integration
+
+`.github/workflows/methodology-reference.yml` runs on pull requests and pushes that change this folder, and once
+a day. It runs the report above, then builds the reference on a clean machine at the pinned revisions and runs
+every build check. It publishes nothing. The names list is not in the repository: set it as the repository secret
+`REFERENCE_PEOPLE` (the contents of `people.local.txt`). Without the secret the build still runs, with
+`RURALSCAN_PEOPLE_OPTIONAL=1`: the personal-attribution check is reported as not run, and the output carries a
+`NOT-FOR-PUBLICATION.txt` marker because recorded notes were not scrubbed. Never publish such a build.
+
+`.github/workflows/change-areas.yml` notes when one pull request to `main` changes more than one top-level folder.
+Several sessions work in this repository at once, each in its own folder; the note makes an overlap visible
+before merge. It never fails.
+
+## The data package
+
+`build/fetch_package.py` is the only build step that uses the network. It downloads the published data package for the
 edition (ten CSV tables and their description) into `.cache/`, starting from the edition catalogue and checking every
 checksum. The build reads that copy offline, checks the checksums again, and runs every query recipe shown on the
 "Query the data" page against it (DuckDB and pandas are needed only for this; the R recipe runs when `Rscript` is

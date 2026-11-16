@@ -83,7 +83,7 @@ VISUAL_URL = "https://ciat.github.io/nbs_ruralscan/redesign/"
 # The live evidence dashboard. Everything about it is read from one published site revision,
 # so its label, its producer revisions and the list of drafts are never retyped here.
 SITE_URL = "https://ruralscan.github.io/method/"
-SITE_REV = "718aa2343d9002258d5e2c7c01bdfffa679cd6ae"
+SITE_REV = "46a1a161abadfedae611cf17ee14ff5d487678cd"
 # How this draft would be listed beside the others (same fields as the site's edition catalogue).
 DRAFT_LABEL = "Methodology reference"
 DRAFT_DATE = "2026-11-13"
@@ -255,6 +255,10 @@ def _people():
     path = Path(
         os.environ.get("RURALSCAN_PEOPLE", Path(__file__).with_name("people.local.txt"))
     )
+    if not path.is_file() and os.environ.get("RURALSCAN_PEOPLE_OPTIONAL") == "1":
+        # A check-only build (continuous integration without the names list). Its pages are not
+        # scrubbed, so the build marks its output as not for publication.
+        return None
     if not path.is_file():
         raise SystemExit(
             f"Missing {path.name}. Copy people.example.txt to people.local.txt and list the personal "
@@ -269,7 +273,9 @@ def _people():
     return table
 
 
-PEOPLE = _people()
+_SUPPLIED = _people()
+PEOPLE_SUPPLIED = _SUPPLIED is not None
+PEOPLE = _SUPPLIED or {}
 _NAMES = (
     "|".join(re.escape(n) for n in sorted(PEOPLE, key=len, reverse=True)) or r"(?!x)x"
 )

@@ -1,0 +1,38 @@
+name: Change areas
+# Several people and assistants work in this repository at once, each in its own top-level folder.
+# This notes when one pull request changes more than one folder, so the overlap is seen before
+# merge. It reports and never fails.
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  areas:
+    name: Note pull requests that span folders
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: List the top-level folders this pull request changes
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          changed=$(git diff --name-only "$BASE...$HEAD")
+          # Shared files every change may touch are not counted as a folder of their own.
+          areas=$(printf '%s\n' "$changed" | grep -v -E '^(README\.md|LICENSE|\.gitignore|\.gitattributes|\.github/)' \
+            | awk -F/ 'NF>1 {print $1}' | sort -u)
+          count=$(printf '%s\n' "$areas" | grep -c . || true)
+          {
+            echo "## Folders changed"
+            echo
+            printf '%s\n' "$areas" | sed 's/^/- /'
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$count" -gt 1 ]; then
+            list=$(printf '%s\n' "$areas" | paste -sd, - | sed 's/,/, /g')
+            echo "::warning title=Pull request spans $count folders::$list. Check that nobody else has open work in these folders, or split the change."
+          fi
