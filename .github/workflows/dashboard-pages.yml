@@ -35,6 +35,62 @@ jobs:
           mv site/dashboard.html site/legacy.html
       - name: Build and verify pinned methodology editions
         run: python3 publish_editions.py
+      - name: Check out the unlisted reference
+        id: reference_source
+        continue-on-error: true
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: 1ef0c40ce491134e7d0b14a58c35fcb03c9d9ac1
+          path: reference-src
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Build the unlisted methodology reference
+        if: steps.reference_source.outcome == 'success'
+        continue-on-error: true
+        env:
+          NAMES: ${{ secrets.REFERENCE_PEOPLE }}
+        run: |
+          set -euo pipefail
+          work=$(mktemp -d "$RUNNER_TEMP/reference.XXXXXX")
+          stage=$(mktemp -d "$GITHUB_WORKSPACE/.reference.XXXXXX")
+          trap 'rm -rf -- "$work" "$stage"' EXIT
+          printf '%s\n' "${NAMES:-}" > "$work/people.txt"
+          unset NAMES RURALSCAN_PEOPLE_OPTIONAL
+          if ! awk -F '=>' '$1 ~ /[^[:space:]]/ && $1 !~ /^[[:space:]]*#/ { found=1 } END { exit !found }' "$work/people.txt"; then
+            echo "::warning title=Reference not published::Set REFERENCE_PEOPLE to the names list."
+            exit 1
+          fi
+
+          cd "$GITHUB_WORKSPACE/reference-src/methodology-reference"
+          pin() { sed -nE "s/^${1} = \"([0-9a-f]{40})\"$/\\1/p" build/core.py; }
+          git fetch --quiet --no-tags origin "$(pin SITE_REV)"
+          git clone --quiet https://github.com/RuralScan/evidence.git "$work/evidence"
+          git -C "$work/evidence" checkout --quiet --detach "$(pin EVIDENCE_OPERATING)"
+          git clone --quiet --depth 1 https://github.com/RuralScan/runtime.git "$work/runtime"
+          git clone --quiet --bare --single-branch --branch main --no-tags https://github.com/CIAT/nbs_ruralscan.git "$work/producer.git"
+          python3 -m venv "$work/venv"
+          "$work/venv/bin/pip" install --quiet 'markdown==3.11.3' 'duckdb==1.5.3' 'pandas==2.3.1'
+
+          export RURALSCAN_PEOPLE="$work/people.txt" RURALSCAN_EVIDENCE="$work/evidence"
+          export RURALSCAN_RUNTIME="$work/runtime" RURALSCAN_CIAT="$work/producer.git"
+          "$work/venv/bin/python" -B build/fetch_package.py
+          # A failed attribution check can report excerpts of private notes.
+          if ! "$work/venv/bin/python" -B build/build.py --out "$stage/reference" > "$work/checks.log" 2>&1; then
+            echo "::warning title=Reference not published::Reference build or validation failed."
+            exit 1
+          fi
+          test -s "$stage/reference/index.html"
+          test ! -e "$stage/reference/NOT-FOR-PUBLICATION.txt"
+          # Keep the unlisted route closed to indexing even if a later source pin changes listing mode.
+          python3 - "$stage/reference" <<'PYTHON'
+          from pathlib import Path
+          import sys
+          for page in Path(sys.argv[1]).rglob("*.html"):
+              if '<meta name="robots" content="noindex">' not in page.read_text(encoding="utf-8"):
+                  raise SystemExit("Missing noindex in reference output")
+          PYTHON
+          test ! -e "$GITHUB_WORKSPACE/site/reference"
+          mv "$stage/reference" "$GITHUB_WORKSPACE/site/reference"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
