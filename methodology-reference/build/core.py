@@ -86,7 +86,7 @@ SITE_URL = "https://ruralscan.github.io/method/"
 SITE_REV = "9370179c01934144f997df6b7a3adf9fea11f19f"
 # How this draft would be listed beside the others (same fields as the site's edition catalogue).
 DRAFT_LABEL = "Methodology reference"
-DRAFT_DATE = "2026-11-13"
+DRAFT_DATE = "2026-11-16"
 # False while the reference is published at an address that nothing links to. Every page then asks
 # search engines not to index it. Set to True in the same change that lists it on the site.
 LISTED = False
@@ -422,7 +422,7 @@ def version_bar(filename):
     )
     options = [f'<option value="{esc(target)}">{esc(name)}</option>']
     options.append(
-        f'<option value="{esc(filename)}" selected>{esc(THIS_DRAFT)} (this page)</option>'
+        f'<option value="{esc(filename)}" selected>{esc(THIS_DRAFT)} (this page, under review)</option>'
     )
     options += [
         f'<option value="{esc(url)}">{esc(label)}</option>'
@@ -434,7 +434,8 @@ def version_bar(filename):
     return (
         '<div class="edition-selector"><label for="dashboard-version">View version</label>'
         f'<select id="dashboard-version" aria-describedby="dashboard-version-note">{"".join(options)}</select>'
-        '<span id="dashboard-version-note">Design preview. Draft for approval, not published.</span> '
+        '<span id="dashboard-version-note"><b class="reviewing">Under review</b> You are viewing the methodology '
+        "reference. It is a draft for approval and is not yet in the live site’s version list.</span> "
         f'<a href="{esc(target)}">Return to live dashboard</a>'
         f"<noscript>{' · '.join(links)}</noscript></div>"
     )
