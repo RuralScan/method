@@ -26,11 +26,21 @@ The build also reads the published site branch of this repository at one fixed r
 `build/core.py`) for the live dashboard's label, its producer revisions, the data package edition and the list of drafts. Run
 `git fetch origin gh-pages` once so that revision is available locally.
 
-## Unlisted until approved
+## Listed, and marked as under review
 
-While `LISTED` in `build/core.py` is `False`, every page carries a no-index tag, so the reference can be published
-at an address nothing links to without appearing in search results. A build check enforces it. Set `LISTED` to
-`True` in the same change that adds the reference to the site's version list.
+The reference is approved for the site's version list, so `LISTED` in `build/core.py` is `True` and pages carry
+no no-index tag. A build check enforces whichever state `LISTED` declares. The top bar marks every page
+"Under review" until the edition is released. Adding the entry to the site's version menu is done on the site
+branch.
+
+## People and the programme logo
+
+The help page (`help.html`) is the one page that names people: the project contacts and team. They are read at
+build time from the visual methodology's help page at the pinned revision, so this repository holds no names
+and the two pages cannot disagree. The names check skips that page and no other.
+
+The NBS Invest logo is shown on every page while `SHOW_PROGRAMME_LOGO` in `build/core.py` is `True`. Its use on
+this site awaits confirmation from the programme. Set it to `False` to remove the logo everywhere.
 
 ## Pins, and knowing when they have moved
 

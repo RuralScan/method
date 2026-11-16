@@ -142,8 +142,12 @@ def run_checks():
         + (f" (+{len(broken) - 8} more)" if len(broken) > 8 else ""),
     )
 
+    # The help page is the one page that names people: the project contacts and team, read from the
+    # visual methodology. Every other page is checked.
     leaks = []
     for name, html in core.PAGES.items():
+        if name == "help.html":
+            continue
         body = re.sub(r"<[^>]+>", " ", html).replace(
             chapters.ATTRIBUTION.replace("<code>", " ").replace("</code>", " "), ""
         )
@@ -173,10 +177,19 @@ def run_checks():
         'id="theme-toggle"',
         'class="vb-changes vb-hist" href="changes.html"',
         'src="review-mode.js"',
-        f'src="{core.LOGO}"',
         'href="help.html"',
     )
-    bad = [n for n, h in core.PAGES.items() if not all(p in h for p in parts)]
+    logo = f'src="{core.LOGO}"'
+    bad = [
+        n
+        for n, h in core.PAGES.items()
+        if not all(p in h for p in parts) or (logo in h) != core.SHOW_PROGRAMME_LOGO
+    ]
+    named = (
+        "mailto:" in core.PAGES["help.html"] and 'id="team"' in core.PAGES["help.html"]
+    )
+    if not named:
+        bad.append("help.html has no contacts or team")
     tool = core.FILES["review-mode.js"]
     stale = [
         w
@@ -184,7 +197,7 @@ def run_checks():
         if w in tool
     ]
     check(
-        "Shared top bar on every page: programme logo, version menu, theme switch, review tool, help and change history",
+        "Shared top bar on every page: version menu, theme switch, review tool, help and change history; programme logo as switched; contacts on the help page",
         not bad and not stale and len(core.ASSETS[core.LOGO]) > 1000,
         ", ".join(bad[:5] + stale),
     )
