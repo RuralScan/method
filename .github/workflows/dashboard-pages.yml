@@ -33,18 +33,16 @@ jobs:
           git archive HEAD -- index.html dashboard.html '*.css' '*.js' review vendor LICENSE | tar -x -C site
           cp producer/docs/dashboard_data.json producer/docs/t4_analysis*.json site/data/bec50bc0f9dc/
           mv site/dashboard.html site/legacy.html
-      - name: Build and verify pinned methodology editions
-        run: python3 publish_editions.py
-      - name: Check out the unlisted reference
+      - name: Check out the methodology reference
         id: reference_source
         continue-on-error: true
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          ref: 1ef0c40ce491134e7d0b14a58c35fcb03c9d9ac1
+          ref: 079525af1b81125832c24f82ad313aafa345f4b6
           path: reference-src
           fetch-depth: 0
           persist-credentials: false
-      - name: Build the unlisted methodology reference
+      - name: Build the listed methodology reference
         if: steps.reference_source.outcome == 'success'
         continue-on-error: true
         env:
@@ -81,16 +79,18 @@ jobs:
           fi
           test -s "$stage/reference/index.html"
           test ! -e "$stage/reference/NOT-FOR-PUBLICATION.txt"
-          # Keep the unlisted route closed to indexing even if a later source pin changes listing mode.
+          # A later source pin must also opt in before its pages can be listed.
           python3 - "$stage/reference" <<'PYTHON'
           from pathlib import Path
           import sys
           for page in Path(sys.argv[1]).rglob("*.html"):
-              if '<meta name="robots" content="noindex">' not in page.read_text(encoding="utf-8"):
-                  raise SystemExit("Missing noindex in reference output")
+              if '<meta name="robots" content="noindex">' in page.read_text(encoding="utf-8"):
+                  raise SystemExit("Reference output is marked noindex")
           PYTHON
           test ! -e "$GITHUB_WORKSPACE/site/reference"
           mv "$stage/reference" "$GITHUB_WORKSPACE/site/reference"
+      - name: Build and verify pinned methodology editions
+        run: python3 publish_editions.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
