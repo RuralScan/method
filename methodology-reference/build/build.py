@@ -45,7 +45,8 @@ def run_checks():
     results = []
 
     def check(name, ok, detail=""):
-        results.append((name, bool(ok), detail))
+        # ok is None when a check could not be run; that is reported, never counted as a pass.
+        results.append((name, None if ok is None else bool(ok), detail))
 
     stated, total = counts_md()
     check(
@@ -151,8 +152,10 @@ def run_checks():
             )
     check(
         "No personal attribution on any page",
-        not leaks,
-        "; ".join(leaks[:6]) + (f" (+{len(leaks) - 6} more)" if len(leaks) > 6 else ""),
+        (not leaks) if core.PEOPLE_SUPPLIED else None,
+        "; ".join(leaks[:6]) + (f" (+{len(leaks) - 6} more)" if len(leaks) > 6 else "")
+        if core.PEOPLE_SUPPLIED
+        else "The names list was not supplied, so recorded notes were not scrubbed. Do not publish this build.",
     )
 
     unbalanced = [
@@ -260,7 +263,11 @@ def main():
 
     results = run_checks()
     rows = [
-        [core.esc(n), "Pass" if ok else "<strong>Fail</strong>", core.esc(d)]
+        [
+            core.esc(n),
+            "Not run" if ok is None else "Pass" if ok else "<strong>Fail</strong>",
+            core.esc(d),
+        ]
         for n, ok, d in results
     ]
     body = (
@@ -313,6 +320,10 @@ def main():
         shutil.rmtree(out)
     out.mkdir(parents=True)
     (out / ".methodology-reference").write_text(core.RELEASE + "\n")
+    if not core.PEOPLE_SUPPLIED:
+        (out / "NOT-FOR-PUBLICATION.txt").write_text(
+            "Built without the names list: recorded review notes are not scrubbed.\n"
+        )
     for name, html in core.PAGES.items():
         (out / name).write_text(html)
     for asset in ("site.css", "site.js"):
@@ -325,10 +336,10 @@ def main():
     print(
         f"{len(core.PAGES)} pages · {len(data.ROWS)} rows · {len(chapters.WORDS)} chapters · {words:,} words"
     )
-    failed = [r for r in results if not r[1]]
+    failed = [r for r in results if r[1] is False]
     for name, ok, detail in results:
         print(
-            ("PASS  " if ok else "FAIL  ")
+            ("SKIP  " if ok is None else "PASS  " if ok else "FAIL  ")
             + name
             + (f" — {detail[:300]}" if detail and not ok else "")
         )
