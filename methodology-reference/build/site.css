@@ -220,3 +220,51 @@ pre.shape { font-size: .84rem; line-height: 1.5; }
 #downloads td:nth-child(4), #downloads td:nth-child(5) { white-space: nowrap; }
 table.matrix td, table.matrix th { white-space: nowrap; }
 table.fields td:nth-child(4) { min-width: 22ch; }
+
+/* Front page */
+.hero { margin: .4rem 0 1.2rem; }
+.stats.big { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: .8rem; }
+.stats.big > * { padding: 1rem 1.1rem; border-top: 3px solid var(--accent); }
+.stats.big b { font-size: 2.3rem; letter-spacing: -.02em; }
+.stats.big span { font-size: .92rem; }
+.routes { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.1rem 0; max-width: none; }
+.routes a { padding: .55rem 1rem; border: 1px solid var(--accent); border-radius: 6px; font-weight: 650; text-decoration: none; background: var(--panel); }
+.routes a:hover { background: var(--soft); }
+.routes a.go { background: var(--accent); color: var(--accent-ink); }
+.routes a.go:hover { filter: brightness(1.1); background: var(--accent); }
+.pgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1rem 0 .6rem; }
+.pcard { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem 1.05rem; display: flex; flex-direction: column; }
+.pcard h3 { margin: 0 0 .25rem; font-size: 1.15rem; line-height: 1.25; }
+.pcard h3 a { text-decoration: none; }
+.pcard h3 a:hover { text-decoration: underline; }
+.pdesc { margin: 0 0 .8rem; color: var(--muted); font-size: .92rem; flex: 1; }
+.pmain { margin: 0 0 .35rem; font-size: .95rem; }
+.pmain b { font-size: 1.35rem; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.meter { height: 8px; border-radius: 4px; background: var(--soft); overflow: hidden; }
+.meter span { display: block; height: 100%; min-width: 4px; border-radius: 4px; background: var(--accent); }
+.pmeta { margin: .5rem 0 .6rem; color: var(--muted); font-size: .84rem; }
+.prows { list-style: none; margin: 0; padding: .6rem 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr; gap: .25rem; font-size: .88rem; max-width: none; }
+.prows li { display: flex; align-items: baseline; gap: .45rem; }
+.prows b { margin-left: auto; font-variant-numeric: tabular-nums; }
+.prows b.none { font-weight: 400; }
+.qgrid { list-style: none; margin: 1rem 0 .6rem; padding: 0; max-width: 60rem; display: grid; gap: 0; }
+.qcard { position: relative; padding: 0 0 1.4rem 3.2rem; }
+.qcard::before { content: ""; position: absolute; left: .9rem; top: 2rem; bottom: 0; width: 2px; background: var(--line); }
+.qcard:last-child::before { display: none; }
+.qcard:last-child { padding-bottom: .2rem; }
+.qn { position: absolute; left: 0; top: 0; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-weight: 700; display: grid; place-items: center; font-size: .95rem; }
+.qcard h3 { margin: .1rem 0 .35rem; font-size: 1.15rem; line-height: 1.3; }
+.qcard p { margin: 0 0 .5rem; max-width: 72ch; }
+.qout { display: inline-block; background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: .3rem .7rem; font-size: .93rem; }
+.qout b { font-weight: 650; margin-right: .3rem; color: var(--muted); text-transform: uppercase; font-size: .74rem; letter-spacing: .04em; }
+.qlinks { font-size: .88rem; margin-bottom: 0 !important; }
+.qlinks span { color: var(--muted); }
+.chain { list-style: none; margin: 1rem 0 .6rem; padding: 0; max-width: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .8rem; counter-reset: chain; }
+.chain li { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: .85rem 1rem; counter-increment: chain; }
+.chain a { display: block; text-decoration: none; color: var(--ink); }
+.chain a:hover .clabel { text-decoration: underline; }
+.chain b { display: block; font-size: 1.7rem; line-height: 1.15; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.chain .clabel { display: block; color: var(--accent); font-weight: 650; font-size: .92rem; }
+.chain .clabel::before { content: counter(chain) ". "; color: var(--muted); font-weight: 400; }
+.chain p { margin: .45rem 0 0; font-size: .88rem; color: var(--muted); max-width: none; }
+@media print { .routes { display: none; } }
