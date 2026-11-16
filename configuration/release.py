@@ -97,7 +97,17 @@ def check_compatibility(root, tables):
     }
     family_rows = tables["FAM_family_registry"]
     scopes = {(row["nbs_id"], row["suitability_family_id"]) for row in family_rows}
-    practices = {practice for practice, _ in scopes}
+    directory = root / "data-model/configuration"
+    practices = {
+        row["nbs_id"]
+        for path in (directory / "recipes").glob("*/T0_nbs_registry.csv")
+        for row in read_table(path)[1]
+    }
+    contexts = {
+        (row["context_type"], row["context_id"])
+        for row in read_table(directory / "T7_geographic_context.csv")[1]
+    }
+    contexts.add(("global", ""))
     dataset_ids = {
         row["dataset_id"]
         for row in read_table(root / "data-model/configuration/T1_data_registry.csv")[1]
@@ -158,6 +168,11 @@ def check_compatibility(root, tables):
                 require(
                     wildcard or key in targets.get(table, ()),
                     f"Unknown target {table}.{key} in {name}",
+                )
+            if name == "BIND_dataset_binding":
+                require(
+                    (row["scope_type"], row["scope_id"]) in contexts,
+                    "Unknown BIND context",
                 )
             if name == "BIND_dataset_binding" and row["dataset_id"]:
                 require(

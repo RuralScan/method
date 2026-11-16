@@ -81,3 +81,32 @@ class DefinitionRelease(unittest.TestCase):
         path.write_bytes(data + data.splitlines(keepends=True)[1])
         with self.assertRaisesRegex(ValueError, "Duplicate"):
             release(self.root, "HEAD", {TRACE: "plantation_rollup"})
+
+    def test_unknown_practice_and_binding_context(self):
+        for filename, old, new, message in [
+            (
+                "FAM_family_registry.csv",
+                b",agroforestry,",
+                b",nonexistent_practice,",
+                "Unknown practice",
+            ),
+            (
+                "BIND_dataset_binding.csv",
+                b",admin_country,SLE,",
+                b",admin_country,ZZZ,",
+                "Unknown BIND context",
+            ),
+        ]:
+            path = self.root / "data-model/configuration" / filename
+            original = path.read_bytes()
+            path.write_bytes(original.replace(old, new, 1))
+            with (
+                self.subTest(register=filename),
+                self.assertRaisesRegex(ValueError, message),
+            ):
+                release(
+                    self.root,
+                    "HEAD",
+                    {"schema/registers/" + filename: "plantation_rollup"},
+                )
+            path.write_bytes(original)
