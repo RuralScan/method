@@ -128,6 +128,7 @@ def run_checks():
             if (
                 target in ("site.css", "site.js", "reproduce.html")
                 or target in core.FILES
+                or target in core.ASSETS
             ):
                 continue
             if target not in core.PAGES:
@@ -165,6 +166,63 @@ def run_checks():
         or len(re.findall(r"<table\b", h)) != h.count("</table>")
     ]
     check("Page markup is balanced", not unbalanced, ", ".join(unbalanced[:5]))
+
+    # The top bar is the same on every page, and the same set of controls as the visual methodology's.
+    parts = (
+        'id="dashboard-version"',
+        'id="theme-toggle"',
+        'class="vb-changes vb-hist" href="changes.html"',
+        'src="review-mode.js"',
+        f'src="{core.LOGO}"',
+        'href="help.html"',
+    )
+    bad = [n for n, h in core.PAGES.items() if not all(p in h for p in parts)]
+    tool = core.FILES["review-mode.js"]
+    stale = [
+        w
+        for w in ("nbs_v2_review", "CIAT/nbs_ruralscan", "v2 pages", "ENSO")
+        if w in tool
+    ]
+    check(
+        "Shared top bar on every page: programme logo, version menu, theme switch, review tool, help and change history",
+        not bad and not stale and len(core.ASSETS[core.LOGO]) > 1000,
+        ", ".join(bad[:5] + stale),
+    )
+
+    # House style: every house token in the stylesheet equals the live dashboard's at the pinned site revision.
+    def declared(block):
+        return {
+            k: " ".join(v.split())
+            for k, v in re.findall(r"(--[a-z-]+):\s*([^;]+);", block)
+        }
+
+    sheet = (core.ROOT / "build/site.css").read_text()
+    dash = core._site("dashboard.html")
+    drift = []
+    for mode, opener in (("dark", ":root {"), ("light", '[data-theme="light"] {')):
+        ours = declared(
+            sheet.split(f"/* house tokens: {mode}")[1].split("/* end house tokens */")[
+                0
+            ]
+        )
+        theirs = declared(dash.split(opener, 1)[1].split("}", 1)[0])
+        drift += [
+            f"{mode} {k}: {v} here, {theirs.get(k, 'absent')} on the dashboard"
+            for k, v in ours.items()
+            if theirs.get(k) != v
+        ]
+        if len(ours) < 13:
+            drift.append(f"{mode}: only {len(ours)} house tokens declared")
+    fonts = re.search(r'href="(https://fonts\.googleapis\.com/css2[^"]+)"', dash)
+    if not fonts or fonts.group(1).replace("&amp;", "&") != core.FONTS:
+        drift.append("font link differs from the dashboard's")
+    if '<body data-theme="dark"' not in dash:
+        drift.append("the dashboard no longer opens in its dark theme")
+    check(
+        "House style: colours, fonts, radii and the dark default match the live dashboard at the pinned site revision",
+        not drift,
+        "; ".join(drift[:6]),
+    )
 
     wrong = [
         n
@@ -341,6 +399,9 @@ def main():
     for name, text in core.FILES.items():
         (out / name).parent.mkdir(parents=True, exist_ok=True)
         (out / name).write_text(text)
+    for name, blob in core.ASSETS.items():
+        (out / name).parent.mkdir(parents=True, exist_ok=True)
+        (out / name).write_bytes(blob)
 
     words = sum(chapters.WORDS.values())
     print(

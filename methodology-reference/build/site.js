@@ -12,6 +12,26 @@
       }
     });
   }
+  // Theme: dark by default, as on the live dashboard. The button and its wording follow the visual
+  // methodology's. The choice is remembered on this device.
+  var toggle = document.getElementById('theme-toggle');
+  if (toggle) {
+    var root = document.documentElement;
+    var show = function () {
+      var dark = root.getAttribute('data-theme') !== 'light';
+      toggle.setAttribute('aria-pressed', String(dark));
+      toggle.querySelector('span').textContent = dark ? 'Light theme' : 'Dark theme';
+      toggle.classList.toggle('is-dark', dark);
+    };
+    toggle.hidden = false;
+    toggle.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('reference-theme', next); } catch (e) { /* not stored; the page still switches */ }
+      show();
+    });
+    show();
+  }
   // Bring the current section tab into view on narrow screens.
   var current = document.querySelector('.tabs a[aria-current]');
   if (current && current.scrollIntoView) {
