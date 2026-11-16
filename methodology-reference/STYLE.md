@@ -33,6 +33,16 @@ The methodology reference looks like the live evidence dashboard. That is the ho
 | Top bar | Shared with the visual methodology. See the next section. |
 | Page width | 1400px |
 
+## Two looks, one frame
+
+This was decided, not left open:
+
+- **The visual methodology keeps its own look** (light, editorial). It is a mock-up for discussion and is not restyled.
+- **The live dashboard and this reference share the dashboard's look** (dark by default), as set out above.
+- **All three share the frame:** the top bar, the review tool, the programme logo and the help link.
+
+Do not restyle the reference toward the visual methodology, or the reverse, to "finish" the alignment. Only the frame is shared.
+
 ## The top bar is shared with the visual methodology
 
 Every product a reviewer moves between should carry the same controls in the same order, so nobody has to relearn them. The model is the visual methodology's version bar.
