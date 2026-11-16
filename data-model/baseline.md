@@ -2,6 +2,8 @@
 
 Each of the six practices in the candidate analytical release has a T0 definition. Start with T0 for the practice scope and listed references, then use FAM for its sub-practices and suitability families. [Browse practice definitions](configuration/recipes) · [Family register](configuration/FAM_family_registry.csv) · [Candidate table counts by practice](https://github.com/RuralScan/evidence/blob/b0fd4ea66d817509c16584a3c1f128194c144478/workflows/recipe_release/counts.md)
 
+Current compiler register editions and policy changes use the [reviewed configuration release](../configuration/README.md). The hashes and status counts below describe the historical definition snapshot.
+
 ## Source versions
 
 All six T0 files match the practice definitions in the [pinned recipe source](https://github.com/CIAT/nbs_ruralscan/tree/157a26c2729c05cccf2b1d9374a63e28c97acac6/schema/recipes). The shared draft definitions retain their [earlier source revision](https://github.com/CIAT/nbs_ruralscan/tree/dd80226700432e9abd4aa9262262b9ad5ad6dfd5/schema). The table records upstream file hashes. Use the [method snapshot](definition-snapshot.json) for the exact distributed files and the method Git revision that contains them.

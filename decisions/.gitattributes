@@ -1,0 +1,3 @@
+# Revision checks compare historical bytes on every platform.
+*.csv -text
+baseline.json text eol=lf

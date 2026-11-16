@@ -1,0 +1,31 @@
+name: Scientific method decisions
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  decisions:
+    name: Verify method decisions
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Exercise decisions, supersession, retries and pinned consumers
+        run: python3 -m unittest discover -v -s decisions
+      - name: Verify historical science, append-only events and implementation references
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          GH_TOKEN: ${{ github.token }}
+        run: python3 decisions/register.py check --base "$BASE_SHA" --verify-implementations
+      - name: Verify compiler configuration and scientific decision references
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          python3 -m unittest discover -v -s configuration
+          python3 configuration/release.py check --base "$BASE_SHA"

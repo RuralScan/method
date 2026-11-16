@@ -14,6 +14,7 @@ It supports early investment scoping. It does not replace feasibility studies, e
 - Download the bench-terrace evidence tables and their field definitions from the [machine-readable evidence catalogue](https://ruralscan.github.io/method/catalog.json).
 - [Choose a practice and suitability family](cookbook/README.md). Compare spatial outputs and family-level evidence counts. [Download the six-practice print edition](cookbook/rural-scan-cookbook.html).
 - [Work through the Haiti notebook and prepare a scoping brief](handbook/implement-a-scan.md).
+- [Record or look up a scientific method decision](decisions/README.md). Cite the decision code and method revision to trace its ruling and implementation.
 - [Read the data model](data-model/spec.md): fields, controlled vocabularies, table structure and configuration.
 - [Label schema tables in figures, notebooks and printouts](design/README.md).
 - [Browse all six practice definitions](data-model/configuration/recipes). [Check their source versions, dependencies and limitations](data-model/baseline.md).
@@ -28,3 +29,5 @@ It supports early investment scoping. It does not replace feasibility studies, e
 Definitions feed evidence compilation. Runtime consumes immutable analytical releases with explicit compatibility and input hashes. A draft configuration or reviewed claim does not by itself establish an executable or transferable analytical rule.
 
 The [licence](LICENSE) covers the included original material. Dataset and publication terms remain with their sources.
+
+[Update compiler registers and rule lookups](configuration/README.md)
