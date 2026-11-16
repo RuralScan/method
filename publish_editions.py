@@ -185,13 +185,13 @@ LEGACY = {
 }
 
 
-def add_version_selectors(site, editions, ciat):
+def add_version_selectors(site, editions, ciat, reference):
     """Decorate the published dashboard shell after all pinned builds complete."""
     pages = {}
     labels = {}
     for item in editions:
         key = item["edition"]
-        labels[key] = f'Draft · {item["label"]} · {date.fromisoformat(item["date"]):%d %b %Y}'
+        labels[key] = f'{item["label"]} · {date.fromisoformat(item["date"]):%d %b %Y}'
         pages[key] = {p.name for p in (site / "editions" / key).glob("*.html")}
         if "index.html" not in pages[key]:
             raise ValueError(f"No dashboard entry for {key}")
@@ -219,7 +219,8 @@ def add_version_selectors(site, editions, ciat):
         routes.update({fragment: path for path, fragment in LEGACY.items() if path in names})
         legacy_routes[edition] = routes
     latest = editions[-1]["edition"]
-    legacy_title = "Live · Evidence dashboard · 10 Nov 2026"
+    legacy_title = "Evidence dashboard · 10 Nov 2026"
+    reference_available = reference is not None and (site / reference["href"]).is_file()
     for asset in ("edition-selector.css", "edition-selector.js"):
         copyfile(Path(__file__).with_name(asset), site / asset)
 
@@ -253,16 +254,26 @@ def add_version_selectors(site, editions, ciat):
             legacy_label += " (opens overview)"
         selected = " selected" if legacy else ""
         fallback = "" if legacy_match else " data-fallback"
-        options.insert(0, f'<option value="{legacy_url}"{selected}{fallback}>{legacy_label}</option>')
-        links.insert(0, f'<a href="{legacy_url}">{legacy_label}</a>')
+        groups = [
+            ("Live", f'<option value="{legacy_url}"{selected}{fallback}>{legacy_label}</option>',
+             f'<a href="{legacy_url}">{legacy_label}</a>')
+        ]
+        if reference_available:
+            href = base + escape(reference["href"], quote=True)
+            label = f'{escape(reference["label"])} · {date.fromisoformat(reference["date"]):%d %b %Y}'
+            groups.append((reference["group"], f'<option value="{href}">{label}</option>',
+                           f'<a href="{href}">{label}</a>'))
+        groups.append(("Earlier drafts", "".join(options), " · ".join(links)))
+        menu = "".join(f'<optgroup label="{escape(group)}">{items}</optgroup>' for group, items, _ in groups)
+        plain_links = " · ".join(f'<strong>{escape(group)}</strong> {items}' for group, _, items in groups)
         kind = ' data-legacy="true"' if legacy else ""
         note = "" if legacy else "Design preview."
         control = (
             '<div class="edition-selector"><label for="dashboard-version">View version</label>'
             f'<select id="dashboard-version" aria-describedby="dashboard-version-note"{kind}>'
-            + "".join(options) + f'</select><span id="dashboard-version-note">{note}</span>'
+            + menu + f'</select><span id="dashboard-version-note">{note}</span>'
             + ("" if legacy else f' <a href="{legacy_url}">Return to live dashboard</a>')
-            + "<noscript>" + " · ".join(links) + "</noscript></div>"
+            + f"<noscript>{plain_links}</noscript></div>"
         )
         review_record = (page.startswith(("review", "claim-", "row-"))
                          or page in {"terrace.html", "method-decisions.html"})
@@ -339,7 +350,9 @@ def main():
     with TemporaryDirectory() as tmp:
         method = repository(Path(tmp), "method", "RuralScan/method")
         evidence = repository(Path(tmp), "evidence", "RuralScan/evidence")
-        editions = json.loads(Path("editions.json").read_text())
+        catalog = json.loads(Path("editions.json").read_text())
+        editions = [entry for entry in catalog if "edition" in entry]
+        reference = next((entry for entry in catalog if entry.get("href") == "reference/index.html"), None)
         for edition in editions:
             fetch(method, edition["method"])
             git(method, "checkout", "--quiet", "--detach", edition["method"])
@@ -353,7 +366,7 @@ def main():
                             "--out", str(site), "--evidence", str(evidence), "--ciat", str(ciat)], check=True)
             subprocess.run([sys.executable, "-B", str(method/"dashboard/check.py"), str(target)], check=True)
 
-        add_version_selectors(site, editions, ciat)
+        add_version_selectors(site, editions, ciat, reference)
 
 
 if __name__ == "__main__":
