@@ -159,7 +159,7 @@ def live_pins():
                     code(SITE_REV[:12]),
                 ),
                 _committed(SITE_REV, METHOD),
-                f"The site revision that serves “{esc(LIVE_LABEL)}”",
+                f"The site revision that serves the live “{esc(LIVE_LABEL)}”",
             ],
             [
                 "Evidence repository, starting registers",
@@ -835,6 +835,16 @@ def build():
     )
 
     changes = [
+        (
+            "17 November 2026",
+            [
+                (
+                    "Listed in the site’s version menu under “Under review”. The menu on these pages now has the same "
+                    "three groups as the live dashboard: Live, Under review and Earlier drafts."
+                ),
+                "The help page names the project contacts and team.",
+            ],
+        ),
         (
             "16 November 2026",
             [

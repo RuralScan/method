@@ -83,10 +83,10 @@ VISUAL_URL = "https://ciat.github.io/nbs_ruralscan/redesign/"
 # The live evidence dashboard. Everything about it is read from one published site revision,
 # so its label, its producer revisions and the list of drafts are never retyped here.
 SITE_URL = "https://ruralscan.github.io/method/"
-SITE_REV = "9370179c01934144f997df6b7a3adf9fea11f19f"
-# How this draft would be listed beside the others (same fields as the site's edition catalogue).
-DRAFT_LABEL = "Methodology reference"
-DRAFT_DATE = "2026-11-16"
+SITE_REV = "de4d9d89e7a5844fa26ce08ce68b3c55dad6de1f"
+# The address under the site root where this reference is published. Its label, date and menu group are
+# read from the site's edition catalogue, where it is listed by this address.
+REFERENCE_HREF = "reference/index.html"
 # False while the reference is published at an address that nothing links to. Every page then asks
 # search engines not to index it. Set to True in the same change that lists it on the site.
 LISTED = True
@@ -128,8 +128,8 @@ def _site_constant(name, script):
     return found.group(1)
 
 
-def _draft_label(label, day):
-    return f"Draft · {label} · {date.fromisoformat(day):%d %b %Y}"
+def _menu_label(label, day):
+    return f"{label} · {date.fromisoformat(day):%d %b %Y}"
 
 
 _SITE_SCRIPT = _site("publish_editions.py")
@@ -142,15 +142,28 @@ LIVE_REVIEWS = _site_constant(
 )  # archived finding reviews, review batches and notes built into the live queue
 # The live dashboard takes the provisional status of hazard ratings from a third revision.
 LIVE_RATING_STATUS = _site_constant("LIVE_REVIEW_PIN", _SITE_SCRIPT)
-# Newest first, as the live selector lists them.
+# The version menu is built from the site's edition catalogue, in the groups the live dashboard uses.
+_CATALOGUE = json.loads(_site("editions.json"))
+LIVE_GROUP = "Live"
+DRAFTS_GROUP = "Earlier drafts"
+# Earlier drafts: the catalogue records that carry an edition identifier, newest first.
 SITE_DRAFTS = [
     (
         f"{SITE_URL}editions/{e['edition']}/index.html",
-        _draft_label(e["label"], e["date"]),
+        _menu_label(e["label"], e["date"]),
     )
-    for e in reversed(json.loads(_site("editions.json")))
+    for e in reversed(_CATALOGUE)
+    if "edition" in e
 ]
-THIS_DRAFT = _draft_label(DRAFT_LABEL, DRAFT_DATE)
+_LISTED_AS = [e for e in _CATALOGUE if e.get("href") == REFERENCE_HREF]
+if len(_LISTED_AS) != 1:
+    raise SystemExit(
+        f"The edition catalogue at site revision {SITE_REV[:8]} lists this reference {len(_LISTED_AS)} times; "
+        "it must list it once."
+    )
+REFERENCE_GROUP = _LISTED_AS[0]["group"]
+REFERENCE_URL = SITE_URL + _LISTED_AS[0]["href"]
+REFERENCE_LABEL = _menu_label(_LISTED_AS[0]["label"], _LISTED_AS[0]["date"])
 REVIEW_QUEUES = [
     ("T3", "review-t3", "Hazard findings"),
     ("T4", "review-t4", "Suitability findings"),
@@ -567,27 +580,35 @@ def edition_line():
 
 
 def version_bar(filename):
-    """The site's version selector: live dashboard first, every draft labelled Draft."""
+    """The site's version menu, in the live dashboard's three groups, with this reference selected."""
     match = re.match(r"row-(t3|t4|t6)-", filename)
     target = live(f"review-{match.group(1)}" if match else "overview")
     name = LIVE_LABEL + (
         "" if match or filename == "index.html" else " (opens overview)"
     )
-    options = [f'<option value="{esc(target)}">{esc(name)}</option>']
-    options.append(
-        f'<option value="{esc(filename)}" selected>{esc(THIS_DRAFT)} (this page, under review)</option>'
-    )
-    options += [
-        f'<option value="{esc(url)}">{esc(label)}</option>'
-        for url, label in SITE_DRAFTS
+    groups = [
+        (LIVE_GROUP, [(target, name, False)]),
+        (REFERENCE_GROUP, [(REFERENCE_URL, REFERENCE_LABEL, True)]),
+        (DRAFTS_GROUP, [(url, label, False) for url, label in SITE_DRAFTS]),
     ]
-    links = [link(target, esc(LIVE_LABEL))] + [
-        link(url, esc(label)) for url, label in SITE_DRAFTS
+    options = "".join(
+        f'<optgroup label="{esc(group)}">'
+        + "".join(
+            f'<option value="{esc(url)}"{" selected" if chosen else ""}>{esc(label)}</option>'
+            for url, label, chosen in items
+        )
+        + "</optgroup>"
+        for group, items in groups
+    )
+    links = [
+        f"<strong>{esc(group)}</strong> "
+        + " · ".join(link(url, esc(label)) for url, label, _ in items)
+        for group, items in groups
     ]
     return (
         '<div class="vbar edition-selector" role="region" aria-label="Versions"><div class="vb-in">'
         '<label for="dashboard-version">Version</label>'
-        f'<select id="dashboard-version" aria-describedby="dashboard-version-note">{"".join(options)}</select>'
+        f'<select id="dashboard-version" aria-describedby="dashboard-version-note">{options}</select>'
         '<span id="dashboard-version-note"><b class="reviewing">Under review</b> Draft for approval</span>'
         '<button type="button" class="vb-theme is-dark" id="theme-toggle" aria-pressed="true" hidden>'
         '<svg viewBox="0 0 16 16" aria-hidden="true"><path class="ic-moon" d="M11.5 10.6A5 5 0 0 1 5.4 4.5a5 5 0 1 0 6.1 6.1z"/>'

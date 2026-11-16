@@ -83,7 +83,8 @@ personal attribution reaches a page.
 ## How it sits beside the live dashboard
 
 The live evidence dashboard stays the default view of the site. Every page of this reference carries the
-site's version selector, with the live dashboard listed first and every other version labelled Draft, and
+site's version menu in the live dashboard's three groups (Live, Under review, Earlier drafts), built from the
+site's edition catalogue at the pinned site revision, with this reference listed once and selected, and
 a Review queue link to the live queues. The overview starts with one finding followed end to end, opening
 in the live dashboard. Finding decisions are submitted from the live dashboard to the evidence repository and
 recorded there once applied; the producer repository keeps its earlier records read-only. This reference links to
