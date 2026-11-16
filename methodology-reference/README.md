@@ -80,6 +80,13 @@ recorded there once applied; the producer repository keeps its earlier records r
 the queues and does not copy or re-implement them. `review.html` explains how finding reviews, archived
 finding reviews and rating decisions are kept apart, and which revision or repository each product reads.
 
+## House style
+
+The reference looks like the live evidence dashboard: same colours, fonts, corner radii, dark default and
+header. This is a rule, not a preference. `STYLE.md` records it, and the build fails if a colour, font or
+radius in `build/site.css` differs from the dashboard at the pinned site revision. Read `STYLE.md` before
+changing the stylesheet or the page template.
+
 ## Editing chapters
 
 Chapters follow `content/CONTRACT.md`: every rule and formula carries a citation to the pinned file that

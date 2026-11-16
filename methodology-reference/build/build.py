@@ -166,6 +166,41 @@ def run_checks():
     ]
     check("Page markup is balanced", not unbalanced, ", ".join(unbalanced[:5]))
 
+    # House style: every house token in the stylesheet equals the live dashboard's at the pinned site revision.
+    def declared(block):
+        return {
+            k: " ".join(v.split())
+            for k, v in re.findall(r"(--[a-z-]+):\s*([^;]+);", block)
+        }
+
+    sheet = (core.ROOT / "build/site.css").read_text()
+    dash = core._site("dashboard.html")
+    drift = []
+    for mode, opener in (("dark", ":root {"), ("light", '[data-theme="light"] {')):
+        ours = declared(
+            sheet.split(f"/* house tokens: {mode}")[1].split("/* end house tokens */")[
+                0
+            ]
+        )
+        theirs = declared(dash.split(opener, 1)[1].split("}", 1)[0])
+        drift += [
+            f"{mode} {k}: {v} here, {theirs.get(k, 'absent')} on the dashboard"
+            for k, v in ours.items()
+            if theirs.get(k) != v
+        ]
+        if len(ours) < 13:
+            drift.append(f"{mode}: only {len(ours)} house tokens declared")
+    fonts = re.search(r'href="(https://fonts\.googleapis\.com/css2[^"]+)"', dash)
+    if not fonts or fonts.group(1).replace("&amp;", "&") != core.FONTS:
+        drift.append("font link differs from the dashboard's")
+    if '<body data-theme="dark"' not in dash:
+        drift.append("the dashboard no longer opens in its dark theme")
+    check(
+        "House style: colours, fonts, radii and the dark default match the live dashboard at the pinned site revision",
+        not drift,
+        "; ".join(drift[:6]),
+    )
+
     wrong = [
         n
         for n, h in core.PAGES.items()

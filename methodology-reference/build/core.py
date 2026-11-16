@@ -91,6 +91,20 @@ DRAFT_DATE = "2026-11-16"
 # search engines not to index it. Set to True in the same change that lists it on the site.
 LISTED = False
 ROBOTS = "" if LISTED else '<meta name="robots" content="noindex">\n'
+# House style: the live evidence dashboard's fonts, mark and dark default. See STYLE.md.
+FONTS = (
+    "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700"
+    "&family=Outfit:wght@400;500;600;700;800&display=swap"
+)
+THEME_SCRIPT = (
+    "try{var t=localStorage.getItem('reference-theme');"
+    "if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}"
+)
+BRAND_ICON = (
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" '
+    'stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>'
+    '<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>'
+)
 
 
 def _site(path):
@@ -476,18 +490,22 @@ def page(filename, section, title, body, crumbs=(), lead=None, toc=None):
         )
     intro = f'<p class="lead">{lead}</p>' if lead else ""
     html = f"""<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {ROBOTS}<title>{esc(title)} · Rural NbS Scan methodology reference</title>
-<link rel="stylesheet" href="site.css"></head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="{FONTS}" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<script>{THEME_SCRIPT}</script></head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 {version_bar(filename)}
 <header class="mast"><div class="wrap">
-<a class="brand" href="index.html">Rural NbS Scan</a>
+<a class="brand" href="index.html">{BRAND_ICON}Rural NbS Scan</a>
 <span class="sub">Methodology reference</span>
 <span class="ed">{edition_line()} · <a href="editions.html">about editions</a></span>
 <a class="review-entry" href="{live("review-queue")}">Review queue</a>
+<button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch between dark and light" hidden>◐</button>
 </div>
 <nav class="tabs" aria-label="Sections"><div class="wrap">{"".join(nav)}</div></nav></header>
 <div class="wrap layout{" with-side" if side else ""}">
