@@ -1,0 +1,329 @@
+{
+  "schema/lookups/comparator_policy.csv": {
+    "columns": [
+      "nbs_id",
+      "comparator",
+      "rollup_included",
+      "home_family",
+      "rationale",
+      "ratified_by",
+      "ratified_date"
+    ],
+    "file": "configuration/lookups/comparator_policy.csv",
+    "key": [
+      "nbs_id",
+      "comparator"
+    ],
+    "seed_sha256": "15326207e7548869752ae24ce235bf8046a183af209d43e460fe2dec8c763275"
+  },
+  "schema/lookups/crop_scope_policy.csv": {
+    "columns": [
+      "nbs_id",
+      "suitability_family_id",
+      "allow_crop_scope",
+      "rationale",
+      "ratified_by",
+      "ratified_date"
+    ],
+    "file": "configuration/lookups/crop_scope_policy.csv",
+    "key": [
+      "nbs_id",
+      "suitability_family_id"
+    ],
+    "seed_sha256": "62f6bf68b618116e63d4bee57d7b01c6710b4a2ba62b4405bf7daf1662f9a5b4"
+  },
+  "schema/lookups/design_weights.csv": {
+    "columns": [
+      "design",
+      "weight_factor",
+      "rationale",
+      "ratified_by",
+      "ratified_date"
+    ],
+    "file": "configuration/lookups/design_weights.csv",
+    "key": [
+      "design"
+    ],
+    "seed_sha256": "f95fcf48cceaa40e03fb23952d80044a0f810d8751f1c9233c76476330507d93"
+  },
+  "schema/lookups/display_vocab.csv": {
+    "columns": [
+      "field",
+      "code",
+      "label",
+      "ttl_label",
+      "definition",
+      "source_type",
+      "source_ref",
+      "source_url",
+      "ratified_by",
+      "ratified_date"
+    ],
+    "file": "configuration/lookups/display_vocab.csv",
+    "key": [
+      "field",
+      "code"
+    ],
+    "seed_sha256": "33231b47f3432bd02c5a89de8e183dc17c068a157d4ff27742f7ed1129874fd0"
+  },
+  "schema/lookups/effect_locus.csv": {
+    "columns": [
+      "nbs_id",
+      "suitability_family_id",
+      "effect_locus",
+      "rationale",
+      "ratified_by",
+      "ratified_date"
+    ],
+    "file": "configuration/lookups/effect_locus.csv",
+    "key": [
+      "nbs_id",
+      "suitability_family_id"
+    ],
+    "seed_sha256": "8f5d7d0e605c3937fb96929bac30510043a6d96f7f7c6b66e4fd3947816fe96b"
+  },
+  "schema/lookups/family_rollup_policy.csv": {
+    "columns": [
+      "nbs_id",
+      "suitability_family_id",
+      "rollup_included",
+      "rationale",
+      "ratified_by",
+      "ratified_date"
+    ],
+    "file": "configuration/lookups/family_rollup_policy.csv",
+    "key": [
+      "nbs_id",
+      "suitability_family_id"
+    ],
+    "seed_sha256": "5cda0b42e24b589b37d7336d56963c4ff58380f56ed797457e30c68fc04f5e78"
+  },
+  "schema/lookups/m2b_variable_policy.csv": {
+    "columns": [
+      "variable",
+      "decision",
+      "reason",
+      "ruled_by",
+      "date"
+    ],
+    "file": "configuration/lookups/m2b_variable_policy.csv",
+    "key": [
+      "variable"
+    ],
+    "seed_sha256": "addaf5e37107e786d66132f31eb5ac90aef099b1a2e0106c59e6d5c8a58f9c49"
+  },
+  "schema/lookups/scorecard_chip_scale.csv": {
+    "columns": [
+      "field",
+      "class",
+      "glyph",
+      "rank",
+      "label",
+      "note"
+    ],
+    "file": "configuration/lookups/scorecard_chip_scale.csv",
+    "key": [
+      "field",
+      "class"
+    ],
+    "seed_sha256": "15e7cb3ae6bdc5535631cac2b2bae76d2b6ce3d35916689f6e01dd2c2793c06a"
+  },
+  "schema/lookups/scorecard_confidence_badge.csv": {
+    "columns": [
+      "confidence",
+      "badge",
+      "label",
+      "dots"
+    ],
+    "file": "configuration/lookups/scorecard_confidence_badge.csv",
+    "key": [
+      "confidence"
+    ],
+    "seed_sha256": "d0a19ab62f3af68fbe82b0b1afd0dc03354af86438ea087a1f22f8d123841dc1"
+  },
+  "schema/lookups/scorecard_locus.csv": {
+    "columns": [
+      "nbs_id",
+      "row_id",
+      "locus",
+      "rationale",
+      "ratified_by",
+      "ratified_date"
+    ],
+    "file": "configuration/lookups/scorecard_locus.csv",
+    "key": [
+      "nbs_id",
+      "row_id"
+    ],
+    "seed_sha256": "2f0e7a33dbd5f0d9879da52dbfa4531a6220badb481256f30fad4376360f7e5e"
+  },
+  "schema/lookups/scorecard_row_tags.csv": {
+    "columns": [
+      "nbs_id",
+      "row_id",
+      "tag",
+      "rationale",
+      "ratified_by",
+      "ratified_date"
+    ],
+    "file": "configuration/lookups/scorecard_row_tags.csv",
+    "key": [
+      "nbs_id",
+      "row_id",
+      "tag"
+    ],
+    "seed_sha256": "4ecff705b92c263788261af07495f47e5146af52e0a6dd28d863b3fe0b25ddbe"
+  },
+  "schema/lookups/scorecard_rows.csv": {
+    "columns": [
+      "row_id",
+      "panel",
+      "panel_label",
+      "label",
+      "sources",
+      "order",
+      "note"
+    ],
+    "file": "configuration/lookups/scorecard_rows.csv",
+    "key": [
+      "row_id"
+    ],
+    "seed_sha256": "e9d67a3c324c3cb83c5a7d8836fb89e11fe8b5c1801c7793f7be9100b0615904"
+  },
+  "schema/lookups/variable_direction_sense.csv": {
+    "columns": [
+      "variable",
+      "quantity",
+      "positive_means",
+      "negative_means",
+      "high_is",
+      "example_positive",
+      "example_negative"
+    ],
+    "file": "configuration/lookups/variable_direction_sense.csv",
+    "key": [
+      "variable"
+    ],
+    "seed_sha256": "b5451acb9dcc1d4a356d88815d23b34b39b50697efde8b31bd92db3a09810501"
+  },
+  "schema/lookups/xw_route_policy.csv": {
+    "columns": [
+      "nbs_id",
+      "ev_variable",
+      "target_table",
+      "target_key",
+      "included",
+      "rationale",
+      "ratified_by",
+      "ratified_date"
+    ],
+    "file": "configuration/lookups/xw_route_policy.csv",
+    "key": [
+      "nbs_id",
+      "ev_variable",
+      "target_table",
+      "target_key"
+    ],
+    "seed_sha256": "72add2e55951c90fcd4b727d1aa03b88485f7edb3963a9a93bcf7b1888c97bef"
+  },
+  "schema/registers/BANDS_magnitude_bands.csv": {
+    "columns": [
+      "band_id",
+      "metric",
+      "strength_class",
+      "abs_min",
+      "abs_max",
+      "unit",
+      "centre",
+      "income_band",
+      "source_scale_value",
+      "basis",
+      "note"
+    ],
+    "file": "data-model/configuration/BANDS_magnitude_bands.csv",
+    "key": [
+      "band_id"
+    ],
+    "seed_sha256": "3be4a86b555e6f94a5662b5ab16d9173149cb72dcf8b72326a7a4f3bfe13c3bb"
+  },
+  "schema/registers/BIND_dataset_binding.csv": {
+    "columns": [
+      "binding_id",
+      "variable",
+      "scope_type",
+      "scope_id",
+      "dataset_id",
+      "preference_rank",
+      "status",
+      "fitness_note",
+      "band"
+    ],
+    "file": "data-model/configuration/BIND_dataset_binding.csv",
+    "key": [
+      "binding_id"
+    ],
+    "seed_sha256": "6aeb5481a121cca768efd69ebe277b95a85e2c7f1ef9941e9cc74536c9bcfa35"
+  },
+  "schema/registers/FAM_family_registry.csv": {
+    "columns": [
+      "subpractice_id",
+      "nbs_id",
+      "name",
+      "definition",
+      "suitability_family_id",
+      "dominant_limiting_factor",
+      "spatial_product_type",
+      "grouping_rationale",
+      "references"
+    ],
+    "file": "data-model/configuration/FAM_family_registry.csv",
+    "key": [
+      "subpractice_id"
+    ],
+    "seed_sha256": "3050387be3fd30d2913effcde7dc51fe60de833366be95fb111518959e214136"
+  },
+  "schema/registers/VONT_variable_ontology.csv": {
+    "columns": [
+      "canonical_variable_id",
+      "label",
+      "aliases",
+      "canonical_unit",
+      "unit_conversions",
+      "group_id",
+      "candidate_dataset_ids",
+      "min_meaningful_resolution_m",
+      "resolution_sensitivity",
+      "derive_then_aggregate",
+      "context_sensitivity",
+      "review_status",
+      "raised_by",
+      "raised_date",
+      "comment"
+    ],
+    "file": "data-model/configuration/VONT_variable_ontology.csv",
+    "key": [
+      "canonical_variable_id"
+    ],
+    "seed_sha256": "c9ea583a49df91220ad2737acfcee9bf0943af04ed158f40d9bbee10dc349b42"
+  },
+  "schema/registers/XW_target_crosswalk.csv": {
+    "columns": [
+      "xw_id",
+      "ev_variable",
+      "target_table",
+      "target_key",
+      "polarity",
+      "proximity",
+      "weight_factor",
+      "rationale",
+      "ratified_by",
+      "ratified_date",
+      "note"
+    ],
+    "file": "data-model/configuration/XW_target_crosswalk.csv",
+    "key": [
+      "xw_id"
+    ],
+    "seed_sha256": "7ef316003b4a7b2c244fc3ae2d1895975cb0e812f876b80d1b380cd3135d6b4c"
+  }
+}
