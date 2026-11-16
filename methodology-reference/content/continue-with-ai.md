@@ -65,9 +65,11 @@ sources:
   - evidence:publication/recipe-candidate.json
   - evidence:registers/applied-receipts.json
   - evidence:registers/methodology/decisions/method_decisions.csv
+  - evidence:configuration/README.md
   - evidence:.github/workflows/evidence-checks.yml
   - method:dashboard/ai.html
-  - method:data-model/baseline.md
+  - method:decisions/README.md
+  - method:configuration/README.md
   - retired:.ciat-evidence-readonly
   - retired:AGENTS.md
   - retired:methodology/migration/2026-11-05/migration-map.csv
@@ -77,19 +79,21 @@ sources:
 
 Continuing the evidence base means three kinds of work: finding and acquiring more sources, extracting more findings (evidence units) from them, and re-running synthesis so that suitability rules, hazard rows and scorecard rows reflect the enlarged and reviewed evidence. The rules for each step are set out in [[ch:discovery]], [[ch:acquisition]], [[ch:extraction]], [[ch:review-and-quality]], [[ch:suitability-synthesis]], [[ch:effect-synthesis]] and [[ch:rulesets-and-learning]]. This chapter explains how to set up and operate the system that applies those rules: an AI coding agent of your choice, a set of versioned instruction files, deterministic checks, and people who approve what enters the record.
 
-The governing principle: model output is a proposal; only records that pass the deterministic checks enter the registers, and people then decide which findings are kept, held or dropped [src: evidence:README.md §Planned structure] [src: AGENTS.md §Don't] [src: .agents/skills/source-command-extract-evidence/SKILL.md §Close the work]. The chapter works from two revisions and keeps them apart. The scientific edition this reference describes is the producer repository at revision `e5c8da02`: its rules, instruction files and engines are cited at that revision, as in every other chapter. The operating procedures for recording new work are those of the evidence repository at revision `017544fe`, which is later. A command or path cited to the producer belongs to the scientific edition; a command cited to the evidence repository is how the same work is recorded now.
+The governing principle: model output is a proposal; only records that pass the deterministic checks enter the registers, and people then decide which findings are kept, held or dropped [src: evidence:README.md §Planned structure] [src: AGENTS.md §Don't] [src: .agents/skills/source-command-extract-evidence/SKILL.md §Close the work]. The chapter works from two revisions and keeps them apart. The scientific edition this reference describes is the producer repository at revision `e5c8da02`: its rules, instruction files and engines are cited at that revision, as in every other chapter. The operating procedures for recording new work are those of the evidence repository at revision `8c6f793f`, which is later. A command or path cited to the producer belongs to the scientific edition; a command cited to the evidence repository is how the same work is recorded now.
 
 Read this first if you are starting now. Since this edition, the producer repository's evidence records are read-only: a marker file on its main line names every protected path and the evidence repository as their destination, and at that revision the producer's registrar, staging ingest and review writers refuse to run, and its continuous integration rejects any change to a protected path [src: retired:.ciat-evidence-readonly]. The producer still holds the historical records, the instruction files and the compiler that the evidence repository pins. New evidence work is recorded in the evidence repository, always the same way: a proposal is prepared, opened as a protected pull request, checked by continuous integration and merged by a person.
 
-Finding votes and extraction proposals continue as before. Five further routes work at the operating revision:
+Finding votes and extraction proposals continue as before. Seven further routes work at the operating revision:
 
 1. recording a discovery run, including its search record and acquisition candidates;
 2. stamping progress from the step that produced it;
 3. registering an acquired source before its first extraction;
 4. rebuilding the compiled tables and changing row wording;
-5. recording a review of a compiled rating.
+5. recording a review of a compiled rating;
+6. recording a scientific method decision, in the method repository;
+7. releasing changed definitions and rule tables from the method repository and adopting them for compilation, and updating the tool register and source-specific mappings that the evidence repository owns.
 
-Three routes are planned and not yet built: recording a new method decision, promoting changed variable, family, dataset, crosswalk, band, tool and rule definitions into compilation, and recording a retrospective with its learnings cursor. Each is listed with its open plan under "Recording work now".
+One route is planned and not yet built: recording a retrospective with its sweep metrics and learnings cursor. A few compiler inputs are also still held at archived revisions, most importantly the accepted suitability functions and their weights. Both are listed under "Recording work now".
 
 The loop below is written from the producer's instruction files, because that is where the rules and the engines are. Each step then names the route that records it today.
 
@@ -228,7 +232,7 @@ Table sources: the skills and scripts named in each row, cited in the subsection
 | 8 Extract | `workflows/extraction/extract.py` to private staging | Nothing yet | Working |
 | 9 Validate and ingest | `workflows/submissions/intake.py extraction`, then a maintainer's approval label and `registers.py --open-pr` | Evidence-register rows; a receipt in the applied journal | Working |
 | 10–11 Review and apply | Submit review in the live dashboard, or the local desk, or a vote CSV; applied with `registers.py --open-pr` | Finding review log and evidence-register review fields | Working |
-| 12–13 Synthesise | Automatic: applying any finding, source or row change recompiles all four table families with the pinned compiler | Compiled rows in `publication/review-queue.json`; hashes in `publication/recipe-candidate.json` | Working for recompilation; changing a gate, weight or threshold is planned |
+| 12–13 Synthesise | Automatic: applying any finding, source or row change recompiles all four table families with the pinned compiler | Compiled rows in `publication/review-queue.json`; hashes in `publication/recipe-candidate.json` | Working for recompilation and for released definitions and rule tables; accepted suitability functions and weights are still held |
 | 14 Row wording | Local row desk, Suggest clearer wording, or `recipe_rows.py wording`; applied with the operator command, `row` subcommand | `recipe-inputs/wording.jsonl` | Working |
 | 15 Row review | Local row desk, Review this rating, or `recipe_rows.py rating`; applied with the `row` subcommand | Rating review log and `row-reviews/receipts.jsonl` | Working |
 | 16 Progress stamps | `--stamp` on the discovery operation; the `verification` subcommand | Progress ledger | Working |
@@ -347,7 +351,7 @@ python3 -m nbs_ruralscan.schema_tools.check_account schema/recipes/<nbs_id>/T6_n
 
 [src: .agents/skills/source-command-t3t6-synthesise/SKILL.md]. Class, levels and confidence are engine outputs; a disagreement is fixed at the evidence unit and the engine re-run [src: .agents/skills/source-command-t3t6-synthesise/SKILL.md]. See [[ch:suitability-synthesis]] and [[ch:effect-synthesis]].
 
-*Now.* Nobody runs the engines by hand to publish. The evidence repository pins the producer's compiler at revision `e43c42bd` and reruns it on the current registers whenever a finding, source or row change is applied, for all four table families. The result is a candidate: `publication/recipe-candidate.json` records the compiler revision, the SHA-256 of every input file and one output hash per practice and table [src: evidence:publication/recipe-candidate.json] [src: evidence:workflows/submissions/recipe-rows.md §Candidate and method acceptance]. A candidate is not a method edition. Accepting one is a separate pull request in the method repository that names the evidence revision, the manifest and its hash, the practices and tables adopted, the previous edition and the changed rows. The trial commands above remain the way to study what a change would do before proposing it.
+*Now.* Nobody runs the engines by hand to publish. The evidence repository pins the producer's compiler at revision `e43c42bd` and reruns it on the current registers whenever a finding, source or row change is applied, for all four table families. The result is a candidate: `publication/recipe-candidate.json` records the compiler revision, the SHA-256 of every input file and one output hash per practice and table [src: evidence:publication/recipe-candidate.json] [src: evidence:workflows/submissions/recipe-rows.md §Candidate and method acceptance]. A candidate is not a method edition. Accepting one is a separate pull request in the method repository that names the evidence revision, the manifest and its hash, the practices and tables adopted, the previous edition and the changed rows. The trial commands above remain the way to study what a change would do before proposing it. A change to a rule table or a definition is not made in the recipe: it is decided and released in the method repository and then adopted by the evidence repository, as described under "Recording work now".
 
 ### Prose and row review
 
@@ -523,6 +527,8 @@ Each rule is explained in full in the linked chapter.
 | Accept a candidate as a method edition | Row differences and stale wording against the previous edition | A separate pull request in the method repository naming the evidence revision and manifest hash [src: evidence:workflows/submissions/recipe-rows.md §Candidate and method acceptance] |
 | Merge to the main line | The submission's changed files and CI result | At the pinned revision the main line required passing checks and one approval, and an automated workflow approved submissions that changed only review records [src: AGENTS.md §What is locked] [src: .github/workflows/auto-merge-review.yml]. That workflow has since been removed from the producer repository. Now every official change is a protected pull request in the evidence repository that needs approval and current checks [src: evidence:workflows/submissions/README.md §Apply approved submissions] |
 | Ruleset change | Retrospective triage | Version log row and archived snapshot [src: methodology/RULESET_VERSIONS.md §Ruleset versions] |
+| Method decision | The exact wording of the ruling, its scope and its source | A coded event in the method repository's decision register, accepted by review and merge of a method pull request [src: method:decisions/README.md §Propose, decide or implement a change] |
+| Definition or rule-table change | Before and after values, and whether the cited decision covers the edit | A method release approved table by table against a decision code, then a separate adoption pull request in the evidence repository [src: method:configuration/README.md §Release compiler configuration] |
 
 No pinned file states a separate explicit "start" approval for large sweeps beyond the authorised-scope rule above.
 
@@ -532,7 +538,7 @@ No pinned file states a separate explicit "start" approval for large sweeps beyo
 - **An applied finding decision** is a reviewer's keep, hold or drop on one claim from one source. Votes from the dashboard and from CSV files enter the same consensus check; opposing votes stay pending [src: evidence:workflows/submissions/README.md §Apply approved submissions].
 - **An approved extraction** means a maintainer checked the proposed finding against its source. The finding then enters the register and is still open for finding review.
 - **A rating review** is a judgement on a compiled row as presented. It approves no finding, changes no threshold and accepts no method edition; a reject does not remove the row [src: evidence:workflows/submissions/recipe-rows.md §Review a rating or change row wording] [src: evidence:workflows/submissions/recipe-rows.md §Reviewer: browser or CLI].
-- **A method decision** changes a rule. It needs its own decision code and a trace to where it was implemented, and has no write route yet.
+- **A method decision** changes a rule. It is recorded under its own code through a pull request in the method repository; the review and merge identify who accepted it. A decision on its own leaves implementation pending, until a separate event names the code or definitions that put it into effect [src: method:decisions/README.md §Record a scientific method decision].
 
 Passing the automated checks, a merged registration and a verification stamp are technical states. They show that a record is well formed, reproducible and applied through the right route. None of them is a human sign-off on the science.
 
@@ -561,7 +567,7 @@ Run records are private and are not part of the registers. For a real proposal t
 
 ## Recording work now
 
-This section describes the evidence repository at revision `017544fe`. It is later than the scientific edition, and it is the authority for how new work is recorded. The producer repository is read-only for these records.
+This section describes the evidence repository at revision `8c6f793f`. It is later than the scientific edition, and it is the authority for how new work is recorded. The producer repository is read-only for these records.
 
 ### The baseline and the rule for every route
 
@@ -591,7 +597,7 @@ python3 workflows/submissions/intake.py extraction effects.json --lane T3/T6 --r
 
 A maintainer who has reviewed an extraction labels its issue `approved-extraction`. `workflows/submissions/registers.py`, given issue numbers, the producer clone and a local corpus, previews by default and with `--open-pr` opens a protected register pull request. It checks reviewer identity, the original issue body, the matching finding and source, and agreement across eligible ballots; opposing votes stay pending, and a receipt ledger prevents duplicate application [src: evidence:workflows/submissions/README.md §Apply approved submissions]. At the operating revision the applied journal held one receipt, an extraction correction [src: evidence:registers/applied-receipts.json].
 
-### Five further routes that work
+### Seven further routes that work
 
 | Route | Command or action | What it records |
 |---|---|---|
@@ -600,10 +606,12 @@ A maintainer who has reviewed an extraction labels its issue `approved-extractio
 | 3. Source registration before extraction | Operator command, `source` | A source-register row with `extraction_status=pending`, with no finding needed |
 | 4. Recompilation and row wording | Automatic recompilation on every applied change; Suggest clearer wording on the row desk or `recipe_rows.py wording`; applied with `row` | Compiled rows and the candidate manifest; authored wording in `recipe-inputs/wording.jsonl` |
 | 5. Rating reviews | Review this rating on the row desk or `recipe_rows.py rating`; applied with `row` | An approve, hold or reject appended to the rating review log and `row-reviews/receipts.jsonl` |
+| 6. Method decisions | In the method repository: `decisions/register.py record`, then a method pull request | A coded propose, park, reopen, decide or implement event in `decisions/events.csv`, and the current state of every code in `decisions/current.csv` |
+| 7. Definitions, rule tables, tools and mappings | Method-owned: `configuration/release.py build` and a method pull request, then `configuration.py pin` and an adoption pull request in the evidence repository. Evidence-owned: `configuration.py record` and an evidence pull request | The method release and its file hashes; the evidence repository's method pin; source-backed changes to the tool register, the WOCAT mappings and the per-finding direction exceptions in `configuration/changes.json` |
 
-[src: evidence:workflows/submissions/registration.md §Record a discovery run] [src: evidence:workflows/submissions/registration.md §Record verification progress] [src: evidence:workflows/submissions/registration.md §Register an acquired source] [src: evidence:workflows/submissions/recipe-rows.md §Operator: preview, open protected PR, verify]
+[src: evidence:workflows/submissions/registration.md §Record a discovery run] [src: evidence:workflows/submissions/registration.md §Record verification progress] [src: evidence:workflows/submissions/registration.md §Register an acquired source] [src: evidence:workflows/submissions/recipe-rows.md §Operator: preview, open protected PR, verify] [src: method:decisions/README.md §Propose, decide or implement a change] [src: method:configuration/README.md §Release compiler configuration] [src: evidence:configuration/README.md §Update compiler configuration]
 
-Routes 1 to 3 are walked through above. Routes 4 and 5 share one desk and one operator subcommand.
+Routes 1 to 3 are walked through above. Routes 4 and 5 share one desk and one operator subcommand. Routes 6 and 7 are described after them.
 
 **The row desk is available now, on the reviewer's own computer.** Start the local desk as shown above, at the full evidence revision shown on the dashboard, and choose "Review a compiled rating or propose row wording". Select a practice, table and row; read its text, rating and linked findings; then choose Review this rating or Suggest clearer wording. All four tables have a row desk, including the economic profile. Submitting creates a public issue under your account [src: evidence:workflows/submissions/recipe-rows.md §Reviewer: browser or CLI]. The same route works from the command line:
 
@@ -631,21 +639,64 @@ A rating review preserves existing finding approvals and compiled values. Suitab
 
 **The public dashboard does not yet link to the row desk.** The live dashboard is the 10 November design and stays the live design. Its "My reviewed" list reads applied rating history for the hazard, suitability and scorecard tables; it has no economic-profile queue. Its row cards do not yet carry the two actions, Review this rating and Suggest clearer wording. Adding them is a design integration task with a fixed contract: each action links to the reviewer's running local desk at `http://127.0.0.1:8934/rows`, passing the full evidence revision, the practice, the table and the record or mapping ID, with `kind=rating` or `kind=wording` to preselect the action. The desk rejects a link from a different edition, the page must tell reviewers how to start the desk when it is not running, and the public dashboard holds no write credentials [src: evidence:workflows/submissions/recipe-rows.md §Dashboard integration (November 10 design)]. Until the links exist, start the desk and find the row there.
 
-### Three routes that are planned
+### Method decisions (route 6)
+
+The method repository owns new scientific rulings and their supersession history. A decision is a coded event, written to a local JSON file with its sequence number, date, scope, statement and public source, recorded with the register tool and opened as a method pull request [src: method:decisions/README.md §Propose, decide or implement a change]:
+
+```sh
+git switch -c method-decision/my-question origin/main
+python3 decisions/register.py record /path/to/event.json
+python3 decisions/register.py check --base "$(git rev-parse origin/main)" --verify-implementations
+```
+
+The actions are `propose` (a new question, published as open), `park` and `reopen`, `decide` (the accepted ruling, published as decided with implementation pending) and `implement` (what put the ruling into effect, with a reference to a file or commit at a full revision). To replace a decided rule, propose a new code and name the old one in the new decision's `supersedes` field; older editions still resolve the ruling they used. A proposal becomes official when a reviewer accepts the pull request and it merges. The evidence repository cites a decision by the pair method revision and decision code.
+
+The register keeps the 165 historical decision codes from the earlier ledger, whose scientific projection is published in the evidence repository [src: evidence:registers/methodology/decisions/method_decisions.csv]. At the revision this reference was built from, one new code had been recorded through the route, with its propose, decide and implement events. Historical codes show implementation as unverified until an implementation event supplies evidence [src: method:decisions/README.md §Historical records and verification].
+
+### Definitions, rule tables, tools and mappings (route 7)
+
+Ownership decides the route.
+
+**Method-owned.** The variable definitions, practice families, dataset bindings, target crosswalk, magnitude bands and 15 policy and vocabulary tables belong to the method repository. A change takes four steps: record the ruling in the decision register; edit the authored file on a branch; build and check a release, approving each changed table against its decision code, and open a method pull request; then open a separate pull request in the evidence repository that adopts the immutable release, rebuilds the candidate and shows the changed recipe rows [src: method:configuration/README.md §Release compiler configuration]:
+
+```sh
+python3 configuration/release.py build --base origin/main \
+  --approve schema/lookups/family_rollup_policy.csv=plantation_rollup
+python3 configuration/release.py check --base origin/main
+```
+
+and, in the evidence repository [src: evidence:configuration/README.md §Adopt a method release]:
+
+```sh
+python3 workflows/submissions/configuration.py pin "$method_sha"
+python3 workflows/submissions/configuration.py build --ciat-repo "$ciat_checkout"
+python3 workflows/submissions/check_registers.py --base origin/main --ciat-repo "$ciat_checkout"
+```
+
+A later method merge takes effect in compilation only after a new adoption pull request merges. Existing editions keep their pins. A row keeps its recorded ratification status when released, including pending, rejected and blank: release is not approval.
+
+**Evidence-owned.** The tool register, the WOCAT hazard and impact mappings and the per-finding direction exceptions belong to the evidence repository. A change is an event naming the table, the row key, the expected hash of the row before the change, the method revision, the changed fields, a reason and source provenance; it is recorded, rebuilt, verified and opened as a pull request. Every cited finding must belong to the stated source, and a person checks that the source supports the changed fields [src: evidence:configuration/README.md §Propose an evidence-owned change]. At the operating revision two such changes had been applied and one method release adopted.
+
+**Still held.** Some compiler inputs have no change route yet and stay pinned at archived revisions [src: method:configuration/README.md §Ownership outside this release]:
+
+- accepted suitability functions and run weights, which remain bound to their function fingerprints in the archived compiler; a changed function needs a separate scientific release;
+- the numeric compilation policy for suitability, which mixes reusable conventions with individual finding adjudications and stays pinned until the two are split;
+- searched-with-no-evidence rows, pending a structured update;
+- the IPCC confidence matrix, the World Bank income groups and external class legends, pending clearance to redistribute them.
+
+A run that would change a gate, a weight or a threshold in a suitability recipe therefore still stops at a proposal.
+
+### One route that is planned
 
 | Route | What you can do now | What is missing | Open plan |
 |---|---|---|---|
-| Coded method decisions | Read the historical decision ledger; open a method proposal or an edition-acceptance pull request | Where new coded decisions are recorded, a reviewed writer, decision IDs and status, supersession, and links to implementation | [Plan for recording method decisions](https://github.com/RuralScan/method/issues/17) |
-| Configuration and rule lookups (variables, families, dataset bindings, crosswalk, bands, tools, rule tables) | Inspect the pinned inputs; propose draft changes to the definitions held in the method repository | Reviewed change, immutable release and an explicit update of the compiler's pin for method-owned definitions; an update route for evidence-owned tool records, source-specific mappings and per-finding direction exceptions | [Plan for promoting approved definitions](https://github.com/RuralScan/method/issues/18) · [Plan for evidence-owned tools and mappings](https://github.com/RuralScan/evidence/issues/40) |
 | Sweep metrics and the learnings cursor | Keep measurements and proposed adjustments in the run record | A protected append with run, evidence and ruleset pins, and proof linking processed feedback to the instruction or check that changed | [Plan for recording retrospectives](https://github.com/RuralScan/evidence/issues/41) |
 
-[src: evidence:workflows/submissions/README.md §Which records can I update?] [src: evidence:registers/methodology/decisions/method_decisions.csv] [src: method:data-model/baseline.md §Status and dependency index]
-
-Until these exist, a run that would change a rule stops at a proposal. In particular, changing a gate, a weight or a threshold in a suitability recipe is a configuration change, not row wording, and waits for the second route.
+[src: evidence:workflows/submissions/README.md §Which records can I update?]
 
 ### How the validator bounds all of this
 
-The register check verifies the migrated inventory against the manifest and replays each new change against its base revision. Its finding writer may change only the evidence register, the source register and the finding review log. The search register, acquisition queue, progress ledger and source register may change only together with a recorded operation, and the rating review log only through a replayed rating receipt. Every other migrated file must still match its manifest hash [src: evidence:workflows/submissions/check_registers.py]. The earlier restriction to three files was the first stage of the move, not its final state.
+The register check verifies the migrated inventory against the manifest and replays each new change against its base revision. It also verifies the adopted method files against the method pin and replays the evidence-owned configuration changes. Its finding writer may change only the evidence register, the source register and the finding review log. The search register, acquisition queue, progress ledger and source register may change only together with a recorded operation, and the rating review log only through a replayed rating receipt. The tool register and the five method-owned registers are checked through the configuration history instead. Every other migrated file must still match its manifest hash [src: evidence:workflows/submissions/check_registers.py]. The earlier restriction to three files was the first stage of the move, not its final state.
 
 ### The guides to follow
 
@@ -669,6 +720,8 @@ Five guides in the evidence repository once described the earlier arrangement an
 - The registers and their verification; the submission desk for finding votes and extraction proposals; the protected register workflow [src: evidence:workflows/evidence_snapshot/README.md §Register migration seed] [src: evidence:workflows/submissions/README.md §Apply approved submissions].
 - The operator command for discovery runs, source registration and progress stamps [src: evidence:workflows/submissions/registration.md §Register discovery, sources and progress].
 - The row desk and its command-line equivalent for rating reviews and row wording; automatic recompilation and the candidate manifest [src: evidence:workflows/submissions/recipe-rows.md §Review a rating or change row wording] [src: evidence:publication/recipe-candidate.json].
+- Adoption of a method release, and source-backed changes to the tool register and source-specific mappings [src: evidence:configuration/README.md §Update compiler configuration].
+- In the method repository: the decision register and the configuration release [src: method:decisions/README.md §Record a scientific method decision] [src: method:configuration/README.md §Release compiler configuration].
 - Review-record previews for saved decisions, CSV exports and browser backups [src: evidence:handbook/review-records.md §Find the right review record].
 
 **(b) Read from the producer repository, which is read-only**
@@ -696,14 +749,14 @@ For each item, no file found at the pinned revision or in the evidence repositor
 ## Assumptions and limits
 
 - The producer commands quoted in this chapter are those of the scientific edition and no longer record anything. Recording work needs the evidence repository, a GitHub account, a read-only producer clone and, for sources and extractions, the team library. The team library is still the only way to check a quote against its source.
-- The five further routes were verified at the operating revision by reading the guides and code and by the repository's own tests, which use fixtures. No discovery run, source registration, progress stamp, rating review or wording change had been applied on the main line through them at that revision. Expect rough edges on first real use.
-- Method decisions, configuration and rule changes, and retrospectives cannot yet be recorded officially. A run that needs one of them stops at a proposal.
+- The routes were verified at the operating revision by reading the guides and code and by the repositories' own tests, which use fixtures. Real use so far is thin: one extraction correction, one new method decision, one adopted method release and two evidence-owned configuration changes. No discovery run, source registration, progress stamp, rating review or wording change had been applied on the main line. Expect rough edges on first real use.
+- Retrospectives cannot yet be recorded officially, and the accepted suitability functions, their weights and the numeric compilation policy cannot yet be changed. A run that needs one of these stops at a proposal.
 - The public dashboard does not yet link its row cards to the row desk, so rating reviews and wording proposals start from the local desk.
 - The pinned files contain internal contradictions, listed where they arise: the T3/T6 skill's version references, duplicate version-log entries, the playbook and reviewer guide on Windows submission, and the setup script against `AGENTS.md`. The playbook's discovery workflow also tells the reader to add candidates to the source register and log quotes in the evidence register, which conflicts with the same playbook's acquisition section, the hydration guide (source row created at the central merge) and the ban on hand-appending evidence [src: PLAYBOOK.md §Perform literature & tools discovery] [src: PLAYBOOK.md §Acquisition queue] [src: docs/HYDRATION.md §The order of operations (pre-SRC sources)] [src: AGENTS.md §Don't]. Follow the stricter rule.
 - Passing every automated check does not prove semantic fidelity; quote matching cannot show that the encoded meaning is right [src: .agents/skills/source-command-extract-evidence/SKILL.md §Close the work].
 - Historical runs cannot be fully reproduced: archives identify instructions, not prompts, models or settings [src: evidence:rulesets/README.md §Which instructions apply to the terrace example?].
 - Effort counts from a continued sweep are not evidence strength, and counts from different editions are never combined; see [[ch:evidence-base]] and [[ch:editions]].
-- The routes are still being built. This chapter fixes the scientific description at producer revision `e5c8da02` and the operating description at evidence revision `017544fe`; the evidence repository will have moved on by the time you read this. Check its submissions guide before relying on a command quoted here.
+- The routes are still being built. This chapter fixes the scientific description at producer revision `e5c8da02` and the operating description at evidence revision `8c6f793f`; the evidence repository will have moved on by the time you read this. Two of the routes described here shipped within hours of each other while this chapter was being written. Check the submissions guide before relying on a command quoted here.
 
 ## Where this is configured
 
@@ -713,6 +766,7 @@ For each item, no file found at the pinned revision or in the evidence repositor
 - Staging and corpus: `pipeline/staging/`, `.cache/corpus/`, `pipeline/acquisition_queue.csv`.
 - Progress and logs: `pipeline/progress_ledger.csv`, `pipeline/metrics/review_log.csv`, `pipeline/metrics/row_review_log.csv`, `pipeline/metrics/sweep_log.csv`, `pipeline/metrics/learnings_log.csv`, `methodology/discovery_logs/`.
 - Review decisions: `pipeline/review/decisions.json` (local pending decisions, not committed at the pin), `docs/review/` (review-page batches).
-- Evidence repository, current records: `registers/` (the same relative paths as the producer's registers, ledger, logs and metrics), `registers/manifest.json`, `registers/applied-receipts.json`, `operations/`, `recipe-inputs/wording.jsonl`, `row-reviews/receipts.jsonl`, `publication/review-queue.json`, `publication/recipe-candidate.json`.
+- Evidence repository, current records: `registers/` (the same relative paths as the producer's registers, ledger, logs and metrics), `registers/manifest.json`, `registers/applied-receipts.json`, `operations/`, `recipe-inputs/wording.jsonl`, `row-reviews/receipts.jsonl`, `publication/review-queue.json`, `publication/recipe-candidate.json`, `configuration/` (`method-pin.json`, `changes.json`, `lookups/`, `method-lookups/`).
 - Evidence repository, procedures: `workflows/submissions/` (`README.md`, `registration.md`, `recipe-rows.md`), `workflows/discovery/`, `workflows/acquisition/`, `workflows/extraction/`, `workflows/run_record/`, `rulesets/catalog.json`, `handbook/assisted-evidence-run.md`, `handbook/review-records.md`.
+- Method repository: `decisions/` (`events.csv`, `current.csv`), `configuration/` (`contract.json`, `release.json`, `lookups/`), `data-model/configuration/`.
 - See also [[ch:reproduce]] for rebuilding a published edition.
