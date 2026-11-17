@@ -194,7 +194,7 @@ def publish_reference_menu(site, reference, labels):
         dashboard_route = "review-" + row[1] if row else "overview"
         groups = [
             ("Live", [(base + reference["href"], label, True)]),
-            ("Superseded", [(base + "dashboard.html#" + dashboard_route, "Evidence dashboard · 10 Nov 2026", False)]),
+            ("Superseded", [(base + "legacy.html#" + dashboard_route, "Evidence dashboard · 10 Nov 2026", False)]),
             ("Earlier drafts", [(base + f"editions/{key}/index.html", escape(value), False)
                                 for key, value in reversed(labels.items())]),
         ]
@@ -265,16 +265,17 @@ def add_version_selectors(site, editions, ciat, reference):
 
     def decorate(path, current, page):
         legacy = current == "legacy"
-        base = "" if legacy else "../../"
+        root_shell = current in {"legacy", "review"}
+        base = "" if root_shell else "../../"
         options, links = [], []
         for target, label in reversed(labels.items()):
-            match = not legacy and page in pages[target]
+            match = not root_shell and page in pages[target]
             dest = page if match else "index.html"
-            suffix = " (opens overview)" if not match and not legacy else ""
+            suffix = " (opens overview)" if not match and not root_shell else ""
             href = f"{base}editions/{target}/{dest}"
             name = escape(label + suffix)
             selected = " selected" if target == current else ""
-            same = " data-match" if match else ("" if legacy else " data-fallback")
+            same = " data-match" if match else ("" if root_shell else " data-fallback")
             options.append(f'<option value="{href}" data-edition="{target}"{selected}{same}>{name}</option>')
             links.append(f'<a href="{href}">{name}</a>')
         legacy_dest = LEGACY.get(page)
@@ -287,9 +288,9 @@ def add_version_selectors(site, editions, ciat, reference):
                 legacy_dest = "#source=" + quote(legacy_keys[source_id], safe="")
         legacy_match = legacy_dest is not None
         legacy_dest = legacy_dest or "#overview"
-        legacy_url = base + "dashboard.html" + legacy_dest
+        legacy_url = base + "legacy.html" + legacy_dest
         legacy_label = legacy_title
-        if not legacy and not legacy_match:
+        if not root_shell and not legacy_match:
             legacy_label += " (opens overview)"
         selected = " selected" if legacy else ""
         fallback = "" if legacy_match else " data-fallback"
@@ -300,7 +301,8 @@ def add_version_selectors(site, editions, ciat, reference):
         if reference_available:
             href = base + escape(reference["href"], quote=True)
             label = f'{escape(reference["label"])} · {date.fromisoformat(reference["date"]):%d %b %Y}'
-            reference_group = (reference["group"], f'<option value="{href}">{label}</option>',
+            selected = " selected" if current == "review" and promoted else ""
+            reference_group = (reference["group"], f'<option value="{href}"{selected}>{label}</option>',
                                f'<a href="{href}">{label}</a>')
             if promoted:
                 groups.insert(0, reference_group)
@@ -309,22 +311,27 @@ def add_version_selectors(site, editions, ciat, reference):
         groups.append(("Earlier drafts", "".join(options), " · ".join(links)))
         menu = "".join(f'<optgroup label="{escape(group)}">{items}</optgroup>' for group, items, _ in groups)
         plain_links = " · ".join(f'<strong>{escape(group)}</strong> {items}' for group, _, items in groups)
-        kind = ' data-legacy="true"' if legacy else ""
-        label = "Version" if legacy else "View version"
-        note = ("Superseded overview · evidence review remains active." if promoted else
-                "Review findings against their sources.") if legacy else "Design preview."
+        kind = ' data-legacy="true"' if root_shell else ""
+        label = "Version" if root_shell else "View version"
+        if current == "review":
+            note = ('Current review workspace · '
+                    f'<a href="{escape(reference["href"], quote=True)}">Methodology home</a>')
+        elif legacy:
+            note = "Superseded overview" if promoted else "Review findings against their sources."
+        else:
+            note = "Design preview."
         control = (
             f'<label for="dashboard-version">{label}</label>'
             f'<select id="dashboard-version" aria-describedby="dashboard-version-note"{kind}>'
             + menu + f'</select><span id="dashboard-version-note">{note}</span>'
-            + ("" if legacy else f' <a href="{base}dashboard.html#review-queue">Open review queue</a>')
+            + ("" if root_shell else f' <a href="{base}dashboard.html#review-queue">Open review queue</a>')
             + f"<noscript>{plain_links}</noscript>"
         )
-        if not legacy:
+        if not root_shell:
             control = '<div class="edition-selector">' + control + '</div>'
         review_record = (page.startswith(("review", "claim-", "row-"))
                          or page in {"terrace.html", "method-decisions.html"})
-        if not legacy and current != latest and page.startswith("review"):
+        if not root_shell and current != latest and page.startswith("review"):
             control += (
                 '<nav class="archived-review-links" aria-label="Live reviewer workspace">'
                 '<a href="https://ciat.github.io/nbs_ruralscan/dashboard.html#review-queue">Open the CIAT review queue</a>'
@@ -344,14 +351,14 @@ def add_version_selectors(site, editions, ciat, reference):
                 'automated checks as human sign-offs for some findings. '
                 f'<a href="{base}editions/{latest}/{corrected_path}">{caption}</a>.</aside>'
             )
-        if legacy:
+        if root_shell:
             route_data = json.dumps(legacy_routes, separators=(",", ":")).replace("<", "\\u003c")
             control += f'<script type="application/json" id="legacy-version-routes">{route_data}</script>'
         contents = path.read_text()
         header = contents.find("<header")
         if header < 0 or "</head>" not in contents:
             raise ValueError(f"Missing dashboard shell in {path}")
-        if legacy:
+        if root_shell:
             marker = "<!-- Published version menu -->"
             if contents.count(marker) != 1:
                 raise ValueError("Live dashboard must have one version menu slot")
@@ -359,12 +366,11 @@ def add_version_selectors(site, editions, ciat, reference):
             if (site / "reference/help.html").is_file():
                 contents = contents.replace('href="https://ciat.github.io/nbs_ruralscan/redesign/help.html"',
                                             'href="reference/help.html"')
-            if promoted:
+            if promoted and legacy:
                 notice = ('<aside class="dashboard-superseded" aria-label="Superseded dashboard">'
                           '<strong>The 10 Nov dashboard overview is superseded.</strong> '
                           f'<a href="{escape(reference["href"], quote=True)}">Open Methodology · 17 Nov 2026</a>. '
-                          'Evidence review remains active here. '
-                          '<a href="#review-queue">Open review queue</a>.</aside>')
+                          '<a href="dashboard.html#review-queue">Open the current review queue</a>.</aside>')
                 contents, count = re.subn(r'(<main\b[^>]*>)', lambda m: m[1] + notice, contents, count=1)
                 if count != 1:
                     raise ValueError("Missing evidence dashboard main region")
@@ -381,7 +387,6 @@ def add_version_selectors(site, editions, ciat, reference):
     # Draft builders write root entry points. Install the review shell last, then
     # promote only the explicitly selected home. Existing hash bookmarks retain their route.
     live = site / "legacy.html"
-    decorate(live, "legacy", "index.html")
     # Navigation can use a later edition. Rating status uses a separately verified assessment.
     status = json.loads((site / "editions" / latest / "review-status.json").read_text())
     batches = {eid: finding["live_batch"] for eid, finding in status["findings"].items()
@@ -394,12 +399,17 @@ def add_version_selectors(site, editions, ciat, reference):
     queue_file = publish_review_queue(site, ciat, snapshot)
     queue_meta = f'<meta name="ciat-review-snapshot" content="{queue_file}">'
     live.write_text(live.read_text().replace("</head>", link + batch_data + rating_data + queue_meta + "</head>", 1))
-    for name in (("dashboard.html",) if promoted else ("index.html", "dashboard.html")):
-        copyfile(live, site / name)
+    # Share the queue data, but decorate the active workspace separately from the
+    # superseded overview. A finding bookmark is not a request for an old edition.
+    copyfile(live, site / "dashboard.html")
+    decorate(live, "legacy", "index.html")
+    decorate(site / "dashboard.html", "review" if promoted else "legacy", "index.html")
     if promoted:
         publish_reference_menu(site, reference, labels)
         for name in ("index.html", "home-route.js"):
             copyfile(Path(__file__).with_name(name), site / name)
+    else:
+        copyfile(site / "dashboard.html", site / "index.html")
     (site / "review.html").write_text(
         '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Evidence review queue</title>'
         '<meta http-equiv="refresh" content="0;url=dashboard.html#review-queue"></head>'
@@ -407,9 +417,11 @@ def add_version_selectors(site, editions, ciat, reference):
     )
     for name in (("dashboard.html", "legacy.html") if promoted else ("index.html", "dashboard.html", "legacy.html")):
         contents = (site / name).read_text()
+        expected_title = (f'{escape(reference["label"])} · {date.fromisoformat(reference["date"]):%d %b %Y}'
+                          if promoted and name == "dashboard.html" else legacy_title)
         if ('id="tab-qaqc"' not in contents or 'id="vf-scope"' not in contents
-                or 'src="dashboard-tables.js?' not in contents or f' selected>{legacy_title}</option>' not in contents):
-            raise ValueError(f"{name} must open the live evidence dashboard with T3 and T4 review")
+                or 'src="dashboard-tables.js?' not in contents or f' selected>{expected_title}</option>' not in contents):
+            raise ValueError(f"{name} must retain evidence review and select its own edition")
 
 
 
