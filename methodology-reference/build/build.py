@@ -343,18 +343,11 @@ def run_checks():
     # The retired name, split so that a search for it does not find this line.
     OLD_NAME = "methodology " + "reference|this " + "reference"
 
-    def visible(html):
-        return re.sub(
-            r"<select.*?</select>|<noscript>.*?</noscript>", "", html, flags=re.DOTALL
-        )
-
     bad = sorted(
-        n
-        for n, h in core.PAGES.items()
-        if re.search(OLD_NAME, visible(h), re.IGNORECASE)
+        n for n, h in core.PAGES.items() if re.search(OLD_NAME, h, re.IGNORECASE)
     )
     check(
-        "Pages call this the methodology, outside the version menu's catalogue labels",
+        "Pages call this the methodology, in the version menu as well as the text",
         not bad,
         f"{len(bad)} pages: " + ", ".join(bad[:5]),
     )

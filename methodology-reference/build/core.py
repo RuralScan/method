@@ -83,7 +83,7 @@ VISUAL_URL = "https://ciat.github.io/nbs_ruralscan/redesign/"
 # The live evidence dashboard. Everything about it is read from one published site revision,
 # so its label, its producer revisions and the list of drafts are never retyped here.
 SITE_URL = "https://ruralscan.github.io/method/"
-SITE_REV = "3f1033a1753d2487f2b19e9396ec89a03b3adc97"
+SITE_REV = "1ca12f6e8462dbe4c17d35190fd8f4988edbf8c2"
 # The address under the site root where this reference is published. Its label, date and menu group are
 # read from the site's edition catalogue, where it is listed by this address.
 REFERENCE_HREF = "reference/index.html"
