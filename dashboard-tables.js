@@ -4,11 +4,13 @@
   const tables = [
     {id: 'T3', hash: '#review-t3', key: 'T3_nbs_hazard_farming', description: 'Findings cited in T3 hazard ratings. Check what the source says about the hazard, practice and farming system.'},
     {id: 'T4-suitability', hash: '#review-t4', description: 'Structural suitability findings. Check the site condition, threshold and units against the source.'},
+    {id: 'M2b', hash: '#review-m2b', description: 'Operational feasibility findings. Check what the source says about implementation, access, tenure or other enabling conditions.'},
     {id: 'T6', hash: '#review-t6', key: 'T6_nbs_scorecard', description: 'Findings cited in T6 scorecard ratings. Check the reported effect and the conditions under which it applies.'}
   ];
   const compiled = new WeakMap();
   function matches(ev, table, includeHistory = false) {
     if (!table || table === 'all') return true;
+    if (table === 'M2b') return ev.use_role === 'operational_risk';
     if (table === 'T4-suitability') return ev.use_role === 'structural_suitability';
     if (table !== 'T3' && table !== 'T6') return _vfR2T[ev.use_role] === table;
     const recipes = reviewData.recipes;
