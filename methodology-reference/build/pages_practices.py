@@ -28,6 +28,7 @@ from core import (
     text,
     words,
 )
+from pages_evidence import practices_of
 
 RISK_ROLE = {
     "livelihood_mitigation": "Livelihood risk mitigation (Module 2)",
@@ -985,6 +986,54 @@ def practice_page(practice):
 FAMILY_CAPTION = {}
 
 
+def practice_facts():
+    """Counts per practice, with the same definitions as the counts page."""
+    kept = [u for u in data.EV if data.retained(u)]
+    facts = []
+    for p in PRACTICE_IDS:
+        facts.append(
+            {
+                "practice": p,
+                "families": len(
+                    {f["suitability_family_id"] for f in data.FAM if f["nbs_id"] == p}
+                ),
+                "searches": sum(1 for x in data.SRCH if x.get("nbs_id") == p),
+                "sources": sum(1 for x in data.SRC if p in practices_of(x)),
+                "findings": sum(1 for u in kept if u.get("nbs_id") == p),
+                "rows": {t: data.ROW_COUNTS[(p, t)] for t in ROW_TABLES},
+            }
+        )
+    return facts
+
+
+def practice_cards():
+    """One card per practice: what it is, and how much evidence the edition holds for it."""
+    facts = practice_facts()
+    top = max(f["findings"] for f in facts)
+    cards = []
+    for f in facts:
+        p = f["practice"]
+        name = esc(practice_name(p))
+        share = round(100 * f["findings"] / top)
+        rows = "".join(
+            f"<li>{badge(t)} {esc(TABLE_NAMES[t])} "
+            + (f"<b>{n}</b>" if n else '<b class="none">none yet</b>')
+            + "</li>"
+            for t, n in f["rows"].items()
+        )
+        cards.append(
+            f'<article class="pcard"><h3>{link(f"practice-{p}.html", name)}</h3>'
+            f'<p class="pdesc">{esc(PRACTICE_TEXT[p][0])}</p>'
+            f'<p class="pmain"><b>{f["findings"]:,}</b> findings from <b>{f["sources"]:,}</b> sources</p>'
+            f'<div class="meter" role="img" aria-label="{f["findings"]:,} findings, {share} percent of the '
+            f'largest practice" title="{f["findings"]:,} findings retained"><span style="width:{share}%"></span></div>'
+            f'<p class="pmeta">{f["families"]} {"family" if f["families"] == 1 else "families"} · '
+            f"{f['searches']} recorded searches · {sum(f['rows'].values())} compiled rows</p>"
+            f'<ul class="prows">{rows}</ul></article>'
+        )
+    return f'<div class="pgrid">{"".join(cards)}</div>'
+
+
 def build():
     from core import FAMILY_TEXT
 
@@ -1035,7 +1084,51 @@ def build():
             f"<strong>{total['T6E']}</strong>",
         ]
     )
+    kept = [u for u in data.EV if data.retained(u)]
+    headline = [
+        (
+            f"{len(PRACTICE_IDS)}",
+            "practices covered",
+            "Nature-based practices with evidence in this edition.",
+        ),
+        (
+            f"{len({f['suitability_family_id'] for f in data.FAM})}",
+            "families of sub-practices",
+            "Sub-practices grouped by the factor that limits where they work.",
+        ),
+        (
+            f"{len(data.SRC):,}",
+            "sources registered",
+            "Papers, practitioner records and tools that passed screening.",
+        ),
+        (
+            f"{len(kept):,}",
+            "findings kept",
+            "One finding is one claim from one source, stored with its quote.",
+        ),
+        (
+            f"{len(data.ROWS):,}",
+            "rows compiled",
+            "Rules and ratings pooled from the findings.",
+        ),
+    ]
     body = (
+        '<div class="stats big">'
+        + "".join(
+            f'<div title="{esc(tip)}"><b>{n}</b><span>{esc(label)}</span></div>'
+            for n, label, tip in headline
+        )
+        + "</div>"
+        '<h2 id="evidence">How much evidence each practice has</h2>'
+        "<p>For each practice the team searched the literature and practitioner databases, read the sources, "
+        "extracted findings with their quotes, and compiled them into rows: where the practice fits, how it "
+        "responds to hazards, what it delivers, and what it costs.</p>"
+        + practice_cards()
+        + '<p class="basis">Bars compare findings kept across practices. Counts show coverage and effort, not '
+        "strength of evidence: a row built on many findings can still carry low confidence, and each row states "
+        "its own. A source that serves two practices is counted under both. "
+        f"{link('evidence-counts.html#practice', 'The same counts as a table, with definitions')}.</p>"
+        '<h2 id="rows">Rows by practice and table</h2>'
         "<p>Each practice page gives the scientific basis of its family scheme, then every compiled row "
         "of the draft recipe edition with its status, uncertainty and evidence. Suitability is reasoned "
         "per family, because sub-practices with different limiting factors cannot share one map.</p>"

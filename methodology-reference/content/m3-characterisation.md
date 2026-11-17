@@ -1,5 +1,5 @@
 ---
-title: Module 3 - Characterising the opportunity space
+title: "M3: Characterising the opportunity space"
 slug: m3-characterisation
 summary: Assemble, screen, reduce and standardise the opportunity-space variables (T5) inside the suitability mask, and read the descriptive panels and priority layers that Module 4 consumes.
 sources:

@@ -1,4 +1,6 @@
-# Rural NbS Scan methodology reference
+# Rural NbS Scan methodology
+
+Published as “Methodology”. The folder name and the address (`reference/`) keep the earlier word so existing links hold.
 
 A static, generated reference for technical readers: the scan method, the evidence methods, the data
 model, six practices with every compiled row, the evidence base, and edition checks. Review build; it

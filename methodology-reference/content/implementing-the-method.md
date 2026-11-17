@@ -133,7 +133,7 @@ Terrain and soil each take half of the weight, soil split equally between organi
 
 **On hold.** The planner reports as holds: the boundary and its source, the transfer decision, adoption of the soil input proposal, and the assessed legal mask [src: method:handbook/implement-a-scan.md §1. Check the inputs before making a map].
 
-The runtime's pinned recipe release has a different release identifier and source revision from the release this reference is built on [src: runtime:src/nbs_runtime/recipe_pin.json] [src: evidence:workflows/recipe_release/pin.json]. Read runtime results against the runtime's own pin and do not compare figures arithmetically across the two; see [[ch:editions]].
+The runtime's pinned recipe release has a different release identifier and source revision from the release this methodology is built on [src: runtime:src/nbs_runtime/recipe_pin.json] [src: evidence:workflows/recipe_release/pin.json]. Read runtime results against the runtime's own pin and do not compare figures arithmetically across the two; see [[ch:editions]].
 
 ## From the seven stages to components
 

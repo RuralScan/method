@@ -204,7 +204,7 @@ VISUAL_REV = CIAT_RETIRED
 PROGRAMME_URL = "https://www.worldbank.org/en/programs/nbs-invest"
 LOGO = "assets/nbs-invest-logo.jpg"
 REVIEW_TARGETS = (
-    ".pcard, .qcard, .chain li, table, figure, .card, .callout, dl.facts, pre, "
+    ".pcard, .msteps li, .mrules li, table, figure, .card, .callout, dl.facts, pre, "
     ".chapter h2, .chapter h3, .chapter p, .chapter li, main > h2, main > p, main > ol > li, main > ul > li"
 )
 
@@ -254,10 +254,10 @@ def _review_tool():
         r"function pageTitle\(p\) \{[^\n]*\}",
         "function pageTitle(p) { p = p || page; return p === page ? document.title.split(' · ')[0] : p.replace('.html', ''); }",
     )
-    sub(r"across the v2 pages", "across the reference")
+    sub(r"across the v2 pages", "across the methodology")
     sub(r"across all v2 pages", "across all reference pages")
-    sub(r"v2 review notes", "Methodology reference review notes")
-    sub(r"v2 prototype", "methodology reference")
+    sub(r"v2 review notes", "Methodology review notes")
+    sub(r"v2 prototype", "methodology")
     css = _visual("review-mode.css").decode()
     css = re.sub(
         r"\A/\*.*?\*/",
@@ -309,7 +309,7 @@ def _contacts():
         (' · <a href="history.html">Wireframe history and feedback</a>', ""),
         (
             "These pages remain an illustrative methodology mock-up, not an operational World Bank platform.",
-            "This reference is not an operational World Bank platform.",
+            "This methodology is not an operational World Bank platform.",
         ),
     ):
         if old not in text:
@@ -568,6 +568,17 @@ NAV = [
     ("evidence-base.html", "Evidence base"),
     ("editions.html", "Editions and checks"),
 ]
+# One line per part. Shown as the tooltip on each tab and in the overview's list of parts.
+NAV_TIP = {
+    "index.html": "What the method is for, who it is for and how it works.",
+    "method.html": "The analysis, step by step: questions, inputs, formulas, outputs and limits.",
+    "evidence-methods.html": "How sources are found, read, checked and pooled into rules.",
+    "data-model.html": "Every table and field the rules are written in.",
+    "practices.html": "Each practice: its families, its rules and ratings, and the evidence behind each.",
+    "evidence-base.html": "Download and query the data, and follow a rule back to its source.",
+    "editions.html": "Version identifiers, what is established, how to reproduce, glossary.",
+}
+SITE_NAME = "Rural NbS Scan methodology"
 SIDE = {}  # section file -> [(href, label)], filled by the build before pages are written
 PAGES = {}  # filename -> html, written at the end
 
@@ -620,12 +631,35 @@ def version_bar(filename):
     )
 
 
-def page(filename, section, title, body, crumbs=(), lead=None, toc=None):
-    """Register one page. `section` is the nav file the page belongs to."""
+def number_sections(body, number):
+    """Number a page's second-level headings from their order (1.1, 1.2 ...) and list them."""
+    listed = []
+
+    def numbered(m):
+        n = f"{number}.{len(listed) + 1}"
+        listed.append((m.group(1), f"{n} {re.sub(r'<[^>]+>', '', m.group(2))}"))
+        return f'<h2 id="{m.group(1)}"><span class="secno">{n}</span> {m.group(2)}</h2>'
+
+    return re.sub(r'<h2 id="([^"]+)">(.*?)</h2>', numbered, body), listed
+
+
+def page(
+    filename, section, title, body, crumbs=(), lead=None, toc=None, numbered=False
+):
+    """Register one page. `section` is the nav file the page belongs to.
+
+    `numbered` numbers the page's sections from the tab number and the section order, and lists them.
+    """
     nav = []
     for i, (href, label) in enumerate(NAV, 1):
         cur = ' aria-current="page"' if href == section else ""
-        nav.append(f'<a href="{href}"{cur}><span class="n">{i}</span> {esc(label)}</a>')
+        nav.append(
+            f'<a href="{href}"{cur} title="{esc(NAV_TIP[href])}"><span class="n">{i}</span> {esc(label)}</a>'
+        )
+    if numbered:
+        body, sections = number_sections(body, [h for h, _ in NAV].index(section) + 1)
+        toc = toc or sections
+    doc_title = title if title == SITE_NAME else f"{title} · {SITE_NAME}"
     side = ""
     entries = SIDE.get(section, [])
     if entries:
@@ -657,7 +691,7 @@ def page(filename, section, title, body, crumbs=(), lead=None, toc=None):
     html = f"""<!doctype html>
 <html lang="en" data-theme="dark"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{ROBOTS}<title>{esc(title)} · Rural NbS Scan methodology reference</title>
+{ROBOTS}<title>{esc(doc_title)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="{FONTS}" rel="stylesheet">
 <link rel="stylesheet" href="review-mode.css">
@@ -669,7 +703,7 @@ def page(filename, section, title, body, crumbs=(), lead=None, toc=None):
 <header class="mast"><div class="wrap">
 {PROGRAMME_MARK}
 <a class="brand" href="index.html">{BRAND_ICON}Rural NbS Scan</a>
-<span class="sub">Methodology reference</span>
+<span class="sub">Methodology</span>
 <span class="ed">{edition_line()} · <a href="editions.html">about editions</a></span>
 <a class="help-entry" href="help.html">Help / Contact / Team</a>
 <a class="review-entry" href="{live("review-queue")}">Review queue</a>
@@ -681,7 +715,7 @@ def page(filename, section, title, body, crumbs=(), lead=None, toc=None):
 {body}
 </main></div>
 <footer><div class="wrap"><p>{edition_line()} · method definitions <code>{METHOD_REV[:8]}</code> ·
-evidence workflows <code>{EVIDENCE_REV[:8]}</code>. Scoping reference: it flags where to look;
+evidence workflows <code>{EVIDENCE_REV[:8]}</code>. Scoping method: it flags where to look;
 local feasibility assessment validates. <a href="editions.html">Editions and checks</a> ·
 <a href="glossary.html">Glossary</a></p></div></footer>
 <script src="site.js" defer></script>

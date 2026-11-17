@@ -1,4 +1,4 @@
-"""Build the methodology reference into a fresh output directory, then check it.
+"""Build the methodology into a fresh output directory, then check it.
 
     uv run --with markdown --with duckdb --with pandas python3 -B build/build.py --out site
 
@@ -252,7 +252,7 @@ def run_checks():
         ", ".join(wrong[:5]),
     )
 
-    # The version menu matches the deployed dashboard's: three groups, and this reference once, selected.
+    # The version menu matches the deployed dashboard's: three groups, and this methodology once, selected.
     grouped = re.compile(r'<optgroup label="([^"]+)">(.*?)</optgroup>')
     option = re.compile(r"<option value=\"([^\"]*)\"( selected)?>([^<]*)</option>")
     drafts = [(url, "", label) for url, label in core.SITE_DRAFTS]
@@ -279,7 +279,7 @@ def run_checks():
             bad.append(name)
     check(
         "Version menu on every page: Live, Under review and Earlier drafts as the deployed dashboard lists them, "
-        "with this reference once and selected",
+        "with this methodology once and selected",
         not bad,
         ", ".join(bad[:5]),
     )
@@ -315,15 +315,48 @@ def run_checks():
         all(f"<strong>{k}</strong>" in review for k in kinds),
     )
 
-    start = core.PAGES["index.html"].split('id="walkthrough"')[1]
-    first = re.search(r"<ol>\s*<li><a href=\"([^\"]+)\"", start)
+    start = core.PAGES["evidence-base.html"].split('id="walkthrough"')[1]
+    first = re.search(r'<ol>\s*<li>.*?<a href="([^"]+)"', start, re.DOTALL)
     check(
-        "The walkthrough starts with the bench-terrace rainfall finding in the live dashboard",
+        "The worked example sits in the evidence base part and starts with the terrace slope finding in the live dashboard",
         first
-        and first.group(1)
-        == core.live("review-evidence=ev_wh_precip_wocatgl13_benchterraces")
-        and start.index("<ol>") < start.index('id="contents"'),
+        and first.group(1) == core.live("review-evidence=" + pages_data.SLOPE_FINDING)
+        and 'id="walkthrough"' not in core.PAGES["index.html"],
         first.group(1) if first else "no first step",
+    )
+
+    numbers = re.findall(
+        r'<h2 id="[^"]+"><span class="secno">([\d.]+)</span>', core.PAGES["index.html"]
+    )
+    listed = re.findall(
+        r'<li><a href="#[^"]+">([\d.]+) ',
+        core.PAGES["index.html"].split('class="onpage"')[1].split("</nav>")[0],
+    )
+    check(
+        "Overview sections are numbered from their order, 1.1 onward, and listed at the top of the page",
+        len(numbers) >= 5
+        and numbers == [f"1.{i}" for i in range(1, len(numbers) + 1)]
+        and listed == numbers,
+        f"{numbers} / {listed}",
+    )
+
+    # The retired name, split so that a search for it does not find this line.
+    OLD_NAME = "methodology " + "reference|this " + "reference"
+
+    def visible(html):
+        return re.sub(
+            r"<select.*?</select>|<noscript>.*?</noscript>", "", html, flags=re.DOTALL
+        )
+
+    bad = sorted(
+        n
+        for n, h in core.PAGES.items()
+        if re.search(OLD_NAME, visible(h), re.IGNORECASE)
+    )
+    check(
+        "Pages call this the methodology, outside the version menu's catalogue labels",
+        not bad,
+        f"{len(bad)} pages: " + ", ".join(bad[:5]),
     )
     for name, ok, detail in pages_data.CHECKS:
         check(name, ok, detail)
@@ -364,7 +397,7 @@ def main():
         for n, ok, d in results
     ]
     body = (
-        "<p>This reference is generated. Nothing on it is typed in by hand except the chapter text, and the "
+        "<p>This methodology is generated. Nothing on it is typed in by hand except the chapter text, and the "
         "chapter text cites the files it rests on. A build reads the release pin, reads every table and "
         "register from the pinned revision, renders the pages, and then runs the checks below. A failed "
         "check fails the build.</p>"
@@ -374,7 +407,7 @@ def main():
             rows,
             caption="Build checks and their results",
         )
-        + '<h2 id="rebuild">Rebuild this reference</h2>'
+        + '<h2 id="rebuild">Rebuild this methodology</h2>'
         "<p>From the reference directory, with the method, evidence and producer repositories available locally:</p>"
         "<pre><code>python3 build/fetch_package.py\n"
         "uv run --with markdown --with duckdb --with pandas python3 -B build/build.py --out site</code></pre>"
@@ -400,10 +433,10 @@ def main():
         "Reproduce and check",
         body,
         crumbs=[("editions.html", "Editions and checks"), ("", "Reproduce and check")],
-        lead="How this reference is built, the checks it must pass, and how to trace a value.",
+        lead="How this methodology is built, the checks it must pass, and how to trace a value.",
         toc=[
             ("checks", "Checks run on this build"),
-            ("rebuild", "Rebuild this reference"),
+            ("rebuild", "Rebuild this methodology"),
             ("release", "Rebuild the recipe release"),
             ("trace", "Trace any value"),
         ],

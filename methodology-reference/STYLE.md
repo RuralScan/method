@@ -1,6 +1,6 @@
 # House style
 
-The methodology reference looks like the live evidence dashboard. That is the house style. It is not a matter of taste for whoever edits the reference next: read this file before changing `build/site.css` or the page template in `build/core.py`.
+The methodology looks like the live evidence dashboard. That is the house style. It is not a matter of taste for whoever edits the reference next: read this file before changing `build/site.css` or the page template in `build/core.py`.
 
 ## The rule
 
@@ -29,7 +29,7 @@ The methodology reference looks like the live evidence dashboard. That is the ho
 | Tables, buttons, tab pills | 8px radius (`--radius-md`) |
 | Section tabs | Pills. The active tab has the card background, emerald text, a border and the card shadow. |
 | Table headers | Outfit 12px, upper case, 0.03em letter-spacing |
-| Brand | The NBS Invest programme logo, unmodified and linked to the programme page, then the open-book mark in emerald and "Rural NbS Scan" in Outfit 22px bold |
+| Brand | The NBS Invest programme logo, unmodified and linked to the programme page, then the open-book mark in emerald and "Rural NbS Scan" in Outfit 22px bold. The logo is 68px high. |
 | Top bar | Shared with the visual methodology. See the next section. |
 | Page width | 1400px |
 
@@ -76,6 +76,14 @@ These are the only departures. Each has a reason; do not add to the list without
 - **Table colour chips (T0 to T7) keep the project's table colours.** They are a separate, fixed scheme shared with the data-model diagrams.
 - **Print is always light.**
 - **The theme choice is remembered.** The dashboard's toggle is not.
+
+## Name and overview
+
+- **The public name is "Methodology".** Pages do not call it a "reference". The folder and the address keep the old word so links do not break. A check fails on the old name anywhere outside the version menu, whose labels come from the site's edition catalogue.
+- **The overview is a story, not a dashboard of counts.** It runs in this order: the problem, what the method does about it, who it is for, how it works (one figure), the working tool, how it was built, what it covers, what is settled, where the detail is. Counts of practices and evidence belong in the Practices part.
+- **One figure shows the whole method:** how evidence becomes rules (AI-supported, checked by people), then the seven stages that apply them. Do not add a second method figure to the overview.
+- **Overview sections are numbered from their order** (1.1, 1.2 ...) by the build, and listed at the top of the page. Do not type section numbers.
+- **Boxes carry a tooltip.** Tabs, figure steps and count tiles each have one more line of detail on hover.
 
 ## Fonts
 
