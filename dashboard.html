@@ -1012,7 +1012,7 @@
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.1.0">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.9.0">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.10.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
   #loading-container, #error-container {display:flex;align-items:center;gap:.65rem;padding:.6rem 0;color:var(--text-secondary);font-size:.9rem}
@@ -1676,7 +1676,7 @@
             <div id="vf-decided-count" style="font-size:12px; color:var(--text-secondary); margin-top:12px;"></div>
             <div id="vf-subset-banner" style="display:none; margin-top:10px;"></div>
             <p id="public-review-history" hidden><a href="https://github.com/RuralScan/evidence/issues?q=is%3Aissue+author%3A%40me+submission+in%3Abody">My public RuralScan submissions</a></p>
-            <div id="vf-cards" style="margin-top:12px;"></div>
+            <div id="vf-cards" tabindex="-1" role="region" aria-label="Findings in current review queue" style="margin-top:12px;"></div>
             <div id="vf-actionbar" style="position:sticky; bottom:0; z-index:19; background:var(--bg-primary); border-bottom:1px solid var(--border-color); padding:6px 0 7px; display:flex; align-items:center; gap:9px; flex-wrap:wrap;">
               <span id="vf-pending-count" style="font-size:11.5px; font-weight:700;" title="Your decisions saved locally but NOT yet applied + submitted to main. Applies EVERY pending decision (AI-flagged + AI-passed), not just the current queue. Click Apply & submit to main to ship them."></span>
               <span style="margin-left:auto; display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap;">
@@ -6052,9 +6052,9 @@
 <script src="dashboard-feedback.js?v=1.6.0"></script>
 <script src="dashboard-relationships.js?v=1.2.1"></script>
 <script src="dashboard-tables.js?v=3"></script>
-<script src="dashboard-priority.js?v=1.11"></script>
+<script src="dashboard-priority.js?v=1.12"></script>
 <script src="review/priority-receipt.js"></script>
-<script src="review/priority-status.js"></script>
+<script src="review/priority-status.js?v=2"></script>
 <script src="dashboard-shell.js?v=1.7.0"></script>
 <dialog id="finding-submission" aria-labelledby="finding-submission-title">
   <form><h2 id="finding-submission-title">Review finding</h2><output></output>
