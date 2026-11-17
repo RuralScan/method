@@ -58,11 +58,21 @@ class VersionMenuTest(unittest.TestCase):
                 self.assertEqual(list(groups),['Live','Superseded','Earlier drafts'])
                 self.assertIn('Methodology · 17 Nov 2026',groups['Live'])
                 self.assertIn('Evidence dashboard · 10 Nov 2026',groups['Superseded'])
+                self.assertIn('legacy.html#',groups['Superseded'])
+                self.assertNotIn('dashboard.html',groups['Superseded'])
                 self.assertEqual(menu.count(' selected'),1)
                 if page.parent==site:
-                    self.assertIn(' selected',groups['Superseded'])
-                    self.assertIn('aria-label="Superseded dashboard"',html)
-                    self.assertIn('Evidence review remains active here.',html)
+                    if page.name=='dashboard.html':
+                        self.assertIn(' selected',groups['Live'])
+                        self.assertNotIn('aria-label="Superseded dashboard"',html)
+                        self.assertIn('Current review workspace',html)
+                        self.assertIn('href="reference/index.html">Methodology home</a>',html)
+                    else:
+                        self.assertIn(' selected',groups['Superseded'])
+                        self.assertIn('aria-label="Superseded dashboard"',html)
+                        self.assertIn('href="dashboard.html#review-queue">Open the current review queue',html)
+                    self.assertIn('id="legacy-version-routes"',html)
+                    self.assertIn('name="ciat-review-snapshot" content="queue.json"',html)
                     self.assertIn('id="vf-scope"',html)
                     self.assertIn('src="dashboard-tables.js?',html)
                     self.assertIn('id="review-table-description"',html)
@@ -79,6 +89,16 @@ class VersionMenuTest(unittest.TestCase):
                 else:
                     self.assertIn(f'data-edition="{editions[-1]["edition"]}" selected',groups['Earlier drafts'])
                     self.assertIn('../../dashboard.html#review-queue',html)
+
+    def test_without_promotion_original_dashboard_remains_default(self):
+        with TemporaryDirectory() as tmp:
+            site=Path(tmp);editions,_=self.prepare(site,available=False)
+            self.publish(site,editions,None)
+            self.assertEqual((site/'index.html').read_bytes(),(site/'dashboard.html').read_bytes())
+            for name in ('index.html','dashboard.html','legacy.html'):
+                html=(site/name).read_text()
+                self.assertIn(' selected>Evidence dashboard · 10 Nov 2026</option>',html)
+                self.assertNotIn('aria-label="Superseded dashboard"',html)
 
     def test_missing_or_unlisted_default_stops_publication(self):
         for problem in ('missing','private','noindex'):
