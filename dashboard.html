@@ -6055,8 +6055,8 @@
   <form><h2 id="finding-submission-title">Review finding</h2><output></output>
     <p>Your GitHub name, vote and note will appear on a public issue in RuralScan/evidence.</p>
     <label id="batch-reviewer-label" hidden>GitHub reviewer name for this batch <input name="handle" autocomplete="off" maxlength="39"></label>
-    <label>Decision <select name="verdict" required><option value="">Choose a decision</option><option value="approve">Keep</option><option value="hold">Hold for clarification</option><option value="reject">Drop</option></select></label>
-    <label>Reason <select name="reason"></select></label>
+    <label for="finding-verdict">Decision</label><select id="finding-verdict" name="verdict" required><option value="">Choose a decision</option><option value="approve">Keep</option><option value="hold">Hold for clarification</option><option value="reject">Drop</option></select>
+    <label for="finding-reason">Reason</label><select id="finding-reason" name="reason"></select>
     <label>Review note <textarea name="note" rows="3" maxlength="1000"></textarea></label>
     <p><button type="button" data-cancel>Cancel</button> <button type="submit" value="batch">Save to batch</button> <button type="submit" value="single">Submit this finding only</button></p>
   </form>
