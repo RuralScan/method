@@ -18,7 +18,7 @@
   }
   function scopeFor(units) {
     const practices = [...new Set(units.map(e => e.nbs_id))];
-    const tables = [...new Set(units.map(e => _vfR2T[e.use_role]))];
+    const tables = [...new Set(units.map(e => e.use_role === 'operational_risk' ? 'M2b' : _vfR2T[e.use_role]))];
     window._vfScope = {nbs: practices.length === 1 ? practices[0] : 'all', table: tables.length === 1 ? tables[0] : 'all', family: 'all', source: 'all', access: 'all', claimScope: 'all', observations: 'show', round: 'all', sourceId: '', section: ''};
     window._vfSearch = ''; window._vfMode = 'review';
   }
@@ -47,7 +47,7 @@
       window._vfPriorityEvidence = '';
       window._vfPriority = 'all';
       window._vfScope.table = table;
-      window._vfScope.observations = 'hide';
+      window._vfScope.observations = table === 'M2b' ? 'show' : 'hide';
       window.DashboardShell.openReviewQueue();
       vfSimpleQueue('todo');
       history.replaceState(null, '', hash);

@@ -58,7 +58,7 @@ class VersionMenuTest(unittest.TestCase):
                         self.assertIn(f'data-edition="{editions[-1]["edition"]}" selected', groups["Earlier drafts"])
                     if available:
                         href = reference["href"] if page.parent == site else "../../" + reference["href"]
-                        label = "Methodology reference · 17 Nov 2026"
+                        label = "Methodology · 17 Nov 2026"
                         self.assertEqual(groups["Under review"], f'<option value="{href}">{label}</option>')
                         self.assertIn(f'<a href="{href}">{label}</a>', html)
                     else:
