@@ -452,8 +452,8 @@ def method_map():
         '<p class="mtitle">Apply the rules to a landscape</p>'
         "<p>Seven stages a project team walks through, using public spatial data.</p></div>"
         f'<ol class="msteps seven">{stages}</ol></div>'
-        '<div class="mlink out">which gives<p>A shortlist of places and practices, with the evidence behind '
-        "each, handed to feasibility work.</p></div>"
+        '<div class="mlink out">which gives<p>Traceable, citable evidence on where each practice could work '
+        "and what it would deliver, to inform planning and investment decisions.</p></div>"
         "<figcaption>The method in one figure. Select a step to read its chapter. Hover over a box for one more "
         "line of detail. “See the screen” opens that stage in the visual methodology.</figcaption></figure>"
     )
@@ -578,16 +578,46 @@ def build():
         "practice will succeed on a given site, and local feasibility assessment is still needed before any "
         "investment decision.</p>"
         '<h2 id="audience">Who it is for</h2>'
-        '<div class="grid2 fit"><div class="card yes"><h3>It is for</h3><ul>'
-        "<li><strong>Teams scoping a rural investment</strong> and their government counterparts, early in "
-        "project preparation: to shortlist landscapes and practices and to brief feasibility work.</li>"
-        "<li><strong>Technical reviewers</strong> who need to check where a rule or a rating came from.</li>"
-        "<li><strong>Analysts</strong> who run the scan for a country, or build software that does.</li></ul></div>"
-        '<div class="card no"><h3>It is not for</h3><ul>'
-        "<li>Designing a site, sizing a structure or choosing species.</li>"
-        "<li>Cost-benefit analysis, or detailed modelling of ecosystem services.</li>"
-        "<li>Replacing national data, local knowledge or consultation. Where national data should be used, the scan says so.</li></ul></div></div>"
-        '<h2 id="how">How the method works</h2>'
+        + table(
+            ["", "Reader or task", "Detail"],
+            [
+                [
+                    "For",
+                    "Teams scoping a rural investment, and their government counterparts",
+                    "Early in project preparation: to shortlist landscapes and practices and to brief feasibility work.",
+                ],
+                [
+                    "For",
+                    "Technical reviewers",
+                    "To check where a rule or a rating came from.",
+                ],
+                [
+                    "For",
+                    "Analysts",
+                    "To run the scan for a country, or to build software that does.",
+                ],
+                [
+                    "Not for",
+                    "Site design",
+                    "Designing a site, sizing a structure or choosing species.",
+                ],
+                [
+                    "Not for",
+                    "Economic appraisal",
+                    "Cost-benefit analysis, or detailed modelling of ecosystem services.",
+                ],
+                [
+                    "Not for",
+                    "Standing in for local sources",
+                    (
+                        "Replacing national data, local knowledge or consultation. Where national data should be "
+                        "used, the scan says so."
+                    ),
+                ],
+            ],
+            caption="Who the method is for, and what it is not for",
+        )
+        + '<h2 id="how">How the method works</h2>'
         "<p>The method has two halves. The first builds the evidence base and turns it into rules. The second "
         "applies those rules to a landscape. The figure shows both, in order.</p>"
         + method_map()
@@ -597,17 +627,13 @@ def build():
         "the investment itself would be exposed. Priority hotspots show where need is greatest inside what "
         "remains. The comparison sets the practices side by side on what they deliver. Next steps list what "
         "feasibility work must settle.</p>"
+        f"<p>The {link(visual, 'visual methodology')} shows the same seven stages as screens: an interactive "
+        "mock-up of how the method could run as a geospatial prioritisation platform, with the maps, controls "
+        "and outputs of each stage. Every map and number on its screens is example data, not a result. "
+        f"The {link(chapter_file('scoping-walkthrough'), 'stage-by-stage guide')} describes each screen.</p>"
         '<p class="basis">The technical chapters call the analysis steps modules (M0 to M6) and number the '
         f"rule tables (T0 to T7). {link('method.html', 'Method')} explains each module. "
         f"{link('data-model.html', 'Data model')} defines each table.</p>"
-        '<h2 id="tool">See it as a working tool</h2>'
-        '<div class="card tool"><p>The <strong>visual methodology</strong> shows the same seven stages as '
-        "screens: an interactive mock-up of how the method could run as a geospatial prioritisation platform, "
-        "with the maps, controls and outputs of each stage.</p>"
-        f'<p class="routes"><a class="go" href="{visual}">Open the visual methodology</a>'
-        f'<a href="{chapter_file("scoping-walkthrough")}">Read the stage-by-stage guide</a></p>'
-        '<p class="basis">Every map and number on its screens is example data, not a result. Running the '
-        "method for a country is a separate pilot.</p></div>"
         '<h2 id="origins">How the method was built</h2><ul>'
         "<li><strong>It starts from what exists.</strong> A stocktake of published spatial-suitability studies "
         "and tools was the starting set of sources. The scoring and weighting techniques are established ones, "
@@ -738,6 +764,11 @@ def build():
                 (
                     "Two chapters on operating the evidence base (continuing the work with an AI system, and "
                     "versioning the instructions) are no longer published, to shorten the text. They remain in the repository."
+                ),
+                (
+                    "After a second review round, the overview lists its sections in the side bar, a plain table "
+                    "replaces the two boxes on who the method is for, the visual methodology is linked beside the "
+                    "figure instead of in its own section, and links that leave the site open in a new tab."
                 ),
             ],
         ),

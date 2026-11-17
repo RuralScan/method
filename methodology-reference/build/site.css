@@ -345,15 +345,9 @@ table.fields td:nth-child(4) { min-width: 22ch; }
 .mrules a { display: inline-flex; align-items: center; gap: .4rem; padding: .3rem .7rem; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--ink); text-decoration: none; font-size: .88rem; }
 .mrules a:hover { border-color: var(--accent); }
 .mmap figcaption { margin-top: .4rem; }
-.fit h3 { font-size: 1.02rem; }
-.fit ul { padding-left: 1.1rem; margin: .3rem 0 .4rem; }
-.fit .no { border-top: 3px solid var(--accent-amber); }
-.fit .yes { border-top: 3px solid var(--accent-emerald); }
-.tool { border-left: 4px solid var(--accent-sky); padding-top: .7rem; }
-.tool .routes { margin: .7rem 0 .5rem; }
 .plist { list-style: none; padding: 0; margin: .6rem 0; max-width: 78ch; }
 .plist li { padding: .35rem 0; border-bottom: 1px solid var(--line); }
-@media (max-width: 1150px) {
+@media (max-width: 1440px) {
   .msteps.seven { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .msteps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }

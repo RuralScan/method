@@ -329,11 +329,11 @@ def run_checks():
         r'<h2 id="[^"]+"><span class="secno">([\d.]+)</span>', core.PAGES["index.html"]
     )
     listed = re.findall(
-        r'<li><a href="#[^"]+">([\d.]+) ',
-        core.PAGES["index.html"].split('class="onpage"')[1].split("</nav>")[0],
+        r'<li><a href="#[^"]+"><span class="n">([\d.]+)</span>',
+        core.PAGES["index.html"].split('class="side"')[1].split("</nav>")[0],
     )
     check(
-        "Overview sections are numbered from their order, 1.1 onward, and listed at the top of the page",
+        "Overview sections are numbered from their order, 1.1 onward, and listed in the side bar",
         len(numbers) >= 5
         and numbers == [f"1.{i}" for i in range(1, len(numbers) + 1)]
         and listed == numbers,
