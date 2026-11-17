@@ -1012,7 +1012,7 @@
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.1.0">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.9.0">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.11.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
   #loading-container, #error-container {display:flex;align-items:center;gap:.65rem;padding:.6rem 0;color:var(--text-secondary);font-size:.9rem}
@@ -1595,18 +1595,14 @@
       </section>
       <section id="review-pipeline-panel" hidden><div id="pipeline-records-app"><p>Loading pipeline records…</p></div></section>
       <section id="review-queue-panel">
-        <div class="review-start" id="review-queue">
-          <nav aria-label="Review findings by table"><a href="#review-t3">T3 · Hazard findings</a><a href="#review-t4">T4 · Suitability findings</a><a href="#review-t6">T6 · Scorecard findings</a><a href="#review-m2b">M2b · Operational feasibility</a></nav>
-          <p id="review-table-description"></p>
-          <a id="review-log-source"></a>
-          <p>Open review batches for <a href="#review-priority=ratings_top60_2026-11-12">T3/T6 priority findings</a> or <a href="#review-priority=t4_limits_2026-11-10">T4 suitability cutoffs</a>.</p>
-        </div>
+        <div id="review-queue"></div>
       <div id="readonly-banner" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:9px 16px; background:rgba(245,158,11,0.12); border-bottom:1px solid rgba(245,158,11,0.35); color:var(--text-primary); font-size:12.5px;">
         <span style="font-size:15px;">&#9888;&#65039;</span>
         <span>Choose your reviewer and save each decision with <b>Review finding</b>. Your batch stays in this browser until you submit it to GitHub. <a href="https://github.com/RuralScan/evidence/tree/main/workflows/submissions">Submit a CSV or extraction proposal</a>.</span>
         <button id="review-submit-all" type="button">Submit all my decisions (<span id="review-batch-count">0</span>)</button><span id="review-batch-status" role="status"></span>
         <button class="shell-link" type="button" onclick="DashboardShell.openReviewHelp()">How to review</button>
       </div>
+    <div class="review-device-tools">
     <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-secondary); margin-right:10px;" title="Your reviewer identity — every QA decision is attributed to this handle">&#128100; Reviewer
       <select id="vf-reviewer" onchange="chooseVfReviewer(this)" style="font-size:12px; padding:4px 9px; border-radius:5px; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); font-weight:600;">
         <option value="">— pick reviewer —</option>
@@ -1618,6 +1614,8 @@
         <option value="__other__">Other…</option>
       </select>
     </label>
+      <div id="review-library-controls"></div>
+    </div>
       <div class="card-container">
         <h2 class="card-title" style="display:flex; align-items:center; gap:12px;">
           <span>5.1 Review queue</span>
@@ -1669,6 +1667,7 @@
         <div style="display:flex; gap:18px; align-items:flex-start; margin-top:6px;">
           <div id="vf-main" style="flex:1; min-width:0;">
             <div id="vf-scope" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px"></div>
+            <div class="review-queue-context"><p id="review-table-description"></p><a id="review-log-source"></a></div>
             <span id="vf-mode-hint" hidden></span>
             <div id="vf-filterbar" style="position:sticky; top:86px; z-index:20; background:var(--bg-primary); padding:6px 0 6px; border-bottom:1px solid var(--border-color); display:flex; align-items:flex-start; gap:8px; flex-wrap:wrap;">
               <div id="vf-verdict-filters" style="flex:1; min-width:0;"></div>
@@ -1676,7 +1675,7 @@
             <div id="vf-decided-count" style="font-size:12px; color:var(--text-secondary); margin-top:12px;"></div>
             <div id="vf-subset-banner" style="display:none; margin-top:10px;"></div>
             <p id="public-review-history" hidden><a href="https://github.com/RuralScan/evidence/issues?q=is%3Aissue+author%3A%40me+submission+in%3Abody">My public RuralScan submissions</a></p>
-            <div id="vf-cards" style="margin-top:12px;"></div>
+            <div id="vf-cards" tabindex="-1" role="region" aria-label="Findings in current review queue" style="margin-top:12px;"></div>
             <div id="vf-actionbar" style="position:sticky; bottom:0; z-index:19; background:var(--bg-primary); border-bottom:1px solid var(--border-color); padding:6px 0 7px; display:flex; align-items:center; gap:9px; flex-wrap:wrap;">
               <span id="vf-pending-count" style="font-size:11.5px; font-weight:700;" title="Your decisions saved locally but NOT yet applied + submitted to main. Applies EVERY pending decision (AI-flagged + AI-passed), not just the current queue. Click Apply & submit to main to ship them."></span>
               <span style="margin-left:auto; display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap;">
@@ -3220,7 +3219,7 @@
       var _csCount=function(v){ return evAll.filter(_inNbs).filter(function(e){ var c=_csOf(e); return v==='general'?c==='practice_technology':(v==='species'?c==='species_specific':(v==='crop'?c==='crop_specific':true)); }).length; };
       var _csFmt=function(o){ var m={general:'General (practice)',species:'🧬 Species',crop:'🌾 Crop'}; var lab=m[o]||o; var n=_csCount(o); return n?(lab+' ('+n+')'):lab; };
       var _csHint=(window._vfScope.claimScope&&window._vfScope.claimScope!=='general'&&window._vfScope.claimScope!=='all')?'<div style="font-size:9.5px; color:var(--text-muted); margin:2px 0 4px 0; line-height:1.4;">🧬 <b>Species / crop lane</b> — per-taxon evidence, <b>kept &amp; banked for reuse</b> but filtered out of the practice-level MCDA. Fix a mis-tagged row by re-classifying it (keep), not dropping it.</div>':'';
-      var select=function(key,label,options){return '<label>'+label+' <select onchange="vfScopeSet(\''+key+'\',this.value)" style="padding:7px;background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-color);border-radius:5px">'+options.map(function(o){return '<option value="'+vfEsc(o[0])+'"'+(window._vfScope[key]===o[0]?' selected':'')+'>'+vfEsc(o[1])+'</option>';}).join('')+'</select></label>';};
+      var select=function(key,label,options){return '<label>'+label+' <select'+(key==='table'?' aria-describedby="review-table-description"':'')+' onchange="vfScopeSet(\''+key+'\',this.value)" style="padding:7px;background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-color);border-radius:5px">'+options.map(function(o){return '<option value="'+vfEsc(o[0])+'"'+(window._vfScope[key]===o[0]?' selected':'')+'>'+vfEsc(o[1])+'</option>';}).join('')+'</select></label>';};
       scEl.innerHTML=select('nbs','Practice',[['all','All practices']].concat(_nbsOpts.map(function(n){return [n,_capNbs(n)];})))
         +select('table','Evidence type',[['all','All evidence types'],['T3','T3 hazard findings'],['T4-suitability','T4 suitability findings'],['T6','T6 scorecard findings'],['M2b','M2b operational feasibility'],['T4','T4 + operational feasibility'],['T3/T6','T3/T6 effects']])
         +'<label>Search <input id="vf-search" type="search" placeholder="Paper, variable or text" value="'+vfEsc(window._vfSearch||'')+'" oninput="vfSearch(this.value)" style="padding:7px;background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-color);border-radius:5px"></label>';
@@ -6051,10 +6050,10 @@
 <script src="dashboard-progress.js?v=1.4.0"></script>
 <script src="dashboard-feedback.js?v=1.6.0"></script>
 <script src="dashboard-relationships.js?v=1.2.1"></script>
-<script src="dashboard-tables.js?v=3"></script>
-<script src="dashboard-priority.js?v=1.11"></script>
+<script src="dashboard-tables.js?v=4"></script>
+<script src="dashboard-priority.js?v=1.12"></script>
 <script src="review/priority-receipt.js"></script>
-<script src="review/priority-status.js"></script>
+<script src="review/priority-status.js?v=2"></script>
 <script src="dashboard-shell.js?v=1.7.0"></script>
 <dialog id="finding-submission" aria-labelledby="finding-submission-title">
   <form><h2 id="finding-submission-title">Review finding</h2><output></output>
@@ -6071,7 +6070,8 @@
   <p role="status" id="review-batch-message"></p>
   <button type="button" data-close>Close</button>
 </dialog>
-<script src="review/source-previews.js"></script>
+<script src="review/local-library.js?v=1"></script>
+<script src="review/source-previews.js?v=2"></script>
 <script src="review/batch-receipt.js"></script>
 <script src="review/submission.js"></script>
 </body>

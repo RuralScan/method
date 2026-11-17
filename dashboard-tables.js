@@ -38,11 +38,11 @@
   }
   function describe(id) {
     const table = tables.find(t => t.id === id);
-    document.getElementById('review-table-description').textContent = table?.description || 'Choose a table to open its findings, then check the quoted passage on each evidence card.';
-    for (const a of document.querySelectorAll('.review-start nav a')) {
-      if (a.hash === table?.hash) a.setAttribute('aria-current', 'true');
-      else a.removeAttribute('aria-current');
-    }
+    const combined = {
+      T4: 'Suitability and operational feasibility findings. Check the source and the stated use of each finding.',
+      'T3/T6': 'Hazard and scorecard findings. Check the reported effect and the conditions under which it applies.'
+    };
+    document.getElementById('review-table-description').textContent = table?.description || combined[id] || 'All evidence types. Check each finding against its quoted source passage.';
   }
   let batches;
   function ciatUrl(id) {

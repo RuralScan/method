@@ -3,9 +3,9 @@
   'use strict';
   const dialog = document.createElement('dialog');
   dialog.id = 'priority-status'; dialog.setAttribute('aria-labelledby','priority-status-title');
-  dialog.innerHTML = '<form><h2 id="priority-status-title">Update team priority</h2><p class="priority-targets"></p>'
-    + '<p>Updates shared review priority only. Takes effect after the receipt is applied through a protected PR.</p>'
-    + '<label>Action<select name="action" required><option value="">Choose…</option><option value="addressed">Addressed — request completed</option><option value="deprioritize">Deprioritize — keep for later</option><option value="restore">Restore — needs attention</option></select></label>'
+  dialog.innerHTML = '<form><h2 id="priority-status-title">Update shared task status</h2><p class="priority-targets"></p>'
+    + '<p>This changes task priority for the whole team. It does not approve or reject any finding. The change takes effect after its GitHub receipt is applied.</p>'
+    + '<label>What should happen?<select name="action" required><option value="">Choose…</option><option value="addressed">Mark done — requested check completed</option><option value="deprioritize">Set aside — keep for later</option><option value="restore">Restore — bring back for attention</option></select></label>'
     + '<label>Reason for the team<textarea name="reason" required minlength="3" maxlength="2000" rows="4" placeholder="What was addressed, superseded, or should wait? Include a receipt or change link when available."></textarea></label>'
     + '<p>Your signed-in GitHub account records the author. The reason is public.</p><button type="submit">Prepare GitHub receipt</button> <button type="button" class="priority-close">Cancel</button>'
     + '<output role="status"></output><div class="priority-receipts"></div></form>';

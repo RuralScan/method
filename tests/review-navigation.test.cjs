@@ -29,7 +29,8 @@ function setup() {
     DashboardShell:{openReviewQueue:() => {}}, vfNotice:() => {},
   };
   results.addEventListener = () => {};
-  results.focus = () => {};
+  results.focus = () => { results.focused = true; };
+  results.scrollIntoView = () => { results.scrolled = true; };
   context.window = context;
   vm.createContext(context);
   for (const file of ['dashboard-tables.js','dashboard-priority.js']) {
@@ -41,7 +42,7 @@ function setup() {
 test('review sets match practice and actual table membership; duplicate requests count once', () => {
   const {context,api} = setup();
   let html = api.controls();
-  assert.match(html, /Cross-practice checks<\/span><small>1 of 1 requests · needs attention in this view/);
+  assert.match(html, /<small>1 finding<\/small>/);
   assert.doesNotMatch(html, /data-batch="(?:wet-t3|wet-t6|wet-t4|forest)"/);
   for (const [table,id] of [['T3','wet-t3'],['T6','wet-t6'],['T4-suitability','wet-t4']]) {
     context._vfScope.table = table;
@@ -57,7 +58,7 @@ test('search and explicit all-sets browsing expose hidden sets without changing 
   const {context,api,results} = setup();
   const scope = context._vfScope;
   api.filterSets('FOREST', false);
-  assert.match(results.innerHTML, /No review sets match/);
+  assert.match(results.innerHTML, /No tasks match/);
   api.filterSets('FOREST', true);
   assert.match(results.innerHTML, /data-batch="forest"/);
   assert.doesNotMatch(results.innerHTML, /data-batch="wet-t4"/);
@@ -138,4 +139,26 @@ test('selected active requests remain reviewable after an earlier finding decisi
   assert.equal(context.vfSimpleMatch(unit,'todo'),false);
   for(const r of context.reviewData.review_priorities)if(r.evidence_id==='wet-op')r.status='recheck';
   assert.equal(context.vfSimpleMatch(unit,'todo'),true);
+});
+
+
+test('task pages stay bounded, search resets paging, and opening moves to findings without voting', () => {
+  const {context,api,results}=setup();
+  for(let i=0;i<14;i++) context.reviewData.review_priorities.push({batch_id:'extra-'+i,batch_label:'Extra task '+i,evidence_id:'wet-op',status:'active'});
+  let html=api.controls();
+  assert.equal((html.match(/aria-label="Open findings:/g)||[]).length,6);
+  assert.match(html,/Read the requested check/);
+  assert.match(html,/Next tasks/);
+  api.turnPage(1);
+  assert.match(results.innerHTML,/Tasks 7–12 of 15/);
+  api.filterSets('Extra task 13',false);
+  assert.match(results.innerHTML,/Open findings: Extra task 13/);
+  assert.doesNotMatch(results.innerHTML,/Previous tasks/);
+  const data=JSON.stringify(context.reviewData),scope=JSON.stringify(context._vfScope);
+  api.openTask('extra-13');
+  assert.equal(context._vfPriority,'extra-13');
+  assert.equal(context._vfSimpleView,'mine');
+  assert.equal(JSON.stringify(context._vfScope),scope);
+  assert.equal(JSON.stringify(context.reviewData),data);
+  assert.equal(results.scrolled,true);assert.equal(results.focused,true);
 });
