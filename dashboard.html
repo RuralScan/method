@@ -1012,7 +1012,7 @@
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.1.0">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.7.0">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.8.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
   #loading-container, #error-container {display:flex;align-items:center;gap:.65rem;padding:.6rem 0;color:var(--text-secondary);font-size:.9rem}
@@ -1809,8 +1809,8 @@
       same(r,archivedUnits.get(r.evidence_id),['source_id','quote','page','locator','locator_type']) &&
       same(liveSources.get(r.source_id),archivedSources.get(r.source_id),['doi','url','library_path','access_status','license'])
     ).map(r => r.evidence_id));
-    const priority = [...data.review_priorities];
-    for (const [batch_id, batch] of Object.entries(live.batches)) {
+    const priority = live.priority_requests ? [...live.priority_requests] : [...data.review_priorities];
+    if (!live.priority_requests) for (const [batch_id, batch] of Object.entries(live.batches)) {
       for (const evidence_id of batch.ids) priority.push({batch_id, batch_label:batch.title, evidence_id, priority:'normal'});
     }
     return {...base, ...data, ...live, registers:{...registers,...live.registers}, review_priorities:priority, registerRevision:sha, legacyPreviews};
@@ -2738,6 +2738,9 @@
   }
   function vfSimpleMatch(u,view){
     if(view==='mine')return u.me;
+    // An active request can ask for another look at an already reviewed finding.
+    // Keep the scientific state intact and avoid repeating a pending local vote.
+    if(view==='todo' && window.DashboardPriority?.needsAttention(u.ev))return !(u.me&&!u.meApplied);
     if(u.formerlyCited && !(view==='advanced' && window._vfAxStatus==='dropped')) return false;
     if(view==='advanced')return true;
     if(u.dropped)return false;
@@ -3341,12 +3344,12 @@
         [['todo','To review'],['waiting','Waiting for answers'],['mine','My reviewed']].map(([view,label]) => {
           const count = _uni.filter(u => matches(u, view)).length + (view === 'mine' ? extraReviews : 0);
           const active = window._vfSimpleView === view ? 'active sky' : '';
-          return '<button class="pill-btn ' + active + '" onclick="vfSimpleQueue(\'' + view + '\')">' +
+          return '<button aria-pressed="' + (window._vfSimpleView === view) + '" class="pill-btn ' + active + '" onclick="vfSimpleQueue(\'' + view + '\')">' +
             label + ' (' + count + ')</button>';
         }).join('') + '</div>';
       var maintenance='<details><summary>Team maintenance</summary>'+[['unresolved','Decision / status checks'],['approval_only','Missing review history'],['dropped','Dropped history'],['all','All records']].map(function(q){return '<button class="pill-btn" onclick="vfReviewQueue(\''+q[0]+'\')">'+q[1]+'</button>';}).join('')+'</details>';
       var cl=window._vfClarificationError?'<p>'+vfEsc(window._vfClarificationError)+'</p>':'';
-      fd.innerHTML=(window.DashboardPriority?DashboardPriority.controls():'')+summary+(isMyHistory?vfArchivedHistory(personal.archived)+vfRatingHistory(personal.ratings):'')+cl+'<details '+(window._vfMoreFilters?'open':'')+' ontoggle="window._vfMoreFilters=this.open"><summary style="cursor:pointer">More filters'+((window._vfScope.observations||'hide')==='hide'?' · site observations hidden':'')+(window._vfSimpleView==='advanced'?' — custom view active':'')+'</summary><button class="pill-btn" onclick="vfSimpleQueue(\'advanced\')">Use custom filters</button>'+(window._vfAdvancedScopeHtml||'')+_bar+maintenance+'<details><summary>Review a whole source</summary><div id="vf-bulk"></div></details></details>'; }
+      fd.innerHTML=summary+(window.DashboardPriority?DashboardPriority.controls():'')+(isMyHistory?vfArchivedHistory(personal.archived)+vfRatingHistory(personal.ratings):'')+cl+'<details '+(window._vfMoreFilters?'open':'')+' ontoggle="window._vfMoreFilters=this.open"><summary style="cursor:pointer">More filters'+((window._vfScope.observations||'hide')==='hide'?' · site observations hidden':'')+(window._vfSimpleView==='advanced'&&!window._vfPriorityEvidence?' — custom view active':'')+'</summary><button class="pill-btn" onclick="vfSimpleQueue(\'advanced\')">Use custom filters</button>'+(window._vfAdvancedScopeHtml||'')+_bar+maintenance+'<details><summary>Review a whole source</summary><div id="vf-bulk"></div></details></details>'; }
     // ---- apply the toggle filters to the universe (secondary filters via the shared _sec) ----
     var _list=_uni.filter(function(u){
       if(window._vfSimpleView!=='advanced')return _sec(u,'any','any');
@@ -6049,7 +6052,9 @@
 <script src="dashboard-feedback.js?v=1.6.0"></script>
 <script src="dashboard-relationships.js?v=1.2.1"></script>
 <script src="dashboard-tables.js?v=3"></script>
-<script src="dashboard-priority.js?v=1.9"></script>
+<script src="dashboard-priority.js?v=1.11"></script>
+<script src="review/priority-receipt.js"></script>
+<script src="review/priority-status.js"></script>
 <script src="dashboard-shell.js?v=1.7.0"></script>
 <dialog id="finding-submission" aria-labelledby="finding-submission-title">
   <form><h2 id="finding-submission-title">Review finding</h2><output></output>

@@ -11,10 +11,22 @@
   function sourceLocation(row) {
     return String(row.page || '').trim() ? 'PDF p' + esc(row.page) : 'Source location: ' + esc(row.source_locator);
   }
+  const statusLabels = {active:'Needs attention', recheck:'Changed — recheck', reviewed:'Review recorded', excluded:'Excluded finding', addressed:'Request addressed', deprioritized:'Deprioritized'};
+  const priorityView = () => window._vfPriorityView || 'attention';
+  const viewLabels = {attention:'Needs attention', settled:'Reviewed / excluded', history:'Addressed / deprioritized', all:'All requests'};
+  function visibleRequest(row) {
+    const status = row.status || 'active', view = priorityView();
+    return view === 'all' || (view === 'settled' ? ['reviewed','excluded'].includes(status)
+      : view === 'history' ? ['addressed','deprioritized'].includes(status) : ['active','recheck'].includes(status));
+  }
+  function needsAttention(ev) {
+    return selected() !== 'all' && priorityView() === 'attention' && notes(ev.evidence_id).some(r =>
+      ['active','recheck'].includes(r.status || 'active') && (selected() === 'high' ? r.priority === 'high' : r.batch_id === selected()));
+  }
   function matches(ev) {
     if (window._vfPriorityEvidence && ev.evidence_id !== window._vfPriorityEvidence) return false;
     const value = selected();
-    return value === 'all' || notes(ev.evidence_id).some(r => value === 'high' ? r.priority === 'high' : r.batch_id === value);
+    return value === 'all' || notes(ev.evidence_id).some(r => visibleRequest(r) && (value === 'high' ? r.priority === 'high' : r.batch_id === value));
   }
   function scopeFor(units) {
     const practices = [...new Set(units.map(e => e.nbs_id))];
@@ -26,9 +38,10 @@
     window._vfPriorityEvidence = '';
     window._vfPriority = value;
     if (value !== 'all') {
-      const ids = new Set(rows().filter(r => value === 'high' ? r.priority === 'high' : r.batch_id === value).map(r => r.evidence_id));
+      const ids = new Set(rows().filter(r => value === 'high' ? visibleRequest(r) && r.priority === 'high' : r.batch_id === value).map(r => r.evidence_id));
       scopeFor(evidence().filter(e => ids.has(e.evidence_id)));
-      vfSimpleQueue('todo');
+      if (priorityView() === 'attention') vfSimpleQueue('todo');
+      else { window._vfAxStatus = 'any'; window._vfSimpleView = 'advanced'; renderVfWorklist(); }
     } else renderVfWorklist();
     history.replaceState(null, '', route());
   }
@@ -77,23 +90,91 @@
     history.replaceState(null, '', hash);
     return true;
   }
+  let setSearch = '', allSets = false, pickerScope = '';
+  function catalog() {
+    const byId = new Map(evidence().map(ev => [ev.evidence_id, ev]));
+    const batches = new Map();
+    const scope = window._vfScope || {};
+    for (const row of rows()) {
+      if (!batches.has(row.batch_id)) batches.set(row.batch_id, {id:row.batch_id, label:row.batch_label, ids:new Set(), scoped:new Set(), total:new Set(), scopedTotal:new Set()});
+      const batch = batches.get(row.batch_id), ev = byId.get(row.evidence_id);
+      batch.total.add(row.evidence_id);
+      if (visibleRequest(row)) batch.ids.add(row.evidence_id);
+      if (ev && (!scope.nbs || scope.nbs === 'all' || ev.nbs_id === scope.nbs)
+          && DashboardTables.matches(ev, scope.table, true)) {
+        batch.scopedTotal.add(row.evidence_id);
+        if (visibleRequest(row)) batch.scoped.add(row.evidence_id);
+      }
+    }
+    return [...batches.values()];
+  }
+  function setList() {
+    const query = setSearch.trim().toLowerCase();
+    const batches = catalog().filter(b => (allSets ? b.ids.size : b.scoped.size) && (!query || b.label.toLowerCase().includes(query)));
+    return '<p class="vf-set-count" role="status">'+batches.length+(batches.length===1?' review set':' review sets')+(allSets?' across all practices and evidence types':' for this practice and evidence type')+'</p>'
+      + (batches.length ? '<ul class="vf-set-list">'+batches.map(b => '<li><button type="button" data-batch="'+esc(b.id)+'" onclick="DashboardPriority.choose(this.dataset.batch)"'
+        +(selected()===b.id?' aria-current="true"':'')+'><span>'+esc(b.label)+'</span><small>'+(allSets?b.ids.size:b.scoped.size)+' of '+(allSets?b.total.size:b.scopedTotal.size)+' requests · '+esc(viewLabels[priorityView()].toLowerCase())
+        +(allSets?' · opens full set':' in this view')+'</small></button></li>').join('')+'</ul>'
+        : '<p class="vf-set-empty">'+(query?'No review sets match your search.':'No review sets match this status. Choose All requests to see earlier work.')+' You can review the queue without choosing a set.</p>');
+  }
+  function filterSets(value, includeAll) {
+    setSearch = value; allSets = includeAll;
+    document.getElementById('vf-set-results').innerHTML = setList();
+  }
+  function setView(value) {
+    window._vfPriorityView = value;
+    if (selected() !== 'all') {
+      if (value === 'attention' && window._vfSimpleView === 'advanced') window._vfSimpleView = 'todo';
+      else if (value !== 'attention') { window._vfSimpleView = 'advanced'; window._vfAxStatus = 'any'; }
+    }
+    renderVfWorklist();
+    const picker = document.querySelector('.vf-review-sets');
+    if (picker) picker.open = true;
+    document.getElementById('vf-set-status')?.focus();
+  }
+  function choose(value) {
+    const expandScope = allSets && value !== 'all' && value !== 'high';
+    setSearch = ''; allSets = false;
+    if (expandScope) set(value);
+    else {
+      window._vfPriorityEvidence = '';
+      window._vfPriority = value;
+      if (value !== 'all' && priorityView() !== 'attention') { window._vfSimpleView = 'advanced'; window._vfAxStatus = 'any'; }
+      renderVfWorklist();
+      history.replaceState(null, '', route());
+    }
+    document.querySelector('.vf-selected-set button, .vf-review-sets > summary')?.focus({preventScroll:true});
+  }
+  function backToQueue() {
+    window._vfPriorityEvidence = ''; window._vfPriority = 'all';
+    vfSimpleQueue('todo');
+    history.replaceState(null, '', route());
+    document.querySelector('#vf-verdict-filters button')?.focus({preventScroll:true});
+  }
   function controls() {
-    const batches = [...new Map(rows().map(r => [r.batch_id, r.batch_label]))];
-    if (!batches.length) return '';
-    const options = [['all','All priorities'],['high','High priority'],...batches];
-    const current = selected();
+    const scope = window._vfScope || {};
+    const scopeKey = [scope.nbs,scope.table].join('/');
+    if (pickerScope !== scopeKey) { setSearch = ''; allSets = false; pickerScope = scopeKey; }
+    const current = selected(), focused = window._vfPriorityEvidence;
     const batchRows = rows().filter(r => r.batch_id === current);
-    const focused = window._vfPriorityEvidence;
-    return '<section class="vf-priority-controls" aria-label="Review priorities" style="margin:10px 0;padding:12px;border:1px solid var(--border-color);border-radius:6px">'
-      + '<label>Review priority <select id="vf-priority" onchange="DashboardPriority.set(this.value)">' + options.map(([id,label]) => '<option value="'+esc(id)+'"'+(id===current?' selected':'')+'>'+esc(label)+'</option>').join('')+'</select></label>'
-      + '<span style="margin-left:10px">'+batches.map(([id,label]) => '<a href="'+batchRoute(id)+'">'+esc(label)+' ('+new Set(rows().filter(r=>r.batch_id===id).map(r=>r.evidence_id)).size+')</a>').join(' · ')+'</span>'
-      + '<p style="margin:8px 0;font-size:12px">Priority identifies what to inspect first. It does not change decisions, extraction approval, source credibility or runtime readiness.</p>'
-      + (focused ? '<p>Showing one evidence card, including its existing decision state. <button class="pill-btn" onclick="DashboardPriority.set(\'all\')">Show scoped queue</button></p>' : '')
-      + (batchRows.length ? '<p style="font-size:12px">Batch shortcuts reset scope; the current filters above still apply. Use More filters to narrow family, source or evidence scope. Queue tabs follow existing decisions.</p><details><summary>All '+batchRows.length+' batch records · open a native evidence card</summary><ul>'+batchRows.map(r=>'<li><a href="'+cardRoute(r.evidence_id)+'">'+esc(r.evidence_id)+'</a> · '+esc(r.source_id)+' · '+sourceLocation(r)+'</li>').join('')+'</ul></details>' : '')
-      + '</section>';
+    const label = current === 'high' ? 'High priority' : batchRows[0]?.batch_label || current;
+    const focus = focused ? '<div class="vf-single-finding"><span><strong>Single finding</strong> · Opened from a direct link</span><button type="button" class="pill-btn" onclick="DashboardPriority.backToQueue()">Back to queue</button></div>' : '';
+    if (!rows().length) return focus;
+    return focus + '<section class="vf-priority-controls" aria-label="Review focus">'
+      + (current !== 'all' ? '<div class="vf-selected-set"><span>Review set: <strong>'+esc(label)+'</strong> · '+esc(viewLabels[priorityView()])+'</span>'+(current !== 'high' && reviewData.priority_requests ? '<button type="button" class="pill-btn" data-batch="'+esc(current)+'" onclick="PriorityStatus.open(this.dataset.batch)">Update team priority</button>' : '')+'<button type="button" class="pill-btn" onclick="DashboardPriority.choose(\'all\')">Clear review set</button></div>' : '')
+      + '<details class="vf-review-sets"><summary>Choose a review set <span>Optional</span></summary><div class="vf-set-browser">'
+      + '<p>Review sets group findings that need a particular check. You can also work straight through the queue.</p>'
+      + '<div class="vf-set-tools"><label for="vf-set-status">Request status</label><select id="vf-set-status" onchange="DashboardPriority.setView(this.value)">'+Object.entries(viewLabels).map(([value,label])=>'<option value="'+value+'"'+(priorityView()===value?' selected':'')+'>'+esc(label)+'</option>').join('')+'</select><label for="vf-set-search">Find a review set</label><input id="vf-set-search" type="search" placeholder="e.g. rating checks or source checks" value="'+esc(setSearch)+'" oninput="DashboardPriority.filterSets(this.value,document.getElementById(\'vf-all-sets\').checked)">'
+      + '<label class="vf-set-toggle"><input id="vf-all-sets" type="checkbox"'+(allSets?' checked':'')+' onchange="DashboardPriority.filterSets(document.getElementById(\'vf-set-search\').value,this.checked)"> Include other practices and evidence types</label></div>'
+      + '<button type="button" class="pill-btn" onclick="DashboardPriority.choose(\'high\')">High priority in this view</button>'
+      + '<div id="vf-set-results">'+setList()+'</div>'
+      + '<p class="vf-set-help">Needs attention excludes reviewed, excluded, addressed and deprioritized requests. All requests keeps their history available. Priority status never changes a finding vote or rating.</p>'
+      + (batchRows.length ? '<details class="vf-set-records"><summary>Finding links for selected set ('+new Set(batchRows.map(r=>r.evidence_id)).size+')</summary><ul>'+[...new Map(batchRows.map(r=>[r.evidence_id,r])).values()].map(r=>'<li><a href="'+cardRoute(r.evidence_id)+'">'+esc(r.evidence_id)+'</a> · '+esc(r.source_id)+' · '+sourceLocation(r)+'</li>').join('')+'</ul></details>' : '')
+      + '</div></details></section>';
   }
   function badge(ev) {
-    const list = notes(ev.evidence_id);
+    const all = notes(ev.evidence_id), list = all.filter(r => ['active','recheck'].includes(r.status || 'active'));
+    if (all.length && !list.length) return '<span class="vf-priority-history">Earlier review priority</span>';
     if (!list.length) return '';
     return '<span style="font-size:11px;border:1px solid var(--accent-amber);color:var(--accent-amber);padding:2px 6px;border-radius:4px">'+(list.some(r=>r.priority==='high')?'High review priority':'Review priority')+'</span>';
   }
@@ -129,18 +210,24 @@
       +'</section>' : '';
     return applied + notes(ev.evidence_id).map(r => {
       const reference = '<a href="'+cardRoute(ev.evidence_id)+'">Link to this evidence card</a> · <a href="'+batchRoute(r.batch_id)+'">Open priority batch</a>';
-      if (!r.reason && !r.decision_needed) return '<p>'+esc(r.batch_label)+' · <a href="'+batchRoute(r.batch_id)+'">Open priority batch</a></p>';
+
       const original = '<b>'+esc(r.batch_label)+'</b>'+(r.requested_by?' · requested by '+esc(r.requested_by):'')+(r.requested_date?' · '+esc(r.requested_date):'')
         +(r.context_changed?'<p>Evidence changed since this request.</p>':'')
-        +'<p><b>Why prioritized:</b> '+esc(r.reason)+'</p><p><b>Decision needed:</b> '+esc(r.decision_needed)+'</p>';
+        +(r.reason?'<p><b>Why prioritized:</b> '+esc(r.reason)+'</p>':'')+(r.decision_needed?'<p><b>Decision needed:</b> '+esc(r.decision_needed)+'</p>':'');
       const older = latest && r.requested_date && r.requested_date < latest.date;
+      const settled = !['active','recheck'].includes(r.status || 'active');
+      const history = r.history || [], last = history.at(-1);
+      const trail = history.length ? '<details><summary>Team priority history</summary>'+history.slice().reverse().map(h => '<p>'+esc(h.date)+' · '+esc(h.actor)+' · '+esc(h.action)+' · <a href="https://github.com/RuralScan/evidence/issues/'+encodeURIComponent(h.receipt)+'">Receipt #'+esc(h.receipt)+'</a><br>'+esc(h.reason)+(h.current?'':'<br>Inputs changed since this action.')+'</p>').join('')+'</details>' : '';
+      const action = r.request_sha256 ? '<button type="button" class="pill-btn" data-batch="'+esc(r.batch_id)+'" data-evidence="'+esc(r.evidence_id)+'" onclick="PriorityStatus.open(this.dataset.batch,this.dataset.evidence)">Update team priority</button>' : '';
+      const state = '<p class="vf-priority-state"><strong>'+esc(statusLabels[r.status] || 'Needs attention')+'</strong>'+action+'</p>'
+        +(last ? '<p>'+esc(last.reason)+(last.current?'':'<br>Inputs changed; this request needs another look.')+'</p>' : '');
       return '<section class="vf-priority-note" style="margin:10px 0;padding:12px;border-left:3px solid var(--accent-amber);font-size:12px;line-height:1.6">'
-        +(older ? '<details><summary>Original review request · before this correction</summary>'+original+'</details>'
+        +state+(settled ? '<details><summary>Earlier review request</summary>'+original+'</details>' : older ? '<details><summary>Original review request · before this correction</summary>'+original+'</details>'
           +'<p>Check any remaining questions in the original request.</p>' : original)
         +'<details><summary>Request reference and links</summary><p>Source '+esc(r.source_id)+' · '+sourceLocation(r)+'</p>'
-        +(r.mapping_id?'<p>Mapping: '+esc(r.mapping_id)+'</p>':'')+reference+'</details>'
+        +(r.mapping_id?'<p>Mapping: '+esc(r.mapping_id)+'</p>':'')+reference+'</details>'+trail
         +(ev.use_role==='structural_suitability'?'<p>Keep confirms the extraction. Changing a live mapping requires a separate reviewed change.</p>':'')+'</section>';
     }).join('');
   }
-  window.DashboardPriority = {matches, set, route, leaveFocus, openFromHash, controls, badge, card};
+  window.DashboardPriority = {matches, set, route, leaveFocus, openFromHash, controls, badge, card, filterSets, choose, backToQueue, visibleRequest, needsAttention, setView};
 })();
