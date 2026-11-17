@@ -208,7 +208,11 @@ def publish_reference_menu(site, reference, labels):
             (r'(<select id="dashboard-version"[^>]*>).*?</select>', lambda m: m[1] + menu + '</select>'),
             (r'<span id="dashboard-version-note">.*?</span>', '<span id="dashboard-version-note">Current methodology</span>'),
             (r'<a class="vb-live" href="[^"]*">[^<]*</a>', f'<a class="vb-live" href="{base}dashboard.html#review-queue">Review queue</a>'),
-            (r'<a class="review-entry" href="[^"]*">Review queue</a>', f'<a class="review-entry" href="{base}dashboard.html#review-queue">Review queue</a>'),
+            (r'<a class="review-entry" href="[^"]*">Review queue</a>'
+             r'(?:\s*<a class="help-entry github-entry"[^>]*>GitHub</a>)?',
+             f'<a class="review-entry" href="{base}dashboard.html#review-queue">Review queue</a> '
+             '<a class="help-entry github-entry" href="https://github.com/RuralScan/method" target="_blank" '
+             'rel="noopener" title="RuralScan methodology on GitHub (opens a new tab)">GitHub</a>'),
             (r'<noscript>.*?</noscript>', '<noscript>' + links + '</noscript>'),
         ]
         for pattern, replacement in substitutions:
