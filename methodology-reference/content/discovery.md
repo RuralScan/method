@@ -220,4 +220,4 @@ Replaying the frozen inputs reproduces the screening bundle. Re-querying a live 
 - Protocol: `methodology/search_protocol.md`; screening rubric: `methodology/T4_generation_method.md` §3.
 - Discovery instructions: `.agents/skills/source-command-discover-sources/SKILL.md` (discovery ruleset v1.8.1).
 - Narrative logs: `methodology/discovery_logs/`.
-- Related chapters: [[ch:evidence-principles]], [[ch:acquisition]], [[ch:rulesets-and-learning]], [[ch:reproduce]].
+- Related chapters: [[ch:evidence-principles]], [[ch:acquisition]], [[ch:reproduce]].

@@ -308,4 +308,4 @@ No check proves scientific plausibility. A correctly transcribed class can still
 - Lookups: `schema/lookups/variable_direction_sense.csv`, `crop_scope_policy.csv`, `comparator_policy.csv`, `m2b_variable_policy.csv`, `wocat_impact_map.csv`, `wocat_hazard_map.csv`.
 - Instructions: `.agents/skills/source-command-extract-evidence/SKILL.md` (ruleset v1.10.1), its defect catalogue, and the contracts in `.agents/skills/extraction_contracts/`.
 - Checks: `src/nbs_ruralscan/schema_tools/` (`validate_sources`, `check_numbers`, `check_quote`, `check_scope`, `check_picos`, `check_species`, `check_context`, `check_bands`, `check_direction`, `quarantine`).
-- Related chapters: [[ch:acquisition]], [[ch:review-and-quality]], [[ch:suitability-synthesis]], [[ch:effect-synthesis]], [[ch:rulesets-and-learning]].
+- Related chapters: [[ch:acquisition]], [[ch:review-and-quality]], [[ch:suitability-synthesis]], [[ch:effect-synthesis]].

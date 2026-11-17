@@ -1201,7 +1201,6 @@ def llms(descriptor, resources, tables, counts):
         "- [Data model: every table and field](data-model.html)",
         "- [Method](method.html)",
         "- [Evidence methods](evidence-methods.html)",
-        "- [Continue the evidence base with an AI system](ch-continue-with-ai.html)",
         "- [Practices and every compiled row](practices.html)",
         "- [Review queues and records](review.html)",
         "- [Editions and build checks](editions.html)",

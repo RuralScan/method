@@ -78,7 +78,7 @@ Every decision is logged with a reason code. The active codes are listed in the 
 
 [src: src/nbs_ruralscan/schema_tools/review.py §REASON_CODES] [src: .agents/skills/source-command-extract-evidence/references/defects.md §Common extraction defects]
 
-Older codes merged into these (row-stitching and table-garble into `table_error`; an earlier weight code into `unusable_value`) may still appear in historical logs. [src: src/nbs_ruralscan/schema_tools/review.py §REASON_CODES] The codes are not bookkeeping: each is routed to a specific fix in the retrospective after every sweep (see [[ch:rulesets-and-learning]]). [src: methodology/extraction_retrospective.md §QA/QC review feeds the loop (reason codes)]
+Older codes merged into these (row-stitching and table-garble into `table_error`; an earlier weight code into `unusable_value`) may still appear in historical logs. [src: src/nbs_ruralscan/schema_tools/review.py §REASON_CODES] The codes are not bookkeeping: each is routed to a specific fix in the retrospective after every sweep. [src: methodology/extraction_retrospective.md §QA/QC review feeds the loop (reason codes)]
 
 ## Several reviewers: consensus and conflict
 
@@ -203,4 +203,4 @@ Two corollaries follow. Effort counts (sources searched, units extracted, units 
 - Automatic quarantine: `src/nbs_ruralscan/schema_tools/quarantine.py`.
 - Numeric plausibility gate and reviewer checklist: `.agents/skills/extraction_contracts/T4_review_contract.md`.
 - Progress ledger: `src/nbs_ruralscan/schema_tools/ledger.py`; effect-table progress: `src/nbs_ruralscan/schema_tools/table_progress.py`.
-- Related chapters: [[ch:extraction]], [[ch:rulesets-and-learning]], [[ch:suitability-synthesis]], [[ch:effect-synthesis]].
+- Related chapters: [[ch:extraction]], [[ch:suitability-synthesis]], [[ch:effect-synthesis]].

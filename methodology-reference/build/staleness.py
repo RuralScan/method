@@ -123,7 +123,7 @@ def main():
             "RuralScan/evidence",
             "main",
             constant("EVIDENCE_OPERATING"),
-            "Re-read content/continue-with-ai.md and the review page against the changed guides, "
+            "Re-read the review page against the changed guides, "
             "then move EVIDENCE_OPERATING.",
         ),
         pin(

@@ -516,7 +516,7 @@ def build():
         f"<li><strong>Review</strong> {link('ch-review-and-quality.html', 'human decisions, soft-delete, plausibility')}</li>"
         f"<li><strong>Synthesise</strong> {link('ch-suitability-synthesis.html', 'site suitability')}, "
         f"{link('ch-effect-synthesis.html', 'hazard responses and scorecard effects')}, {link('ch-cost-profiles.html', 'indicative costs')}</li>"
-        f"<li><strong>Version</strong> {link('ch-rulesets-and-learning.html', 'rulesets and the learning loop')}</li></ol>"
+        "<li><strong>Version</strong> each search and finding records the version of the instructions it was produced under</li></ol>"
         + chapter_index(EVIDENCE_CH, 3)
         + f"<p>The result of applying these methods is counted in {link('evidence-base.html', 'the evidence base')} "
         f"and shown row by row under {link('practices.html', 'Practices')}.</p>"
@@ -735,6 +735,10 @@ def build():
                     "the Evidence base part and now follows a terrace slope rule."
                 ),
                 "The name is now “Methodology”. Module chapters are titled in one style.",
+                (
+                    "Two chapters on operating the evidence base (continuing the work with an AI system, and "
+                    "versioning the instructions) are no longer published, to shorten the text. They remain in the repository."
+                ),
             ],
         ),
         (
@@ -1144,8 +1148,7 @@ def build():
         "the hazard, suitability and scorecard tables. At the evidence revision this methodology was built against, the "
         "rating log held only the events copied from the producer repository. This methodology does not write decisions.</p>"
         f"<p>{link(EVIDENCE_LIVE + 'workflows/submissions/README.md', 'How to submit a finding vote or an extraction proposal')} · "
-        f"{link(EVIDENCE_LIVE + 'workflows/submissions/recipe-rows.md', 'How to review a rating or suggest row wording')} · "
-        f"{link('ch-continue-with-ai.html', 'Continue the evidence base with an AI system')}.</p>"
+        f"{link(EVIDENCE_LIVE + 'workflows/submissions/recipe-rows.md', 'How to review a rating or suggest row wording')}.</p>"
         '<h2 id="pins">Which revision is which</h2>'
         "<p>The live dashboard pins its analytical snapshot to a producer revision later than this methodology’s. Its review "
         "history is not pinned: it is read from the evidence repository’s current main branch when the page loads. Only the "
