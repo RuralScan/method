@@ -13,3 +13,13 @@ The menu groups Methodology under **Live**, the 10 November dashboard under **Su
 A push to `gh-pages` builds and deploys the Pages artifact. Methodology content is maintained on `main`; the workflow pins its source. Since Methodology is the default, missing reference output, a not-for-publication marker, a noindex page or an unexpected navigation structure stops publication. A failed build leaves the existing deployed site in place. The publication names check remains required.
 
 Checks: `python3 -m unittest discover -s tests -p 'test_*.py'` and `node --test tests/*.test.cjs`.
+
+## Connect a local PDF library
+
+In the review queue, open **PDF folder** beside the reviewer selector, then **Connect PDF folder**. Choose the synced SharePoint library or the local corpus cache. Subfolders are included. Opening a source preview finds its registered library path or source filename and displays the PDF at the cited page. Files remain on the device and are read only when opened; they are not submitted with reviews.
+
+Chrome and Edge can keep the directory handle in this site's IndexedDB storage. After a restart they may require **Allow folder access**, which reconnects the remembered folder without selecting files again. Use **Refresh folder** after downloading new PDFs, **Change folder** to choose another location, and **Disconnect** to forget the handle and clear local previews. Other browsers use a folder selection for the current visit and say when reconnection after reload is required. OneDrive files must be available to read; make them available offline if a preview fails.
+
+Optional setup hints are in `review/library-locations.json`, keyed by reviewer handle. `peetmate` has the confirmed synced library and corpus-cache paths. These path hints are public, as authorized, but are not browser permissions or proof of a reviewer's identity. A new device or browser still needs its own folder selection. Connections apply to this browser, independently of the selected reviewer. Only add someone else's machine path with their authorization.
+
+Matching uses the registered path where possible and refuses ambiguous duplicate filenames. A local filename match is not a verified quotation or scientific approval. Published preview provenance checks and all submission decisions remain unchanged. The public site cannot open an arbitrary absolute path from Git: the browser grants access through its folder chooser. See [Chrome's folder-permission documentation](https://developer.chrome.com/blog/persistent-permissions-for-the-file-system-access-api).

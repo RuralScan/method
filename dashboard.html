@@ -1012,7 +1012,7 @@
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.1.0">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.10.1">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.11.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
   #loading-container, #error-container {display:flex;align-items:center;gap:.65rem;padding:.6rem 0;color:var(--text-secondary);font-size:.9rem}
@@ -1602,6 +1602,7 @@
         <button id="review-submit-all" type="button">Submit all my decisions (<span id="review-batch-count">0</span>)</button><span id="review-batch-status" role="status"></span>
         <button class="shell-link" type="button" onclick="DashboardShell.openReviewHelp()">How to review</button>
       </div>
+    <div class="review-device-tools">
     <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-secondary); margin-right:10px;" title="Your reviewer identity — every QA decision is attributed to this handle">&#128100; Reviewer
       <select id="vf-reviewer" onchange="chooseVfReviewer(this)" style="font-size:12px; padding:4px 9px; border-radius:5px; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); font-weight:600;">
         <option value="">— pick reviewer —</option>
@@ -1613,6 +1614,8 @@
         <option value="__other__">Other…</option>
       </select>
     </label>
+      <div id="review-library-controls"></div>
+    </div>
       <div class="card-container">
         <h2 class="card-title" style="display:flex; align-items:center; gap:12px;">
           <span>5.1 Review queue</span>
@@ -6067,7 +6070,8 @@
   <p role="status" id="review-batch-message"></p>
   <button type="button" data-close>Close</button>
 </dialog>
-<script src="review/source-previews.js"></script>
+<script src="review/local-library.js?v=1"></script>
+<script src="review/source-previews.js?v=2"></script>
 <script src="review/batch-receipt.js"></script>
 <script src="review/submission.js"></script>
 </body>
