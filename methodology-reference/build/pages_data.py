@@ -39,6 +39,7 @@ from core import (
     code,
     esc,
     link,
+    live,
     page,
     pinned,
     pinned_csv,
@@ -52,6 +53,9 @@ from core import (
 
 CHECKS = []  # (name, passed, detail), read by the build
 TERRACE = "water_harvesting__terracing__annual_precipitation"
+# The plain worked example on the evidence base page: one slope finding, followed to its rule.
+SLOPE_ROW = "water_harvesting__terracing__slope"
+SLOPE_FINDING = "ev_wh_slope_wocatgl13_benchterraces"
 ROW_TABLE_FILES = {
     "T0": "T0_nbs_registry",
     "T3": "T3_nbs_hazard_farming",
@@ -488,6 +492,42 @@ def keys(schema):
     return " + ".join(code(k) for k in primary if k)
 
 
+def slope_example():
+    """One finding followed to its rule, in plain words."""
+    row = next(r for r in data.ROWS if r["id"] == SLOPE_ROW)
+    cited = row["raw"]["evidence_ids"]
+    finding = data.EV_BY_ID[SLOPE_FINDING]
+    if SLOPE_FINDING not in cited or not data.retained(finding):
+        raise SystemExit(
+            f"The worked example needs {SLOPE_FINDING} kept and cited by {SLOPE_ROW}."
+        )
+    limit = finding["relationship"]["abs_max"]
+    unit = {"percent": "%", "degrees": "°"}[finding["relationship"]["unit"]]
+    held = (data.readiness(row) or {}).get("calibration") == "Held"
+    decision = (
+        "Because the sources do not support one shared limit, reviewers have held the numerical score. The "
+        "evidence is kept by terrace design and no single cut-off is applied."
+        if held
+        else "The row page gives the function chosen for the score and who approved it."
+    )
+    return (
+        '<h2 id="walkthrough">Follow one rule back to its source</h2>'
+        "<p><strong>How steep can land be for terraces?</strong> A simple question, and a fair test of whether "
+        "a rule can be traced to what a source says.</p><ol>"
+        f"<li><strong>The finding.</strong> One source says forward-sloping bench terraces are built on slopes up to {limit}{unit}. "
+        f"{link(live('review-evidence=' + SLOPE_FINDING), 'See the finding beside its source passage')}, in the live dashboard.</li>"
+        f"<li><strong>The source.</strong> {link(source_file(finding['source_id']), 'Where it comes from')}, with every other finding taken from it.</li>"
+        "<li><strong>The family.</strong> Terraces are one family of water-harvesting sub-practices, grouped because the same "
+        f"conditions limit them. {link('practice-water_harvesting_conservation.html#fam-water_harvesting__terracing', 'The terracing family')}.</li>"
+        f"<li><strong>The rule.</strong> {link(row['file'], 'The slope rule for terracing')} pools this finding with "
+        f"{len(cited) - 1} others. They give different limits for different terrace designs, some in percent and some in degrees.</li>"
+        f"<li><strong>The decision.</strong> {decision} "
+        f"{link('ch-suitability-synthesis.html', 'How a held score is kept from becoming a rule')}.</li></ol>"
+        '<p class="basis">Step 1 opens the live dashboard, which reads current records and can show a later state than this edition. '
+        f"{link('review.html#pins', 'Which revision is which')}.</p>"
+    )
+
+
 def build():
     descriptor, tables, catalog, changed = load_package()
     resources = descriptor["resources"]
@@ -501,13 +541,13 @@ def build():
     )
     CHECKS.append(
         (
-            "The data package is built from the producer revision this reference uses",
+            "The data package is built from the producer revision this methodology uses",
             descriptor["producerRevision"] == PRODUCER,
             descriptor["producerRevision"][:12],
         )
     )
 
-    # Reconcile the package with the registers and rows this reference reads directly.
+    # Reconcile the package with the registers and rows this methodology reads directly.
     mine = {
         t: {r["id"] for r in data.ROWS if r["table"] == t} for t in ("T3", "T4", "T6")
     }
@@ -608,8 +648,9 @@ def build():
         f"row followed end to end. {link('data-guide.html', 'Field guide and joins')}.</p></div>"
         f'<div class="card"><h3>3. Query</h3><p>Worked questions in SQL, Python and R, each run against this edition. '
         f"{link('data-queries.html', 'Query the data')}.</p></div></div>"
-        '<h2 id="download">Download the edition tables</h2>'
-        "<p>The tables are published once, with the live dashboard, and this reference links to that copy. "
+        + slope_example()
+        + '<h2 id="download">Download the edition tables</h2>'
+        "<p>The tables are published once, with the live dashboard, and this methodology links to that copy. "
         "Each address includes the edition, so it keeps returning the same file after later editions appear.</p>"
         + downloads_table(resources, tables)
         + "<ul>"
@@ -836,11 +877,11 @@ def build():
             joins,
             caption="Every join declared in the package. Table names are written as the query recipes name them.",
         )
-        + '<p class="basis">Identifiers are the ones used in the registers and on the pages of this reference. '
+        + '<p class="basis">Identifiers are the ones used in the registers and on the pages of this methodology. '
         "A <code>record_id</code> opens a row page, an <code>evidence_id</code> is an anchor on its source page, and a "
         "<code>source_id</code> opens a source page.</p>"
         '<h2 id="read">Fields to read with care</h2>'
-        "<p>Five fields carry most of the meaning. The definitions are quoted from the package; the notes under them are this reference’s reading.</p>"
+        "<p>Five fields carry most of the meaning. The definitions are quoted from the package; the notes under them are this methodology’s reading.</p>"
         + table(
             [
                 "Field",
@@ -1021,7 +1062,7 @@ def build():
 
     # ------------------------------------------------------------ machine-readable files
     assets = {
-        "name": "Rural NbS Scan methodology reference: downloadable data",
+        "name": "Rural NbS Scan methodology: downloadable data",
         "release": RELEASE,
         "producerRevision": PRODUCER,
         "accessRights": descriptor["accessRights"],
@@ -1091,7 +1132,7 @@ def _definition(by_name, resource, field):
 def llms(descriptor, resources, tables, counts):
     """Plain-text guide for language-model agents, in the llms.txt convention."""
     lines = [
-        "# Rural NbS Scan methodology reference",
+        "# Rural NbS Scan methodology",
         "",
         (
             "> A scoping method for locating where nature-based solutions could be invested in across rural landscapes, "
@@ -1160,7 +1201,6 @@ def llms(descriptor, resources, tables, counts):
         "- [Data model: every table and field](data-model.html)",
         "- [Method](method.html)",
         "- [Evidence methods](evidence-methods.html)",
-        "- [Continue the evidence base with an AI system](ch-continue-with-ai.html)",
         "- [Practices and every compiled row](practices.html)",
         "- [Review queues and records](review.html)",
         "- [Editions and build checks](editions.html)",

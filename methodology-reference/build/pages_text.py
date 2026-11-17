@@ -29,6 +29,8 @@ from core import (
     LIVE_SNAPSHOT,
     METHOD,
     METHOD_REV,
+    NAV,
+    NAV_TIP,
     PIN,
     PRACTICE_IDS,
     PRACTICE_TEXT,
@@ -40,6 +42,7 @@ from core import (
     RUNTIME,
     RUNTIME_URL,
     SIDE,
+    SITE_NAME,
     SITE_REV,
     TABLE_NAMES,
     VISUAL_URL,
@@ -50,12 +53,10 @@ from core import (
     live,
     page,
     practice_name,
-    source_file,
     table,
     words,
 )
 from core import family_name as core_family_name
-from pages_evidence import practices_of
 
 MODULES = [
     ("M0", "Setup and scope", "m0-setup", ["T0", "T1", "T7"]),
@@ -111,7 +112,7 @@ def live_pins():
         ["What", "Revision", "Committed", "Used for"],
         [
             [
-                "This reference",
+                "This methodology",
                 link(ciat + PRODUCER, code(PRODUCER[:12])),
                 _committed(PRODUCER),
                 "Every row, finding, source and count on these pages",
@@ -169,7 +170,7 @@ def live_pins():
             ],
         ],
         caption="Three producer revisions and the evidence repository’s current records are in play. "
-        "This reference does not combine counts from different sources.",
+        "This methodology does not combine counts from different sources.",
         ident="pins",
     )
 
@@ -336,193 +337,126 @@ def chapter_index(slugs, number):
 
 # The method told as the questions a task team asks, in order. Each entry: question, plain answer,
 # what the step produces, the chapters behind it, and the visual-methodology screen where one exists.
-QUESTIONS = [
+EVIDENCE_STEPS = [
     (
-        "Which landscape, and which practices?",
-        (
-            "A task team sets the area it is scoping and chooses the practices to compare. Each practice is "
-            "split into families of sub-practices that are limited by the same thing, because a bench terrace "
-            "and a rooftop tank are not sited by the same rules."
-        ),
-        "An area of interest and a list of practices and families.",
-        ["m0-setup"],
-        "01-setup.html",
+        "Search",
+        "Research papers, practitioner databases and existing tools are searched.",
+        "Every search is recorded with its terms, limits and counts, so it can be repeated.",
+        "ch-discovery.html",
+    ),
+    (
+        "Collect",
+        "Each source is obtained, its identity confirmed, and a copy filed.",
+        "A source that cannot be obtained and checked is left out.",
+        "ch-acquisition.html",
+    ),
+    (
+        "Extract",
+        "An AI system pulls out each finding with the exact quote and where it sits.",
+        "A finding is one claim from one source. Nothing is typed from memory or a summary.",
+        "ch-extraction.html",
+    ),
+    (
+        "Check",
+        "Automated checks run first. Then a person keeps, drops or queries what is flagged.",
+        "Dropped findings are kept for audit and never deleted.",
+        "ch-review-and-quality.html",
+    ),
+    (
+        "Compile",
+        "Findings on the same question are pooled by a fixed rule into one row, with a confidence level.",
+        "Confidence comes from how much evidence there is and how far it agrees.",
+        "evidence-methods.html",
+    ),
+]
+RULE_KINDS = [
+    (
+        "T4",
+        "Where a practice fits",
+        "The site conditions each family of sub-practices needs.",
+    ),
+    (
+        "T3",
+        "How it responds to climate hazards",
+        "What the practice does for livelihoods under a hazard, and what threatens the practice itself.",
+    ),
+    (
+        "T6",
+        "What it delivers",
+        "The effect of the practice on each priority, with a confidence level.",
+    ),
+    (
+        "T6E",
+        "What it costs",
+        "Indicative costs from the literature. Not a cost-benefit analysis.",
+    ),
+]
+STAGE_TEXT = [
+    (
+        "Which area, and which practices?",
+        "The team sets the area it is scoping and the practices to compare.",
+    ),
+    (
+        "What is each practice, and what does the evidence say?",
+        "Each practice and its families of sub-practices, with the evidence held for each.",
     ),
     (
         "Where could each practice work?",
-        (
-            "For each family, published evidence says which site conditions matter: climate, terrain, soils and "
-            "the farming already there. Places that meet them form the opportunity space. Legal exclusions such as "
-            "protected areas are applied as masks supplied for each country."
-        ),
-        "An opportunity space for each family.",
-        ["m1-suitability"],
-        "03-opportunity.html",
+        "Places that meet the site conditions form the opportunity space. Legal exclusions are applied as masks.",
     ),
     (
-        "What could threaten the investment itself?",
-        (
-            "A separate screen asks whether climate hazards such as flood, drought or fire could damage the "
-            "practice once it is in place, and whether access, tenure or conflict could block delivery. It works "
-            "as a filter or a flag. It is never added into a score."
-        ),
-        "A project-risk filter on the opportunity space.",
-        ["m2b-project-risk"],
-        "04-risk.html",
-    ),
-    (
-        "Who and what is at risk there?",
-        (
-            "Climate hazard is combined with the people and production exposed to it, giving risk to rural "
-            "livelihoods. The opportunity space is also described by what a task team cares about: poverty, food "
-            "insecurity, production gaps, biodiversity and equity."
-        ),
-        "Need layers that describe the opportunity space.",
-        ["m2-climate-risk", "m3-characterisation"],
-        None,
+        "What could threaten the investment?",
+        "Hazards that could damage the practice, and barriers to delivery. Used as a filter or a flag, never added into a score.",
     ),
     (
         "Where do need and opportunity coincide?",
-        (
-            "The need layers are weighted and combined to show priority hotspots inside the opportunity space. "
-            "Variables that say the same thing are grouped first, so nothing is counted twice, and the grouping "
-            "and the weights are shown."
-        ),
-        "Priority hotspots.",
-        ["m4-hotspots"],
-        "05-hotspots.html",
+        "Climate risk to livelihoods and the team's priorities are weighted and combined inside the opportunity space.",
     ),
     (
-        "What is each practice likely to deliver, and how sure are we?",
-        (
-            "A scorecard rates each practice against each hazard and each priority. Every rating pools all the "
-            "findings for that question and states a strength, a confidence level and where the evidence comes "
-            "from. Indicative costs sit beside it."
-        ),
-        "A scorecard and an indicative cost profile per practice.",
-        ["m5-scorecard"],
-        "06-comparison.html",
+        "What would each practice deliver, and how sure are we?",
+        "Practices side by side: effect on each hazard and priority, confidence, and indicative cost.",
     ),
     (
-        "What happens next?",
-        (
-            "The scan flags where to look. It ends by listing what a feasibility study must settle locally: "
-            "design, costs, national data and safeguards."
-        ),
-        "A hand-off to feasibility work.",
-        ["m6-handoff"],
-        "07-next.html",
+        "What must feasibility work settle?",
+        "Design, costs, national data and safeguards that only local work can settle.",
     ),
 ]
 
 
-def question_cards():
-    """The method as seven questions, each with its plain answer and its technical chapter."""
-    items = []
-    for i, (question, answer, output, slugs, screen) in enumerate(QUESTIONS, 1):
-        links = [link(chapter_file(s), esc(TITLES.get(s, s))) for s in slugs]
-        if screen:
-            links.append(link(VISUAL_URL + screen, "See the screen"))
-        items.append(
-            f'<li class="qcard"><span class="qn" aria-hidden="true">{i}</span><h3>{esc(question)}</h3>'
-            f"<p>{esc(answer)}</p>"
-            f'<p class="qout"><b>You get</b> {esc(output)}</p>'
-            f'<p class="qlinks"><span>Technical detail:</span> {" · ".join(links)}</p></li>'
-        )
-    return f'<ol class="qgrid">{"".join(items)}</ol>'
-
-
-def practice_facts():
-    """Counts per practice, with the same definitions as the counts page."""
-    kept = [u for u in data.EV if data.retained(u)]
-    facts = []
-    for p in PRACTICE_IDS:
-        facts.append(
-            {
-                "practice": p,
-                "families": len(
-                    {f["suitability_family_id"] for f in data.FAM if f["nbs_id"] == p}
-                ),
-                "searches": sum(1 for x in data.SRCH if x.get("nbs_id") == p),
-                "sources": sum(1 for x in data.SRC if p in practices_of(x)),
-                "findings": sum(1 for u in kept if u.get("nbs_id") == p),
-                "rows": {t: data.ROW_COUNTS[(p, t)] for t in ROW_TABLES},
-            }
-        )
-    return facts
-
-
-def practice_cards():
-    """One card per practice: what it is, and how much evidence the edition holds for it."""
-    facts = practice_facts()
-    top = max(f["findings"] for f in facts)
-    cards = []
-    for f in facts:
-        p = f["practice"]
-        name = esc(practice_name(p))
-        share = round(100 * f["findings"] / top)
-        rows = "".join(
-            f"<li>{badge(t)} {esc(TABLE_NAMES[t])} "
-            + (f"<b>{n}</b>" if n else '<b class="none">none yet</b>')
-            + "</li>"
-            for t, n in f["rows"].items()
-        )
-        cards.append(
-            f'<article class="pcard"><h3>{link(f"practice-{p}.html", name)}</h3>'
-            f'<p class="pdesc">{esc(PRACTICE_TEXT[p][0])}</p>'
-            f'<p class="pmain"><b>{f["findings"]:,}</b> findings from <b>{f["sources"]:,}</b> sources</p>'
-            f'<div class="meter" role="img" aria-label="{f["findings"]:,} findings, {share} percent of the '
-            f'largest practice" title="{f["findings"]:,} findings retained"><span style="width:{share}%"></span></div>'
-            f'<p class="pmeta">{f["families"]} {"family" if f["families"] == 1 else "families"} · '
-            f"{f['searches']} recorded searches · {sum(f['rows'].values())} compiled rows</p>"
-            f'<ul class="prows">{rows}</ul></article>'
-        )
-    return f'<div class="pgrid">{"".join(cards)}</div>'
-
-
-def evidence_chain(kept):
-    """How a rating is backed, as five steps with the count each step holds."""
-    dropped = len(data.EV) - len(kept)
-    steps = [
-        (
-            f"{len(data.SRCH):,}",
-            "searches recorded",
-            "Every search is logged with its terms, limits and counts, so it can be repeated.",
-            "ch-discovery.html",
-        ),
-        (
-            f"{len(data.SRC):,}",
-            "sources registered",
-            "Each source that passes screening is registered with its citation, type and credibility tier.",
-            "ch-acquisition.html",
-        ),
-        (
-            f"{len(data.EV):,}",
-            "findings extracted",
-            "A finding is one claim from one source, stored with the exact quote and where it sits.",
-            "ch-extraction.html",
-        ),
-        (
-            f"{dropped:,}",
-            "findings set aside",
-            (
-                "Automated checks and reviewers drop findings that are off scope or wrong. They are kept for "
-                "audit and never deleted."
-            ),
-            "ch-review-and-quality.html",
-        ),
-        (
-            f"{len(data.ROWS):,}",
-            "rows compiled",
-            "Findings on the same question are pooled by a fixed rule into one row with a stated confidence.",
-            "ch-effect-synthesis.html",
-        ),
-    ]
-    items = "".join(
-        f'<li><a href="{h}"><b>{n}</b><span class="clabel">{esc(label)}</span></a><p>{esc(text_)}</p></li>'
-        for n, label, text_, h in steps
+def method_map():
+    """The method in one figure: how evidence becomes rules, then the seven stages that apply them."""
+    evidence = "".join(
+        f'<li title="{esc(tip)}"><b>{link(href, esc(name))}</b><span>{esc(text_)}</span></li>'
+        for name, text_, tip, href in EVIDENCE_STEPS
     )
-    return f'<ol class="chain">{items}</ol>'
+    rules = "".join(
+        f'<li><a href="table-{t}.html" title="{esc(tip)}">{badge(t)} {esc(label)}</a></li>'
+        for t, label, tip in RULE_KINDS
+    )
+    stages = "".join(
+        f'<li title="{esc(tip)}"><span class="mnum">Stage {i}</span><b>{link(chapter_file(slug_), esc(name))}</b>'
+        f"<span>{esc(question)}</span>"
+        f'<span class="mlinks">{link(VISUAL_URL + screen, "See the screen")}</span></li>'
+        for i, ((screen, name, slug_), (question, tip)) in enumerate(
+            zip(STAGES, STAGE_TEXT, strict=True), 1
+        )
+    )
+    return (
+        '<figure class="mmap" id="method-map">'
+        '<div class="mband"><div class="mhead"><span class="mtag" aria-hidden="true">A</span>'
+        '<p class="mtitle">Build the evidence base</p>'
+        "<p>Done once for each practice. An AI system does the reading. People check its work and decide.</p></div>"
+        f'<ol class="msteps">{evidence}</ol></div>'
+        f'<div class="mlink">which gives rules, written as tables<ul class="mrules">{rules}</ul></div>'
+        '<div class="mband"><div class="mhead"><span class="mtag" aria-hidden="true">B</span>'
+        '<p class="mtitle">Apply the rules to a landscape</p>'
+        "<p>Seven stages a project team walks through, using public spatial data.</p></div>"
+        f'<ol class="msteps seven">{stages}</ol></div>'
+        '<div class="mlink out">which gives<p>A shortlist of places and practices, with the evidence behind '
+        "each, handed to feasibility work.</p></div>"
+        "<figcaption>The method in one figure. Select a step to read its chapter. Hover over a box for one more "
+        "line of detail. “See the screen” opens that stage in the visual methodology.</figcaption></figure>"
+    )
 
 
 def build():
@@ -543,7 +477,7 @@ def build():
     kept = [u for u in data.EV if data.retained(u)]
     fam_registered = sorted({f["suitability_family_id"] for f in data.FAM})
     effect_rows = [r for r in data.ROWS if r["table"] != "T4"]
-    total_words = sum(WORDS.values())
+    sum(WORDS.values())
 
     # ------------------------------------------------------------ method index
     body = (
@@ -582,7 +516,7 @@ def build():
         f"<li><strong>Review</strong> {link('ch-review-and-quality.html', 'human decisions, soft-delete, plausibility')}</li>"
         f"<li><strong>Synthesise</strong> {link('ch-suitability-synthesis.html', 'site suitability')}, "
         f"{link('ch-effect-synthesis.html', 'hazard responses and scorecard effects')}, {link('ch-cost-profiles.html', 'indicative costs')}</li>"
-        f"<li><strong>Version</strong> {link('ch-rulesets-and-learning.html', 'rulesets and the learning loop')}</li></ol>"
+        "<li><strong>Version</strong> each search and finding records the version of the instructions it was produced under</li></ol>"
         + chapter_index(EVIDENCE_CH, 3)
         + f"<p>The result of applying these methods is counted in {link('evidence-base.html', 'the evidence base')} "
         f"and shown row by row under {link('practices.html', 'Practices')}.</p>"
@@ -596,220 +530,170 @@ def build():
     )
 
     # ------------------------------------------------------------ overview
-    terrace = next(r for r in data.ROWS if r["id"] == TERRACE)
-    terrace_finding = terrace["raw"]["evidence_ids"][0]
-    stats = [
-        (
-            f"{len(METHOD_CH) + len(EVIDENCE_CH) + len(PRACTICE_IDS)}",
-            "method chapters",
-            "method.html",
-        ),
-        (f"{total_words:,}", "words of method text", "method.html"),
-        (f"{len(MODULES)}", "modules specified", "method.html"),
-        ("20", "tables defined", "data-model.html"),
-        (f"{len(data.VONT)}", "variables harmonised", "variables.html"),
-        (f"{len(data.T1)}", "datasets registered", "datasets.html"),
-        (f"{len(PRACTICE_IDS)}", "practices", "practices.html"),
-        (f"{len(fam_registered)}", "suitability families", "practices.html"),
-        (f"{len(data.SRCH)}", "recorded searches", "searches.html"),
-        (f"{len(data.SRC)}", "sources registered", "sources.html"),
-        (f"{len(kept):,}", "findings retained", "evidence-counts.html"),
-        (f"{len(data.ROWS)}", "recipe rows", "practices.html"),
-    ]
     overview_lead = (
-        "The Rural NbS Scan is a method for scoping nature-based solutions in rural, "
-        "agricultural and forestry landscapes. It shows where each practice could fit, what that area "
-        "intersects, where need and opportunity coincide, and how strong the evidence is for what the "
-        "practice delivers. It flags where to look. Local feasibility assessment validates."
+        "Where in a rural landscape could nature-based solutions work, what would they deliver there, and "
+        "how strong is the evidence? The Rural NbS Scan is a method for answering those questions early, "
+        "before detailed studies are commissioned."
     )
-    headline = [
-        (f"{len(PRACTICE_IDS)}", "practices covered", "#practices"),
-        (f"{len(fam_registered)}", "families of sub-practices", "practices.html"),
-        (f"{len(data.SRC):,}", "sources registered", "sources.html"),
-        (f"{len(kept):,}", "findings retained", "evidence-counts.html"),
-        (f"{len(data.ROWS)}", "rows compiled", "practices.html"),
+    visual = VISUAL_URL + "index.html"
+    none_yet = [
+        practice_name(p) for p in PRACTICE_IDS if data.ROW_COUNTS[(p, "T4")] == 0
     ]
     body = (
-        '<div class="hero"><div class="stats big">'
+        '<p class="routes"><a class="go" href="#how">How the method works</a>'
+        f'<a href="{visual}">Open the visual methodology</a>'
+        '<a href="practices.html">Practices and their evidence</a>'
+        '<a href="method.html">Technical specification</a></p>'
+        '<h2 id="problem">The problem</h2>'
+        "<p>Nature-based solutions are practices that work with natural processes to protect land, water and "
+        "livelihoods: growing trees on farms, harvesting rainwater, restoring forests, wetlands, riverbanks "
+        "and mangroves.</p>"
+        "<p>A team preparing a rural investment that wants to use them faces a scoping question first. Across "
+        "a country or a large landscape, where is each practice worth a closer look, and what is it likely to "
+        "achieve there? Answering it means bringing together three things that rarely sit in one place:</p><ul>"
+        "<li>what research and field experience say about where a practice works and what it delivers;</li>"
+        "<li>maps of the conditions that matter, such as rainfall, slope, soils and current land use;</li>"
+        "<li>the priorities of the investment, such as poverty, food security, climate risk and biodiversity.</li></ul>"
+        "<p><strong>The bottleneck is the first of these.</strong> The evidence is spread across thousands of "
+        "studies, practitioner databases and earlier tools. They report different measures, in different units, "
+        "for different places. Turning that into rules that can be put on a map takes specialist time, and it "
+        "has to be done again for each practice. Early scoping therefore tends to rest on expert judgement "
+        "applied differently each time, or on tools whose thresholds cannot be traced to a source.</p>"
+        '<h2 id="answer">What the method does about it</h2>'
+        "<p>The method removes that bottleneck in two moves.</p><ol>"
+        "<li><strong>It does the evidence work once, in the open.</strong> For each practice, sources are "
+        "searched, read and broken into individual findings, each stored with the exact quote and the page it "
+        "came from. An AI system does the reading. Automated checks and human reviewers decide what is kept. "
+        "The findings are then pooled into rules: where the practice fits, how it responds to climate hazards, "
+        "what it delivers and what it costs.</li>"
+        "<li><strong>It applies those rules in a fixed order.</strong> Seven stages take a team from choosing "
+        "an area to a shortlist of places and practices, using public spatial data. Each stage answers one "
+        "question, and each result can be followed back to the rule and the evidence behind it.</li></ol>"
+        "<p>What this makes possible:</p><ul>"
+        "<li><strong>A consistent first screen.</strong> Practices and places are compared on the same basis.</li>"
+        "<li><strong>Better-aimed feasibility work.</strong> Detailed studies go where they are most likely to pay off.</li>"
+        "<li><strong>Visible gaps.</strong> Where evidence is thin, comes only from other regions, or disagrees, the result says so.</li>"
+        "<li><strong>Reuse.</strong> Adding a practice or updating the evidence changes the rules, not the software.</li></ul>"
+        '<p class="callout">The scan is a scoping method. It flags where to look. It does not show that a '
+        "practice will succeed on a given site, and local feasibility assessment is still needed before any "
+        "investment decision.</p>"
+        '<h2 id="audience">Who it is for</h2>'
+        '<div class="grid2 fit"><div class="card yes"><h3>It is for</h3><ul>'
+        "<li><strong>Teams scoping a rural investment</strong> and their government counterparts, early in "
+        "project preparation: to shortlist landscapes and practices and to brief feasibility work.</li>"
+        "<li><strong>Technical reviewers</strong> who need to check where a rule or a rating came from.</li>"
+        "<li><strong>Analysts</strong> who run the scan for a country, or build software that does.</li></ul></div>"
+        '<div class="card no"><h3>It is not for</h3><ul>'
+        "<li>Designing a site, sizing a structure or choosing species.</li>"
+        "<li>Cost-benefit analysis, or detailed modelling of ecosystem services.</li>"
+        "<li>Replacing national data, local knowledge or consultation. Where national data should be used, the scan says so.</li></ul></div></div>"
+        '<h2 id="how">How the method works</h2>'
+        "<p>The method has two halves. The first builds the evidence base and turns it into rules. The second "
+        "applies those rules to a landscape. The figure shows both, in order.</p>"
+        + method_map()
+        + "<p>In the lower row, each stage narrows the question for the next. Setup fixes the area and the "
+        "practices. Exploring the practices shows what each one is and what the evidence says about it. The "
+        "opportunity space shows where each could work. The project-risk screen removes or flags places where "
+        "the investment itself would be exposed. Priority hotspots show where need is greatest inside what "
+        "remains. The comparison sets the practices side by side on what they deliver. Next steps list what "
+        "feasibility work must settle.</p>"
+        '<p class="basis">The technical chapters call the analysis steps modules (M0 to M6) and number the '
+        f"rule tables (T0 to T7). {link('method.html', 'Method')} explains each module. "
+        f"{link('data-model.html', 'Data model')} defines each table.</p>"
+        '<h2 id="tool">See it as a working tool</h2>'
+        '<div class="card tool"><p>The <strong>visual methodology</strong> shows the same seven stages as '
+        "screens: an interactive mock-up of how the method could run as a geospatial prioritisation platform, "
+        "with the maps, controls and outputs of each stage.</p>"
+        f'<p class="routes"><a class="go" href="{visual}">Open the visual methodology</a>'
+        f'<a href="{chapter_file("scoping-walkthrough")}">Read the stage-by-stage guide</a></p>'
+        '<p class="basis">Every map and number on its screens is example data, not a result. Running the '
+        "method for a country is a separate pilot.</p></div>"
+        '<h2 id="origins">How the method was built</h2><ul>'
+        "<li><strong>It starts from what exists.</strong> A stocktake of published spatial-suitability studies "
+        "and tools was the starting set of sources. The scoring and weighting techniques are established ones, "
+        "inherited from an earlier water-harvesting method.</li>"
+        "<li><strong>Evidence comes first.</strong> No threshold or rating goes from a document to a rule in "
+        "one step. Each passes through a finding that carries its quote.</li>"
+        "<li><strong>Sub-practices are grouped by what limits them.</strong> A bench terrace and a sand dam are "
+        "not sited by the same rules, so each practice is split into families that share a limiting factor.</li>"
+        "<li><strong>Two kinds of risk are kept apart.</strong> Risk to rural livelihoods measures need. Risk "
+        "to the investment is a filter. They are never added together.</li>"
+        "<li><strong>Rules are written as tables.</strong> People and software read the same thing, and a rule "
+        "can change without rewriting software. A few synthesis constants remain in code and are stated in the chapters.</li></ul>"
+        f"<p>{link('ch-scope-and-framework.html', 'Scope and framework')} sets these principles out in full.</p>"
+        '<h2 id="coverage">What it covers today</h2>'
+        f"<p>This edition holds evidence for {len(PRACTICE_IDS)} practices, split into {len(fam_registered)} "
+        'families of sub-practices.</p><ul class="plist">'
         + "".join(
-            f'<a href="{h}"><b>{n}</b><span>{esc(label)}</span></a>'
-            for n, label, h in headline
+            f"<li>{link(f'practice-{p}.html', esc(practice_name(p)))}. {esc(PRACTICE_TEXT[p][0])}</li>"
+            for p in PRACTICE_IDS
         )
-        + '</div><p class="routes"><a class="go" href="#story">Read the method as a story</a>'
-        '<a href="#practices">See the practices and their evidence</a>'
-        '<a href="method.html">Go to the technical specification</a></p>'
-        "<p>This reference is written for two readers. The sections on this page tell the method in plain "
-        "words. Behind every sentence sits the technical version: the modules and their formulas, the tables "
-        "that hold every rule, the evidence methods, and every compiled row with the findings and sources "
-        "behind it, in enough detail for an analyst to audit a result or re-implement a step.</p></div>"
-        '<h2 id="practices">Practices covered, and how much evidence each has</h2>'
-        f"<p>This draft edition holds evidence for {len(PRACTICE_IDS)} nature-based practices. For each one the "
-        "team searched the literature and practitioner databases, read the sources, extracted findings with "
-        "their quotes, and compiled them into rows: where the practice fits, how it responds to hazards, what "
-        "it delivers, and what it costs.</p>"
-        + practice_cards()
-        + '<p class="basis">Bars compare findings retained across practices. Counts show coverage and effort, '
-        "not strength of evidence: a row built on many findings can still carry low confidence, and each row "
-        "states its own. A source that serves two practices is counted under both. "
-        f"{link('evidence-counts.html#practice', 'The same counts as a table, with definitions')}.</p>"
-        '<h2 id="story">The method in seven questions</h2>'
-        "<p>The scan answers the questions a task team asks when deciding where a practice is worth a closer "
-        "look. It works in a fixed order, and each step can be inspected.</p>"
-        + question_cards()
-        + '<p class="basis">The same seven steps are shown as screens in the '
-        f"{link(VISUAL_URL + 'index.html', 'visual methodology')}, a mock-up of what a working tool could look "
-        "like. Its numbers and maps are example data, not results.</p>"
-        '<h2 id="chain">How every rating is backed</h2>'
-        "<p>No threshold or rating is taken from a document in one step. Each one can be followed back from "
-        "the compiled row, to the findings, to the quoted passage in the source.</p>"
-        + evidence_chain(kept)
-        + '<p class="basis">These are different units, not a funnel: one source yields many findings and feeds '
-        f"several rows. {link('evidence-methods.html', 'Evidence methods in full')} · "
-        f"{link('evidence-base.html', 'Download and query the data')}.</p>"
-        + '<h2 id="status">What is established in this edition</h2>'
-        + table(
-            ["Component", "State in this edition"],
-            [
-                [
-                    "Method specification",
-                    f"Seven modules and the project-risk addendum are specified in {len(METHOD_CH)} chapters, with formulas and limits. Each chapter states what is implemented and what a country application must still supply.",
-                ],
-                [
-                    "Evidence pipeline",
-                    f"{len(data.SRCH)} recorded searches, {len(data.SRC)} registered sources, {len(data.EV):,} findings of which {len(kept):,} are retained and {len(data.EV) - len(kept):,} were dropped (by a reviewer or by the automated off-scope quarantine) and kept for audit.",
-                ],
-                [
-                    f"{TABLE_NAMES['T4']}",
-                    f"{s['total']} mappings: {s['held']} with calibration held, {s['not_recorded']} with no calibration recorded, {s['approved']} approved. "
-                    f"{s['selected']} have a function selected for a named target or default design. {s['validated']} are execution-ready (published as “spatially validated”). These categories overlap. "
-                    f"By role: {', '.join(f'{v} {k.lower()}' for k, v in s['roles'].most_common())}. "
-                    + ", ".join(
-                        practice_name(p)
-                        for p in PRACTICE_IDS
-                        if data.ROW_COUNTS[(p, "T4")] == 0
-                    )
-                    + " have none compiled.",
-                ],
-                [
-                    "Effect rows",
-                    f"{data.TABLE_TOTALS['T3']} hazard responses, {data.TABLE_TOTALS['T6']} scorecard effects and {data.TABLE_TOTALS['T6E']} indicative economic profiles, generated by synthesis, each with two-axis confidence and a transfer class.",
-                ],
-                [
-                    "Country application",
-                    "Maintained separately as a pilot with its own pinned release. Maps and country results are not part of this reference.",
-                ],
-            ],
-            caption="State by component. Draft edition, candidate and not released.",
+        + f"</ul><p>{link('practices.html', 'How much evidence each practice has, and every compiled rule')}.</p>"
+        '<h2 id="status">What is settled, and what is not</h2><ul>'
+        "<li><strong>Written down.</strong> The full method: seven analysis steps and the project-risk screen, "
+        "each with its formulas and limits.</li>"
+        f"<li><strong>Compiled.</strong> Evidence for all {len(PRACTICE_IDS)} practices: {len(data.SRC):,} sources, "
+        f"{len(kept):,} findings kept and {len(data.ROWS):,} compiled rows. These counts show coverage and "
+        "effort, not strength of evidence. Each rating states its own confidence.</li>"
+        f"<li><strong>Still under review.</strong> Of {s['total']} suitability rules, "
+        + (f"{s['approved']} have" if s["approved"] else "none yet has")
+        + f" an approved numerical score: {s['held']} are held until reviewers agree one, and {s['not_recorded']} "
+        "have no decision recorded. "
+        + (
+            f"{', '.join(none_yet)} have no suitability rules compiled yet. "
+            if none_yet
+            else ""
         )
-        + f"<p>{link('status.html', 'Full status tables')} · {link('editions.html', 'Edition identifiers')}</p>"
-        '<h2 id="walkthrough">Try it: one finding, end to end</h2>'
-        "<p><strong>Can annual rainfall alone set a bench-terrace suitability score?</strong> One source documents a use range "
-        "for forward-sloping benches. The finding is retained as extracted; its review is not yet recorded in the finding review log. No response curve is supported, so the numerical "
-        "calibration is held and no score is assigned. Approving a finding confirms the extraction; it does not approve a score.</p><ol>"
-        f"<li>{link(live('review-evidence=' + terrace_finding), 'The rainfall finding as reviewers see it')}, in the live dashboard: "
-        "the extracted values, the quoted passage and page, and its review status.</li>"
-        f"<li>{link(source_file(data.EV_BY_ID[terrace_finding]['source_id']), 'The source')} and where in it the finding sits.</li>"
-        f"<li>{link('practice-water_harvesting_conservation.html#fam-water_harvesting__terracing', 'The terracing family')} and its mappings.</li>"
-        f"<li>{link(terrace['file'], 'The annual precipitation row')}: role, status, why the calibration is held.</li>"
-        f"<li>{link('ch-suitability-synthesis.html', 'Suitability synthesis')}: the rule that keeps a held calibration from becoming a score.</li></ol>"
-        '<p class="basis">Step 1 opens the live dashboard. Its review queue reads the current records of the evidence repository '
-        "each time the page loads, so it can show a later state than this reference. "
-        f"{link('review.html#pins', 'Which revision is which')}.</p>"
-        '<h2 id="review">Review queues</h2>'
-        "<p>At this site revision, finding reviews are submitted from the live dashboard as public issues in the evidence "
-        "repository and are recorded there once applied. The producer repository keeps the earlier records. Choose a reviewer "
-        "in the live dashboard to filter that reviewer’s history under “My reviewed”; a submission is credited to the GitHub "
-        "account that creates it.</p>"
+        + f"The other tables hold {data.TABLE_TOTALS['T3']} hazard responses, {data.TABLE_TOTALS['T6']} scorecard "
+        f"effects and {data.TABLE_TOTALS['T6E']} indicative cost profiles.</li>"
+        "<li><strong>Not in this edition.</strong> Maps and country results. A country application is run "
+        "separately as a pilot.</li></ul>"
+        "<p>Review happens in the live dashboard. Each finding is shown beside the passage it was taken from, "
+        "and a reviewer keeps it, drops it or raises a query.</p>"
         + review_queues()
-        + f"<p>{link('review.html', 'How finding reviews, archived finding reviews and rating decisions are kept apart')}.</p>"
-        '<h2 id="contents">What this reference contains</h2><div class="stats">'
-        + "".join(
-            f'<a href="{h}"><b>{n}</b><span>{esc(label)}</span></a>'
-            for n, label, h in stats
-        )
-        + '</div><p class="basis">Counts are taken from the registers and recipe tables at one pinned revision '
-        f"({code(PRODUCER[:8])}). They describe coverage and effort, not evidence strength. "
-        f"{link('evidence-counts.html', 'Definitions of each count')}. "
-        f"{link('evidence-base.html', 'Download and query the tables')}.</p>"
-        '<h2 id="method">The method in one figure</h2>'
-        f"<figure>{flow_figure()}<figcaption>Modules M0 to M6 and the M2b addendum. Risk to livelihoods (M2) is a need layer. "
-        "Risk to the investment (M2b) is a filter. The two are never summed.</figcaption></figure>"
-        '<h2 id="stages">The method as seven stages</h2>'
-        + stages_block()
-        + '<h2 id="parts">Parts of the reference</h2>'
+        + f"<p>{link('status.html', 'Full status tables')} · {link('review.html', 'How review records are kept')}</p>"
+        '<h2 id="parts">Where to find the detail</h2>'
         + table(
-            ["Part", "What it holds", "Start here if you want to"],
+            ["Part", "What you will find"],
             [
-                [
-                    link("method.html", "2 Method"),
-                    f"{len(METHOD_CH)} chapters: scope, a stage-by-stage walkthrough, the seven modules and the project-risk addendum, farming systems and data, implementation requirements.",
-                    "understand or re-implement the analysis",
-                ],
-                [
-                    link("evidence-methods.html", "3 Evidence methods"),
-                    f"{len(EVIDENCE_CH)} chapters: discovery, acquisition, extraction, review, three synthesis methods, versioning, and how to continue the work with an AI system and human approval.",
-                    "judge whether a rule is defensible",
-                ],
-                [
-                    link("data-model.html", "4 Data model"),
-                    f"20 tables with every field, {len(data.VONT)} variables, {len(data.T1)} datasets, all rule tables in full.",
-                    "read or write the tables",
-                ],
-                [
-                    link("practices.html", "5 Practices"),
-                    f"{len(PRACTICE_IDS)} practices, {len(fam_registered)} suitability families, {len(data.ROWS)} rows each with a detail page.",
-                    "see what the method says about a practice",
-                ],
-                [
-                    link("evidence-base.html", "6 Evidence base"),
-                    f"Downloads of every evidence table with a field guide and tested queries. {len(data.SRC)} sources, {len(kept):,} retained findings, {len(data.SRCH)} search records, with definitions.",
-                    "download or query the data, or follow a row to its source",
-                ],
-                [
-                    link("editions.html", "7 Editions and checks"),
-                    "Edition identifiers, what is established and what is not, how to reproduce, glossary.",
-                    "cite or rebuild this edition",
-                ],
+                [link(href, f"{i} {esc(label)}"), esc(NAV_TIP[href])]
+                for i, (href, label) in enumerate(NAV, 1)
+                if href != "index.html"
             ],
-            caption="Six parts after this overview",
+            caption="The six parts after this overview",
         )
-        + '<h2 id="routes">Follow the method</h2>'
-        "<ol>"
-        f"<li>{link('ch-scope-and-framework.html', 'Scope and framework')}: what the scan decides and what it leaves to feasibility.</li>"
-        f"<li>{link('ch-m1-suitability.html', 'Suitability')}: families, membership functions, gates and masks.</li>"
-        f"<li>{link('ch-effect-synthesis.html', 'Effect synthesis')}: how pooled findings become a class with a confidence.</li>"
-        f"<li>{link('table-T4.html', 'A table definition')}: the fields a pipeline reads.</li></ol>"
     )
     page(
         "index.html",
         "index.html",
-        "Rural NbS Scan methodology reference",
+        SITE_NAME,
         body,
         lead=overview_lead,
+        numbered=True,
     )
 
     # ------------------------------------------------------------ help and change history
     issues = "https://github.com/RuralScan/method/issues"
     body = (
-        "<p>This reference documents the Rural NbS Scan method in full. It is a scoping reference: it shows "
+        "<p>This methodology documents the Rural NbS Scan in full. It is a scoping method: it shows "
         "where to look and how strong the evidence is. It holds no maps and no country results, and local "
         "feasibility work is still needed before any investment decision.</p>"
         '<h2 id="start">Finding your way</h2><dl class="glossary">'
         "<div><dt>Where should I start?</dt><dd>On the "
-        f"{link('index.html', 'overview')}. It lists the practices covered and how much evidence each has, then "
-        f"tells the method as {link('index.html#story', 'seven questions')}. Each question links to its technical chapter.</dd></div>"
+        f"{link('index.html', 'overview')}. It says what the method is for and who it is for, then shows "
+        f"{link('index.html#how', 'how it works in one figure')}. Each step links to its technical chapter.</dd></div>"
         "<div><dt>How do I see the evidence for one practice?</dt><dd>Open "
         f"{link('practices.html', 'Practices')} and choose one. Every compiled row has its own page listing the "
         "findings behind it, each with its source and the place in the source it was taken from.</dd></div>"
         "<div><dt>Are the numbers results?</dt><dd>No. Counts of searches, sources, findings and rows describe "
         "coverage and effort. Ratings are the method’s reading of published evidence, each with a stated "
-        f"confidence. {link('index.html#status', 'What is established in this edition')}.</dd></div>"
+        f"confidence. {link('index.html#status', 'What is settled, and what is not')}.</dd></div>"
         "<div><dt>How does this relate to the visual methodology?</dt><dd>The "
         f"{link(VISUAL_URL + 'index.html', 'visual methodology')} shows what a working tool could look like, "
-        "using example data. This reference is the written method and the evidence behind it. "
+        "using example data. This methodology is the written method and the evidence behind it. "
         f"{link(chapter_file('scoping-walkthrough'), 'The scoping walkthrough')} connects the two, screen by screen.</dd></div>"
         "<div><dt>Which version am I looking at?</dt><dd>The bar at the top of every page names it. The version "
-        "menu lists the live evidence dashboard first, then this reference, then earlier drafts.</dd></div>"
+        "menu lists the live evidence dashboard first, then this methodology, then earlier drafts.</dd></div>"
         "<div><dt>Can I download the data?</dt><dd>Yes. "
         f"{link('evidence-base.html', 'Get and use the data')} lists every table with its address and checksum, a "
         "field guide and tested queries.</dd></div></dl>"
@@ -831,10 +715,32 @@ def build():
         "index.html",
         "Help, contact and team",
         body,
-        lead="How to find your way around this reference, how to give feedback, and who to contact.",
+        lead="How to find your way around this methodology, how to give feedback, and who to contact.",
     )
 
     changes = [
+        (
+            "17 November 2026, after the first review round",
+            [
+                (
+                    "After the first review round, the overview was rewritten as one story: the problem, what the "
+                    "method does about it, who it is for, how it works, and what is settled. Its sections are numbered."
+                ),
+                (
+                    "One figure now shows the whole method: how evidence becomes rules, then the seven stages "
+                    "that apply them."
+                ),
+                (
+                    "Counts of practices and evidence moved to the Practices part. The worked example moved to "
+                    "the Evidence base part and now follows a terrace slope rule."
+                ),
+                "The name is now “Methodology”. Module chapters are titled in one style.",
+                (
+                    "Two chapters on operating the evidence base (continuing the work with an AI system, and "
+                    "versioning the instructions) are no longer published, to shorten the text. They remain in the repository."
+                ),
+            ],
+        ),
         (
             "17 November 2026",
             [
@@ -849,7 +755,7 @@ def build():
             "16 November 2026",
             [
                 "Front page rebuilt: the practices covered, how much evidence each has, and the method told as seven questions.",
-                "The reference takes the live evidence dashboard’s look, and that house style is recorded and checked by the build.",
+                "The methodology takes the live evidence dashboard’s look, and that house style is recorded and checked by the build.",
                 (
                     "One top bar shared with the visual methodology: version menu, theme switch, review tool and change history. "
                     "Programme logo and a help page added."
@@ -886,7 +792,7 @@ def build():
         ),
     ]
     body = (
-        "<p>What changed in this reference, newest first. The evidence and the ratings it reports are those of "
+        "<p>What changed in this methodology, newest first. The evidence and the ratings it reports are those of "
         f"one pinned edition, described under {link('editions.html', 'Editions and checks')}; they do not change "
         "between these entries unless an entry says so.</p>"
         + "".join(
@@ -903,7 +809,7 @@ def build():
         "index.html",
         "What changed",
         body,
-        lead="History of this reference and how to give feedback on it.",
+        lead="History of this methodology and how to give feedback on it.",
     )
 
     # ------------------------------------------------------------ status
@@ -1130,7 +1036,7 @@ def build():
         f"review process are described in {link('ch-review-and-quality.html', 'review and quality')}.</p>"
         '<h2 id="not">What this edition does not establish</h2><ul>'
         "<li>No suitability mapping has an approved numerical calibration, and none is execution-ready.</li>"
-        "<li>Country results, maps and pilot outputs are outside this reference.</li>"
+        "<li>Country results, maps and pilot outputs are outside this methodology.</li>"
         "<li>Economic profiles are indicative and ordinal. No cost-benefit analysis is made.</li>"
         "<li>Practices outside the six listed are not covered by this edition.</li></ul>"
     )
@@ -1156,7 +1062,7 @@ def build():
     body = (
         "<p>Reviewers check each extracted finding against its source, and check each compiled rating. "
         "Finding decisions are recorded in the evidence repository. The live dashboard shows the queues and reviewers’ "
-        "histories from that repository and lets a signed-in reviewer submit a finding review. This reference shows the "
+        "histories from that repository and lets a signed-in reviewer submit a finding review. This methodology shows the "
         "result at its own revision and links to the queues.</p>"
         + review_queues()
         + "<p>In the live dashboard, choose a reviewer to see that reviewer’s history under “My reviewed”. "
@@ -1239,16 +1145,15 @@ def build():
         "protected pull request applies it: a rating is appended to the rating review log, and wording is recorded as an "
         "authored input beside the compiled row. A rating review approves no finding and changes no threshold. The live "
         "dashboard’s row cards do not yet link to the desk; its My reviewed list already reads applied rating history for "
-        "the hazard, suitability and scorecard tables. At the evidence revision this reference was built against, the "
-        "rating log held only the events copied from the producer repository. This reference does not write decisions.</p>"
+        "the hazard, suitability and scorecard tables. At the evidence revision this methodology was built against, the "
+        "rating log held only the events copied from the producer repository. This methodology does not write decisions.</p>"
         f"<p>{link(EVIDENCE_LIVE + 'workflows/submissions/README.md', 'How to submit a finding vote or an extraction proposal')} · "
-        f"{link(EVIDENCE_LIVE + 'workflows/submissions/recipe-rows.md', 'How to review a rating or suggest row wording')} · "
-        f"{link('ch-continue-with-ai.html', 'Continue the evidence base with an AI system')}.</p>"
+        f"{link(EVIDENCE_LIVE + 'workflows/submissions/recipe-rows.md', 'How to review a rating or suggest row wording')}.</p>"
         '<h2 id="pins">Which revision is which</h2>'
-        "<p>The live dashboard pins its analytical snapshot to a producer revision later than this reference’s. Its review "
+        "<p>The live dashboard pins its analytical snapshot to a producer revision later than this methodology’s. Its review "
         "history is not pinned: it is read from the evidence repository’s current main branch when the page loads. Only the "
-        "provisional status of hazard ratings is taken from the same revision as this reference. "
-        "A review state shown on a row or finding page here is the state at this reference’s revision and can be older "
+        "provisional status of hazard ratings is taken from the same revision as this methodology. "
+        "A review state shown on a row or finding page here is the state at this methodology’s revision and can be older "
         "than the live queues, which change whenever a decision is applied.</p>"
         + live_pins()
         + f"<p>The country pilot is separate again and pins its own release. {link('editions.html#pilot', 'Editions')}.</p>"
@@ -1281,7 +1186,7 @@ def build():
             "Producer revision",
             "Recipe tables and evidence registers are read from this one revision",
             link(CIAT_URL, code(PRODUCER)),
-            "All counts in this reference",
+            "All counts in this methodology",
         ],
         [
             "Method definitions pinned by the release",
@@ -1305,21 +1210,21 @@ def build():
         ],
     ]
     body = (
-        "<p>An edition is one fixed set of inputs. Everything in this reference is read from the identifiers "
+        "<p>An edition is one fixed set of inputs. Everything in this methodology is read from the identifiers "
         "below, so a number here can be reproduced exactly. Counts from different editions are never added, "
         "subtracted or turned into a rate.</p>"
         + table(
             ["Input", "Role", "Identifier", "Used for"],
             rows,
-            caption="Inputs to this reference",
+            caption="Inputs to this methodology",
         )
     )
     body += (
         '<h2 id="live">The live dashboard pins its analytical revisions and reads current review records</h2>'
-        "<p>The live evidence dashboard is a separate product from this reference. It pins the revision of its analytical "
-        "snapshot, which is later than the revision this reference is built on. Its review history is read from the evidence "
+        "<p>The live evidence dashboard is a separate product from this methodology. It pins the revision of its analytical "
+        "snapshot, which is later than the revision this methodology is built on. Its review history is read from the evidence "
         "repository’s current records when the page loads. "
-        "Its hazard-rating review status is taken from an assessment made at this reference’s revision, after checking that "
+        "Its hazard-rating review status is taken from an assessment made at this methodology’s revision, after checking that "
         "the effect evidence is unchanged at the analytical snapshot.</p>"
         + live_pins()
         + f"<p>{link('review.html', 'Review queues and review records')}.</p>"
@@ -1344,7 +1249,7 @@ def build():
         "editions.html",
         "Editions",
         body,
-        lead="Which inputs this reference was built from, and how they differ from the country pilot's.",
+        lead="Which inputs this methodology was built from, and how they differ from the country pilot's.",
     )
 
     # ------------------------------------------------------------ glossary
@@ -1477,5 +1382,5 @@ def build():
         "Glossary",
         body,
         crumbs=[("editions.html", "Editions and checks"), ("", "Glossary")],
-        lead="Terms as this reference uses them.",
+        lead="Terms as this methodology uses them.",
     )

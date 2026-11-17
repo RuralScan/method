@@ -1,5 +1,5 @@
 ---
-title: Module 2b, project disaster risk screen
+title: "M2b: Project disaster risk screen"
 slug: m2b-project-risk
 summary: After this chapter you can build and apply the investment-risk screen (Stream A asset hazard exposure from T2 and T3, Stream B operational and enabling-environment factors) as a filter or flag on the opportunity space, and know which parts are specified, generated or still open.
 sources:

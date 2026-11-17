@@ -37,7 +37,7 @@ sources:
 ---
 ## What the visual methodology is
 
-The reference describes the method module by module ([[ch:scope-and-framework]]). The visual methodology describes the same method as seven stages that a task team would walk through, from setting the scope to writing a scoping brief. It is an interactive mock-up (a wireframe), version 2.1, built as linked pages.
+The Method part describes the analysis module by module ([[ch:scope-and-framework]]). The visual methodology describes the same method as seven stages that a task team would walk through, from setting the scope to writing a scoping brief. It is an interactive mock-up (a wireframe), version 2.1, built as linked pages.
 
 Its home page states its status: it is "an idealised implementation of the method", presented as an interactive mock-up. The pages "illustrate how the methodology could work in practice; they are not a commitment to deliver a software platform", and "all displayed data are examples; no figure is a pilot result". [src: docs/redesign/index.html §Home] The help page adds that the walkthrough "does not run a live spatial analysis or provide investment recommendations". [src: docs/redesign/help.html §Are the maps and results real?]
 

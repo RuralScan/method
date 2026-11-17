@@ -1,5 +1,5 @@
 ---
-title: Module 4 - Priority hotspots by multi-criteria decision analysis
+title: "M4: Priority hotspots"
 slug: m4-hotspots
 summary: Standardise priority layers, derive and reconcile weights, combine them into a hotspot surface inside the opportunity space, test its sensitivity, and read what a hotspot does and does not mean.
 sources:

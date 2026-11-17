@@ -1,5 +1,5 @@
 ---
-title: Module 6 - Implementation hand-off
+title: "M6: Implementation hand-off"
 slug: m6-handoff
 summary: Know exactly what a scoping run passes to feasibility (shortlist, flags, sensitive-variable prompts, safeguard triggers, guidance for unmapped practices and recorded design lessons) and where the scan's authority ends.
 sources:

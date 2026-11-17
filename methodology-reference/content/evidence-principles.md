@@ -116,7 +116,7 @@ The evidence base is designed to grow without rewriting what it already holds. A
 Three consequences follow.
 
 - **No evidence is hard-deleted.** A reviewer's drop sets a review state that excludes the unit from synthesis while keeping it as a restorable record. Deletion would break the audit trail and remove the ability to reverse a mistaken judgement. [src: AGENTS.md §What is locked] The mechanics are in [[ch:review-and-quality]].
-- **Historical records keep their instructions.** Each search and evidence row carries the version of the extraction ruleset under which it was produced. Units are not silently restamped when the rules change. [src: methodology/RULESET_VERSIONS.md §Ruleset versions] See [[ch:rulesets-and-learning]].
+- **Historical records keep their instructions.** Each search and evidence row carries the version of the extraction ruleset under which it was produced. Units are not silently restamped when the rules change. [src: methodology/RULESET_VERSIONS.md §Ruleset versions]
 - **Generated rows are outputs, never inputs.** Recipe rows are rebuilt from evidence. A value cannot be fixed by editing the generated row; it is fixed by correcting or adding evidence. [src: AGENTS.md §What is locked]
 
 ## Replication for synthesis
@@ -176,4 +176,4 @@ Source files and snapshots are kept out of the public repository regardless of l
 - Frozen column sets: `schema/structure/columns.json`.
 - Provenance guardrail: `src/nbs_ruralscan/schema_tools/validate_sources.py`.
 - Access and sharing rules: `methodology/access_policy.md`.
-- Related chapters: [[ch:discovery]], [[ch:acquisition]], [[ch:extraction]], [[ch:review-and-quality]], [[ch:rulesets-and-learning]], [[ch:suitability-synthesis]], [[ch:effect-synthesis]], [[ch:evidence-base]].
+- Related chapters: [[ch:discovery]], [[ch:acquisition]], [[ch:extraction]], [[ch:review-and-quality]], [[ch:suitability-synthesis]], [[ch:effect-synthesis]], [[ch:evidence-base]].

@@ -1,4 +1,6 @@
-# Rural NbS Scan methodology reference
+# Rural NbS Scan methodology
+
+Published as “Methodology”. The folder name and the address (`reference/`) keep the earlier word so existing links hold.
 
 A static, generated reference for technical readers: the scan method, the evidence methods, the data
 model, six practices with every compiled row, the evidence base, and edition checks. Review build; it
@@ -116,11 +118,7 @@ and `data-queries.html` holds query recipes in SQL, Python and R with the result
 The build also writes two files for programs: `llms.txt` (a plain-text guide for language-model agents) and
 `data/assets.json` (every downloadable file with address, revision, row count and checksum).
 
-`content/continue-with-ai.md` describes how to set up and run the agent-plus-human system that extends the evidence
-base: where the instruction files live, the operating loop, the checks, the human approval points, where each kind
-of record is written today and which routes are still planned. It works from two revisions. The scientific edition
-is the producer revision in the evidence repository's release pin. The operating procedures are the evidence
-repository at `EVIDENCE_OPERATING` in `build/core.py`; the build fails unless the evidence checkout is at exactly
-that revision, so the chapter's text and its links cannot drift apart. To move it, check out the newer evidence
-revision, re-read the chapter against the submissions guides, then change the constant. Citations written
+Two chapters on operating the evidence base are kept in `content/unpublished/` and are not built: `continue-with-ai.md` and `rulesets-and-learning.md`. See the note in that folder for how to publish one again.
+
+The review page describes the evidence repository's operating procedures at `EVIDENCE_OPERATING` in `build/core.py`; the build fails unless the evidence checkout is at exactly that revision, so the text and its links cannot drift apart. To move it, check out the newer evidence revision, re-read the review page against the submissions guides, then change the constant. Citations written
 `[src: retired:<path>]` open the producer repository at the revision where its evidence records became read-only.

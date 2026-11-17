@@ -1,5 +1,5 @@
 ---
-title: Module 2, rural climate risk to livelihoods
+title: "M2: Rural climate risk to livelihoods"
 slug: m2-climate-risk
 summary: After this chapter you can configure, compute and audit the livelihood climate-risk need layer (Mode A or Mode B, baseline and future) from T2 and T3, and know where the specification stops and a country application must decide.
 sources:

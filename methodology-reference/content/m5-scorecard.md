@@ -1,5 +1,5 @@
 ---
-title: Module 5 - The NbS scorecard and response
+title: "M5: NbS scorecard and response"
 slug: m5-scorecard
 summary: Read and reproduce how generated effect rows (T6), hazard responses (T3) and indicative cost profiles (T6E) are presented per practice, how chips, confidence and locus are set, what is left off on purpose, and how practices are compared.
 sources:
