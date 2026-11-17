@@ -1,11 +1,15 @@
-# Rural Scan dashboard
+# Rural Scan methodology and review workspace
 
-[Open the dashboard](https://ruralscan.github.io/method/).
+[Open Methodology](https://ruralscan.github.io/method/) · [Open the evidence review queue](https://ruralscan.github.io/method/dashboard.html#review-queue).
 
-This branch publishes the existing static evidence dashboard on GitHub Pages. The November 10 analytical dashboard uses [CIAT release `bec50bc0f9dc`](https://github.com/CIAT/nbs_ruralscan/tree/bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06/docs). The queues use a separate CIAT revision, linked above the reviewer picker. To refresh their evidence, sources, and decision history, update `QUEUE_PIN` in `publish_editions.py` and rebuild. The build traces earlier T3/T6 recipe citations so personal history includes findings removed from ratings. Live review runs in the CIAT checkout.
+The 17 November Methodology is the default home page, published at `reference/index.html`. The 10 November evidence dashboard overview is superseded and remains at `dashboard.html` and `legacy.html`. Its evidence review workspace remains active, with dedicated T3, T4, T6 and M2b queues, source previews, personal review history and submission controls.
 
-The November 10 evidence dashboard opens at the root and at <code>dashboard.html</code>. Its original QA/QC queue has dedicated [T3 hazard](https://ruralscan.github.io/method/#review-t3) and [T4 suitability](https://ruralscan.github.io/method/#review-t4) views. The selector opens later design drafts at their pinned edition URLs. Adding a draft to <code>editions.json</code> keeps the live design selected.
+Existing root bookmarks keep working: `/#review-evidence=…`, `/#review-priority=…`, table queues, source links and other dashboard fragments route to `dashboard.html` with their full query and fragment intact. Bare `/` and `/index.html` open Methodology. Review queue links are prominent in the Methodology header and version bar. No register or submission route changes with this navigation update.
 
-A push to `gh-pages` builds and deploys the Pages artifact. The methodology and cookbook are maintained on `main`.
+Review records, evidence and submissions belong to [RuralScan/evidence](https://github.com/RuralScan/evidence). The queue loads that repository's current published register snapshot and displays its revision. CIAT supplies archived provenance and the pinned historical analytical dashboard; it is not a live submission destination. The archived analytical baseline remains [CIAT release `bec50bc0f9dc`](https://github.com/CIAT/nbs_ruralscan/tree/bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06/docs). `QUEUE_PIN` in `publish_editions.py` supplies the historical fallback and earlier-citation history, not the current register writer.
 
-The version menu groups the evidence dashboard under **Live**, the methodology reference under **Under review**, and the seven snapshots under **Earlier drafts**, newest first. In `editions.json`, snapshot records have an `edition` ID. The reference record supplies its site-relative `href`, `group`, `label` and `date`. The Pages workflow pins the reference source and includes its menu entry only when the reference builds with the names list and passes its publication checks.
+The menu groups Methodology under **Live**, the 10 November dashboard under **Superseded**, and seven design snapshots under **Earlier drafts**. The `reference/index.html` entry in `editions.json` has `default: true`; adding a draft does not change the default. The publication branch decorates navigation on the pinned reference pages so their menus match the published site. It does not change reference chapter content or approve candidate recipes.
+
+A push to `gh-pages` builds and deploys the Pages artifact. Methodology content is maintained on `main`; the workflow pins its source. Since Methodology is the default, missing reference output, a not-for-publication marker, a noindex page or an unexpected navigation structure stops publication. A failed build leaves the existing deployed site in place. The publication names check remains required.
+
+Checks: `python3 -m unittest discover -s tests -p 'test_*.py'` and `node --test tests/*.test.cjs`.

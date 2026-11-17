@@ -1,4 +1,4 @@
-"""Rebuild every shared dashboard edition, then publish the November 10 evidence dashboard at the site root."""
+"""Publish pinned editions, the active review workspace and the selected methodology home."""
 import csv
 from datetime import date
 from html import escape
@@ -185,6 +185,39 @@ LEGACY = {
 }
 
 
+def publish_reference_menu(site, reference, labels):
+    """The publishing branch owns navigation, even when reference content is pinned earlier."""
+    for path in (site / "reference").rglob("*.html"):
+        base = "../" * len(path.parent.relative_to(site).parts)
+        label = f'{escape(reference["label"])} · {date.fromisoformat(reference["date"]):%d %b %Y}'
+        row = re.match(r"row-(t3|t4|t6)-", path.name)
+        dashboard_route = "review-" + row[1] if row else "overview"
+        groups = [
+            ("Live", [(base + reference["href"], label, True)]),
+            ("Superseded", [(base + "dashboard.html#" + dashboard_route, "Evidence dashboard · 10 Nov 2026", False)]),
+            ("Earlier drafts", [(base + f"editions/{key}/index.html", escape(value), False)
+                                for key, value in reversed(labels.items())]),
+        ]
+        menu = "".join(f'<optgroup label="{group}">' + "".join(
+            f'<option value="{escape(url, quote=True)}"' + (" selected" if selected else "") + f'>{text}</option>'
+            for url, text, selected in items) + '</optgroup>' for group, items in groups)
+        links = " · ".join(f'<strong>{group}</strong> ' + " · ".join(
+            f'<a href="{escape(url, quote=True)}">{text}</a>' for url, text, _ in items) for group, items in groups)
+        contents = path.read_text()
+        substitutions = [
+            (r'(<select id="dashboard-version"[^>]*>).*?</select>', lambda m: m[1] + menu + '</select>'),
+            (r'<span id="dashboard-version-note">.*?</span>', '<span id="dashboard-version-note">Current methodology</span>'),
+            (r'<a class="vb-live" href="[^"]*">[^<]*</a>', f'<a class="vb-live" href="{base}dashboard.html#review-queue">Review queue</a>'),
+            (r'<a class="review-entry" href="[^"]*">Review queue</a>', f'<a class="review-entry" href="{base}dashboard.html#review-queue">Review queue</a>'),
+            (r'<noscript>.*?</noscript>', '<noscript>' + links + '</noscript>'),
+        ]
+        for pattern, replacement in substitutions:
+            contents, count = re.subn(pattern, replacement, contents, flags=re.S)
+            if count != 1:
+                raise ValueError(f"Expected one shared navigation element in {path}: {pattern}")
+        path.write_text(contents)
+
+
 def add_version_selectors(site, editions, ciat, reference):
     """Decorate the published dashboard shell after all pinned builds complete."""
     pages = {}
@@ -221,6 +254,12 @@ def add_version_selectors(site, editions, ciat, reference):
     latest = editions[-1]["edition"]
     legacy_title = "Evidence dashboard · 10 Nov 2026"
     reference_available = reference is not None and (site / reference["href"]).is_file()
+    promoted = bool(reference and reference.get("default"))
+    if promoted and (not reference_available or (site / "reference/NOT-FOR-PUBLICATION.txt").exists()):
+        raise ValueError("Default Methodology is unavailable; stop publication and retain the deployed site")
+    if promoted and any('<meta name="robots" content="noindex">' in p.read_text()
+                        for p in (site / "reference").rglob("*.html")):
+        raise ValueError("Default Methodology is not approved for public listing")
     for asset in ("edition-selector.css", "edition-selector.js"):
         copyfile(Path(__file__).with_name(asset), site / asset)
 
@@ -255,25 +294,30 @@ def add_version_selectors(site, editions, ciat, reference):
         selected = " selected" if legacy else ""
         fallback = "" if legacy_match else " data-fallback"
         groups = [
-            ("Live", f'<option value="{legacy_url}"{selected}{fallback}>{legacy_label}</option>',
+            ("Superseded" if promoted else "Live", f'<option value="{legacy_url}"{selected}{fallback}>{legacy_label}</option>',
              f'<a href="{legacy_url}">{legacy_label}</a>')
         ]
         if reference_available:
             href = base + escape(reference["href"], quote=True)
             label = f'{escape(reference["label"])} · {date.fromisoformat(reference["date"]):%d %b %Y}'
-            groups.append((reference["group"], f'<option value="{href}">{label}</option>',
-                           f'<a href="{href}">{label}</a>'))
+            reference_group = (reference["group"], f'<option value="{href}">{label}</option>',
+                               f'<a href="{href}">{label}</a>')
+            if promoted:
+                groups.insert(0, reference_group)
+            else:
+                groups.append(reference_group)
         groups.append(("Earlier drafts", "".join(options), " · ".join(links)))
         menu = "".join(f'<optgroup label="{escape(group)}">{items}</optgroup>' for group, items, _ in groups)
         plain_links = " · ".join(f'<strong>{escape(group)}</strong> {items}' for group, _, items in groups)
         kind = ' data-legacy="true"' if legacy else ""
         label = "Version" if legacy else "View version"
-        note = "Review findings against their sources." if legacy else "Design preview."
+        note = ("Superseded overview · evidence review remains active." if promoted else
+                "Review findings against their sources.") if legacy else "Design preview."
         control = (
             f'<label for="dashboard-version">{label}</label>'
             f'<select id="dashboard-version" aria-describedby="dashboard-version-note"{kind}>'
             + menu + f'</select><span id="dashboard-version-note">{note}</span>'
-            + ("" if legacy else f' <a href="{legacy_url}">Return to live dashboard</a>')
+            + ("" if legacy else f' <a href="{base}dashboard.html#review-queue">Open review queue</a>')
             + f"<noscript>{plain_links}</noscript>"
         )
         if not legacy:
@@ -315,6 +359,15 @@ def add_version_selectors(site, editions, ciat, reference):
             if (site / "reference/help.html").is_file():
                 contents = contents.replace('href="https://ciat.github.io/nbs_ruralscan/redesign/help.html"',
                                             'href="reference/help.html"')
+            if promoted:
+                notice = ('<aside class="dashboard-superseded" aria-label="Superseded dashboard">'
+                          '<strong>The 10 Nov dashboard overview is superseded.</strong> '
+                          f'<a href="{escape(reference["href"], quote=True)}">Open Methodology · 17 Nov 2026</a>. '
+                          'Evidence review remains active here. '
+                          '<a href="#review-queue">Open review queue</a>.</aside>')
+                contents, count = re.subn(r'(<main\b[^>]*>)', lambda m: m[1] + notice, contents, count=1)
+                if count != 1:
+                    raise ValueError("Missing evidence dashboard main region")
         else:
             contents = contents[:header] + control + contents[header:]
         assets = (f'<link rel="stylesheet" href="{base}edition-selector.css?v=2">'
@@ -325,8 +378,8 @@ def add_version_selectors(site, editions, ciat, reference):
         # workbook.html is also the downloadable, byte-verified release artefact.
         for name in names - {"workbook.html"}:
             decorate(site / "editions" / key / name, key, name)
-    # Draft builders write their own root entry points. Publish the live shell last:
-    # adding an edition never promotes a design or invalidates a shared draft URL.
+    # Draft builders write root entry points. Install the review shell last, then
+    # promote only the explicitly selected home. Existing hash bookmarks retain their route.
     live = site / "legacy.html"
     decorate(live, "legacy", "index.html")
     # Navigation can use a later edition. Rating status uses a separately verified assessment.
@@ -341,14 +394,18 @@ def add_version_selectors(site, editions, ciat, reference):
     queue_file = publish_review_queue(site, ciat, snapshot)
     queue_meta = f'<meta name="ciat-review-snapshot" content="{queue_file}">'
     live.write_text(live.read_text().replace("</head>", link + batch_data + rating_data + queue_meta + "</head>", 1))
-    for name in ("index.html", "dashboard.html"):
+    for name in (("dashboard.html",) if promoted else ("index.html", "dashboard.html")):
         copyfile(live, site / name)
+    if promoted:
+        publish_reference_menu(site, reference, labels)
+        for name in ("index.html", "home-route.js"):
+            copyfile(Path(__file__).with_name(name), site / name)
     (site / "review.html").write_text(
         '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Evidence review queue</title>'
         '<meta http-equiv="refresh" content="0;url=dashboard.html#review-queue"></head>'
         '<body><a href="dashboard.html#review-queue">Open the evidence review queue</a></body></html>'
     )
-    for name in ("index.html", "dashboard.html", "legacy.html"):
+    for name in (("dashboard.html", "legacy.html") if promoted else ("index.html", "dashboard.html", "legacy.html")):
         contents = (site / name).read_text()
         if ('id="tab-qaqc"' not in contents or 'href="#review-t3"' not in contents
                 or 'href="#review-t4"' not in contents or f' selected>{legacy_title}</option>' not in contents):
