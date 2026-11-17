@@ -8,7 +8,7 @@
     new ResizeObserver(([entry]) => {
       document.documentElement.style.setProperty("--edition-bar-height",
         entry.target.getBoundingClientRect().height + "px");
-    }).observe(select.parentElement);
+    }).observe(select.closest('.app-header') || select.parentElement);
   }
 
   const url = new URL(location.href);

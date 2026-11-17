@@ -70,7 +70,7 @@
     var headerHeight = header && getComputedStyle(header).position === 'sticky' ? header.getBoundingClientRect().height : 0;
     document.documentElement.style.setProperty('--programme-band-height', headerHeight + 'px');
     var versionBar = document.querySelector('.edition-selector');
-    if (versionBar && getComputedStyle(versionBar).position === 'sticky') headerHeight += versionBar.getBoundingClientRect().height;
+    if (versionBar && !header?.contains(versionBar) && getComputedStyle(versionBar).position === 'sticky') headerHeight += versionBar.getBoundingClientRect().height;
     document.documentElement.style.setProperty('--shell-header-height', headerHeight + 'px');
     document.documentElement.style.setProperty('--dp-header-height', headerHeight + 'px');
     document.documentElement.style.setProperty('--dp-main-tabs-height', (mainNav ? mainNav.getBoundingClientRect().height : 0) + 'px');

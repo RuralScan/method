@@ -78,6 +78,9 @@ class VersionMenuTest(unittest.TestCase):
                     self.assertIn('src="dashboard-tables.js?',html)
                     self.assertIn('id="review-table-description"',html)
                     self.assertNotIn('aria-label="Review findings by table"',html)
+                    header=html.split('<header class="app-header">',1)[1].split('</header>',1)[0]
+                    self.assertIn('aria-label="Dashboard version and tools"',header)
+                    self.assertIn('id="dashboard-version"',header)
                     bar=html.split('aria-label="Dashboard version and tools">',1)[1].split('</div>',1)[0]
                     controls=['>Version</label>','id="dashboard-version-note"','id="theme-toggle"','id="rv-toggle"','What changed? · history and feedback']
                     self.assertEqual(sorted(controls,key=bar.index),controls)

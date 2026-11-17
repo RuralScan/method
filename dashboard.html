@@ -1012,7 +1012,7 @@
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.1.0">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.11.0">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.12.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
   #loading-container, #error-container {display:flex;align-items:center;gap:.65rem;padding:.6rem 0;color:var(--text-secondary);font-size:.9rem}
@@ -1041,6 +1041,17 @@
       <span class="brand-subtitle">Evidence for rural nature-based solutions</span>
     </div>
   </div>
+  <div class="edition-selector dashboard-version-bar" role="region" aria-label="Dashboard version and tools">
+    <!-- Published version menu -->
+    <button type="button" class="vb-theme" id="theme-toggle" hidden>
+      <svg viewBox="0 0 16 16" aria-hidden="true"><g class="icon-sun"><circle cx="8" cy="8" r="3"/><path d="M8 1v2m0 10v2M1 8h2m10 0h2M3 3l1.5 1.5m7 7L13 13M3 13l1.5-1.5m7-7L13 3"/></g><path class="icon-moon" d="M13 10A6 6 0 0 1 6 2a6 6 0 1 0 7 8Z"/></svg>
+      <span>Light theme</span>
+    </button>
+    <button type="button" class="vb-review" id="rv-toggle" data-rv-ui aria-pressed="false" title="Comment on the dashboard. Use Review queue for finding decisions." hidden>
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v8H6l-4 3z"/></svg><span>Review</span>
+    </button>
+    <a class="vb-changes" href="https://github.com/RuralScan/method/pulls?q=is%3Apr+is%3Amerged+base%3Agh-pages">What changed? · history and feedback</a>
+  </div>
   <div class="header-actions">
     <div id="dashboard-build" class="dashboard-build" aria-label="Dashboard and data build"></div>
     <a class="help-entry" href="https://ciat.github.io/nbs_ruralscan/redesign/help.html">Help / Contact / Team</a>
@@ -1050,17 +1061,7 @@
     <a class="btn-back github-entry" href="https://github.com/RuralScan/method" target="_blank" rel="noopener" title="RuralScan methodology on GitHub (opens a new tab)">GitHub</a>
   </div>
 </header>
-<div class="edition-selector dashboard-version-bar" role="region" aria-label="Dashboard version and tools">
-  <!-- Published version menu -->
-  <button type="button" class="vb-theme" id="theme-toggle" hidden>
-    <svg viewBox="0 0 16 16" aria-hidden="true"><g class="icon-sun"><circle cx="8" cy="8" r="3"/><path d="M8 1v2m0 10v2M1 8h2m10 0h2M3 3l1.5 1.5m7 7L13 13M3 13l1.5-1.5m7-7L13 3"/></g><path class="icon-moon" d="M13 10A6 6 0 0 1 6 2a6 6 0 1 0 7 8Z"/></svg>
-    <span>Light theme</span>
-  </button>
-  <button type="button" class="vb-review" id="rv-toggle" data-rv-ui aria-pressed="false" title="Comment on the dashboard. Use Review queue for finding decisions." hidden>
-    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v8H6l-4 3z"/></svg><span>Review</span>
-  </button>
-  <a class="vb-changes" href="https://github.com/RuralScan/method/pulls?q=is%3Apr+is%3Amerged+base%3Agh-pages">What changed? · history and feedback</a>
-</div>
+
 <main class="main-container">
   
   <nav class="tab-nav" aria-label="Dashboard sections">
@@ -6048,7 +6049,7 @@
 <script src="dashboard-priority.js?v=1.12"></script>
 <script src="review/priority-receipt.js"></script>
 <script src="review/priority-status.js?v=2"></script>
-<script src="dashboard-shell.js?v=1.7.0"></script>
+<script src="dashboard-shell.js?v=1.8.0"></script>
 <dialog id="finding-submission" aria-labelledby="finding-submission-title">
   <form><h2 id="finding-submission-title">Review finding</h2><output></output>
     <p>Your GitHub name, vote and note will appear on a public issue in RuralScan/evidence.</p>
