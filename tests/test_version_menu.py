@@ -65,8 +65,9 @@ class VersionMenuTest(unittest.TestCase):
                     if page.name=='dashboard.html':
                         self.assertIn(' selected',groups['Live'])
                         self.assertNotIn('aria-label="Superseded dashboard"',html)
-                        self.assertIn('Current review workspace',html)
-                        self.assertIn('href="reference/index.html">Methodology home</a>',html)
+                        self.assertNotIn('Current review workspace',html)
+                        self.assertNotIn('Methodology home</a>',html)
+                        self.assertIn('id="dashboard-version-note" hidden></span>',html)
                     else:
                         self.assertIn(' selected',groups['Superseded'])
                         self.assertIn('aria-label="Superseded dashboard"',html)

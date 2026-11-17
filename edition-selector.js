@@ -21,9 +21,11 @@
       location.replace(url);
     } else {
       note.textContent = "This section is unavailable in this edition. Showing the start of the same page.";
+      note.hidden = false;
     }
   } else if (url.searchParams.get("edition-fallback") === "overview") {
     note.textContent = "This record or view is unavailable in this edition. Showing its overview.";
+    note.hidden = false;
   }
 
   select.addEventListener("change", () => {
