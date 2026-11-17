@@ -38,7 +38,7 @@ jobs:
         continue-on-error: true
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          ref: 4c75d7f015ff65e81543a1f5f6236af1b9e3fdf2
+          ref: f8d501809bf07ca01c4e14f7a1626244488fc43a
           path: reference-src
           fetch-depth: 0
           persist-credentials: false
