@@ -407,8 +407,8 @@ def add_version_selectors(site, editions, ciat, reference):
     )
     for name in (("dashboard.html", "legacy.html") if promoted else ("index.html", "dashboard.html", "legacy.html")):
         contents = (site / name).read_text()
-        if ('id="tab-qaqc"' not in contents or 'href="#review-t3"' not in contents
-                or 'href="#review-t4"' not in contents or f' selected>{legacy_title}</option>' not in contents):
+        if ('id="tab-qaqc"' not in contents or 'id="vf-scope"' not in contents
+                or 'src="dashboard-tables.js?' not in contents or f' selected>{legacy_title}</option>' not in contents):
             raise ValueError(f"{name} must open the live evidence dashboard with T3 and T4 review")
 
 

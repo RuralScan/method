@@ -63,9 +63,10 @@ class VersionMenuTest(unittest.TestCase):
                     self.assertIn(' selected',groups['Superseded'])
                     self.assertIn('aria-label="Superseded dashboard"',html)
                     self.assertIn('Evidence review remains active here.',html)
-                    self.assertIn('href="#review-t3"',html)
-                    self.assertIn('href="#review-t4"',html)
-                    self.assertIn('href="#review-t6"',html)
+                    self.assertIn('id="vf-scope"',html)
+                    self.assertIn('src="dashboard-tables.js?',html)
+                    self.assertIn('id="review-table-description"',html)
+                    self.assertNotIn('aria-label="Review findings by table"',html)
                     bar=html.split('aria-label="Dashboard version and tools">',1)[1].split('</div>',1)[0]
                     controls=['>Version</label>','id="dashboard-version-note"','id="theme-toggle"','id="rv-toggle"','What changed? · history and feedback']
                     self.assertEqual(sorted(controls,key=bar.index),controls)
