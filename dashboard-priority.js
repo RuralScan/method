@@ -77,20 +77,71 @@
     history.replaceState(null, '', hash);
     return true;
   }
+  let setSearch = '', allSets = false, pickerScope = '';
+  function catalog() {
+    const byId = new Map(evidence().map(ev => [ev.evidence_id, ev]));
+    const batches = new Map();
+    const scope = window._vfScope || {};
+    for (const row of rows()) {
+      if (!batches.has(row.batch_id)) batches.set(row.batch_id, {id:row.batch_id, label:row.batch_label, ids:new Set(), scoped:new Set()});
+      const batch = batches.get(row.batch_id), ev = byId.get(row.evidence_id);
+      batch.ids.add(row.evidence_id);
+      if (ev && (!scope.nbs || scope.nbs === 'all' || ev.nbs_id === scope.nbs)
+          && DashboardTables.matches(ev, scope.table, true)) batch.scoped.add(row.evidence_id);
+    }
+    return [...batches.values()];
+  }
+  function setList() {
+    const query = setSearch.trim().toLowerCase();
+    const batches = catalog().filter(b => (allSets || b.scoped.size) && (!query || b.label.toLowerCase().includes(query)));
+    return '<p class="vf-set-count" role="status">'+batches.length+(batches.length===1?' review set':' review sets')+(allSets?' across all practices and evidence types':' for this practice and evidence type')+'</p>'
+      + (batches.length ? '<ul class="vf-set-list">'+batches.map(b => '<li><button type="button" data-batch="'+esc(b.id)+'" onclick="DashboardPriority.choose(this.dataset.batch)"'
+        +(selected()===b.id?' aria-current="true"':'')+'><span>'+esc(b.label)+'</span><small>'+(allSets?b.ids.size:b.scoped.size)+((allSets?b.ids.size:b.scoped.size)===1?' finding':' findings')
+        +(allSets?' · opens full set':' in this view')+'</small></button></li>').join('')+'</ul>'
+        : '<p class="vf-set-empty">'+(query?'No review sets match your search.':'No review sets for this practice and evidence type.')+' You can review the queue without choosing a set.</p>');
+  }
+  function filterSets(value, includeAll) {
+    setSearch = value; allSets = includeAll;
+    document.getElementById('vf-set-results').innerHTML = setList();
+  }
+  function choose(value) {
+    const expandScope = allSets && value !== 'all' && value !== 'high';
+    setSearch = ''; allSets = false;
+    if (expandScope) set(value);
+    else {
+      window._vfPriorityEvidence = '';
+      window._vfPriority = value;
+      renderVfWorklist();
+      history.replaceState(null, '', route());
+    }
+    document.querySelector('.vf-selected-set button, .vf-review-sets > summary')?.focus({preventScroll:true});
+  }
+  function backToQueue() {
+    window._vfPriorityEvidence = ''; window._vfPriority = 'all';
+    vfSimpleQueue('todo');
+    history.replaceState(null, '', route());
+    document.querySelector('#vf-verdict-filters button')?.focus({preventScroll:true});
+  }
   function controls() {
-    const batches = [...new Map(rows().map(r => [r.batch_id, r.batch_label]))];
-    if (!batches.length) return '';
-    const options = [['all','All priorities'],['high','High priority'],...batches];
-    const current = selected();
+    const scope = window._vfScope || {};
+    const scopeKey = [scope.nbs,scope.table].join('/');
+    if (pickerScope !== scopeKey) { setSearch = ''; allSets = false; pickerScope = scopeKey; }
+    const current = selected(), focused = window._vfPriorityEvidence;
     const batchRows = rows().filter(r => r.batch_id === current);
-    const focused = window._vfPriorityEvidence;
-    return '<section class="vf-priority-controls" aria-label="Review priorities" style="margin:10px 0;padding:12px;border:1px solid var(--border-color);border-radius:6px">'
-      + '<label>Review priority <select id="vf-priority" onchange="DashboardPriority.set(this.value)">' + options.map(([id,label]) => '<option value="'+esc(id)+'"'+(id===current?' selected':'')+'>'+esc(label)+'</option>').join('')+'</select></label>'
-      + '<span style="margin-left:10px">'+batches.map(([id,label]) => '<a href="'+batchRoute(id)+'">'+esc(label)+' ('+new Set(rows().filter(r=>r.batch_id===id).map(r=>r.evidence_id)).size+')</a>').join(' · ')+'</span>'
-      + '<p style="margin:8px 0;font-size:12px">Priority identifies what to inspect first. It does not change decisions, extraction approval, source credibility or runtime readiness.</p>'
-      + (focused ? '<p>Showing one evidence card, including its existing decision state. <button class="pill-btn" onclick="DashboardPriority.set(\'all\')">Show scoped queue</button></p>' : '')
-      + (batchRows.length ? '<p style="font-size:12px">Batch shortcuts reset scope; the current filters above still apply. Use More filters to narrow family, source or evidence scope. Queue tabs follow existing decisions.</p><details><summary>All '+batchRows.length+' batch records · open a native evidence card</summary><ul>'+batchRows.map(r=>'<li><a href="'+cardRoute(r.evidence_id)+'">'+esc(r.evidence_id)+'</a> · '+esc(r.source_id)+' · '+sourceLocation(r)+'</li>').join('')+'</ul></details>' : '')
-      + '</section>';
+    const label = current === 'high' ? 'High priority' : batchRows[0]?.batch_label || current;
+    const focus = focused ? '<div class="vf-single-finding"><span><strong>Single finding</strong> · Opened from a direct link</span><button type="button" class="pill-btn" onclick="DashboardPriority.backToQueue()">Back to queue</button></div>' : '';
+    if (!rows().length) return focus;
+    return focus + '<section class="vf-priority-controls" aria-label="Review focus">'
+      + (current !== 'all' ? '<div class="vf-selected-set"><span>Review set: <strong>'+esc(label)+'</strong></span><button type="button" class="pill-btn" onclick="DashboardPriority.choose(\'all\')">Clear review set</button></div>' : '')
+      + '<details class="vf-review-sets"><summary>Choose a review set <span>Optional</span></summary><div class="vf-set-browser">'
+      + '<p>Review sets group findings that need a particular check. You can also work straight through the queue.</p>'
+      + '<div class="vf-set-tools"><label for="vf-set-search">Find a review set</label><input id="vf-set-search" type="search" placeholder="e.g. rating checks or source checks" value="'+esc(setSearch)+'" oninput="DashboardPriority.filterSets(this.value,document.getElementById(\'vf-all-sets\').checked)">'
+      + '<label class="vf-set-toggle"><input id="vf-all-sets" type="checkbox"'+(allSets?' checked':'')+' onchange="DashboardPriority.filterSets(document.getElementById(\'vf-set-search\').value,this.checked)"> Include other practices and evidence types</label></div>'
+      + '<button type="button" class="pill-btn" onclick="DashboardPriority.choose(\'high\')">High priority in this view</button>'
+      + '<div id="vf-set-results">'+setList()+'</div>'
+      + '<p class="vf-set-help">Counts include reviewed findings. Queue tabs and other filters still apply. Choosing a set does not change any review decisions.</p>'
+      + (batchRows.length ? '<details class="vf-set-records"><summary>Finding links for selected set ('+new Set(batchRows.map(r=>r.evidence_id)).size+')</summary><ul>'+[...new Map(batchRows.map(r=>[r.evidence_id,r])).values()].map(r=>'<li><a href="'+cardRoute(r.evidence_id)+'">'+esc(r.evidence_id)+'</a> · '+esc(r.source_id)+' · '+sourceLocation(r)+'</li>').join('')+'</ul></details>' : '')
+      + '</div></details></section>';
   }
   function badge(ev) {
     const list = notes(ev.evidence_id);
@@ -142,5 +193,5 @@
         +(ev.use_role==='structural_suitability'?'<p>Keep confirms the extraction. Changing a live mapping requires a separate reviewed change.</p>':'')+'</section>';
     }).join('');
   }
-  window.DashboardPriority = {matches, set, route, leaveFocus, openFromHash, controls, badge, card};
+  window.DashboardPriority = {matches, set, route, leaveFocus, openFromHash, controls, badge, card, filterSets, choose, backToQueue};
 })();

@@ -105,14 +105,36 @@ body[data-theme="dark"] .vb-theme .icon-moon, body[data-theme="light"] .vb-theme
 .tab-nav, .shell-subnav { scrollbar-color: var(--text-secondary) var(--bg-secondary); }
 
 #progress-app .dp-intro { scroll-margin-top: calc(var(--shell-header-height, 0px) + var(--dp-main-tabs-height, 62px) + var(--shell-subnav-height, 54px) + 12px); }
-/* Review priority uses the same accessible controls as the rest of the workbook. */
-.vf-priority-controls select {
-  padding: 7px;
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  max-width: 100%;
+/* Review sets are optional: keep the everyday queue close to its filters. */
+.vf-priority-controls { margin: 10px 0; font-size: 14px; line-height: 1.5; }
+.vf-review-sets { border: 1px solid var(--border-color); border-radius: 8px; }
+.vf-review-sets > summary { padding: 10px 14px; cursor: pointer; font-weight: 600; }
+.vf-review-sets > summary span { margin-left: 8px; color: var(--text-secondary); font-weight: 400; font-size: 12px; }
+.vf-set-browser { padding: 0 14px 14px; }
+.vf-set-browser p { margin: 10px 0; }
+.vf-set-tools { display: grid; gap: 6px; margin-bottom: 12px; }
+.vf-set-tools > label:first-child { font-weight: 600; }
+.vf-set-tools input[type="search"] { width: 100%; min-width: 0; box-sizing: border-box; padding: 10px; background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 5px; font: inherit; }
+.vf-set-toggle { display: flex; align-items: center; gap: 8px; padding: 4px 0; }
+.vf-set-toggle input { width: 16px; height: 16px; flex: none; }
+.vf-priority-controls ul.vf-set-list { list-style: none; margin: 8px 0; padding: 0; max-height: 20rem; overflow-y: auto; overscroll-behavior: contain; border: 1px solid var(--border-color); border-radius: 6px; }
+.vf-set-list li + li { border-top: 1px solid var(--border-color); }
+.vf-set-list button { display: flex; flex-direction: column; gap: 4px; width: 100%; padding: 12px; border: 0; background: var(--bg-secondary); color: var(--text-primary); text-align: left; font: inherit; cursor: pointer; }
+.vf-set-list button:hover, .vf-set-list button[aria-current] { background: var(--bg-tertiary); color: var(--accent-sky); }
+.vf-set-list small, .vf-set-count, .vf-set-help { color: var(--text-secondary); font-size: 12px; }
+.vf-set-empty { padding: 12px; background: var(--bg-secondary); border-radius: 6px; }
+.vf-single-finding, .vf-selected-set { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; padding: 10px 12px; margin: 10px 0; border-left: 3px solid var(--accent-sky); background: var(--bg-secondary); font-size: 13px; overflow-wrap: anywhere; }
+.vf-single-finding .pill-btn, .vf-selected-set .pill-btn { flex-shrink: 0; }
+.vf-priority-controls :focus-visible, .vf-single-finding :focus-visible { outline: 2px solid var(--accent-sky); outline-offset: 2px; }
+.vf-set-list button:focus-visible { outline-offset: -3px; }
+.vf-set-records { margin-top: 12px; }
+.vf-set-records ul { max-height: 16rem; overflow-y: auto; }
+#vf-scope { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
+#vf-scope > label { display: flex; flex-direction: column; gap: 6px; min-width: 0; font-size: 13px; font-weight: 600; }
+#vf-scope select, #vf-scope input { width: 100%; max-width: 100%; box-sizing: border-box; font-size: 14px; font-weight: 400; }
+@media (max-width: 760px) {
+  #vf-scope { grid-template-columns: minmax(0, 1fr); }
+  #review-queue-panel .card-title > span { flex-basis: 100%; }
 }
 .vf-priority-controls a, .vf-priority-note a { color: var(--accent-sky); }
 .vf-priority-controls ul { padding-left: 20px; overflow-wrap: anywhere; }
