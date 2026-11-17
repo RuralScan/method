@@ -1,31 +1,29 @@
 /* Navigation, orientation and generous reading space across dashboard tasks. */
 [hidden] { display: none !important; }
-body > .app-header { top: 0; padding: 12px 24px; gap: 12px 24px; flex-wrap: wrap; }
-@media screen {
-  body:has(.app-header) .edition-selector.dashboard-version-bar { top: var(--programme-band-height, 0px); }
-}
+body > .app-header { top: 0; padding: 12px 24px; gap: 10px 24px; flex-wrap: wrap; }
 @media screen and (max-width: 760px) {
   body > .app-header { position: static; padding: 12px 16px; }
 }
-.programme-brand { display: flex; gap: 14px; align-items: center; }
+.programme-brand { display: flex; gap: 14px; align-items: center; min-width: 0; }
 .programme-logo { flex: none; line-height: 0; border-radius: 6px; overflow: hidden; }
 .programme-logo img { display: block; width: auto; height: 48px; }
 .help-entry { color: var(--text-primary); font-size: 14px; font-weight: 600; text-decoration: none; }
 .help-entry:hover { text-decoration: underline; }
 .header-actions .review-entry { color: var(--text-primary); border-color: var(--accent-emerald); }
-.header-actions { gap: 10px; flex-wrap: wrap; }
-.edition-selector.dashboard-version-bar {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 5px 12px; padding: 6px 24px;
-  border-bottom: 1px solid var(--border-color); background: var(--bg-tertiary);
+.header-actions { gap: 8px; flex-wrap: wrap; }
+body > .app-header .edition-selector.dashboard-version-bar {
+  position: static; z-index: auto; flex: 1 1 28rem; min-width: 0;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 0;
+  border: 0; background: transparent;
   color: var(--text-primary); font: 13px/1.5 var(--font-inter);
 }
 .dashboard-version-bar.edition-selector select {
-  min-width: 0; width: 21rem; max-width: calc(100% - 5rem); height: 30px;
+  min-width: 0; width: 19rem; max-width: calc(100% - 4rem); height: 30px;
   border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary);
 }
 .dashboard-version-bar #dashboard-version-note { color: var(--text-secondary); }
 .dashboard-version-bar button span { color: inherit; }
-.dashboard-version-bar .vb-changes { color: var(--text-primary); margin-left: auto; text-underline-offset: .2em; }
+.dashboard-version-bar .vb-changes { color: var(--text-primary); text-underline-offset: .2em; }
 .dashboard-version-bar :focus-visible, .programme-logo:focus-visible, .help-entry:focus-visible {
   outline: 3px solid var(--accent-sky); outline-offset: 2px;
 }
@@ -84,7 +82,7 @@ body[data-theme="dark"] .vb-theme .icon-moon, body[data-theme="light"] .vb-theme
   #interrogator-quote-control { grid-column: 1 / -1; }
 }
 @media(max-width: 600px) {
-  .edition-selector.dashboard-version-bar { padding: 6px 12px; gap: 4px 8px; }
+  body > .app-header .edition-selector.dashboard-version-bar { flex-basis: 100%; gap: 6px 8px; }
   .dashboard-version-bar #dashboard-version-note { flex-basis: 100%; }
   .dashboard-version-bar .vb-changes { flex: 1 1 6rem; margin-left: 0; }
 

@@ -65,8 +65,9 @@ class VersionMenuTest(unittest.TestCase):
                     if page.name=='dashboard.html':
                         self.assertIn(' selected',groups['Live'])
                         self.assertNotIn('aria-label="Superseded dashboard"',html)
-                        self.assertIn('Current review workspace',html)
-                        self.assertIn('href="reference/index.html">Methodology home</a>',html)
+                        self.assertNotIn('Current review workspace',html)
+                        self.assertNotIn('Methodology home</a>',html)
+                        self.assertIn('id="dashboard-version-note" hidden></span>',html)
                     else:
                         self.assertIn(' selected',groups['Superseded'])
                         self.assertIn('aria-label="Superseded dashboard"',html)
@@ -77,6 +78,9 @@ class VersionMenuTest(unittest.TestCase):
                     self.assertIn('src="dashboard-tables.js?',html)
                     self.assertIn('id="review-table-description"',html)
                     self.assertNotIn('aria-label="Review findings by table"',html)
+                    header=html.split('<header class="app-header">',1)[1].split('</header>',1)[0]
+                    self.assertIn('aria-label="Dashboard version and tools"',header)
+                    self.assertIn('id="dashboard-version"',header)
                     bar=html.split('aria-label="Dashboard version and tools">',1)[1].split('</div>',1)[0]
                     controls=['>Version</label>','id="dashboard-version-note"','id="theme-toggle"','id="rv-toggle"','What changed? · history and feedback']
                     self.assertEqual(sorted(controls,key=bar.index),controls)

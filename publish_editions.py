@@ -318,16 +318,16 @@ def add_version_selectors(site, editions, ciat, reference):
         kind = ' data-legacy="true"' if root_shell else ""
         label = "Version" if root_shell else "View version"
         if current == "review":
-            note = ('Current review workspace · '
-                    f'<a href="{escape(reference["href"], quote=True)}">Methodology home</a>')
+            note = ""
         elif legacy:
             note = "Superseded overview" if promoted else "Review findings against their sources."
         else:
             note = "Design preview."
+        note_visibility = "" if note else " hidden"
         control = (
             f'<label for="dashboard-version">{label}</label>'
             f'<select id="dashboard-version" aria-describedby="dashboard-version-note"{kind}>'
-            + menu + f'</select><span id="dashboard-version-note">{note}</span>'
+            + menu + f'</select><span id="dashboard-version-note"{note_visibility}>{note}</span>'
             + ("" if root_shell else f' <a href="{base}dashboard.html#review-queue">Open review queue</a>')
             + f"<noscript>{plain_links}</noscript>"
         )

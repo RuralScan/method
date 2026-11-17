@@ -8,7 +8,7 @@
     new ResizeObserver(([entry]) => {
       document.documentElement.style.setProperty("--edition-bar-height",
         entry.target.getBoundingClientRect().height + "px");
-    }).observe(select.parentElement);
+    }).observe(select.closest('.app-header') || select.parentElement);
   }
 
   const url = new URL(location.href);
@@ -21,9 +21,11 @@
       location.replace(url);
     } else {
       note.textContent = "This section is unavailable in this edition. Showing the start of the same page.";
+      note.hidden = false;
     }
   } else if (url.searchParams.get("edition-fallback") === "overview") {
     note.textContent = "This record or view is unavailable in this edition. Showing its overview.";
+    note.hidden = false;
   }
 
   select.addEventListener("change", () => {
