@@ -29,6 +29,7 @@ function setup() {
     DashboardShell:{openReviewQueue:() => {}}, vfNotice:() => {},
   };
   results.addEventListener = () => {};
+  results.focus = () => {};
   context.window = context;
   vm.createContext(context);
   for (const file of ['dashboard-tables.js','dashboard-priority.js']) {
@@ -40,7 +41,7 @@ function setup() {
 test('review sets match practice and actual table membership; duplicate requests count once', () => {
   const {context,api} = setup();
   let html = api.controls();
-  assert.match(html, /Cross-practice checks<\/span><small>1 finding in this view/);
+  assert.match(html, /Cross-practice checks<\/span><small>1 of 1 requests · needs attention in this view/);
   assert.doesNotMatch(html, /data-batch="(?:wet-t3|wet-t6|wet-t4|forest)"/);
   for (const [table,id] of [['T3','wet-t3'],['T6','wet-t6'],['T4-suitability','wet-t4']]) {
     context._vfScope.table = table;
@@ -95,4 +96,46 @@ test('legacy batch links still open full sets; direct findings can return to sco
   assert.equal(context._vfScope.nbs,'wetland_management');
   assert.equal(context._vfScope.table,'M2b');
   assert.equal(context._vfSimpleView,'todo');
+});
+
+test('shared addressed requests leave active priorities, stay in history, and changed inputs return', () => {
+  const {context,api} = setup();
+  for (const r of context.reviewData.review_priorities) if(r.batch_id==='mixed') {
+    r.status='addressed';r.history=[{actor:'fixture',date:'2026-11-17',action:'addressed',reason:'Correction applied <checked>',receipt:501,current:true}];
+  }
+  api.choose('high');
+  assert.equal(api.matches({evidence_id:'wet-op'}),false);
+  assert.doesNotMatch(api.controls(),/data-batch="mixed"/);
+  assert.match(api.badge({evidence_id:'wet-op'}),/Earlier review priority/);
+  const history=api.card({evidence_id:'wet-op'});
+  assert.match(history,/Request addressed/);
+  assert.match(history,/Correction applied &lt;checked&gt;/);
+  assert.match(history,/issues\/501/);
+  api.setView('history');
+  assert.equal(api.matches({evidence_id:'wet-op'}),true);
+  assert.match(api.controls(),/data-batch="mixed"/);
+  for(const r of context.reviewData.review_priorities) if(r.batch_id==='mixed')r.status='recheck';
+  api.setView('attention');
+  assert.equal(api.matches({evidence_id:'wet-op'}),true);
+});
+
+
+test('selected active requests remain reviewable after an earlier finding decision', () => {
+  const {context,api} = setup();
+  const html=fs.readFileSync(path.join(__dirname,'..','dashboard.html'),'utf8');
+  vm.runInContext(html.match(/  function vfSimpleMatch\(u,view\)\{[\s\S]*?\n  \}/)[0],context);
+  context.vfHasAnswerForReview=()=>false;context.vfClarificationsFor=()=>[];
+  const unit={ev:{evidence_id:'wet-op',_reviewQueue:'recorded'},me:true,meApplied:true};
+  assert.equal(context.vfSimpleMatch(unit,'todo'),false);
+  api.choose('mixed');
+  assert.equal(context.vfSimpleMatch(unit,'todo'),true);
+  assert.equal(context.vfSimpleMatch({...unit,dropped:true},'todo'),true);
+  assert.equal(context.vfSimpleMatch({...unit,formerlyCited:true},'todo'),true);
+  assert.equal(context.vfSimpleMatch({...unit,meApplied:false},'todo'),false);
+  assert.equal(context.vfSimpleMatch(unit,'mine'),true);
+  assert.equal(context.vfSimpleMatch({...unit,me:false},'mine'),false);
+  for(const r of context.reviewData.review_priorities)if(r.evidence_id==='wet-op')r.status='addressed';
+  assert.equal(context.vfSimpleMatch(unit,'todo'),false);
+  for(const r of context.reviewData.review_priorities)if(r.evidence_id==='wet-op')r.status='recheck';
+  assert.equal(context.vfSimpleMatch(unit,'todo'),true);
 });

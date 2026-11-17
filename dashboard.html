@@ -1809,8 +1809,8 @@
       same(r,archivedUnits.get(r.evidence_id),['source_id','quote','page','locator','locator_type']) &&
       same(liveSources.get(r.source_id),archivedSources.get(r.source_id),['doi','url','library_path','access_status','license'])
     ).map(r => r.evidence_id));
-    const priority = [...data.review_priorities];
-    for (const [batch_id, batch] of Object.entries(live.batches)) {
+    const priority = live.priority_requests ? [...live.priority_requests] : [...data.review_priorities];
+    if (!live.priority_requests) for (const [batch_id, batch] of Object.entries(live.batches)) {
       for (const evidence_id of batch.ids) priority.push({batch_id, batch_label:batch.title, evidence_id, priority:'normal'});
     }
     return {...base, ...data, ...live, registers:{...registers,...live.registers}, review_priorities:priority, registerRevision:sha, legacyPreviews};
@@ -2738,6 +2738,9 @@
   }
   function vfSimpleMatch(u,view){
     if(view==='mine')return u.me;
+    // An active request can ask for another look at an already reviewed finding.
+    // Keep the scientific state intact and avoid repeating a pending local vote.
+    if(view==='todo' && window.DashboardPriority?.needsAttention(u.ev))return !(u.me&&!u.meApplied);
     if(u.formerlyCited && !(view==='advanced' && window._vfAxStatus==='dropped')) return false;
     if(view==='advanced')return true;
     if(u.dropped)return false;
@@ -6049,7 +6052,9 @@
 <script src="dashboard-feedback.js?v=1.6.0"></script>
 <script src="dashboard-relationships.js?v=1.2.1"></script>
 <script src="dashboard-tables.js?v=3"></script>
-<script src="dashboard-priority.js?v=1.10"></script>
+<script src="dashboard-priority.js?v=1.11"></script>
+<script src="review/priority-receipt.js"></script>
+<script src="review/priority-status.js"></script>
 <script src="dashboard-shell.js?v=1.7.0"></script>
 <dialog id="finding-submission" aria-labelledby="finding-submission-title">
   <form><h2 id="finding-submission-title">Review finding</h2><output></output>
