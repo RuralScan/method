@@ -65,7 +65,8 @@
   {
     "label": "Methodology",
     "date": "2026-11-17",
-    "group": "Under review",
+    "group": "Live",
+    "default": true,
     "href": "reference/index.html"
   }
 ]

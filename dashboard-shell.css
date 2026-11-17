@@ -152,6 +152,17 @@ body[data-theme="dark"] .vb-theme .icon-moon, body[data-theme="light"] .vb-theme
 .vf-priority-controls ul { padding-left: 20px; overflow-wrap: anywhere; }
 .vf-priority-note p { margin: 8px 0; }
 
+.dashboard-superseded {
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--accent-amber);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.dashboard-superseded a { color: var(--accent-sky); }
+
 .review-start {
   margin: 16px 0;
   padding: 16px;
