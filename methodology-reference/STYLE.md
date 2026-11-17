@@ -80,9 +80,11 @@ These are the only departures. Each has a reason; do not add to the list without
 ## Name and overview
 
 - **The public name is "Methodology".** Pages do not call it a "reference". The folder and the address keep the old word so links do not break. A check fails on the old name anywhere on a page, including the version menu, whose labels come from the site's edition catalogue.
-- **The overview is a story, not a dashboard of counts.** It runs in this order: the problem, what the method does about it, who it is for, how it works (one figure), the working tool, how it was built, what it covers, what is settled, where the detail is. Counts of practices and evidence belong in the Practices part.
+- **The overview is a story, not a dashboard of counts.** It runs in this order: the problem, what the method does about it, who it is for, how it works (one figure, with the link to the visual methodology), how it was built, what it covers, what is settled, where the detail is. Counts of practices and evidence belong in the Practices part.
 - **One figure shows the whole method:** how evidence becomes rules (AI-supported, checked by people), then the seven stages that apply them. Do not add a second method figure to the overview.
-- **Overview sections are numbered from their order** (1.1, 1.2 ...) by the build, and listed at the top of the page. Do not type section numbers.
+- **Overview sections are numbered from their order** (1.1, 1.2 ...) by the build, and listed in the side bar, as chapters are in the other parts. Do not type section numbers.
+- **Lists of facts go in a plain table,** as in a scientific report. Do not put them in coloured boxes.
+- **Links that leave the site open in a new tab.** The build adds this to every outside link, the visual methodology and the programme logo included. Links to the live dashboard stay in the same tab.
 - **Boxes carry a tooltip.** Tabs, figure steps and count tiles each have one more line of detail on hover.
 
 ## Fonts

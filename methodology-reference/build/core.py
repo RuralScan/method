@@ -643,6 +643,18 @@ def number_sections(body, number):
     return re.sub(r'<h2 id="([^"]+)">(.*?)</h2>', numbered, body), listed
 
 
+def new_tab(html):
+    """Links that leave the published site open in a new tab. Links inside it stay in the same tab."""
+
+    def mark(m):
+        tag = m.group(0)
+        if m.group(1).startswith(SITE_URL) or " target=" in tag:
+            return tag
+        return f'{tag[:-1]} target="_blank" rel="noopener">'
+
+    return re.sub(r'<a\b[^>]*\bhref="(https?://[^"]*)"[^>]*>', mark, html)
+
+
 def page(
     filename, section, title, body, crumbs=(), lead=None, toc=None, numbered=False
 ):
@@ -656,9 +668,9 @@ def page(
         nav.append(
             f'<a href="{href}"{cur} title="{esc(NAV_TIP[href])}"><span class="n">{i}</span> {esc(label)}</a>'
         )
+    sections = []
     if numbered:
         body, sections = number_sections(body, [h for h, _ in NAV].index(section) + 1)
-        toc = toc or sections
     doc_title = title if title == SITE_NAME else f"{title} · {SITE_NAME}"
     side = ""
     entries = SIDE.get(section, [])
@@ -673,6 +685,18 @@ def page(
         side = (
             '<nav class="side" aria-label="Section contents"><details open>'
             f"<summary>In this section</summary><ol>{''.join(items)}</ol></details></nav>"
+        )
+    elif sections:
+        # A page with numbered sections and no chapters lists its sections in the same side bar.
+        items = []
+        for ident, label in sections:
+            n, _, name = label.partition(" ")
+            items.append(
+                f'<li><a href="#{ident}"><span class="n">{n}</span> {esc(name)}</a></li>'
+            )
+        side = (
+            '<nav class="side" aria-label="On this page"><details open>'
+            f"<summary>On this page</summary><ol>{''.join(items)}</ol></details></nav>"
         )
     trail = ""
     if crumbs:
@@ -724,7 +748,7 @@ local feasibility assessment validates. <a href="editions.html">Editions and che
 """
     if filename in PAGES:
         raise ValueError(f"Duplicate page {filename}")
-    PAGES[filename] = html
+    PAGES[filename] = new_tab(html)
 
 
 # ---------------------------------------------------------------- shared naming
