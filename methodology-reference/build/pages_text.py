@@ -786,6 +786,10 @@ def build():
                     "On the overview, “How the method was built” is now plain text, and “What is settled, and "
                     "what is not” is a table."
                 ),
+                (
+                    "Fourteen lists of a bold phrase followed by a sentence became plain tables or plain text, "
+                    "among them the neighbouring-practice boundaries on the practice pages. No rule changed."
+                ),
             ],
         ),
         (

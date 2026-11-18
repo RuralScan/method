@@ -122,10 +122,7 @@ Relative measures (percent changes in cost against a control) carry no denominat
 
 ## Why this is not cost-benefit analysis
 
-- **No valuation of benefits.** Benefits are expressed as ordinal effect classes in T6, not monetised. T6E holds costs and a small set of income and revenue indicators.
-- **No discounting or time profile.** Ranges are observed extremes from different studies, years and designs; there is no cash-flow model.
-- **No site specificity.** Figures describe documented projects in comparable income contexts, not the costs at a proposed site.
-- **No feasibility indicators.** Carbon abatement cost is deliberately not generated.
+A cost profile leaves out four things that a cost-benefit analysis needs. Benefits are not valued in money. They are expressed as ordinal effect classes in T6, and T6E holds costs and a small set of income and revenue indicators. There is no discounting and no time profile, because ranges are observed extremes from different studies, years and designs and there is no cash-flow model. Figures are not specific to a site: they describe documented projects in comparable income contexts, not the costs at a proposed site. No feasibility indicator is produced, and carbon abatement cost is deliberately not generated.
 
 An economist can use a gated range for an indicative narrative without a full cost-benefit analysis; the analysis itself, with local prices and a project design, is feasibility work. [src: schema/spec.md §T6] [src: AGENTS.md §What is locked]
 

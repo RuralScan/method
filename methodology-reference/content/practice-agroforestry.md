@@ -24,9 +24,11 @@ Agroforestry, in this method, is the deliberate integration of woody perennials 
 
 Three neighbours must not be confused with it:
 
-- **Forest restoration.** Regeneration or planting on degraded forest or non-farm land belongs to [[practice:forest_restoration]]. The boundary is the land system: regeneration on farmland is agroforestry, regeneration on forest land is forest restoration [src: methodology/families/forest_restoration.md §4. Edge cases the scheme deliberately resolves].
-- **Riparian buffers.** Streamside planting is gated by the watercourse network, a different spatial logic, so it is its own practice, [[practice:riparian_buffer]], with a `zonal_linear` product [src: methodology/families/agroforestry.md §Parked / out of scope]. Agroforestry linear plantings (windbreaks, contour buffers) are gated by wind exposure and slope-flow on fields, not by streams [src: methodology/families/riparian_buffer.md §4. Edge cases the scheme resolves].
-- **Water harvesting.** Contour structures whose purpose is to hold water belong to [[practice:water_harvesting_conservation]]; a vegetated contour line whose dominant limiter is the placement geometry of a tree or shrub line belongs here.
+| Neighbouring practice | Where the boundary lies |
+|---|---|
+| Forest restoration | Regeneration or planting on degraded forest or non-farm land belongs to [[practice:forest_restoration]]. The boundary is the land system: regeneration on farmland is agroforestry, regeneration on forest land is forest restoration [src: methodology/families/forest_restoration.md §4. Edge cases the scheme deliberately resolves]. |
+| Riparian buffers | Streamside planting is gated by the watercourse network, a different spatial logic, so it is its own practice, [[practice:riparian_buffer]], with a `zonal_linear` product [src: methodology/families/agroforestry.md §Parked / out of scope]. Agroforestry linear plantings (windbreaks, contour buffers) are gated by wind exposure and slope-flow on fields, not by streams [src: methodology/families/riparian_buffer.md §4. Edge cases the scheme resolves]. |
+| Water harvesting | Contour structures whose purpose is to hold water belong to [[practice:water_harvesting_conservation]]; a vegetated contour line whose dominant limiter is the placement geometry of a tree or shrub line belongs here. |
 
 The practice definition record (T0) lists aliases inherited from an earlier catalogue, including "Riparian buffers" and "Forest farming", and its technical description groups parkland under silvopastoral systems [src: schema/recipes/agroforestry/T0_nbs_registry.csv §aliases]. The family registry is authoritative and differs on both points: riparian buffers are a separate practice and parkland retention is a regeneration practice. Read T0 aliases as search vocabulary, not as a classification.
 

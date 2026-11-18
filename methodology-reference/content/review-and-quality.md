@@ -164,8 +164,7 @@ Project progress is recorded per practice, table, discovery process and family i
 
 The ledger separates stages that must be stamped from facts that can be derived. [src: src/nbs_ruralscan/schema_tools/ledger.py §module docstring]
 
-- **Authored stages** (searched, screened, verified) cannot be derived from data. The pipeline step that does the work stamps them as not started, in progress or done.
-- **Derived facts** (extraction and review) are read live from the Evidence Register.
+Authored stages (searched, screened, verified) cannot be derived from data. The pipeline step that does the work stamps them as not started, in progress or done. Derived facts (extraction and review) are read live from the Evidence Register.
 
 A reconciliation check runs in every build and fails it when: [src: src/nbs_ruralscan/schema_tools/ledger.py §check]
 

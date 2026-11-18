@@ -25,8 +25,10 @@ The method treats mangroves as their own practice, not a forest-restoration fami
 
 Neighbours:
 
-- **Forest restoration.** [[practice:forest_restoration]] covers terrestrial forest. An earlier coastal family identifier under forest restoration is superseded; terrestrial and tidal envelopes are never pooled [src: methodology/families/forest_restoration.md §F4 — Historical mangrove proposal (superseded 2026-10-19)].
-- **Coastal wetlands.** Tidal marsh and salt-marsh restoration is a family of [[practice:wetland_management]] (`wetland_management__coastal`), parked under the same coastal scope question [src: schema/registers/FAM_family_registry.csv §tidal_marsh_restoration].
+| Neighbouring practice | Where the boundary lies |
+|---|---|
+| Forest restoration | [[practice:forest_restoration]] covers terrestrial forest. An earlier coastal family identifier under forest restoration is superseded; terrestrial and tidal envelopes are never pooled [src: methodology/families/forest_restoration.md §F4 — Historical mangrove proposal (superseded 2026-10-19)]. |
+| Coastal wetlands | Tidal marsh and salt-marsh restoration is a family of [[practice:wetland_management]] (`wetland_management__coastal`), parked under the same coastal scope question [src: schema/registers/FAM_family_registry.csv §tidal_marsh_restoration]. |
 
 The T0 record places the practice in the stocktake's tree-based catalogue group (`cluster = tree_based`) for cataloguing only; suitability is defined by the tidal-coastal family [src: methodology/families/mangrove.md §Reading the practice definition (T0)].
 

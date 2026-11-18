@@ -24,9 +24,11 @@ Wetland management and restoration, in this method, means restoring, rewetting o
 
 Neighbours:
 
-- **Water harvesting.** Ponds and tanks that store runoff are [[practice:water_harvesting_conservation]]; the method treats "water harvesting ≠ wetland creation" as a standing check against clustering by appearance [src: methodology/T4_generation_method.md §2.1 Practice definition → subpractices → suitability families].
-- **Riparian buffers.** Floodplain reconnection targeting the wetland body is here; the streamside strip is [[practice:riparian_buffer]] [src: methodology/families/wetland_management.md §4. Edge cases the scheme resolves]. Floodplain reconnection was removed from riparian buffers and lives in this practice [src: AGENTS.md §What is locked].
-- **Mangrove restoration.** Mangroves are [[practice:mangrove_restoration]]. Tidal marsh is a parked family here.
+| Neighbouring practice | Where the boundary lies |
+|---|---|
+| Water harvesting | Ponds and tanks that store runoff are [[practice:water_harvesting_conservation]]; the method treats "water harvesting ≠ wetland creation" as a standing check against clustering by appearance [src: methodology/T4_generation_method.md §2.1 Practice definition → subpractices → suitability families]. |
+| Riparian buffers | Floodplain reconnection targeting the wetland body is here; the streamside strip is [[practice:riparian_buffer]] [src: methodology/families/wetland_management.md §4. Edge cases the scheme resolves]. Floodplain reconnection was removed from riparian buffers and lives in this practice [src: AGENTS.md §What is locked]. |
+| Mangrove restoration | Mangroves are [[practice:mangrove_restoration]]. Tidal marsh is a parked family here. |
 
 ## Suitability families
 

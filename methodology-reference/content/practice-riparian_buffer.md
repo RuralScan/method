@@ -25,9 +25,11 @@ Riparian buffers, in this method, are vegetated strips (grass, herbaceous or woo
 
 Neighbours:
 
-- **Agroforestry linear plantings.** Windbreaks and contour buffers in [[practice:agroforestry]] are gated by wind and slope-flow on farmland; riparian buffers are gated by the watercourse network. Different networks, different practices [src: methodology/families/riparian_buffer.md §4. Edge cases the scheme resolves].
-- **Floodplain wetland reconnection.** Reconnecting a floodplain wetland body to its water source belongs to [[practice:wetland_management]] (restoration and rewetting family). Hydro-geomorphic connectivity is not the same limiting factor as riparian proximity and slope, so floodplain reconnection is **not** a riparian family [src: AGENTS.md §What is locked]. The split is by target: the wetland body versus the streamside strip [src: methodology/families/wetland_management.md §4. Edge cases the scheme resolves].
-- **Forest restoration.** Riparian reforestation is a riparian family, not a forest-restoration family [src: methodology/families/forest_restoration.md §4. Edge cases the scheme deliberately resolves].
+| Neighbouring practice | Where the boundary lies |
+|---|---|
+| Agroforestry linear plantings | Windbreaks and contour buffers in [[practice:agroforestry]] are gated by wind and slope-flow on farmland; riparian buffers are gated by the watercourse network. Different networks, different practices [src: methodology/families/riparian_buffer.md §4. Edge cases the scheme resolves]. |
+| Floodplain wetland reconnection | Reconnecting a floodplain wetland body to its water source belongs to [[practice:wetland_management]] (restoration and rewetting family). Hydro-geomorphic connectivity is not the same limiting factor as riparian proximity and slope, so floodplain reconnection is **not** a riparian family [src: AGENTS.md §What is locked]. The split is by target: the wetland body versus the streamside strip [src: methodology/families/wetland_management.md §4. Edge cases the scheme resolves]. |
+| Forest restoration | Riparian reforestation is a riparian family, not a forest-restoration family [src: methodology/families/forest_restoration.md §4. Edge cases the scheme deliberately resolves]. |
 
 ## Suitability families
 

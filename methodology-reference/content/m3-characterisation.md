@@ -60,8 +60,7 @@ The equity theme was broadened from a gender-only theme to cover Indigenous Peop
 
 Every T5 row carries `mcda_role`. [src: methodology/opportunity_space_T5.md §mcda_role - priority vs descriptor]
 
-- **`priority`** rows drive the Module 4 hotspot analysis, are reweightable by the user, and are the only rows to which T6 effect rows may attach.
-- **`descriptor`** rows are carried for narrative, intersection and hand-off, but never enter the MCDA and are never standardised for it.
+Rows marked `priority` drive the Module 4 hotspot analysis, are reweightable by the user, and are the only rows to which T6 effect rows may attach. Rows marked `descriptor` are carried for narrative, intersection and hand-off, but never enter the MCDA and are never standardised for it.
 
 The distinction resolves a design tension: showing every relevant layer to the user without inflating the dimensionality of the weighted overlay. Descriptors answer "how many people live in this hotspot" or "how far is it from a market"; they do not make a pixel more or less of a priority. [src: methodology/opportunity_space_T5.md §mcda_role - priority vs descriptor] M3 assembles both and splits them at assembly time: priorities go to the standardised stack for Module 4, descriptors go only to the fingerprint. [src: methodology/modules/M3_characterisation.md §12]
 

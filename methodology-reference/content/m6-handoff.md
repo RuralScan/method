@@ -69,10 +69,9 @@ Each step names the scan layer it builds on, for example "validate these units, 
 
 ### 4. Signpost feasibility methods and tools
 
-Point to the valuation toolbox from the project's stocktake review, grouped as nature-based methods and integrated methods:
+Point to the valuation toolbox from the project's stocktake review.
 
-- **Nature-based:** IPCC Tier 1 to 3 carbon accounting, RUSLE erosion modelling, and ecosystem-service models such as InVEST, ARIES and Co$tingNature.
-- **Integrated:** cost-benefit analysis and multi-criteria decision analysis.
+Its nature-based methods are IPCC Tier 1 to 3 carbon accounting, RUSLE erosion modelling, and ecosystem-service models such as InVEST, ARIES and Co$tingNature. Its integrated methods are cost-benefit analysis and multi-criteria decision analysis.
 
 Tool names are references, not endorsements. [src: methodology/modules/M6_handoff.md §6] The block carries the **proportionality principle**: simple methods (benefit transfer, proxy indicators) are enough early on, and detailed spatial modelling is reserved for high-priority sites. [src: methodology/modules/M6_handoff.md §6]
 
