@@ -176,7 +176,7 @@ def titles():
             TITLES[slug] = meta.get("title", words(slug))
     TITLES.update(
         {
-            "editions": "Editions",
+            "editions": "Versions and editions",
             "glossary": "Glossary",
             "evidence-base": "Evidence base",
             "reproduce": "Reproduce and check",

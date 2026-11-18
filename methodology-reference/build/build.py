@@ -7,6 +7,7 @@ Writes only under --out.
 """
 
 import argparse
+import json
 import re
 import shutil
 import sys
@@ -23,6 +24,7 @@ import pages_evidence
 import pages_model
 import pages_practices
 import pages_text
+import versioning
 
 HERE = Path(__file__).resolve().parent
 # Personal attributions must not reach public pages. Published authors in citations are fine.
@@ -353,6 +355,27 @@ def run_checks():
     )
     for name, ok, detail in pages_data.CHECKS:
         check(name, ok, detail)
+    stamp = f"Methodology v{core.VERSION}</span>"
+    unstamped = sorted(
+        name
+        for name, html in core.PAGES.items()
+        if stamp not in html or f"Evidence base {core.EVIDENCE_BASE}" not in html
+    )
+    check(
+        "Every page states the methodology version and the evidence base",
+        not unstamped,
+        f"{len(core.PAGES)} pages, v{core.VERSION}, evidence base {core.EVIDENCE_BASE}"
+        if not unstamped
+        else ", ".join(unstamped[:5]),
+    )
+    published = json.loads(core.FILES["version.json"])
+    check(
+        "The change history opens with the version in the version file",
+        f'id="v{core.VERSION}"' in core.PAGES["changes.html"]
+        and (published["version"], published["date"])
+        == versioning.changelog()[0][0][:2],
+        f"v{core.VERSION}, {core.VERSION_DATE}",
+    )
     check(
         "The evidence checkout is the revision whose operating procedures are described",
         core.EVIDENCE_REV == core.EVIDENCE_OPERATING,

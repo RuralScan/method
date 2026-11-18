@@ -16,6 +16,8 @@ from functools import cache
 from html import escape
 from pathlib import Path
 
+import versioning
+
 ROOT = Path(__file__).resolve().parents[1]
 # Inside the method repository the reference sits at its root; otherwise the method, evidence and
 # runtime checkouts are siblings two levels up. Each location can be overridden.
@@ -36,6 +38,13 @@ PIN = json.loads((EVIDENCE / "workflows/recipe_release/pin.json").read_text())
 PRODUCER = PIN["source_revision"]
 RELEASE = PIN["release_id"]
 PRACTICE_IDS = list(PIN["practices"])
+# Version numbers. The methodology's own number, date and status, and the number of the evidence base
+# that stands for the pinned release, come from VERSION.json. Nothing else in the build states them.
+VERSION, VERSION_DATE, VERSION_STATUS = versioning.current()
+_EVIDENCE_BASE = versioning.evidence_base(RELEASE)
+EVIDENCE_BASE = _EVIDENCE_BASE["version"]
+EVIDENCE_BASE_DATE = _EVIDENCE_BASE["date"]
+RELEASES_URL = "https://github.com/RuralScan/method/releases"
 
 
 def _head(repo):
@@ -84,8 +93,8 @@ VISUAL_URL = "https://ciat.github.io/nbs_ruralscan/redesign/"
 # so its label, its producer revisions and the list of drafts are never retyped here.
 SITE_URL = "https://ruralscan.github.io/method/"
 SITE_REV = "1ca12f6e8462dbe4c17d35190fd8f4988edbf8c2"
-# The address under the site root where this reference is published. Its label, date and menu group are
-# read from the site's edition catalogue, where it is listed by this address.
+# The address under the site root where this reference is published. Its name and menu group are read
+# from the site's edition catalogue, where it is listed by this address; its number and date are its own.
 REFERENCE_HREF = "reference/index.html"
 # False while the reference is published at an address that nothing links to. Every page then asks
 # search engines not to index it. Set to True in the same change that lists it on the site.
@@ -128,8 +137,10 @@ def _site_constant(name, script):
     return found.group(1)
 
 
-def _menu_label(label, day):
-    return f"{label} · {date.fromisoformat(day):%d %b %Y}"
+def _menu_label(label, day, version=None):
+    """Menu text for one entry. A numbered entry leads with its number."""
+    stamp = f"{date.fromisoformat(day):%d %b %Y}"
+    return f"v{version} · {label} · {stamp}" if version else f"{label} · {stamp}"
 
 
 _SITE_SCRIPT = _site("publish_editions.py")
@@ -150,7 +161,7 @@ DRAFTS_GROUP = "Earlier drafts"
 SITE_DRAFTS = [
     (
         f"{SITE_URL}editions/{e['edition']}/index.html",
-        _menu_label(e["label"], e["date"]),
+        _menu_label(e["label"], e["date"], e.get("version")),
     )
     for e in reversed(_CATALOGUE)
     if "edition" in e
@@ -163,7 +174,10 @@ if len(_LISTED_AS) != 1:
     )
 REFERENCE_GROUP = _LISTED_AS[0]["group"]
 REFERENCE_URL = SITE_URL + _LISTED_AS[0]["href"]
-REFERENCE_LABEL = _menu_label(_LISTED_AS[0]["label"], _LISTED_AS[0]["date"])
+REFERENCE_NAME = _LISTED_AS[0]["label"]
+REFERENCE_LABEL = (
+    f"{REFERENCE_NAME} v{VERSION} · {date.fromisoformat(VERSION_DATE):%d %b %Y}"
+)
 REVIEW_QUEUES = [
     ("T3", "review-t3", "Hazard findings"),
     ("T4", "review-t4", "Suitability findings"),
@@ -576,18 +590,36 @@ NAV_TIP = {
     "data-model.html": "Every table and field the rules are written in.",
     "practices.html": "Each practice: its families, its rules and ratings, and the evidence behind each.",
     "evidence-base.html": "Download and query the data, and follow a rule back to its source.",
-    "editions.html": "Version identifiers, what is established, how to reproduce, glossary.",
+    "editions.html": "Version numbers, what is established, how to reproduce, glossary.",
 }
 SITE_NAME = "Rural NbS Scan methodology"
 SIDE = {}  # section file -> [(href, label)], filled by the build before pages are written
 PAGES = {}  # filename -> html, written at the end
 
 
-def edition_line():
+def version_line():
+    """The two numbers that identify what a reader is looking at. The identifiers behind them are on the Editions page."""
+    state = " (draft)" if VERSION_STATUS == "draft" else ""
     return (
-        f"Draft recipe edition <code>{RELEASE[:8]}</code> (candidate, not released) · "
-        f"evidence registers at <code>{PRODUCER[:8]}</code>"
+        f'<span class="vno">Methodology v{VERSION}</span>{state} · {versioning.short_date(VERSION_DATE)} · '
+        f"Evidence base {EVIDENCE_BASE}"
     )
+
+
+# Read by the site when it publishes: the version menu and the home page take their label from here.
+FILES["version.json"] = (
+    json.dumps(
+        {
+            "name": REFERENCE_NAME,
+            "version": VERSION,
+            "date": VERSION_DATE,
+            "status": VERSION_STATUS,
+            "evidence_base": {"version": EVIDENCE_BASE, "date": EVIDENCE_BASE_DATE},
+        },
+        indent=1,
+    )
+    + "\n"
+)
 
 
 def version_bar(filename):
@@ -728,7 +760,7 @@ def page(
 {PROGRAMME_MARK}
 <a class="brand" href="index.html">{BRAND_ICON}Rural NbS Scan</a>
 <span class="sub">Methodology</span>
-<span class="ed">{edition_line()} · <a href="editions.html">about editions</a></span>
+<span class="ed">{version_line()} · <a href="editions.html">about versions</a></span>
 <a class="help-entry" href="help.html">Help / Contact / Team</a>
 <a class="review-entry" href="{live("review-queue")}">Review queue</a>
 </div>
@@ -738,9 +770,9 @@ def page(
 <main id="main">{trail}<h1>{esc(title)}</h1>{intro}{onpage}
 {body}
 </main></div>
-<footer><div class="wrap"><p>{edition_line()} · method definitions <code>{METHOD_REV[:8]}</code> ·
-evidence workflows <code>{EVIDENCE_REV[:8]}</code>. Scoping method: it flags where to look;
+<footer><div class="wrap"><p>{version_line()}. Scoping method: it flags where to look;
 local feasibility assessment validates. <a href="editions.html">Editions and checks</a> ·
+<a href="changes.html">What changed</a> ·
 <a href="glossary.html">Glossary</a></p></div></footer>
 <script src="site.js" defer></script>
 <script src="review-mode.js" defer></script>

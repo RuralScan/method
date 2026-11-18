@@ -44,6 +44,11 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
+      - name: Check the version number went up if a page changed
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: python3 methodology-reference/build/versioning.py check-bump "origin/$BASE_REF"
       - name: Read the pinned revisions from the build
         id: pins
         run: |
