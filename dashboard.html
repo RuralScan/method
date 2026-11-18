@@ -1013,6 +1013,7 @@
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.1.0">
 <link rel="stylesheet" href="dashboard-shell.css?v=1.12.0">
+<link rel="stylesheet" href="dashboard-evidence.css?v=1.0.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
   #loading-container, #error-container {display:flex;align-items:center;gap:.65rem;padding:.6rem 0;color:var(--text-secondary);font-size:.9rem}
@@ -1067,7 +1068,7 @@
   <nav class="tab-nav" aria-label="Dashboard sections">
     <button class="tab-btn active" data-tab="tab-overview" id="btn-overview">1. Overview</button>
     <button class="tab-btn" data-tab="tab-search" id="btn-search">2. Progress</button>
-    <button class="tab-btn" data-tab="tab-interrogator" id="btn-interrogator">3. Evidence &amp; rules</button>
+    <button class="tab-btn" data-tab="tab-interrogator" id="btn-interrogator">3. Evidence</button>
     <button class="tab-btn" data-tab="tab-stocktake" id="btn-stocktake">4. Sources &amp; datasets</button>
     <button class="tab-btn" data-tab="tab-qaqc" id="btn-qaqc">5. Evidence review</button>
     <button class="tab-btn" data-tab="tab-methods" id="btn-methods">6. Methods</button>
@@ -1109,7 +1110,7 @@
       <section class="shell-overview-block"><h3>1.3 Choose your task</h3>
         <p class="shell-explainer"><a href="#review-evidence=ev_wh_precip_wocatgl13_benchterraces">Inspect the bench-terrace rainfall finding</a> · <a href="catalog.json">Download evidence tables and metadata</a></p><div class="shell-task-grid">
         <button data-shell-open="btn-search"><b>Understand progress</b><span>For funders and project leads: see research effort, completed outputs and remaining review work.</span></button>
-        <button data-shell-open="btn-interrogator"><b>Inspect evidence and rules</b><span>For technical reviewers: compare relationships and trace rules back to source evidence.</span></button>
+        <button data-shell-open="btn-interrogator"><b>Explore the evidence</b><span>Read what the sources say about each practice, in plain words, with the source’s own words and page.</span></button>
         <button data-shell-open="btn-stocktake"><b>Find a source or dataset</b><span>Check publication details, linked extracts, variable definitions and available spatial datasets.</span></button>
         <button data-shell-open="btn-qaqc"><b>Review an extraction</b><span>For the review team: check a claim against its source, then Keep, Drop or Query.</span></button>
         <button data-shell-open="btn-methods"><b>Understand the methods</b><span>Follow the Rural Scan method, evidence workflow and recorded search protocols.</span></button>
@@ -1119,9 +1120,10 @@
     
     <!-- ================= TAB 2: INTERROGATOR ================= -->
     <div id="tab-interrogator" class="tab-content">
-      <header class="shell-intro"><h2>3. Evidence &amp; rules</h2><p>Inspect how published evidence supports the scan’s analytical rules. Use T4 suitability relationships to compare variables and recorded responses. Use T3 hazard ratings to see how a hazard affects an investment or how a practice protects livelihoods. Follow either table back to its source findings. Evidence quality, review approval and synthesis readiness are separate judgements.</p></header>
-      <nav class="shell-subnav" aria-label="Evidence and rules views"><button type="button" data-query-view="relationships" aria-pressed="true">3.1 Suitability relationships (T4)</button><button type="button" data-query-view="explorer" aria-pressed="false">3.2 Evidence explorer</button><button type="button" data-query-view="hazards" aria-pressed="false">3.3 Hazard ratings (T3)</button></nav>
-      <section id="relationship-review-root"><p>Loading relationship catalogue…</p></section>
+      <header class="shell-intro"><h2>3. Evidence</h2><p>What published sources say about each practice, one finding at a time. Every finding carries the source’s own words and the page they came from. Findings are rows of the evidence register in <a href="https://github.com/RuralScan/evidence" target="_blank" rel="noopener noreferrer">RuralScan/evidence ↗</a>. Nothing here is a combined result or a rating.</p></header>
+      <section id="evidence-section-root"><p class="ev-status" role="status">Loading the evidence registers…</p></section>
+      <p id="legacy-analysis-note" class="shell-explainer" hidden>Earlier analysis view, kept so that existing links still open. It is no longer part of the Evidence section. <a href="#evidence">Back to Evidence</a></p>
+      <section id="relationship-review-root" hidden><p>Loading relationship catalogue…</p></section>
       <section id="hazard-panel" class="dr-shell" hidden>
         <h3>3.3 Hazard ratings (T3)</h3>
         <div class="dr-filters"><label>Practice<select id="hazard-practice"></select></label><label>Hazard<select id="hazard-type"></select></label><label>Risk lens<select id="hazard-lens"></select></label><label>Scope<select id="hazard-scope"></select></label></div>
@@ -1814,6 +1816,7 @@
     const queue = await loadReviewSnapshot(base);
     dashboardData = _segregateDropped(base);
     reviewData = queue === base ? dashboardData : _segregateDropped(queue);
+    if (window.DashboardEvidence) window.DashboardEvidence.refresh(reviewData);
   }
 
   let activeSearchCategory = 'all';
@@ -6046,10 +6049,11 @@
 <script src="dashboard-feedback.js?v=1.6.0"></script>
 <script src="dashboard-relationships.js?v=1.2.1"></script>
 <script src="dashboard-tables.js?v=4"></script>
+<script src="dashboard-evidence.js?v=1.0.0"></script>
 <script src="dashboard-priority.js?v=1.12"></script>
 <script src="review/priority-receipt.js"></script>
 <script src="review/priority-status.js?v=2"></script>
-<script src="dashboard-shell.js?v=1.8.0"></script>
+<script src="dashboard-shell.js?v=1.9.0"></script>
 <dialog id="finding-submission" aria-labelledby="finding-submission-title">
   <form><h2 id="finding-submission-title">Review finding</h2><output></output>
     <p>Your GitHub name, vote and note will appear on a public issue in RuralScan/evidence.</p>
