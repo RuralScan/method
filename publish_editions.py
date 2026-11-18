@@ -185,6 +185,27 @@ LEGACY = {
 }
 
 
+# The dashboard is a page of its own, so it has its own entry in the version menu and its own tab symbol.
+DASHBOARD_LABEL = "Evidence dashboard · current"
+_TILE = ("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='5' fill='#0b0f19'/>"
+         "<g fill='none' stroke='#10b981' stroke-width='{width}' stroke-linecap='round' stroke-linejoin='round'{place}>"
+         "{glyph}</g></svg>")
+TAB_ICONS = {
+    # An open book: the methodology and its earlier drafts.
+    "methodology": _TILE.format(width="2", place=" transform='translate(2.6 2.6) scale(0.78)'",
+                                glyph="<path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'/>"
+                                      "<path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'/>"),
+    # Three bars on a baseline: the evidence dashboard.
+    "dashboard": _TILE.format(width="2.6", place="", glyph="<path d='M7.5 16.5v-3.5M12 16.5v-9M16.5 16.5v-6'/>"
+                                                           "<path d='M5 19.5h14' stroke-width='1.4'/>"),
+}
+
+
+def tab_icon(kind):
+    """A link element that gives a page its browser-tab symbol. The image is inline, so no path can break."""
+    return f'<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,{quote(TAB_ICONS[kind], safe="")}">'
+
+
 def reference_version(site, reference):
     """The methodology states its own version and date. The site reads them and never retypes them."""
     try:
@@ -206,7 +227,7 @@ def publish_reference_menu(site, reference, labels, label, note):
         row = re.match(r"row-(t3|t4|t6)-", path.name)
         dashboard_route = "review-" + row[1] if row else "overview"
         groups = [
-            ("Live", [(base + reference["href"], label, True)]),
+            ("Live", [(base + reference["href"], label, True), (base + "dashboard.html", DASHBOARD_LABEL, False)]),
             ("Superseded", [(base + "legacy.html#" + dashboard_route, "Evidence dashboard · 10 Nov 2026", False)]),
             ("Earlier drafts", [(base + f"editions/{key}/index.html", escape(value), False)
                                 for key, value in reversed(labels.items())]),
@@ -232,6 +253,8 @@ def publish_reference_menu(site, reference, labels, label, note):
             contents, count = re.subn(pattern, replacement, contents, flags=re.S)
             if count != 1:
                 raise ValueError(f"Expected one shared navigation element in {path}: {pattern}")
+        if 'rel="icon"' not in contents:
+            contents = contents.replace("</head>", tab_icon("methodology") + "</head>", 1)
         path.write_text(contents)
 
 
@@ -320,9 +343,13 @@ def add_version_selectors(site, editions, ciat, reference):
         if reference_available:
             href = base + escape(reference["href"], quote=True)
             label = reference_label
-            selected = " selected" if current == "review" and promoted else ""
-            reference_group = (reference["group"], f'<option value="{href}"{selected}>{label}</option>',
-                               f'<a href="{href}">{label}</a>')
+            options_html, links_html = f'<option value="{href}">{label}</option>', f'<a href="{href}">{label}</a>'
+            if promoted:
+                # The review workspace is not the methodology: it selects its own entry, never the methodology's.
+                selected = " selected" if current == "review" else ""
+                options_html += f'<option value="{base}dashboard.html"{selected}>{DASHBOARD_LABEL}</option>'
+                links_html += f' · <a href="{base}dashboard.html">{DASHBOARD_LABEL}</a>'
+            reference_group = (reference["group"], options_html, links_html)
             if promoted:
                 groups.insert(0, reference_group)
             else:
@@ -397,6 +424,8 @@ def add_version_selectors(site, editions, ciat, reference):
             contents = contents[:header] + control + contents[header:]
         assets = (f'<link rel="stylesheet" href="{base}edition-selector.css?v=2">'
                   f'<script defer src="{base}edition-selector.js"></script>')
+        if 'rel="icon"' not in contents:
+            assets += tab_icon("methodology")
         path.write_text(contents.replace("</head>", assets + "</head>", 1))
 
     for key, names in pages.items():
@@ -436,7 +465,7 @@ def add_version_selectors(site, editions, ciat, reference):
     )
     for name in (("dashboard.html", "legacy.html") if promoted else ("index.html", "dashboard.html", "legacy.html")):
         contents = (site / name).read_text()
-        expected_title = reference_label if promoted and name == "dashboard.html" else legacy_title
+        expected_title = DASHBOARD_LABEL if promoted and name == "dashboard.html" else legacy_title
         if ('id="tab-qaqc"' not in contents or 'id="vf-scope"' not in contents
                 or 'src="dashboard-tables.js?' not in contents or f' selected>{expected_title}</option>' not in contents):
             raise ValueError(f"{name} must retain evidence review and select its own edition")

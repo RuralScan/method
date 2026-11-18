@@ -68,9 +68,12 @@ class VersionMenuTest(unittest.TestCase):
                 self.assertIn('legacy.html#',groups['Superseded'])
                 self.assertNotIn('dashboard.html',groups['Superseded'])
                 self.assertEqual(menu.count(' selected'),1)
+                self.assertIn('>Evidence dashboard · current</option>',groups['Live'])
+                chosen=re.search(r'<option[^>]* selected[^>]*>(.*?)</option>',menu)[1]
                 if page.parent==site:
                     if page.name=='dashboard.html':
-                        self.assertIn(' selected',groups['Live'])
+                        self.assertEqual(chosen,'Evidence dashboard · current')
+                        self.assertIn('<option value="dashboard.html" selected>',groups['Live'])
                         self.assertNotIn('aria-label="Superseded dashboard"',html)
                         self.assertNotIn('Current review workspace',html)
                         self.assertNotIn('Methodology home</a>',html)
@@ -93,12 +96,14 @@ class VersionMenuTest(unittest.TestCase):
                     controls=['>Version</label>','id="dashboard-version-note"','id="theme-toggle"','id="rv-toggle"','What changed? · history and feedback']
                     self.assertEqual(sorted(controls,key=bar.index),controls)
                 elif page.parent.name=='reference':
-                    self.assertIn(' selected',groups['Live'])
+                    self.assertEqual(chosen,'Methodology v0.8.0 · 18 Nov 2026')
+                    self.assertIn(publish.tab_icon('methodology'),html)
                     self.assertIn('href="../dashboard.html#review-queue">Review queue</a>',html)
                     self.assertIn('<span id="dashboard-version-note">Current draft</span>',html)
                     self.assertNotIn('Under review',html)
                     self.assertIn('<main><h1>Methodology</h1><p>Draft recipe edition; candidate, not released.</p></main>',html)
                 else:
+                    self.assertIn(publish.tab_icon('methodology'),html)
                     self.assertIn(f'data-edition="{editions[-1]["edition"]}" selected',groups['Earlier drafts'])
                     self.assertIn('../../dashboard.html#review-queue',html)
 
@@ -122,6 +127,20 @@ class VersionMenuTest(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,'Default Methodology'):
                     self.publish(site,editions,reference)
                 self.assertFalse((site/'index.html').exists())
+
+    def test_every_kind_of_page_has_a_tab_symbol_and_the_two_products_differ(self):
+        self.assertNotEqual(publish.tab_icon('dashboard'),publish.tab_icon('methodology'))
+        here=Path(publish.__file__).parent
+        self.assertEqual((here/'dashboard.html').read_text().count(publish.tab_icon('dashboard')),1)
+        self.assertEqual((here/'index.html').read_text().count(publish.tab_icon('methodology')),1)
+        with TemporaryDirectory() as tmp:
+            site=Path(tmp);editions,reference=self.prepare(site)
+            self.publish(site,editions,reference)
+            for page in site.rglob('*.html'):
+                if page.name=='review.html' and page.parent==site:continue  # a redirect with no content of its own
+                self.assertEqual(page.read_text().count('rel="icon"'),1,page)
+            for name in ('dashboard.html','legacy.html'):
+                self.assertIn(publish.tab_icon('dashboard'),(site/name).read_text())
 
     def test_version_comes_from_the_methodology_build_and_is_never_retyped(self):
         catalog=json.loads(Path(publish.__file__).with_name('editions.json').read_text())
