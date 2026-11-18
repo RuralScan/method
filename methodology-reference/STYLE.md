@@ -95,4 +95,4 @@ Inter and Outfit load from Google Fonts with the same link the dashboard uses. I
 
 ## Checking a change by eye
 
-Open the reference and the live dashboard side by side in the same theme. Header, tabs, a card and a table should look like parts of one site. View the reference in both themes and at phone width before opening a pull request.
+Open the reference and the live dashboard side by side in the same theme. Header, tabs, a card and a table should look like parts of one site. View the reference in both themes, at a laptop width (about 1,024 pixels) and at a desktop width, before opening a pull request. Readers are expected at a desk: phones are not a target, so the pages only need to stay usable there, not polished.

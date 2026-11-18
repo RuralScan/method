@@ -6,6 +6,11 @@ What changed in the Rural NbS Scan methodology, newest first. The build reads th
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.8.1] - 2026-11-18
+
+- The version line at the top of each page no longer breaks in the middle of a phrase when the
+  window is narrow. It gives the two numbers and leaves the date to the version menu above it.
+
 ## [0.8.0] - 2026-11-18
 
 - Version numbers start here. The methodology carries a version number and the evidence base it

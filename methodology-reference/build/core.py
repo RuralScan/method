@@ -597,12 +597,20 @@ SIDE = {}  # section file -> [(href, label)], filled by the build before pages a
 PAGES = {}  # filename -> html, written at the end
 
 
-def version_line():
-    """The two numbers that identify what a reader is looking at. The identifiers behind them are on the Editions page."""
+def version_line(*more, dated=True):
+    """The two numbers that identify what a reader is looking at. The identifiers behind them are on the Editions page.
+
+    Each part is kept whole, so a narrow header breaks the line between parts and never inside one.
+    `more` adds parts at the end. The header leaves the date to the version menu directly above it.
+    """
     state = " (draft)" if VERSION_STATUS == "draft" else ""
-    return (
-        f'<span class="vno">Methodology v{VERSION}</span>{state} · {versioning.short_date(VERSION_DATE)} · '
-        f"Evidence base {EVIDENCE_BASE}"
+    parts = [f'<span class="vno">Methodology v{VERSION}</span>{state}']
+    if dated:
+        parts.append(versioning.short_date(VERSION_DATE))
+    parts += [f"Evidence base {EVIDENCE_BASE}", *more]
+    return " ".join(
+        f'<span class="vpart">{part}{" ·" if i < len(parts) - 1 else ""}</span>'
+        for i, part in enumerate(parts)
     )
 
 
@@ -760,7 +768,7 @@ def page(
 {PROGRAMME_MARK}
 <a class="brand" href="index.html">{BRAND_ICON}Rural NbS Scan</a>
 <span class="sub">Methodology</span>
-<span class="ed">{version_line()} · <a href="editions.html">about versions</a></span>
+<span class="ed">{version_line('<a href="editions.html">about versions</a>', dated=False)}</span>
 <a class="help-entry" href="help.html">Help / Contact / Team</a>
 <a class="review-entry" href="{live("review-queue")}">Review queue</a>
 </div>
