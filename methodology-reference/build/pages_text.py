@@ -10,7 +10,6 @@ from chapters import (
     EVIDENCE_CH,
     METHOD_CH,
     TITLES,
-    WORDS,
     chapter_body,
     chapter_file,
     summary,
@@ -324,14 +323,12 @@ def chapter_index(slugs, number):
                 f"{number}.{i}",
                 link(chapter_file(slug_), esc(TITLES.get(slug_, slug_))),
                 esc(summary(slug_)),
-                f"{WORDS.get(slug_, 0):,}",
             ]
         )
     return table(
-        ["", "Chapter", "After reading it you can", "Words"],
+        ["", "Chapter", "After reading it you can"],
         rows,
         caption="Chapters in this part",
-        numeric=(3,),
     )
 
 
@@ -366,7 +363,7 @@ EVIDENCE_STEPS = [
         "Compile",
         "Findings on the same question are pooled by a fixed rule into one row, with a confidence level.",
         "Confidence comes from how much evidence there is and how far it agrees.",
-        "evidence-methods.html",
+        "ch-compiling-evidence.html",
     ),
 ]
 RULE_KINDS = [
@@ -423,6 +420,60 @@ STAGE_TEXT = [
 ]
 
 
+# Who does each evidence step and what it leaves behind, in the order of EVIDENCE_STEPS.
+EVIDENCE_FLOW = [
+    (
+        "discovery",
+        "An AI system, to a recorded protocol. People settle borderline papers.",
+        "A search record",
+    ),
+    (
+        "acquisition",
+        "An AI system. Identity is checked automatically; people check what a tool cannot.",
+        "A verified source file",
+    ),
+    (
+        "extraction",
+        "An AI system. Every quote and number is checked automatically.",
+        "A finding, with its quote and page",
+    ),
+    (
+        "review-and-quality",
+        "People, on the findings that checks flag or sample.",
+        "A reviewed finding",
+    ),
+    (
+        "compiling-evidence",
+        "Fixed code today. A move to an AI agent is planned.",
+        "A row of a rule table",
+    ),
+]
+
+
+def evidence_flow():
+    """The evidence steps in order: what happens, who does it and what each step leaves."""
+    steps = []
+    for (name, text_, _tip, _href), (slug_, by, leaves) in zip(
+        EVIDENCE_STEPS, EVIDENCE_FLOW, strict=True
+    ):
+        first = EVIDENCE_CH.index(slug_) + 1
+        last = len(EVIDENCE_CH) if slug_ == "compiling-evidence" else first
+        number = f"3.{first}" if first == last else f"3.{first} to 3.{last}"
+        steps.append(
+            f'<li><div class="estep"><p class="ename"><span class="mnum">{number}</span>'
+            f"<b>{link(chapter_file(slug_), esc(name))}</b></p><p>{esc(text_)}</p>"
+            f'<p><span class="elab">Done by</span>{esc(by)}</p></div>'
+            f'<p class="ehand"><span class="elab">leaves</span><span class="erec">{esc(leaves)}</span></p></li>'
+        )
+    return (
+        '<figure class="eflow" id="evidence-flow">'
+        f'<ol class="esteps">{"".join(steps)}</ol>'
+        "<figcaption>From a search to a rule, in five steps. Each step leaves a record that the next one reads, "
+        "so any rule can be followed back to the page it came from. Select a step to read its chapter.</figcaption>"
+        "</figure>"
+    )
+
+
 def method_map():
     """The method in one figure: how evidence becomes rules, then the seven stages that apply them."""
     evidence = "".join(
@@ -477,7 +528,6 @@ def build():
     kept = [u for u in data.EV if data.retained(u)]
     fam_registered = sorted({f["suitability_family_id"] for f in data.FAM})
     effect_rows = [r for r in data.ROWS if r["table"] != "T4"]
-    sum(WORDS.values())
 
     # ------------------------------------------------------------ method index
     body = (
@@ -505,18 +555,11 @@ def build():
     )
 
     body = (
-        "<p>No threshold, weight or effect in this method is taken from a document in one step. A source is "
-        "found by a recorded search, acquired as a cached artefact, read into evidence units that each carry "
-        "a verbatim quote and a locator, checked by deterministic gates, reviewed by a person, and only then "
-        "pooled by a synthesis rule into a recipe row. Every row can be followed back along that chain.</p>"
-        '<ol class="pipeline">'
-        f"<li><strong>Discover</strong> {link('ch-discovery.html', 'recorded searches, screening and credibility')}</li>"
-        f"<li><strong>Acquire</strong> {link('ch-acquisition.html', 'verified metadata, cached artefacts, locators')}</li>"
-        f"<li><strong>Extract</strong> {link('ch-extraction.html', 'evidence units and deterministic checks')}</li>"
-        f"<li><strong>Review</strong> {link('ch-review-and-quality.html', 'human decisions, soft-delete, plausibility')}</li>"
-        f"<li><strong>Synthesise</strong> {link('ch-suitability-synthesis.html', 'site suitability')}, "
-        f"{link('ch-effect-synthesis.html', 'hazard responses and scorecard effects')}, {link('ch-cost-profiles.html', 'indicative costs')}</li>"
-        "<li><strong>Version</strong> each search and finding records the version of the instructions it was produced under</li></ol>"
+        "<p>No threshold, weight or effect in this method is taken from a document in one step. Each passes "
+        "through the five steps below, in order.</p>"
+        + evidence_flow()
+        + "<p>Each search and each finding also records the version of the instructions it was produced under, "
+        "so a past result can be reproduced with the instructions in force at the time.</p>"
         + chapter_index(EVIDENCE_CH, 3)
         + f"<p>The result of applying these methods is counted in {link('evidence-base.html', 'the evidence base')} "
         f"and shown row by row under {link('practices.html', 'Practices')}.</p>"
@@ -791,6 +834,10 @@ def build():
                     "among them the neighbouring-practice boundaries on the practice pages. No rule changed."
                 ),
                 "Numbered steps no longer open with a bold phrase: the number already leads.",
+                (
+                    "The Evidence methods part opens with a figure of its five steps: what happens, who does it "
+                    "and what each step leaves. Chapter tables no longer show word counts."
+                ),
             ],
         ),
         (
