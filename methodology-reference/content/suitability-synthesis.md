@@ -32,6 +32,8 @@ sources:
 
 A suitability mapping is one row of [[table:T4]]: for one suitability family and one canonical variable, it states how values of a spatial input translate into suitability for that family. This chapter describes how the method turns reviewed evidence units (see [[ch:extraction]] and [[ch:review-and-quality]]) into such rows, and what a mapping does and does not license a runtime to do. [src: schema/spec.md §T4]
 
+How this step is run, and a planned change to how it is run, is in [[ch:compiling-evidence]].
+
 The governing rule is that a document is never turned into a threshold in one step. Extraction records what a source says; synthesis combines sources into a mapping; a reviewer signs off; a separate decision selects a function for execution. Every value in a finished row traces the chain row → evidence units → source (tier, page, quote). [src: methodology/T4_generation_method.md §0]
 
 Three things are kept apart throughout, because confusing them is the commonest way to over-claim:

@@ -75,4 +75,43 @@
   }
   window.addEventListener('hashchange', reveal);
   reveal();
+  // Way back: a link to another page of this methodology remembers where it was followed from.
+  // The page it opens then offers one link that returns to that spot.
+  var KEY = 'methodology-return';
+  var main = document.getElementById('main');
+  function sectionAbove(node) {
+    var heads = main ? main.querySelectorAll('h2[id], h3[id]') : [], found = null;
+    for (var i = 0; i < heads.length; i++) {
+      if (heads[i].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING) found = heads[i];
+    }
+    return found;
+  }
+  document.addEventListener('click', function (event) {
+    var a = event.target.closest ? event.target.closest('main a[href]') : null;
+    if (!a || a.classList.contains('wayback') || a.target === '_blank' || a.origin !== location.origin || a.pathname === location.pathname) return;
+    var page = document.querySelector('main > h1'), head = sectionAbove(a);
+    var home = /(\/|\/index\.html)$/.test(location.pathname);
+    var label = (home ? 'Overview' : page ? page.textContent.trim() : document.title) + (head ? ': ' + head.textContent.trim().replace(/\s+/g, ' ') : '');
+    try {
+      sessionStorage.setItem(KEY, JSON.stringify({from: location.pathname + location.search, to: a.pathname, y: window.scrollY, label: label}));
+    } catch (e) { /* not stored; the browser's Back button still returns to the same spot */ }
+  });
+  try {
+    var saved = JSON.parse(sessionStorage.getItem(KEY) || 'null');
+    if (saved && saved.to === location.pathname && main) {
+      var back = document.createElement('a');
+      back.className = 'wayback';
+      back.href = saved.from;
+      back.textContent = '\u2190 Back to ' + saved.label;
+      back.addEventListener('click', function () {
+        try { sessionStorage.setItem(KEY + '-y', JSON.stringify({page: saved.from, y: saved.y})); sessionStorage.removeItem(KEY); } catch (e) { /* plain link */ }
+      });
+      main.insertBefore(back, main.firstChild);
+    }
+    var spot = JSON.parse(sessionStorage.getItem(KEY + '-y') || 'null');
+    if (spot) {
+      sessionStorage.removeItem(KEY + '-y');
+      if (spot.page === location.pathname + location.search) window.scrollTo(0, spot.y);
+    }
+  } catch (e) { /* no way-back link; nothing else depends on it */ }
 })();

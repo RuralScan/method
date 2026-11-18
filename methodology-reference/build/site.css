@@ -139,6 +139,7 @@ p, ul, ol, dl { max-width: 78ch; }
 .lead { font-size: 1.12rem; color: var(--ink); max-width: 72ch; }
 main > .lead { color: var(--ink); }
 .crumbs { font-size: .85rem; color: var(--muted); margin-bottom: .2rem; }
+.wayback { display: inline-block; font-size: .85rem; margin: 0 0 .5rem; position: sticky; top: 9.6rem; z-index: 2; background: var(--bg); padding: .25rem .6rem .25rem 0; }
 .crumbs a { color: var(--muted); }
 .basis { font-size: .86rem; color: var(--muted); }
 .onpage { border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius-lg); padding: .6rem 1rem; margin: 1rem 0 1.4rem; max-width: 78ch; }

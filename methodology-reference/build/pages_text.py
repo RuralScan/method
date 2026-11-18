@@ -634,18 +634,18 @@ def build():
         '<p class="basis">The technical chapters call the analysis steps modules (M0 to M6) and number the '
         f"rule tables (T0 to T7). {link('method.html', 'Method')} explains each module. "
         f"{link('data-model.html', 'Data model')} defines each table.</p>"
-        '<h2 id="origins">How the method was built</h2><ul>'
-        "<li><strong>It starts from what exists.</strong> A stocktake of published spatial-suitability studies "
-        "and tools was the starting set of sources. The scoring and weighting techniques are established ones, "
-        "inherited from an earlier water-harvesting method.</li>"
-        "<li><strong>Evidence comes first.</strong> No threshold or rating goes from a document to a rule in "
-        "one step. Each passes through a finding that carries its quote.</li>"
-        "<li><strong>Sub-practices are grouped by what limits them.</strong> A bench terrace and a sand dam are "
-        "not sited by the same rules, so each practice is split into families that share a limiting factor.</li>"
-        "<li><strong>Two kinds of risk are kept apart.</strong> Risk to rural livelihoods measures need. Risk "
-        "to the investment is a filter. They are never added together.</li>"
-        "<li><strong>Rules are written as tables.</strong> People and software read the same thing, and a rule "
-        "can change without rewriting software. A few synthesis constants remain in code and are stated in the chapters.</li></ul>"
+        '<h2 id="origins">How the method was built</h2>'
+        "<p>The method starts from what exists. A stocktake of published spatial-suitability studies and tools "
+        "gave the first set of sources. The scoring and weighting techniques are established ones, inherited "
+        "from an earlier water-harvesting method.</p>"
+        "<p>No threshold or rating goes from a document to a rule in one step. Each passes through a finding "
+        "that carries its quote. The rules themselves are written as tables, so people and software read the "
+        "same thing and a rule can change without rewriting software. A few synthesis constants remain in code "
+        "and are stated in the chapters.</p>"
+        "<p>A bench terrace and a sand dam are not sited by the same rules, so each practice is split into "
+        "families of sub-practices that share a limiting factor.</p>"
+        "<p>Risk to rural livelihoods and risk to the investment are kept apart. The first measures need. The "
+        "second is a filter. They are never added together.</p>"
         f"<p>{link('ch-scope-and-framework.html', 'Scope and framework')} sets these principles out in full.</p>"
         '<h2 id="coverage">What it covers today</h2>'
         f"<p>This edition holds evidence for {len(PRACTICE_IDS)} practices, split into {len(fam_registered)} "
@@ -655,26 +655,55 @@ def build():
             for p in PRACTICE_IDS
         )
         + f"</ul><p>{link('practices.html', 'How much evidence each practice has, and every compiled rule')}.</p>"
-        '<h2 id="status">What is settled, and what is not</h2><ul>'
-        "<li><strong>Written down.</strong> The full method: seven analysis steps and the project-risk screen, "
-        "each with its formulas and limits.</li>"
-        f"<li><strong>Compiled.</strong> Evidence for all {len(PRACTICE_IDS)} practices: {len(data.SRC):,} sources, "
-        f"{len(kept):,} findings kept and {len(data.ROWS):,} compiled rows. These counts show coverage and "
-        "effort, not strength of evidence. Each rating states its own confidence.</li>"
-        f"<li><strong>Still under review.</strong> Of {s['total']} suitability rules, "
-        + (f"{s['approved']} have" if s["approved"] else "none yet has")
-        + f" an approved numerical score: {s['held']} are held until reviewers agree one, and {s['not_recorded']} "
-        "have no decision recorded. "
-        + (
-            f"{', '.join(none_yet)} have no suitability rules compiled yet. "
-            if none_yet
-            else ""
+        '<h2 id="status">What is settled, and what is not</h2>'
+        + table(
+            ["State", "What it covers"],
+            [
+                [
+                    "Written down",
+                    (
+                        "The full method: seven analysis steps and the project-risk screen, each with its formulas "
+                        "and limits."
+                    ),
+                ],
+                [
+                    "Compiled",
+                    (
+                        f"Evidence for all {len(PRACTICE_IDS)} practices: {len(data.SRC):,} sources, {len(kept):,} "
+                        f"findings kept and {len(data.ROWS):,} compiled rows. These counts show coverage and effort, "
+                        "not strength of evidence. Each rating states its own confidence."
+                    ),
+                ],
+                [
+                    "Still under review",
+                    f"Of {s['total']} suitability rules, "
+                    + (f"{s['approved']} have" if s["approved"] else "none yet has")
+                    + f" an approved numerical score: {s['held']} are held until reviewers agree one, and "
+                    f"{s['not_recorded']} have no decision recorded. "
+                    + (
+                        f"{', '.join(none_yet)} have no suitability rules compiled yet. "
+                        if none_yet
+                        else ""
+                    )
+                    + f"The other tables hold {data.TABLE_TOTALS['T3']} hazard responses, "
+                    f"{data.TABLE_TOTALS['T6']} scorecard effects and {data.TABLE_TOTALS['T6E']} indicative cost "
+                    "profiles.",
+                ],
+                [
+                    "Planned change",
+                    (
+                        "Compiling evidence into rule tables is planned to move to an AI agent. How its rows will be "
+                        f"checked and approved is not settled. {link('ch-compiling-evidence.html', 'Compiling evidence into rule tables')}."
+                    ),
+                ],
+                [
+                    "Not in this edition",
+                    "Maps and country results. A country application is run separately as a pilot.",
+                ],
+            ],
+            caption="What is settled in this edition, and what is not",
         )
-        + f"The other tables hold {data.TABLE_TOTALS['T3']} hazard responses, {data.TABLE_TOTALS['T6']} scorecard "
-        f"effects and {data.TABLE_TOTALS['T6E']} indicative cost profiles.</li>"
-        "<li><strong>Not in this edition.</strong> Maps and country results. A country application is run "
-        "separately as a pilot.</li></ul>"
-        "<p>Review happens in the live dashboard. Each finding is shown beside the passage it was taken from, "
+        + "<p>Review happens in the live dashboard. Each finding is shown beside the passage it was taken from, "
         "and a reviewer keeps it, drops it or raises a query.</p>"
         + review_queues()
         + f"<p>{link('status.html', 'Full status tables')} · {link('review.html', 'How review records are kept')}</p>"
@@ -745,6 +774,20 @@ def build():
     )
 
     changes = [
+        (
+            "18 November 2026",
+            [
+                (
+                    "New chapter in Evidence methods: Compiling evidence into rule tables. It says where compiling "
+                    "sits, how it is run today, and that a move to an AI agent is planned and not yet in use. "
+                    "The three chapters after it move down one number."
+                ),
+                (
+                    "On the overview, “How the method was built” is now plain text, and “What is settled, and "
+                    "what is not” is a table."
+                ),
+            ],
+        ),
         (
             "17 November 2026, after the first review round",
             [

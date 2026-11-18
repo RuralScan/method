@@ -29,6 +29,8 @@ sources:
 
 [[table:T3]] records how a practice responds to each climate hazard: whether it reduces the losses a hazard causes to rural livelihoods (`risk_role = livelihood_mitigation`, read by M2) and how badly the hazard damages the practice itself (`risk_role = asset_threat`, read by M2b). [[table:T6]] records how strongly a practice improves each priority of the opportunity space (rural poverty, food insecurity, biodiversity, carbon, erosion, water, gender, hazards). Cost rows sit in [[table:T6E]] and are covered in [[ch:cost-profiles]]. [src: methodology/T3_T6_developer_handover.md §1] [src: schema/spec.md §T3] [src: schema/spec.md §T6]
 
+How this step is run, and a planned change to how it is run, is in [[ch:compiling-evidence]].
+
 These rows are **generated**, never extracted as rows from a paper. An earlier attempt asked each paper to yield a finished row. The quotes were real, but the numbers had incompatible denominators (Hedges' *g*, net present value per acre, benefit-cost ratios, project budget lines with no unit), context was recorded under many spellings, outcomes had no mapping to what the consumers key on, and one Swedish boreal cost figure sat as an equal beside a Sahelian yield claim. The method therefore keeps the verbatim evidence unit and changes the unit of output: pool every evidence unit that hits a table **cell**, reconcile deterministically, and emit one row per cell per applicability scope with its evidence IDs and a confidence expressed in IPCC calibrated language (not a statistically calibrated probability). [src: methodology/T3_T6_generation_method.md §0] [src: AGENTS.md §What is locked]
 
 Five tenets follow. [src: methodology/T3_T6_generation_method.md §0]

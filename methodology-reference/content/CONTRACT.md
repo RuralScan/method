@@ -132,7 +132,7 @@ Part 1 Method: `scope-and-framework` · `scoping-walkthrough` · `m0-setup` · `
 `m6-handoff` · `implementing-the-method`
 
 Part 2 Evidence methods: `evidence-principles` · `discovery` · `acquisition` · `extraction` ·
-`review-and-quality` · `suitability-synthesis` · `effect-synthesis` · `cost-profiles`
+`review-and-quality` · `compiling-evidence` · `suitability-synthesis` · `effect-synthesis` · `cost-profiles`
 
 Not published (kept in `content/unpublished/`, do not link): `rulesets-and-learning` · `continue-with-ai`
 
