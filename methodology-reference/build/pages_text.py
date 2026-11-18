@@ -725,25 +725,29 @@ def build():
                     ),
                 ],
                 [
-                    "Still under review",
-                    f"Of {s['total']} suitability rules, "
-                    + (f"{s['approved']} have" if s["approved"] else "none yet has")
-                    + f" an approved numerical score: {s['held']} are held until reviewers agree one, and "
-                    f"{s['not_recorded']} have no decision recorded. "
-                    + (
-                        f"{', '.join(none_yet)} have no suitability rules compiled yet. "
-                        if none_yet
-                        else ""
-                    )
-                    + f"The other tables hold {data.TABLE_TOTALS['T3']} hazard responses, "
-                    f"{data.TABLE_TOTALS['T6']} scorecard effects and {data.TABLE_TOTALS['T6E']} indicative cost "
-                    "profiles.",
+                    "Not yet settled",
+                    (
+                        (
+                            f"Only {s['approved']} of {s['total']} suitability rules have an approved numerical score. "
+                            if s["approved"]
+                            else "No suitability rule has an approved numerical score. "
+                        )
+                        + "The method can say which conditions matter for a practice, and in which direction, but "
+                        "cannot yet score a place. "
+                        + (
+                            f"{' and '.join(none_yet)} {'has' if len(none_yet) == 1 else 'have'} no suitability "
+                            "rules yet."
+                            if none_yet
+                            else ""
+                        )
+                    ),
                 ],
                 [
                     "Planned change",
                     (
-                        "Compiling evidence into rule tables is planned to move to an AI agent. How its rows will be "
-                        f"checked and approved is not settled. {link('ch-compiling-evidence.html', 'Compiling evidence into rule tables')}."
+                        "Compiling evidence into rule tables is planned to move to an AI agent, and the suitability "
+                        "scores are left for that route. How its rows will be checked and approved is not settled. "
+                        f"{link('ch-compiling-evidence.html', 'Compiling evidence into rule tables')}."
                     ),
                 ],
                 [
