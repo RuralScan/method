@@ -56,33 +56,27 @@ class VersionMenuTest(unittest.TestCase):
             self.assertIn('reference/index.html',(site/'index.html').read_text())
             self.assertTrue((site/'home-route.js').is_file())
             self.assertIn('dashboard.html#review-queue',(site/'review.html').read_text())
-            for page in [site/'dashboard.html',site/'legacy.html',site/'reference/index.html',site/'reference/row-t4-finding.html',site/'editions'/editions[-1]['edition']/'review.html']:
+            for page in [site/'dashboard.html',site/'reference/index.html',site/'reference/row-t4-finding.html',site/'editions'/editions[-1]['edition']/'review.html']:
                 html=page.read_text()
                 menu=html.split('<select id="dashboard-version"',1)[1].split('>',1)[1].split('</select>',1)[0]
                 groups=dict(re.findall(r'<optgroup label="([^"]+)">(.*?)</optgroup>',menu))
-                self.assertEqual(list(groups),['Live','Superseded','Earlier drafts'])
+                self.assertEqual(list(groups),['Live','Earlier drafts'])
+                self.assertNotIn('legacy.html',menu)
+                self.assertNotIn('10 Nov 2026',menu)
+                self.assertEqual(menu.count('Evidence dashboard'),1)
                 self.assertIn('>Methodology v0.8.0 · 18 Nov 2026</option>',groups['Live'])
                 self.assertIn('v0.7.0 · Human review queues and finding cards · 13 Nov 2026',groups['Earlier drafts'])
                 self.assertIn('v0.1.0 · Methodology draft · 11 Nov 2026',groups['Earlier drafts'])
-                self.assertIn('Evidence dashboard · 10 Nov 2026',groups['Superseded'])
-                self.assertIn('legacy.html#',groups['Superseded'])
-                self.assertNotIn('dashboard.html',groups['Superseded'])
                 self.assertEqual(menu.count(' selected'),1)
-                self.assertIn('>Evidence dashboard · current</option>',groups['Live'])
+                self.assertIn('>Evidence dashboard · current',groups['Live'])
                 chosen=re.search(r'<option[^>]* selected[^>]*>(.*?)</option>',menu)[1]
                 if page.parent==site:
-                    if page.name=='dashboard.html':
-                        self.assertEqual(chosen,'Evidence dashboard · current')
-                        self.assertIn('<option value="dashboard.html" selected>',groups['Live'])
-                        self.assertNotIn('aria-label="Superseded dashboard"',html)
-                        self.assertNotIn('Current review workspace',html)
-                        self.assertNotIn('Methodology home</a>',html)
-                        self.assertIn('id="dashboard-version-note" hidden></span>',html)
-                    else:
-                        self.assertIn(' selected',groups['Superseded'])
-                        self.assertIn('aria-label="Superseded dashboard"',html)
-                        self.assertIn('href="dashboard.html#review-queue">Open the current review queue',html)
-                        self.assertIn('>Open Methodology v0.8.0 · 18 Nov 2026</a>',html)
+                    self.assertEqual(chosen,'Evidence dashboard · current')
+                    self.assertIn('<option value="dashboard.html" selected>',groups['Live'])
+                    self.assertNotIn('aria-label="Superseded dashboard"',html)
+                    self.assertNotIn('Current review workspace',html)
+                    self.assertNotIn('Methodology home</a>',html)
+                    self.assertIn('id="dashboard-version-note" hidden></span>',html)
                     self.assertIn('id="legacy-version-routes"',html)
                     self.assertIn('name="ciat-review-snapshot" content="queue.json"',html)
                     self.assertIn('id="vf-scope"',html)
@@ -97,6 +91,8 @@ class VersionMenuTest(unittest.TestCase):
                     self.assertEqual(sorted(controls,key=bar.index),controls)
                 elif page.parent.name=='reference':
                     self.assertEqual(chosen,'Methodology v0.8.0 · 18 Nov 2026')
+                    route='review-t4' if page.name.startswith('row-t4-') else 'overview'
+                    self.assertIn(f'<option value="../dashboard.html#{route}">Evidence dashboard · current</option>',groups['Live'])
                     self.assertIn(publish.tab_icon('methodology'),html)
                     self.assertIn('href="../dashboard.html#review-queue">Review queue</a>',html)
                     self.assertIn('<span id="dashboard-version-note">Current draft</span>',html)
@@ -105,6 +101,7 @@ class VersionMenuTest(unittest.TestCase):
                 else:
                     self.assertIn(publish.tab_icon('methodology'),html)
                     self.assertIn(f'data-edition="{editions[-1]["edition"]}" selected',groups['Earlier drafts'])
+                    self.assertIn('<option value="../../dashboard.html#',groups['Live'])
                     self.assertIn('../../dashboard.html#review-queue',html)
 
     def test_without_promotion_original_dashboard_remains_default(self):
@@ -141,6 +138,17 @@ class VersionMenuTest(unittest.TestCase):
                 self.assertEqual(page.read_text().count('rel="icon"'),1,page)
             for name in ('dashboard.html','legacy.html'):
                 self.assertIn(publish.tab_icon('dashboard'),(site/name).read_text())
+
+    def test_old_address_of_the_superseded_overview_forwards_to_the_dashboard(self):
+        with TemporaryDirectory() as tmp:
+            site=Path(tmp);editions,reference=self.prepare(site)
+            self.publish(site,editions,reference)
+            html=(site/'legacy.html').read_text()
+            self.assertIn('location.replace("dashboard.html" + location.search + location.hash)',html)
+            self.assertIn('<a href="dashboard.html">Open the evidence dashboard</a>',html)
+            self.assertNotIn('id="tab-qaqc"',html)
+            for page in site.rglob('*.html'):
+                self.assertNotIn('legacy.html',page.read_text(),page)
 
     def test_version_comes_from_the_methodology_build_and_is_never_retyped(self):
         catalog=json.loads(Path(publish.__file__).with_name('editions.json').read_text())
