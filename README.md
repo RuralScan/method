@@ -2,7 +2,7 @@
 
 [Open Methodology](https://ruralscan.github.io/method/) · [Open the evidence review queue](https://ruralscan.github.io/method/dashboard.html#review-queue).
 
-The 17 November Methodology is the default home page, published at `reference/index.html`. Its active review workspace is at `dashboard.html`, with dedicated T3, T4, T6 and M2b queues, source previews, personal review history and submission controls. Both select the current 17 November edition in the version menu. The superseded 10 November dashboard overview remains at `legacy.html`, reached by explicitly selecting that edition.
+The Methodology is the default home page, published at `reference/index.html`. Its version number and date are written by its own build (`reference/version.json`) and read from there for the version menu; they are not typed on this branch. Its active review workspace is at `dashboard.html`, with dedicated T3, T4, T6 and M2b queues, source previews, personal review history and submission controls. Both select the current 17 November edition in the version menu. The superseded 10 November dashboard overview remains at `legacy.html`, reached by explicitly selecting that edition.
 
 Existing root bookmarks keep working: `/#review-evidence=…`, `/#review-priority=…`, table queues, source links and other dashboard fragments route to `dashboard.html` with their full query and fragment intact. Bare `/` and `/index.html` open Methodology. Review queue links are prominent in the Methodology header and version bar. No register or submission route changes with this navigation update.
 

@@ -185,11 +185,24 @@ LEGACY = {
 }
 
 
-def publish_reference_menu(site, reference, labels):
+def reference_version(site, reference):
+    """The methodology states its own version and date. The site reads them and never retypes them."""
+    try:
+        stated = json.loads((site / reference["href"]).with_name("version.json").read_text())
+        number, status = stated["version"], stated["status"]
+        day = date.fromisoformat(stated["date"])
+    except (OSError, ValueError, KeyError, TypeError):
+        raise ValueError("Default Methodology states no version; stop publication and retain the deployed site") from None
+    if not re.fullmatch(r"(0|[1-9]\d*)(\.(0|[1-9]\d*)){2}", number) or status not in {"draft", "released"}:
+        raise ValueError("Default Methodology states no version; stop publication and retain the deployed site")
+    label = f'{escape(reference["label"])} v{number} · {day:%d %b %Y}'
+    return label, "Current draft" if status == "draft" else "Current release"
+
+
+def publish_reference_menu(site, reference, labels, label, note):
     """The publishing branch owns navigation, even when reference content is pinned earlier."""
     for path in (site / "reference").rglob("*.html"):
         base = "../" * len(path.parent.relative_to(site).parts)
-        label = f'{escape(reference["label"])} · {date.fromisoformat(reference["date"]):%d %b %Y}'
         row = re.match(r"row-(t3|t4|t6)-", path.name)
         dashboard_route = "review-" + row[1] if row else "overview"
         groups = [
@@ -206,7 +219,7 @@ def publish_reference_menu(site, reference, labels):
         contents = path.read_text()
         substitutions = [
             (r'(<select id="dashboard-version"[^>]*>).*?</select>', lambda m: m[1] + menu + '</select>'),
-            (r'<span id="dashboard-version-note">.*?</span>', '<span id="dashboard-version-note">Current methodology</span>'),
+            (r'<span id="dashboard-version-note">.*?</span>', f'<span id="dashboard-version-note">{note}</span>'),
             (r'<a class="vb-live" href="[^"]*">[^<]*</a>', f'<a class="vb-live" href="{base}dashboard.html#review-queue">Review queue</a>'),
             (r'<a class="review-entry" href="[^"]*">Review queue</a>'
              r'(?:\s*<a class="help-entry github-entry"[^>]*>GitHub</a>)?',
@@ -228,7 +241,8 @@ def add_version_selectors(site, editions, ciat, reference):
     labels = {}
     for item in editions:
         key = item["edition"]
-        labels[key] = f'{item["label"]} · {date.fromisoformat(item["date"]):%d %b %Y}'
+        number = f'v{item["version"]} · ' if item.get("version") else ""
+        labels[key] = f'{number}{item["label"]} · {date.fromisoformat(item["date"]):%d %b %Y}'
         pages[key] = {p.name for p in (site / "editions" / key).glob("*.html")}
         if "index.html" not in pages[key]:
             raise ValueError(f"No dashboard entry for {key}")
@@ -264,6 +278,7 @@ def add_version_selectors(site, editions, ciat, reference):
     if promoted and any('<meta name="robots" content="noindex">' in p.read_text()
                         for p in (site / "reference").rglob("*.html")):
         raise ValueError("Default Methodology is not approved for public listing")
+    reference_label, reference_note = reference_version(site, reference) if reference_available else (None, None)
     for asset in ("edition-selector.css", "edition-selector.js"):
         copyfile(Path(__file__).with_name(asset), site / asset)
 
@@ -304,7 +319,7 @@ def add_version_selectors(site, editions, ciat, reference):
         ]
         if reference_available:
             href = base + escape(reference["href"], quote=True)
-            label = f'{escape(reference["label"])} · {date.fromisoformat(reference["date"]):%d %b %Y}'
+            label = reference_label
             selected = " selected" if current == "review" and promoted else ""
             reference_group = (reference["group"], f'<option value="{href}"{selected}>{label}</option>',
                                f'<a href="{href}">{label}</a>')
@@ -373,7 +388,7 @@ def add_version_selectors(site, editions, ciat, reference):
             if promoted and legacy:
                 notice = ('<aside class="dashboard-superseded" aria-label="Superseded dashboard">'
                           '<strong>The 10 Nov dashboard overview is superseded.</strong> '
-                          f'<a href="{escape(reference["href"], quote=True)}">Open Methodology · 17 Nov 2026</a>. '
+                          f'<a href="{escape(reference["href"], quote=True)}">Open {reference_label}</a>. '
                           '<a href="dashboard.html#review-queue">Open the current review queue</a>.</aside>')
                 contents, count = re.subn(r'(<main\b[^>]*>)', lambda m: m[1] + notice, contents, count=1)
                 if count != 1:
@@ -409,7 +424,7 @@ def add_version_selectors(site, editions, ciat, reference):
     decorate(live, "legacy", "index.html")
     decorate(site / "dashboard.html", "review" if promoted else "legacy", "index.html")
     if promoted:
-        publish_reference_menu(site, reference, labels)
+        publish_reference_menu(site, reference, labels, reference_label, reference_note)
         for name in ("index.html", "home-route.js"):
             copyfile(Path(__file__).with_name(name), site / name)
     else:
@@ -421,8 +436,7 @@ def add_version_selectors(site, editions, ciat, reference):
     )
     for name in (("dashboard.html", "legacy.html") if promoted else ("index.html", "dashboard.html", "legacy.html")):
         contents = (site / name).read_text()
-        expected_title = (f'{escape(reference["label"])} · {date.fromisoformat(reference["date"]):%d %b %Y}'
-                          if promoted and name == "dashboard.html" else legacy_title)
+        expected_title = reference_label if promoted and name == "dashboard.html" else legacy_title
         if ('id="tab-qaqc"' not in contents or 'id="vf-scope"' not in contents
                 or 'src="dashboard-tables.js?' not in contents or f' selected>{expected_title}</option>' not in contents):
             raise ValueError(f"{name} must retain evidence review and select its own edition")

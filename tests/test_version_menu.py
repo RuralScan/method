@@ -16,6 +16,10 @@ REFERENCE = '''<html><head></head><body><header><a class="review-entry" href="ht
 <noscript>Old links</noscript><main><h1>Methodology</h1><p>Draft recipe edition; candidate, not released.</p></main></body></html>'''
 
 
+# What the methodology build writes beside its pages. The site takes its menu label from this.
+VERSION = {"name": "Methodology", "version": "0.8.0", "date": "2026-11-18", "status": "draft"}
+
+
 class VersionMenuTest(unittest.TestCase):
     def prepare(self, site, available=True):
         catalog = json.loads(Path(publish.__file__).with_name("editions.json").read_text())
@@ -36,6 +40,7 @@ class VersionMenuTest(unittest.TestCase):
             entry.parent.mkdir()
             for name in ('index.html', 'help.html', 'row-t4-finding.html'):
                 (entry.parent / name).write_text(REFERENCE)
+            (entry.parent / 'version.json').write_text(json.dumps(VERSION))
         return editions, reference
 
     def publish(self, site, editions, reference):
@@ -56,7 +61,9 @@ class VersionMenuTest(unittest.TestCase):
                 menu=html.split('<select id="dashboard-version"',1)[1].split('>',1)[1].split('</select>',1)[0]
                 groups=dict(re.findall(r'<optgroup label="([^"]+)">(.*?)</optgroup>',menu))
                 self.assertEqual(list(groups),['Live','Superseded','Earlier drafts'])
-                self.assertIn('Methodology · 17 Nov 2026',groups['Live'])
+                self.assertIn('>Methodology v0.8.0 · 18 Nov 2026</option>',groups['Live'])
+                self.assertIn('v0.7.0 · Human review queues and finding cards · 13 Nov 2026',groups['Earlier drafts'])
+                self.assertIn('v0.1.0 · Methodology draft · 11 Nov 2026',groups['Earlier drafts'])
                 self.assertIn('Evidence dashboard · 10 Nov 2026',groups['Superseded'])
                 self.assertIn('legacy.html#',groups['Superseded'])
                 self.assertNotIn('dashboard.html',groups['Superseded'])
@@ -72,6 +79,7 @@ class VersionMenuTest(unittest.TestCase):
                         self.assertIn(' selected',groups['Superseded'])
                         self.assertIn('aria-label="Superseded dashboard"',html)
                         self.assertIn('href="dashboard.html#review-queue">Open the current review queue',html)
+                        self.assertIn('>Open Methodology v0.8.0 · 18 Nov 2026</a>',html)
                     self.assertIn('id="legacy-version-routes"',html)
                     self.assertIn('name="ciat-review-snapshot" content="queue.json"',html)
                     self.assertIn('id="vf-scope"',html)
@@ -87,7 +95,7 @@ class VersionMenuTest(unittest.TestCase):
                 elif page.parent.name=='reference':
                     self.assertIn(' selected',groups['Live'])
                     self.assertIn('href="../dashboard.html#review-queue">Review queue</a>',html)
-                    self.assertIn('Current methodology',html)
+                    self.assertIn('<span id="dashboard-version-note">Current draft</span>',html)
                     self.assertNotIn('Under review',html)
                     self.assertIn('<main><h1>Methodology</h1><p>Draft recipe edition; candidate, not released.</p></main>',html)
                 else:
@@ -112,6 +120,36 @@ class VersionMenuTest(unittest.TestCase):
                 if problem=='noindex':
                     path=site/'reference/help.html';path.write_text(path.read_text().replace('</head>','<meta name="robots" content="noindex"></head>'))
                 with self.assertRaisesRegex(ValueError,'Default Methodology'):
+                    self.publish(site,editions,reference)
+                self.assertFalse((site/'index.html').exists())
+
+    def test_version_comes_from_the_methodology_build_and_is_never_retyped(self):
+        catalog=json.loads(Path(publish.__file__).with_name('editions.json').read_text())
+        reference=next(row for row in catalog if row.get('href')=='reference/index.html')
+        self.assertNotIn('date',reference)
+        self.assertNotIn('version',reference)
+        numbers=[row['version'] for row in catalog if 'edition' in row]
+        self.assertEqual(numbers,[f'0.{n}.0' for n in range(1,len(numbers)+1)])
+        for source in ('publish_editions.py','index.html'):
+            self.assertIsNone(re.search(r'Methodology · \d|Methodology v\d',Path(publish.__file__).with_name(source).read_text()),source)
+        with TemporaryDirectory() as tmp:
+            site=Path(tmp);editions,reference=self.prepare(site)
+            (site/'reference/version.json').write_text(json.dumps({**VERSION,'version':'1.2.0','date':'2027-01-05','status':'released'}))
+            self.publish(site,editions,reference)
+            html=(site/'reference/index.html').read_text()
+            self.assertIn(' selected>Methodology v1.2.0 · 05 Jan 2027</option>',html)
+            self.assertIn('<span id="dashboard-version-note">Current release</span>',html)
+
+    def test_methodology_without_a_stated_version_stops_publication(self):
+        for problem in ('missing','unreadable','no number','bad status'):
+            with self.subTest(problem=problem),TemporaryDirectory() as tmp:
+                site=Path(tmp);editions,reference=self.prepare(site)
+                path=site/'reference/version.json'
+                if problem=='missing':path.unlink()
+                if problem=='unreadable':path.write_text('not json')
+                if problem=='no number':path.write_text(json.dumps({**VERSION,'version':'18 Nov'}))
+                if problem=='bad status':path.write_text(json.dumps({**VERSION,'status':'final'}))
+                with self.assertRaisesRegex(ValueError,'states no version'):
                     self.publish(site,editions,reference)
                 self.assertFalse((site/'index.html').exists())
 
