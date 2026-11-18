@@ -139,6 +139,7 @@ p, ul, ol, dl { max-width: 78ch; }
 .lead { font-size: 1.12rem; color: var(--ink); max-width: 72ch; }
 main > .lead { color: var(--ink); }
 .crumbs { font-size: .85rem; color: var(--muted); margin-bottom: .2rem; }
+.wayback { display: inline-block; font-size: .85rem; margin: 0 0 .5rem; position: sticky; top: 9.6rem; z-index: 2; background: var(--bg); padding: .25rem .6rem .25rem 0; }
 .crumbs a { color: var(--muted); }
 .basis { font-size: .86rem; color: var(--muted); }
 .onpage { border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius-lg); padding: .6rem 1rem; margin: 1rem 0 1.4rem; max-width: 78ch; }
@@ -345,6 +346,22 @@ table.fields td:nth-child(4) { min-width: 22ch; }
 .mrules a { display: inline-flex; align-items: center; gap: .4rem; padding: .3rem .7rem; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--ink); text-decoration: none; font-size: .88rem; }
 .mrules a:hover { border-color: var(--accent); }
 .mmap figcaption { margin-top: .4rem; }
+.eflow { margin: 1.2rem 0 1rem; padding: 1rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--card-shadow); max-width: none; }
+.esteps { list-style: none; margin: 0; padding: 0; max-width: none; }
+.estep { display: grid; grid-template-columns: 9.5rem minmax(0, 1.2fr) minmax(0, 1fr); gap: .3rem 1.4rem; align-items: start; background: var(--bg); border: 1px solid var(--line); border-left: 3px solid var(--accent-emerald); border-radius: var(--radius-md); padding: .7rem .9rem; }
+.estep p { margin: 0; max-width: none; font-size: .88rem; line-height: 1.45; color: var(--muted); }
+.estep .ename { display: flex; flex-direction: column; gap: .15rem; }
+.estep .mnum { color: var(--accent-sky); font: 700 .78rem/1 var(--head); letter-spacing: .03em; }
+.estep b { font-size: 1.02rem; font-weight: 700; }
+.estep b a { color: var(--ink); text-decoration: none; }
+.estep b a:hover { color: var(--accent); text-decoration: underline; }
+.elab { display: block; font: 600 .68rem/1.5 var(--head); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.ehand { display: flex; align-items: center; gap: .55rem; margin: .2rem 0 .2rem 1.5rem; max-width: none; }
+.ehand::before { content: "\2193"; color: var(--muted); font-size: 1.15rem; line-height: 1; }
+.ehand .elab { display: inline; text-transform: none; letter-spacing: 0; font: 400 .85rem/1.4 var(--sans); color: var(--muted); }
+.erec { border: 1px solid var(--line); border-radius: 999px; padding: .12rem .75rem; background: var(--bg); color: var(--ink); font-size: .86rem; font-weight: 600; }
+.eflow figcaption { margin-top: .5rem; }
+@media (max-width: 760px) { .estep { grid-template-columns: 1fr; } }
 .plist { list-style: none; padding: 0; margin: .6rem 0; max-width: 78ch; }
 .plist li { padding: .35rem 0; border-bottom: 1px solid var(--line); }
 @media (max-width: 1440px) {

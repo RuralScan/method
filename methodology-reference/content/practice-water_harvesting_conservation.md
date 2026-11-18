@@ -25,11 +25,11 @@ Water harvesting and conservation, in this method, covers interventions that int
 
 The originating recipe frames three convergent suitability questions: where is enough runoff generated to make harvesting hydrologically meaningful; where can it be captured, stored or infiltrated given terrain, soil and land cover; and where is it strategically desirable given demand, access, climate risk and socio-economic context [src: methodology/recipes/water_harvesting.md §1. Context and Scope]. Only the first two are suitability questions in the current method; the third is need, priority or operational risk (see below).
 
-Boundaries:
+Water harvesting is not irrigation. It stores and redistributes local rainfall; it fails under late-onset or extreme drought, and is not a drought defence merely because it raised yields in a dry year [src: AGENTS.md §What is locked].
 
-- **Not irrigation.** Water harvesting stores and redistributes local rainfall; it fails under late-onset or extreme drought, and is not a drought defence merely because it raised yields in a dry year [src: AGENTS.md §What is locked].
-- **Not wetland creation.** The method separates water harvesting from wetland creation because the biophysical logic differs; this is the canonical example of the rule not to cluster practices by appearance [src: AGENTS.md §Don't]. See [[practice:wetland_management]].
-- **Not every engineered structure is a nature-based solution.** The registry establishes water-harvesting functions; it does not certify that every engineered implementation restores or manages an ecosystem. Conditional practices need their soil, vegetation or ecosystem management specified [src: methodology/audits/wh_scope_review_20261104/README.md §Decision requested].
+It is not wetland creation either. The method separates the two because the biophysical logic differs; this is the canonical example of the rule not to cluster practices by appearance [src: AGENTS.md §Don't]. See [[practice:wetland_management]].
+
+Not every engineered structure is a nature-based solution. The registry establishes water-harvesting functions; it does not certify that every engineered implementation restores or manages an ecosystem. Conditional practices need their soil, vegetation or ecosystem management specified [src: methodology/audits/wh_scope_review_20261104/README.md §Decision requested].
 
 ## Suitability families
 

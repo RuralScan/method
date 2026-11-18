@@ -84,6 +84,8 @@ These are the only departures. Each has a reason; do not add to the list without
 - **One figure shows the whole method:** how evidence becomes rules (AI-supported, checked by people), then the seven stages that apply them. Do not add a second method figure to the overview.
 - **Overview sections are numbered from their order** (1.1, 1.2 ...) by the build, and listed in the side bar, as chapters are in the other parts. Do not type section numbers.
 - **Lists of facts go in a plain table,** as in a scientific report. Do not put them in coloured boxes.
+- **A way back.** A page opened from a link inside another page shows one link at its top, "← Back to" with the page and section it was opened from. It returns to the same spot. It needs no markup: `site.js` adds it.
+- **Bold-phrase lists, sparingly.** A list of a bold phrase followed by a sentence is fine where a reader will scan for rules or limits. Used everywhere it reads as machine-written. Vary the form: two or three items fold into a paragraph, parallel facts go in a plain table, steps take a number. Avoid two such lists in a row.
 - **Links that leave the site open in a new tab.** The build adds this to every outside link, the visual methodology and the programme logo included. Links to the live dashboard stay in the same tab.
 - **Boxes carry a tooltip.** Tabs, figure steps and count tiles each have one more line of detail on hover.
 

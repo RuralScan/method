@@ -10,7 +10,6 @@ from chapters import (
     EVIDENCE_CH,
     METHOD_CH,
     TITLES,
-    WORDS,
     chapter_body,
     chapter_file,
     summary,
@@ -324,14 +323,12 @@ def chapter_index(slugs, number):
                 f"{number}.{i}",
                 link(chapter_file(slug_), esc(TITLES.get(slug_, slug_))),
                 esc(summary(slug_)),
-                f"{WORDS.get(slug_, 0):,}",
             ]
         )
     return table(
-        ["", "Chapter", "After reading it you can", "Words"],
+        ["", "Chapter", "After reading it you can"],
         rows,
         caption="Chapters in this part",
-        numeric=(3,),
     )
 
 
@@ -366,7 +363,7 @@ EVIDENCE_STEPS = [
         "Compile",
         "Findings on the same question are pooled by a fixed rule into one row, with a confidence level.",
         "Confidence comes from how much evidence there is and how far it agrees.",
-        "evidence-methods.html",
+        "ch-compiling-evidence.html",
     ),
 ]
 RULE_KINDS = [
@@ -423,6 +420,60 @@ STAGE_TEXT = [
 ]
 
 
+# Who does each evidence step and what it leaves behind, in the order of EVIDENCE_STEPS.
+EVIDENCE_FLOW = [
+    (
+        "discovery",
+        "An AI system, to a recorded protocol. People settle borderline papers.",
+        "A search record",
+    ),
+    (
+        "acquisition",
+        "An AI system. Identity is checked automatically; people check what a tool cannot.",
+        "A verified source file",
+    ),
+    (
+        "extraction",
+        "An AI system. Every quote and number is checked automatically.",
+        "A finding, with its quote and page",
+    ),
+    (
+        "review-and-quality",
+        "People, on the findings that checks flag or sample.",
+        "A reviewed finding",
+    ),
+    (
+        "compiling-evidence",
+        "Fixed code today. A move to an AI agent is planned.",
+        "A row of a rule table",
+    ),
+]
+
+
+def evidence_flow():
+    """The evidence steps in order: what happens, who does it and what each step leaves."""
+    steps = []
+    for (name, text_, _tip, _href), (slug_, by, leaves) in zip(
+        EVIDENCE_STEPS, EVIDENCE_FLOW, strict=True
+    ):
+        first = EVIDENCE_CH.index(slug_) + 1
+        last = len(EVIDENCE_CH) if slug_ == "compiling-evidence" else first
+        number = f"3.{first}" if first == last else f"3.{first} to 3.{last}"
+        steps.append(
+            f'<li><div class="estep"><p class="ename"><span class="mnum">{number}</span>'
+            f"<b>{link(chapter_file(slug_), esc(name))}</b></p><p>{esc(text_)}</p>"
+            f'<p><span class="elab">Done by</span>{esc(by)}</p></div>'
+            f'<p class="ehand"><span class="elab">leaves</span><span class="erec">{esc(leaves)}</span></p></li>'
+        )
+    return (
+        '<figure class="eflow" id="evidence-flow">'
+        f'<ol class="esteps">{"".join(steps)}</ol>'
+        "<figcaption>From a search to a rule, in five steps. Each step leaves a record that the next one reads, "
+        "so any rule can be followed back to the page it came from. Select a step to read its chapter.</figcaption>"
+        "</figure>"
+    )
+
+
 def method_map():
     """The method in one figure: how evidence becomes rules, then the seven stages that apply them."""
     evidence = "".join(
@@ -477,7 +528,6 @@ def build():
     kept = [u for u in data.EV if data.retained(u)]
     fam_registered = sorted({f["suitability_family_id"] for f in data.FAM})
     effect_rows = [r for r in data.ROWS if r["table"] != "T4"]
-    sum(WORDS.values())
 
     # ------------------------------------------------------------ method index
     body = (
@@ -505,18 +555,11 @@ def build():
     )
 
     body = (
-        "<p>No threshold, weight or effect in this method is taken from a document in one step. A source is "
-        "found by a recorded search, acquired as a cached artefact, read into evidence units that each carry "
-        "a verbatim quote and a locator, checked by deterministic gates, reviewed by a person, and only then "
-        "pooled by a synthesis rule into a recipe row. Every row can be followed back along that chain.</p>"
-        '<ol class="pipeline">'
-        f"<li><strong>Discover</strong> {link('ch-discovery.html', 'recorded searches, screening and credibility')}</li>"
-        f"<li><strong>Acquire</strong> {link('ch-acquisition.html', 'verified metadata, cached artefacts, locators')}</li>"
-        f"<li><strong>Extract</strong> {link('ch-extraction.html', 'evidence units and deterministic checks')}</li>"
-        f"<li><strong>Review</strong> {link('ch-review-and-quality.html', 'human decisions, soft-delete, plausibility')}</li>"
-        f"<li><strong>Synthesise</strong> {link('ch-suitability-synthesis.html', 'site suitability')}, "
-        f"{link('ch-effect-synthesis.html', 'hazard responses and scorecard effects')}, {link('ch-cost-profiles.html', 'indicative costs')}</li>"
-        "<li><strong>Version</strong> each search and finding records the version of the instructions it was produced under</li></ol>"
+        "<p>No threshold, weight or effect in this method is taken from a document in one step. Each passes "
+        "through the five steps below, in order.</p>"
+        + evidence_flow()
+        + "<p>Each search and each finding also records the version of the instructions it was produced under, "
+        "so a past result can be reproduced with the instructions in force at the time.</p>"
         + chapter_index(EVIDENCE_CH, 3)
         + f"<p>The result of applying these methods is counted in {link('evidence-base.html', 'the evidence base')} "
         f"and shown row by row under {link('practices.html', 'Practices')}.</p>"
@@ -634,18 +677,18 @@ def build():
         '<p class="basis">The technical chapters call the analysis steps modules (M0 to M6) and number the '
         f"rule tables (T0 to T7). {link('method.html', 'Method')} explains each module. "
         f"{link('data-model.html', 'Data model')} defines each table.</p>"
-        '<h2 id="origins">How the method was built</h2><ul>'
-        "<li><strong>It starts from what exists.</strong> A stocktake of published spatial-suitability studies "
-        "and tools was the starting set of sources. The scoring and weighting techniques are established ones, "
-        "inherited from an earlier water-harvesting method.</li>"
-        "<li><strong>Evidence comes first.</strong> No threshold or rating goes from a document to a rule in "
-        "one step. Each passes through a finding that carries its quote.</li>"
-        "<li><strong>Sub-practices are grouped by what limits them.</strong> A bench terrace and a sand dam are "
-        "not sited by the same rules, so each practice is split into families that share a limiting factor.</li>"
-        "<li><strong>Two kinds of risk are kept apart.</strong> Risk to rural livelihoods measures need. Risk "
-        "to the investment is a filter. They are never added together.</li>"
-        "<li><strong>Rules are written as tables.</strong> People and software read the same thing, and a rule "
-        "can change without rewriting software. A few synthesis constants remain in code and are stated in the chapters.</li></ul>"
+        '<h2 id="origins">How the method was built</h2>'
+        "<p>The method starts from what exists. A stocktake of published spatial-suitability studies and tools "
+        "gave the first set of sources. The scoring and weighting techniques are established ones, inherited "
+        "from an earlier water-harvesting method.</p>"
+        "<p>No threshold or rating goes from a document to a rule in one step. Each passes through a finding "
+        "that carries its quote. The rules themselves are written as tables, so people and software read the "
+        "same thing and a rule can change without rewriting software. A few synthesis constants remain in code "
+        "and are stated in the chapters.</p>"
+        "<p>A bench terrace and a sand dam are not sited by the same rules, so each practice is split into "
+        "families of sub-practices that share a limiting factor.</p>"
+        "<p>Risk to rural livelihoods and risk to the investment are kept apart. The first measures need. The "
+        "second is a filter. They are never added together.</p>"
         f"<p>{link('ch-scope-and-framework.html', 'Scope and framework')} sets these principles out in full.</p>"
         '<h2 id="coverage">What it covers today</h2>'
         f"<p>This edition holds evidence for {len(PRACTICE_IDS)} practices, split into {len(fam_registered)} "
@@ -655,26 +698,55 @@ def build():
             for p in PRACTICE_IDS
         )
         + f"</ul><p>{link('practices.html', 'How much evidence each practice has, and every compiled rule')}.</p>"
-        '<h2 id="status">What is settled, and what is not</h2><ul>'
-        "<li><strong>Written down.</strong> The full method: seven analysis steps and the project-risk screen, "
-        "each with its formulas and limits.</li>"
-        f"<li><strong>Compiled.</strong> Evidence for all {len(PRACTICE_IDS)} practices: {len(data.SRC):,} sources, "
-        f"{len(kept):,} findings kept and {len(data.ROWS):,} compiled rows. These counts show coverage and "
-        "effort, not strength of evidence. Each rating states its own confidence.</li>"
-        f"<li><strong>Still under review.</strong> Of {s['total']} suitability rules, "
-        + (f"{s['approved']} have" if s["approved"] else "none yet has")
-        + f" an approved numerical score: {s['held']} are held until reviewers agree one, and {s['not_recorded']} "
-        "have no decision recorded. "
-        + (
-            f"{', '.join(none_yet)} have no suitability rules compiled yet. "
-            if none_yet
-            else ""
+        '<h2 id="status">What is settled, and what is not</h2>'
+        + table(
+            ["State", "What it covers"],
+            [
+                [
+                    "Written down",
+                    (
+                        "The full method: seven analysis steps and the project-risk screen, each with its formulas "
+                        "and limits."
+                    ),
+                ],
+                [
+                    "Compiled",
+                    (
+                        f"Evidence for all {len(PRACTICE_IDS)} practices: {len(data.SRC):,} sources, {len(kept):,} "
+                        f"findings kept and {len(data.ROWS):,} compiled rows. These counts show coverage and effort, "
+                        "not strength of evidence. Each rating states its own confidence."
+                    ),
+                ],
+                [
+                    "Still under review",
+                    f"Of {s['total']} suitability rules, "
+                    + (f"{s['approved']} have" if s["approved"] else "none yet has")
+                    + f" an approved numerical score: {s['held']} are held until reviewers agree one, and "
+                    f"{s['not_recorded']} have no decision recorded. "
+                    + (
+                        f"{', '.join(none_yet)} have no suitability rules compiled yet. "
+                        if none_yet
+                        else ""
+                    )
+                    + f"The other tables hold {data.TABLE_TOTALS['T3']} hazard responses, "
+                    f"{data.TABLE_TOTALS['T6']} scorecard effects and {data.TABLE_TOTALS['T6E']} indicative cost "
+                    "profiles.",
+                ],
+                [
+                    "Planned change",
+                    (
+                        "Compiling evidence into rule tables is planned to move to an AI agent. How its rows will be "
+                        f"checked and approved is not settled. {link('ch-compiling-evidence.html', 'Compiling evidence into rule tables')}."
+                    ),
+                ],
+                [
+                    "Not in this edition",
+                    "Maps and country results. A country application is run separately as a pilot.",
+                ],
+            ],
+            caption="What is settled in this edition, and what is not",
         )
-        + f"The other tables hold {data.TABLE_TOTALS['T3']} hazard responses, {data.TABLE_TOTALS['T6']} scorecard "
-        f"effects and {data.TABLE_TOTALS['T6E']} indicative cost profiles.</li>"
-        "<li><strong>Not in this edition.</strong> Maps and country results. A country application is run "
-        "separately as a pilot.</li></ul>"
-        "<p>Review happens in the live dashboard. Each finding is shown beside the passage it was taken from, "
+        + "<p>Review happens in the live dashboard. Each finding is shown beside the passage it was taken from, "
         "and a reviewer keeps it, drops it or raises a query.</p>"
         + review_queues()
         + f"<p>{link('status.html', 'Full status tables')} · {link('review.html', 'How review records are kept')}</p>"
@@ -745,6 +817,29 @@ def build():
     )
 
     changes = [
+        (
+            "18 November 2026",
+            [
+                (
+                    "New chapter in Evidence methods: Compiling evidence into rule tables. It says where compiling "
+                    "sits, how it is run today, and that a move to an AI agent is planned and not yet in use. "
+                    "The three chapters after it move down one number."
+                ),
+                (
+                    "On the overview, “How the method was built” is now plain text, and “What is settled, and "
+                    "what is not” is a table."
+                ),
+                (
+                    "Fourteen lists of a bold phrase followed by a sentence became plain tables or plain text, "
+                    "among them the neighbouring-practice boundaries on the practice pages. No rule changed."
+                ),
+                "Numbered steps no longer open with a bold phrase: the number already leads.",
+                (
+                    "The Evidence methods part opens with a figure of its five steps: what happens, who does it "
+                    "and what each step leaves. Chapter tables no longer show word counts."
+                ),
+            ],
+        ),
         (
             "17 November 2026, after the first review round",
             [

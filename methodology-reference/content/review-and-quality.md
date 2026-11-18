@@ -109,9 +109,9 @@ A drop is never a deletion. It sets `review_state = dropped`. The row stays in t
 
 The method keeps dropped evidence for three reasons.
 
-1. **Reviewers are fallible.** A drop may be reversed by a later reviewer or a changed rule; deletion would make that impossible.
-2. **The audit trail must show what was rejected and why.** A reader auditing a recipe row needs to see the evidence that was set aside, not only what was used.
-3. **Rules change.** Each unit carries the ruleset version under which it was last evaluated, so re-evaluations are auditable. A rule that later broadens (for example, readmitting crop-level evidence for a family) can bring dropped units back without re-extraction. [src: AGENTS.md §What is locked]
+1. Reviewers are fallible. A drop may be reversed by a later reviewer or a changed rule; deletion would make that impossible.
+2. The audit trail must show what was rejected and why. A reader auditing a recipe row needs to see the evidence that was set aside, not only what was used.
+3. Rules change. Each unit carries the ruleset version under which it was last evaluated, so re-evaluations are auditable. A rule that later broadens (for example, readmitting crop-level evidence for a family) can bring dropped units back without re-extraction. [src: AGENTS.md §What is locked]
 
 Automatic quarantine follows the same model. When scope or practice checks fire on a unit no person has touched, the build soft-drops it and stamps the reason, so obvious errors do not crowd the reviewer's queue. It never re-quarantines a unit that a reviewer has approved, dropped, decided, or reopened. [src: src/nbs_ruralscan/schema_tools/quarantine.py §module docstring]
 
@@ -164,8 +164,7 @@ Project progress is recorded per practice, table, discovery process and family i
 
 The ledger separates stages that must be stamped from facts that can be derived. [src: src/nbs_ruralscan/schema_tools/ledger.py §module docstring]
 
-- **Authored stages** (searched, screened, verified) cannot be derived from data. The pipeline step that does the work stamps them as not started, in progress or done.
-- **Derived facts** (extraction and review) are read live from the Evidence Register.
+Authored stages (searched, screened, verified) cannot be derived from data. The pipeline step that does the work stamps them as not started, in progress or done. Derived facts (extraction and review) are read live from the Evidence Register.
 
 A reconciliation check runs in every build and fails it when: [src: src/nbs_ruralscan/schema_tools/ledger.py §check]
 

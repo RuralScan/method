@@ -38,6 +38,7 @@ EVIDENCE_CH = [
     "acquisition",
     "extraction",
     "review-and-quality",
+    "compiling-evidence",
     "suitability-synthesis",
     "effect-synthesis",
     "cost-profiles",

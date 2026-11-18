@@ -29,15 +29,17 @@ sources:
 
 [[table:T3]] records how a practice responds to each climate hazard: whether it reduces the losses a hazard causes to rural livelihoods (`risk_role = livelihood_mitigation`, read by M2) and how badly the hazard damages the practice itself (`risk_role = asset_threat`, read by M2b). [[table:T6]] records how strongly a practice improves each priority of the opportunity space (rural poverty, food insecurity, biodiversity, carbon, erosion, water, gender, hazards). Cost rows sit in [[table:T6E]] and are covered in [[ch:cost-profiles]]. [src: methodology/T3_T6_developer_handover.md §1] [src: schema/spec.md §T3] [src: schema/spec.md §T6]
 
+How this step is run, and a planned change to how it is run, is in [[ch:compiling-evidence]].
+
 These rows are **generated**, never extracted as rows from a paper. An earlier attempt asked each paper to yield a finished row. The quotes were real, but the numbers had incompatible denominators (Hedges' *g*, net present value per acre, benefit-cost ratios, project budget lines with no unit), context was recorded under many spellings, outcomes had no mapping to what the consumers key on, and one Swedish boreal cost figure sat as an equal beside a Sahelian yield claim. The method therefore keeps the verbatim evidence unit and changes the unit of output: pool every evidence unit that hits a table **cell**, reconcile deterministically, and emit one row per cell per applicability scope with its evidence IDs and a confidence expressed in IPCC calibrated language (not a statistically calibrated probability). [src: methodology/T3_T6_generation_method.md §0] [src: AGENTS.md §What is locked]
 
 Five tenets follow. [src: methodology/T3_T6_generation_method.md §0]
 
-1. **Ordinal first.** The value is a direction, a strength class and a confidence expressed in IPCC calibrated language (not a statistically calibrated probability). Numbers appear only under explicit gates.
-2. **Context bounds applicability.** Every row carries the envelope of contexts its evidence came from and a transfer class against the investment target. A row built from high-income temperate evidence never silently sets a value for a low-income dryland.
-3. **Role is the kind of claim; the crosswalk decides the table.** One unit can feed both T3 and T6.
-4. **Reuse the suitability engine.** Tier and claim-basis weights, lineage de-duplication, the weighted median and the grey discount are imported from the suitability synthesiser (see [[ch:suitability-synthesis]]).
-5. **Confidence is derived, never asserted.** No person and no model writes a confidence level.
+1. Ordinal first. The value is a direction, a strength class and a confidence expressed in IPCC calibrated language (not a statistically calibrated probability). Numbers appear only under explicit gates.
+2. Context bounds applicability. Every row carries the envelope of contexts its evidence came from and a transfer class against the investment target. A row built from high-income temperate evidence never silently sets a value for a low-income dryland.
+3. Role is the kind of claim; the crosswalk decides the table. One unit can feed both T3 and T6.
+4. Reuse the suitability engine. Tier and claim-basis weights, lineage de-duplication, the weighted median and the grey discount are imported from the suitability synthesiser (see [[ch:suitability-synthesis]]).
+5. Confidence is derived, never asserted. No person and no model writes a confidence level.
 
 The engine is deterministic: the same register produces byte-identical rows. [src: src/nbs_ruralscan/recipe/cell_synthesis.py]
 

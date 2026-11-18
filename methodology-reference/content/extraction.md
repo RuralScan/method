@@ -142,9 +142,9 @@ An operational-risk unit must name a factor that limits or enables implementatio
 
 For a suitability claim the extractor assesses three things independently. [src: .agents/skills/extraction_contracts/T4_review_contract.md §Three independent assessments]
 
-1. **Variable use:** did the source actually use the variable in its suitability calculation? Mention is not use.
-2. **Suitability direction:** does suitability increase, decrease, peak in an optimum range, or respond non-monotonically as the variable rises? The values are `increasing`, `decreasing`, `optimum_range`, `non_monotonic` or `unclear`.
-3. **Numeric calibration:** are units, class boundaries, endpoint meanings and scores sufficient for an executable function?
+1. Variable use: did the source actually use the variable in its suitability calculation? Mention is not use.
+2. Suitability direction: does suitability increase, decrease, peak in an optimum range, or respond non-monotonically as the variable rises? The values are `increasing`, `decreasing`, `optimum_range`, `non_monotonic` or `unclear`.
+3. Numeric calibration: are units, class boundaries, endpoint meanings and scores sufficient for an executable function?
 
 A claim can pass the first two and fail the third. It is then kept as direction evidence with a calibration hold, never dropped, and never used to create scores, interpolations, cutoffs or default weights. [src: .agents/skills/extraction_contracts/T4_review_contract.md §Three independent assessments]
 

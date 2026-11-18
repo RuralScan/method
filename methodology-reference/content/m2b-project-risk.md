@@ -229,9 +229,9 @@ Each lever is a scenario lever ("what if road access improved?") and an input to
 
 M2b is evaluated inside the M1 opportunity space, because asset risk only matters where the team would actually invest. [src: methodology/modules/M2b_project_risk.md §1]
 
-1. **Standalone first.** The method is built as a separate project-risk view first, to validate the method and outputs. [src: methodology/modules/M2b_project_risk.md §8]
-2. **Then a hotspot scope.** Once agreed, the rating becomes a third scope on M4 Priority Hotspots, next to the suitability scope and the priority scope. The analyst chooses to **exclude** or **flag** High and Very High project-risk areas from the hotspot intersection. [src: methodology/modules/M2b_project_risk.md §8] The full M2b lens combines this project-risk scope with operational readiness. [src: methodology/modules/M2b_project_risk.md §12]
-3. **Filter, never sum.** Because the rating acts as a mask or flag, sharing a hazard layer with M2 or with suitability is allowed: the same hazard enters two lenses in two roles and no single additive score is inflated. The one prohibited move is adding the project-risk score as another term in the M4 sum. [src: methodology/modules/M2b_project_risk.md §7]
+1. Standalone first. The method is built as a separate project-risk view first, to validate the method and outputs. [src: methodology/modules/M2b_project_risk.md §8]
+2. Then a hotspot scope. Once agreed, the rating becomes a third scope on M4 Priority Hotspots, next to the suitability scope and the priority scope. The analyst chooses to **exclude** or **flag** High and Very High project-risk areas from the hotspot intersection. [src: methodology/modules/M2b_project_risk.md §8] The full M2b lens combines this project-risk scope with operational readiness. [src: methodology/modules/M2b_project_risk.md §12]
+3. Filter, never sum. Because the rating acts as a mask or flag, sharing a hazard layer with M2 or with suitability is allowed: the same hazard enters two lenses in two roles and no single additive score is inflated. The one prohibited move is adding the project-risk score as another term in the M4 sum. [src: methodology/modules/M2b_project_risk.md §7]
 
 ```formula
 Hotspot_exclude(p) = Hotspot(p)  if class_s(p) ∉ T_excl, else masked

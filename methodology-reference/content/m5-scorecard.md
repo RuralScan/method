@@ -171,12 +171,12 @@ Qualitative-only families, such as household rooftop harvesting and constructed 
 
 The comparison view uses the **same rows across practices**, one column per practice. [src: src/nbs_ruralscan/runtime/scorecard.py §module docstring] [src: methodology/modules/M5_scorecard.md §6] For each practice the build also counts its rows as benefit, harm, no effect, or a special state (conflicting, data deficient, not assessed). [src: src/nbs_ruralscan/runtime/scorecard.py §build_nbs] Read a comparison with these rules:
 
-1. **Compare chip with chip, and confidence with confidence.** A ++ at low confidence and a + at high confidence are different statements; neither outranks the other.
-2. **Read the locus.** An on-farm poverty effect and a landscape water effect benefit different people. Avoided damage that accrues to society is kept out of the poverty priority at synthesis. [src: AGENTS.md §What is locked]
-3. **Check applicability for the AOI.** A chip that is `out_of_context` for this country is a gap, whatever its class elsewhere. [src: methodology/T3_T6_generation_method.md §5.5]
-4. **Compare footprints only within a spatial product type.** A km² of area suitability is never ranked against an applicability-zone surface or a linear product; comparisons across types carry an explicit caveat. [src: methodology/T4_generation_method.md §2.4]
-5. **Surface safeguards in the comparison.** When the run found IPLC land overlapping the opportunity space, the comparison block carries the FPIC and ESS7 caveat, not only the hand-off. [src: methodology/modules/M5_scorecard.md §10]
-6. **Do not add chips across rows.** Rows are different benefit streams with different beneficiaries; their sum has no meaning.
+1. Compare chip with chip, and confidence with confidence. A ++ at low confidence and a + at high confidence are different statements; neither outranks the other.
+2. Read the locus. An on-farm poverty effect and a landscape water effect benefit different people. Avoided damage that accrues to society is kept out of the poverty priority at synthesis. [src: AGENTS.md §What is locked]
+3. Check applicability for the AOI. A chip that is `out_of_context` for this country is a gap, whatever its class elsewhere. [src: methodology/T3_T6_generation_method.md §5.5]
+4. Compare footprints only within a spatial product type. A km² of area suitability is never ranked against an applicability-zone surface or a linear product; comparisons across types carry an explicit caveat. [src: methodology/T4_generation_method.md §2.4]
+5. Surface safeguards in the comparison. When the run found IPLC land overlapping the opportunity space, the comparison block carries the FPIC and ESS7 caveat, not only the hand-off. [src: methodology/modules/M5_scorecard.md §10]
+6. Do not add chips across rows. Rows are different benefit streams with different beneficiaries; their sum has no meaning.
 
 ## Outputs
 

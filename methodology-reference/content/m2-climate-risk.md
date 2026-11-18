@@ -29,10 +29,12 @@ The output is a **need layer**. It says where climate risk to livelihoods is con
 
 M2 deliberately does not answer four neighbouring questions [src: methodology/modules/M2_climate_risk.md §2]:
 
-- **Risk to the investment itself.** Whether hazards could damage or destroy the NbS asset is Module 2b, the project disaster risk screen ([[ch:m2b-project-risk]]).
-- **Biophysical feasibility.** Where the NbS can establish is M1 ([[ch:m1-suitability]]).
-- **Development priorities.** Where poverty, equity or other priorities concentrate is M3 and M4.
-- **Whether the NbS actually reduces the risk.** The practice-level response to each hazard is read from T3 and shown qualitatively in the scorecard ([[ch:m5-scorecard]]). Quantitative impact modelling is downstream of scoping.
+| Question | Where it is answered |
+|---|---|
+| Risk to the investment itself | Whether hazards could damage or destroy the NbS asset is Module 2b, the project disaster risk screen ([[ch:m2b-project-risk]]). |
+| Biophysical feasibility | Where the NbS can establish is M1 ([[ch:m1-suitability]]). |
+| Development priorities | Where poverty, equity or other priorities concentrate is M3 and M4. |
+| Whether the NbS actually reduces the risk | The practice-level response to each hazard is read from T3 and shown qualitatively in the scorecard ([[ch:m5-scorecard]]). Quantitative impact modelling is downstream of scoping. |
 
 ### Two risk lenses, never summed
 
@@ -209,9 +211,7 @@ A hazard variable may feed both M2 and M2b. Double counting only arises when cor
 
 M2 reads, from livelihood rows: `nbs_id`, `hazard_type`, `farming_system`, `mitigation_potential`, `confidence`, `landscape_scale_only` and `applicability`. [src: methodology/T3_T6_generation_method.md §1] What the specification uses them for is narrower than what they could support:
 
-- **Specified:** the hazard set (Step 1).
-- **Specified elsewhere:** the practice's qualitative response to each hazard is shown in the scorecard, which reads T3, not the M2 rasters. [src: methodology/modules/M2_climate_risk.md §5]
-- **Not specified:** any modulation of the M2 surface by `mitigation_potential` or `confidence`. M2 maps hazard exposure; it does not multiply it by how well the practice responds.
+The hazard set is specified (Step 1). The practice's qualitative response to each hazard is specified elsewhere: it is shown in the scorecard, which reads T3, not the M2 rasters. [src: methodology/modules/M2_climate_risk.md §5] What is not specified is any modulation of the M2 surface by `mitigation_potential` or `confidence`. M2 maps hazard exposure; it does not multiply it by how well the practice responds.
 
 ### What the T3 fields mean for a reader of M2
 
@@ -252,10 +252,12 @@ This illustration uses the pinned T3 table for water harvesting and conservation
 
 The global, all-farming-system livelihood rows for [[practice:water_harvesting_conservation]] are drought, fire, flood, heat stress, waterlogging and wind/cyclone. [src: schema/recipes/water_harvesting_conservation/T3_nbs_hazard_farming.csv] Under the Step 1 rule ("a hazard with a T3 row is included") all six would enter the hazard set. Read with their classes, they tell a different story:
 
-- **Drought**: `mitigation_potential = moderate`, confidence very high, transfer class in context, landscape scale only. The class was moderated by the intensity discount, because a substantial share of measured drought-year evidence found no gain. [src: schema/recipes/water_harvesting_conservation/T3_nbs_hazard_farming.csv] [src: methodology/effect_evidence_followups.md §Hazard-intensity discount]
-- **Flood**: moderate, confidence high, adjacent context, landscape scale only.
-- **Waterlogging**: `negative` at very high confidence: the practice worsens waterlogging.
-- **Fire, heat stress, wind/cyclone**: blank class at very low confidence, that is, data-deficient.
+| Hazard | Row at the pin |
+|---|---|
+| Drought | `mitigation_potential = moderate`, confidence very high, transfer class in context, landscape scale only. The class was moderated by the intensity discount, because a substantial share of measured drought-year evidence found no gain. [src: schema/recipes/water_harvesting_conservation/T3_nbs_hazard_farming.csv] [src: methodology/effect_evidence_followups.md §Hazard-intensity discount] |
+| Flood | moderate, confidence high, adjacent context, landscape scale only. |
+| Waterlogging | `negative` at very high confidence: the practice worsens waterlogging. |
+| Fire, heat stress, wind/cyclone | blank class at very low confidence, that is, data-deficient. |
 
 [src: schema/recipes/water_harvesting_conservation/T3_nbs_hazard_farming.csv]
 

@@ -219,9 +219,11 @@ A binding does not establish that a response transfers. A target country selects
 
 Variables differ in how freely a global dataset transfers and how politically charged the numbers are. [[table:VONT]] carries this as `context_sensitivity`: [src: methodology/T4_generation_method.md §2.6] [src: schema/spec.md §VONT]
 
-- **`low`**: generalisable physical variables (slope, climate, terrain). A global dataset transfers; set the global binding.
-- **`medium`**: context-dependent but not political (soils, land cover, infrastructure). Local data are better where available, through a binding override.
-- **`high`**: nationally derived or sovereignty-sensitive (population, poverty, crop production). A global model can diverge from, or appear to contradict, official national figures. The scoping output should recommend a country-endorsed source and treat the global default as provisional.
+| Level | Kind of variable, and what to do |
+|---|---|
+| `low` | generalisable physical variables (slope, climate, terrain). A global dataset transfers; set the global binding. |
+| `medium` | context-dependent but not political (soils, land cover, infrastructure). Local data are better where available, through a binding override. |
+| `high` | nationally derived or sovereignty-sensitive (population, poverty, crop production). A global model can diverge from, or appear to contradict, official national figures. The scoping output should recommend a country-endorsed source and treat the global default as provisional. |
 
 [src: methodology/T4_generation_method.md §2.6]
 

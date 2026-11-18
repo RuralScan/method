@@ -26,10 +26,12 @@ Forest restoration, in this method, is the re-establishment or protection of for
 
 Neighbours it must not be confused with:
 
-- **Agroforestry.** Regeneration or planting on farmland (FMNR, parkland retention, on-farm assisted regeneration) is [[practice:agroforestry]]. The boundary is the land system, farmland versus forest or non-farm land [src: methodology/families/forest_restoration.md §4. Edge cases the scheme deliberately resolves]. Agroforestry-based restoration also belongs to agroforestry.
-- **Mangrove restoration.** Mangroves are a separate practice, [[practice:mangrove_restoration]], with their own coastal-hydrology family; terrestrial and tidal envelopes are never pooled [src: methodology/families/forest_restoration.md §F4 — Historical mangrove proposal (superseded 2026-10-19)].
-- **Riparian buffers.** Streamside restoration is [[practice:riparian_buffer]], with a `zonal_linear` product [src: methodology/families/forest_restoration.md §4. Edge cases the scheme deliberately resolves].
-- **Plantation forestry.** Production tree farming is registered under this practice as its own family but is excluded from the restoration roll-up (below).
+| Neighbouring practice | Where the boundary lies |
+|---|---|
+| Agroforestry | Regeneration or planting on farmland (FMNR, parkland retention, on-farm assisted regeneration) is [[practice:agroforestry]]. The boundary is the land system, farmland versus forest or non-farm land [src: methodology/families/forest_restoration.md §4. Edge cases the scheme deliberately resolves]. Agroforestry-based restoration also belongs to agroforestry. |
+| Mangrove restoration | Mangroves are a separate practice, [[practice:mangrove_restoration]], with their own coastal-hydrology family; terrestrial and tidal envelopes are never pooled [src: methodology/families/forest_restoration.md §F4 — Historical mangrove proposal (superseded 2026-10-19)]. |
+| Riparian buffers | Streamside restoration is [[practice:riparian_buffer]], with a `zonal_linear` product [src: methodology/families/forest_restoration.md §4. Edge cases the scheme deliberately resolves]. |
+| Plantation forestry | Production tree farming is registered under this practice as its own family but is excluded from the restoration roll-up (below). |
 
 ## Suitability families
 

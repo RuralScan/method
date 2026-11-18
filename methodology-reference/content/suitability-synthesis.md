@@ -32,6 +32,8 @@ sources:
 
 A suitability mapping is one row of [[table:T4]]: for one suitability family and one canonical variable, it states how values of a spatial input translate into suitability for that family. This chapter describes how the method turns reviewed evidence units (see [[ch:extraction]] and [[ch:review-and-quality]]) into such rows, and what a mapping does and does not license a runtime to do. [src: schema/spec.md §T4]
 
+How this step is run, and a planned change to how it is run, is in [[ch:compiling-evidence]].
+
 The governing rule is that a document is never turned into a threshold in one step. Extraction records what a source says; synthesis combines sources into a mapping; a reviewer signs off; a separate decision selects a function for execution. Every value in a finished row traces the chain row → evidence units → source (tier, page, quote). [src: methodology/T4_generation_method.md §0]
 
 Three things are kept apart throughout, because confusing them is the commonest way to over-claim:
@@ -48,10 +50,10 @@ The evidence base for suitability is assembled paper by paper, not variable by v
 
 The process then runs in four steps. [src: methodology/T4_generation_method.md §3]
 
-1. **Per-paper scan and relationship capture.** One trip through each document, all variables and relationships at once.
-2. **Harmonisation.** Each surface name ("gradient", "% slope") is mapped to a canonical [[table:VONT]] variable, keeping the surface name for audit. A variable missing from the ontology is queued for ontology review before it can enter T4.
-3. **Prevalence and a separate quality diagnostic.** Literature prevalence is computed per variable (see "Variable selection signals" below).
-4. **Synthesis.** Only then does each surviving family × variable pair receive its T4 row.
+1. Per-paper scan and relationship capture. One trip through each document, all variables and relationships at once.
+2. Harmonisation. Each surface name ("gradient", "% slope") is mapped to a canonical [[table:VONT]] variable, keeping the surface name for audit. A variable missing from the ontology is queued for ontology review before it can enter T4.
+3. Prevalence and a separate quality diagnostic. Literature prevalence is computed per variable (see "Variable selection signals" below).
+4. Synthesis. Only then does each surviving family × variable pair receive its T4 row.
 
 The paper-first order exists because the earlier variable-first passes extracted one variable at a time against an unaudited draft variable list, which both missed variables a paper used and invited extraction of thresholds out of context. Reading a paper once also lets the same visit serve the effect tables (see [[ch:effect-synthesis]]). [src: methodology/T4_generation_method.md §3]
 
@@ -214,9 +216,9 @@ A verified continuation of a reviewed source table (a class table split across p
 
 Each claim is assessed on three independent questions. [src: .agents/skills/extraction_contracts/T4_review_contract.md §Three independent assessments]
 
-1. **Variable use.** Did the source actually use this variable in its suitability calculation? Mention is not use.
-2. **Suitability direction.** Does suitability increase, decrease, peak in a range, or respond non-monotonically as the variable increases? This is the direction of suitability, not of an effect.
-3. **Numeric calibration.** Are units, class boundaries, endpoint meanings and scores sufficient for an executable function?
+1. Variable use. Did the source actually use this variable in its suitability calculation? Mention is not use.
+2. Suitability direction. Does suitability increase, decrease, peak in a range, or respond non-monotonically as the variable increases? This is the direction of suitability, not of an effect.
+3. Numeric calibration. Are units, class boundaries, endpoint meanings and scores sufficient for an executable function?
 
 A claim can pass the first two while the third remains unresolved. It is then retained, with the calibration gap reported. Direction-only evidence can never create numeric scores, interpolation, exclusion cutoffs or default weights, and a model weight is never substituted for a suitability score. [src: .agents/skills/extraction_contracts/T4_review_contract.md §Three independent assessments]
 
