@@ -25,12 +25,12 @@ The founding rule is that a document is never turned into a threshold in one ste
 
 Six tenets follow from that rule and apply throughout the evidence chapters. [src: methodology/T4_generation_method.md §0]
 
-1. **Provenance on every value.** No parameter exists without linked evidence units.
-2. **No silent inference.** Extraction records only what a source states. A value the source does not give is left empty, not guessed.
-3. **Separation of concerns.** Discovery proposes sources, evidence substantiates claims, synthesis combines them, and a reviewer signs off.
-4. **Machine learning for *which*, literature for *what shape*.** A variable-importance model may help choose variables. It never sets a response curve.
-5. **Auditable lumping.** Variable harmonisation and the grouping of sub-practices into families are recorded with a rationale, never merged silently.
-6. **Reproducibility.** Instructions, skills and the evidence corpus are versioned, and uncertainty is derived from the spread of evidence rather than asserted.
+1. Provenance on every value. No parameter exists without linked evidence units.
+2. No silent inference. Extraction records only what a source states. A value the source does not give is left empty, not guessed.
+3. Separation of concerns. Discovery proposes sources, evidence substantiates claims, synthesis combines them, and a reviewer signs off.
+4. Machine learning for *which*, literature for *what shape*. A variable-importance model may help choose variables. It never sets a response curve.
+5. Auditable lumping. Variable harmonisation and the grouping of sub-practices into families are recorded with a rationale, never merged silently.
+6. Reproducibility. Instructions, skills and the evidence corpus are versioned, and uncertainty is derived from the spread of evidence rather than asserted.
 
 ## The provenance chain
 

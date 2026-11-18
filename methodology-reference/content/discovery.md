@@ -54,10 +54,10 @@ Searches also follow references from strong seeds back to original methods and f
 
 Per practice and table, discovery assembles a capped seed set of roughly 10 to 20 authoritative sources, in approximate order of authority. [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule]
 
-1. **Authority sources with project relevance:** the development bank's rural NbS catalogue and project evidence (implementation completion reports and independent evaluation reviews), decision-support tools named in the terms of reference, GEF and NBS investment materials, IPCC assessment chapters, FAO frameworks and practice databases, WRI restoration materials, and CGIAR system-level reviews.
-2. **High-leverage "diamond" classes:** WOCAT technology questionnaires (structured, grounded in lower-income contexts, covering requirements, impacts, costs and adoption), evidence gap maps (3ie, Campbell Collaboration, CEE), specialist practice databases from research centres, Indigenous and community land layers, and climate-smart agriculture adoption and barrier syntheses.
-3. **Peer-reviewed syntheses:** global-scale suitability models and MCDAs, major meta-analyses and reviews, and monitoring, evaluation and learning (MEL) reports from large programmes.
-4. **Primary studies,** admitted only when the seed set above is thin.
+1. Authority sources with project relevance: the development bank's rural NbS catalogue and project evidence (implementation completion reports and independent evaluation reviews), decision-support tools named in the terms of reference, GEF and NBS investment materials, IPCC assessment chapters, FAO frameworks and practice databases, WRI restoration materials, and CGIAR system-level reviews.
+2. High-leverage "diamond" classes: WOCAT technology questionnaires (structured, grounded in lower-income contexts, covering requirements, impacts, costs and adoption), evidence gap maps (3ie, Campbell Collaboration, CEE), specialist practice databases from research centres, Indigenous and community land layers, and climate-smart agriculture adoption and barrier syntheses.
+3. Peer-reviewed syntheses: global-scale suitability models and MCDAs, major meta-analyses and reviews, and monitoring, evaluation and learning (MEL) reports from large programmes.
+4. Primary studies, admitted only when the seed set above is thin.
 
 FAO Ecocrop is restricted to modelling the understorey crop envelope of shaded perennial-crop systems and is excluded for general practice suitability. Global suitability models provide provisional defaults that local context overrides and dataset bindings can refine. [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule]
 
@@ -118,11 +118,11 @@ Two features of that external protocol were not adopted: a 2015 publication floo
 
 Screening is applied per practice and table in five fixed steps. The step names are recorded on every search row. [src: methodology/T4_generation_method.md §Screening funnel] [src: methodology/search_protocol.md §What every search logs]
 
-1. **Frame the claim and search for syntheses first.** State the specific claim being sourced (for example, the slope above which erosion dominates for planted silvoarable agroforestry) and look for syntheses before primary studies.
-2. **Source-type triage.** Authority order is synthesis, then primary, then grey. Within types the diamond classes are preferred for breadth, and primary studies are admitted for depth on a specific threshold.
-3. **Relevance screen** on three dimensions: practice (does it cover this practice or family?), outcome or hazard (does it cover the variable, effect or exposure?) and system (is the agro-ecological and income context relevant?). Preference for lower- and middle-income contexts is a tie-break, not a veto on global syntheses.
-4. **Credibility scoring** on six axes, producing `benchmark_tier` (below).
-5. **Saturation stop and cap** (below).
+1. Frame the claim and search for syntheses first. State the specific claim being sourced (for example, the slope above which erosion dominates for planted silvoarable agroforestry) and look for syntheses before primary studies.
+2. Source-type triage. Authority order is synthesis, then primary, then grey. Within types the diamond classes are preferred for breadth, and primary studies are admitted for depth on a specific threshold.
+3. Relevance screen on three dimensions: practice (does it cover this practice or family?), outcome or hazard (does it cover the variable, effect or exposure?) and system (is the agro-ecological and income context relevant?). Preference for lower- and middle-income contexts is a tie-break, not a veto on global syntheses.
+4. Credibility scoring on six axes, producing `benchmark_tier` (below).
+5. Saturation stop and cap (below).
 
 Borderline papers are reviewed by people before registration to fix the study boundary; the source gives as examples rejecting urban forestry and pure physiology while accepting mechanical wind models and temperate baselines. [src: methodology/T4_generation_method.md §Screening funnel] Borderline inclusions stay as review holds rather than being decided by the screener alone. [src: .agents/skills/source-command-discover-sources/SKILL.md §Scope and coverage]
 
@@ -194,10 +194,10 @@ A progress ledger records, per practice, table, process and family, whether the 
 
 A discovery run produces four files, written to a staging area only, never directly to the registers. [src: .agents/skills/source-command-discover-sources/SKILL.md §Agent contract]
 
-1. **Candidates:** each candidate's identifier, citation, URL, process, tables, families and a relevance note, with language, method subtype, proposed tier and rationale, lineage and existing source identifiers where known. Authors, years and DOIs are never invented; a candidate with missing identity stays a hold.
-2. **Report:** the verbatim queries, dates, channels actually used, screening decisions and exclusions, credible omissions, stop reason and next actions.
-3. **Protocols:** one object per table and process with the search terms, criteria, limits and counts.
-4. **Screening record:** every inspected record's identity, disposition, reason and evidence of relevance.
+1. Candidates: each candidate's identifier, citation, URL, process, tables, families and a relevance note, with language, method subtype, proposed tier and rationale, lineage and existing source identifiers where known. Authors, years and DOIs are never invented; a candidate with missing identity stays a hold.
+2. Report: the verbatim queries, dates, channels actually used, screening decisions and exclusions, credible omissions, stop reason and next actions.
+3. Protocols: one object per table and process with the search terms, criteria, limits and counts.
+4. Screening record: every inspected record's identity, disposition, reason and evidence of relevance.
 
 A central registration step then validates scope and metadata, deduplicates by DOI, title and report identity against the Source Register and acquisition queue, records reuse of known sources for the new scope without adding duplicate votes, and writes the search rows. [src: .agents/skills/source-command-discover-sources/SKILL.md §Central closeout]
 

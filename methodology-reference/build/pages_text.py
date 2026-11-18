@@ -790,6 +790,7 @@ def build():
                     "Fourteen lists of a bold phrase followed by a sentence became plain tables or plain text, "
                     "among them the neighbouring-practice boundaries on the practice pages. No rule changed."
                 ),
+                "Numbered steps no longer open with a bold phrase: the number already leads.",
             ],
         ),
         (

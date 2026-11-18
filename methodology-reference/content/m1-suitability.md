@@ -99,9 +99,9 @@ A `qualitative_only` family is also parked out of the generated effect tables; i
 
 Every T4 row carries a `suitability_dimension`, defined by what does the limiting and ordered from least to most changeable: [src: schema/spec.md §`suitability_dimension`]
 
-1. **`biophysical_constraint`**: the natural envelope of climate, terrain and soils. Can the NbS establish and persist at all? Slow to change, hard to engineer.
-2. **`system_constraint`**: the existing land-use, farming or land-cover system the NbS must integrate with (current land cover, existing tree cover, farming system, host-crop presence, livestock density). Changes over years to decades.
-3. **`operational_constraint`**: implementation feasibility and the enabling environment (access, tenure, extension, legal and protected-area exclusions).
+1. `biophysical_constraint`: the natural envelope of climate, terrain and soils. Can the NbS establish and persist at all? Slow to change, hard to engineer.
+2. `system_constraint`: the existing land-use, farming or land-cover system the NbS must integrate with (current land cover, existing tree cover, farming system, host-crop presence, livestock density). Changes over years to decades.
+3. `operational_constraint`: implementation feasibility and the enabling environment (access, tenure, extension, legal and protected-area exclusions).
 
 #### Hard versus soft operational constraints
 

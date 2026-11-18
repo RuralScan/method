@@ -37,10 +37,10 @@ A source may be labelled paywalled only when no free copy of the same work has b
 
 The recovery pass has four steps, run in order. [src: methodology/search_protocol.md §OA-recovery]
 
-1. **Unpaywall by DOI.** If Unpaywall reports the work as open access, its best open location is taken. This is a browser or repository acquisition, not an institutional one. Unpaywall is treated as authoritative over OpenAlex's open-access flag, which lags and misses green open access.
-2. **Web search for each source (required).** Search the distinctive title with the first author and year. Accept only a free, directly downloadable copy of the *same* paper (matching title, authors and year) from author or institutional repositories, agency repositories, project sites, publisher open-access pages or regional platforms. Reject "request PDF" stubs, abstract pages and related but different papers.
-3. **Green open access, preprints and open data.** Check subject and institutional repositories, author postprints, preprint servers and open data deposits, even when the article itself is closed.
-4. **ResearchGate and Academia.** These block automated access, so a tool can never confirm or deny a copy there. They are flagged for a person to check; the method never records "not on ResearchGate" from a tool.
+1. Unpaywall by DOI. If Unpaywall reports the work as open access, its best open location is taken. This is a browser or repository acquisition, not an institutional one. Unpaywall is treated as authoritative over OpenAlex's open-access flag, which lags and misses green open access.
+2. Web search for each source (required). Search the distinctive title with the first author and year. Accept only a free, directly downloadable copy of the *same* paper (matching title, authors and year) from author or institutional repositories, agency repositories, project sites, publisher open-access pages or regional platforms. Reject "request PDF" stubs, abstract pages and related but different papers.
+3. Green open access, preprints and open data. Check subject and institutional repositories, author postprints, preprint servers and open data deposits, even when the article itself is closed.
+4. ResearchGate and Academia. These block automated access, so a tool can never confirm or deny a copy there. They are flagged for a person to check; the method never records "not on ResearchGate" from a tool.
 
 Only a source that survives steps 1 to 3 is routed for institutional access. [src: methodology/search_protocol.md §OA-recovery]
 

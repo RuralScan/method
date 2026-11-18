@@ -108,8 +108,8 @@ This principle operates when the T5 set is authored or a country adds a variable
 
 Variable selection has two stages, and both apply to M3. [src: methodology/framework.md §Variable selection (two stages)] [src: AGENTS.md §What is locked]
 
-1. **Thematic grouping** (expert, per recipe, done once). For the opportunity space the groups are the T5 themes. (For suitability in M1 the framework's six standard themes are topographic, hydrological, soil, climatic, land use and land cover, and socio-economic plus hazard.) [src: methodology/framework.md §Variable selection (two stages)] [src: methodology/modules/M3_characterisation.md §12]
-2. **Correlation clustering** (empirical, per AOI). Compute pairwise Pearson correlation between the variables, cluster those with |r| > 0.7, and pass one representative per cluster to Module 4. In M3 the clustering runs **within each theme, never across themes**. [src: methodology/modules/M3_characterisation.md §6] [src: methodology/modules/M3_characterisation.md §12]
+1. Thematic grouping (expert, per recipe, done once). For the opportunity space the groups are the T5 themes. (For suitability in M1 the framework's six standard themes are topographic, hydrological, soil, climatic, land use and land cover, and socio-economic plus hazard.) [src: methodology/framework.md §Variable selection (two stages)] [src: methodology/modules/M3_characterisation.md §12]
+2. Correlation clustering (empirical, per AOI). Compute pairwise Pearson correlation between the variables, cluster those with |r| > 0.7, and pass one representative per cluster to Module 4. In M3 the clustering runs **within each theme, never across themes**. [src: methodology/modules/M3_characterisation.md §6] [src: methodology/modules/M3_characterisation.md §12]
 
 ```formula
 r_jk = cov(x_j, x_k) / (σ_j × σ_k)

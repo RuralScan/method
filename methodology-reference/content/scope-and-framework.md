@@ -63,12 +63,12 @@ The analysis is organised as seven modules, M0 to M6, plus an addendum module, M
 
 ### How outputs flow between modules
 
-1. **M0** captures the user's choices, resolves the recipe and dataset bindings, checks every required dataset is reachable, and writes a run configuration that every downstream module reads. [src: methodology/modules/M0_setup.md §5. Dependencies]
-2. **M1** reads the run configuration and the family's T4 mappings and produces a continuous suitability surface and an **opportunity-space mask**. [src: methodology/modules/M1_suitability.md §4. Outputs]
-3. **M2** may run in parallel with M1; its livelihood-risk surface is displayed alongside the opportunity space. [src: methodology/modules/M1_suitability.md §5. Dependencies]
-4. **M2b** is applied as a filter or flag on candidate areas. It is never added to the M2 livelihood-risk index. [src: AGENTS.md §What is locked]
-5. **M3** extracts characterisation variables within the M1 opportunity-space mask. **M4** runs a separate priority MCDA constrained to that mask. [src: methodology/modules/M1_suitability.md §5. Dependencies]
-6. **M5** does not read M1 rasters. It retrieves scorecard rows for the same NbS identifier. **M6** is narrative and draws on everything upstream. [src: methodology/modules/M1_suitability.md §5. Dependencies]
+1. M0 captures the user's choices, resolves the recipe and dataset bindings, checks every required dataset is reachable, and writes a run configuration that every downstream module reads. [src: methodology/modules/M0_setup.md §5. Dependencies]
+2. M1 reads the run configuration and the family's T4 mappings and produces a continuous suitability surface and an **opportunity-space mask**. [src: methodology/modules/M1_suitability.md §4. Outputs]
+3. M2 may run in parallel with M1; its livelihood-risk surface is displayed alongside the opportunity space. [src: methodology/modules/M1_suitability.md §5. Dependencies]
+4. M2b is applied as a filter or flag on candidate areas. It is never added to the M2 livelihood-risk index. [src: AGENTS.md §What is locked]
+5. M3 extracts characterisation variables within the M1 opportunity-space mask. **M4** runs a separate priority MCDA constrained to that mask. [src: methodology/modules/M1_suitability.md §5. Dependencies]
+6. M5 does not read M1 rasters. It retrieves scorecard rows for the same NbS identifier. **M6** is narrative and draws on everything upstream. [src: methodology/modules/M1_suitability.md §5. Dependencies]
 
 ### Two risk lenses, never summed
 
@@ -136,8 +136,8 @@ An NbS is not one suitability problem. Sub-practices are grouped into **suitabil
 
 Every recipe reduces its variables before they enter an MCDA, in two stages. [src: methodology/framework.md §Variable selection (two stages)]
 
-1. **Thematic grouping.** An expert step, done once per NbS when the recipe is built. Variables fall into six standard themes: topographic, hydrological, soil, climatic, land use and land cover, and socio-economic plus hazard.
-2. **Correlation-based reduction.** An empirical step, done per AOI. After fuzzy standardisation, compute pairwise correlation, cluster variables with |r| > 0.7, and keep one representative per cluster (the highest-variance member unless an expert has flagged a primary).
+1. Thematic grouping. An expert step, done once per NbS when the recipe is built. Variables fall into six standard themes: topographic, hydrological, soil, climatic, land use and land cover, and socio-economic plus hazard.
+2. Correlation-based reduction. An empirical step, done per AOI. After fuzzy standardisation, compute pairwise correlation, cluster variables with |r| > 0.7, and keep one representative per cluster (the highest-variance member unless an expert has flagged a primary).
 
 [src: methodology/framework.md §Variable selection (two stages)]
 

@@ -47,9 +47,9 @@ Economic cells are **denominator-specific**. An evidence unit reaches a cost cel
 
 Three further routing rules apply. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §_unit_fits_econ_cell]
 
-1. **A cost level is an amount.** The cost-level cells (establishment, recurrent and the cost-per cells) accept only an absolute amount that is not a decrease. A relative measure (a percent change or log response ratio against a control) and an absolute saving go to `cost_reduction` instead. Routing one relative ratio into several level cells had inflated their evidence levels while adding no amount.
-2. **Route by what the money buys, not by its denominator.** `context.cost_nature` (`establishment` or `recurrent`) overrides the denominator heuristic in both directions. An annualised capital cost stated "per hectare per year" stays an establishment cost; a recurrent-natured unit never enters the establishment or per-hectare-restored cells. Untagged units keep the denominator routing.
-3. **A spread is not a sign.** A cost range across implementers is dispersion, recorded with `direction = none`; the range goes to the value range or `outcome_raw`. [src: methodology/RULESET_VERSIONS.md]
+1. A cost level is an amount. The cost-level cells (establishment, recurrent and the cost-per cells) accept only an absolute amount that is not a decrease. A relative measure (a percent change or log response ratio against a control) and an absolute saving go to `cost_reduction` instead. Routing one relative ratio into several level cells had inflated their evidence levels while adding no amount.
+2. Route by what the money buys, not by its denominator. `context.cost_nature` (`establishment` or `recurrent`) overrides the denominator heuristic in both directions. An annualised capital cost stated "per hectare per year" stays an establishment cost; a recurrent-natured unit never enters the establishment or per-hectare-restored cells. Untagged units keep the denominator routing.
+3. A spread is not a sign. A cost range across implementers is dispersion, recorded with `direction = none`; the range goes to the value range or `outcome_raw`. [src: methodology/RULESET_VERSIONS.md]
 
 `cost_reduction` counts as a benefit only where it is a farm-level production-cost saving, that is, a route to household profit and so to poverty reduction. [src: schema/spec.md §T6]
 
@@ -94,13 +94,13 @@ Confidence on economic rows follows the same IPCC two-axis matrix as every gener
 
 `economic_value_range` is `{low, high, unit, source_note}`. It is emitted only when **all** of the following hold. [src: methodology/T3_T6_generation_method.md §7.7] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §economic_value_range]
 
-1. **Numeric.** The unit states a magnitude, or both bounds of a range.
-2. **Denominated.** The unit is one of `usd_per_ha`, `usd_per_ha_yr`, `usd_per_beneficiary`, `usd_per_tco2e` or `usd_per_farmer`. The method also admits a unit convertible to one of these through the variable ontology; the engine checks the enumeration directly. A total project cost with no denominator fails.
-3. **Known context.** The unit's income group is known.
-4. **Same income band.** The unit's band equals the row's band. Low and lower-middle income are pooled; upper-middle and high income are never pooled with them or with each other.
-5. **No high-income figures in target rows.** High-income cost figures are **excluded outright** from low and lower-middle income rows and from global rows. This is an exclusion, not a down-weighting, because labour, land and discount regimes do not transfer.
-6. **Replicated.** At least two independent sources in the same unit; a meta-analysis counts as the number of studies it pools.
-7. **Same scope row.**
+1. Numeric. The unit states a magnitude, or both bounds of a range.
+2. Denominated. The unit is one of `usd_per_ha`, `usd_per_ha_yr`, `usd_per_beneficiary`, `usd_per_tco2e` or `usd_per_farmer`. The method also admits a unit convertible to one of these through the variable ontology; the engine checks the enumeration directly. A total project cost with no denominator fails.
+3. Known context. The unit's income group is known.
+4. Same income band. The unit's band equals the row's band. Low and lower-middle income are pooled; upper-middle and high income are never pooled with them or with each other.
+5. No high-income figures in target rows. High-income cost figures are **excluded outright** from low and lower-middle income rows and from global rows. This is an exclusion, not a down-weighting, because labour, land and discount regimes do not transfer.
+6. Replicated. At least two independent sources in the same unit; a meta-analysis counts as the number of studies it pools.
+7. Same scope row.
 
 `low` and `high` are the observed extremes of the qualifying figures (both bounds of a range-only figure enter), never a confidence interval. `source_note` lists each contributing source with its country and currency year, the count and the band. Every unit that fails a gate is listed in the run report with the gate it failed, so exclusions are visible rather than silent. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §economic_value_range] [src: methodology/T3_T6_generation_method.md §7.7]
 

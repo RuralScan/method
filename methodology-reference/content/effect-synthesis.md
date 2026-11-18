@@ -35,11 +35,11 @@ These rows are **generated**, never extracted as rows from a paper. An earlier a
 
 Five tenets follow. [src: methodology/T3_T6_generation_method.md §0]
 
-1. **Ordinal first.** The value is a direction, a strength class and a confidence expressed in IPCC calibrated language (not a statistically calibrated probability). Numbers appear only under explicit gates.
-2. **Context bounds applicability.** Every row carries the envelope of contexts its evidence came from and a transfer class against the investment target. A row built from high-income temperate evidence never silently sets a value for a low-income dryland.
-3. **Role is the kind of claim; the crosswalk decides the table.** One unit can feed both T3 and T6.
-4. **Reuse the suitability engine.** Tier and claim-basis weights, lineage de-duplication, the weighted median and the grey discount are imported from the suitability synthesiser (see [[ch:suitability-synthesis]]).
-5. **Confidence is derived, never asserted.** No person and no model writes a confidence level.
+1. Ordinal first. The value is a direction, a strength class and a confidence expressed in IPCC calibrated language (not a statistically calibrated probability). Numbers appear only under explicit gates.
+2. Context bounds applicability. Every row carries the envelope of contexts its evidence came from and a transfer class against the investment target. A row built from high-income temperate evidence never silently sets a value for a low-income dryland.
+3. Role is the kind of claim; the crosswalk decides the table. One unit can feed both T3 and T6.
+4. Reuse the suitability engine. Tier and claim-basis weights, lineage de-duplication, the weighted median and the grey discount are imported from the suitability synthesiser (see [[ch:suitability-synthesis]]).
+5. Confidence is derived, never asserted. No person and no model writes a confidence level.
 
 The engine is deterministic: the same register produces byte-identical rows. [src: src/nbs_ruralscan/recipe/cell_synthesis.py]
 
