@@ -28,6 +28,40 @@ The build also reads the published site branch of this repository at one fixed r
 `build/core.py`) for the live dashboard's label, its producer revisions, the data package edition and the list of drafts. Run
 `git fetch origin gh-pages` once so that revision is available locally.
 
+## Version numbers
+
+The methodology carries one version number, written major.minor.patch. It is kept in `VERSION.json` with its
+date and status, and nowhere else: the build stamps it on every page, writes it to `version.json` beside the
+pages, and the site reads its menu label from that file.
+
+Raise the number in every pull request that changes a page:
+
+| Part | Raise it when | Example |
+|---|---|---|
+| Major | The method works differently, so results could change | 1.0.0 to 2.0.0 |
+| Minor | A chapter or section is added or rewritten | 0.8.0 to 0.9.0 |
+| Patch | Wording, corrections or layout | 0.8.0 to 0.8.1 |
+
+Versions before 1.0.0 are drafts (`"status": "draft"`). Version 1.0.0 is the first release
+(`"status": "released"`).
+
+Each version needs an entry at the top of `CHANGELOG.md`, headed `## [0.8.1] - 2026-11-20`, with one bullet per
+change in plain words. The "What changed" page and the release notes are made from it. Write for a reader of
+the pages: no names, no pull request or issue numbers.
+
+Three things hold this in place. The build fails if the top changelog entry is not the version in
+`VERSION.json`. The pull request check fails if a file under `build/` or `content/` changed and the number did
+not go up. When a new number reaches `main`, the "Methodology release" workflow tags it (`v0.8.1`) and
+publishes the changelog entry as release notes.
+
+The evidence base has its own number, written year.month.release. It stands for one release pin in the
+evidence repository. `VERSION.json` lists each number beside its full release identifier, and the build stops
+if the current pin has no number. When the pin moves to a new release, add a line for it there.
+
+    python3 build/versioning.py version
+    python3 build/versioning.py notes
+    python3 build/versioning.py check-bump origin/main
+
 ## Listed, and marked as under review
 
 The reference is approved for the site's version list, so `LISTED` in `build/core.py` is `True` and pages carry

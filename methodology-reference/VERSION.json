@@ -1,0 +1,14 @@
+{
+  "methodology": {
+    "version": "0.8.0",
+    "date": "2026-11-18",
+    "status": "draft"
+  },
+  "evidence_base": [
+    {
+      "version": "2026.11.1",
+      "date": "2026-11-10",
+      "release_id": "2ff6f85ed5493b25a8b2279c572d792cc23ed5251fa99463f1421a4380730f2b"
+    }
+  ]
+}

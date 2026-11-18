@@ -1,0 +1,40 @@
+name: Methodology release
+# Tags each new methodology version that reaches main and publishes its changelog entry as release notes.
+# Does nothing when the version already has a release.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'methodology-reference/VERSION.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: methodology-release
+  cancel-in-progress: false
+jobs:
+  release:
+    name: Tag the version and publish its notes
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Create the release if this version has none
+        working-directory: methodology-reference
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          version=$(python3 build/versioning.py version)
+          tag="v$version"
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            echo "::notice title=Nothing to do::$tag already has a release."
+            exit 0
+          fi
+          python3 build/versioning.py notes > "$RUNNER_TEMP/notes.md"
+          state=""
+          if [ "$(python3 build/versioning.py status)" = draft ]; then state="--prerelease"; fi
+          gh release create "$tag" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "Methodology $tag" --notes-file "$RUNNER_TEMP/notes.md" $state

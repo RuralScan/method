@@ -6,6 +6,7 @@ from collections import Counter
 from itertools import pairwise
 
 import data
+import versioning
 from chapters import (
     EVIDENCE_CH,
     METHOD_CH,
@@ -19,6 +20,8 @@ from core import (
     CIAT_URL,
     CONTACTS,
     EVIDENCE,
+    EVIDENCE_BASE,
+    EVIDENCE_BASE_DATE,
     EVIDENCE_LIVE,
     EVIDENCE_REV,
     EVIDENCE_URL,
@@ -36,6 +39,7 @@ from core import (
     PRODUCER,
     PRODUCTS,
     RELEASE,
+    RELEASES_URL,
     REVIEW_QUEUES,
     ROW_TABLES,
     RUNTIME,
@@ -44,6 +48,9 @@ from core import (
     SITE_NAME,
     SITE_REV,
     TABLE_NAMES,
+    VERSION,
+    VERSION_DATE,
+    VERSION_STATUS,
     VISUAL_URL,
     badge,
     code,
@@ -516,7 +523,7 @@ def build():
         (chapter_file(s), TITLES.get(s, s)) for s in EVIDENCE_CH
     ]
     SIDE["editions.html"] = [
-        ("editions.html", "Editions"),
+        ("editions.html", "Versions and editions"),
         ("status.html", "What is established"),
         ("reproduce.html", "Reproduce and check"),
         ("glossary.html", "Glossary"),
@@ -790,8 +797,10 @@ def build():
         f"{link(VISUAL_URL + 'index.html', 'visual methodology')} shows what a working tool could look like, "
         "using example data. This methodology is the written method and the evidence behind it. "
         f"{link(chapter_file('scoping-walkthrough'), 'The scoping walkthrough')} connects the two, screen by screen.</dd></div>"
-        "<div><dt>Which version am I looking at?</dt><dd>The bar at the top of every page names it. The version "
-        "menu lists the live evidence dashboard first, then this methodology, then earlier drafts.</dd></div>"
+        "<div><dt>Which version am I looking at?</dt><dd>The line at the top of every page gives two numbers: "
+        "the version of this methodology and the evidence base it reports. The version menu above it lists this "
+        "methodology first, then the superseded evidence dashboard, then earlier drafts. "
+        f"{link('editions.html#numbers', 'What the numbers mean')}.</dd></div>"
         "<div><dt>Can I download the data?</dt><dd>Yes. "
         f"{link('evidence-base.html', 'Get and use the data')} lists every table with its address and checksum, a "
         "field guide and tested queries.</dd></div></dl>"
@@ -816,115 +825,24 @@ def build():
         lead="How to find your way around this methodology, how to give feedback, and who to contact.",
     )
 
-    changes = [
-        (
-            "18 November 2026",
-            [
-                (
-                    "New chapter in Evidence methods: Compiling evidence into rule tables. It says where compiling "
-                    "sits, how it is run today, and that a move to an AI agent is planned and not yet in use. "
-                    "The three chapters after it move down one number."
-                ),
-                (
-                    "On the overview, “How the method was built” is now plain text, and “What is settled, and "
-                    "what is not” is a table."
-                ),
-                (
-                    "Fourteen lists of a bold phrase followed by a sentence became plain tables or plain text, "
-                    "among them the neighbouring-practice boundaries on the practice pages. No rule changed."
-                ),
-                "Numbered steps no longer open with a bold phrase: the number already leads.",
-                (
-                    "The Evidence methods part opens with a figure of its five steps: what happens, who does it "
-                    "and what each step leaves. Chapter tables no longer show word counts."
-                ),
-            ],
-        ),
-        (
-            "17 November 2026, after the first review round",
-            [
-                (
-                    "After the first review round, the overview was rewritten as one story: the problem, what the "
-                    "method does about it, who it is for, how it works, and what is settled. Its sections are numbered."
-                ),
-                (
-                    "One figure now shows the whole method: how evidence becomes rules, then the seven stages "
-                    "that apply them."
-                ),
-                (
-                    "Counts of practices and evidence moved to the Practices part. The worked example moved to "
-                    "the Evidence base part and now follows a terrace slope rule."
-                ),
-                "The name is now “Methodology”. Module chapters are titled in one style.",
-                (
-                    "Two chapters on operating the evidence base (continuing the work with an AI system, and "
-                    "versioning the instructions) are no longer published, to shorten the text. They remain in the repository."
-                ),
-                (
-                    "After a second review round, the overview lists its sections in the side bar, a plain table "
-                    "replaces the two boxes on who the method is for, the visual methodology is linked beside the "
-                    "figure instead of in its own section, and links that leave the site open in a new tab."
-                ),
-            ],
-        ),
-        (
-            "17 November 2026",
-            [
-                (
-                    "Listed in the site’s version menu under “Under review”. The menu on these pages now has the same "
-                    "three groups as the live dashboard: Live, Under review and Earlier drafts."
-                ),
-                "The help page names the project contacts and team.",
-            ],
-        ),
-        (
-            "16 November 2026",
-            [
-                "Front page rebuilt: the practices covered, how much evidence each has, and the method told as seven questions.",
-                "The methodology takes the live evidence dashboard’s look, and that house style is recorded and checked by the build.",
-                (
-                    "One top bar shared with the visual methodology: version menu, theme switch, review tool and change history. "
-                    "Programme logo and a help page added."
-                ),
-                (
-                    "The chapter on continuing the evidence base with an AI system now describes the routes for recording work "
-                    "in the evidence and method repositories."
-                ),
-                "Published at an address that is not yet listed, with a request to search engines not to index it.",
-            ],
-        ),
-        (
-            "14 November 2026",
-            [
-                "Evidence base rebuilt for use: downloads of every table, a field guide, and queries that the build runs.",
-                "New chapter: continue the evidence base with an AI system.",
-                "Review page updated: finding reviews are submitted from the live dashboard and recorded in the evidence repository.",
-            ],
-        ),
-        (
-            "12 November 2026",
-            [
-                (
-                    "Added the scoping walkthrough, which follows the visual methodology stage by stage, and the chapter on "
-                    "implementing the method."
-                ),
-            ],
-        ),
-        (
-            "11 November 2026",
-            [
-                "First build: the method by module, the evidence methods, the data model, every practice and every compiled row.",
-            ],
-        ),
-    ]
+    versions, earlier = versioning.changelog()
+
+    def entries(items):
+        return "<ul>" + "".join(f"<li>{esc(x)}</li>" for x in items) + "</ul>"
+
     body = (
-        "<p>What changed in this methodology, newest first. The evidence and the ratings it reports are those of "
-        f"one pinned edition, described under {link('editions.html', 'Editions and checks')}; they do not change "
-        "between these entries unless an entry says so.</p>"
+        "<p>What changed in this methodology, newest first. Each numbered version is also a "
+        f"{link(RELEASES_URL, 'tagged release in the method repository')}, so its exact text can be recovered. "
+        f"{link('editions.html#numbers', 'What the numbers mean')}.</p>"
+        f"<p>The evidence and the ratings reported here are those of evidence base {esc(EVIDENCE_BASE)}. "
+        "They do not change between these entries unless an entry says so.</p>"
         + "".join(
-            f"<h2>{esc(day)}</h2><ul>{''.join(f'<li>{esc(x)}</li>' for x in items)}</ul>"
-            for day, items in changes
+            f'<h2 id="v{esc(version)}">v{esc(version)} · {versioning.long_date(day)}</h2>{entries(items)}'
+            for version, day, items in versions
         )
+        + '<h2 id="earlier">Before version numbers</h2>'
+        "<p>Changes made before this methodology carried a version number, by date.</p>"
+        + "".join(f"<h3>{esc(day)}</h3>{entries(items)}" for day, items in earlier)
         + '<h2 id="feedback">Feedback</h2>'
         "<p>Choose <strong>Review</strong> in the bar at the top of any page to leave notes on what you see. "
         f"{link('help.html#feedback', 'How the review tool works')}. Feedback that has been acted on appears "
@@ -1302,8 +1220,8 @@ def build():
     pilot = pilot_pin()
     rows = [
         [
-            "Recipe edition",
-            "Draft: candidate, not released",
+            f"Evidence base {EVIDENCE_BASE}: recipe release",
+            "Rule tables. Draft: candidate, not released",
             code(RELEASE),
             f"{len(data.ROWS)} rows: "
             + ", ".join(f"{data.TABLE_TOTALS[t]} {t}" for t in ROW_TABLES),
@@ -1335,7 +1253,40 @@ def build():
             "Function role and readiness columns",
         ],
     ]
+    state = "draft" if VERSION_STATUS == "draft" else "released"
     body = (
+        '<h2 id="numbers">Version numbers</h2>'
+        "<p>Two numbers identify what you are reading. Both are shown at the top of every page.</p>"
+        + table(
+            ["Number", "On this page", "Form", "It goes up when"],
+            [
+                [
+                    "Methodology",
+                    f"v{esc(VERSION)}, {state}, {versioning.long_date(VERSION_DATE)}",
+                    "major.minor.patch",
+                    (
+                        "Major: the method works differently, so results could change. Minor: a chapter or section is "
+                        "added or rewritten. Patch: wording, corrections or layout."
+                    ),
+                ],
+                [
+                    "Evidence base",
+                    f"{esc(EVIDENCE_BASE)}, {versioning.long_date(EVIDENCE_BASE_DATE)}",
+                    "year.month.release",
+                    (
+                        "A new fixed set of rule tables and evidence registers is adopted. The number gives the year and "
+                        "month, then counts the releases in that month."
+                    ),
+                ],
+            ],
+            caption="The two version numbers",
+        )
+        + "<p>Versions before 1.0.0 are drafts; version 1.0.0 will be the first released version. Each numbered "
+        f"version is a {link(RELEASES_URL, 'tagged release in the method repository')}, and "
+        f"{link('changes.html', 'What changed')} lists what each one altered. An evidence base number stands for "
+        "the identifiers in the next table. The live dashboard reads current review records, so it can show a "
+        "later state than any numbered evidence base.</p>"
+        '<h2 id="inputs">What this version was built from</h2>'
         "<p>An edition is one fixed set of inputs. Everything in this methodology is read from the identifiers "
         "below, so a number here can be reproduced exactly. Counts from different editions are never added, "
         "subtracted or turned into a rate.</p>"
@@ -1365,7 +1316,7 @@ def build():
         )
     body += (
         '<h2 id="words">Terms</h2>'
-        "<p><strong>Edition</strong> is used for a fixed set of inputs. <strong>Release</strong> is the content-addressed build of the "
+        "<p><strong>Version</strong> is the number of this methodology or of an evidence base. <strong>Edition</strong> is used for a fixed set of inputs. <strong>Release</strong> is the content-addressed build of the "
         "recipe tables. <strong>Candidate</strong> means built and checked but not yet released. <strong>Draft</strong> is the plain word "
         "used on the first screen for the same state. Schema and ruleset versions are separate and are named as versions. "
         f"See the {link('glossary.html', 'glossary')}.</p>"
@@ -1373,9 +1324,9 @@ def build():
     page(
         "editions.html",
         "editions.html",
-        "Editions",
+        "Versions and editions",
         body,
-        lead="Which inputs this methodology was built from, and how they differ from the country pilot's.",
+        lead="What the version numbers mean, which inputs this version was built from, and how they differ from the country pilot's.",
     )
 
     # ------------------------------------------------------------ glossary
@@ -1418,7 +1369,7 @@ def build():
         ),
         (
             "Edition",
-            "One fixed set of inputs from which numbers are computed. Counts from different editions are never combined.",
+            "One fixed set of inputs from which numbers are computed. Counts from different editions are never combined. An evidence base number stands for one edition of the rule tables and registers.",
         ),
         (
             "Effect locus",
@@ -1492,6 +1443,10 @@ def build():
         (
             "Transfer class",
             "How the evidence behind a row compares with that row's target, by share of evidence weight: in context, adjacent, mixed or out of context. Global rows target low and lower-middle income settings; a scope row targets its own scope. Always shown.",
+        ),
+        (
+            "Version number",
+            "The number of this methodology, written major.minor.patch, or of an evidence base, written year.month.release. Versions of the methodology before 1.0.0 are drafts.",
         ),
     ]
     body = (
