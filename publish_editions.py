@@ -201,6 +201,16 @@ TAB_ICONS = {
 }
 
 
+def dashboard_forward():
+    """The old address of the superseded overview. It was the same dashboard under a notice, so it forwards
+    to the dashboard and keeps the view that was asked for."""
+    return ('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Evidence dashboard</title>'
+            '<link rel="canonical" href="dashboard.html">' + tab_icon("dashboard")
+            + '<script>location.replace("dashboard.html" + location.search + location.hash)</script>'
+            '<noscript><meta http-equiv="refresh" content="0;url=dashboard.html"></noscript></head>'
+            '<body><a href="dashboard.html">Open the evidence dashboard</a></body></html>')
+
+
 def tab_icon(kind):
     """A link element that gives a page its browser-tab symbol. The image is inline, so no path can break."""
     return f'<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,{quote(TAB_ICONS[kind], safe="")}">'
@@ -227,8 +237,8 @@ def publish_reference_menu(site, reference, labels, label, note):
         row = re.match(r"row-(t3|t4|t6)-", path.name)
         dashboard_route = "review-" + row[1] if row else "overview"
         groups = [
-            ("Live", [(base + reference["href"], label, True), (base + "dashboard.html", DASHBOARD_LABEL, False)]),
-            ("Superseded", [(base + "legacy.html#" + dashboard_route, "Evidence dashboard · 10 Nov 2026", False)]),
+            ("Live", [(base + reference["href"], label, True),
+                      (base + "dashboard.html#" + dashboard_route, DASHBOARD_LABEL, False)]),
             ("Earlier drafts", [(base + f"editions/{key}/index.html", escape(value), False)
                                 for key, value in reversed(labels.items())]),
         ]
@@ -330,30 +340,32 @@ def add_version_selectors(site, editions, ciat, reference):
                 legacy_dest = "#source=" + quote(legacy_keys[source_id], safe="")
         legacy_match = legacy_dest is not None
         legacy_dest = legacy_dest or "#overview"
-        legacy_url = base + "legacy.html" + legacy_dest
-        legacy_label = legacy_title
-        if not root_shell and not legacy_match:
-            legacy_label += " (opens overview)"
-        selected = " selected" if legacy else ""
-        fallback = "" if legacy_match else " data-fallback"
-        groups = [
-            ("Superseded" if promoted else "Live", f'<option value="{legacy_url}"{selected}{fallback}>{legacy_label}</option>',
-             f'<a href="{legacy_url}">{legacy_label}</a>')
-        ]
-        if reference_available:
+        if promoted:
+            # One dashboard, one entry. An earlier draft's page opens the matching dashboard view.
             href = base + escape(reference["href"], quote=True)
-            label = reference_label
-            options_html, links_html = f'<option value="{href}">{label}</option>', f'<a href="{href}">{label}</a>'
-            if promoted:
-                # The review workspace is not the methodology: it selects its own entry, never the methodology's.
-                selected = " selected" if current == "review" else ""
-                options_html += f'<option value="{base}dashboard.html"{selected}>{DASHBOARD_LABEL}</option>'
-                links_html += f' · <a href="{base}dashboard.html">{DASHBOARD_LABEL}</a>'
-            reference_group = (reference["group"], options_html, links_html)
-            if promoted:
-                groups.insert(0, reference_group)
-            else:
-                groups.append(reference_group)
+            dashboard_url = base + "dashboard.html" + ("" if root_shell else legacy_dest)
+            unmatched = not root_shell and not legacy_match
+            dashboard_label = DASHBOARD_LABEL + (" (opens overview)" if unmatched else "")
+            # The dashboard is not the methodology: it selects its own entry, never the methodology's.
+            selected = " selected" if current == "review" else ""
+            fallback = " data-fallback" if unmatched else ""
+            groups = [(reference["group"],
+                       f'<option value="{href}">{reference_label}</option>'
+                       f'<option value="{dashboard_url}"{selected}{fallback}>{dashboard_label}</option>',
+                       f'<a href="{href}">{reference_label}</a> · <a href="{dashboard_url}">{dashboard_label}</a>')]
+        else:
+            legacy_url = base + "legacy.html" + legacy_dest
+            legacy_label = legacy_title
+            if not root_shell and not legacy_match:
+                legacy_label += " (opens overview)"
+            selected = " selected" if legacy else ""
+            fallback = "" if legacy_match else " data-fallback"
+            groups = [("Live", f'<option value="{legacy_url}"{selected}{fallback}>{legacy_label}</option>',
+                       f'<a href="{legacy_url}">{legacy_label}</a>')]
+            if reference_available:
+                href = base + escape(reference["href"], quote=True)
+                groups.append((reference["group"], f'<option value="{href}">{reference_label}</option>',
+                               f'<a href="{href}">{reference_label}</a>'))
         groups.append(("Earlier drafts", "".join(options), " · ".join(links)))
         menu = "".join(f'<optgroup label="{escape(group)}">{items}</optgroup>' for group, items, _ in groups)
         plain_links = " · ".join(f'<strong>{escape(group)}</strong> {items}' for group, _, items in groups)
@@ -362,7 +374,7 @@ def add_version_selectors(site, editions, ciat, reference):
         if current == "review":
             note = ""
         elif legacy:
-            note = "Superseded overview" if promoted else "Review findings against their sources."
+            note = "Review findings against their sources."
         else:
             note = "Design preview."
         note_visibility = "" if note else " hidden"
@@ -412,14 +424,6 @@ def add_version_selectors(site, editions, ciat, reference):
             if (site / "reference/help.html").is_file():
                 contents = contents.replace('href="https://ciat.github.io/nbs_ruralscan/redesign/help.html"',
                                             'href="reference/help.html"')
-            if promoted and legacy:
-                notice = ('<aside class="dashboard-superseded" aria-label="Superseded dashboard">'
-                          '<strong>The 10 Nov dashboard overview is superseded.</strong> '
-                          f'<a href="{escape(reference["href"], quote=True)}">Open {reference_label}</a>. '
-                          '<a href="dashboard.html#review-queue">Open the current review queue</a>.</aside>')
-                contents, count = re.subn(r'(<main\b[^>]*>)', lambda m: m[1] + notice, contents, count=1)
-                if count != 1:
-                    raise ValueError("Missing evidence dashboard main region")
         else:
             contents = contents[:header] + control + contents[header:]
         assets = (f'<link rel="stylesheet" href="{base}edition-selector.css?v=2">'
@@ -447,23 +451,24 @@ def add_version_selectors(site, editions, ciat, reference):
     queue_file = publish_review_queue(site, ciat, snapshot)
     queue_meta = f'<meta name="ciat-review-snapshot" content="{queue_file}">'
     live.write_text(live.read_text().replace("</head>", link + batch_data + rating_data + queue_meta + "</head>", 1))
-    # Share the queue data, but decorate the active workspace separately from the
-    # superseded overview. A finding bookmark is not a request for an old edition.
     copyfile(live, site / "dashboard.html")
-    decorate(live, "legacy", "index.html")
-    decorate(site / "dashboard.html", "review" if promoted else "legacy", "index.html")
     if promoted:
+        # One dashboard. The old address of its superseded overview forwards to it.
+        decorate(site / "dashboard.html", "review", "index.html")
+        live.write_text(dashboard_forward())
         publish_reference_menu(site, reference, labels, reference_label, reference_note)
         for name in ("index.html", "home-route.js"):
             copyfile(Path(__file__).with_name(name), site / name)
     else:
+        decorate(live, "legacy", "index.html")
+        decorate(site / "dashboard.html", "legacy", "index.html")
         copyfile(site / "dashboard.html", site / "index.html")
     (site / "review.html").write_text(
         '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Evidence review queue</title>'
         '<meta http-equiv="refresh" content="0;url=dashboard.html#review-queue"></head>'
         '<body><a href="dashboard.html#review-queue">Open the evidence review queue</a></body></html>'
     )
-    for name in (("dashboard.html", "legacy.html") if promoted else ("index.html", "dashboard.html", "legacy.html")):
+    for name in (("dashboard.html",) if promoted else ("index.html", "dashboard.html", "legacy.html")):
         contents = (site / name).read_text()
         expected_title = DASHBOARD_LABEL if promoted and name == "dashboard.html" else legacy_title
         if ('id="tab-qaqc"' not in contents or 'id="vf-scope"' not in contents
