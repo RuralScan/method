@@ -6,6 +6,13 @@ What changed in the Rural NbS Scan methodology, newest first. The build reads th
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.8.2] - 2026-11-18
+
+- On the overview, the table of what is settled no longer describes suitability scores as under
+  review. It says that no suitability rule has an approved numerical score, what the method can
+  and cannot do as a result, and that the scores are left for the planned move of compiling to an
+  AI agent. Counts that were not about review are removed from that row.
+
 ## [0.8.1] - 2026-11-18
 
 - The version line at the top of each page no longer breaks in the middle of a phrase when the
