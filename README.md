@@ -12,6 +12,8 @@ The menu groups Methodology under **Live**, the 10 November dashboard under **Su
 
 A push to `gh-pages` builds and deploys the Pages artifact. Methodology content is maintained on `main`; the workflow pins its source. Since Methodology is the default, missing reference output, a not-for-publication marker, a noindex page or an unexpected navigation structure stops publication. A failed build leaves the existing deployed site in place. The publication names check remains required.
 
+Tab 3 of the workspace, **Evidence**, shows every retained finding in plain words: five questions, each viewable as how much evidence there is or as what it says, with a search across all findings and a download of the whole evidence base. `dashboard-evidence.js` builds it in the browser from the registers the review queue already loads from RuralScan/evidence, so it follows the evidence repository without a rebuild. It combines nothing: a source is counted once per topic, and ranges are shown as reported. The three earlier analysis views (suitability relationships, the T4 explorer, hazard ratings) are no longer in the navigation; `#relationships`, `#evidence-explorer`, `#hazard-ratings` and `#t4/…` links still open them.
+
 Checks: `python3 -m unittest discover -s tests -p 'test_*.py'` and `node --test tests/*.test.cjs`.
 
 ## Connect a local PDF library

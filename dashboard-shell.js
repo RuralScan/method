@@ -8,21 +8,23 @@
     var button = document.querySelector('[data-' + kind + '-view][aria-pressed="true"]');
     return button ? button.dataset[kind + 'View'] : fallback;
   }
-  var queryRoutes = {relationships: '#relationships', explorer: '#evidence-explorer', hazards: '#hazard-ratings'};
+  var queryRoutes = {evidence: '#evidence', relationships: '#relationships', explorer: '#evidence-explorer', hazards: '#hazard-ratings'};
+  // The Evidence section is the tab's view. The three earlier analysis views open only from existing links.
+  var currentQuery = 'evidence';
   function syncRoute(tab) {
     if (restoringRoute) return;
     var route = { 'tab-overview': '#overview', 'tab-search': '#progress', 'tab-variables': '#datasets' }[tab];
     if (tab === 'tab-methods') route = '#methods/' + selectedView('method', 'rural');
     if (tab === 'tab-qaqc') route = { queue: window.DashboardPriority ? window.DashboardPriority.route() : '#review-queue', help: '#review-help', pipeline: '#pipeline-records' }[selectedView('review', 'queue')];
     if (tab === 'tab-stocktake') route = location.hash.startsWith('#source=') ? location.hash : '#bibliography';
-    if (tab === 'tab-interrogator') route = location.hash.startsWith('#t4/') ? location.hash : queryRoutes[selectedView('query', 'relationships')];
+    if (tab === 'tab-interrogator') route = location.hash.startsWith('#t4/') ? location.hash : queryRoutes[currentQuery];
     if (route && location.hash !== route) history.replaceState(null, '', route);
   }
   function setView(kind, view) {
     var selector = '[data-' + kind + '-view]';
     var views = {
       review: { queue: 'review-queue-panel', help: 'review-help-panel', pipeline: 'review-pipeline-panel' },
-      query: { relationships: 'relationship-review-root', explorer: 'query-explorer-panel', hazards: 'hazard-panel' },
+      query: { evidence: 'evidence-section-root', relationships: 'relationship-review-root', explorer: 'query-explorer-panel', hazards: 'hazard-panel' },
       method: { rural: 'method-rural-panel', evidence: 'method-evidence-panel', search: 'method-search-panel' }
     };
     var panels = views[kind];
@@ -31,6 +33,11 @@
     document.querySelectorAll(selector).forEach(function (button) { button.setAttribute('aria-pressed', String(button.dataset[kind + 'View'] === view)); });
     var route = kind === 'method' ? '#methods/' + view : kind === 'review' ? { queue: window.DashboardPriority ? window.DashboardPriority.route() : '#review-queue', help: '#review-help', pipeline: '#pipeline-records' }[view] : '';
     if (route && location.hash !== route) history.replaceState(null, '', route);
+    if (kind === 'query') {
+      currentQuery = view;
+      var legacyNote = byId('legacy-analysis-note'); if (legacyNote) legacyNote.hidden = view === 'evidence';
+      if (view === 'evidence' && window.DashboardEvidence) window.DashboardEvidence.render();
+    }
     if (kind === 'query' && view === 'hazards') DashboardTables.showHazards();
     if (kind === 'review' && view === 'pipeline' && window.DashboardProgress && typeof window.DashboardProgress.renderPipelineRecords === 'function') window.DashboardProgress.renderPipelineRecords();
     syncSubtabs();
@@ -40,7 +47,8 @@
     restoringRoute = true;
     try {
       if (window.DashboardPriority && window.DashboardPriority.openFromHash(location.hash)) return;
-      if (location.hash === '#relationships') { open('btn-interrogator'); setView('query', 'relationships'); }
+      if (location.hash === '#evidence') { open('btn-interrogator'); setView('query', 'evidence'); }
+      else if (location.hash === '#relationships') { open('btn-interrogator'); setView('query', 'relationships'); }
       else if (location.hash === '#hazard-ratings') { open('btn-interrogator'); setView('query', 'hazards'); }
       else if (location.hash === '#evidence-explorer' || location.hash.startsWith('#t4/')) { open('btn-interrogator'); setView('query', 'explorer'); }
       else if (location.hash === '#pipeline-records') { open('btn-qaqc'); setView('review', 'pipeline'); }
@@ -124,11 +132,11 @@
       var h = 0;
       var prefix = entry[0] === 'tab-interrogator' ? '3.2' : entry[1];
       root.querySelectorAll('h2, h3').forEach(function (heading) {
-        if (heading.closest('.shell-intro, #vf-cards, #vf-stats, #relationship-review-root') || heading.id === 'family-hero-title' || heading.classList.contains('info-block-title')) return;
+        if (heading.closest('.shell-intro, #vf-cards, #vf-stats, #relationship-review-root, #evidence-section-root') || heading.id === 'family-hero-title' || heading.classList.contains('info-block-title')) return;
         setNumber(heading, heading.closest('#review-queue-panel') ? '5.1' : prefix + '.' + (++h));
       });
       root.querySelectorAll('table').forEach(function (table, index) {
-        if (table.closest('#relationship-review-root')) return;
+        if (table.closest('#relationship-review-root, #evidence-section-root')) return;
         var caption = table.querySelector(':scope > caption');
         if (caption && !caption.classList.contains('shell-table-caption')) {
           setNumber(caption, 'Table ' + entry[1] + '.' + (index + 1) + '.');
@@ -139,7 +147,7 @@
         if (caption.textContent !== value) caption.textContent = value;
       });
       root.querySelectorAll('.chart-wrapper').forEach(function (chart, index) {
-        if (chart.closest('#relationship-review-root')) return;
+        if (chart.closest('#relationship-review-root, #evidence-section-root')) return;
         var caption = chart.parentElement.querySelector(':scope > .shell-figure-caption');
         if (!caption) { caption = document.createElement('p'); caption.className = 'shell-figure-caption'; chart.after(caption); }
         var title = chart.closest('.card-container');
