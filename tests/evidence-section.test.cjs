@@ -66,3 +66,11 @@ test('the download is a valid stored zip', async () => {
   assert.equal(view.getUint16(end + 10, true), 2);
   assert.equal(view.getUint32(view.getUint32(end + 16, true), true), 0x02014b50);
 });
+
+test('every element the section looks up is one it creates', () => {
+  const code = require('node:fs').readFileSync(require.resolve('../dashboard-evidence.js'), 'utf8');
+  const made = new Set([...code.matchAll(/id=\\?"ev-([a-z0-9-]+)\\?"/g)].map(m => m[1]));
+  const used = [...new Set([...code.matchAll(/\$\('([a-z0-9-]+)'\)/g)].map(m => m[1]))];
+  assert(used.length > 20);
+  assert.deepEqual(used.filter(id => !made.has(id)), []);
+});
