@@ -6,7 +6,7 @@ A static, generated reference for technical readers: the scan method, the eviden
 model, six practices with every compiled row, the evidence base, and edition checks. Review build; it
 is not published to Pages.
 
-- `content/` authored chapters (28) and the chapter contract. Each chapter cites the pinned files it rests on.
+- `content/` authored chapters and the chapter contract. Each chapter cites the pinned files it rests on.
 - `build/` the generator. It reads the release pin, the recipe tables and registers at the pinned producer
   revision, the method cookbook names and the published readiness columns. Nothing analytical is typed in.
 - `site/` the built pages (generated, not committed).
@@ -156,3 +156,13 @@ Two chapters on operating the evidence base are kept in `content/unpublished/` a
 
 The review page describes the evidence repository's operating procedures at `EVIDENCE_OPERATING` in `build/core.py`; the build fails unless the evidence checkout is at exactly that revision, so the text and its links cannot drift apart. To move it, check out the newer evidence revision, re-read the review page against the submissions guides, then change the constant. Citations written
 `[src: retired:<path>]` open the producer repository at the revision where its evidence records became read-only.
+
+## Evidence chapter ownership
+
+The opening evidence chapter owns shared provenance, record meanings, classification and source appraisal.
+Discovery, acquisition, extraction and review own their respective procedures. The common synthesis chapter
+follows review and owns compatibility, dependence, weighting concepts and sensitivity guidance. The T4,
+T3/T6 and T6E chapters own their numerical algorithms and table-specific gates. New guidance belongs in
+these chapters; do not add a parallel registry dictionary or repeat numerical policies in a general guide.
+The former `ch-evidence-registry.html` and `ch-combining-t4-evidence.html` addresses redirect to the
+consolidated chapters so existing links remain usable.

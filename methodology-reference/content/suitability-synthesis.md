@@ -1,5 +1,5 @@
 ---
-title: Suitability synthesis: from reviewed evidence to suitability mappings
+title: Suitability rules (T4)
 slug: suitability-synthesis
 summary: Re-derive, audit or challenge any T4 suitability mapping, from the evidence units it rests on through weighting, harmonisation and calibration holds to the function a runtime may execute.
 sources:
@@ -32,7 +32,7 @@ sources:
 
 A suitability mapping is one row of [[table:T4]]: for one suitability family and one canonical variable, it states how values of a spatial input translate into suitability for that family. This chapter describes how the method turns reviewed evidence units (see [[ch:extraction]] and [[ch:review-and-quality]]) into such rows, and what a mapping does and does not license a runtime to do. [src: schema/spec.md §T4]
 
-How this step is run, and a planned change to how it is run, is in [[ch:compiling-evidence]].
+The common synthesis sequence, dependency audit and interpretation of weights are in [[ch:compiling-evidence]]. This chapter specifies the T4 algorithms; it does not supply the pooling method for effect or economic rows.
 
 The governing rule is that a document is never turned into a threshold in one step. Extraction records what a source says; synthesis combines sources into a mapping; a reviewer signs off; a separate decision selects a function for execution. Every value in a finished row traces the chain row → evidence units → source (tier, page, quote). [src: methodology/T4_generation_method.md §0]
 
@@ -94,17 +94,19 @@ w_u = TIER_W(tier_s) × BASIS_W(basis_u) × G(role_u)^[grey_s]
 
 [src: src/nbs_ruralscan/recipe/synthesis.py §TIER_W, BASIS_W, _weight]
 
-The claim basis does work the tier cannot: a low-tier paper can report a measured threshold while a high-tier paper offers only a second-hand ranking, and the measured threshold should outweigh the echo. [src: methodology/T4_generation_method.md §5.2] [src: methodology/T4_generation_method.md §6]
+The formula above reproduces the pinned compiler. Its `table` and `figure_read` factors mix presentation with scientific basis; they must not be interpreted as evidence that a table contains measurements. The separate basis/format contract fixes that classification distinction without changing these historical factors. These are heuristic influence weights, not probabilities of correctness or inverse-variance weights. Proposed alternatives require a separate scientific decision and sensitivity assessment. [src: method:data-model/evidence-classification.json]
 
 ### The grey-literature discount
 
-Grey literature (WOCAT, CGIAR, FAO, NGO and project reports) is not peer reviewed and tends to state benefits optimistically. Its weight is discounted by claim kind: structural suitability ×0.9, effect claims ×0.4, hazard claims ×0.6, any other role ×0.6. The discount is lightest on suitability because a slope or soil limit is rarely an advocacy claim. Grey sources still count in `n_sources`; the discount only stops them dominating the median. [src: src/nbs_ruralscan/recipe/synthesis.py §GREY_DISCOUNT]
+The pinned compiler applies a category-based discount to grey sources, including practice accounts and institutional reports. It is a policy proxy for evidential limitations, not proof that every such claim is unmeasured or biased. Its factors differ by claim kind: structural suitability ×0.9, effect claims ×0.4, hazard claims ×0.6, any other role ×0.6. The discount is lightest on suitability because a slope or soil limit is rarely an advocacy claim. Grey sources still count in `n_sources`; the discount only stops them dominating the median. [src: src/nbs_ruralscan/recipe/synthesis.py §GREY_DISCOUNT]
 
 ### Lineage de-duplication
 
 Ten papers echoing one original "slope below 15°" are one claim, not ten. Before reconciliation the synthesiser resolves each unit's root origin by following `EV.lineage_of` from evidence ID to evidence ID (or to a source ID) until it reaches a unit with no lineage, or an identifier outside the current pool, which is then treated as the root. A lineage cycle, or a source-level pointer to a source whose own units descend from different origins, stops synthesis with an error rather than letting input order choose a parent. [src: src/nbs_ruralscan/recipe/synthesis.py §_resolve_root_origin] [src: methodology/T4_generation_method.md §6.1]
 
 Exact echoes (same origin, same relationship, same context, same taxon) collapse to one unit, keeping the primary unit and then the highest weight. Distinct bounds or contexts reported by one origin are kept, but they cast a single vote (see below). The collapsed echoes are listed in the synthesis report. [src: src/nbs_ruralscan/recipe/synthesis.py §_t4_claims]
+
+The broader audit of repeated observations, overlapping publications and shared author groups is in [[ch:compiling-evidence]]. T4-specific review must also distinguish a complete response profile from repeated evidence: several class bands or endpoints describe one source response, and more extracted bands must not become more independent support. Conflicting within-origin profiles or incompatible contexts remain visible rather than being averaged merely to clear a hold.
 
 ## Harmonising relationship types and parameters
 

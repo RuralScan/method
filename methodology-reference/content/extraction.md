@@ -76,9 +76,11 @@ Units must be readable without the paper. Every acronym for a practice, treatmen
 
 ## Knowledge basis and extraction format
 
-Current evidence intake separates `knowledge_basis` from `extraction_format`. A table can report expert judgement or measured results; its format does not establish scientific strength. Legacy `claim_basis` is retained for historical compiler reproduction. Table and figure labels migrate to unknown knowledge basis, never to inferred measurement. See [[ch:evidence-registry|the registry and source guide]] and [[ch:combining-t4-evidence|the synthesis and weighting guide]]. [src: method:data-model/evidence-classification.json]
+The classification extension requires `knowledge_basis` and `extraction_format` to be recorded separately. The conceptual distinction and source-appraisal guidance are in [[ch:evidence-principles]]. Operationally, identify the basis from the source's methods and claim wording, and the format from the passage used for extraction. A known basis does not imply a known format, or vice versa. [src: method:data-model/evidence-classification.json]
 
-The field table above describes the pinned historical evidence edition. The additive extension applies to current intake; it does not retroactively validate or recalibrate those archived claims. Expert opinion in this workflow is extracted from literature, not obtained through a new consultation exercise.
+For a new proposal, the extension requires a known basis and an explicit format value, which may be `unknown`. A proposal with unresolved knowledge basis stays staged for source review. The historical field `claim_basis` is retained for compiler compatibility; new or reclassified claims must keep its scientific-basis value consistent with `knowledge_basis`. Existing classifications may remain unchanged on a correction without inventing a stronger basis. [src: evidence:workflows/extraction/classification.md]
+
+The field table above describes the pinned historical edition. The additive migration maps legacy `table` and `figure_read` labels to known format and unknown basis; known scientific-basis labels retain that basis with unknown format. It preserves original claims, review decisions and ruleset stamps. This is metadata migration, not source reappraisal or recalibration. The [register rollout](https://github.com/RuralScan/evidence/pull/60) tracks application to the active registers. [src: method:data-model/evidence-classification.json]
 
 ## Quotes are sliced, never retyped
 

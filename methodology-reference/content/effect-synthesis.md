@@ -1,5 +1,5 @@
 ---
-title: Effect synthesis: hazard responses and scorecard effects
+title: Hazard and scorecard effects (T3/T6)
 slug: effect-synthesis
 summary: Re-derive any T3 hazard-response row or T6 scorecard row from its pooled evidence, including its weights, class, two-axis confidence, applicability envelope and every cap, discount and hold that shaped it.
 sources:
@@ -118,7 +118,13 @@ share_u = 1 / k_s
 
 - `k_s`: number of units of source s that reach the cell as its own (non-echo) findings.
 
-One source thus still carries one source weight, while its arms inform the median and the range. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §dedupe_for_cells]
+This shares influence across the source's own arms before the other per-unit design and context factors are applied; the arms still inform the median and range. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §dedupe_for_cells]
+
+### Dependence beyond citation lineage
+
+This share factor is a within-cell control on repeated own arms, not a statistical covariance model. It does not automatically detect partially overlapping samples across papers, repeated years from the same sites or overlap between a meta-analysis and its primary studies. The common dependency audit in [[ch:compiling-evidence]] therefore applies before interpreting source counts as independent support.
+
+Preserve countries, treatments, comparators and outcomes that matter to a cell; do not collapse them solely because authors recur. Conversely, a different author list does not make reused data independent. For a new synthesis proposal, record the origins and overlap behind the eligible units, and show how unresolved dependence could change class, direction or confidence. This is review guidance, not a claim that automatic author-group clustering or covariance-aware pooling is implemented. [src: method:data-model/evidence-classification.json]
 
 ## Step 3: rank each unit
 
@@ -176,6 +182,8 @@ w_u = TIER_W × BASIS_W × D × G × T(d) × X × N × B_sc × B × Y × C × sh
 Design weights put syntheses above single studies and above practitioner ratings, which are expected to be biased toward the technology the rater documents. Some values are recorded as pending ratification in the lookup. [src: schema/lookups/design_weights.csv] [src: AGENTS.md §What is locked]
 
 Grey sources still count in `n_sources` and in the envelope; the discount stops them dominating, it does not remove them. [src: methodology/T3_T6_generation_method.md §7.8]
+
+The factors above reproduce the historical compiler. The mixed `claim_basis` presentation labels do not establish measured evidence; the basis/format separation and the distinction between credibility weights and statistical precision are explained in [[ch:evidence-principles]] and [[ch:compiling-evidence]]. The metadata extension does not silently replace these factors or change existing classes. [src: method:data-model/evidence-classification.json]
 
 ### 4a. Context distance and transferability
 
@@ -382,7 +390,9 @@ Where the farmer feels an effect differs by practice: trees on the farm affect t
 
 Asset-threat rows answer a different question from livelihood rows: how badly does the hazard damage the investment? They are built from `asset_vulnerability` units and feed M2b Stream A, which is a filter on the investment and is never summed with M2's livelihood risk (see [[ch:m2b-project-risk]]). [src: methodology/T3_T6_generation_method.md §7.5] [src: AGENTS.md §What is locked]
 
-Sourcing is layered. The seed is the WOCAT technology questionnaire's tolerance-to-extremes ratings, read from the structured questionnaire, cached as a deterministic transcript and converted rule by rule (no model) into units with a practitioner-rating design and the grey discount. Literature from the single-pass sweep (establishment mortality, windthrow, plantation fire, flood scour) adds to it; WOCAT-versus-literature concordance is what the agreement axis then measures. An internal rating pass by domain colleagues is optional; there is no external expert-elicitation programme, so many asset cells are honestly `limited`. [src: methodology/T3_T6_generation_method.md §9]
+Sourcing is layered. The seed is the WOCAT technology questionnaire's tolerance-to-extremes ratings, read from the structured questionnaire, cached as a deterministic transcript and converted rule by rule (no model) into units with a practitioner-rating design and the grey discount. Literature from the single-pass sweep (establishment mortality, windthrow, plantation fire, flood scour) adds to it; WOCAT-versus-literature concordance is what the agreement axis then measures. Many asset cells therefore remain honestly `limited`. [src: methodology/T3_T6_generation_method.md §9]
+
+The earlier specification also mentions an optional internal rating pass. That is outside the current literature-derived expert scope: expert judgements must come from published sources or documented accounts, with their original basis retained. [src: method:data-model/evidence-classification.json]
 
 The WOCAT tolerance scale maps to strength through ordinal BANDS rows: "not well" → strong damage, "moderately" → moderate, "well" → slight, "very well" → none. [src: schema/registers/BANDS_magnitude_bands.csv]
 
