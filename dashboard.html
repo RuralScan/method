@@ -1012,7 +1012,7 @@
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.1.0">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.13.0">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.14.0">
 <link rel="stylesheet" href="dashboard-evidence.css?v=1.0.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
@@ -1578,7 +1578,7 @@
         <h4>5.2.2 Work through the queue</h4>
         <ol class="shell-review-steps">
           <li><b>Set your own GitHub handle in Review queue.</b> Choose <b>Other…</b> if it is missing. This selector filters historical decisions. GitHub credits the account that creates the issue. Use practice, evidence type and search to narrow the queue.</li>
-          <li><b>Start with To review.</b> <b>Waiting for answers</b> holds your outstanding questions; <b>My reviewed</b> shows your decisions. More filters contains technical filters and dropped history. Site observations are deferred by default and can be included there.</li>
+          <li><b>Start with To review.</b> <b>Waiting for answers</b> holds your outstanding questions; <b>My reviewed</b> shows your decisions. The Filters sidebar contains practice, evidence type, technical filters and dropped history. Site observations are deferred by default and can be included there. On small screens, open Filters above the findings.</li>
           <li><b>Read the claim and inspect its source.</b> Check the page or table, units, context, practice and intended use. Open the source region or full paper when the excerpt lacks context. A restricted source may require the synced library or its SharePoint link; contact the library maintainer if access is missing.</li>
           <li><b>Keep</b> when the extraction is faithful and relevant. <b>Drop</b> when it is unsuitable or incorrect: select a coded reason and explain it. Drop quarantines the record; it does not erase it. <b>Query</b> when clarification is needed: state what needs checking. A query is not approval.</li>
           <li><b>Review answers on the evidence card.</b> Answered records return to To review. Read the answer and source, then Keep, Drop or Query. There is no separate answer-approval step; deciding one record does not approve the other records sharing its answer.</li>
@@ -1661,9 +1661,18 @@
             </div>
           </details>
         </div>
-        <div style="display:flex; gap:18px; align-items:flex-start; margin-top:6px;">
-          <div id="vf-main" style="flex:1; min-width:0;">
-            <div id="vf-scope" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px"></div>
+        <div class="vf-review-layout">
+          <aside id="vf-sidebar" aria-label="Review filters">
+            <details id="vf-sidebar-panel" open>
+              <summary>Filters <span>Practice, evidence type and review status</span></summary>
+              <div class="vf-sidebar-content">
+                <div class="vf-sidebar-heading"><strong>Filters</strong><a href="#vf-cards" onclick="event.preventDefault();var findings=document.getElementById('vf-cards');findings.focus({preventScroll:true});findings.scrollIntoView({block:'start'});">Go to findings →</a></div>
+                <div id="vf-scope"></div>
+                <div id="vf-sidebar-filters"></div>
+              </div>
+            </details>
+          </aside>
+          <div id="vf-main">
             <div class="review-queue-context"><p id="review-table-description"></p><a id="review-log-source"></a></div>
             <span id="vf-mode-hint" hidden></span>
             <div id="vf-filterbar" style="position:sticky; top:86px; z-index:20; background:var(--bg-primary); padding:6px 0 6px; border-bottom:1px solid var(--border-color); display:flex; align-items:flex-start; gap:8px; flex-wrap:wrap;">
@@ -1672,7 +1681,7 @@
             <div id="vf-decided-count" style="font-size:12px; color:var(--text-secondary); margin-top:12px;"></div>
             <div id="vf-subset-banner" style="display:none; margin-top:10px;"></div>
             <p id="public-review-history" hidden><a href="https://github.com/RuralScan/evidence/issues?q=is%3Aissue+author%3A%40me+submission+in%3Abody">My public RuralScan submissions</a></p>
-            <div id="vf-cards" tabindex="-1" role="region" aria-label="Findings in current review queue" style="margin-top:12px;"></div>
+            <div id="vf-cards" tabindex="-1" tabindex="-1" role="region" aria-label="Findings in current review queue" style="margin-top:12px;"></div>
             <div id="vf-actionbar" style="position:sticky; bottom:0; z-index:19; background:var(--bg-primary); border-bottom:1px solid var(--border-color); padding:6px 0 7px; display:flex; align-items:center; gap:9px; flex-wrap:wrap;">
               <span id="vf-pending-count" style="font-size:11.5px; font-weight:700;" title="Your saved decisions across all queues. Submit your batch to RuralScan/evidence when ready."></span>
               <span style="margin-left:auto; display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap;">
@@ -3143,7 +3152,7 @@
     document.addEventListener('keydown',function(e){
       if(e.ctrlKey||e.metaKey||e.altKey)return;
       var t=e.target||{}; var tn=((t.tagName||'')+'').toUpperCase();
-      if(document.querySelector('dialog[open]') || t.closest?.('.source-preview'))return;
+      if(document.querySelector('dialog[open]') || t.closest?.('.source-preview, #vf-sidebar'))return;
       if(tn==='INPUT'||tn==='TEXTAREA'||tn==='SELECT'||t.isContentEditable)return;   // never steal typing
       var tab=document.getElementById('tab-qaqc'); if(!tab||!tab.classList.contains('active'))return;
       var cards=_vfCardEls(); if(!cards.length)return;
@@ -3162,9 +3171,7 @@
       if(k==='q'){ e.preventDefault(); var ta=el.querySelector('textarea'); if(ta){ try{ta.scrollIntoView({block:'nearest'});}catch(_e){} try{ta.focus();}catch(_e3){} } return; }
     });
   }
-  // Two stacked sticky bars inside #vf-main: the filter matrix (top:86px) and the action bar
-  // directly under it. The filter bar's height varies with the toggles on show, so the action
-  // bar's offset is measured rather than hardcoded (falls back to the inline 86px).
+  // Keep batch actions at the bottom; filters now live in their own sidebar.
   function _vfSyncStickyBars(){ var fb=document.getElementById('vf-filterbar'), ab=document.getElementById('vf-actionbar');
     if(!fb||!ab)return; ab.style.top='auto'; ab.style.bottom='0'; }
 
@@ -3231,10 +3238,10 @@
       var _csHint=(window._vfScope.claimScope&&window._vfScope.claimScope!=='general'&&window._vfScope.claimScope!=='all')?'<div style="font-size:9.5px; color:var(--text-muted); margin:2px 0 4px 0; line-height:1.4;">🧬 <b>Species / crop lane</b> — per-taxon evidence, <b>kept &amp; banked for reuse</b> but filtered out of the practice-level MCDA. Fix a mis-tagged row by re-classifying it (keep), not dropping it.</div>':'';
       var select=function(key,label,options){return '<label>'+label+' <select'+(key==='table'?' aria-describedby="review-table-description"':'')+' onchange="vfScopeSet(\''+key+'\',this.value)" style="padding:7px;background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-color);border-radius:5px">'+options.map(function(o){return '<option value="'+vfEsc(o[0])+'"'+(window._vfScope[key]===o[0]?' selected':'')+'>'+vfEsc(o[1])+'</option>';}).join('')+'</select></label>';};
       scEl.innerHTML=select('nbs','Practice',[['all','All practices']].concat(_nbsOpts.map(function(n){return [n,_capNbs(n)];})))
+        +select('family','Family / evidence scope',[['all','All families']].concat(_famOpts.map(function(f){return [f,_capFam(f)];})))
         +select('table','Evidence type',[['all','All evidence types'],['T3','T3 hazard findings'],['T4-suitability','T4 suitability findings'],['T6','T6 scorecard findings'],['M2b','M2b operational feasibility'],['T4','T4 + operational feasibility'],['T3/T6','T3/T6 effects']])
         +'<label>Search <input id="vf-search" type="search" placeholder="Paper, variable or text" value="'+vfEsc(window._vfSearch||'')+'" oninput="vfSearch(this.value)" style="padding:7px;background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-color);border-radius:5px"></label>';
       window._vfAdvancedScopeHtml=_mkPills('observations','Site observations',['hide','show','only'],function(o){return {hide:'Hide (default)',show:'Include',only:'Only observations'}[o];},'sky',true,'Site descriptions and observed presence are deferred; tested relationships remain in review.')
-        +_mkPills('family','Family / evidence scope',_famOpts,_capFam,'emerald',false)
         +_mkPills('claimScope','Scope',['general','species','crop'],_csFmt,'sky',false)
         +_mkPills('source','Source channel',_srcOpts,function(o){return _vfChanMeta(o).label;},'amber',false)
         +_mkPills('access','Access',['oa','restricted'],function(o){return o==='oa'?'Open-access':'Restricted';},'emerald',false);
@@ -3324,6 +3331,7 @@
     const isMyHistory = window._vfSimpleView === 'mine';
     document.getElementById('public-review-history').hidden = !isMyHistory;
     var fd=document.getElementById('vf-verdict-filters'); var host=document.getElementById('vf-cards'); var statsHost=document.getElementById('vf-stats');
+    document.getElementById('vf-sidebar-filters').hidden = mode==='stats'||mode==='gaps';
     if(mode==='stats'){ if(fd)fd.style.display='none'; if(host)host.style.display='none'; var dcs=document.getElementById('vf-decided-count'); if(dcs)dcs.innerHTML=''; if(statsHost){statsHost.style.display='block'; renderQaqcStats(statsHost);} _vfSyncStickyBars(); return; }
     if(mode==='gaps'){ if(fd)fd.style.display='none'; if(statsHost)statsHost.style.display='none'; if(host){host.style.display='block'; renderVfGaps(host);} _vfSyncStickyBars(); return; }
     if(statsHost)statsHost.style.display='none'; if(host)host.style.display='block';
@@ -3359,7 +3367,8 @@
         }).join('') + '</div>';
       var maintenance='<details><summary>Team maintenance</summary>'+[['unresolved','Decision / status checks'],['approval_only','Missing review history'],['dropped','Dropped history'],['all','All records']].map(function(q){return '<button class="pill-btn" onclick="vfReviewQueue(\''+q[0]+'\')">'+q[1]+'</button>';}).join('')+'</details>';
       var cl=window._vfClarificationError?'<p>'+vfEsc(window._vfClarificationError)+'</p>':'';
-      fd.innerHTML=summary+(window.DashboardPriority?DashboardPriority.controls():'')+(isMyHistory?vfArchivedHistory(personal.archived)+vfRatingHistory(personal.ratings):'')+cl+'<details '+(window._vfMoreFilters?'open':'')+' ontoggle="window._vfMoreFilters=this.open"><summary style="cursor:pointer">More filters'+((window._vfScope.observations||'hide')==='hide'?' · site observations hidden':'')+(window._vfSimpleView==='advanced'&&!window._vfPriorityEvidence?' — custom view active':'')+'</summary><button class="pill-btn" onclick="vfSimpleQueue(\'advanced\')">Use custom filters</button>'+(window._vfAdvancedScopeHtml||'')+_bar+maintenance+'<details data-local-review-only><summary>Review a whole source</summary><div id="vf-bulk"></div></details></details>'; }
+      fd.innerHTML=summary+(window.DashboardPriority?DashboardPriority.controls():'')+(isMyHistory?vfArchivedHistory(personal.archived)+vfRatingHistory(personal.ratings):'')+cl;
+      document.getElementById('vf-sidebar-filters').innerHTML='<div class="vf-custom-view">'+(window._vfSimpleView==='advanced'&&!window._vfPriorityEvidence?'Custom filter view active':'Filters apply to the selected queue')+'</div><div class="vf-filter-groups">'+(window._vfAdvancedScopeHtml||'')+_bar+'</div>'+maintenance+'<details data-local-review-only><summary>Review a whole source</summary><div id="vf-bulk"></div></details>'; }
     // ---- apply the toggle filters to the universe (secondary filters via the shared _sec) ----
     var _list=_uni.filter(function(u){
       if(window._vfSimpleView!=='advanced')return _sec(u,'any','any');
@@ -6066,7 +6075,7 @@
 <script src="dashboard-priority.js?v=1.13"></script>
 <script src="review/priority-receipt.js"></script>
 <script src="review/priority-status.js?v=2"></script>
-<script src="dashboard-shell.js?v=1.9.0"></script>
+<script src="dashboard-shell.js?v=1.10.0"></script>
 <dialog id="finding-submission" aria-labelledby="finding-submission-title">
   <form><h2 id="finding-submission-title">Review finding</h2><output></output>
     <p>Your GitHub name, vote and note will appear on a public issue in RuralScan/evidence.</p>

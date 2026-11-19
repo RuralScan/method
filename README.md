@@ -18,7 +18,7 @@ Checks: `python3 -m unittest discover -s tests -p 'test_*.py'` and `node --test 
 
 ## Review findings
 
-Choose your GitHub reviewer name and evidence type (T3, T4, T6 or M2b). Compare the extracted values and quotation with **View source preview**, then use **Keep**, **Drop** or **Query** directly on the card. Drop requires a reason; Query requires a question. Open previews sit beside the finding on wider screens. Request history and extraction checks remain available under expandable details.
+Choose your GitHub reviewer name, then use the left Filters sidebar for practice, evidence type (T3, T4, T6 or M2b), search and review-status filters. The sidebar stays alongside the findings as you scroll. On small screens, expand Filters above the queue. To review, Waiting for answers and My reviewed remain above the findings. Compare the extracted values and quotation with **View source preview**, then use **Keep**, **Drop** or **Query** directly on the card. Drop requires a reason; Query requires a question. Open previews sit beside the finding on wider screens. Request history and extraction checks remain available under expandable details.
 
 Decisions save immediately on this device, appear under **My reviewed**, and remain editable until submitted. **Submit all my decisions** at either end of the queue opens the batch summary and its RuralScan/evidence submission link; each revision has its own CSV download. After submission, confirming a verified GitHub receipt clears only the matching drafts. Undo or batch removal clears an unsubmitted draft without changing recorded reviews. Reviewer, finding and original register revision stay attached to each decision, including older saved batches. A T3/T6 finding shared by both views has one saved decision.
 
