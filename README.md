@@ -15,6 +15,7 @@ It supports early investment scoping. It does not replace feasibility studies, e
 - [Choose a practice and suitability family](cookbook/README.md). Compare spatial outputs and family-level evidence counts. [Download the six-practice print edition](cookbook/rural-scan-cookbook.html).
 - [Work through the Haiti notebook and prepare a scoping brief](handbook/implement-a-scan.md).
 - [Record or look up a scientific method decision](decisions/README.md). Cite the decision code and method revision to trace its ruling and implementation.
+- [Understand evidence types and source limitations](methodology-reference/content/evidence-registry.md), then [combine and weight T4 evidence](methodology-reference/content/combining-t4-evidence.md).
 - [Read the data model](data-model/spec.md): fields, controlled vocabularies, table structure and configuration.
 - [Label schema tables in figures, notebooks and printouts](design/README.md).
 - [Browse all six practice definitions](data-model/configuration/recipes). [Check their source versions, dependencies and limitations](data-model/baseline.md).

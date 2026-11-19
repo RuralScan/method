@@ -1,8 +1,8 @@
 {
-  "manifest_version": "0.4.0-structure-frozen",
-  "spec_source": "schema/spec.md",
-  "generated": "2026-09-30",
-  "note": "Machine-checkable column manifest for the T0-T7 tables + the evidence/configuration layer (SRC/EV/VONT/FAM). This is the authoritative column set for populated tables. STRUCTURE is locked at v0.4.0 (T3/T6 generation method columns added 2026-09-30, see methodology/T3_T6_generation_method.md section 11); CONTENT is draft/pending. Change the structure only by editing spec.md and regenerating this file. 'required' = must be present and non-empty on every row; 'optional' = column may be present, value may be blank; 'conditional' = required when the noted trigger holds; 'derived' = computed, not authored. 'fk' maps a column to its referenced table.column.",
+  "manifest_version": "0.4.1-evidence-classification",
+  "spec_source": "data-model/spec.md",
+  "generated": "2026-11-19",
+  "note": "Machine-checkable column manifest for the T0-T7 tables + the evidence/configuration layer (SRC/EV/VONT/FAM). This is the authoritative column set for populated tables. STRUCTURE is locked at v0.4.0 (T3/T6 generation method columns added 2026-09-30, see methodology/T3_T6_generation_method.md section 11); CONTENT is draft/pending. Change the structure only by editing spec.md and regenerating this file. 'required' = must be present and non-empty on every row; 'optional' = column may be present, value may be blank; 'conditional' = required when the noted trigger holds; 'derived' = computed, not authored. 'fk' maps a column to its referenced table.column. Additive knowledge_basis/extraction_format separation: method issue #57. Legacy claim_basis remains for archived compiler compatibility.",
   "value_rules": {
     "required": "column present on every row; value non-empty",
     "optional": "column may be present; value may be blank",
@@ -797,7 +797,9 @@
         "selection_justification",
         "selection_justification_page",
         "review_state",
-        "ruleset_version"
+        "ruleset_version",
+        "knowledge_basis",
+        "extraction_format"
       ],
       "conditional": [
         "taxon",
@@ -827,6 +829,20 @@
           "asset_vulnerability",
           "climate_risk",
           "priority_need"
+        ],
+        "knowledge_basis": [
+          "primary_measured",
+          "modelled",
+          "cited_secondary",
+          "expert_assertion",
+          "unknown"
+        ],
+        "extraction_format": [
+          "prose",
+          "table",
+          "figure",
+          "code",
+          "unknown"
         ]
       }
     },

@@ -6,6 +6,12 @@ What changed in the Rural NbS Scan methodology, newest first. The build reads th
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.9.0] - 2026-11-19
+
+- Explain evidence registry fields, source limitations and literature-derived expert judgement.
+- Separate knowledge basis from extraction format while preserving historical compiler inputs.
+- Add guidance on combining T4 evidence, source and author-group dependencies, weighting and uncertainty.
+
 ## [0.8.2] - 2026-11-18
 
 - On the overview, the table of what is settled no longer describes suitability scores as under
