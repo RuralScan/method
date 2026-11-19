@@ -21,11 +21,11 @@ function setup() {
   const context = {
     reviewData: {registers:{EV_evidence_register:ev}, review_priorities:notes,
       membership:{T3:['wet-effect'],T6:['wet-effect']}, formerly_cited:{T3:{},T6:{}}},
-    _vfScope:{nbs:'wetland_management',table:'M2b',family:'peatland'}, _vfSimpleView:'mine',
+    _vfScope:{nbs:'wetland_management',table:'M2b',family:'peatland'},
     _vfR2T:{operational_risk:'T4',structural_suitability:'T4-suitability',effect_claim:'T3'},
     document:{getElementById:() => results,querySelector:() => null},
     history:{replaceState:(_,__,hash) => { context.hash = hash; }},
-    renderVfWorklist:() => {}, vfSimpleQueue:view => { context._vfSimpleView = view; },
+    renderVfWorklist:() => {},
     DashboardShell:{openReviewQueue:() => {}}, vfNotice:() => {},
   };
   results.addEventListener = () => {};
@@ -36,6 +36,12 @@ function setup() {
   for (const file of ['dashboard-tables.js','review/priority.js']) {
     vm.runInContext(fs.readFileSync(path.join(__dirname,'..',file),'utf8'),context);
   }
+  const code=fs.readFileSync(path.join(__dirname,'..','review/workspace.js'),'utf8');
+  for(const name of ['vfFilterState','vfShortcutFilters','vfWriteFilters','vfSimpleQueue']) {
+    const start=code.indexOf('  function '+name+'(');
+    vm.runInContext(code.slice(start,code.indexOf('\n  function ',start+1)),context);
+  }
+  context.vfWriteFilters(context.vfShortcutFilters('mine'));
   return {context, api:context.DashboardPriority, results};
 }
 
@@ -74,11 +80,13 @@ test('choosing and clearing a scoped set preserve reviewer filters and My review
   const before = JSON.stringify(context._vfScope);
   api.choose('mixed');
   assert.equal(JSON.stringify(context._vfScope), before);
-  assert.equal(context._vfSimpleView, 'mine');
+  assert.equal(context._vfAxMe, 'yes');
+  assert.equal(context._vfAxStatus, 'any');
   assert.equal(api.matches({evidence_id:'wet-op'}),true);
   assert.equal(api.matches({evidence_id:'wet-site'}),false);
   api.choose('all');
-  assert.equal(context._vfSimpleView, 'mine');
+  assert.equal(context._vfAxMe, 'yes');
+  assert.equal(context._vfAxStatus, 'any');
   assert.equal(api.matches({evidence_id:'wet-site'}),true);
 });
 
@@ -96,7 +104,8 @@ test('legacy batch links still open full sets; direct findings can return to sco
   assert.equal(context._vfPriority,'all');
   assert.equal(context._vfScope.nbs,'wetland_management');
   assert.equal(context._vfScope.table,'M2b');
-  assert.equal(context._vfSimpleView,'todo');
+  assert.equal(context._vfAxMe,'no');
+  assert.equal(context._vfAxStatus,'active');
 });
 
 test('shared addressed requests leave active priorities, stay in history, and changed inputs return', () => {
@@ -121,24 +130,19 @@ test('shared addressed requests leave active priorities, stay in history, and ch
 });
 
 
-test('selected active requests remain reviewable after an earlier finding decision', () => {
+test('explicit batch links select visible recheck filters; changing task status preserves sidebar axes', () => {
   const {context,api} = setup();
-  const html=fs.readFileSync(path.join(__dirname,'..','review/workspace.js'),'utf8');
-  vm.runInContext(html.match(/  function vfSimpleMatch\(u,view,status\)\{[\s\S]*?\n  \}/)[0],context);
-  context.vfHasAnswerForReview=()=>false;context.vfClarificationsFor=()=>[];
-  const unit={ev:{evidence_id:'wet-op',_reviewQueue:'recorded'},me:true,meApplied:true};
-  assert.equal(context.vfSimpleMatch(unit,'todo'),false);
-  api.choose('mixed');
-  assert.equal(context.vfSimpleMatch(unit,'todo'),true);
-  assert.equal(context.vfSimpleMatch({...unit,dropped:true},'todo'),true);
-  assert.equal(context.vfSimpleMatch({...unit,formerlyCited:true},'todo'),true);
-  assert.equal(context.vfSimpleMatch({...unit,meApplied:false},'todo'),false);
-  assert.equal(context.vfSimpleMatch(unit,'mine'),true);
-  assert.equal(context.vfSimpleMatch({...unit,me:false},'mine'),false);
-  for(const r of context.reviewData.review_priorities)if(r.evidence_id==='wet-op')r.status='addressed';
-  assert.equal(context.vfSimpleMatch(unit,'todo'),false);
-  for(const r of context.reviewData.review_priorities)if(r.evidence_id==='wet-op')r.status='recheck';
-  assert.equal(context.vfSimpleMatch(unit,'todo'),true);
+  api.openFromHash('#review-priority=mixed');
+  assert.equal(context._vfFollowUp,'requested');
+  assert.equal(context._vfAxMe,'any');
+  assert.equal(context._vfAxStatus,'any');
+  assert.equal(api.needsAttention({evidence_id:'wet-op'}),true);
+  context._vfAxMe='no';context._vfAxOrigin='flagged';
+  const before=JSON.stringify(context.vfFilterState());
+  api.setView('history');
+  assert.equal(JSON.stringify(context.vfFilterState()),before);
+  api.choose('wet-t4');
+  assert.equal(JSON.stringify(context.vfFilterState()),before);
 });
 
 
@@ -157,7 +161,8 @@ test('task pages stay bounded, search resets paging, and opening moves to findin
   const data=JSON.stringify(context.reviewData),scope=JSON.stringify(context._vfScope);
   api.openTask('extra-13');
   assert.equal(context._vfPriority,'extra-13');
-  assert.equal(context._vfSimpleView,'mine');
+  assert.equal(context._vfAxMe,'yes');
+  assert.equal(context._vfAxStatus,'any');
   assert.equal(JSON.stringify(context._vfScope),scope);
   assert.equal(JSON.stringify(context.reviewData),data);
   assert.equal(results.scrolled,true);assert.equal(results.focused,true);

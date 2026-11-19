@@ -3,102 +3,153 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
+const code = fs.readFileSync(path.join(__dirname, '..', 'review/workspace.js'), 'utf8');
 
-// Exercise the functions used by the actual queue, rather than a duplicate filter model.
-const html = fs.readFileSync(path.join(__dirname, '..', 'review/workspace.js'), 'utf8');
-function setup() {
+function setup(table='T4-suitability') {
   const c = {
-    _vfSimpleView:'todo', _vfAxStatus:'active', _vfAxOrigin:'any', _vfAxMe:'any', _vfAxOther:'any',
-    _vfScope:{nbs:'wetland_management',table:'T4-suitability',round:'all',access:'all'},
-    _vfMyCall:'all', _vfReconcile:'all', _vfVerdictFilter:'all',
+    _vfScope:{nbs:'wetland_management',table,round:'all',access:'all'},
     reviewData:{registers:{SRC_source_register:[
       {source_id:'open',access_status:'open',extraction_run_id:'original'},
       {source_id:'closed',access_status:'restricted',extraction_run_id:'round2_grey'},
-    ]}},
-    DashboardPriority:{matches:()=>true,needsAttention:()=>false},
-    DashboardTables:{matches:()=>true}, vfHasAnswerForReview:()=>false, vfClarificationsFor:()=>[],
+    ]},membership:{T3:[],T6:[]},formerly_cited:{T3:{},T6:{}}},
+    document:{getElementById:()=>({addEventListener(){}})},
+    DashboardPriority:{matches:()=>true,needsAttention:()=>false,leaveFocus:()=>{c._vfPriorityEvidence='';}},
+    renderVfWorklist:()=>{}, vfHasAnswerForReview:()=>false, vfClarificationsFor:()=>[],
   };
   c.window = c; vm.createContext(c);
-  for (const name of ['vfSimpleMatch','vfMatchesFilters','vfIsSiteObservation','_vfInScope',
-    '_vfRoundMap','_vfRoundKey','_vfSrcOAMap','_vfIsOA','_vfTabular']) {
-    const start = html.indexOf('  function '+name+'(');
-    assert.notEqual(start,-1,name);
-    const end = html.indexOf('\n  function ',start+1);
-    vm.runInContext(html.slice(start,end),c);
+  for (const name of ['vfFilterState','vfShortcutFilters','vfShortcutSelected','vfWriteFilters','vfShortcut',
+    'vfSetFilter','vfReviewQueue','vfSimpleQueue','vfFollowUpMatch','vfMatchesFilters','vfShowPersonalHistory',
+    'vfIsSiteObservation','_vfInScope','_vfRoundMap','_vfRoundKey','_vfSrcOAMap','_vfIsOA','_vfTabular']) {
+    const start=code.indexOf('  function '+name+'(');assert.notEqual(start,-1,name);
+    vm.runInContext(code.slice(start,code.indexOf('\n  function ',start+1)),c);
   }
-  function row(id, options={}) {
+  vm.runInContext(fs.readFileSync(path.join(__dirname,'..','dashboard-tables.js'),'utf8'),c);
+  function row(id, role, options={}) {
     return {origin:'passed',verdict:'pass',me:false,other:false,myDec:'',meApplied:false,dropped:false,
-      ...options, ev:{evidence_id:id,source_id:'open',nbs_id:'wetland_management',use_role:'structural_suitability',
+      ...options, ev:{evidence_id:id,source_id:'open',nbs_id:'wetland_management',use_role:role,
         quote:'synthetic evidence',_reviewQueue:'first',...options.ev}};
   }
-  const rows = [row('first'), row('flagged',{origin:'flagged',verdict:'unsupported'}),
-    row('other',{other:true,ev:{_reviewQueue:'recorded'}}),
-    row('mine',{me:true,meApplied:true,myDec:'ok',ev:{source_id:'closed',_reviewQueue:'recorded'}}),
-    row('conflict',{me:true,other:true,meApplied:true,myDec:'ok',origin:'flagged',verdict:'mismatch',ev:{source_id:'closed',_reviewQueue:'unresolved',_reviewConflict:true}}),
-    row('drop',{me:true,meApplied:true,myDec:'drop',dropped:true,ev:{source_id:'closed',review_state:'dropped',_reviewQueue:'dropped'}}),
-    row('reopened'), row('held',{me:true,meApplied:true,myDec:'flag',ev:{source_id:'closed',_reviewQueue:'unresolved'}})];
-  const ids = overrides => rows.filter(u=>c._vfInScope(u.ev,true)&&c.vfMatchesFilters(u,overrides)).map(u=>u.ev.evidence_id);
+  const rows=[];
+  for(const [lane,role] of [['T3','effect_claim'],['T4-suitability','structural_suitability'],['T6','effect_claim'],['M2b','operational_risk']]) {
+    const make=(id,options)=>row(lane+'_'+id,role,options);
+    const laneRows=[make('first'),make('flagged',{origin:'flagged',verdict:'unsupported'}),
+      make('other',{other:true,ev:{_reviewQueue:'recorded'}}),
+      make('mine',{me:true,meApplied:true,myDec:'ok',ev:{source_id:'closed',_reviewQueue:'recorded'}}),
+      make('conflict',{me:true,other:true,meApplied:true,myDec:'ok',origin:'flagged',verdict:'mismatch',ev:{source_id:'closed',_reviewQueue:'unresolved',_reviewConflict:true}}),
+      make('drop',{me:true,meApplied:true,myDec:'drop',dropped:true,ev:{source_id:'closed',review_state:'dropped',_reviewQueue:'dropped'}}),
+      make('reopened'),make('held',{me:true,meApplied:true,myDec:'flag',ev:{source_id:'closed',_reviewQueue:'unresolved'}}),
+      make('pendingDrop',{me:true,meApplied:false,myDec:'drop',ev:{source_id:'closed'}})];
+    rows.push(...laneRows);
+    if(c.reviewData.membership[lane])c.reviewData.membership[lane]=laneRows.map(r=>r.ev.evidence_id);
+  }
+  const ids = overrides => rows.filter(u=>c._vfInScope(u.ev,true)&&c.vfMatchesFilters(u,overrides)).map(u=>u.ev.evidence_id.replace(table+'_',''));
   return {c,rows,ids};
 }
 
-test('status candidates use the custom view that clicking selects, even from an empty To review queue',()=>{
-  const {c,ids}=setup();
-  assert.deepEqual(ids(),['first','flagged','conflict','reopened']);
-  assert.deepEqual(ids({view:'advanced',status:'dropped'}),['drop']);
-  assert.equal(ids({view:'advanced',status:'active'}).length,7);
-  assert.equal(ids({view:'advanced',status:'any'}).length,8);
-  c._vfSearch='mine';
-  assert.deepEqual(ids(),[]);
-  assert.deepEqual(ids({view:'advanced',me:'yes'}),['mine']);
-});
+for(const lane of ['T3','T4-suitability','T6','M2b']) {
+  test(lane+': original shortcuts select the same sidebar filters and exact prospective counts',()=>{
+    const {c,ids}=setup(lane);
+    const expected={todo:['first','flagged','other','reopened'],flagged:['flagged'],passed:['first','other','reopened'],
+      second:['other'],kept:['mine','conflict'],queried:['held'],dropped:['drop','pendingDrop'],mine:['mine','conflict','drop','held','pendingDrop'],
+      conflict:['conflict'],answers:[]};
+    for(const [key,want] of Object.entries(expected)) {
+      const preview=ids(c.vfShortcutFilters(key));
+      c.vfShortcut(key);
+      assert.deepEqual(ids(),want,key);assert.deepEqual(ids(),preview,key+' count');
+      assert.ok(c.vfShortcutSelected(key));
+      for(const [axis,value] of Object.entries(c.vfShortcutFilters(key)))assert.equal(c.vfFilterState()[axis],value);
+    }
+    c.vfShortcut('flagged');c.vfSetFilter('me','any');
+    assert.deepEqual(ids(),['flagged','conflict']);assert.equal(c._vfAxOrigin,'flagged');
+    assert.equal(c.vfShortcutSelected('flagged'),false);
+    c.vfSetFilter('me','no');assert.ok(c.vfShortcutSelected('flagged'));
+    c.vfShortcut('todo');c.vfSetFilter('other','yes');
+    assert.deepEqual(ids(),['other']);assert.ok(c.vfShortcutSelected('second'));
+  });
+  test(lane+': every sidebar candidate count equals selection without changing other axes',()=>{
+    const {c,ids}=setup(lane);
+    for(const shortcut of ['todo','mine','queried','conflict']) {
+      for(const [axis,values] of Object.entries({status:['active','dropped','any'],origin:['any','flagged','passed'],me:['any','no','yes'],other:['any','no','yes'],call:['all','ok','query','drop'],followup:['all','answers','waiting','conflict','requested'],verdict:['all','mismatch','unsupported'],tables:[false,true]})) {
+        for(const value of values) {
+          c.vfShortcut(shortcut);const before=c.vfFilterState();const candidate=ids({[axis]:value});
+          c.vfSetFilter(axis,value);assert.deepEqual(ids(),candidate,shortcut+' / '+axis+' / '+value);
+          for(const key of Object.keys(before))if(key!==axis)assert.equal(c.vfFilterState()[key],before[key],key+' preserved');
+        }
+      }
+    }
+  });
+}
 
-test('origin, own review and other-reviewer axes compose without losing committed history',()=>{
-  const {ids}=setup();
-  assert.deepEqual(ids({view:'advanced',origin:'flagged'}),['flagged','conflict']);
-  assert.equal(ids({view:'advanced',origin:'passed'}).length,5);
-  assert.deepEqual(ids({view:'advanced',me:'yes'}),['mine','conflict','held']);
-  assert.deepEqual(ids({view:'advanced',me:'no',other:'yes'}),['other']);
-  assert.deepEqual(ids({view:'advanced',me:'yes',other:'yes'}),['conflict']);
-});
-
-test('round counts retain queue, reviewer, search and priority filters',()=>{
-  const {c,ids}=setup();
-  assert.deepEqual(ids({round:'round1'}),['first','flagged','reopened']);
-  assert.deepEqual(ids({round:'round2'}),['conflict']);
-  c._vfSimpleView='advanced'; c._vfAxMe='yes';
+test('round, access, search and selected task refine shortcuts rather than get reset',()=>{
+  const {c,ids}=setup();c._vfScope.round='round2';c._vfScope.access='restricted';c._vfSearch='held';
+  c.vfShortcut('mine');assert.deepEqual(ids(),['held']);
+  assert.equal(c._vfScope.round,'round2');assert.equal(c._vfScope.access,'restricted');assert.equal(c._vfSearch,'held');
+  c.DashboardPriority.matches=ev=>ev.evidence_id.endsWith('_mine');assert.deepEqual(ids(),[]);
+  c.DashboardPriority.matches=()=>true;c._vfSearch='';
   assert.deepEqual(ids({round:'round1'}),[]);
-  assert.deepEqual(ids({round:'round2'}),['mine','conflict','held']);
-  c._vfScope.round='round1';
-  assert.deepEqual(ids({round:'round2'}),['mine','conflict','held']);
-  c._vfSearch='held';
-  assert.deepEqual(ids({round:'round2'}),['held']);
-  c.DashboardPriority.matches=ev=>ev.evidence_id==='mine';
-  assert.deepEqual(ids({round:'round2'}),[]);
+  assert.deepEqual(ids({round:'round2'}),['mine','conflict','drop','held','pendingDrop']);
 });
 
-test('access combines with history status and search round',()=>{
-  const {c,ids}=setup();
-  c._vfScope.access='oa';
-  assert.deepEqual(ids(),['first','flagged','reopened']);
-  c._vfScope.access='restricted';
-  assert.deepEqual(ids(),['conflict']);
-  assert.deepEqual(ids({view:'advanced',status:'dropped'}),['drop']);
-  assert.deepEqual(ids({view:'advanced',status:'dropped',round:'round1'}),[]);
+test('answered questions and requested rechecks are explicit; they cannot bypass Reviewed by me',()=>{
+  const {c,ids}=setup();c.vfHasAnswerForReview=id=>id.endsWith('_held');
+  c.DashboardPriority.needsAttention=ev=>ev.evidence_id.endsWith('_mine');
+  c.vfShortcut('todo');assert.deepEqual(ids(),['first','flagged','other','reopened']);
+  c.vfShortcut('answers');assert.deepEqual(ids(),['held']);assert.equal(c._vfAxMe,'any');
+  c.vfSetFilter('me','no');assert.deepEqual(ids(),[]);
+  c.vfShortcut('requested');assert.deepEqual(ids(),['mine']);assert.equal(c._vfFollowUp,'requested');
+  c.vfSetFilter('me','no');assert.deepEqual(ids(),[]);
+  c.vfShortcut('waiting');assert.deepEqual(ids(),[]);
+  c.vfHasAnswerForReview=()=>false;assert.deepEqual(ids(),['held']);
 });
 
-test('committed conflicts work without a local decisions store; stale verdict does not hide passed evidence',()=>{
-  const {c,ids}=setup();
-  c._vfAllReviews={};
-  assert.deepEqual(ids({view:'advanced',verdict:'conflict'}),['conflict']);
-  assert.equal(ids({view:'advanced',origin:'passed',verdict:'unsupported'}).length,5);
-  c._vfMyCall='query';
-  assert.deepEqual(ids({view:'advanced',me:'yes'}),['held']);
+test('verdict filters never silently switch off for AI-passed origin',()=>{
+  const {c,ids}=setup();c.vfShortcut('passed');c.vfSetFilter('verdict','unsupported');
+  assert.deepEqual(ids(),[]);assert.equal(c._vfVerdictFilter,'unsupported');
+  c.vfSetFilter('origin','flagged');assert.deepEqual(ids(),['flagged']);
 });
 
-test('former table citations stay in dropped/all history and My reviewed, not active queue',()=>{
-  const {c,rows,ids}=setup(); rows.find(r=>r.ev.evidence_id==='drop').formerlyCited=true;
-  assert.deepEqual(ids({view:'advanced',status:'dropped'}),['drop']);
-  assert.ok(ids({view:'advanced',status:'any'}).includes('drop'));
-  assert.ok(ids({view:'mine'}).includes('drop'));
-  assert.ok(!ids().includes('drop'));
+test('former citations remain in personal/dropped history; archived ratings do not inflate refined findings',()=>{
+  const {c,rows,ids}=setup();rows.find(r=>r.ev.evidence_id==='T4-suitability_drop').formerlyCited=true;
+  c.vfShortcut('mine');assert.ok(ids().includes('drop'));assert.equal(c.vfShowPersonalHistory(),true);
+  c.vfSetFilter('origin','passed');assert.equal(c.vfShowPersonalHistory(),false);
+  c.vfShortcut('mine');c._vfScope.round='round2';assert.equal(c.vfShowPersonalHistory(),false);
+  c.vfShortcut('todo');assert.ok(!ids().includes('drop'));
+});
+
+test('legacy finding route can show decided/dropped records; shortcuts leave focus but keep the task',()=>{
+  const {c,ids}=setup();c._vfPriority='fixture-task';c._vfPriorityEvidence='T4-suitability_drop';
+  c.vfSimpleQueue('advanced');assert.equal(c._vfPriorityEvidence,'T4-suitability_drop');assert.ok(ids().includes('drop'));
+  c.vfShortcut('todo');assert.equal(c._vfPriorityEvidence,'');assert.equal(c._vfPriority,'fixture-task');
+});
+
+
+test('pending local responses leave answered/recheck work until submitted or undone',()=>{
+  const {c,rows,ids}=setup();const row=rows.find(r=>r.ev.evidence_id==='T4-suitability_held');
+  c.vfHasAnswerForReview=id=>id===row.ev.evidence_id;
+  c.DashboardPriority.needsAttention=ev=>ev.evidence_id===row.ev.evidence_id;
+  for(const key of ['answers','requested']) {
+    row.meApplied=true;c.vfShortcut(key);assert.deepEqual(ids(),['held']);
+    row.meApplied=false;assert.deepEqual(ids(),[]);
+  }
+});
+
+test('feedback captures and restores the shared filters, search and task; old notes still open',()=>{
+  const {c}=setup();const feedback=fs.readFileSync(path.join(__dirname,'..','dashboard-feedback.js'),'utf8');
+  Object.assign(c,{page:'/dashboard.html',tabParam:()=> 'tab-qaqc',clean:s=>s,noteTab:()=> 'tab-qaqc',
+    DashboardShell:{},setTimeout:()=>{},document:{
+      getElementById:()=>({hidden:true}),querySelectorAll:()=>[],
+      querySelector:sel=>sel==='.tab-btn.active'?{textContent:'Review'}:{dataset:{reviewView:'queue'},click(){}}
+    }});
+  for(const name of ['context','jump']) {
+    const start=feedback.indexOf('  function '+name+'(');
+    vm.runInContext(feedback.slice(start,feedback.indexOf('\n  function ',start+1)),c);
+  }
+  c.vfShortcut('second');c.vfSetFilter('origin','flagged');c._vfSearch='paper';c._vfPriority='task';c._vfPriorityView='history';
+  const saved=c.context();const filters=JSON.stringify(c.vfFilterState());
+  c.vfShortcut('mine');c._vfSearch='';c._vfPriority='all';c._vfPriorityView='attention';
+  c.jump({page:c.page,context:saved});
+  assert.equal(JSON.stringify(c.vfFilterState()),filters);assert.equal(c._vfSearch,'paper');
+  assert.equal(c._vfPriority,'task');assert.equal(c._vfPriorityView,'history');
+  c.jump({page:c.page,context:{scope:{view:'queue',reviewQueue:'mine'}}});
+  assert.ok(c.vfShortcutSelected('mine'));
 });

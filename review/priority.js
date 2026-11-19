@@ -40,8 +40,7 @@
     if (value !== 'all') {
       const ids = new Set(rows().filter(r => value === 'high' ? visibleRequest(r) && r.priority === 'high' : r.batch_id === value).map(r => r.evidence_id));
       scopeFor(evidence().filter(e => ids.has(e.evidence_id)));
-      if (priorityView() === 'attention') vfSimpleQueue('todo');
-      else { window._vfAxStatus = 'any'; window._vfSimpleView = 'advanced'; renderVfWorklist(); }
+      vfSimpleQueue(priorityView() === 'attention' ? 'requested' : 'advanced');
     } else renderVfWorklist();
     history.replaceState(null, '', route());
   }
@@ -82,8 +81,6 @@
       scopeFor([unit]);
       window._vfPriority = 'all'; window._vfPriorityEvidence = value;
       vfSimpleQueue('advanced');
-      window._vfAxStatus = 'any';
-      renderVfWorklist();
       const card = Array.from(document.querySelectorAll('#vf-cards [data-vfeid]')).find(el => el.dataset.vfeid === value);
       if (card) { if (card.tagName === 'DETAILS') card.open = true; card.scrollIntoView({block: 'start'}); }
     } else set(value);
@@ -159,10 +156,6 @@
   function openTask(value) { choose(value); goToFindings(); }
   function setView(value) {
     window._vfPriorityView = value; taskPage = 0;
-    if (selected() !== 'all') {
-      if (value === 'attention' && window._vfSimpleView === 'advanced') window._vfSimpleView = 'todo';
-      else if (value !== 'attention') { window._vfSimpleView = 'advanced'; window._vfAxStatus = 'any'; }
-    }
     renderVfWorklist();
     const picker = document.querySelector('.vf-review-sets');
     if (picker) picker.open = true;
@@ -175,7 +168,6 @@
     else {
       window._vfPriorityEvidence = '';
       window._vfPriority = value;
-      if (value !== 'all' && priorityView() !== 'attention') { window._vfSimpleView = 'advanced'; window._vfAxStatus = 'any'; }
       renderVfWorklist();
       history.replaceState(null, '', route());
     }
@@ -197,7 +189,7 @@
     const focus = focused ? '<div class="vf-single-finding"><span><strong>Single finding</strong> · Opened from a direct link</span><button type="button" class="pill-btn" onclick="DashboardPriority.backToQueue()">Back to queue</button></div>' : '';
     if (!rows().length) return focus;
     return focus + '<section class="vf-priority-controls" aria-label="Review tasks">'
-      + (current !== 'all' ? '<div class="vf-selected-set"><div class="vf-task-current"><span>Working on <strong>'+esc(label)+'</strong></span><small>'+esc(viewLabels[priorityView()])+' · Open each finding, read its source, then choose Keep, Drop or Query.</small></div><div class="vf-task-actions"><button type="button" class="pill-btn vf-task-primary" onclick="DashboardPriority.goToFindings()">Go to findings ↓</button>'+(current !== 'high' && reviewData.priority_requests ? '<button type="button" class="pill-btn" data-batch="'+esc(current)+'" title="Change shared task status for the team; a reason is required. Finding decisions stay unchanged." onclick="PriorityStatus.open(this.dataset.batch)">Mark done / set aside</button>' : '')+'<button type="button" class="pill-btn" onclick="DashboardPriority.choose(\'all\')">All findings</button></div></div>' : '')
+      + (current !== 'all' ? '<div class="vf-selected-set"><div class="vf-task-current"><span>Working on <strong>'+esc(label)+'</strong></span><small>'+esc(viewLabels[priorityView()])+' · Open each finding, read its source, then choose Keep, Drop or Query.</small></div><div class="vf-task-actions">'+(priorityView()==='attention'?'<button type="button" class="pill-btn" onclick="vfShortcut(\'requested\')">Show requested rechecks</button>':'')+'<button type="button" class="pill-btn vf-task-primary" onclick="DashboardPriority.goToFindings()">Go to findings ↓</button>'+(current !== 'high' && reviewData.priority_requests ? '<button type="button" class="pill-btn" data-batch="'+esc(current)+'" title="Change shared task status for the team; a reason is required. Finding decisions stay unchanged." onclick="PriorityStatus.open(this.dataset.batch)">Mark done / set aside</button>' : '')+'<button type="button" class="pill-btn" onclick="DashboardPriority.choose(\'all\')">All findings</button></div></div>' : '')
       + '<details class="vf-review-sets"><summary>Choose a review task <span>Optional</span></summary><div class="vf-set-browser">'
       + '<p class="vf-task-intro">Choose <strong>Open findings</strong> on a task below. Then compare each finding with its source and save your decision.</p>'
       + '<div class="vf-set-tools"><label for="vf-set-status">Show<select id="vf-set-status" onchange="DashboardPriority.setView(this.value)">'+Object.entries(viewLabels).map(([value,label])=>'<option value="'+value+'"'+(priorityView()===value?' selected':'')+'>'+esc(label)+'</option>').join('')+'</select></label><label for="vf-set-search">Find a task<input id="vf-set-search" type="search" placeholder="Search tasks, e.g. source checks" value="'+esc(setSearch)+'" oninput="DashboardPriority.filterSets(this.value,document.getElementById(\'vf-all-sets\').checked)"></label>'
