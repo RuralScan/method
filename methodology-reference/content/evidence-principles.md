@@ -19,7 +19,22 @@ The evidence system supports several different questions: where a practice can f
 
 The common principle is to keep the source, the extracted claim and the analytical decision separate. Extraction records what a source states, with its context and locator. Review checks that interpretation. Synthesis decides what eligible claims support for a particular table and scope. A verified quotation does not, by itself, establish a transferable threshold, a causal effect or a locally applicable cost. [src: methodology/T4_generation_method.md §0] [src: methodology/T3_T6_generation_method.md §3]
 
-This chapter explains those shared foundations. The next four chapters follow the work in order: [[ch:discovery]], [[ch:acquisition]], [[ch:extraction]] and [[ch:review-and-quality]]. After review, [[ch:compiling-evidence]] explains compatibility, dependence and weighting across tables. The three specialist chapters then give the actual suitability, effect and economic compilation rules.
+This chapter explains those shared foundations. The next four chapters follow the work in order: [[ch:discovery]], [[ch:acquisition]], [[ch:extraction]] and [[ch:review-and-quality]]. After review, [[ch:compiling-evidence]] explains compatibility, dependence and weighting across tables. The specialist chapters then describe agent-led T4 proposals and the separate effect and economic compilation methods. Worked illustrations are labelled as hypothetical; their numbers are teaching examples, not registered findings or approved parameters.
+
+### Worked illustration: one account, four different claims
+
+Consider a hypothetical report on bunded rainwater harvesting. It records a site's rainfall, measures soil loss against an untreated comparison, gives an establishment cost and recommends a slope limit based on its authors' judgement. These statements share one source record but require separate evidence records.
+
+Table: Hypothetical claims from one report and the distinct questions they can support.
+
+| What the report states | What the evidence record preserves | Possible use after review |
+|---|---|---|
+| The study site receives 700 mm annual rainfall | Location and measurement context | Transfer context; no inferred T4 failure boundary |
+| Soil loss was 20% lower than on untreated plots | Measured outcome, comparator, period and design | T6 erosion evidence; no drought claim without hazard evidence |
+| Establishment cost was USD 400 per hectare | Cost scope, denominator, country and reported price year | T6E cost evidence; no local budget or annual maintenance estimate |
+| Authors recommend a slope limit but report no calibration study | Published expert assertion, its rationale and scope | A candidate for T4 appraisal; no automatic threshold approval |
+
+The example applies the source/claim distinction and table routing described below. A table in the report could contain all four statements: their shared presentation would not make their scientific basis identical. [src: schema/spec.md §EV] [src: method:data-model/evidence-classification.json]
 
 ## What each record represents
 
@@ -29,7 +44,7 @@ The provenance chain for a literature-supported analytical value is:
 analytical row → evidence identifier → source identifier → locator and source quotation
 ```
 
-The analytical row also needs the synthesis policy and recorded decisions that transformed the claims. Provenance answers where a value came from; reproducing it additionally requires the same evidence, policy, context and compiler version. [src: methodology/T4_generation_method.md §Synthesis decision record] [src: methodology/T3_T6_generation_method.md §7]
+The analytical row also needs the synthesis policy and recorded decisions that transformed the claims. Provenance answers where a value came from. Reproducing a compiled output additionally requires its evidence, policy, context and code revision; an agent-led T4 output also requires the accepted proposal and review decision, rather than a fresh interpretation by the model. [src: methodology/T4_generation_method.md §Synthesis decision record] [src: methodology/T3_T6_generation_method.md §7]
 
 | Record | What one record represents | What it does not establish |
 |---|---|---|
@@ -112,7 +127,7 @@ Environmental descriptors and reported impacts answer different questions. Rainf
 
 These are interpretation rules, not a presumption that all WOCAT accounts have the same quality. Check each account for bundled measures, attribution, measurement methods, transfer limits and selective reporting. Linked Technology, Approach and project records may describe one intervention; multiple URLs do not establish independent replication. Acquisition of questionnaire fields is covered in [[ch:acquisition]], and their claim encodings in [[ch:extraction]].
 
-For example, a practice documented at 600–900 mm annual rainfall provides an observed setting. It does not establish failure below 600 mm or above 900 mm. A separate, explicit failure statement would need its own quotation and basis. Likewise, a favourable ordinal impact rating cannot supply a missing percentage yield gain.
+The rainfall statement in the opening illustration is occurrence context, even if it appears in a structured questionnaire. A favourable ordinal impact rating would likewise remain ordinal; the measured soil-loss percentage in that illustration cannot be inferred from such a rating.
 
 ### Expert judgement reported in literature
 

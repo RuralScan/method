@@ -77,9 +77,13 @@ On its first run this check caught two wrong documents: a practice-database endp
 
 A verified DOI proves that the citation and the DOI agree. It does not prove that the downloaded PDF is that paper. New PDF intake, source promotion and staging therefore also require an opening-title match against the artefact. Wrong documents, scans whose titles cannot be read, and chapter titles found only in the body of a larger document stay as identity holds; they are never relabelled as paywalled. A title found only in the body may be a bibliography entry, so a whole PDF is never marked verified because it cites the wanted paper. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Adversarial pipeline checks] [src: .agents/skills/source-command-extract-evidence/references/defects.md §Pipeline integrity (v1.7.0)]
 
+### Worked illustration: the DOI is right, the file is wrong
+
+A hypothetical download resolves the intended report's DOI but serves a supplement or a different edition. The metadata check passes; the artefact opening-title check does not. Keep the source on an identity hold, retrieve the correct artefact and record its hash before extraction. Do not mark the source paywalled, move its evidence to an unrelated paper or accept a title found only in the downloaded file's references. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Adversarial pipeline checks]
+
 ### The extraction gate
 
-Extraction may proceed on a source only if `doi_verified = true`, or if the source has no DOI and `title_verified = true`. [src: src/nbs_ruralscan/schema_tools/verify_metadata.py §module docstring] [src: .agents/skills/source-command-extract-evidence/SKILL.md §Source and coverage checks]
+Extraction requires verified metadata (`doi_verified = true`, or no DOI with `title_verified = true`) and the artefact identity and access checks above. A DOI stamp alone does not satisfy the new-PDF intake gate. [src: src/nbs_ruralscan/schema_tools/verify_metadata.py §module docstring] [src: .agents/skills/source-command-extract-evidence/SKILL.md §Source and coverage checks]
 
 ## Cached artefacts and team access
 
@@ -96,8 +100,8 @@ A locator says where in the artefact a quote sits. Four locator types are permit
 
 | Format | Artefact of record | Locator | Identity check |
 |---|---|---|---|
-| Native PDF | the PDF | `page` (the quote must be on that page) | DOI round trip or title in opening pages |
-| Scanned PDF | the PDF with an added OCR text layer | `page` of the scan | as PDF; sample of quotes checked against page images |
+| Native PDF | the PDF | `page` (the quote must be on that page) | DOI round trip where present, plus opening-title artefact check |
+| Scanned PDF | the PDF with an added OCR text layer | `page` of the scan | as PDF; unreadable titles remain held; quotes checked against page images |
 | Word document | the master `.docx` plus a PDF rendered once | `page` of the rendered PDF | title in the rendered PDF |
 | Web page | saved snapshot (`.txt`, `.html` or `.md`) with URL | `section`, anchor or selector | page title or opening heading |
 | Practice-database questionnaire (WOCAT) | PDF export plus a deterministic transcript of the embedded questionnaire | `page` for the PDF; `section` as `questionnaire_group/field` for the transcript | title; publisher endpoint |
@@ -150,7 +154,7 @@ The adapter does not decide which candidate line maps to which variable or famil
 
 When a source arrives in a format with no handling rule, acquisition stops. The missing pieces are defined first: an acquisition adapter, locator semantics and a quality check. Nothing from that format is registered until they exist. The method does not improvise by forcing a new format into an existing rule. [src: AGENTS.md §What is locked]
 
-Datasets (CSV, spreadsheets, R objects) remain paused. A dataset has no verbatim-page semantics. The intended adapter would treat a dataset as `source_kind = dataset`, store a snapshot and hash, use `table_row` locators with the serialised row as the quote, and link each row to its primary study's DOI through lineage. Until it exists, a dataset is used only as a discovery seed list: its DOIs enter the acquisition queue and the primary studies are extracted from their own documents. [src: methodology/search_protocol.md §Datasets (.csv / .xlsx / R)]
+Dataset intake as a source of quoted claims (CSV, spreadsheets, R objects) remains paused under this protocol. This does not pause the use of spatial datasets through T1 and BIND. A dataset has no verbatim-page semantics. The intended adapter would treat a dataset as `source_kind = dataset`, store a snapshot and hash, use `table_row` locators with the serialised row as the quote, and link each row to its primary study's DOI through lineage. Until it exists, a dataset is used only as a discovery seed list: its DOIs enter the acquisition queue and the primary studies are extracted from their own documents. [src: methodology/search_protocol.md §Datasets (.csv / .xlsx / R)]
 
 ## What makes a source ineligible
 

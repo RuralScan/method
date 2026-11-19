@@ -31,7 +31,7 @@ T0, T1, T2, T5 and T7 need justified configuration decisions rather than this sa
 
 ## A sequence for synthesis
 
-Use the following sequence to make the reasoning inspectable. Its gates consolidate the existing suitability and effect methods. The additional dependence and sensitivity checks below are review guidance where the current compiler does not implement them. [src: methodology/T4_generation_method.md §6] [src: methodology/T3_T6_generation_method.md §7]
+Use the following sequence to make the reasoning inspectable. It brings together the shared questions in the suitability and effect methods. The additional dependence and sensitivity checks below are review guidance where the current compiler does not implement them. [src: methodology/T4_generation_method.md §6] [src: methodology/T3_T6_generation_method.md §7]
 
 1. **Specify the decision.** Identify table, practice/family, target quantity, intended context and output. Retrieve the previously accepted rule and its approval scope.
 2. **Assemble the candidate record.** Include contrary findings and identify dropped, held, out-of-scope and eligible units. Preserve reasons rather than silently removing inconvenient claims.
@@ -55,7 +55,7 @@ Use the following sequence to make the reasoning inspectable. Its gates consolid
 
 [src: methodology/T4_developer_contract.md §Cross-paper harmonisation] [src: methodology/T3_T6_generation_method.md §3] [src: methodology/T3_T6_generation_method.md §5]
 
-Eligibility and weighting are different decisions. T3/T6 uses explicit context-distance factors for eligible effects, whereas T4 numeric-profile pooling requires an approved compatible pool. T6E applies outright income-band and unit gates to monetary ranges. A discount cannot rescue a claim that fails the relevant eligibility gate. [src: methodology/T4_generation_method.md §Reviewed numeric class tables] [src: methodology/T3_T6_generation_method.md §5] [src: methodology/T3_T6_generation_method.md §7.7]
+Eligibility and weighting are different decisions. T3/T6 uses explicit context-distance factors for eligible effects, whereas a new T4 proposal must justify which profiles are compatible and how they contribute. T6E applies outright income-band and unit gates to monetary ranges. A discount cannot rescue a claim that fails the relevant eligibility gate. [src: methodology/T4_generation_method.md §Reviewed numeric class tables] [src: methodology/T3_T6_generation_method.md §5] [src: methodology/T3_T6_generation_method.md §7.7]
 
 ## Repeated observations, publications and author groups
 
@@ -75,9 +75,26 @@ Keep three units distinct: extracted records, reporting publications and underly
 
 Historical records remain recoverable. Resolving duplication changes eligibility or influence, not the existence of the evidence trail. Use `lineage_of` where its semantics fit and record fuller overlap and study structure in the synthesis audit. Do not imply that author-group or sampling-covariance fields already exist in the registry. [src: schema/spec.md §EV] [src: method:data-model/evidence-classification.json]
 
-### What the historical edition implements
+### Worked illustration: nine records are not nine replications
 
-The historical controls differ. The earlier T4 compiler resolves citation lineage and applies its declared source/origin balancing; approved ordinal-profile pools permit one independent-origin contribution per interval or endpoint. T3/T6 resolves lineage but retains a source's eligible own arms, with a within-cell share factor of `1/k` across its `k` own units. T6E uses the effect machinery and adds economic eligibility and replication gates. The specialist chapters give the exact rules. [src: src/nbs_ruralscan/recipe/synthesis.py §_resolve_root_origin] [src: methodology/T4_generation_method.md §Reviewed numeric class tables] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §dedupe_for_cells]
+This hypothetical example concerns one outcome and target context. All four publications are relevant, but their data overlap.
+
+Table: Hypothetical publications representing two underlying experiments.
+
+| Publication | Extracted records | Underlying origin | Decision to document |
+|---|---:|---|---|
+| A: trial report | 3 annual observations | Experiment 1 | Retain time variation; years are repeated observations, not three independent experiments |
+| B: companion paper | The same 3 annual observations | Experiment 1 | Link to A; resolve duplicate reporting rather than give the result another vote |
+| C: new trial by the same author group | 2 treatment comparisons | Experiment 2 | Keep the new experiment; assess dependence between its treatment arms |
+| D: review summarising A and C | 1 pooled estimate | Experiments 1 and 2 | Choose the review or primary level for the target question, or justify explicit overlap treatment |
+
+There are nine extracted records, four publications and two identified primary data origins. Keeping all nine records for provenance does not require weighting all nine as independent contributions. Excluding C merely because its authors recur would discard new evidence; counting D as an extra independent experiment would repeat existing evidence. If D also included untraced studies, the origin count would be unresolved rather than assumed to remain two. [src: method:data-model/evidence-classification.json]
+
+The decision record should state which estimates answer the target question, how repeated observations are handled and what changes when each independent origin is left out. This is an illustration of the audit, not a new numerical weighting rule.
+
+### What the pinned edition implements
+
+The historical controls differ. The earlier T4 compiler resolves citation lineage and applies its declared source/origin balancing; approved ordinal-profile pools permit one independent-origin contribution per interval or endpoint. T3/T6 resolves lineage but retains a source's eligible own arms, with a within-cell share factor of `1/k` across its `k` own units. T6E uses the effect machinery and adds economic eligibility and replication gates. [[ch:t4-legacy-compiler]] gives the old T4 rules; [[ch:effect-synthesis]] and [[ch:cost-profiles]] give the effect and economic rules. [src: src/nbs_ruralscan/recipe/synthesis.py §_resolve_root_origin] [src: methodology/T4_generation_method.md §Reviewed numeric class tables] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §dedupe_for_cells]
 
 These controls do not automatically identify shared datasets across unlinked papers, overlap between reviews and their primaries, or correlated observations. The effect share factor prevents influence increasing simply with the number of own arms; those arms can still have different design and context weights. It is not a covariance model or a guarantee that the resulting publications are independent.
 
@@ -96,7 +113,7 @@ For new synthesis proposals, report record, publication and identified-origin co
 
 [src: methodology/T4_variable_importance.md] [src: methodology/T4_generation_method.md §6] [src: methodology/modules/M4_hotspots.md] [src: methodology/T3_T6_generation_method.md §7]
 
-The current synthesis weights are policy judgements, not inverse-variance meta-analysis weights. Their exact factors belong in [[ch:suitability-synthesis]] and [[ch:effect-synthesis]], where their roles can be interpreted alongside eligibility, design and transfer rules. The historical factors include mixed `claim_basis` labels. Separating knowledge basis and extraction format corrects the classification model; it does not itself approve replacement numerical factors or recalibrate past outputs. [src: method:data-model/evidence-classification.json]
+The fixed weights used by the pinned compilers are policy judgements, not inverse-variance meta-analysis weights. Effect factors belong in [[ch:effect-synthesis]] and historical T4 factors in [[ch:t4-legacy-compiler]]. For a new T4 proposal, the agent must justify its choice of influence or pooling method under [[ch:suitability-synthesis]]. The historical factors include mixed `claim_basis` labels. Separating knowledge basis and extraction format corrects the classification model; it does not itself approve replacement numerical factors or recalibrate past outputs. [src: method:data-model/evidence-classification.json]
 
 A source tier may already consider context, independence and authority. Additional discounts need a stated rationale so the same weakness is not penalised repeatedly without consideration. Conversely, a high tier cannot supply missing source context or make a practitioner rating a measured effect. Increasing numerical precision in the output does not remove these limitations.
 
@@ -122,11 +139,9 @@ Recommended review checks should target choices capable of changing the conclusi
 
 The review record should identify inputs and revisions, candidate dispositions, compatibility groups, origin accounting, transformations, numerical policies, sensitivity results, unresolved holds and approval scope. An AI-assisted proposal additionally needs its prompt or immutable task reference, skill version and actual model/settings where available. Missing settings are recorded as missing. Replay should use accepted inputs and decisions, rather than ask an AI to reinterpret them afresh. [src: methodology/T4_generation_method.md §Synthesis decision record]
 
-## Agent synthesis, validation and historical reproduction
+## Reproducing the accepted output
 
-For new T4 mappings, an AI agent will interpret reviewed evidence and derive a traceable proposal. Scientific review assesses that interpretation; deterministic code validates and packages the accepted mapping. Code that checks a schema or evaluates a curve is not the agent's scientific reasoning process. [[ch:suitability-synthesis]] describes the adopted route and its required decision record.
-
-The rows displayed in this pinned evidence edition were produced by earlier compiler code. Their algorithms remain available in [[ch:t4-legacy-compiler]] and in the effect/economic chapters. They are not evidence of a completed production agent run, and the T4 change does not imply that T3/T6/T6E have changed synthesis method. Reproduce accepted agent outputs from their recorded decisions and validated representation; do not promise that a fresh model run will repeat the same judgement.
+The displayed edition retains its original compiler outputs. Reproduce them with the pinned inputs and code documented in [[ch:t4-legacy-compiler]], [[ch:effect-synthesis]] and [[ch:cost-profiles]]. For a newly accepted agent-led T4 mapping, replay the archived decision and validated representation. The workflow and implementation boundary have one home in [[ch:suitability-synthesis]]; a fresh model run is not a reproducibility guarantee.
 
 ## Assumptions and limits
 

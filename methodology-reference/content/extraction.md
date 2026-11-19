@@ -1,7 +1,7 @@
 ---
 title: Extracting evidence units
 slug: extraction
-summary: Produce evidence units that a reviewer and the synthesis engine can trust, and know which deterministic check catches which extraction error.
+summary: Record source claims for review and synthesis, distinguish interpretation from mechanical checks, and preserve scope, context and uncertainty.
 sources:
   - .agents/skills/source-command-extract-evidence/SKILL.md
   - .agents/skills/source-command-extract-evidence/references/defects.md
@@ -44,7 +44,7 @@ A paper is read once for every authorised role, not once per variable. The extra
 
 ## The extraction pipeline
 
-Every evidence unit is produced by the same deterministic route over a cached artefact: build a page-tagged index, retrieve passages by keyword and structure, emit units from the page-stamped passages, validate them, and save them to a staging area. [src: methodology/T3_T6_generation_method.md §3. The evidence atom: effect claims] [src: AGENTS.md §Don't]
+Extraction uses deterministic acquisition, retrieval and validation around interpretive work. For PDFs, build a page-tagged index, retrieve passages by keyword and structure, interpret the claims, emit units from the page-stamped passages, validate them and save them to staging. Web, code and questionnaire adapters use their declared locator conventions instead. The choice of variable, role and scientific basis is not made deterministic merely by slicing the quotation. [src: methodology/T3_T6_generation_method.md §3. The evidence atom: effect claims] [src: AGENTS.md §Don't]
 
 Retrieval is deliberately vectorless: keyword search and navigation of the document's structure (sections, tables and figures with captions and pages) rather than embedding similarity. This is deterministic and auditable ("retrieved Table 3, p.7" can be reproduced), precise for known targets (a canonical variable with its aliases and units), and keeps tables intact. When a threshold appears only in a figure, a targeted reading of that one page image is permitted. [src: methodology/T4_generation_method.md §5.1 Document ingestion]
 
@@ -54,7 +54,7 @@ Extraction agents write only to staging. They never edit registers, recipes or s
 
 ## The evidence unit
 
-An evidence unit is one row of [[table:EV]]. Its required fields are listed below. [src: schema/structure/columns.json §EV]
+An evidence unit is one row of [[table:EV]]. The core required fields of the pinned historical edition are listed below; the basis/format extension is explained immediately afterwards. [src: schema/structure/columns.json §EV]
 
 | Field | Meaning |
 |---|---|
@@ -72,7 +72,7 @@ An evidence unit is one row of [[table:EV]]. Its required fields are listed belo
 
 Conditional fields are `taxon` (required when the claim is species- or crop-specific), `page` or `locator`, and `commit_sha` for code. Optional fields include the structured `relationship`, the `context` object, `lineage_of`, `raw_name`, `attribution`, separate justification quotes, `review_state` and `ruleset_version`. [src: schema/structure/columns.json §EV] [src: schema/spec.md §EV]
 
-Units must be readable without the paper. Every acronym for a practice, treatment or measured variable is expanded; the practice is described in plain words; the baseline is always recorded; an absolute amount is given beside a relative change where the source states one; a stated effect size is encoded rather than left as narrative; and the source table or figure is named with its caption. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Reviewer-readable units]
+Units must be readable without the paper. Outside the verbatim quotation, expand acronyms for practices, treatments and measured variables and describe the practice in plain words. Record the baseline, or explicitly state that it is unreported; an absolute amount is given beside a relative change where the source states one; a stated effect size is encoded rather than left as narrative; and the source table or figure is named with its caption. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Reviewer-readable units]
 
 ## Knowledge basis and extraction format
 
@@ -81,6 +81,12 @@ The classification extension requires `knowledge_basis` and `extraction_format` 
 For a new proposal, the extension requires a known basis and an explicit format value, which may be `unknown`. A proposal with unresolved knowledge basis stays staged for source review. The historical field `claim_basis` is retained for compiler compatibility; new or reclassified claims must keep its scientific-basis value consistent with `knowledge_basis`. Existing classifications may remain unchanged on a correction without inventing a stronger basis. [src: evidence:workflows/extraction/classification.md]
 
 The field table above describes the pinned historical edition. The additive migration maps legacy `table` and `figure_read` labels to known format and unknown basis; known scientific-basis labels retain that basis with unknown format. It preserves original claims, review decisions and ruleset stamps. This is metadata migration, not source reappraisal or recalibration. The [register rollout](https://github.com/RuralScan/evidence/pull/60) tracks application to the active registers. [src: method:data-model/evidence-classification.json]
+
+### Worked illustration: the same table, two scientific bases
+
+Return to the hypothetical report in [[ch:evidence-principles]]. Its results table gives a measured soil-loss comparison and an author-selected slope recommendation. Record both as `extraction_format = table`, but classify their bases separately: `primary_measured` for the documented measurement and `expert_assertion` for the explicitly judgement-based recommendation. If the recommendation's basis is unexplained, leave it unresolved and stage it for source review; do not infer expert authorship from the absence of a measurement.
+
+For the soil-loss result, retain the source wording and comparator, code the decline on the measured erosion variable, and keep the outcome distinct from a downstream priority. The slope recommendation retains its reported value and rationale for T4 appraisal; correct transcription does not approve calibration. [src: method:data-model/evidence-classification.json] [src: .agents/skills/extraction_contracts/T4_review_contract.md §Three independent assessments]
 
 ## Quotes are sliced, never retyped
 
@@ -97,19 +103,19 @@ The rules on quote extent follow from what reviewers and checks need. [src: .age
 
 Many "suitability" papers model a single tree or crop species, so their climate optima are the species' envelope, not the practice's. Every claim is therefore tagged: [src: methodology/T4_generation_method.md §5.2 Source & Evidence registers]
 
-- `practice_technology`: the constraint comes from the practice itself (slope and erosion, soil depth, mechanisation, land cover). Safe for practice-level rows.
+- `practice_technology`: the constraint comes from the practice itself (slope and erosion, soil depth, mechanisation, land cover). Practice-level scope, still subject to claim review.
 - `species_specific`: the constraint is the envelope of a tree grown for timber, service or fodder, or of a wild-harvested tree even if it fruits.
 - `crop_specific`: the constraint is the envelope of a cultivated cash or food crop, including cultivated food trees.
 
 What decides between species and crop is the product and its cultivation, not whether the plant is a tree. [src: methodology/RULESET_VERSIONS.md §v1.4.1] A `taxon` is recorded whenever the scope is not practice-level. [src: schema/spec.md §EV]
 
-Species and crop evidence is never dropped. It is kept in the register and routed out of the practice-level surface, so that it remains available for a future species-level layer. The defect is the mis-tag: a species claim left as practice-level, which lets a species' rainfall optimum set a practice's rainfall envelope. On review, the fix for such a unit is to re-tag it and keep it. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Common extraction defects]
+Species or crop scope alone is not a reason to drop evidence. For T4, retain it in the register and route it outside the practice-level surface unless the crop policy admits it. Other defects can still warrant a query or drop; a scope correction does not approve an otherwise invalid claim. The defect is the mis-tag: a species claim left as practice-level, which lets a species' rainfall optimum set a practice's rainfall envelope. On review, the fix for such a unit is to re-tag it and keep it. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Common extraction defects]
 
-Crop-specific evidence is re-admitted to practice-level cells only where the crop *is* the practice effect. The policy is held in a lookup: [src: AGENTS.md §What is locked]
+For T4, crop-specific evidence is admitted only where the declared crop-scope policy allows it. The policy is held in a lookup: [src: AGENTS.md §What is locked]
 
 {{csv:schema/lookups/crop_scope_policy.csv|cols=nbs_id,suitability_family_id,allow_crop_scope}}
 
-A blank family applies to every family of that practice. In shaded perennial-crop agroforestry the understorey crop defines the system; in water harvesting the host crop's yield response is the practice effect; in paludiculture the cultivated wetland crop is the practice. Species-specific evidence is never re-admitted. [src: schema/lookups/crop_scope_policy.csv]
+A blank family applies to every family of that practice. In shaded perennial-crop agroforestry the understorey crop defines the system; in water harvesting the host crop's yield response is the practice effect; in paludiculture the cultivated wetland crop is the practice. Species-specific envelopes do not define general T4 practice suitability. Effect intake follows a different accepted policy: per-species performance results may contribute to T3/T6 practice evidence when the intervention is the practice being assessed, with the taxon retained. This does not turn a species niche into a T4 envelope. The effect chapter distinguishes that policy from the older compiler used for the displayed edition. [src: evidence:registers/methodology/decisions/method_decisions.csv] [src: schema/lookups/crop_scope_policy.csv]
 
 ## PICOS: the practice must be in the source
 
@@ -158,9 +164,9 @@ A claim can pass the first two and fail the third. It is then kept as direction 
 
 Before any of this, a suitability lane records a page-linked quote showing that the source actually selects, maps or explains where the practice can be implemented. A study location, a measured benefit or the word "suitability" in a title is not enough. [src: .agents/skills/source-command-extract-evidence/SKILL.md §T4 source-purpose gate]
 
-Shape parameters use canonical keys only: `abs_min`, `opt_low`, `opt_high`, `abs_max` and `unit`, because the synthesiser reads only those. [src: methodology/RULESET_VERSIONS.md §v1.4] A hard `abs_min` or `abs_max` requires the source to say that land beyond the value is excluded or unsuitable. The edge of a scored class, a recommended or commonly used range, a maximum taken across several structures, and a buffer or reserve width are not limits; they are retained in a source profile with their stated role. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Limits, geometry and duplicates]
+The legacy shape encoding uses canonical keys `abs_min`, `opt_low`, `opt_high`, `abs_max` and `unit`. This is an encoding contract, not a complete inventory of what an agent may learn from a source. Preserve full native class profiles and unresolved endpoints for review rather than force them into a legacy curve. [src: methodology/RULESET_VERSIONS.md §v1.4] A hard `abs_min` or `abs_max` requires the source to say that land beyond the value is excluded or unsuitable. The edge of a scored class, a recommended or commonly used range, a maximum taken across several structures, and a buffer or reserve width are not limits; they are retained in a source profile with their stated role. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Limits, geometry and duplicates]
 
-A single study's own site conditions (its rainfall, soil, tree density) are n = 1 context, not a generalising rule. The principle of constraining by observed distribution is a runtime dataset-gating layer, not a licence to encode one paper's site measurement as a threshold. Fixed-form practice-database entries are recorded as observed presence, not thresholds. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Common extraction defects]
+A single study's own site conditions (its rainfall, soil, tree density) are n = 1 context, not a generalising rule. The principle of constraining by observed distribution is a runtime dataset-gating layer, not a licence to encode one paper's site measurement as a threshold. Site-descriptor fields in fixed-form practice-database entries are recorded as observed presence. A separate, explicit generalising siting statement requires its own quotation and appraisal; source format alone does not determine claim meaning. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Common extraction defects]
 
 ### Effect claims: the relationship object
 
@@ -186,15 +192,15 @@ The variable is the canonical outcome the paper measured, not the scorecard prio
 
 Significance uses the 5 % convention: a result with 0.05 ≤ P < 0.10 is `ns` even if the authors call it significant at 10 %, with their wording recorded in a note. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Operational-risk (M2b) evidence]
 
-Strength comes from the magnitude bands register, never from adjectives such as "significantly" or "dramatically". [src: .agents/skills/extraction_contracts/T3_T6_extraction_contract.md §2.2]
+Strength uses the declared magnitude or ordinal-scale bands and special contrast rules, never rhetorical adjectives such as "significantly" or "dramatically". [src: .agents/skills/extraction_contracts/T3_T6_extraction_contract.md §2.2]
 
-{{csv:schema/registers/BANDS_magnitude_bands.csv|cols=band_id,metric,strength_class,abs_min,abs_max,unit,centre,source_scale_value}}
+The band values and their limitations have one home in [[ch:effect-synthesis]]; economic bands are in [[ch:cost-profiles]].
 
-`abs_min` is inclusive and `abs_max` exclusive, on the absolute magnitude. The percentage bands are a scoping convention marked for ratification in the register. [src: schema/spec.md §BANDS] A reported range is classed by its weaker end, not its midpoint, and a range spanning zero has no assured strength. A comparison of one plot per farm with no statistical test is capped at `moderate`. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Reviewer-readable units]
+In the band lookup, `abs_min` is inclusive and `abs_max` exclusive on distance from the scale centre, usually zero for changes and one for ratios. The percentage bands are a scoping convention marked for ratification in the register. [src: schema/spec.md §BANDS] A reported range is classed by its weaker end, not its midpoint, and a range spanning zero has no assured strength. A comparison of one plot per farm with no statistical test is capped at `moderate`. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Reviewer-readable units]
 
 Every effect unit must also state the mechanism: how the practice changes the outcome. A bare rating, a restated rating, an observation with no cause, credit to a different practice or an invalid pathway is not evidence of an effect. [src: methodology/RULESET_VERSIONS.md §v1.6.18]
 
-Effect units use fixed context keys only: `country` (ISO3), `region` (informational), `aez`, `farming_system`, `income_group` and `climate_zone`, plus hazard keys on hazard units. Other context goes in a free-text note. A blank income group where the country is known is a defect. [src: methodology/T3_T6_generation_method.md §3.3 Fixed context keys]
+Effect units use a controlled context vocabulary. Geographic keys include `country` (ISO3), `region` (informational), `aez`, `farming_system`, `income_group` and `climate_zone`; additional declared keys record hazard, comparator, attribution, beneficiary and cost nature, as described below. Other context goes in a free-text note. A blank income group where the country is known is a defect. [src: methodology/T3_T6_generation_method.md §3.3 Fixed context keys]
 
 ## Direction on the variable as named
 
@@ -226,23 +232,23 @@ A hazard type is set only when the source names the hazard. An ordinary dry seas
 
 Since ruleset v1.6.7, three context fields stop effects from being over-credited. [src: methodology/RULESET_VERSIONS.md §v1.6.7]
 
-- `attribution` (`isolated` or `bundled`) with `bundle_components` and `component_share_pct`: a bundled programme's effect is never credited in full to one practice. Synthesis weights it by the stated share of the sample using the practice component, with a floor of 0.25, or by a flat 0.6 when the share is unstated. A marginal component ("an option in some communities") is excluded rather than discounted.
-- `normal_year_reference` (`present` or `absent`): a hazard-year claim with no normal-year comparison is weighted ×0.7, because otherwise resilience and ordinary production gains cannot be told apart.
-- `beneficiary` (`farm_household`, `community` or `society`): avoided-damage value to society stays out of the poverty priority.
+- `attribution` (`isolated` or `bundled`), `bundle_components`, `component_share_pct` and `component_share_kind`: preserve whether the practice's contribution can be isolated and whether a reported share concerns adoption or an inseparable comparison design.
+- `normal_year_reference` (`present` or `absent`): preserve whether a hazard-year gain can be distinguished from an ordinary production gain.
+- `beneficiary` (`farm_household`, `community` or `society`): record who receives the effect; societal avoided damage is not automatically household income.
 
-An effect estimated against an unmeasured but physically implied no-practice case is tagged `counterfactual = implied` and also weighted ×0.7. [src: methodology/RULESET_VERSIONS.md §v1.9.7]
+An effect estimated against an unmeasured but physically implied no-practice case is tagged `counterfactual = implied`. The eligibility consequences and numerical discounts belong in [[ch:effect-synthesis]], where they are applied together. [src: methodology/RULESET_VERSIONS.md §v1.9.7]
 
 ### Comparators
 
 Studies of what existing forest or wetland does, or what its loss costs, are evidence for keeping it, not for planting or restoring it within a project horizon. Such units carry a comparator tag, and a policy lookup routes them: [src: methodology/RULESET_VERSIONS.md §v1.6.4]
 
-{{csv:schema/lookups/comparator_policy.csv|cols=nbs_id,comparator,rollup_included,home_family}}
+The complete comparator policy is shown in [[ch:effect-synthesis]].
 
 `rollup_included = false` keeps the unit out of the practice-level roll-up. A home family names the one family row it may enter. A restored wetland compared with an intact reference wetland is kept as a recovery note and never sets a class, because falling short of an intact system is not harm. [src: schema/lookups/comparator_policy.csv]
 
 ### Process metadata and descriptors
 
-Run dates, ruleset stamps and review tags never go in `relationship`; they go in the context note. Study descriptors (buffer width, project length, comparator figures from elsewhere in the paper) never go in `outcome_raw` unless the number is in the quote. Both rules exist because these numbers otherwise read as smuggled values and bury real errors. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Common extraction defects]
+Process metadata never goes in `relationship`. Use the dedicated fields for ruleset and review state; put additional process detail in the appropriate audit record or context note. Study descriptors (buffer width, project length, comparator figures from elsewhere in the paper) never go in `outcome_raw` unless the number is in the quote. Both rules exist because these numbers otherwise read as smuggled values and bury real errors. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Common extraction defects]
 
 ### Costs
 
@@ -256,7 +262,7 @@ Project appraisal documents, proposals and results frameworks state what a proje
 
 A tool's hard-coded thresholds, default weights, criteria and exclusion rules are evidence claims, extracted from its source files at a pinned commit with `file_line` locators. The tool gets a Source Register row and a TOOL metadata row, and its evidence units are linked back. [src: AGENTS.md §Don't] [src: schema/spec.md §TOOL]
 
-A tool's parameter is a design choice, not a measured finding, so its units carry `claim_basis = expert_assertion` and are weighted down in synthesis. The spec's TOOL section also names `tool_default` as an alternative basis value, which is not in the Evidence Register's claim-basis list; current practice uses `expert_assertion`. [src: AGENTS.md §Don't] [src: schema/spec.md §TOOL] [src: schema/spec.md §EV] Engines that compute weights at run time and hard-code nothing yield no extractable claim. Species-specific scripts are ignored as species envelopes. [src: AGENTS.md §Don't]
+The legacy intake convention tags an unsupported hard-coded default as `claim_basis = expert_assertion`. Under the basis/format extension, inspect its origin: code may encode a measured, modelled, cited or judgement-based value, or leave the basis unresolved. `extraction_format = code` alone establishes none of those bases. New T4 proposals must appraise that origin rather than apply an automatic discount merely because the value was read from code. [src: method:data-model/evidence-classification.json] The spec's TOOL section also names `tool_default` as an alternative basis value, which is not in the Evidence Register's claim-basis list; the legacy default encoding uses `expert_assertion`. [src: AGENTS.md §Don't] [src: schema/spec.md §TOOL] [src: schema/spec.md §EV] Engines that compute weights at run time and hard-code nothing yield no extractable claim. Species-envelope scripts do not calibrate general practice suitability; their relevance to species selection remains separate. [src: AGENTS.md §Don't]
 
 A tool that uses rainfall or pH to select species is not calibrating a practice-establishment curve. That method use is retained separately, scoped to species selection, and counted apart from practice-level agreement. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Main-paper extraction accounting (v1.6.15)]
 
