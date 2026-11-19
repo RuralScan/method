@@ -38,7 +38,7 @@ jobs:
         continue-on-error: true
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          ref: 914bdd764e95e5990404c876ef9794d5ea19fd77
+          ref: 636303da299f222dbe7e580a95267331cd88720b
           path: reference-src
           fetch-depth: 0
           persist-credentials: false
@@ -89,8 +89,10 @@ jobs:
           PYTHON
           test ! -e "$GITHUB_WORKSPACE/site/reference"
           mv "$stage/reference" "$GITHUB_WORKSPACE/site/reference"
-      - name: Require the evidence guides linked from Methods
+      - name: Require the consolidated evidence methods
         run: |
+          test -s site/reference/ch-evidence-principles.html
+          test -s site/reference/ch-compiling-evidence.html
           test -s site/reference/ch-evidence-registry.html
           test -s site/reference/ch-combining-t4-evidence.html
       - name: Build and verify pinned methodology editions
