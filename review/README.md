@@ -32,7 +32,7 @@ The host provides `reviewData`, `setDashboardSnapshots`, `familyDisplayName`, `D
    python3 -m unittest discover -s tests -p 'test_*.py'
    ```
 
-4. Open a PR targeting `gh-pages`. The **Review component checks** workflow runs the same tests. Pete merges; the existing **Publish dashboard** workflow deploys it. No separate publication, evidence migration or submission route is required.
+4. Open a PR targeting `gh-pages`. The **Review component checks** workflow runs the same tests. After approval and merge, the existing **Publish dashboard** workflow deploys it. No separate publication, evidence migration or submission route is required.
 
 For a prepared local site with its normal snapshot metadata, compose the dashboard before serving it:
 
