@@ -35,7 +35,7 @@ test('component mounts once, preserves drafts, and shows official evidence pin i
   const h = harness();h.api.mount();h.api.mount();
   assert.equal(h.listeners(),1);
   assert.equal(h.nodes['vf-sidebar-panel'].open,true);
-  assert.equal(h.nodes['dashboard-build'].hidden,true);
+  assert.equal(h.nodes['dashboard-build'].hidden,false);
   assert.equal(h.nodes['historical-footer'].hidden,true);
   assert.equal(h.nodes['review-build'].hidden,false);
   assert.ok(text(h.nodes['review-build']).startsWith('Review v' + release.version + ' · Evidence aaaaaaaa'));
@@ -47,17 +47,17 @@ test('component mounts once, preserves drafts, and shows official evidence pin i
   assert.equal(h.nodes['review-build'].writes,writes+1);
 });
 
-test('navigation restores dashboard build label without overwriting either version', () => {
+test('shared change history keeps dashboard and review versions visible across navigation', () => {
   const h=harness();h.api.mount();
   h.nodes['dashboard-build'].textContent='Historical dashboard version';
   h.api.onTab('tab-methods');
-  assert.equal(h.nodes['review-build'].hidden,true);
+  assert.equal(h.nodes['review-build'].hidden,false);
   assert.equal(h.nodes['dashboard-build'].hidden,false);
   assert.equal(h.nodes['historical-footer'].hidden,false);
   assert.equal(h.nodes['dashboard-build'].textContent,'Historical dashboard version');
   h.api.onTab('tab-qaqc');
   assert.equal(h.nodes['review-build'].hidden,false);
-  assert.match(text(h.nodes['review-build']), /Review releases/);
+  assert.match(text(h.nodes['review-build']), /Review changes/);
 });
 
 test('unavailable or invalid official revision never gets an invented evidence link', () => {

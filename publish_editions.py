@@ -187,7 +187,17 @@ LEGACY = {
 
 
 # The dashboard is a page of its own, so it has its own entry in the version menu and its own tab symbol.
-DASHBOARD_LABEL = "Evidence dashboard · current"
+def dashboard_revision():
+    """Version the whole dashboard by the publishing commit, not its old data snapshot."""
+    revision = subprocess.check_output(["git", "-C", str(Path(__file__).parent), "rev-parse", "HEAD"], text=True).strip()
+    if not re.fullmatch(r"[0-9a-f]{40}", revision):
+        raise ValueError("Dashboard publication requires a full source revision")
+    return revision
+
+
+def dashboard_label(revision):
+    return "Evidence dashboard · build " + revision[:8]
+
 _TILE = ("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='5' fill='#0b0f19'/>"
          "<g fill='none' stroke='#10b981' stroke-width='{width}' stroke-linecap='round' stroke-linejoin='round'{place}>"
          "{glyph}</g></svg>")
@@ -231,15 +241,15 @@ def reference_version(site, reference):
     return label, "Current draft" if status == "draft" else "Current release"
 
 
-def publish_reference_menu(site, reference, labels, label, note):
+def publish_reference_menu(site, reference, labels, label, note, dashboard_title):
     """The publishing branch owns navigation, even when reference content is pinned earlier."""
     for path in (site / "reference").rglob("*.html"):
         base = "../" * len(path.parent.relative_to(site).parts)
         row = re.match(r"row-(t3|t4|t6)-", path.name)
         dashboard_route = "review-" + row[1] if row else "overview"
         groups = [
-            ("Live", [(base + reference["href"], label, True),
-                      (base + "dashboard.html#" + dashboard_route, DASHBOARD_LABEL, False)]),
+            ("Current pages", [(base + reference["href"], label, True),
+                      (base + "dashboard.html#" + dashboard_route, dashboard_title, False)]),
             ("Earlier drafts", [(base + f"editions/{key}/index.html", escape(value), False)
                                 for key, value in reversed(labels.items())]),
         ]
@@ -264,6 +274,7 @@ def publish_reference_menu(site, reference, labels, label, note):
             contents, count = re.subn(pattern, replacement, contents, flags=re.S)
             if count != 1:
                 raise ValueError(f"Expected one shared navigation element in {path}: {pattern}")
+        contents = contents.replace('<label for="dashboard-version">Version</label>', '<label for="dashboard-version">Page / edition</label>')
         if 'rel="icon"' not in contents:
             contents = contents.replace("</head>", tab_icon("methodology") + "</head>", 1)
         path.write_text(contents)
@@ -271,6 +282,8 @@ def publish_reference_menu(site, reference, labels, label, note):
 
 def add_version_selectors(site, editions, ciat, reference):
     """Decorate the published dashboard shell after all pinned builds complete."""
+    revision = dashboard_revision()
+    dashboard_title = dashboard_label(revision)
     pages = {}
     labels = {}
     for item in editions:
@@ -346,14 +359,14 @@ def add_version_selectors(site, editions, ciat, reference):
             href = base + escape(reference["href"], quote=True)
             dashboard_url = base + "dashboard.html" + ("" if root_shell else legacy_dest)
             unmatched = not root_shell and not legacy_match
-            dashboard_label = DASHBOARD_LABEL + (" (opens overview)" if unmatched else "")
+            current_dashboard_label = dashboard_title + (" (opens overview)" if unmatched else "")
             # The dashboard is not the methodology: it selects its own entry, never the methodology's.
             selected = " selected" if current == "review" else ""
             fallback = " data-fallback" if unmatched else ""
             groups = [(reference["group"],
                        f'<option value="{href}">{reference_label}</option>'
-                       f'<option value="{dashboard_url}"{selected}{fallback}>{dashboard_label}</option>',
-                       f'<a href="{href}">{reference_label}</a> · <a href="{dashboard_url}">{dashboard_label}</a>')]
+                       f'<option value="{dashboard_url}"{selected}{fallback}>{current_dashboard_label}</option>',
+                       f'<a href="{href}">{reference_label}</a> · <a href="{dashboard_url}">{current_dashboard_label}</a>')]
         else:
             legacy_url = base + "legacy.html" + legacy_dest
             legacy_label = legacy_title
@@ -371,7 +384,7 @@ def add_version_selectors(site, editions, ciat, reference):
         menu = "".join(f'<optgroup label="{escape(group)}">{items}</optgroup>' for group, items, _ in groups)
         plain_links = " · ".join(f'<strong>{escape(group)}</strong> {items}' for group, _, items in groups)
         kind = ' data-legacy="true"' if root_shell else ""
-        label = "Version" if root_shell else "View version"
+        label = "Page / edition"
         if current == "review":
             note = ""
         elif legacy:
@@ -414,6 +427,12 @@ def add_version_selectors(site, editions, ciat, reference):
             route_data = json.dumps(legacy_routes, separators=(",", ":")).replace("<", "\\u003c")
             control += f'<script type="application/json" id="legacy-version-routes">{route_data}</script>'
         contents = path.read_text()
+        if root_shell:
+            build = ('<b>Evidence dashboard</b> · build <a href="https://github.com/RuralScan/method/tree/'
+                     + revision + '">' + revision[:8] + '</a>')
+            contents, build_count = re.subn(r'(<div id="dashboard-build"[^>]*>).*?</div>', lambda m: m[1] + build + '</div>', contents, count=1)
+            if build_count != 1:
+                raise ValueError("Dashboard must expose its publishing revision in change history")
         header = contents.find("<header")
         if header < 0 or "</head>" not in contents:
             raise ValueError(f"Missing dashboard shell in {path}")
@@ -427,7 +446,7 @@ def add_version_selectors(site, editions, ciat, reference):
                                             'href="reference/help.html"')
         else:
             contents = contents[:header] + control + contents[header:]
-        assets = (f'<link rel="stylesheet" href="{base}edition-selector.css?v=2">'
+        assets = (f'<link rel="stylesheet" href="{base}edition-selector.css?v=3">'
                   f'<script defer src="{base}edition-selector.js"></script>')
         if 'rel="icon"' not in contents:
             assets += tab_icon("methodology")
@@ -458,7 +477,7 @@ def add_version_selectors(site, editions, ciat, reference):
         # One dashboard. The old address of its superseded overview forwards to it.
         decorate(site / "dashboard.html", "review", "index.html")
         live.write_text(dashboard_forward())
-        publish_reference_menu(site, reference, labels, reference_label, reference_note)
+        publish_reference_menu(site, reference, labels, reference_label, reference_note, dashboard_title)
         for name in ("index.html", "home-route.js"):
             copyfile(Path(__file__).with_name(name), site / name)
     else:
@@ -470,9 +489,12 @@ def add_version_selectors(site, editions, ciat, reference):
         '<meta http-equiv="refresh" content="0;url=dashboard.html#review-queue"></head>'
         '<body><a href="dashboard.html#review-queue">Open the evidence review queue</a></body></html>'
     )
+    (site / "dashboard-build.json").write_text(json.dumps({"repository":"RuralScan/method", "revision":revision,
+        "review_release":json.loads(Path(__file__).with_name("review").joinpath("release.json").read_text())["version"],
+        "overview_snapshot":LIVE_PIN}, indent=2) + "\n")
     for name in (("dashboard.html",) if promoted else ("index.html", "dashboard.html", "legacy.html")):
         contents = (site / name).read_text()
-        expected_title = DASHBOARD_LABEL if promoted and name == "dashboard.html" else legacy_title
+        expected_title = dashboard_title if promoted and name == "dashboard.html" else legacy_title
         if ('id="tab-qaqc"' not in contents or 'id="vf-scope"' not in contents
                 or 'src="dashboard-tables.js?' not in contents or f' selected>{expected_title}</option>' not in contents):
             raise ValueError(f"{name} must retain evidence review and select its own edition")

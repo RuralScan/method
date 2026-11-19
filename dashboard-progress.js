@@ -356,7 +356,9 @@
   }
   function renderBuild() {
     const b=data.build || {};
-    $('dashboard-build').innerHTML=`<span>Dashboard <b>v${esc(b.release || 'unversioned')}</b> · UI ${esc(b.ui_id || '—')} · Data ${esc(b.data_id || '—')}</span><details><summary>Releases</summary><div><p>Counts v${esc(b.count_definition_version || '—')}. Earlier builds are in the project's change history for docs/dashboard_data.json.</p>${(data.dashboard_releases||[]).map(r=>`<p><b>v${esc(r.version)}</b> · ${esc(r.changes)}</p>`).join('')}</div></details>`;
+    const history=$('snapshot-history');
+    if(!history)return;
+    history.innerHTML=`<p>This snapshot supplied the overview and progress data; its release number does not version the current dashboard.</p><p>Snapshot v${esc(b.release || 'unversioned')} · Source UI ${esc(b.ui_id || '—')} · Data ${esc(b.data_id || '—')} · Counts v${esc(b.count_definition_version || '—')}.</p>${(data.dashboard_releases||[]).map(r=>`<p><b>Snapshot v${esc(r.version)}</b> · ${esc(r.changes)}</p>`).join('')}`;
   }
   function dispatch(e) {
     const b=e.target.closest('[data-action]');if(!b||!b.closest('.dp-shell,.dp-drawer'))return;

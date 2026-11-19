@@ -60,7 +60,7 @@ def compose(html, root=ROOT):
     public = {k: v for k, v in release.items() if k != 'files'}
     fragments = {key: (root / (key + '.html')).read_text() for key in FRAGMENTS}
     fragments['release'] = '<script type="application/json" id="review-component-release">' + json.dumps(public).replace('<', r'\u003c') + '</script>'
-    fragments['build-label'] = '<div id="review-build" class="dashboard-build" aria-label="Review component and evidence version" hidden></div>'
+    fragments['build-label'] = '<div id="review-build" class="review-release-history" aria-label="Review component and evidence version"></div>'
     for name, value in fragments.items():
         marker = '<!-- REVIEW:' + name + ' -->'
         if html.count(marker) != 1:

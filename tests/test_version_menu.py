@@ -17,6 +17,9 @@ REFERENCE = '''<html><head></head><body><header><a class="review-entry" href="ht
 
 
 # What the methodology build writes beside its pages. The site takes its menu label from this.
+DASHBOARD_REV = "a" * 40
+DASHBOARD_LABEL = "Evidence dashboard · build aaaaaaaa"
+
 VERSION = {"name": "Methodology", "version": "0.8.0", "date": "2026-11-18", "status": "draft"}
 
 
@@ -44,7 +47,8 @@ class VersionMenuTest(unittest.TestCase):
         return editions, reference
 
     def publish(self, site, editions, reference):
-        with patch.object(publish, "live_rating_reviews", return_value={}), \
+        with patch.object(publish, "dashboard_revision", return_value=DASHBOARD_REV), \
+             patch.object(publish, "live_rating_reviews", return_value={}), \
              patch.object(publish, "publish_review_queue", return_value="queue.json"):
             publish.add_version_selectors(site, editions, None, reference)
 
@@ -60,21 +64,32 @@ class VersionMenuTest(unittest.TestCase):
                 html=page.read_text()
                 menu=html.split('<select id="dashboard-version"',1)[1].split('>',1)[1].split('</select>',1)[0]
                 groups=dict(re.findall(r'<optgroup label="([^"]+)">(.*?)</optgroup>',menu))
-                self.assertEqual(list(groups),['Live','Earlier drafts'])
+                self.assertEqual(list(groups),['Current pages','Earlier drafts'])
                 self.assertNotIn('legacy.html',menu)
                 self.assertNotIn('10 Nov 2026',menu)
                 self.assertEqual(menu.count('Evidence dashboard'),1)
-                self.assertIn('>Methodology v0.8.0 · 18 Nov 2026</option>',groups['Live'])
+                self.assertIn('>Methodology v0.8.0 · 18 Nov 2026</option>',groups['Current pages'])
                 self.assertIn('v0.7.0 · Human review queues and finding cards · 13 Nov 2026',groups['Earlier drafts'])
                 self.assertIn('v0.1.0 · Methodology draft · 11 Nov 2026',groups['Earlier drafts'])
                 self.assertEqual(menu.count(' selected'),1)
-                self.assertIn('>Evidence dashboard · current',groups['Live'])
+                self.assertIn('>Evidence dashboard · build aaaaaaaa',groups['Current pages'])
                 chosen=re.search(r'<option[^>]* selected[^>]*>(.*?)</option>',menu)[1]
                 if page.parent==site:
-                    self.assertEqual(chosen,'Evidence dashboard · current')
-                    self.assertIn('<option value="dashboard.html" selected>',groups['Live'])
+                    self.assertEqual(chosen,'Evidence dashboard · build aaaaaaaa')
+                    self.assertIn('<option value="dashboard.html" selected>',groups['Current pages'])
                     self.assertNotIn('aria-label="Superseded dashboard"',html)
                     self.assertNotIn('Current review workspace',html)
+                    self.assertIn('https://github.com/RuralScan/method/tree/' + DASHBOARD_REV, html)
+                    history=html.split('id="dashboard-history"',1)[1].split('</section>',1)[0]
+                    self.assertIn('id="review-build"',history)
+                    self.assertIn('id="snapshot-history"',history)
+                    self.assertIn('All dashboard changes',history)
+                    self.assertIn('Feedback and reported issues',history)
+                    self.assertIn('two pages of RuralScan',history)
+                    self.assertNotIn('id="review-build"',html.split('<div class="header-actions">',1)[1].split('</header>',1)[0])
+                    build=json.loads((site/'dashboard-build.json').read_text())
+                    self.assertEqual(build['revision'],DASHBOARD_REV)
+                    self.assertEqual(build['overview_snapshot'],publish.LIVE_PIN)
                     self.assertNotIn('Methodology home</a>',html)
                     self.assertIn('id="dashboard-version-note" hidden></span>',html)
                     self.assertIn('id="legacy-version-routes"',html)
@@ -87,12 +102,12 @@ class VersionMenuTest(unittest.TestCase):
                     self.assertIn('aria-label="Dashboard version and tools"',header)
                     self.assertIn('id="dashboard-version"',header)
                     bar=html.split('aria-label="Dashboard version and tools">',1)[1].split('</div>',1)[0]
-                    controls=['>Version</label>','id="dashboard-version-note"','id="theme-toggle"','id="rv-toggle"','What changed? · history and feedback']
+                    controls=['>Page / edition</label>','id="dashboard-version-note"','id="theme-toggle"','id="rv-toggle"','What changed? · history and feedback']
                     self.assertEqual(sorted(controls,key=bar.index),controls)
                 elif page.parent.name=='reference':
                     self.assertEqual(chosen,'Methodology v0.8.0 · 18 Nov 2026')
                     route='review-t4' if page.name.startswith('row-t4-') else 'overview'
-                    self.assertIn(f'<option value="../dashboard.html#{route}">Evidence dashboard · current</option>',groups['Live'])
+                    self.assertIn(f'<option value="../dashboard.html#{route}">Evidence dashboard · build aaaaaaaa</option>',groups['Current pages'])
                     self.assertIn(publish.tab_icon('methodology'),html)
                     self.assertIn('href="../dashboard.html#review-queue">Review queue</a>',html)
                     self.assertIn('<span id="dashboard-version-note">Current draft</span>',html)
@@ -101,7 +116,7 @@ class VersionMenuTest(unittest.TestCase):
                 else:
                     self.assertIn(publish.tab_icon('methodology'),html)
                     self.assertIn(f'data-edition="{editions[-1]["edition"]}" selected',groups['Earlier drafts'])
-                    self.assertIn('<option value="../../dashboard.html#',groups['Live'])
+                    self.assertIn('<option value="../../dashboard.html#',groups['Current pages'])
                     self.assertIn('../../dashboard.html#review-queue',html)
 
     def test_without_promotion_original_dashboard_remains_default(self):

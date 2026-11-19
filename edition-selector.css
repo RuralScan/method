@@ -48,3 +48,17 @@
   font: 600 15px/1.5 system-ui, sans-serif;
 }
 .archived-review-links a { color: #154f43; }
+
+/* One history entry for dashboard, review component and earlier data snapshots. */
+#dashboard-history { position:relative; font-size:13px; }
+#dashboard-history > summary { cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
+.dashboard-history-panel { position:absolute; right:0; top:calc(100% + 10px); width:min(34rem, calc(100vw - 32px)); max-height:65vh; overflow:auto; box-sizing:border-box; padding:20px; border:1px solid var(--border-color,#2d3748); border-radius:8px; background:var(--bg-secondary,#141d2d); color:var(--text-primary,#f3f5fa); box-shadow:0 12px 32px #0006; text-align:left; line-height:1.6; z-index:150; }
+.dashboard-history-panel h2 { font-size:18px; margin:0 0 10px; }
+.dashboard-history-panel p { margin:10px 0; font-size:13px; }
+.dashboard-history-panel a { color:var(--accent-sky,#38bdf8); }
+.dashboard-history-panel nav { display:flex; flex-wrap:wrap; gap:8px 18px; margin:16px 0; }
+.dashboard-history-panel details { margin:12px 0; }
+.dashboard-history-panel summary { cursor:pointer; font-weight:600; }
+.dashboard-history-panel details > div { padding:8px 0; }
+.dashboard-history-panel :focus-visible { outline:2px solid var(--accent-sky,#38bdf8); outline-offset:3px; }
+@media (max-width:680px) { .dashboard-history-panel { position:fixed; left:16px; right:16px; top:100px; width:auto; max-height:calc(100dvh - 130px); } }

@@ -1,8 +1,8 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "date": "2026-11-19",
   "notes": [
-    "Restore CIAT review shortcuts using the same visible sidebar filters across T3, T4, T6 and M2b; keep answers, conflicts and rechecks explicit."
+    "Move review release notes into the dashboard\u2019s shared What changed history, available from every dashboard tab."
   ],
   "files": {
     "batch-receipt.js": "d77479a9c0f3b3ca0d8804b12e60397c4b9800611a29f33c48fc6658df49b6b0",
@@ -21,10 +21,18 @@
     "vote-drafts.js": "d7b7385834eaa2f177ec22abcf1e22502244ba5bdd626ace079c6038e267d927",
     "workspace.css": "9a96266b037babb821c85b3bde4ef0f8c876e022d6f3ea10a4055902c7dd51b0",
     "workspace.html": "4f7720ddf6b4e55476b8368cad7932ac17f42b14df3cf04c76ba38df87758aec",
-    "workspace.js": "2ef561aa597936d05efc90fbd942149efff5612b6ab411151564bd0454ea213d"
+    "workspace.js": "4e0369c549223dc50e787c1ccea98a076c2fd12d48b10923ccbb544b887b2699"
   },
-  "content_sha256": "15e09977dcedbde3bbb6b1ac13dd9659f85d384839a5adb49d38eb25bf2f1f62",
+  "content_sha256": "1b9c8514c211e06fa5cb5a7583fa0494187c254a9b4d9a73b3fa74adf71a5ec5",
   "history": [
+    {
+      "version": "1.1.0",
+      "date": "2026-11-19",
+      "notes": [
+        "Restore CIAT review shortcuts using the same visible sidebar filters across T3, T4, T6 and M2b; keep answers, conflicts and rechecks explicit."
+      ],
+      "content_sha256": "15e09977dcedbde3bbb6b1ac13dd9659f85d384839a5adb49d38eb25bf2f1f62"
+    },
     {
       "version": "1.0.0",
       "date": "2026-11-19",
