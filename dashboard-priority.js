@@ -23,8 +23,8 @@
     return selected() !== 'all' && priorityView() === 'attention' && notes(ev.evidence_id).some(r =>
       ['active','recheck'].includes(r.status || 'active') && (selected() === 'high' ? r.priority === 'high' : r.batch_id === selected()));
   }
-  function matches(ev) {
-    if (window._vfPriorityEvidence && ev.evidence_id !== window._vfPriorityEvidence) return false;
+  function matches(ev, ignoreFocus) {
+    if (!ignoreFocus && window._vfPriorityEvidence && ev.evidence_id !== window._vfPriorityEvidence) return false;
     const value = selected();
     return value === 'all' || notes(ev.evidence_id).some(r => visibleRequest(r) && (value === 'high' ? r.priority === 'high' : r.batch_id === value));
   }

@@ -1012,7 +1012,7 @@
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.1.0">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.13.0">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.14.1">
 <link rel="stylesheet" href="dashboard-evidence.css?v=1.0.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
@@ -1578,7 +1578,7 @@
         <h4>5.2.2 Work through the queue</h4>
         <ol class="shell-review-steps">
           <li><b>Set your own GitHub handle in Review queue.</b> Choose <b>Other…</b> if it is missing. This selector filters historical decisions. GitHub credits the account that creates the issue. Use practice, evidence type and search to narrow the queue.</li>
-          <li><b>Start with To review.</b> <b>Waiting for answers</b> holds your outstanding questions; <b>My reviewed</b> shows your decisions. More filters contains technical filters and dropped history. Site observations are deferred by default and can be included there.</li>
+          <li><b>Start with To review.</b> <b>Waiting for answers</b> holds your outstanding questions; <b>My reviewed</b> shows your decisions. The Filters sidebar contains practice, evidence type, technical filters and dropped history. Site observations are deferred by default and can be included there. On small screens, open Filters above the findings.</li>
           <li><b>Read the claim and inspect its source.</b> Check the page or table, units, context, practice and intended use. Open the source region or full paper when the excerpt lacks context. A restricted source may require the synced library or its SharePoint link; contact the library maintainer if access is missing.</li>
           <li><b>Keep</b> when the extraction is faithful and relevant. <b>Drop</b> when it is unsuitable or incorrect: select a coded reason and explain it. Drop quarantines the record; it does not erase it. <b>Query</b> when clarification is needed: state what needs checking. A query is not approval.</li>
           <li><b>Review answers on the evidence card.</b> Answered records return to To review. Read the answer and source, then Keep, Drop or Query. There is no separate answer-approval step; deciding one record does not approve the other records sharing its answer.</li>
@@ -1661,9 +1661,18 @@
             </div>
           </details>
         </div>
-        <div style="display:flex; gap:18px; align-items:flex-start; margin-top:6px;">
-          <div id="vf-main" style="flex:1; min-width:0;">
-            <div id="vf-scope" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px"></div>
+        <div class="vf-review-layout">
+          <aside id="vf-sidebar" aria-label="Review filters">
+            <details id="vf-sidebar-panel" open>
+              <summary>Filters <span>Practice, evidence type and review status</span></summary>
+              <div class="vf-sidebar-content">
+                <div class="vf-scope-sticky"><div class="vf-sidebar-heading"><strong>Filters</strong><a href="#vf-cards" onclick="event.preventDefault();var findings=document.getElementById('vf-cards');findings.focus({preventScroll:true});findings.scrollIntoView({block:'start'});">Go to findings →</a></div>
+                <div id="vf-scope"></div></div>
+                <div id="vf-sidebar-filters"></div>
+              </div>
+            </details>
+          </aside>
+          <div id="vf-main">
             <div class="review-queue-context"><p id="review-table-description"></p><a id="review-log-source"></a></div>
             <span id="vf-mode-hint" hidden></span>
             <div id="vf-filterbar" style="position:sticky; top:86px; z-index:20; background:var(--bg-primary); padding:6px 0 6px; border-bottom:1px solid var(--border-color); display:flex; align-items:flex-start; gap:8px; flex-wrap:wrap;">
@@ -1672,7 +1681,7 @@
             <div id="vf-decided-count" style="font-size:12px; color:var(--text-secondary); margin-top:12px;"></div>
             <div id="vf-subset-banner" style="display:none; margin-top:10px;"></div>
             <p id="public-review-history" hidden><a href="https://github.com/RuralScan/evidence/issues?q=is%3Aissue+author%3A%40me+submission+in%3Abody">My public RuralScan submissions</a></p>
-            <div id="vf-cards" tabindex="-1" role="region" aria-label="Findings in current review queue" style="margin-top:12px;"></div>
+            <div id="vf-cards" tabindex="-1" tabindex="-1" role="region" aria-label="Findings in current review queue" style="margin-top:12px;"></div>
             <div id="vf-actionbar" style="position:sticky; bottom:0; z-index:19; background:var(--bg-primary); border-bottom:1px solid var(--border-color); padding:6px 0 7px; display:flex; align-items:center; gap:9px; flex-wrap:wrap;">
               <span id="vf-pending-count" style="font-size:11.5px; font-weight:700;" title="Your saved decisions across all queues. Submit your batch to RuralScan/evidence when ready."></span>
               <span style="margin-left:auto; display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap;">
@@ -2737,12 +2746,12 @@
     });
     return done;
   }
-  function vfSimpleMatch(u,view){
+  function vfSimpleMatch(u,view,status){
     if(view==='mine')return u.me;
     // An active request can ask for another look at an already reviewed finding.
     // Keep the scientific state intact and avoid repeating a pending local vote.
     if(view==='todo' && window.DashboardPriority?.needsAttention(u.ev))return !(u.me&&!u.meApplied);
-    if(u.formerlyCited && !(view==='advanced' && window._vfAxStatus==='dropped')) return false;
+    if(u.formerlyCited && !(view==='advanced' && ['dropped','any'].includes(status||window._vfAxStatus))) return false;
     if(view==='advanced')return true;
     if(u.dropped)return false;
     var pending=u.me&&!u.meApplied;
@@ -2753,6 +2762,34 @@
     if(pending)return false;
     if(u.conflictReviewed&&!answered)return false;
     return answered||u.ev._reviewConflict||u.ev._reviewQueue==='first';
+  }
+  // One predicate for rendered findings and prospective filter counts. A status-axis
+  // click opens the custom view; round clicks keep the selected everyday queue.
+  function vfMatchesFilters(u, overrides){
+    var f=Object.assign({view:window._vfSimpleView||'todo',status:window._vfAxStatus||'active',
+      origin:window._vfAxOrigin||'any',me:window._vfAxMe||'any',other:window._vfAxOther||'any',
+      verdict:window._vfVerdictFilter||'all',round:(window._vfScope||{}).round||'all'},overrides||{});
+    if(!vfSimpleMatch(u,f.view,f.status))return false;
+    if(window.DashboardPriority&&!DashboardPriority.matches(u.ev,f.ignoreFocus))return false;
+    if(f.round!=='all'&&_vfRoundKey(u.ev)!==f.round)return false;
+    var search=(window._vfSearch||'').trim().toLowerCase();
+    if(search&&![u.ev.source_id,u.ev.variable,u.ev.quote,u.ev.evidence_id].join(' ').toLowerCase().includes(search))return false;
+    if(window._vfClarificationFilter&&window._vfClarificationFilter!=='all'&&!vfClarificationsFor(u.ev.evidence_id).some(function(g){return g.status===window._vfClarificationFilter;}))return false;
+    if(f.view!=='advanced')return true;
+    if(window._vfReconcile&&window._vfReconcile!=='all'&&u.ev._reviewQueue!==window._vfReconcile)return false;
+    if(f.status==='active'&&u.dropped||f.status==='dropped'&&!u.dropped)return false;
+    if(f.origin!=='any'&&u.origin!==f.origin)return false;
+    if(f.me!=='any'&&u.me!==(f.me==='yes'))return false;
+    if(f.other!=='any'&&u.other!==(f.other==='yes'))return false;
+    if(f.me==='yes'&&window._vfMyCall&&window._vfMyCall!=='all'){
+      var call=u.myDec==='flag'?'query':u.myDec==='keep'?'ok':u.myDec;
+      if(call!==window._vfMyCall)return false;
+    }
+    // _reviewConflict is built from both committed reviewer events and local drafts.
+    if(f.verdict==='conflict'){if(!u.ev._reviewConflict)return false;}
+    else if(f.verdict!=='all'&&f.origin!=='passed'&&(u.origin!=='flagged'||u.verdict!==f.verdict))return false;
+    if(window._vfTablesOnly&&!_vfTabular(u.ev.quote))return false;
+    return true;
   }
   // Site descriptions do not define suitability rules. Do not confuse these
   // with observational studies that estimate an effect or adoption relationship.
@@ -2766,7 +2803,7 @@
     return r.note==='case_study_site_context'||r.direction==='observed_existing_tree_stock_where_FMNR_occurs'
       ||Object.keys(r).some(function(k){return k.indexOf('observed_')===0;});
   }
-  function _vfInScope(ev){ var sc=window._vfScope||{};
+  function _vfInScope(ev,ignoreRound){ var sc=window._vfScope||{};
     var observations=sc.observations||'hide';var site=vfIsSiteObservation(ev);
     if(observations==='hide'&&site)return false;
     if(observations==='only'&&!site)return false;
@@ -2775,7 +2812,7 @@
     if(!DashboardTables.matches(ev, sc.table, true))return false;
     if(sc.family&&sc.family!=='all'&&ev.suitability_family_id!==sc.family)return false;
     if(sc.source&&sc.source!=='all'&&_vfChanKey(ev)!==sc.source)return false;
-    if(sc.round&&sc.round!=='all'&&_vfRoundKey(ev)!==sc.round)return false;
+    if(!ignoreRound&&sc.round&&sc.round!=='all'&&_vfRoundKey(ev)!==sc.round)return false;
     if(sc.sourceId&&ev.source_id!==sc.sourceId)return false;
     if(sc.section&&String(ev.page||'')!==String(sc.section))return false;
     if(sc.access&&sc.access!=='all'){ var _oa=_vfIsOA(ev); if(sc.access==='oa'&&!_oa)return false; if(sc.access==='restricted'&&_oa)return false; }
@@ -3136,7 +3173,7 @@
     document.addEventListener('keydown',function(e){
       if(e.ctrlKey||e.metaKey||e.altKey)return;
       var t=e.target||{}; var tn=((t.tagName||'')+'').toUpperCase();
-      if(document.querySelector('dialog[open]') || t.closest?.('.source-preview'))return;
+      if(document.querySelector('dialog[open]') || t.closest?.('.source-preview, #vf-sidebar'))return;
       if(tn==='INPUT'||tn==='TEXTAREA'||tn==='SELECT'||t.isContentEditable)return;   // never steal typing
       var tab=document.getElementById('tab-qaqc'); if(!tab||!tab.classList.contains('active'))return;
       var cards=_vfCardEls(); if(!cards.length)return;
@@ -3155,9 +3192,7 @@
       if(k==='q'){ e.preventDefault(); var ta=el.querySelector('textarea'); if(ta){ try{ta.scrollIntoView({block:'nearest'});}catch(_e){} try{ta.focus();}catch(_e3){} } return; }
     });
   }
-  // Two stacked sticky bars inside #vf-main: the filter matrix (top:86px) and the action bar
-  // directly under it. The filter bar's height varies with the toggles on show, so the action
-  // bar's offset is measured rather than hardcoded (falls back to the inline 86px).
+  // Keep batch actions at the bottom; filters now live in their own sidebar.
   function _vfSyncStickyBars(){ var fb=document.getElementById('vf-filterbar'), ab=document.getElementById('vf-actionbar');
     if(!fb||!ab)return; ab.style.top='auto'; ab.style.bottom='0'; }
 
@@ -3199,7 +3234,7 @@
     DashboardTables.describe(window._vfScope.table);
     _vfUpdatePending(); _vfRenderSubsetBanner();
     // Task 3: sourceId subsets to one paper/tool; section subsets to one page within it.
-    function _inScope(ev){ return _vfInScope(ev); }
+    function _inScope(ev){ return _vfInScope(ev,true); }
     var scEl=document.getElementById('vf-scope');
     if(scEl){ var _inNbs=function(e){ return window._vfScope.nbs==='all'||e.nbs_id===window._vfScope.nbs; };
       var _famOpts=Array.from(new Set(evAll.filter(_inNbs).map(function(e){return e.suitability_family_id;}).filter(Boolean))).sort();
@@ -3224,10 +3259,10 @@
       var _csHint=(window._vfScope.claimScope&&window._vfScope.claimScope!=='general'&&window._vfScope.claimScope!=='all')?'<div style="font-size:9.5px; color:var(--text-muted); margin:2px 0 4px 0; line-height:1.4;">🧬 <b>Species / crop lane</b> — per-taxon evidence, <b>kept &amp; banked for reuse</b> but filtered out of the practice-level MCDA. Fix a mis-tagged row by re-classifying it (keep), not dropping it.</div>':'';
       var select=function(key,label,options){return '<label>'+label+' <select'+(key==='table'?' aria-describedby="review-table-description"':'')+' onchange="vfScopeSet(\''+key+'\',this.value)" style="padding:7px;background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-color);border-radius:5px">'+options.map(function(o){return '<option value="'+vfEsc(o[0])+'"'+(window._vfScope[key]===o[0]?' selected':'')+'>'+vfEsc(o[1])+'</option>';}).join('')+'</select></label>';};
       scEl.innerHTML=select('nbs','Practice',[['all','All practices']].concat(_nbsOpts.map(function(n){return [n,_capNbs(n)];})))
+        +select('family','Family / evidence scope',[['all','All families']].concat(_famOpts.map(function(f){return [f,_capFam(f)];})))
         +select('table','Evidence type',[['all','All evidence types'],['T3','T3 hazard findings'],['T4-suitability','T4 suitability findings'],['T6','T6 scorecard findings'],['M2b','M2b operational feasibility'],['T4','T4 + operational feasibility'],['T3/T6','T3/T6 effects']])
         +'<label>Search <input id="vf-search" type="search" placeholder="Paper, variable or text" value="'+vfEsc(window._vfSearch||'')+'" oninput="vfSearch(this.value)" style="padding:7px;background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-color);border-radius:5px"></label>';
       window._vfAdvancedScopeHtml=_mkPills('observations','Site observations',['hide','show','only'],function(o){return {hide:'Hide (default)',show:'Include',only:'Only observations'}[o];},'sky',true,'Site descriptions and observed presence are deferred; tested relationships remain in review.')
-        +_mkPills('family','Family / evidence scope',_famOpts,_capFam,'emerald',false)
         +_mkPills('claimScope','Scope',['general','species','crop'],_csFmt,'sky',false)
         +_mkPills('source','Source channel',_srcOpts,function(o){return _vfChanMeta(o).label;},'amber',false)
         +_mkPills('access','Access',['oa','restricted'],function(o){return o==='oa'?'Open-access':'Restricted';},'emerald',false);
@@ -3279,36 +3314,10 @@
       _uni.push({myEvent:myEvents[id],formerlyCited:!DashboardTables.matches(ev,window._vfScope.table),ev:ev,origin:origin,verdict:verdict,reason:reason,me:_uMe(id),other:_uOther(id),myDec:_uMyDec(id),conflictReviewed:!!_repeatConflicts[id]||!!((_store[id]||{})[_meH]||{}).reviewed_conflict_at,meApplied:_meApplied(id),dropped:isDrop}); };
     flaggedRows.forEach(function(r){ _pushU(r.ev,'flagged',r.verdict,r.reason); });
     passedAll.forEach(function(ev){ _pushU(ev,'passed','pass','AI accepted this extraction — spot-check: is the encoded value faithful to the quote?'); });
-    ((reviewData._evDropped)||[]).forEach(function(ev){ if(ev.use_role==='dataset')return; if(!_vfInScope(ev))return; var o=/\[VERIFY-FLAG/.test(ev.attribution||'')?'flagged':'passed'; _pushU(ev,o,o==='flagged'?'flagged':'pass',''); });
-    // Secondary filters (My-call + verdict + tables) — SHARED by _axN and the rendered _list so a
-    // toggle's count always equals what clicking it shows. effOrigin/effMe let _axN evaluate the
-    // predicate as if a candidate axis value were applied. A non-'conflict' verdict is ignored when
-    // origin=passed (its control is hidden there) so a stale verdict can't silently zero the list.
-    var _sec=function(u,effOrigin,effMe,effStatus,effVerdict){
-      if(!vfSimpleMatch(u,window._vfSimpleView||'todo'))return false;
-      if(window.DashboardPriority&&!DashboardPriority.matches(u.ev))return false;
-      var search=(window._vfSearch||'').trim().toLowerCase();if(search&&[u.ev.source_id,u.ev.variable,u.ev.quote,u.ev.evidence_id].join(' ').toLowerCase().indexOf(search)<0)return false;
-      if(window._vfClarificationFilter&&window._vfClarificationFilter!=='all'&&!vfClarificationsFor(u.ev.evidence_id).some(function(g){return g.status===window._vfClarificationFilter;}))return false;
-      if(window._vfSimpleView!=='advanced')return true;
-      if(window._vfReconcile&&window._vfReconcile!=='all'&&u.ev._reviewQueue!==window._vfReconcile)return false;
-      var status=effStatus||window._vfAxStatus||'active';
-      if(status==='active'&&u.dropped)return false;
-      if(status==='dropped'&&!u.dropped)return false;
-      if(effMe==='yes'&&window._vfMyCall!=='all'){ var d=u.myDec; if(window._vfMyCall==='ok'){ if(d!=='ok')return false; } else if(window._vfMyCall==='query'){ if(d!=='query'&&d!=='flag')return false; } else if(window._vfMyCall==='drop'){ if(d!=='drop')return false; } }
-      var vf=effVerdict||window._vfVerdictFilter||'all';
-      if(vf==='conflict'){ var a=_store[u.ev.evidence_id]||{}; var ds=Object.keys(a).filter(function(k){return a[k].decision;}).map(function(k){return a[k].decision;}); if((new Set(ds)).size<=1)return false; }
-      else if(vf!=='all'&&effOrigin!=='passed'){ if(u.origin!=='flagged'||u.verdict!==vf)return false; }
-      if(window._vfTablesOnly&&!_vfTabular(u.ev.quote))return false;
-      return true; };
-    // axis-count: results if you picked `val` on `which`, holding the other two axes + secondary filters fixed.
-    var _axN=function(which,val){ return _uni.filter(function(u){
-      if(which!=='origin'&&window._vfAxOrigin!=='any'&&u.origin!==window._vfAxOrigin)return false;
-      if(which!=='me'&&window._vfAxMe!=='any'&&u.me!==(window._vfAxMe==='yes'))return false;
-      if(which!=='other'&&window._vfAxOther!=='any'&&u.other!==(window._vfAxOther==='yes'))return false;
-      if(which==='origin'){ if(!(val==='any'||u.origin===val))return false; }
-      else if(which==='me'){ if(!(val==='any'||u.me===(val==='yes')))return false; }
-      else if(which==='other'){ if(!(val==='any'||u.other===(val==='yes')))return false; }
-      return _sec(u, (which==='origin')?val:window._vfAxOrigin, (which==='me')?val:window._vfAxMe, (which==='status')?val:window._vfAxStatus, (which==='verdict')?val:window._vfVerdictFilter); }).length; };
+    ((reviewData._evDropped)||[]).forEach(function(ev){ if(ev.use_role==='dataset')return; if(!_inScope(ev))return; var o=/\[VERIFY-FLAG/.test(ev.attribution||'')?'flagged':'passed'; _pushU(ev,o,o==='flagged'?'flagged':'pass',''); });
+    // Counts use exactly the view and candidate value that the button will select.
+    var _axN=function(which,val){var candidate={view:'advanced'};candidate[which]=val;
+      return _uni.filter(function(u){return vfMatchesFilters(u,candidate);}).length;};
     // ---- sidebar presets (set the toggles; keep familiar labels + counts) ----
     var _gb=document.getElementById('vf-gaps-btn'); if(_gb){ var _gon=(mode==='gaps'); _gb.style.background=_gon?'var(--accent-amber)':'transparent'; _gb.style.color=_gon?'#0b0b0b':'var(--accent-amber)'; _gb.textContent=(_gon?'← Back to review':'⚠ Gaps ('+_gapsCount+')'); }
     var _sb=document.getElementById('vf-stats-btn'); if(_sb){ var _on=(mode==='stats'); _sb.style.background=_on?'var(--accent-emerald)':'transparent'; _sb.style.color=_on?'#fff':'var(--accent-emerald)'; _sb.textContent=_on?'← Back to review':'📊 Stats'; }
@@ -3317,6 +3326,7 @@
     const isMyHistory = window._vfSimpleView === 'mine';
     document.getElementById('public-review-history').hidden = !isMyHistory;
     var fd=document.getElementById('vf-verdict-filters'); var host=document.getElementById('vf-cards'); var statsHost=document.getElementById('vf-stats');
+    document.getElementById('vf-sidebar-filters').hidden = mode==='stats'||mode==='gaps';
     if(mode==='stats'){ if(fd)fd.style.display='none'; if(host)host.style.display='none'; var dcs=document.getElementById('vf-decided-count'); if(dcs)dcs.innerHTML=''; if(statsHost){statsHost.style.display='block'; renderQaqcStats(statsHost);} _vfSyncStickyBars(); return; }
     if(mode==='gaps'){ if(fd)fd.style.display='none'; if(statsHost)statsHost.style.display='none'; if(host){host.style.display='block'; renderVfGaps(host);} _vfSyncStickyBars(); return; }
     if(statsHost)statsHost.style.display='none'; if(host)host.style.display='block';
@@ -3327,12 +3337,12 @@
       var _seg=function(which,label,opts,sv,tip){ return '<div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; margin:1px 0;"'+(tip?(' title="'+vfEsc(tip)+'"'):'')+'><span style="font-size:9px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.05em; font-weight:700; min-width:118px; flex:0 0 118px;">'+label+'</span>'+opts.map(function(o){ var active=(window[sv]===o[0])?'active sky':''; var cnt=which?(' ('+_axN(which,o[0])+')'):''; return '<button class="pill-btn '+active+'" onclick="window._vfSimpleView=\'advanced\';window.'+sv+'=\''+o[0]+'\'; renderVfWorklist();" style="font-size:11px; padding:3px 10px; border-radius:4px;">'+o[1]+cnt+'</button>'; }).join('')+'</div>'; };
       var _bar=_seg('status','Record status',[['active','Active'],['dropped','Dropped history'],['any','All']],'_vfAxStatus','Dropped records stay excluded from the normal review queue. Show history to inspect, challenge or reopen them.')
         +_seg('origin','Origin',[['any','Any'],['flagged','⚑ AI-flagged'],['passed','✓ AI-passed']],'_vfAxOrigin','Did the AI verify pass flag this extraction, or accept it?')
-        +_seg('me','Reviewed by me',[['any','Any'],['no','No'],['yes','Yes']],'_vfAxMe','Have YOU already made a call on it? “No” is the to-review queue.')
+        +_seg('me','Reviewed by me',[['any','Any'],['no','No'],['yes','Yes']],'_vfAxMe','Does the selected reviewer have a current decision? Reopened decisions do not count. These controls open a custom filter view.')
         +_seg('other','Reviewed by others',[['any','Any'],['no','No'],['yes','Yes']],'_vfAxOther','Has anyone else made a call? Not-me + others-Yes = the 2nd-opinion queue.');
       // Search round: which discovery round the source came from (SRC.extraction_run_id prefix).
-      // Counts = scoped records in the selected active/history status, ignoring the round filter.
+      // Counts retain the current queue, reviewer axes, search and task; only round changes.
       var _rdAll=Array.from(new Set(((window._vfPreScope)||[]).map(_vfRoundKey))).sort();
-      var _rdN=function(k){ var sc=window._vfScope||{}; var sv=sc.round; sc.round='all'; var n=((window._vfPreScope)||[]).filter(function(e){ return _vfInScope(e)&&(window._vfAxStatus==='any'||((e.review_state==='dropped')===(window._vfAxStatus==='dropped')))&&(k==='all'||_vfRoundKey(e)===k); }).length; sc.round=sv; return n; };
+      var _rdN=function(k){return _uni.filter(function(u){return vfMatchesFilters(u,{round:k,ignoreFocus:true});}).length;};
       var _rdCur=(window._vfScope&&window._vfScope.round)||'all';
       _bar+='<div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; margin:1px 0;" title="Which discovery round the source was found in. Round 1 = the original sweeps; Round 2 = grey literature + WOCAT practice database (2026-09)."><span style="font-size:9px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.05em; font-weight:700; min-width:118px; flex:0 0 118px;">Search round</span>'
         +['all'].concat(_rdAll).map(function(k){ var active=(_rdCur===k)?'active sky':''; var lab=(k==='all')?'Any':('Round '+String(k).replace('round','')); return '<button class="pill-btn '+active+'" onclick="if(window.DashboardPriority)DashboardPriority.leaveFocus();window._vfScope.round=\''+k+'\'; renderVfWorklist();" style="font-size:11px; padding:3px 10px; border-radius:4px;">'+lab+' ('+_rdN(k)+')</button>'; }).join('')+'</div>';
@@ -3342,7 +3352,7 @@
       if(window._vfAxOrigin!=='passed'){ var verdicts=['all'].concat(Array.from(new Set(_uni.filter(function(u){return u.origin==='flagged';}).map(function(u){return u.verdict;})))).concat(['conflict']);
         _extra=verdicts.map(function(v){ var active=window._vfVerdictFilter===v?'active rose':''; var n=(v==='all')?0:_axN('verdict',v); return '<button class="pill-btn '+active+'" onclick="window._vfSimpleView=\'advanced\';window._vfVerdictFilter=\''+v+'\'; renderVfWorklist();" style="font-size:11px; padding:3px 10px; border-radius:4px; text-transform:capitalize;">'+(v==='all'?'All':(v+' ('+n+')'))+'</button>'; }).join('')+'<span style="width:1px; height:16px; background:var(--border-color); margin:0 5px;"></span>'; }
       _bar+='<div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; margin:3px 0 0; padding-top:4px; border-top:1px solid var(--border-color);" title="The AI verify verdict on a flagged unit (mismatch / unsupported / conflict), plus a tabular-quotes-only toggle."><span style="font-size:9px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.05em; font-weight:700; min-width:118px; flex:0 0 118px;">Verdict</span>'+_extra+_tblPill+'</div>';
-      var matches=function(u,view){var search=(window._vfSearch||'').trim().toLowerCase();return (!window.DashboardPriority||DashboardPriority.matches(u.ev))&&vfSimpleMatch(u,view)&&(!search||[u.ev.source_id,u.ev.variable,u.ev.quote,u.ev.evidence_id].join(' ').toLowerCase().indexOf(search)>=0);};
+      var matches=function(u,view){return vfMatchesFilters(u,{view:view});};
       const summary = '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">' +
         [['todo','To review'],['waiting','Waiting for answers'],['mine','My reviewed']].map(([view,label]) => {
           const count = _uni.filter(u => matches(u, view)).length + (view === 'mine' ? extraReviews : 0);
@@ -3352,14 +3362,9 @@
         }).join('') + '</div>';
       var maintenance='<details><summary>Team maintenance</summary>'+[['unresolved','Decision / status checks'],['approval_only','Missing review history'],['dropped','Dropped history'],['all','All records']].map(function(q){return '<button class="pill-btn" onclick="vfReviewQueue(\''+q[0]+'\')">'+q[1]+'</button>';}).join('')+'</details>';
       var cl=window._vfClarificationError?'<p>'+vfEsc(window._vfClarificationError)+'</p>':'';
-      fd.innerHTML=summary+(window.DashboardPriority?DashboardPriority.controls():'')+(isMyHistory?vfArchivedHistory(personal.archived)+vfRatingHistory(personal.ratings):'')+cl+'<details '+(window._vfMoreFilters?'open':'')+' ontoggle="window._vfMoreFilters=this.open"><summary style="cursor:pointer">More filters'+((window._vfScope.observations||'hide')==='hide'?' · site observations hidden':'')+(window._vfSimpleView==='advanced'&&!window._vfPriorityEvidence?' — custom view active':'')+'</summary><button class="pill-btn" onclick="vfSimpleQueue(\'advanced\')">Use custom filters</button>'+(window._vfAdvancedScopeHtml||'')+_bar+maintenance+'<details data-local-review-only><summary>Review a whole source</summary><div id="vf-bulk"></div></details></details>'; }
-    // ---- apply the toggle filters to the universe (secondary filters via the shared _sec) ----
-    var _list=_uni.filter(function(u){
-      if(window._vfSimpleView!=='advanced')return _sec(u,'any','any');
-      if(window._vfAxOrigin!=='any'&&u.origin!==window._vfAxOrigin)return false;
-      if(window._vfAxMe!=='any'&&u.me!==(window._vfAxMe==='yes'))return false;
-      if(window._vfAxOther!=='any'&&u.other!==(window._vfAxOther==='yes'))return false;
-      return _sec(u, window._vfAxOrigin, window._vfAxMe); });
+      fd.innerHTML=summary+(window.DashboardPriority?DashboardPriority.controls():'')+(isMyHistory?vfArchivedHistory(personal.archived)+vfRatingHistory(personal.ratings):'')+cl;
+      document.getElementById('vf-sidebar-filters').innerHTML='<div class="vf-custom-view">'+(window._vfSimpleView==='advanced'&&!window._vfPriorityEvidence?'Custom filter view active':'Status filters open a custom view. Counts show results after selection.')+'</div><div class="vf-filter-groups">'+(window._vfAdvancedScopeHtml||'')+_bar+'</div>'+maintenance+'<details data-local-review-only><summary>Review a whole source</summary><div id="vf-bulk"></div></details>'; }
+    var _list=_uni.filter(function(u){return vfMatchesFilters(u);});
     // stable seeded order (hash) so cards don't jump between renders.
     if(window._vfPassSeed===undefined)window._vfPassSeed=Math.floor(Math.random()*1e9); var _seed=window._vfPassSeed;
     _list=_list.map(function(u){ var h=0,s=u.ev.evidence_id+'|'+_seed; for(var i=0;i<s.length;i++){h=((h<<5)-h+s.charCodeAt(i))|0;} return {u:u,h:h>>>0}; }).sort(function(a,b){return Number(vfHasAnswerForReview(b.u.ev.evidence_id))-Number(vfHasAnswerForReview(a.u.ev.evidence_id))||a.h-b.h;}).map(function(x){return x.u;});
@@ -6056,10 +6061,10 @@
 <script src="dashboard-relationships.js?v=1.2.1"></script>
 <script src="dashboard-tables.js?v=4"></script>
 <script src="dashboard-evidence.js?v=1.0.1"></script>
-<script src="dashboard-priority.js?v=1.13"></script>
+<script src="dashboard-priority.js?v=1.14"></script>
 <script src="review/priority-receipt.js"></script>
 <script src="review/priority-status.js?v=2"></script>
-<script src="dashboard-shell.js?v=1.9.0"></script>
+<script src="dashboard-shell.js?v=1.10.0"></script>
 <dialog id="finding-submission" aria-labelledby="finding-submission-title">
   <form><h2 id="finding-submission-title">Review finding</h2><output></output>
     <p>Your GitHub name, vote and note will appear on a public issue in RuralScan/evidence.</p>
