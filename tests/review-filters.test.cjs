@@ -5,7 +5,7 @@ const vm = require('node:vm');
 const path = require('node:path');
 
 // Exercise the functions used by the actual queue, rather than a duplicate filter model.
-const html = fs.readFileSync(path.join(__dirname, '..', 'dashboard.html'), 'utf8');
+const html = fs.readFileSync(path.join(__dirname, '..', 'review/workspace.js'), 'utf8');
 function setup() {
   const c = {
     _vfSimpleView:'todo', _vfAxStatus:'active', _vfAxOrigin:'any', _vfAxMe:'any', _vfAxOther:'any',
