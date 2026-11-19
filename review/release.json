@@ -1,8 +1,8 @@
 {
-  "version": "1.1.5",
+  "version": "1.1.6",
   "date": "2026-11-19",
   "notes": [
-    "Make existing online source links the default; keep local-folder setup and inline PDF prompts under optional controls."
+    "Restore highlighted PDF regions on finding cards when text excerpts are present; retain provenance checks, full-size links and numbered captions."
   ],
   "files": {
     "batch-receipt.js": "d77479a9c0f3b3ca0d8804b12e60397c4b9800611a29f33c48fc6658df49b6b0",
@@ -15,16 +15,24 @@
     "priority-receipt.js": "add8d49a5f272b797c11e3de078da9cfc753b7f2d8d55efc82711972fba345e0",
     "priority-status.js": "a751e66659eee2d5af59ebcc6942d7c1790daf34ffa7732b5258d0156a17dd3c",
     "priority.js": "3c933ec256197c6ebc889fdbfe0583fc2248debcce97c3453feaebb487d70c61",
-    "source-previews.js": "f176427b11a3e56b09a2e74cfd67f4cfefd38cad2570681152b774f58c8f53af",
+    "source-previews.js": "2217d058366e9cc901cdd86bac68fef6b9ca4b0d353a58c7f721d566827fe429",
     "submission-dialogs.html": "01cd8ab74260c840596871ef2c3b3891760949e651285ba2ecb4251d29e05b29",
     "submission.js": "9f8e0faba33bd8769105905ff764021494688c27bfbd89272528c34ca7362dc3",
     "vote-drafts.js": "d7b7385834eaa2f177ec22abcf1e22502244ba5bdd626ace079c6038e267d927",
-    "workspace.css": "4379ce8f5f5f7336d8a27eb2358f1dc5b89c1061d2ea7c96a64405a0bb3df6d9",
+    "workspace.css": "1a57ee70c7e7d98cc64950086ad48fbb44cc71e774624ebdd4608fc919770a27",
     "workspace.html": "f4300ed9d793a1bb1c0291a3a738590c7c525c8bda66f5ee8166166426419308",
     "workspace.js": "7a14fcf0e64b92f798ab0f88b8ea654f6a710de396cdefebc6ec86a5fee4a11d"
   },
-  "content_sha256": "c4a8cc20fe848f4fa62ed174492d420d13c3cf04e6edeec8d4152e2e52be31be",
+  "content_sha256": "52f048786bc3d668fcb2c3b1bb0338f9ebb9bbb322548249f70f3b5f8d7df337",
   "history": [
+    {
+      "version": "1.1.5",
+      "date": "2026-11-19",
+      "notes": [
+        "Make existing online source links the default; keep local-folder setup and inline PDF prompts under optional controls."
+      ],
+      "content_sha256": "c4a8cc20fe848f4fa62ed174492d420d13c3cf04e6edeec8d4152e2e52be31be"
+    },
     {
       "version": "1.1.4",
       "date": "2026-11-19",

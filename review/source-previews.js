@@ -2,6 +2,8 @@
 const SourcePreviews = (() => {
   const indexes = new Map();
   const localPanels = new Map();
+  const cropManifests = new Map();
+  let figureNumber = 0;
   const root = pin => 'https://raw.githubusercontent.com/RuralScan/evidence/'+pin+'/publication/source-previews/';
   const tag = (name, text) => {
     const el = document.createElement(name);
@@ -24,6 +26,42 @@ const SourcePreviews = (() => {
       return r.json();
     }).catch(err => { indexes.delete(pin); throw err; }));
     return indexes.get(pin);
+  }
+  async function legacyCrop(ev) {
+    // Never reuse an old crop unless the current quote, locator and source still match.
+    if (!reviewData.legacyPreviews?.has(ev.evidence_id)) return {};
+    const revision = reviewData.revision;
+    if (!/^[a-f0-9]{40}$/.test(revision || '')) return {};
+    if (!cropManifests.has(revision)) cropManifests.set(revision,
+      fetch('https://raw.githubusercontent.com/CIAT/nbs_ruralscan/'+revision+'/docs/crops/manifest.json')
+        .then(r => { if (!r.ok) throw Error('Crop manifest unavailable'); return r.json(); })
+        .catch(() => { cropManifests.delete(revision); return {unavailable:true}; }));
+    const manifest = await cropManifests.get(revision);
+    if (manifest.unavailable) return {unavailable:true};
+    const restricted = manifest.sharepoint?.[ev.evidence_id];
+    if (restricted) return {restricted};
+    if (manifest.eids?.includes(ev.evidence_id)) return {
+      image:'https://raw.githubusercontent.com/CIAT/nbs_ruralscan/'+revision+
+        '/docs/crops/'+encodeURIComponent(ev.evidence_id)+'.jpg'
+    };
+    return {};
+  }
+  function sourceFigure(panel, page, url, boxes = [], archived = false) {
+    if (!panel.dataset.sourceFigureNumber) panel.dataset.sourceFigureNumber = String(++figureNumber);
+    const fig = tag('figure'), picture = tag('div'), img = tag('img');
+    picture.className = 'source-image';
+    img.alt = 'Highlighted source region on PDF page '+page;
+    img.src = url;
+    img.addEventListener('error', () => picture.replaceChildren(tag('p', 'PDF region unavailable. Open the cited source below.')));
+    picture.append(img);
+    for (const [x,y,w,h] of boxes) {
+      const overlay = tag('i'); overlay.setAttribute('aria-hidden','true');
+      Object.assign(overlay.style,{left:x*100+'%',top:y*100+'%',width:w*100+'%',height:h*100+'%'});
+      picture.append(overlay);
+    }
+    fig.append(picture, tag('figcaption', 'Figure '+panel.dataset.sourceFigureNumber+'. PDF page '+page+
+      (archived ? ': saved highlighted source region; quote, locator and source match this finding.' : ': source region with matched passage highlighted.')));
+    return fig;
   }
   async function localPDF(host, ev, src, page) {
     const request = {ev, src, page};
@@ -83,44 +121,28 @@ const SourcePreviews = (() => {
     const page=item?.page || ev.page;
     const locator=page ? 'PDF page '+page : ev.locator || 'Source';
     host.append(tag('p',(src.citation || src.source_id)+' · '+locator));
+    const currentImage = item?.image && /^[a-f0-9]{64}\.webp$/.test(item.image);
+    const archived = currentImage ? {} : await legacyCrop(ev);
+    const imageURL = currentImage ? root(pin)+'pages/'+item.image : archived.image;
+    if (imageURL) {
+      host.append(sourceFigure(panel, page, imageURL, currentImage ? item.boxes || [] : [], !currentImage),
+        link('Open full-size PDF region', imageURL));
+    }
     if (item?.match) {
       const excerpt = tag('blockquote');
       excerpt.append(item.before,tag('mark',item.match),item.after);
       host.append(tag('small',item.partial?'Matched part of the quotation':'Matched source passage'),excerpt);
     }
-    if (item?.image && /^[a-f0-9]{64}\.webp$/.test(item.image)) {
-      const imageURL=root(pin)+'pages/'+item.image;
-      const fig=tag('figure'), img=tag('img');
-      img.alt='Source region on PDF page '+page; img.src=imageURL;
-      img.addEventListener('error',() => fig.replaceChildren(tag('p','Image unavailable. Open the cited source below.')));
-      fig.append(img);
-      for (const [x,y,w,h] of item.boxes || []) {
-        const overlay=tag('i'); overlay.setAttribute('aria-hidden','true');
-        Object.assign(overlay.style,{left:x*100+'%',top:y*100+'%',width:w*100+'%',height:h*100+'%'});
-        fig.append(overlay);
-      }
-      host.append(fig,link('Open full-size source region',imageURL));
-    }
-    if (!item) host.append(tag('p',unavailable?'Could not load the preview index. Reopen this panel to retry.':
+    if (!item && !imageURL) host.append(tag('p',unavailable?'Could not load the preview index. Reopen this panel to retry.':
       'No verified public preview for this version of the finding.'));
     const sources=tag('p');
-    if (!item && reviewData.legacyPreviews?.has(ev.evidence_id)) {
-      if (window._cropSharePointMap?.[ev.evidence_id]) {
-        sources.append(link('Open saved highlighted crop in team library',
-          vfSharePointUrl(window._cropSharePointMap[ev.evidence_id])), ' ');
-      } else if (window._cropManifest?.has(ev.evidence_id)) {
-        const url='https://raw.githubusercontent.com/CIAT/nbs_ruralscan/'+reviewData.revision+
-          '/docs/crops/'+encodeURIComponent(ev.evidence_id)+'.jpg';
-        const figure=tag('figure'), img=tag('img');
-        img.alt='Archived highlighted source region'; img.src=url;
-        figure.append(img); host.append(figure);
-      }
-    }
+    if (archived.restricted) sources.append(link('Open saved highlighted PDF region in team library',
+      vfSharePointUrl(archived.restricted)), ' ');
     if (src.library_path) sources.append(link('Open source in SharePoint · '+locator,
       vfSharePointUrl(src.library_path)+(page?'#page='+page:'')),' ');
     if (/^https?:\/\//i.test(src.url || '')) sources.append(link('Open original source',src.url));
     host.append(sources);
-    if (!item && page) {
+    if (!imageURL && page) {
       const optional = tag('details'), local = tag('div');
       optional.className = 'local-source-preview';
       optional.append(tag('summary', 'Optional: view a local PDF here'), local);
@@ -133,7 +155,7 @@ const SourcePreviews = (() => {
       // Existing connections still provide inline viewing; no setup prompt for everyone else.
       optional.open = LocalLibrary.state().status === 'ready';
     }
-    if (!unavailable) panel.dataset.loaded='1';
+    if (!unavailable && !archived.unavailable) panel.dataset.loaded='1';
   }
   document.addEventListener('toggle',event => {
     const panel=event.target;
