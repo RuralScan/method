@@ -234,3 +234,5 @@
 
 .source-preview .source-image { position:relative; }
 .source-preview figcaption { font-size:12px; color:var(--text-secondary); margin-top:6px; }
+
+.source-preview > div > small { display:block; margin-top:8px; }

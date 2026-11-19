@@ -19,11 +19,11 @@
     "submission-dialogs.html": "01cd8ab74260c840596871ef2c3b3891760949e651285ba2ecb4251d29e05b29",
     "submission.js": "9f8e0faba33bd8769105905ff764021494688c27bfbd89272528c34ca7362dc3",
     "vote-drafts.js": "d7b7385834eaa2f177ec22abcf1e22502244ba5bdd626ace079c6038e267d927",
-    "workspace.css": "1a57ee70c7e7d98cc64950086ad48fbb44cc71e774624ebdd4608fc919770a27",
+    "workspace.css": "aecff0296513e93db4118730bac5c0fa03115d38ac03534bf1d67cee061186ff",
     "workspace.html": "f4300ed9d793a1bb1c0291a3a738590c7c525c8bda66f5ee8166166426419308",
     "workspace.js": "7a14fcf0e64b92f798ab0f88b8ea654f6a710de396cdefebc6ec86a5fee4a11d"
   },
-  "content_sha256": "52f048786bc3d668fcb2c3b1bb0338f9ebb9bbb322548249f70f3b5f8d7df337",
+  "content_sha256": "c330a9b36bca6c365dee9e302fac0a36d76b6d309788665608715ce655ed0348",
   "history": [
     {
       "version": "1.1.5",
