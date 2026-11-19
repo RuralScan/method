@@ -452,7 +452,7 @@ EVIDENCE_FLOW = [
     ),
     (
         "compiling-evidence",
-        "Fixed code today. A move to an AI agent is planned.",
+        "T4: agent synthesis and scientific review, followed by validation and packaging. Published rows retain their historical provenance.",
         "A row of a rule table",
     ),
 ]
@@ -531,6 +531,10 @@ def build():
     ]
     chapter_pages("method.html", METHOD_CH, 2)
     chapter_pages("evidence-methods.html", EVIDENCE_CH, 3)
+    historic, historic_toc = chapter_body("t4-legacy-compiler")
+    page("ch-t4-legacy-compiler.html", "editions.html", "Historical T4 compiler", historic,
+         crumbs=[("editions.html", "Versions and editions"), ("", "Historical T4 compiler")],
+         lead=summary("t4-legacy-compiler"), toc=historic_toc)
 
     # Preserve the published guide addresses without retaining duplicate chapters in navigation.
     for old, target in (("evidence-registry", "evidence-principles"),
@@ -582,7 +586,7 @@ def build():
         + evidence_flow()
         + "<p>After review, " + link(chapter_file("compiling-evidence"), "Combining evidence into analytical tables")
         + " covers compatibility, repeated observations, shared sources, weighting and uncertainty. "
-        "The following chapters specify separate algorithms for suitability (T4), hazard and scorecard effects "
+        "The following chapters describe agent-led suitability synthesis (T4) and the separate methods for hazard and scorecard effects "
         "(T3/T6), and economic profiles (T6E). Dataset, hazard, context and priority configuration have different "
         "requirements, linked from the opening chapter.</p>"
         + chapter_index(EVIDENCE_CH, 3)
@@ -763,9 +767,9 @@ def build():
                 [
                     "Planned change",
                     (
-                        "Compiling evidence into rule tables is planned to move to an AI agent, and the suitability "
-                        "scores are left for that route. How its rows will be checked and approved is not settled. "
-                        f"{link('ch-compiling-evidence.html', 'Compiling evidence into rule tables')}."
+                        "New T4 mappings will be derived by an AI agent and reviewed before validation and packaging. "
+                        "The production route is not certified by this edition; its displayed rows retain their historical provenance. "
+                        f"{link('ch-suitability-synthesis.html', 'Agent-led suitability synthesis')}."
                     ),
                 ],
                 [

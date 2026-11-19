@@ -6,6 +6,12 @@ What changed in the Rural NbS Scan methodology, newest first. The build reads th
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.11.0] - 2026-11-19
+
+- Describe agent-led T4 synthesis separately from deterministic validation, packaging and runtime evaluation.
+- Move the earlier T4 filtering and weighting algorithms into a clearly labelled historical reproduction chapter.
+- Number and caption every table and figure, with a build check enforcing the requirement across generated pages.
+
 ## [0.10.0] - 2026-11-19
 
 - Integrate source appraisal into the opening evidence chapter and place shared synthesis guidance after review.

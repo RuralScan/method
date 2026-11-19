@@ -43,7 +43,7 @@ sources:
 ```
 
 Markdown allowed: `##`/`###` headings, paragraphs, bullet and numbered lists, pipe tables,
-fenced code, **bold**, *italic*, `code`. No HTML. No images. No footnotes.
+fenced code, **bold**, *italic*, `code`. Every table needs a descriptive caption: put `Table: <description>` immediately before its pipe table. The build supplies its number. No HTML. No images. No footnotes.
 
 Formulas go in fenced blocks tagged `formula`, written in plain text with Unicode
 (`×`, `Σ`, `≤`, subscripts as `w_i`). Define every symbol directly under the block.

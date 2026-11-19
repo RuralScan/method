@@ -27,6 +27,10 @@ sources:
   - method:handbook/implement-a-scan.md
 ---
 
+## How this relates to T4 synthesis
+
+This module applies an accepted T4 mapping to spatial data. The mapping will be derived through [[ch:suitability-synthesis|agent-led synthesis]] and scientific review. The deterministic evaluation formulae below describe runtime calculation; they do not prescribe how the agent interprets or combines literature to choose a mapping. The displayed evidence edition retains its historical compiler provenance.
+
 ## Question this module answers
 
 M1 asks: within this geography, where could this NbS be considered, given terrain, climate, soils, the existing land-use system and hard legal or physical exclusions, and how is that suitability distributed across the landscape? [src: methodology/modules/M1_suitability.md §2. Question answered]

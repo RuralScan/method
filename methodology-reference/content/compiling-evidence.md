@@ -16,7 +16,7 @@ sources:
 
 Review establishes what a claim can support within its recorded scope. Synthesis decides how eligible claims contribute to a particular analytical output. It may produce a numeric rule, an ordinal class, conditional alternatives, a qualitative statement or an unresolved hold. A faithfully extracted number is not automatically eligible for every output. [src: methodology/T4_generation_method.md §0] [src: methodology/T3_T6_generation_method.md §7]
 
-This chapter gives the shared reasoning and its limits. The next three chapters contain the detailed algorithms, formulae, thresholds and exceptions. Those table-specific rules remain the authority for reproducing this evidence edition; the review recommendations here do not introduce new numerical weights.
+This chapter gives the shared reasoning and its limits. The next chapter describes agent-led T4 synthesis; the following chapters describe effect and economic methods. Historical T4 algorithms are kept separately for reproduction of the pinned evidence edition. Shared guidance does not prescribe one automatic algorithm or introduce new numerical weights.
 
 | Output | Unit of synthesis | What is combined | Detailed method |
 |---|---|---|---|
@@ -75,13 +75,13 @@ Keep three units distinct: extracted records, reporting publications and underly
 
 Historical records remain recoverable. Resolving duplication changes eligibility or influence, not the existence of the evidence trail. Use `lineage_of` where its semantics fit and record fuller overlap and study structure in the synthesis audit. Do not imply that author-group or sampling-covariance fields already exist in the registry. [src: schema/spec.md §EV] [src: method:data-model/evidence-classification.json]
 
-### What the current compilers do
+### What the historical edition implements
 
-The implemented controls differ. T4 resolves citation lineage and applies its declared source/origin balancing; approved ordinal-profile pools permit one independent-origin contribution per interval or endpoint. T3/T6 resolves lineage but retains a source's eligible own arms, with a within-cell share factor of `1/k` across its `k` own units. T6E uses the effect machinery and adds economic eligibility and replication gates. The specialist chapters give the exact rules. [src: src/nbs_ruralscan/recipe/synthesis.py §_resolve_root_origin] [src: methodology/T4_generation_method.md §Reviewed numeric class tables] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §dedupe_for_cells]
+The historical controls differ. The earlier T4 compiler resolves citation lineage and applies its declared source/origin balancing; approved ordinal-profile pools permit one independent-origin contribution per interval or endpoint. T3/T6 resolves lineage but retains a source's eligible own arms, with a within-cell share factor of `1/k` across its `k` own units. T6E uses the effect machinery and adds economic eligibility and replication gates. The specialist chapters give the exact rules. [src: src/nbs_ruralscan/recipe/synthesis.py §_resolve_root_origin] [src: methodology/T4_generation_method.md §Reviewed numeric class tables] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §dedupe_for_cells]
 
 These controls do not automatically identify shared datasets across unlinked papers, overlap between reviews and their primaries, or correlated observations. The effect share factor prevents influence increasing simply with the number of own arms; those arms can still have different design and context weights. It is not a covariance model or a guarantee that the resulting publications are independent.
 
-For new synthesis proposals, report record, publication and identified-origin counts separately, including unknown origins. Where overlap matters, prepare a documented inclusion decision or dependency-aware analysis for review. Do not silently substitute a new pooling algorithm for the published compiler. The [source-contribution plan](https://github.com/RuralScan/method/issues/44) tracks unresolved implementation work.
+For new synthesis proposals, report record, publication and identified-origin counts separately, including unknown origins. Where overlap matters, prepare a documented inclusion decision or dependency-aware analysis for review. An agent-led T4 proposal must state and justify its synthesis choices; it must not silently rewrite the provenance of historical outputs. The [source-contribution plan](https://github.com/RuralScan/method/issues/44) tracks unresolved implementation work.
 
 ## Different meanings of weight
 
@@ -102,7 +102,7 @@ A source tier may already consider context, independence and authority. Addition
 
 ## Choosing a defensible result
 
-T4 combines compatible constraints or response profiles under its harmonisation and calibration policy. Direction without supported boundaries can remain useful while numerical calibration is held. It does not become a fitted curve by borrowing an effect-synthesis formula. [[ch:suitability-synthesis]] gives the shape, parameter and endpoint rules.
+For new T4 mappings, the agent interprets compatible constraints and response profiles, proposes a representation and exposes its judgement for review. Direction without supported boundaries can remain useful while numerical calibration is held. It does not become a fitted curve by borrowing an effect-synthesis formula. [[ch:suitability-synthesis]] explains what the agent must specify about shape, parameters and endpoints.
 
 T3/T6 reconciles eligible claims into ordinal effect classes with evidence and agreement assessments and an applicability envelope. It does not pool every percentage, standardised effect and narrative as one continuous effect size. A formal meta-analysis would require a separately specified estimand, compatible estimates, uncertainty and dependence treatment. [[ch:effect-synthesis]] gives the current reconciliation method.
 
@@ -122,11 +122,11 @@ Recommended review checks should target choices capable of changing the conclusi
 
 The review record should identify inputs and revisions, candidate dispositions, compatibility groups, origin accounting, transformations, numerical policies, sensitivity results, unresolved holds and approval scope. An AI-assisted proposal additionally needs its prompt or immutable task reference, skill version and actual model/settings where available. Missing settings are recorded as missing. Replay should use accepted inputs and decisions, rather than ask an AI to reinterpret them afresh. [src: methodology/T4_generation_method.md §Synthesis decision record]
 
-## Compilation and the proposed AI role
+## Agent synthesis, validation and historical reproduction
 
-The rows in this evidence edition were produced by fixed compiler code. With unchanged evidence, context, configuration and compiler version, the calculation is reproducible. Compilation reads the evidence; it does not rewrite the source claims. [src: src/nbs_ruralscan/recipe/synthesis.py] [src: src/nbs_ruralscan/recipe/cell_synthesis.py]
+For new T4 mappings, an AI agent will interpret reviewed evidence and derive a traceable proposal. Scientific review assesses that interpretation; deterministic code validates and packages the accepted mapping. Code that checks a schema or evaluates a curve is not the agent's scientific reasoning process. [[ch:suitability-synthesis]] describes the adopted route and its required decision record.
 
-An AI skill for proposing compiled rows is a planned route. Its validation, approval process and replacement of the current compiler are not established here. Any such route must preserve provenance, table-specific semantics and calibration holds, and expose its interpretation for scientific review. The shared guidance above describes what a proposal must make inspectable; it is not evidence that an AI synthesis workflow has been implemented or validated.
+The rows displayed in this pinned evidence edition were produced by earlier compiler code. Their algorithms remain available in [[ch:t4-legacy-compiler]] and in the effect/economic chapters. They are not evidence of a completed production agent run, and the T4 change does not imply that T3/T6/T6E have changed synthesis method. Reproduce accepted agent outputs from their recorded decisions and validated representation; do not promise that a fresh model run will repeat the same judgement.
 
 ## Assumptions and limits
 
@@ -136,4 +136,4 @@ The implemented lineage and source-sharing controls are useful but incomplete re
 
 ## Where this is configured
 
-[[table:EV]] and [[table:SRC]] provide claims, provenance, context and lineage; [[table:FAM]], [[table:VONT]] and [[table:XW]] provide families, quantities and routes. [[table:T4_NUMERIC_POLICY]] and [[table:T4_RUN]] govern suitability compilation and execution; [[table:BANDS]] and effect lookups govern effect and economic classification. The specialist chapters identify the exact pinned factors and code used for [[table:T4]], [[table:T3]], [[table:T6]] and [[table:T6E]].
+[[table:EV]] and [[table:SRC]] provide claims, provenance, context and lineage; [[table:FAM]], [[table:VONT]] and [[table:XW]] provide families, quantities and routes. The agent proposal and accepted mapping govern new T4 synthesis; [[table:T4_RUN]] records execution settings. [[table:T4_NUMERIC_POLICY]] documents historical numeric compilation. [[table:BANDS]] and effect lookups govern effect and economic classification. The historical T4 record and specialist effect/economic chapters identify the pinned factors and code used for [[table:T4]], [[table:T3]], [[table:T6]] and [[table:T6E]].

@@ -49,6 +49,8 @@ jobs:
         env:
           BASE_REF: ${{ github.base_ref }}
         run: python3 methodology-reference/build/versioning.py check-bump "origin/$BASE_REF"
+      - name: Test table and figure caption enforcement
+        run: python3 -m unittest discover -s methodology-reference/build -p test_display_captions.py
       - name: Read the pinned revisions from the build
         id: pins
         run: |
