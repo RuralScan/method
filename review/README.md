@@ -61,3 +61,7 @@ The original CIAT shortcuts set the same axes displayed in the sidebar. All T3, 
 - **Answers ready / Conflicts:** explicit follow-up presets, including previously reviewed findings. The Follow-up sidebar filter also provides waiting questions, requested rechecks and status reconciliation. Gaps and Stats retain their existing buttons.
 
 An active task never overrides Reviewed by me. Use **Show requested rechecks** within a selected task to include earlier decisions explicitly. Task status changes preserve sidebar selections. Direct finding links still open the selected record, including decided and dropped findings; choosing a shortcut returns to the scoped queue.
+
+## PDF regions on finding cards
+
+A matched text passage does not replace the PDF image. Source previews show a current provenance-matched image first, or a saved crop from the pinned producer revision when the current quote, locator and source still match. The saved crop manifest is loaded on demand, independently of the queue's background manifest request. Images have numbered captions and full-size links. Restricted crops remain authenticated team-library links. When no image is available, local PDF viewing remains optional even if a text excerpt exists.
