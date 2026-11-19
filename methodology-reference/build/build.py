@@ -25,6 +25,7 @@ import pages_model
 import pages_practices
 import pages_text
 import versioning
+from display_captions import audit as audit_captions
 
 HERE = Path(__file__).resolve().parent
 # Personal attributions must not reach public pages. Published authors in citations are fine.
@@ -115,6 +116,9 @@ def run_checks():
         not chapters.PROBLEMS,
         "; ".join(chapters.PROBLEMS[:6]),
     )
+
+    caption_errors = [f"{name}: {error}" for name, html in core.PAGES.items() for error in audit_captions(html)]
+    check("Every table and figure has one numbered descriptive caption", not caption_errors, "; ".join(caption_errors[:8]))
 
     ids = {
         name: set(re.findall(r'\sid="([^"]+)"', html))
@@ -457,6 +461,11 @@ def main():
             ("trace", "Trace any value"),
         ],
     )
+
+    # Include the checks page, which is created after the main validation pass.
+    for name, html in core.PAGES.items():
+        if errors := audit_captions(html):
+            raise ValueError(f"{name}: {errors}")
 
     if out.exists():
         shutil.rmtree(out)

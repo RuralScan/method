@@ -17,6 +17,7 @@ from html import escape
 from pathlib import Path
 
 import versioning
+from display_captions import number_displays
 
 ROOT = Path(__file__).resolve().parents[1]
 # Inside the method repository the reference sits at its root; otherwise the method, evidence and
@@ -711,6 +712,7 @@ def page(
     sections = []
     if numbered:
         body, sections = number_sections(body, [h for h, _ in NAV].index(section) + 1)
+    body = number_displays(body, title)
     doc_title = title if title == SITE_NAME else f"{title} · {SITE_NAME}"
     side = ""
     entries = SIDE.get(section, [])

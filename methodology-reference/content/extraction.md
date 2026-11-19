@@ -38,7 +38,7 @@ sources:
 
 ## What extraction does and does not do
 
-Extraction records *what one source says about one variable*, as atomic, quoted claims. It does not write analytical table rows, choose a final threshold, decide whether a finding transfers to a target country or map an outcome to a scorecard priority. Those are synthesis decisions taken later, over the pooled evidence, by deterministic code. [src: .agents/skills/extraction_contracts/T3_T6_extraction_contract.md §0. What you are NOT doing] [src: methodology/T4_generation_method.md §0]
+Extraction records *what one source says about one variable*, as atomic, quoted claims. It does not write analytical table rows, choose a final threshold, decide whether a finding transfers to a target country or map an outcome to a scorecard priority. Those are later synthesis decisions: agent-led proposals for new T4 mappings, with the effect and economic methods described in their own chapters. [src: .agents/skills/extraction_contracts/T3_T6_extraction_contract.md §0. What you are NOT doing] [src: methodology/T4_generation_method.md §0]
 
 A paper is read once for every authorised role, not once per variable. The extractor traverses each paper, captures every relevant variable and relationship in a single pass, and records the variables it found on the source record. Harmonisation, weighting and synthesis follow. [src: methodology/T4_generation_method.md §3. Discovery] Where a lane is authorised for one table only, claims for other tables are not extracted but left as structured deferred pointers (source, page, claim kind, the source's wording, a note), so a later pass is a lookup rather than a re-read. [src: methodology/T3_T6_generation_method.md §3.5 Single-pass extraction and deferred pointers]
 

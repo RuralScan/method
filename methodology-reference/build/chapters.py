@@ -43,6 +43,7 @@ EVIDENCE_CH = [
     "effect-synthesis",
     "cost-profiles",
 ]
+ARCHIVE_CH = ["t4-legacy-compiler"]
 PRACTICE_CH = [f"practice-{p}" for p in PRACTICE_IDS]
 GENERATED = {
     "editions": "editions.html",
@@ -146,7 +147,7 @@ def _wiki(match, slug):
     target, _, label = rest.partition("|")
     target, label = target.strip(), label.strip()
     if kind == "ch":
-        known = set(METHOD_CH) | set(EVIDENCE_CH) | set(PRACTICE_CH) | set(GENERATED)
+        known = set(METHOD_CH) | set(EVIDENCE_CH) | set(PRACTICE_CH) | set(ARCHIVE_CH) | set(GENERATED)
         if target not in known:
             PROBLEMS.append(f"{slug}: link to unknown chapter {target}")
             return esc(label or target)
@@ -170,7 +171,7 @@ TITLES = {}
 
 
 def titles():
-    for slug in METHOD_CH + EVIDENCE_CH + PRACTICE_CH:
+    for slug in METHOD_CH + EVIDENCE_CH + PRACTICE_CH + ARCHIVE_CH:
         meta, _ = read(slug)
         if meta:
             TITLES[slug] = meta.get("title", words(slug))
@@ -235,6 +236,7 @@ def chapter_body(slug):
         extension_configs={"toc": {"toc_depth": "2-3"}},
     )
     html = md.convert(raw)
+    html = re.sub(r"<p>Table: (.*?)</p>\s*<table>", r"<table><caption>\1</caption>", html, flags=re.S)
     html = html.replace(
         "<table>", '<div class="tablewrap" tabindex="0"><table>'
     ).replace("</table>", "</table></div>")

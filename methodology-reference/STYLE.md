@@ -96,3 +96,13 @@ Inter and Outfit load from Google Fonts with the same link the dashboard uses. I
 ## Checking a change by eye
 
 Open the reference and the live dashboard side by side in the same theme. Header, tabs, a card and a table should look like parts of one site. View the reference in both themes, at a laptop width (about 1,024 pixels) and at a desktop width, before opening a pull request. Readers are expected at a desk: phones are not a target, so the pages only need to stay usable there, not polished.
+
+## Tables and figures
+
+Every table and figure has a visible number and a descriptive native HTML caption. Numbers are
+page-local: Table 1, Table 2 and Figure 1, Figure 2, in display order, with separate sequences.
+The generator owns numbering; authors must not type numbers. For a Markdown table, write
+`Table: Descriptive caption.` immediately before it. Existing generated captions are retained;
+otherwise a table caption describes its local section and column headings. Figures require an
+explicit descriptive figcaption. The build rejects missing, empty, duplicate or unnumbered captions.
+This applies to authored chapters, generated data pages and historical method pages alike.
