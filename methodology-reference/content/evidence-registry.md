@@ -57,7 +57,7 @@ The [column manifest](https://github.com/CIAT/nbs_ruralscan/blob/9d84fd9900b9c91
 | Field group | EV fields and interpretation |
 |---|---|
 | Identity and target | `evidence_id`, `source_id`, `nbs_id`, `suitability_family_id`, `variable`. |
-| Four classifications | `use_role`, `evidence_type`, `claim_basis`, `claim_scope`; detailed below. |
+| Classification | `use_role`, `evidence_type`, `claim_scope`, separate `knowledge_basis` and `extraction_format`; legacy `claim_basis` is retained for historical reproduction. |
 | Source statement | `quote`; `locator_type` and either `page` or `locator`; `commit_sha` for code-line provenance. Supported locators are `page`, `section`, `char_span`, `file_line`. |
 | Extracted content | `relationship` holds structured values, direction, classes or retained source profiles; `context` holds the conditions needed to interpret them. These are structured objects, not permission to infer missing values. |
 | Meaning and attribution | `raw_name`, `observed_dataset`, `taxon`, `attribution`, `lineage_of`. Model-use lineage can be recorded separately in `context.model_use`; borrowed response thresholds need not share the origin of a paper's model weights. |
