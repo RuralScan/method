@@ -9,7 +9,7 @@ from unittest.mock import patch
 import publish_editions as publish
 
 
-REFERENCE = '''<html><head></head><body><header><a class="review-entry" href="https://ruralscan.github.io/method/dashboard.html#review-queue">Review queue</a></header>
+REFERENCE = '''<html><head></head><body><header><a class="review-entry" href="https://ruralscan.github.io/method/dashboard.html#review-queue">Review queue</a><nav class="tabs" aria-label="Sections"><div class="wrap"><a href="index.html" aria-current="page"><span class="n">1</span> Overview</a><a href="method.html"><span class="n">2</span> Method</a><a href="evidence-methods.html"><span class="n">3</span> Evidence methods</a></div></nav></header>
 <select id="dashboard-version" aria-describedby="dashboard-version-note"><option>Old menu</option></select>
 <span id="dashboard-version-note"><b>Under review</b> Draft for approval</span>
 <a class="vb-live" href="https://ruralscan.github.io/method/dashboard.html#overview">Live dashboard</a>
@@ -18,7 +18,6 @@ REFERENCE = '''<html><head></head><body><header><a class="review-entry" href="ht
 
 # What the methodology build writes beside its pages. The site takes its menu label from this.
 DASHBOARD_REV = "a" * 40
-DASHBOARD_LABEL = "Evidence dashboard · build aaaaaaaa"
 
 VERSION = {"name": "Methodology", "version": "0.8.0", "date": "2026-11-18", "status": "draft"}
 
@@ -41,7 +40,7 @@ class VersionMenuTest(unittest.TestCase):
         if available:
             entry = site / reference["href"]
             entry.parent.mkdir()
-            for name in ('index.html', 'help.html', 'row-t4-finding.html'):
+            for name in ('index.html', 'method.html', 'evidence-methods.html', 'help.html', 'row-t4-finding.html'):
                 (entry.parent / name).write_text(REFERENCE)
             (entry.parent / 'version.json').write_text(json.dumps(VERSION))
         return editions, reference
@@ -64,19 +63,19 @@ class VersionMenuTest(unittest.TestCase):
                 html=page.read_text()
                 menu=html.split('<select id="dashboard-version"',1)[1].split('>',1)[1].split('</select>',1)[0]
                 groups=dict(re.findall(r'<optgroup label="([^"]+)">(.*?)</optgroup>',menu))
-                self.assertEqual(list(groups),['Current pages','Earlier drafts'])
+                self.assertEqual(list(groups),['Current version','Earlier drafts'])
                 self.assertNotIn('legacy.html',menu)
                 self.assertNotIn('10 Nov 2026',menu)
-                self.assertEqual(menu.count('Evidence dashboard'),1)
-                self.assertIn('>Methodology v0.8.0 · 18 Nov 2026</option>',groups['Current pages'])
+                self.assertEqual(menu.count('Evidence dashboard'),0)
+                self.assertEqual(groups['Current version'].count('<option '),1)
+                self.assertIn('>Methodology v0.8.0 · 18 Nov 2026</option>',groups['Current version'])
                 self.assertIn('v0.7.0 · Human review queues and finding cards · 13 Nov 2026',groups['Earlier drafts'])
                 self.assertIn('v0.1.0 · Methodology draft · 11 Nov 2026',groups['Earlier drafts'])
                 self.assertEqual(menu.count(' selected'),1)
-                self.assertIn('>Evidence dashboard · build aaaaaaaa',groups['Current pages'])
                 chosen=re.search(r'<option[^>]* selected[^>]*>(.*?)</option>',menu)[1]
                 if page.parent==site:
-                    self.assertEqual(chosen,'Evidence dashboard · build aaaaaaaa')
-                    self.assertIn('<option value="dashboard.html" selected>',groups['Current pages'])
+                    self.assertEqual(chosen,'Methodology v0.8.0 · 18 Nov 2026')
+                    self.assertIn('<option value="dashboard.html" selected data-current-workspace>',groups['Current version'])
                     self.assertNotIn('aria-label="Superseded dashboard"',html)
                     self.assertNotIn('Current review workspace',html)
                     self.assertIn('https://github.com/RuralScan/method/tree/' + DASHBOARD_REV, html)
@@ -85,7 +84,7 @@ class VersionMenuTest(unittest.TestCase):
                     self.assertIn('id="snapshot-history"',history)
                     self.assertIn('All dashboard changes',history)
                     self.assertIn('Feedback and reported issues',history)
-                    self.assertIn('two pages of RuralScan',history)
+                    self.assertIn('is the home of this site',history)
                     self.assertNotIn('id="review-build"',html.split('<div class="header-actions">',1)[1].split('</header>',1)[0])
                     build=json.loads((site/'dashboard-build.json').read_text())
                     self.assertEqual(build['revision'],DASHBOARD_REV)
@@ -102,12 +101,22 @@ class VersionMenuTest(unittest.TestCase):
                     self.assertIn('aria-label="Dashboard version and tools"',header)
                     self.assertIn('id="dashboard-version"',header)
                     bar=html.split('aria-label="Dashboard version and tools">',1)[1].split('</div>',1)[0]
-                    controls=['>Page / edition</label>','id="dashboard-version-note"','id="theme-toggle"','id="rv-toggle"','What changed? · history and feedback']
+                    controls=['>Version</label>','id="dashboard-version-note"','id="theme-toggle"','id="rv-toggle"','What changed? · history and feedback']
                     self.assertEqual(sorted(controls,key=bar.index),controls)
+                    nav=header.split('aria-label="Methodology sections">',1)[1].split('</nav>',1)[0]
+                    self.assertIn('id="btn-methods" href="reference/method.html"><span class="n">2</span> Method</a>',nav)
+                    self.assertNotIn('aria-current=',nav)
+                    self.assertIn('href="reference/index.html">Rural NbS Scan</a>',header)
+                    tools=html.split('aria-label="Evidence workspace tools">',1)[1].split('</nav>',1)[0]
+                    self.assertNotIn('Methods',tools)
+                    self.assertNotIn('Overview',tools)
+                    self.assertIn('id="btn-qaqc">Evidence review</button>',tools)
+                    self.assertIn('id="tab-qaqc" class="tab-content active"',html)
+                    self.assertIn('<script src="home-route.js?v=2"></script>',html)
+                    self.assertIn('<body data-methodology-workspace',html)
                 elif page.parent.name=='reference':
                     self.assertEqual(chosen,'Methodology v0.8.0 · 18 Nov 2026')
-                    route='review-t4' if page.name.startswith('row-t4-') else 'overview'
-                    self.assertIn(f'<option value="../dashboard.html#{route}">Evidence dashboard · build aaaaaaaa</option>',groups['Current pages'])
+                    self.assertIn('<option value="../reference/index.html" selected>',groups['Current version'])
                     self.assertIn(publish.tab_icon('methodology'),html)
                     self.assertIn('href="../dashboard.html#review-queue">Review queue</a>',html)
                     self.assertIn('<span id="dashboard-version-note">Current draft</span>',html)
@@ -116,7 +125,7 @@ class VersionMenuTest(unittest.TestCase):
                 else:
                     self.assertIn(publish.tab_icon('methodology'),html)
                     self.assertIn(f'data-edition="{editions[-1]["edition"]}" selected',groups['Earlier drafts'])
-                    self.assertIn('<option value="../../dashboard.html#',groups['Current pages'])
+                    self.assertIn('<option value="../../dashboard.html#',groups['Current version'])
                     self.assertIn('../../dashboard.html#review-queue',html)
 
     def test_without_promotion_original_dashboard_remains_default(self):
@@ -129,6 +138,19 @@ class VersionMenuTest(unittest.TestCase):
                 self.assertIn(' selected>Evidence dashboard · 10 Nov 2026</option>',html)
                 self.assertNotIn('aria-label="Superseded dashboard"',html)
 
+    def test_missing_or_broken_methodology_navigation_stops_publication(self):
+        for problem in ('missing navigation', 'missing method page'):
+            with self.subTest(problem=problem),TemporaryDirectory() as tmp:
+                site=Path(tmp);editions,reference=self.prepare(site)
+                if problem=='missing navigation':
+                    path=site/'reference/index.html'
+                    path.write_text(re.sub(r'<nav.*?</nav>','',path.read_text(),flags=re.S))
+                else:
+                    (site/'reference/method.html').unlink()
+                with self.assertRaisesRegex(ValueError,'Methodology'):
+                    self.publish(site,editions,reference)
+                self.assertFalse((site/'index.html').exists())
+
     def test_missing_or_unlisted_default_stops_publication(self):
         for problem in ('missing','private','noindex'):
             with self.subTest(problem=problem),TemporaryDirectory() as tmp:
@@ -140,7 +162,7 @@ class VersionMenuTest(unittest.TestCase):
                     self.publish(site,editions,reference)
                 self.assertFalse((site/'index.html').exists())
 
-    def test_every_kind_of_page_has_a_tab_symbol_and_the_two_products_differ(self):
+    def test_pages_have_tab_symbols_and_workspace_is_distinguishable(self):
         self.assertNotEqual(publish.tab_icon('dashboard'),publish.tab_icon('methodology'))
         here=Path(publish.__file__).parent
         self.assertEqual((here/'dashboard.html').read_text().count(publish.tab_icon('dashboard')),1)

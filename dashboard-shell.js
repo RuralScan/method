@@ -129,6 +129,7 @@
   function numberContent() {
     // Progress owns its stage/table numbering. Other legacy and dynamic views share this convention.
     [['tab-interrogator', '3'], ['tab-stocktake', '4.1'], ['tab-variables', '4.2'], ['tab-qaqc', '5'], ['tab-methods', '6']].forEach(function (entry) {
+      if (entry[0] === 'tab-qaqc' && document.body.hasAttribute('data-methodology-workspace')) return;
       var root = byId(entry[0]); if (!root) return;
       var h = 0;
       var prefix = entry[0] === 'tab-interrogator' ? '3.2' : entry[1];

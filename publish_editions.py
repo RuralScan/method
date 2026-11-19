@@ -195,8 +195,47 @@ def dashboard_revision():
     return revision
 
 
-def dashboard_label(revision):
-    return "Evidence dashboard · build " + revision[:8]
+def methodology_navigation(site, reference):
+    """Use the actual published Methodology sections, not another dashboard taxonomy."""
+    home = site / reference['href']
+    match = re.search(r'<nav\b[^>]*aria-label="Sections"[^>]*>(.*?)</nav>', home.read_text(), re.S)
+    links = re.findall(r'<a\s+href="([^"]+)"[^>]*>.*?</a>', match[1], re.S) if match else []
+    if links[:2] != ['index.html', 'method.html']:
+        raise ValueError('Default Methodology must expose Overview then Method in its section navigation')
+    anchors = re.findall(r'<a\s+href="[^"]+"[^>]*>.*?</a>', match[1], re.S)
+    result = []
+    for href, anchor in zip(links, anchors):
+        if not re.fullmatch(r'[a-z0-9-]+\.html', href) or not (home.parent / href).is_file():
+            raise ValueError('Invalid Methodology section destination: ' + href)
+        anchor = re.sub(r'\s+aria-current="[^"]*"', '', anchor)
+        anchor = anchor.replace('href="' + href + '"', 'href="reference/' + href + '"', 1)
+        identifier = {'index.html': 'btn-overview', 'method.html': 'btn-methods'}.get(href)
+        if identifier:
+            anchor = anchor.replace('<a ', '<a id="' + identifier + '" ', 1)
+        result.append(anchor)
+    return '<nav class="methodology-nav" aria-label="Methodology sections">' + ''.join(result) + '</nav>'
+
+
+def integrate_methodology_workspace(contents, navigation):
+    """Retain tool IDs and finding routes inside the current site's navigation."""
+    contents = contents.replace('<body', '<body data-methodology-workspace', 1)
+    contents = contents.replace('</head>', '<script src="home-route.js?v=2"></script></head>', 1)
+    contents = contents.replace('</header>', navigation + '</header>', 1)
+    contents = contents.replace('        Rural NbS Scan\n', '        <a class="methodology-home" href="reference/index.html">Rural NbS Scan</a>\n', 1)
+    contents = contents.replace('<span class="brand-subtitle">Evidence for rural nature-based solutions</span>',
+                                '<span class="brand-subtitle">Methodology · evidence and review tools</span>', 1)
+    match = re.search(r'<nav class="tab-nav"[^>]*>.*?</nav>', contents, re.S)
+    if not match:
+        raise ValueError('Missing evidence workspace navigation')
+    nav = match[0].replace('aria-label="Dashboard sections"', 'aria-label="Evidence workspace tools"')
+    for identifier in ('btn-overview', 'btn-methods'):
+        nav = re.sub(r'\s*<button\b[^>]*id="' + identifier + r'"[^>]*>.*?</button>', '', nav)
+    nav = re.sub(r'(?<=>)\d+\. ', '', nav)
+    nav = nav.replace('class="tab-btn" data-tab="tab-qaqc"', 'class="tab-btn active" data-tab="tab-qaqc"')
+    contents = contents[:match.start()] + nav + contents[match.end():]
+    contents = contents.replace('id="tab-overview" class="tab-content active"', 'id="tab-overview" class="tab-content"')
+    contents = contents.replace('id="tab-qaqc" class="tab-content"', 'id="tab-qaqc" class="tab-content active"')
+    return contents
 
 _TILE = ("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='5' fill='#0b0f19'/>"
          "<g fill='none' stroke='#10b981' stroke-width='{width}' stroke-linecap='round' stroke-linejoin='round'{place}>"
@@ -241,15 +280,12 @@ def reference_version(site, reference):
     return label, "Current draft" if status == "draft" else "Current release"
 
 
-def publish_reference_menu(site, reference, labels, label, note, dashboard_title):
+def publish_reference_menu(site, reference, labels, label, note):
     """The publishing branch owns navigation, even when reference content is pinned earlier."""
     for path in (site / "reference").rglob("*.html"):
         base = "../" * len(path.parent.relative_to(site).parts)
-        row = re.match(r"row-(t3|t4|t6)-", path.name)
-        dashboard_route = "review-" + row[1] if row else "overview"
         groups = [
-            ("Current pages", [(base + reference["href"], label, True),
-                      (base + "dashboard.html#" + dashboard_route, dashboard_title, False)]),
+            ("Current version", [(base + reference["href"], label, True)]),
             ("Earlier drafts", [(base + f"editions/{key}/index.html", escape(value), False)
                                 for key, value in reversed(labels.items())]),
         ]
@@ -274,7 +310,7 @@ def publish_reference_menu(site, reference, labels, label, note, dashboard_title
             contents, count = re.subn(pattern, replacement, contents, flags=re.S)
             if count != 1:
                 raise ValueError(f"Expected one shared navigation element in {path}: {pattern}")
-        contents = contents.replace('<label for="dashboard-version">Version</label>', '<label for="dashboard-version">Page / edition</label>')
+        contents = re.sub(r'(<label for="dashboard-version">).*?</label>', r'\1Version</label>', contents)
         if 'rel="icon"' not in contents:
             contents = contents.replace("</head>", tab_icon("methodology") + "</head>", 1)
         path.write_text(contents)
@@ -283,7 +319,6 @@ def publish_reference_menu(site, reference, labels, label, note, dashboard_title
 def add_version_selectors(site, editions, ciat, reference):
     """Decorate the published dashboard shell after all pinned builds complete."""
     revision = dashboard_revision()
-    dashboard_title = dashboard_label(revision)
     pages = {}
     labels = {}
     for item in editions:
@@ -326,6 +361,7 @@ def add_version_selectors(site, editions, ciat, reference):
                         for p in (site / "reference").rglob("*.html")):
         raise ValueError("Default Methodology is not approved for public listing")
     reference_label, reference_note = reference_version(site, reference) if reference_available else (None, None)
+    shared_navigation = methodology_navigation(site, reference) if promoted else None
     for asset in ("edition-selector.css", "edition-selector.js"):
         copyfile(Path(__file__).with_name(asset), site / asset)
 
@@ -355,18 +391,16 @@ def add_version_selectors(site, editions, ciat, reference):
         legacy_match = legacy_dest is not None
         legacy_dest = legacy_dest or "#overview"
         if promoted:
-            # One dashboard, one entry. An earlier draft's page opens the matching dashboard view.
+            # One current Methodology edition. Evidence tools are pages within that site.
             href = base + escape(reference["href"], quote=True)
             dashboard_url = base + "dashboard.html" + ("" if root_shell else legacy_dest)
-            unmatched = not root_shell and not legacy_match
-            current_dashboard_label = dashboard_title + (" (opens overview)" if unmatched else "")
-            # The dashboard is not the methodology: it selects its own entry, never the methodology's.
             selected = " selected" if current == "review" else ""
-            fallback = " data-fallback" if unmatched else ""
-            groups = [(reference["group"],
-                       f'<option value="{href}">{reference_label}</option>'
-                       f'<option value="{dashboard_url}"{selected}{fallback}>{current_dashboard_label}</option>',
-                       f'<a href="{href}">{reference_label}</a> · <a href="{dashboard_url}">{current_dashboard_label}</a>')]
+            # Selecting the current edition from its workspace must preserve the current task.
+            current_url = 'dashboard.html' if root_shell else dashboard_url if legacy_match else href
+            keep_route = ' data-current-workspace' if root_shell else ''
+            groups = [("Current version",
+                       f'<option value="{current_url}"{selected}{keep_route}>{reference_label}</option>',
+                       f'<a href="{href}">{reference_label}</a>')]
         else:
             legacy_url = base + "legacy.html" + legacy_dest
             legacy_label = legacy_title
@@ -384,7 +418,7 @@ def add_version_selectors(site, editions, ciat, reference):
         menu = "".join(f'<optgroup label="{escape(group)}">{items}</optgroup>' for group, items, _ in groups)
         plain_links = " · ".join(f'<strong>{escape(group)}</strong> {items}' for group, _, items in groups)
         kind = ' data-legacy="true"' if root_shell else ""
-        label = "Page / edition"
+        label = "Version"
         if current == "review":
             note = ""
         elif legacy:
@@ -427,6 +461,8 @@ def add_version_selectors(site, editions, ciat, reference):
             route_data = json.dumps(legacy_routes, separators=(",", ":")).replace("<", "\\u003c")
             control += f'<script type="application/json" id="legacy-version-routes">{route_data}</script>'
         contents = path.read_text()
+        if root_shell and promoted:
+            contents = integrate_methodology_workspace(contents, shared_navigation)
         if root_shell:
             build = ('<b>Evidence dashboard</b> · build <a href="https://github.com/RuralScan/method/tree/'
                      + revision + '">' + revision[:8] + '</a>')
@@ -447,7 +483,7 @@ def add_version_selectors(site, editions, ciat, reference):
         else:
             contents = contents[:header] + control + contents[header:]
         assets = (f'<link rel="stylesheet" href="{base}edition-selector.css?v=3">'
-                  f'<script defer src="{base}edition-selector.js"></script>')
+                  f'<script defer src="{base}edition-selector.js?v=2"></script>')
         if 'rel="icon"' not in contents:
             assets += tab_icon("methodology")
         path.write_text(contents.replace("</head>", assets + "</head>", 1))
@@ -477,7 +513,7 @@ def add_version_selectors(site, editions, ciat, reference):
         # One dashboard. The old address of its superseded overview forwards to it.
         decorate(site / "dashboard.html", "review", "index.html")
         live.write_text(dashboard_forward())
-        publish_reference_menu(site, reference, labels, reference_label, reference_note, dashboard_title)
+        publish_reference_menu(site, reference, labels, reference_label, reference_note)
         for name in ("index.html", "home-route.js"):
             copyfile(Path(__file__).with_name(name), site / name)
     else:
@@ -494,9 +530,10 @@ def add_version_selectors(site, editions, ciat, reference):
         "overview_snapshot":LIVE_PIN}, indent=2) + "\n")
     for name in (("dashboard.html",) if promoted else ("index.html", "dashboard.html", "legacy.html")):
         contents = (site / name).read_text()
-        expected_title = dashboard_title if promoted and name == "dashboard.html" else legacy_title
+        expected_title = reference_label if promoted and name == "dashboard.html" else legacy_title
         if ('id="tab-qaqc"' not in contents or 'id="vf-scope"' not in contents
-                or 'src="dashboard-tables.js?' not in contents or f' selected>{expected_title}</option>' not in contents):
+                or 'src="dashboard-tables.js?' not in contents
+                or not re.search(r'<option\b[^>]* selected(?:\s[^>]*)?>' + re.escape(expected_title) + r'</option>', contents)):
             raise ValueError(f"{name} must retain evidence review and select its own edition")
 
 

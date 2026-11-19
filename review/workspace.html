@@ -1,12 +1,12 @@
     <!-- Evidence review component -->
     <div id="tab-qaqc" class="tab-content">
-<header class="shell-intro"><h2>5. Evidence review</h2><p>Choose a table, open a finding and compare the extraction with its source. Use <b>Keep, Drop or Query</b> directly on each card. Submit saved decisions together when ready.</p></header>
-      <nav class="shell-subnav" aria-label="Evidence review views"><button type="button" data-review-view="queue" aria-pressed="true">5.1 Review queue</button><button type="button" data-review-view="help" aria-pressed="false">5.2 How to review</button><button type="button" data-review-view="pipeline" aria-pressed="false">5.3 Pipeline records</button></nav>
-      <section id="review-help-panel" hidden><h3>5.2 How to review</h3>
+<header class="shell-intro"><h2>Evidence review</h2><p>Choose a table, open a finding and compare the extraction with its source. Use <b>Keep, Drop or Query</b> directly on each card. Submit saved decisions together when ready.</p></header>
+      <nav class="shell-subnav" aria-label="Evidence review views"><button type="button" data-review-view="queue" aria-pressed="true">Review queue</button><button type="button" data-review-view="help" aria-pressed="false">How to review</button><button type="button" data-review-view="pipeline" aria-pressed="false">Pipeline records</button></nav>
+      <section id="review-help-panel" hidden><h3>How to review</h3>
         <p>Review checks the extraction against its source. It does not approve a spatial model, a proposed investment or every other claim from the same paper.</p>
-        <h4>5.2.1 Get connected</h4>
+        <h4>Get connected</h4>
         <p>Sign in to GitHub. Open a finding and check the original passage before submitting a review. Votes, notes and GitHub names are public. Restricted sources stay in the source library.</p>
-        <h4>5.2.2 Work through the queue</h4>
+        <h4>Work through the queue</h4>
         <ol class="shell-review-steps">
           <li><b>Set your own GitHub handle in Review queue.</b> Choose <b>Other…</b> if it is missing. This selector filters historical decisions. GitHub credits the account that creates the issue. Use practice, evidence type and search to narrow the queue.</li>
           <li><b>Start with To review: active findings you have not reviewed.</b> Use <b>AI-flagged</b>, <b>AI-passed</b> or <b>2nd opinion</b> to narrow that work. <b>Kept</b>, <b>Queried</b> and <b>Dropped</b> show your calls; <b>My reviewed</b> includes your history. Shortcuts set the visible sidebar filters, which you can refine. The Filters sidebar contains practice, evidence type, technical filters and dropped history. Site observations are deferred by default and can be included there. On small screens, open Filters above the findings.</li>
@@ -15,7 +15,7 @@
           <li><b>Review answers on the evidence card.</b> Choose <b>Answers ready</b> to find returned answers, including findings you previously queried. Read the answer and source, then Keep, Drop or Query. The sidebar <b>Follow-up</b> filter also exposes waiting questions, conflicts and requested rechecks. There is no separate answer-approval step; deciding one record does not approve the other records sharing its answer.</li>
           <li><b>Choose Keep, Drop or Query on the card.</b> Your decision is saved on this device and the queue moves to the next finding. Choose <b>Submit all my decisions</b>, then create the GitHub issue. Its number is your receipt. Find it through <b>My reviewed</b>.</li>
         </ol>
-        <h4>5.2.3 If something needs attention</h4>
+        <h4>If something needs attention</h4>
         <ul><li><b>Missing sources:</b> hydrate the corpus and use Recheck. A source-cache presence count is not a completed quote check; submission runs the provenance guardrail.</li><li><b>Missing extraction:</b> use Report missing evidence under More actions and identify the source and location.</li><li><b>Submission failed:</b> decisions remain saved locally. Read the reported error before retrying; do not start a second submission while one is still running.</li><li><b>Interface feedback:</b> use Feedback in the dashboard header. These notes stay in this browser at this address until exported; they do not Keep, Drop, Query or submit an evidence decision.</li></ul>
         <p><a href="review/browser-backup.html">Back up or restore this browser’s review drafts</a></p>
         <p><a href="https://github.com/CIAT/nbs_ruralscan/blob/main/docs/REVIEWER_GUIDE.md" target="_blank" rel="noopener noreferrer">Full reviewer guide, source access and recovery instructions ↗</a></p>
@@ -46,7 +46,7 @@
     </div>
       <div class="card-container">
         <h2 class="card-title" style="display:flex; align-items:center; gap:12px;">
-          <span>5.1 Review queue</span>
+          <span>Review queue</span>
           <span class="card-title-meta" style="flex:1;">Check the extraction against its source, then Keep, Drop or Query.</span>
           <button id="vf-gaps-btn" onclick="window._vfMode=(window._vfMode==='gaps'?'review':'gaps'); renderVfWorklist();" title="Missing evidence reported by reviewers — variables/figures expected but not extracted. Click to open, click again to return to review." style="flex:0 0 auto; font-size:11px; font-weight:600; padding:6px 14px; border-radius:6px; border:1px solid var(--accent-amber); background:transparent; color:var(--accent-amber); cursor:pointer;">&#9888; Gaps</button>
           <button id="vf-stats-btn" onclick="toggleVfStats()" title="AI verify-flag performance metrics — click to open, click again to return to review" style="flex:0 0 auto; font-size:11px; font-weight:600; padding:6px 14px; border-radius:6px; border:1px solid var(--accent-emerald); background:transparent; color:var(--accent-emerald); cursor:pointer;">📊 Stats</button>

@@ -71,7 +71,7 @@
   },
   {
     "label": "Methodology",
-    "group": "Current pages",
+    "group": "Current version",
     "default": true,
     "href": "reference/index.html"
   }
