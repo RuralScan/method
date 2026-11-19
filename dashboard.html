@@ -1012,7 +1012,7 @@
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.1.0">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.14.0">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.14.1">
 <link rel="stylesheet" href="dashboard-evidence.css?v=1.0.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
@@ -1666,8 +1666,8 @@
             <details id="vf-sidebar-panel" open>
               <summary>Filters <span>Practice, evidence type and review status</span></summary>
               <div class="vf-sidebar-content">
-                <div class="vf-sidebar-heading"><strong>Filters</strong><a href="#vf-cards" onclick="event.preventDefault();var findings=document.getElementById('vf-cards');findings.focus({preventScroll:true});findings.scrollIntoView({block:'start'});">Go to findings →</a></div>
-                <div id="vf-scope"></div>
+                <div class="vf-scope-sticky"><div class="vf-sidebar-heading"><strong>Filters</strong><a href="#vf-cards" onclick="event.preventDefault();var findings=document.getElementById('vf-cards');findings.focus({preventScroll:true});findings.scrollIntoView({block:'start'});">Go to findings →</a></div>
+                <div id="vf-scope"></div></div>
                 <div id="vf-sidebar-filters"></div>
               </div>
             </details>

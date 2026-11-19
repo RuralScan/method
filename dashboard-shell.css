@@ -312,7 +312,13 @@ body[data-theme="dark"] .vb-theme .icon-moon, body[data-theme="light"] .vb-theme
 #vf-sidebar :focus-visible { outline: 2px solid var(--accent-sky); outline-offset: 2px; }
 #vf-sidebar-filters > details { font-size: 12px; margin-top: 12px; }
 #vf-sidebar-filters > details .pill-btn { margin-top: 5px; }
-@media (min-width: 1000px) { #vf-sidebar-panel > summary { display: none; } }
+@media (min-width: 1000px) {
+  #vf-sidebar-panel > summary { display: none; }
+}
+@media (min-width: 1000px) and (min-height: 760px) {
+  /* Keep primary controls visible without trapping lower filters on short screens. */
+  .vf-scope-sticky { position: sticky; top: 0; z-index: 2; background: var(--bg-primary); margin: -14px -14px 12px; padding: 14px 14px 0; border-bottom: 1px solid var(--border-color); }
+}
 @media (max-width: 999px) {
   .vf-review-layout { grid-template-columns: minmax(0, 1fr); }
   #vf-sidebar { position: static; max-height: none; overflow: visible; }
