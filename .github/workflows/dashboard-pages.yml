@@ -38,7 +38,7 @@ jobs:
         continue-on-error: true
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          ref: 636303da299f222dbe7e580a95267331cd88720b
+          ref: 50762f5ddb96c3f96a1cfe66caacde2a34758d9d
           path: reference-src
           fetch-depth: 0
           persist-credentials: false
@@ -93,6 +93,8 @@ jobs:
         run: |
           test -s site/reference/ch-evidence-principles.html
           test -s site/reference/ch-compiling-evidence.html
+          test -s site/reference/ch-suitability-synthesis.html
+          test -s site/reference/ch-t4-legacy-compiler.html
           test -s site/reference/ch-evidence-registry.html
           test -s site/reference/ch-combining-t4-evidence.html
       - name: Build and verify pinned methodology editions
