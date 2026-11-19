@@ -24,13 +24,17 @@ Decisions save immediately on this device, appear under **My reviewed**, and rem
 
 Keyboard controls: **j** / **↓** next finding, **↑** previous, **k** Keep, **d** Drop, **q** Query. Drop still requires a reason; Query focuses the question field when empty. Shortcuts are ignored while typing.
 
-## Connect a local PDF library
+## Read a source
 
-In the review queue, open **PDF folder** beside the reviewer selector, then **Connect PDF folder**. Use the recommended synced SharePoint library path shown for your reviewer. Copy it into the browser’s folder chooser and allow read access; a saved path alone cannot grant access. Subfolders are included. Opening a source preview finds its registered library path or source filename and displays the PDF at the cited page. Files remain on the device and are read only when opened; they are not submitted with reviews.
+Use **Open source** on the finding card to read the paper in SharePoint or on its original website. SharePoint may ask you to sign in with your team account. No local folder, path, sync or helper service is required for this route. If access is missing, request it from the library maintainer.
 
-Chrome and Edge can keep the directory handle in this site's IndexedDB storage. After a restart they may require **Allow folder access**, which reconnects the remembered folder without selecting files again. Use **Refresh folder** after downloading new PDFs, **Change folder** to choose another location, and **Disconnect** to forget the handle and clear local previews. Other browsers use a folder selection for the current visit and say when reconnection after reload is required. OneDrive files must be available to read; make them available offline if a preview fails.
+### Optional: PDFs inside the dashboard
 
-Optional setup hints are in `review/library-locations.json`, keyed by reviewer handle. `peetmate` has the confirmed synced library and corpus-cache paths. These path hints are public, as authorized, but are not browser permissions or proof of a reviewer's identity. A new device or browser still needs its own folder selection. Connections apply to this browser, independently of the selected reviewer. Only add someone else's machine path with their authorization.
+Open **Optional: PDFs inside the dashboard**, then **Connect PDF folder**, only if you want to view local PDFs inline. The recommended synced-library location remains available here for the configured reviewer; browsing to any suitable PDF folder is supported. Subfolders are included. Files remain on the device and are read only when opened; they are not submitted with reviews.
+
+Chrome and Edge can keep the directory handle in this site's IndexedDB storage. After a restart they may require **Reconnect PDF folder**. Use **Refresh folder** after downloading new PDFs, **Change folder** to choose another location, and **Disconnect** to forget the handle and clear local previews. Other browsers use a folder selection for the current visit and say when reconnection after reload is required. OneDrive files must be available to read for local previews.
+
+Optional setup hints are in `review/library-locations.json`, keyed by reviewer handle. `peetmate` has the confirmed synced-library path. These path hints are public, as authorized, but are not browser permissions or proof of a reviewer's identity. Connections apply to this browser, independently of the selected reviewer. Only add someone else's machine path with their authorization.
 
 Matching uses the registered path where possible and refuses ambiguous duplicate filenames. A local filename match is not a verified quotation or scientific approval. Published preview provenance checks and all submission decisions remain unchanged. The public site cannot open an arbitrary absolute path from Git: the browser grants access through its folder chooser. See [Chrome's folder-permission documentation](https://developer.chrome.com/blog/persistent-permissions-for-the-file-system-access-api).
 

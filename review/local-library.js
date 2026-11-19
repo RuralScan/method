@@ -173,7 +173,10 @@
     const privacy = el('p', supported ? 'PDFs stay on this device. Your browser remembers the folder and may ask to reconnect after a restart.' : 'PDFs stay on this device. Select the folder again after a reload, or use Chrome or Edge to remember it.');
     body.append(steps, permissionNote, privacy, actions); help.append(summary, body);
     heading.append(title, subtitle); toolbar.append(heading, connect); panel.append(toolbar, status, locations, help, input);
-    document.getElementById('review-library-controls').append(panel);
+    const optional = el('details'), optionalTitle = el('summary', 'Optional: PDFs inside the dashboard');
+    optional.className = 'local-library-optional';
+    optional.append(optionalTitle, panel);
+    document.getElementById('review-library-controls').append(optional);
     let presets = {};
     function showLocations() {
       locations.replaceChildren();
@@ -195,11 +198,12 @@
     help.addEventListener('toggle', () => { if (help.open) showLocations(); });
     function draw(state) {
       const connected = state.status === 'ready';
-      title.textContent = connected ? 'PDFs connected' : 'Source PDFs';
+      optionalTitle.textContent = connected ? 'Local PDFs connected · ' + state.name : 'Optional: PDFs inside the dashboard';
+      title.textContent = connected ? 'PDFs connected' : 'Local PDF preview';
       subtitle.textContent = connected ? state.name + ' · ' + state.count.toLocaleString() + (state.count === 1 ? ' PDF' : ' PDFs') :
         state.status === 'loading' ? 'Finding PDFs in ' + state.name + '…' :
         state.status === 'permission' ? state.name + ' needs your permission to reopen PDFs.' :
-        'Choose your review library once. Matching PDFs open beside the finding.';
+        'Use Open source on a finding to read it online. Connect a folder only if you want local PDFs displayed here.';
       connect.textContent = state.status === 'permission' ? 'Reconnect PDF folder' : state.status === 'loading' ? 'Connecting…' : 'Connect PDF folder';
       connect.onclick = () => state.status === 'permission' ? service.allow() : supported ? service.connect() : input.click();
       locations.hidden = connected || !locations.childElementCount;
@@ -217,7 +221,7 @@
       status.hidden = !status.textContent;
     }
     service.subscribe(draw); draw(service.state());
-    return {...service, supported, openSettings() { help.open = true; panel.scrollIntoView({block: 'center'}); summary.focus(); },
+    return {...service, supported, openSettings() { optional.open = true; help.open = true; panel.scrollIntoView({block: 'center'}); summary.focus(); },
       connect: () => supported ? service.connect() : input.click()};
   }
   return {create, match, browserStore, mount};
