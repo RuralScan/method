@@ -168,11 +168,15 @@
     const disconnect = button('Disconnect', () => service.disconnect());
     actions.append(refresh, change, disconnect);
     const steps = el('ol');
-    steps.append(el('li', 'Click Connect PDF folder.'), el('li', 'Choose the folder containing your source PDFs, then allow access. Include the whole library — we also search its subfolders.'));
+    steps.append(el('li', 'Click Connect PDF folder and choose your synced team PDF library.'), el('li', 'Select the folder and allow access. Subfolders are included.'));
+    const permissionNote = el('p', 'A saved path is a location hint, not permission. Your browser needs you to select the folder once before this page can read its PDFs.');
     const privacy = el('p', supported ? 'PDFs stay on this device. Your browser remembers the folder and may ask to reconnect after a restart.' : 'PDFs stay on this device. Select the folder again after a reload, or use Chrome or Edge to remember it.');
-    body.append(steps, locations, privacy, actions); help.append(summary, body);
-    heading.append(title, subtitle); toolbar.append(heading, connect); panel.append(toolbar, status, help, input);
-    document.getElementById('review-library-controls').append(panel);
+    body.append(steps, permissionNote, privacy, actions); help.append(summary, body);
+    heading.append(title, subtitle); toolbar.append(heading, connect); panel.append(toolbar, status, locations, help, input);
+    const optional = el('details'), optionalTitle = el('summary', 'Optional: PDFs inside the dashboard');
+    optional.className = 'local-library-optional';
+    optional.append(optionalTitle, panel);
+    document.getElementById('review-library-controls').append(optional);
     let presets = {};
     function showLocations() {
       locations.replaceChildren();
@@ -185,20 +189,24 @@
         });
         row.append(el('strong', item.label), path, copy); locations.append(row);
       }
-      if (locations.childElementCount) locations.prepend(el('p', 'Can’t find it? Copy a saved location below. In the folder chooser, press ⌘⇧G on Mac and paste it; on Windows, paste into the address bar.'));
+      steps.firstElementChild.textContent = locations.childElementCount ? 'Copy the recommended path shown above, then click Connect PDF folder.' : 'Click Connect PDF folder and choose your synced team PDF library.';
+      steps.lastElementChild.textContent = locations.childElementCount ? 'In the folder chooser, press ⌘⇧G on Mac and paste the path; on Windows, paste into the address bar. Select that folder and allow access. Subfolders are included.' : 'Select the folder and allow access. Subfolders are included.';
+      locations.hidden = service.state().status === 'ready' || !locations.childElementCount;
     }
     fetch('review/library-locations.json').then(r => r.ok ? r.json() : {}).then(data => { presets = data; showLocations(); }).catch(() => {});
     document.getElementById('vf-reviewer').addEventListener('change', showLocations);
     help.addEventListener('toggle', () => { if (help.open) showLocations(); });
     function draw(state) {
       const connected = state.status === 'ready';
-      title.textContent = connected ? 'PDFs connected' : 'Source PDFs';
+      optionalTitle.textContent = connected ? 'Local PDFs connected · ' + state.name : 'Optional: PDFs inside the dashboard';
+      title.textContent = connected ? 'PDFs connected' : 'Local PDF preview';
       subtitle.textContent = connected ? state.name + ' · ' + state.count.toLocaleString() + (state.count === 1 ? ' PDF' : ' PDFs') :
         state.status === 'loading' ? 'Finding PDFs in ' + state.name + '…' :
         state.status === 'permission' ? state.name + ' needs your permission to reopen PDFs.' :
-        'Choose your review library once. Matching PDFs open beside the finding.';
+        'Use Open source on a finding to read it online. Connect a folder only if you want local PDFs displayed here.';
       connect.textContent = state.status === 'permission' ? 'Reconnect PDF folder' : state.status === 'loading' ? 'Connecting…' : 'Connect PDF folder';
       connect.onclick = () => state.status === 'permission' ? service.allow() : supported ? service.connect() : input.click();
+      locations.hidden = connected || !locations.childElementCount;
       connect.hidden = connected;
       connect.disabled = state.status === 'loading';
       summary.textContent = connected || state.name ? 'Folder options and help' : 'Help finding your folder';
@@ -213,7 +221,7 @@
       status.hidden = !status.textContent;
     }
     service.subscribe(draw); draw(service.state());
-    return {...service, supported, openSettings() { help.open = true; panel.scrollIntoView({block: 'center'}); summary.focus(); },
+    return {...service, supported, openSettings() { optional.open = true; help.open = true; panel.scrollIntoView({block: 'center'}); summary.focus(); },
       connect: () => supported ? service.connect() : input.click()};
   }
   return {create, match, browserStore, mount};

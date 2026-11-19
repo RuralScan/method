@@ -1,8 +1,8 @@
 {
-  "version": "1.1.3",
+  "version": "1.1.5",
   "date": "2026-11-19",
   "notes": [
-    "Keep review inside current Methodology navigation; remove obsolete review tab numbers while preserving finding addresses and decisions."
+    "Make existing online source links the default; keep local-folder setup and inline PDF prompts under optional controls."
   ],
   "files": {
     "batch-receipt.js": "d77479a9c0f3b3ca0d8804b12e60397c4b9800611a29f33c48fc6658df49b6b0",
@@ -10,21 +10,37 @@
     "browser-backup.js": "653736a3b3600f131957afcf59603d6ae1de0ba818d9173a57813938b9e61054",
     "gap-dialog.html": "53403dc8a3cecfc5c1850972c2be758e66da598ae1f22ea331ffb992d9154ffb",
     "inline-review.js": "c5b0f7b8c60f4e70aa2a27c680dd3a4153970a05cd7f063bda63bacb8d5fc517",
-    "library-locations.json": "0477628aaeb37aa4213b707290d0c651dcd26d1c1f0ffae787bc6ea5dc95b470",
-    "local-library.js": "fee6dfcfa83fb6d9eadca25c77484296ee6bd0159fcc8d1fe7aa8d24b3f8fc28",
+    "library-locations.json": "48bc6a0afb6eac3748d2bff258ff16d60794bbb95d47e4f702c7a2c15d788baa",
+    "local-library.js": "df89252b02092b5a712a00aaa7a2680859665f803c79056a8590c41a4562edab",
     "priority-receipt.js": "add8d49a5f272b797c11e3de078da9cfc753b7f2d8d55efc82711972fba345e0",
     "priority-status.js": "a751e66659eee2d5af59ebcc6942d7c1790daf34ffa7732b5258d0156a17dd3c",
     "priority.js": "3c933ec256197c6ebc889fdbfe0583fc2248debcce97c3453feaebb487d70c61",
-    "source-previews.js": "63fbc4a326fbfad2bec575f440643a5569053f3dcf57fbb106c7a64d60fbdddc",
+    "source-previews.js": "f176427b11a3e56b09a2e74cfd67f4cfefd38cad2570681152b774f58c8f53af",
     "submission-dialogs.html": "01cd8ab74260c840596871ef2c3b3891760949e651285ba2ecb4251d29e05b29",
     "submission.js": "9f8e0faba33bd8769105905ff764021494688c27bfbd89272528c34ca7362dc3",
     "vote-drafts.js": "d7b7385834eaa2f177ec22abcf1e22502244ba5bdd626ace079c6038e267d927",
-    "workspace.css": "a9d7509193930ea80335dc32cbede6484a5f6242a16178996a948de5ec09fbec",
-    "workspace.html": "5cd2ebd3d3667bbab21d63491b13dc129465326e707dd202d7738db90a0e25ec",
-    "workspace.js": "4e0369c549223dc50e787c1ccea98a076c2fd12d48b10923ccbb544b887b2699"
+    "workspace.css": "4379ce8f5f5f7336d8a27eb2358f1dc5b89c1061d2ea7c96a64405a0bb3df6d9",
+    "workspace.html": "f4300ed9d793a1bb1c0291a3a738590c7c525c8bda66f5ee8166166426419308",
+    "workspace.js": "7a14fcf0e64b92f798ab0f88b8ea654f6a710de396cdefebc6ec86a5fee4a11d"
   },
-  "content_sha256": "14c13d01703c8718b937829539809936aff05c16ac010ddac0cb1eebb552f3bd",
+  "content_sha256": "c4a8cc20fe848f4fa62ed174492d420d13c3cf04e6edeec8d4152e2e52be31be",
   "history": [
+    {
+      "version": "1.1.4",
+      "date": "2026-11-19",
+      "notes": [
+        "Show the recommended local PDF library beside Connect PDF folder, remove the cache alternative, and explain the one-time folder permission."
+      ],
+      "content_sha256": "cba837a88c24e1b940cac2c66119aceb9458645b4acf97d70295f2caa2625808"
+    },
+    {
+      "version": "1.1.3",
+      "date": "2026-11-19",
+      "notes": [
+        "Keep review inside current Methodology navigation; remove obsolete review tab numbers while preserving finding addresses and decisions."
+      ],
+      "content_sha256": "14c13d01703c8718b937829539809936aff05c16ac010ddac0cb1eebb552f3bd"
+    },
     {
       "version": "1.1.2",
       "date": "2026-11-19",

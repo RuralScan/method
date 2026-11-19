@@ -116,11 +116,23 @@ const SourcePreviews = (() => {
         figure.append(img); host.append(figure);
       }
     }
-    if (src.library_path) sources.append(link('Open team library · '+locator,
+    if (src.library_path) sources.append(link('Open source in SharePoint · '+locator,
       vfSharePointUrl(src.library_path)+(page?'#page='+page:'')),' ');
     if (/^https?:\/\//i.test(src.url || '')) sources.append(link('Open original source',src.url));
     host.append(sources);
-    if (!item && page) { const local=tag('div'); host.append(local); await localPDF(local,ev,src,page); }
+    if (!item && page) {
+      const optional = tag('details'), local = tag('div');
+      optional.className = 'local-source-preview';
+      optional.append(tag('summary', 'Optional: view a local PDF here'), local);
+      optional.addEventListener('toggle', () => {
+        if (optional.open) localPDF(local, ev, src, page).catch(() => {
+          local.textContent = 'Local preview unavailable. Use Open source above.';
+        });
+      });
+      host.append(optional);
+      // Existing connections still provide inline viewing; no setup prompt for everyone else.
+      optional.open = LocalLibrary.state().status === 'ready';
+    }
     if (!unavailable) panel.dataset.loaded='1';
   }
   document.addEventListener('toggle',event => {

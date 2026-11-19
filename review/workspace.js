@@ -1055,7 +1055,7 @@
     var doi=(src.doi||'').trim();
     var doiHtml=doi?('<a href="'+(doi.indexOf('http')===0?doi:'https://doi.org/'+doi)+'" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);">DOI ↗</a>'):(src.url?('<a href="'+src.url+'" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);">source ↗</a>'):'');
     var spUrl=vfSharePointUrl(src.library_path||''); if(spUrl&&ev.page)spUrl+='#page='+ev.page;
-    var spLink=spUrl?('<a href="'+spUrl+'" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);" title="opens in SharePoint">📄 SharePoint'+(ev.page?(' p.'+ev.page):'')+' ↗</a>'):'';
+    var spLink=spUrl?('<a href="'+spUrl+'" target="_blank" rel="noopener noreferrer" style="color:var(--accent-sky);" title="opens the source in SharePoint; no local folder connection needed">📄 Open source · SharePoint'+(ev.page?(' p.'+ev.page):'')+' ↗</a>'):'';
     // Task 1: CODE sources (tool / GEE script) link to the exact file+line on GitHub at the
     // pinned commit — never a "local PDF" (there is no PDF for code).
     var _isCodeSrc=((ev.locator_type||'')==='file_line');
