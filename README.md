@@ -16,6 +16,14 @@ Tab 3 of the workspace, **Evidence**, shows every retained finding in plain word
 
 Checks: `python3 -m unittest discover -s tests -p 'test_*.py'` and `node --test tests/*.test.cjs`.
 
+## Review findings
+
+Choose your GitHub reviewer name and evidence type (T3, T4, T6 or M2b). Compare the extracted values and quotation with **View source preview**, then use **Keep**, **Drop** or **Query** directly on the card. Drop requires a reason; Query requires a question. Open previews sit beside the finding on wider screens. Request history and extraction checks remain available under expandable details.
+
+Decisions save immediately on this device, appear under **My reviewed**, and remain editable until submitted. **Submit all my decisions** at either end of the queue opens the batch summary and its RuralScan/evidence submission link; each revision has its own CSV download. After submission, confirming a verified GitHub receipt clears only the matching drafts. Undo or batch removal clears an unsubmitted draft without changing recorded reviews. Reviewer, finding and original register revision stay attached to each decision, including older saved batches. A T3/T6 finding shared by both views has one saved decision.
+
+Keyboard controls: **j** / **↓** next finding, **↑** previous, **k** Keep, **d** Drop, **q** Query. Drop still requires a reason; Query focuses the question field when empty. Shortcuts are ignored while typing.
+
 ## Connect a local PDF library
 
 In the review queue, open **PDF folder** beside the reviewer selector, then **Connect PDF folder**. Choose the synced SharePoint library or the local corpus cache. Subfolders are included. Opening a source preview finds its registered library path or source filename and displays the PDF at the cited page. Files remain on the device and are read only when opened; they are not submitted with reviews.

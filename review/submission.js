@@ -6,9 +6,9 @@
   const form = dialog.querySelector('form');
   const {verdict, reason, note} = form.elements;
   const {fixtures, header, chunks, receiptBody} = BatchReceipt;
-  const prefix = 'ruralscan.vote.v1/';
+  const store = VoteDrafts.store(localStorage);
   const reviewer = () => (window._vfReviewer || '').trim();
-  const key = r => prefix + [r.reviewer.toLowerCase(),r.revision,r.evidence_id].map(encodeURIComponent).join('/');
+  const key = VoteDrafts.key;
   const inbox = 'https://github.com/RuralScan/evidence/issues/new?';
   const action = (label, fn) => {
     const button = document.createElement('button');
@@ -16,17 +16,23 @@
     return button;
   };
   function drafts() {
-    const scope = prefix + encodeURIComponent(reviewer().toLowerCase()) + '/';
-    return Object.keys(localStorage).filter(k => k.startsWith(scope)).sort().map(k => JSON.parse(localStorage.getItem(k)));
+    return store.list(reviewer());
   }
   function refresh() {
-    byId('review-batch-count').textContent = drafts().length;
+    const count = drafts().length;
+    byId('review-batch-count').textContent = count;
+    for (const node of document.querySelectorAll('[data-review-batch-count]')) node.textContent = count;
+    if (byId('vf-pending-count')) byId('vf-pending-count').textContent = reviewer() ? (count ? count + (count === 1 ? ' decision' : ' decisions') + ' saved on this device — not submitted yet' : 'No unsubmitted decisions on this device') : 'Choose your reviewer name to start.';
   }
   function label(id, revision) {
     const saved = localStorage.getItem(key({reviewer:reviewer(), revision, evidence_id:id}));
     return saved ? 'Edit saved decision' : 'Review finding';
   }
-  window.ReviewBatch = {refresh, label};
+  window.ReviewBatch = {refresh, label, drafts, get:id => store.get({reviewer:reviewer(), revision:reviewData.registerRevision, evidence_id:id}),
+    pending:revision => store.pending(reviewer(), revision),
+    save:row => { store.save({...row, reviewer:reviewer()}); refresh(); },
+    remove:row => { store.remove({...row, reviewer:reviewer()}); refresh(); },
+    open:() => { showBatches(); batch.showModal(); }};
   window.addEventListener('storage', () => { refresh(); if (batch.open) showBatches(); });
 
   document.addEventListener('click', event => {
@@ -70,8 +76,8 @@
       setVfReviewer(handle.value.trim());
     }
     const draft = {...vote, reviewer:reviewer(), revision, lane};
-    try { localStorage.setItem(key(draft), JSON.stringify(draft)); }
-    catch { dialog.querySelector('output').textContent = 'Browser storage is full or unavailable. Use Submit this finding only.'; return; }
+    try { store.save(draft); }
+    catch (error) { dialog.querySelector('output').textContent = error.message; return; }
     dialog.close(); refresh();
     for (const button of document.querySelectorAll('.finding-submit')) {
       if (button.dataset.finding === finding) button.textContent = 'Edit saved decision';
@@ -79,7 +85,9 @@
     byId('review-batch-status').textContent = finding + ' saved to your batch.';
   });
 
+  let csvUrls = [];
   function showBatches() {
+    csvUrls.forEach(url=>URL.revokeObjectURL(url)); csvUrls=[];
     const host = byId('review-batch-groups'); host.replaceChildren();
     const rows = drafts();
     byId('review-batch-owner').textContent = rows.length ? reviewer() + ' · ' + rows.length + ' saved. Submit with this GitHub account.' :
@@ -99,6 +107,11 @@
         list.append(li);
       }
       details.append(summary,list); section.append(details);
+      const csv = document.createElement('a');
+      csv.href = URL.createObjectURL(new Blob([JSON.parse(body.slice(header.length)).payload], {type:'text/csv;charset=utf-8'}));
+      csvUrls.push(csv.href);
+      csv.download = 'ruralscan-'+group[0].reviewer+'-'+group[0].revision+'-'+csvUrls.length+'.csv';
+      csv.textContent = 'Download these decisions as CSV'; section.append(csv,document.createElement('br'));
       let href = inbox + new URLSearchParams({title,body});
       if (href.length > 6000) {
         href = inbox + new URLSearchParams({title});
@@ -135,5 +148,5 @@
   }
   byId('review-submit-all').addEventListener('click',() => { showBatches(); batch.showModal(); });
   batch.querySelector('[data-close]').addEventListener('click',() => batch.close());
-  batch.addEventListener('close',() => { for (const b of document.querySelectorAll('.finding-submit')) b.textContent=label(b.dataset.finding,b.dataset.revision); });
+  batch.addEventListener('close',() => { if (typeof renderVfWorklist === 'function') renderVfWorklist(); for (const b of document.querySelectorAll('.finding-submit')) b.textContent=label(b.dataset.finding,b.dataset.revision); });
 })();

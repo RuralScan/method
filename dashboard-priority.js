@@ -258,11 +258,12 @@
       const state = '<p class="vf-priority-state"><strong>'+esc(statusLabels[r.status] || 'Needs attention')+'</strong>'+action+'</p>'
         +(last ? '<p>'+esc(last.reason)+(last.current?'':'<br>Inputs changed; this request needs another look.')+'</p>' : '');
       return '<section class="vf-priority-note" style="margin:10px 0;padding:12px;border-left:3px solid var(--accent-amber);font-size:12px;line-height:1.6">'
-        +state+(settled ? '<details><summary>Earlier review request</summary>'+original+'</details>' : older ? '<details><summary>Original review request · before this correction</summary>'+original+'</details>'
+        +(r.decision_needed && !settled && !older ? '<p><b>Review question:</b> '+esc(r.decision_needed)+'</p>' : '')
+        +'<details><summary>Review request and history · '+esc(statusLabels[r.status] || 'Needs attention')+'</summary>'+state+(settled ? '<details><summary>Earlier review request</summary>'+original+'</details>' : older ? '<details><summary>Original review request · before this correction</summary>'+original+'</details>'
           +'<p>Check any remaining questions in the original request.</p>' : original)
         +'<details><summary>Request reference and links</summary><p>Source '+esc(r.source_id)+' · '+sourceLocation(r)+'</p>'
         +(r.mapping_id?'<p>Mapping: '+esc(r.mapping_id)+'</p>':'')+reference+'</details>'+trail
-        +(ev.use_role==='structural_suitability'?'<p>Keep confirms the extraction. Changing a live mapping requires a separate reviewed change.</p>':'')+'</section>';
+        +(ev.use_role==='structural_suitability'?'<p>Keep confirms the extraction. Changing a live mapping requires a separate reviewed change.</p>':'')+'</details></section>';
     }).join('');
   }
   window.DashboardPriority = {matches, set, route, leaveFocus, openFromHash, controls, badge, card, filterSets, choose, backToQueue, visibleRequest, needsAttention, setView, turnPage, openTask, goToFindings};
