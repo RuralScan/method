@@ -1053,11 +1053,24 @@
     <button type="button" class="vb-review" id="rv-toggle" data-rv-ui aria-pressed="false" title="Comment on the dashboard. Use Review queue for finding decisions." hidden>
       <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v8H6l-4 3z"/></svg><span>Review</span>
     </button>
-    <a class="vb-changes" href="https://github.com/RuralScan/method/pulls?q=is%3Apr+is%3Amerged+base%3Agh-pages">What changed? · history and feedback</a>
+    <details class="vb-changes" id="dashboard-history">
+      <summary>What changed? · history and feedback</summary>
+      <section class="dashboard-history-panel" aria-label="Versions, changes and feedback">
+        <h2>Current pages and versions</h2>
+        <p><a href="reference/index.html">Methodology</a> explains the method. The <b>Evidence dashboard</b> explores evidence and contains the review workspace. They are two pages of RuralScan, with separate version histories.</p>
+        <div id="dashboard-build" aria-label="Published dashboard build"><b>Evidence dashboard</b> · local preview</div>
+        <p>The dashboard build identifies the whole dashboard. Review has its own component release; evidence revisions identify the records loaded.</p>
+        <!-- REVIEW:build-label -->
+        <details class="snapshot-history"><summary>Earlier overview data snapshot</summary><div id="snapshot-history"></div></details>
+        <nav aria-label="Change history and feedback links">
+          <a href="https://github.com/RuralScan/method/pulls?q=is%3Apr+is%3Amerged+base%3Agh-pages">All dashboard changes</a>
+          <a href="https://github.com/RuralScan/method/issues">Feedback and reported issues</a>
+        </nav>
+        <p>Use <b>Review</b> in the top bar to leave a comment on this page. Finding decisions belong in the <a href="#review-queue">review queue</a>.</p>
+      </section>
+    </details>
   </div>
   <div class="header-actions">
-    <!-- REVIEW:build-label -->
-    <div id="dashboard-build" class="dashboard-build" aria-label="Dashboard and data build"></div>
     <a class="help-entry" href="https://ciat.github.io/nbs_ruralscan/redesign/help.html">Help / Contact / Team</a>
     <a class="btn-back review-entry" href="#review-queue">Review queue</a>
     <button class="btn-back" type="button" onclick="if(window.DashboardProgress)window.DashboardProgress.print()">Print overview</button>
@@ -4425,7 +4438,7 @@
 
 </script>
 <script src="review/workspace.js"></script>
-<script src="dashboard-progress.js?v=1.4.0"></script>
+<script src="dashboard-progress.js?v=history-1.4.0"></script>
 <script src="dashboard-feedback.js?v=1.6.1"></script>
 <script src="dashboard-relationships.js?v=1.2.1"></script>
 <script src="dashboard-tables.js?v=4"></script>

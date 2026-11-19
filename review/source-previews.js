@@ -45,17 +45,17 @@ const SourcePreviews = (() => {
       ambiguous: 'More than one PDF matches this source. Connect its specific subfolder so the correct file is unambiguous.',
       invalid: 'The matching file is not readable as a PDF. Check the local file.',
       unavailable: 'Could not read this PDF. Make it available offline in OneDrive, then refresh the folder.',
-      permission: 'Your folder is remembered. Allow read access to show this PDF.',
+      permission: 'Your folder is remembered. Reconnect it to show this PDF.',
       error: 'Connected folder is unavailable. Check its location or reconnect it.'
     };
     host.append(tag('p', messages[result.status] || 'Connect your PDF folder once to open matching sources at the cited page.'));
     const button = tag('button'); button.type = 'button'; button.className = 'pill-btn';
     const connected = LocalLibrary.state().status === 'ready';
-    button.textContent = result.status === 'permission' ? 'Allow folder access' : connected ? 'Refresh folder' : 'Connect PDF folder';
+    button.textContent = result.status === 'permission' ? 'Reconnect PDF folder' : connected ? 'Refresh folder' : 'Connect PDF folder';
     button.onclick = () => result.status === 'permission' ? LocalLibrary.allow() : connected ? LocalLibrary.refresh() : LocalLibrary.connect();
     button.disabled = result.status === 'loading';
     if (connected && LocalLibrary.state().sessionOnly) { button.textContent = 'Choose PDF folder'; button.onclick = () => LocalLibrary.connect(); }
-    const settings = tag('button', 'Folder location / settings'); settings.type = 'button'; settings.className = 'pill-btn';
+    const settings = tag('button', 'PDF folder help'); settings.type = 'button'; settings.className = 'pill-btn';
     settings.onclick = () => LocalLibrary.openSettings();
     host.append(button, ' ', settings);
   }

@@ -129,12 +129,18 @@
 
 #finding-submission label[hidden] { display:none; }
 
-/* Device-local PDF folder; collapsed settings keep the queue compact. */
-.review-device-tools { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 20px; margin: 12px 0; }
+/* One visible connection action; locations and maintenance stay in help. */
+.review-device-tools { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 8px 20px; margin: 12px 0; }
 #review-library-controls { flex: 1 1 22rem; min-width: 0; }
-.local-library-settings { font-size: 13px; }
+.local-library-settings { font-size: 13px; padding:12px 14px; border:1px solid var(--border-color); border-radius:6px; background:var(--bg-secondary); }
+.local-library-toolbar { display:flex; align-items:center; justify-content:space-between; gap:10px 20px; flex-wrap:wrap; }
+.local-library-toolbar > div { flex:1 1 18rem; }
+.local-library-toolbar p { color:var(--text-secondary); }
 .local-library-settings summary { cursor: pointer; color: var(--accent-sky); font-weight: 600; }
-.local-library-settings > div { padding: 10px 12px; margin-top: 8px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-secondary); }
+.local-library-help { margin-top:8px; }
+.local-library-help > div { margin-top:12px; padding-top:8px; border-top:1px solid var(--border-color); }
+.local-library-help ol { padding-left:20px; }
+.local-library-help li { margin:6px 0; }
 .local-library-settings p { margin: 6px 0; }
 .local-library-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .local-library-locations > div { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 10px; margin: 10px 0; }
@@ -142,6 +148,8 @@
 .local-library-locations code { flex: 1 1 25rem; overflow-wrap: anywhere; user-select: all; font-size: 11px; }
 .local-library-locations small { color: var(--text-secondary); }
 .local-library-settings .pill-btn { font: inherit; min-height: 34px; }
+.local-library-settings .local-library-connect { background:var(--accent-sky); color:#07111e; border-color:var(--accent-sky); font-weight:700; min-height:40px; padding:8px 16px; border-radius:6px; }
+.local-library-settings [hidden] { display:none; }
 .local-library-settings :focus-visible { outline: 2px solid var(--accent-sky); outline-offset: 2px; }
 
 /* Restore the compact QC workflow: source, extraction and decision on one card. */

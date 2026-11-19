@@ -71,7 +71,7 @@
   },
   {
     "label": "Methodology",
-    "group": "Live",
+    "group": "Current pages",
     "default": true,
     "href": "reference/index.html"
   }

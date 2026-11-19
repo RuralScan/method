@@ -1567,7 +1567,7 @@ window.ReviewWorkspace = (function () {
     }
     const details = document.createElement('details');
     const summary = document.createElement('summary');
-    summary.textContent = 'Review releases';
+    summary.textContent = 'Review changes';
     details.append(summary);
     for (const item of [release, ...(release.history || [])]) {
       const entry = document.createElement('div');
@@ -1582,14 +1582,10 @@ window.ReviewWorkspace = (function () {
     host.replaceChildren(label, details);
   }
   function onTab(tab) {
-    const review = document.getElementById('review-build');
-    const dashboard = document.getElementById('dashboard-build');
     const active = tab === 'tab-qaqc';
-    if (review) review.hidden = !active;
-    if (dashboard) dashboard.hidden = active;
     const historicalFooter = document.querySelector('.meta-timestamp');
     if (historicalFooter) historicalFooter.hidden = active;
-    if (active) updateBuild();
+    updateBuild();
   }
   function mount() {
     if (mounted) return;

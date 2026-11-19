@@ -87,8 +87,8 @@
       try {
         const permission = await handle.requestPermission({mode: 'read'});
         if (permission === 'granted') await refresh();
-        else set({status: 'permission', error: 'Folder access was not granted. Use Allow folder access to try again.'});
-      } catch { set({status: 'permission', error: 'Use Allow folder access again, or reconnect the folder.'}); }
+        else set({status: 'permission', error: 'Folder access was not granted. Click Reconnect PDF folder to try again.'});
+      } catch { set({status: 'permission', error: 'Click Reconnect PDF folder again, or choose another folder under Folder options and help.'}); }
     }
     async function useFiles(files) {
       ++generation; handle = null; clearURLs();
@@ -150,21 +150,29 @@
     const service = create({store: browserStore(win), pick: options => win.showDirectoryPicker(options),
       createURL: file => URL.createObjectURL(file), revokeURL: url => URL.revokeObjectURL(url)});
     const el = (name, text) => { const node = document.createElement(name); if (text) node.textContent = text; return node; };
-    const details = el('details'); details.className = 'local-library-settings';
-    const summary = el('summary', 'PDF folder · Not connected');
-    const body = el('div'), status = el('p'), actions = el('div'), locations = el('div');
+    const panel = el('section'); panel.className = 'local-library-settings'; panel.setAttribute('aria-label', 'Source PDFs on this device');
+    const toolbar = el('div'); toolbar.className = 'local-library-toolbar';
+    const heading = el('div'), title = el('strong', 'Source PDFs'), subtitle = el('p');
+    const status = el('p'), actions = el('div'), locations = el('div');
+    status.setAttribute('role', 'status'); status.className = 'local-library-status';
+    const help = el('details'), summary = el('summary', 'Help finding your folder'); help.className = 'local-library-help';
+    const body = el('div');
     actions.className = 'local-library-actions'; locations.className = 'local-library-locations';
     const button = (text, fn) => { const b = el('button', text); b.type = 'button'; b.className = 'pill-btn'; b.onclick = fn; return b; };
     const input = el('input'); input.type = 'file'; input.multiple = true; input.accept = '.pdf'; input.setAttribute('webkitdirectory', ''); input.hidden = true;
     input.onchange = () => { if (input.files.length) service.useFiles(input.files); };
     const connect = button('Connect PDF folder', () => supported ? service.connect() : input.click());
-    const allow = button('Allow folder access', () => service.allow());
+    connect.classList.add('local-library-connect');
+    const change = button('Change folder', () => supported ? service.connect() : input.click());
     const refresh = button('Refresh folder', () => service.refresh());
     const disconnect = button('Disconnect', () => service.disconnect());
-    actions.append(connect, allow, refresh, disconnect, input);
-    const help = el('p', supported ? 'Connect your synced library or corpus folder once. Matching PDFs open at the cited page; subfolders are included. PDFs stay on this device.' : 'Choose your PDF folder, including its subfolders. This browser requires selecting it again after reload. Chrome or Edge can remember the folder.');
-    body.append(help, locations, actions, status); details.append(summary, body);
-    document.getElementById('review-library-controls').append(details);
+    actions.append(refresh, change, disconnect);
+    const steps = el('ol');
+    steps.append(el('li', 'Click Connect PDF folder.'), el('li', 'Choose the folder containing your source PDFs, then allow access. Include the whole library — we also search its subfolders.'));
+    const privacy = el('p', supported ? 'PDFs stay on this device. Your browser remembers the folder and may ask to reconnect after a restart.' : 'PDFs stay on this device. Select the folder again after a reload, or use Chrome or Edge to remember it.');
+    body.append(steps, locations, privacy, actions); help.append(summary, body);
+    heading.append(title, subtitle); toolbar.append(heading, connect); panel.append(toolbar, status, help, input);
+    document.getElementById('review-library-controls').append(panel);
     let presets = {};
     function showLocations() {
       locations.replaceChildren();
@@ -177,24 +185,35 @@
         });
         row.append(el('strong', item.label), path, copy); locations.append(row);
       }
-      if (locations.childElementCount) locations.append(el('small', 'Copy a path, then choose Connect PDF folder. In the Mac folder chooser, press ⌘⇧G and paste it; on Windows, paste into the address bar.'));
+      if (locations.childElementCount) locations.prepend(el('p', 'Can’t find it? Copy a saved location below. In the folder chooser, press ⌘⇧G on Mac and paste it; on Windows, paste into the address bar.'));
     }
     fetch('review/library-locations.json').then(r => r.ok ? r.json() : {}).then(data => { presets = data; showLocations(); }).catch(() => {});
     document.getElementById('vf-reviewer').addEventListener('change', showLocations);
-    details.addEventListener('toggle', () => { if (details.open) showLocations(); });
+    help.addEventListener('toggle', () => { if (help.open) showLocations(); });
     function draw(state) {
-      const labels = {empty: 'Not connected', loading: 'Reading folder…', permission: 'Access needed', error: 'Unavailable'};
-      summary.textContent = 'PDF folder · ' + (state.status === 'ready' ? state.name + ' · ' + state.count + (state.count === 1 ? ' PDF' : ' PDFs') : labels[state.status]);
-      connect.textContent = state.name ? 'Change folder' : 'Connect PDF folder';
+      const connected = state.status === 'ready';
+      title.textContent = connected ? 'PDFs connected' : 'Source PDFs';
+      subtitle.textContent = connected ? state.name + ' · ' + state.count.toLocaleString() + (state.count === 1 ? ' PDF' : ' PDFs') :
+        state.status === 'loading' ? 'Finding PDFs in ' + state.name + '…' :
+        state.status === 'permission' ? state.name + ' needs your permission to reopen PDFs.' :
+        'Choose your review library once. Matching PDFs open beside the finding.';
+      connect.textContent = state.status === 'permission' ? 'Reconnect PDF folder' : state.status === 'loading' ? 'Connecting…' : 'Connect PDF folder';
+      connect.onclick = () => state.status === 'permission' ? service.allow() : supported ? service.connect() : input.click();
+      connect.hidden = connected;
       connect.disabled = state.status === 'loading';
-      allow.hidden = state.status !== 'permission';
-      refresh.hidden = state.status !== 'ready' || state.sessionOnly;
+      summary.textContent = connected || state.name ? 'Folder options and help' : 'Help finding your folder';
+      steps.hidden = connected || state.status === 'permission';
+      change.hidden = !state.name;
+      refresh.hidden = !connected || state.sessionOnly;
       disconnect.hidden = !state.name;
-      status.textContent = state.error || (state.status === 'permission' ? 'Folder remembered. Allow read access to reconnect; no need to select PDFs again.' : state.status === 'ready' ?
-        (state.remembered ? 'Remembered on this device. Browser may ask to renew access after a restart.' : 'Connected for this visit. Folder could not be remembered by this browser.') : '');
+      actions.hidden = !state.name;
+      status.textContent = state.error || (connected && !state.count ? 'No PDFs found. Choose a folder containing your source PDFs.' :
+        connected && !state.remembered ? 'Connected for this visit. Select the folder again after a reload.' :
+        !supported && !connected ? 'This browser needs the folder again after each reload. Chrome or Edge can remember it.' : '');
+      status.hidden = !status.textContent;
     }
     service.subscribe(draw); draw(service.state());
-    return {...service, supported, openSettings() { details.open = true; details.scrollIntoView({block: 'center'}); summary.focus(); },
+    return {...service, supported, openSettings() { help.open = true; panel.scrollIntoView({block: 'center'}); summary.focus(); },
       connect: () => supported ? service.connect() : input.click()};
   }
   return {create, match, browserStore, mount};
