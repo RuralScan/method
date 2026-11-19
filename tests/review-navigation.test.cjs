@@ -124,7 +124,7 @@ test('shared addressed requests leave active priorities, stay in history, and ch
 test('selected active requests remain reviewable after an earlier finding decision', () => {
   const {context,api} = setup();
   const html=fs.readFileSync(path.join(__dirname,'..','dashboard.html'),'utf8');
-  vm.runInContext(html.match(/  function vfSimpleMatch\(u,view\)\{[\s\S]*?\n  \}/)[0],context);
+  vm.runInContext(html.match(/  function vfSimpleMatch\(u,view,status\)\{[\s\S]*?\n  \}/)[0],context);
   context.vfHasAnswerForReview=()=>false;context.vfClarificationsFor=()=>[];
   const unit={ev:{evidence_id:'wet-op',_reviewQueue:'recorded'},me:true,meApplied:true};
   assert.equal(context.vfSimpleMatch(unit,'todo'),false);
@@ -161,4 +161,16 @@ test('task pages stay bounded, search resets paging, and opening moves to findin
   assert.equal(JSON.stringify(context._vfScope),scope);
   assert.equal(JSON.stringify(context.reviewData),data);
   assert.equal(results.scrolled,true);assert.equal(results.focused,true);
+});
+
+
+test('prospective round counts can leave a direct finding without leaving its selected task', () => {
+  const {context,api} = setup();
+  api.choose('mixed');
+  context._vfPriorityEvidence = 'wet-op';
+  assert.equal(api.matches({evidence_id:'forest-op'}),false);
+  assert.equal(api.matches({evidence_id:'forest-op'},true),true);
+  assert.equal(api.matches({evidence_id:'wet-effect'},true),false);
+  api.leaveFocus();
+  assert.equal(api.matches({evidence_id:'forest-op'}),true);
 });
