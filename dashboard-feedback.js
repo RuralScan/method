@@ -45,7 +45,10 @@
       if (!pipeline || pipeline.hidden) {
         scope.reviewPriority = window._vfPriority || 'all';
         scope.priorityEvidence = window._vfPriorityEvidence || '';
-        scope.reviewQueue = window._vfSimpleView || 'todo';
+        scope.reviewFilters = typeof vfFilterState === 'function' ? vfFilterState() : null;
+        scope.reviewQueue = window._vfSimpleView || 'todo'; // Older editions still use queue modes.
+        scope.reviewSearch = window._vfSearch || '';
+        scope.priorityView = window._vfPriorityView || 'attention';
       }
     }
     else if (tabId === 'tab-interrogator') scope = {
@@ -446,8 +449,13 @@
         window._vfScope = Object.assign({}, scope);
         window._vfPriority = scope.reviewPriority || 'all';
         window._vfPriorityEvidence = scope.priorityEvidence || '';
+        window._vfPriorityView = scope.priorityView || 'attention';
+        window._vfSearch = scope.reviewSearch || '';
         if (scope.priorityEvidence && window.DashboardPriority) {
           window.DashboardPriority.openFromHash('#review-evidence=' + encodeURIComponent(scope.priorityEvidence));
+        } else if (scope.reviewFilters && typeof vfWriteFilters === 'function') {
+          vfWriteFilters(scope.reviewFilters);
+          renderVfWorklist();
         } else if (typeof vfSimpleQueue === 'function') vfSimpleQueue(scope.reviewQueue || 'todo');
         var queue = document.querySelector('[data-review-view="queue"]'); if (queue) queue.click();
       }

@@ -212,3 +212,11 @@
 #review-build { font-size: 12px; line-height: 1.5; }
 #review-build a { color: var(--accent-sky); text-underline-offset: .2em; }
 #review-build :focus-visible { outline: 2px solid var(--accent-sky); outline-offset: 2px; }
+
+/* Shortcuts are presets for the visible sidebar, not separate review modes. */
+.vf-shortcuts { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.vf-shortcuts .pill-btn { min-height: 34px; padding: 6px 10px; font-size: 13px; }
+.vf-shortcuts :focus-visible { outline: 2px solid var(--accent-sky); outline-offset: 2px; }
+.vf-filter-help { margin: 0 0 12px; font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+.vf-filter-help .pill-btn { margin-left: 8px; }
+#vf-followup { width: 100%; min-height: 36px; margin-top: 6px; padding: 6px; color: var(--text-primary); background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 5px; font: inherit; }
