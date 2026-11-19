@@ -163,7 +163,7 @@ ORDER BY rf.kind, f.evidence_id;""",
     {
         "id": "status",
         "title": "Tell an unreviewed finding from a signed-off one",
-        "why": "Most findings behind the rows have no applied human decision yet. Count them by table before relying on a rating.",
+        "why": "Inspect recorded human decisions separately from automated/AI quality checks. A missing human decision does not mean a finding received no quality checks.",
         "sql": """SELECT r."table", f.status, count(DISTINCT f.evidence_id) AS findings
 FROM records r
 JOIN record_findings rf USING (record_id)
@@ -605,7 +605,7 @@ def build():
     stats = (
         '<div class="stats">'
         f"<div><b>{len(tables['sources']):,}</b><span>sources</span></div>"
-        f"<div><b>{len(tables['findings']):,}</b><span>findings</span></div>"
+        f"<div><b>{len(tables['findings']):,}</b><span>findings registered, including dropped</span></div>"
         f"<div><b>{len(tables['records']):,}</b><span>hazard, suitability and scorecard rows</span></div>"
         f"<div><b>{len(tables['record-findings']):,}</b><span>row-to-finding links</span></div>"
         f"<div><b>{size(total_bytes)}</b><span>in ten CSV files</span></div></div>"
@@ -641,7 +641,12 @@ def build():
         "findings extracted from sources. The tables below hold those findings, the sources, the rows they "
         "support and the review status of each, for one fixed edition. They are plain CSV files with a "
         "machine-readable description, so they open in a spreadsheet, load in R or Python, and can be queried "
-        "where they sit.</p>" + stats + '<div class="grid3">'
+        "where they sit.</p>" + stats
+        + f"<p>Of {len(data.EV):,} registered findings, {sum(data.retained(u) for u in data.EV):,} are retained and "
+        f"{sum(not data.retained(u) for u in data.EV):,} are dropped but preserved for audit. "
+        "Practice summaries count retained findings; downloads include both states. "
+        + link("evidence-counts.html#definitions", "Count definitions") + ".</p>"
+        '<div class="grid3">'
         f'<div class="card"><h3>1. Download</h3><p>Ten tables, one edition, each with a checksum. '
         f"{link('#download', 'Go to the downloads')}.</p></div>"
         f'<div class="card"><h3>2. Understand</h3><p>What each table and field means, how the tables join, and one '

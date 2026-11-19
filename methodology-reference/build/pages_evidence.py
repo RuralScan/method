@@ -293,7 +293,7 @@ def build():
                 [
                     "Findings retained",
                     f"{len(kept):,}",
-                    "Findings whose review state is not “dropped”. These are available to synthesis.",
+                    "Findings whose review state is not “dropped”. Table-specific eligibility and review requirements still apply; retention is not human approval.",
                 ],
                 [
                     "Findings dropped, kept for audit",
@@ -301,9 +301,9 @@ def build():
                     "Findings dropped by a reviewer or by the automated off-scope quarantine. They are never deleted, are excluded from synthesis, and can be re-opened.",
                 ],
                 [
-                    "Findings kept by a reviewer after a flag",
+                    "Retained findings with a recorded human approval",
                     f"{approved:,}",
-                    "Retained findings whose <code>reviewer_ok</code> field is true: a reviewer kept or reclassified the finding after it was flagged. This confirms the finding against its quote, not its numbers or any calibration. Findings that were never flagged may not have been seen by a reviewer.",
+                    "Retained findings whose <code>reviewer_ok</code> field is true. Every extracted finding receives automated/AI quality checks; human decisions are recorded separately. This count describes recorded human approvals, not total QC coverage. Approval covers the recorded review scope and does not itself approve a compiled mapping or numerical calibration.",
                 ],
                 [
                     "Findings cited by recipe rows",

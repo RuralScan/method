@@ -65,7 +65,8 @@ Formulas go in fenced blocks tagged `formula`, written in plain text with Unicod
   `{{csv:schema/lookups/design_weights.csv}}` on its own line. Optional filters:
   `{{csv:schema/lookups/effect_locus.csv|cols=nbs_id,suitability_family_id,locus}}`,
   `{{csv:schema/T2_climate_risk.csv|where=hazard_id=drought|limit=20}}`.
-  Check the column names in the file before using `cols=` or `where=`.
+  Optional `exclude=column=value` omits matching rows from this display only; it never changes the register. Use `caption=Descriptive caption` to identify the displayed subset.
+  Check the column names in the file before using `cols=`, `where=` or `exclude=`.
 - `{{attribution:primitives}}` on its own line where the inherited framework primitives are
   introduced (the five fuzzy membership functions; hybrid AHP + CRITIC + Entropy weighting; the
   reference MCDA implementation; the recipe-template and sub-practice-family patterns). Do not

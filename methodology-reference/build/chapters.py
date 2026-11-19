@@ -100,6 +100,12 @@ def _csv_table(spec, slug):
     if "where" in options:
         col, _, val = options["where"].partition("=")
         rows = [r for r in rows if r.get(col.strip()) == val.strip()]
+    if "exclude" in options:
+        col, separator, val = options["exclude"].partition("=")
+        if not separator or (rows and col.strip() not in rows[0]):
+            PROBLEMS.append(f"{slug}: invalid csv exclusion {options['exclude']!r} in {path}")
+        else:
+            rows = [r for r in rows if r.get(col.strip()) != val.strip()]
     columns = [
         c
         for c in (rows[0].keys() if rows else [])
@@ -122,7 +128,7 @@ def _csv_table(spec, slug):
         if len(rows) < total
         else f" ({total} rows)"
     )
-    caption = f'Pinned rule table <a href="{CIAT_URL}{esc(path)}"><code>{esc(path)}</code></a>{more}'
+    caption = f'{esc(options.get("caption", "Pinned rule table"))} <a href="{CIAT_URL}{esc(path)}"><code>{esc(path)}</code></a>{more}'
     return table([esc(words(c)) for c in columns], body, caption=caption, cls="rule")
 
 

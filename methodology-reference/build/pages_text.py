@@ -363,7 +363,7 @@ EVIDENCE_STEPS = [
     ),
     (
         "Check",
-        "Automated checks run first. Then a person keeps, drops or queries what is flagged.",
+        "Every extracted finding receives automated/AI quality checks. Human Keep, Drop or Query decisions are recorded separately.",
         "Dropped findings are kept for audit and never deleted.",
         "ch-review-and-quality.html",
     ),
@@ -447,7 +447,7 @@ EVIDENCE_FLOW = [
     ),
     (
         "review-and-quality",
-        "People, on the findings that checks flag or sample.",
+        "Automated/AI checks on every extracted finding; human review recorded separately.",
         "A reviewed finding",
     ),
     (
@@ -616,6 +616,7 @@ def build():
         f'<a href="{visual}">Open the visual methodology</a>'
         '<a href="practices.html">Practices and their evidence</a>'
         '<a href="method.html">Technical specification</a></p>'
+        '<p>' + link('help.html#citation', 'Cite this edition') + ' · ' + link('help.html#team', 'Project team and counterparts') + '</p>'
         '<h2 id="problem">The problem</h2>'
         "<p>Nature-based solutions are practices that work with natural processes to protect land, water and "
         "livelihoods: growing trees on farms, harvesting rainwater, restoring forests, wetlands, riverbanks "
@@ -635,7 +636,7 @@ def build():
         "<p>The method removes that bottleneck in two moves.</p><ol>"
         "<li><strong>It does the evidence work once, in the open.</strong> For each practice, sources are "
         "searched, read and broken into individual findings, each stored with the exact quote and the page it "
-        "came from. An AI system does the reading. Automated checks and human reviewers decide what is kept. "
+        "came from. An AI system does the reading. Every extracted finding receives automated/AI quality checks; human review is recorded separately. "
         "The findings are then pooled into rules: where the practice fits, how it responds to climate hazards, "
         "what it delivers and what it costs.</li>"
         "<li><strong>It applies those rules in a fixed order.</strong> Seven stages take a team from choosing "
@@ -742,7 +743,7 @@ def build():
                     "Compiled",
                     (
                         f"Evidence for all {len(PRACTICE_IDS)} practices: {len(data.SRC):,} sources, {len(kept):,} "
-                        f"findings kept and {len(data.ROWS):,} compiled rows. These counts show coverage and effort, "
+                        f"findings retained (excluding dropped records) and {len(data.ROWS):,} compiled rows. These counts show coverage and effort, "
                         "not strength of evidence. Each rating states its own confidence."
                     ),
                 ],
@@ -841,6 +842,13 @@ def build():
         f"{link(live('review-queue'), 'review queue')} of the live dashboard. "
         f"{link('review.html', 'How review records are kept')}.</p>"
         f"<p>You can also {link(issues, 'raise a question or a correction as an issue')} in the method repository.</p>"
+        + '<h2 id="citation">Citing this edition</h2>'
+        + f'<p>Rural NbS Scan methodology. Version {esc(VERSION)} ({esc(VERSION_STATUS)}), {esc(VERSION_DATE)}. '
+        + link("https://ruralscan.github.io/method/reference/", "https://ruralscan.github.io/method/reference/")
+        + ".</p><p>This title-based citation identifies the methodology edition; "
+        + f"cite evidence-base edition {esc(EVIDENCE_BASE)} as well when reporting its counts or analytical tables. "
+        + link("#team", "Project team and counterparts") + " provides the existing team credit. "
+        + link("editions.html", "Editions and checks") + " records the evidence and software provenance.</p>"
         + CONTACTS
     )
     page(
@@ -1099,9 +1107,9 @@ def build():
         + ") are parked out of the generated effect tables; their evidence remains in the register for "
         "hand-off guidance. Cross-family tags hold evidence pooled across a practice's families and are not parked.</p>"
         '<h2 id="review">Human review of findings</h2>'
-        f"<p>{sum(1 for u in kept if u.get('reviewer_ok') is True):,} of {len(kept):,} retained findings were kept or reclassified by a reviewer after being flagged. "
-        "That decision confirms the finding against its quote; it is not a review of its numbers or of any calibration. "
-        "Findings that were never flagged may not have been seen by a reviewer. "
+        "<p>Every extracted finding receives automated/AI quality checks. Human review is recorded separately: "
+        f"{sum(1 for u in kept if u.get('reviewer_ok') is True):,} of {len(kept):,} retained findings have a recorded human approval. "
+        "This is not a measure of total QC coverage. Approval covers the recorded review scope; it does not itself approve a compiled mapping or numerical calibration. "
         f"{len(data.EV) - len(kept):,} findings were dropped, by a reviewer or by the automated off-scope quarantine, and are kept for audit. The automated provenance gates and the "
         f"review process are described in {link('ch-review-and-quality.html', 'review and quality')}.</p>"
         '<h2 id="not">What this edition does not establish</h2><ul>'
