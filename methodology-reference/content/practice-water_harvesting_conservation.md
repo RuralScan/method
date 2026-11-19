@@ -37,9 +37,9 @@ Families are grouped by which water-balance question their dominant limiting fac
 
 {{attribution:primitives}}
 
-The registry rows for this practice:
+The table below lists the land-based sub-practices and context tags registered for this practice. It excludes the historical rooftop-harvesting record: rooftop and household cisterns are outside this landscape scan. Inclusion in the table does not establish that a family has an executable mapping; the family discussions below give its status. [src: methodology/audits/wh_scope_review_20261104/README.md §Decision requested]
 
-{{csv:schema/registers/FAM_family_registry.csv|where=nbs_id=water_harvesting_conservation|cols=subpractice_id,name,suitability_family_id,spatial_product_type,dominant_limiting_factor}}
+{{csv:schema/registers/FAM_family_registry.csv|where=nbs_id=water_harvesting_conservation|exclude=suitability_family_id=water_harvesting__rooftop|caption=Land-based sub-practices and context tags (rooftop harvesting excluded)|cols=subpractice_id,name,suitability_family_id,spatial_product_type,dominant_limiting_factor}}
 
 ### In-situ moisture conservation (`water_harvesting__in_situ`)
 
@@ -65,9 +65,9 @@ Sub-practices: bench terraces, and stone bunds or fanya juu. The slope is reshap
 
 Diversion and spreading of ephemeral flood flows (spate irrigation, jessour, water spreading), gated by ephemeral channel or wadi presence and sediment load [src: schema/registers/FAM_family_registry.csv §spate_floodwater]. Product: `zonal_linear`, reported as length or reach coverage along the channel. The registry records it as parked: the evidence is thin and whether it stays a family or folds into runoff storage is a scope question. The scope review keeps it distinct pending domain review rather than silently merging it [src: methodology/audits/wh_scope_review_20261104/README.md §Why these boundaries matter].
 
-### Rooftop harvesting (`water_harvesting__rooftop`): qualitative only, out of scope
+### Historical record: rooftop harvesting (`water_harvesting__rooftop`), excluded from scope
 
-Cisterns and reservoirs capturing roof runoff, gated by settlement and building presence at sub-pixel scale. Product: `qualitative_only` [src: schema/registers/FAM_family_registry.csv §rooftop_harvesting]. Rooftop and household cisterns are not a landscape NbS, so the family is parked out of the generated effect tables while its evidence stays in the register [src: AGENTS.md §What is locked]. The scope review records rooftop harvesting as already out of project scope and needing consistent exclusion wording, not another vote [src: methodology/audits/wh_scope_review_20261104/README.md §Decision requested].
+This historical registry record is retained for provenance, not offered as a candidate for the scan. It describes cisterns and reservoirs capturing roof runoff, gated by settlement and building presence at sub-pixel scale. Product: `qualitative_only` [src: schema/registers/FAM_family_registry.csv §rooftop_harvesting]. Rooftop and household cisterns are not a landscape NbS, so the family is parked out of the generated effect tables while its evidence stays in the register [src: AGENTS.md §What is locked]. The scope review records rooftop harvesting as already out of project scope and needing consistent exclusion wording, not another vote [src: methodology/audits/wh_scope_review_20261104/README.md §Decision requested].
 
 ### Cross-family tag (`water_harvesting__cross_family`)
 

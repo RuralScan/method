@@ -6,6 +6,14 @@ What changed in the Rural NbS Scan methodology, newest first. The build reads th
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.13.0] - 2026-11-19
+
+- Add a title-based citation with the edition, URL and existing team credit.
+- Reconcile registered, retained and dropped finding counts across practice summaries and evidence downloads.
+- Distinguish automated/AI quality checks on every extracted item from separately recorded human review.
+- Replace ambiguous empty-output labels and explain that zero compiled rows does not mean no evidence.
+- Separate the excluded rooftop-harvesting record from the land-based practice table while retaining its provenance.
+
 ## [0.12.0] - 2026-11-19
 
 - Add labelled worked illustrations across the evidence workflow, including shared origins, conflicting effects and incomparable costs; keep linked example headings clear of the sticky navigation.

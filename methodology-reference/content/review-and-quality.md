@@ -27,7 +27,7 @@ sources:
 
 Deterministic checks establish whether a passage matches the cached artefact and flag recognisable numerical or scope defects. Passing them does not prove that every number was interpreted correctly or that every error is absent. They cannot decide whether a claim is the right kind of claim, whether it was read correctly in context, or whether a published number is scientifically fit to drive a recipe. Those judgements are made by people. [src: src/nbs_ruralscan/schema_tools/check_numbers.py §module docstring] [src: .agents/skills/extraction_contracts/T4_review_contract.md §Numeric plausibility gate]
 
-The method places the human bottleneck where it matters. Extraction fidelity, harmonisation and an adversarial review pass run first, with automated triage. People review flagged and sampled units, the family schemes and recipe content, and later-stage outputs (dataset fitness, output validation, resolution). [src: methodology/T4_generation_method.md §7. Validation & sign-off]
+Every extracted item receives automated/AI quality checks, including extraction fidelity, harmonisation and adversarial review. Human review is recorded separately. Flags and sampling help prioritise human attention; they do not define which items receive QC. People also review family schemes and recipe content, and later-stage outputs (dataset fitness, output validation, resolution). [src: methodology/T4_generation_method.md §7. Validation & sign-off]
 
 ## The review workspace
 
@@ -182,7 +182,7 @@ Two corollaries follow. Effort counts (sources searched, units extracted, units 
 ## Assumptions and limits
 
 - **Consensus is not a second scientific review.** One eligible ballot can be uncontested; a protected application PR is a separate integration gate. Neither establishes that two people independently assessed the claim.
-- **Coverage is partial.** Review concentrates on flagged and sampled units. An unflagged, unreviewed unit has passed the deterministic checks only.
+- **QC and human approval are different records.** Every extracted item receives automated/AI checks. A missing human approval is not a missing QC pass, and a clean automated result is not proof of scientific validity. Report recorded human decisions separately; do not infer universal human review from universal QC.
 - **Reason codes are coarse.** They route fixes well but compress nuanced judgements; the free-text note carries the detail.
 - **Plausibility review is documentary.** It records the scientific concern and the justification available; it is not automated validation and introduces no universal thresholds.
 - **Ledger rules and their description differ** at the pinned revision, as noted above; readers should rely on the build check, not the description, for what is enforced.

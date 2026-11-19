@@ -30,6 +30,12 @@ from core import (
 )
 from pages_evidence import practices_of
 
+# Presentation notes for historical registry records, not synthesis eligibility rules.
+# Source: methodology/audits/wh_scope_review_20261104/README.md, Decision requested.
+FAMILY_SCOPE_NOTES = {
+    "water_harvesting__rooftop": "Excluded from this landscape scan; historical registry record retained for provenance. No generated analytical rows.",
+}
+
 RISK_ROLE = {
     "livelihood_mitigation": "Livelihood risk mitigation (Module 2)",
     "asset_threat": "Threat to the investment (Module 2b)",
@@ -892,7 +898,8 @@ def practice_page(practice):
         fam_rows.append(
             [
                 link(f"#fam-{esc(f)}", esc(family_name(f)))
-                + f"<br><small>{code(f)}</small>",
+                + f"<br><small>{code(f)}</small>"
+                + (f"<br><strong>{esc(FAMILY_SCOPE_NOTES[f])}</strong>" if f in FAMILY_SCOPE_NOTES else ""),
                 ", ".join(esc(s["name"]) for s in subs)
                 or "Shared context across families",
                 text(subs[0]["dominant_limiting_factor"]) if subs else "",
@@ -929,6 +936,9 @@ def practice_page(practice):
     for f in fams:
         subs = data.FAMILY_ROWS.get(f, [])
         body += f'<h3 id="fam-{esc(f)}">{esc(family_name(f))}</h3>'
+        if f in FAMILY_SCOPE_NOTES:
+            body += f'<p class="empty">{esc(FAMILY_SCOPE_NOTES[f])}</p>'
+            continue
         if f in FAMILY_CAPTION:
             body += f"<p>{esc(FAMILY_CAPTION[f])}</p>"
         if subs:
@@ -961,6 +971,8 @@ def practice_page(practice):
             block = effect_tables(practice, t, f)
             if block:
                 body += f"<h3>{esc(family_name(f))}</h3>" + block
+            elif f in FAMILY_SCOPE_NOTES:
+                body += f'<h3>{esc(family_name(f))}</h3><p class="empty">{esc(FAMILY_SCOPE_NOTES[f])}</p>'
             elif "qualitative_only" in data.family_product(f) and not is_cross(f):
                 body += f'<h3>{esc(family_name(f))}</h3><p class="empty">Parked: qualitative guidance only (no map, no generated effect rows).</p>'
 
@@ -1017,14 +1029,14 @@ def practice_cards():
         share = round(100 * f["findings"] / top)
         rows = "".join(
             f"<li>{badge(t)} {esc(TABLE_NAMES[t])} "
-            + (f"<b>{n}</b>" if n else '<b class="none">none yet</b>')
+            + (f"<b>{n}</b>" if n else '<b class="none">0 compiled</b>')
             + "</li>"
             for t, n in f["rows"].items()
         )
         cards.append(
             f'<article class="pcard"><h3>{link(f"practice-{p}.html", name)}</h3>'
             f'<p class="pdesc">{esc(PRACTICE_TEXT[p][0])}</p>'
-            f'<p class="pmain"><b>{f["findings"]:,}</b> findings from <b>{f["sources"]:,}</b> sources</p>'
+            f'<p class="pmain"><b>{f["findings"]:,}</b> retained findings from <b>{f["sources"]:,}</b> sources</p>'
             f'<div class="meter" role="img" aria-label="{f["findings"]:,} findings, {share} percent of the '
             f'largest practice" title="{f["findings"]:,} findings retained"><span style="width:{share}%"></span></div>'
             f'<p class="pmeta">{f["families"]} {"family" if f["families"] == 1 else "families"} · '
@@ -1093,8 +1105,8 @@ def build():
         ),
         (
             f"{len({f['suitability_family_id'] for f in data.FAM})}",
-            "families of sub-practices",
-            "Sub-practices grouped by the factor that limits where they work.",
+            "registered family identifiers",
+            "Registered identifiers include cross-family context and excluded historical records; consult each practice’s scope notes.",
         ),
         (
             f"{len(data.SRC):,}",
@@ -1103,7 +1115,7 @@ def build():
         ),
         (
             f"{len(kept):,}",
-            "findings kept",
+            "findings retained",
             "One finding is one claim from one source, stored with its quote.",
         ),
         (
@@ -1119,14 +1131,18 @@ def build():
             for n, label, tip in headline
         )
         + "</div>"
+        + f'<p>{len(data.EV):,} findings are registered: {len(kept):,} retained and {len(data.EV) - len(kept):,} dropped but preserved for audit. '
+        "Retained does not mean human-approved or eligible for every analytical table. Family counts include cross-family context and historical records; each practice page states exclusions. "
+        + link("evidence-counts.html#definitions", "Count definitions") + ".</p>"
         '<h2 id="evidence">How much evidence each practice has</h2>'
         "<p>For each practice the team searched the literature and practitioner databases, read the sources, "
         "extracted findings with their quotes, and compiled them into rows: where the practice fits, how it "
         "responds to hazards, what it delivers, and what it costs.</p>"
         + practice_cards()
-        + '<p class="basis">Bars compare findings kept across practices. Counts show coverage and effort, not '
+        + '<p class="basis">Bars compare retained findings across practices. Counts show coverage and effort, not '
         "strength of evidence: a row built on many findings can still carry low confidence, and each row states "
-        "its own. A source that serves two practices is counted under both. "
+        "its own. Zero compiled rows means this edition has no output for that table; it does not mean no evidence was found. "
+        "A source that serves two practices is counted under both. "
         f"{link('evidence-counts.html#practice', 'The same counts as a table, with definitions')}.</p>"
         '<h2 id="rows">Rows by practice and table</h2>'
         "<p>Each practice page gives the scientific basis of its family scheme, then every compiled row "
