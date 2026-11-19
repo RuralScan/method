@@ -1012,7 +1012,7 @@
 <script src="t4_analysis.js"></script>
 <link rel="stylesheet" href="dashboard-progress.css?v=1.4.0">
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.1.0">
-<link rel="stylesheet" href="dashboard-shell.css?v=1.12.0">
+<link rel="stylesheet" href="dashboard-shell.css?v=1.13.0">
 <link rel="stylesheet" href="dashboard-evidence.css?v=1.0.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
 <style>
@@ -1569,7 +1569,7 @@
 
     <!-- TAB 5: SEARCH & DISCOVERY LOGS -->
     <div id="tab-qaqc" class="tab-content">
-<header class="shell-intro"><h2>5. Evidence review</h2><p>Choose a table, open a finding and compare the extraction with its source. Choose <b>Review finding</b> to save a decision. Submit saved decisions together when ready.</p></header>
+<header class="shell-intro"><h2>5. Evidence review</h2><p>Choose a table, open a finding and compare the extraction with its source. Use <b>Keep, Drop or Query</b> directly on each card. Submit saved decisions together when ready.</p></header>
       <nav class="shell-subnav" aria-label="Evidence review views"><button type="button" data-review-view="queue" aria-pressed="true">5.1 Review queue</button><button type="button" data-review-view="help" aria-pressed="false">5.2 How to review</button><button type="button" data-review-view="pipeline" aria-pressed="false">5.3 Pipeline records</button></nav>
       <section id="review-help-panel" hidden><h3>5.2 How to review</h3>
         <p>Review checks the extraction against its source. It does not approve a spatial model, a proposed investment or every other claim from the same paper.</p>
@@ -1582,7 +1582,7 @@
           <li><b>Read the claim and inspect its source.</b> Check the page or table, units, context, practice and intended use. Open the source region or full paper when the excerpt lacks context. A restricted source may require the synced library or its SharePoint link; contact the library maintainer if access is missing.</li>
           <li><b>Keep</b> when the extraction is faithful and relevant. <b>Drop</b> when it is unsuitable or incorrect: select a coded reason and explain it. Drop quarantines the record; it does not erase it. <b>Query</b> when clarification is needed: state what needs checking. A query is not approval.</li>
           <li><b>Review answers on the evidence card.</b> Answered records return to To review. Read the answer and source, then Keep, Drop or Query. There is no separate answer-approval step; deciding one record does not approve the other records sharing its answer.</li>
-          <li><b>Choose Review finding</b>, select Keep, Hold or Drop, and save it to your batch. Choose <b>Submit all my decisions</b>, then create the GitHub issue. Its number is your receipt. Find it through <b>My reviewed</b>.</li>
+          <li><b>Choose Keep, Drop or Query on the card.</b> Your decision is saved on this device and the queue moves to the next finding. Choose <b>Submit all my decisions</b>, then create the GitHub issue. Its number is your receipt. Find it through <b>My reviewed</b>.</li>
         </ol>
         <h4>5.2.3 If something needs attention</h4>
         <ul><li><b>Missing sources:</b> hydrate the corpus and use Recheck. A source-cache presence count is not a completed quote check; submission runs the provenance guardrail.</li><li><b>Missing extraction:</b> use Report missing evidence under More actions and identify the source and location.</li><li><b>Submission failed:</b> decisions remain saved locally. Read the reported error before retrying; do not start a second submission while one is still running.</li><li><b>Interface feedback:</b> use Feedback in the dashboard header. These notes stay in this browser at this address until exported; they do not Keep, Drop, Query or submit an evidence decision.</li></ul>
@@ -1595,7 +1595,7 @@
         <div id="review-queue"></div>
       <div id="readonly-banner" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:9px 16px; background:rgba(245,158,11,0.12); border-bottom:1px solid rgba(245,158,11,0.35); color:var(--text-primary); font-size:12.5px;">
         <span style="font-size:15px;">&#9888;&#65039;</span>
-        <span>Choose your reviewer and save each decision with <b>Review finding</b>. Your batch stays in this browser until you submit it to GitHub. <a href="https://github.com/RuralScan/evidence/tree/main/workflows/submissions">Submit a CSV or extraction proposal</a>.</span>
+        <span>Read the finding and source, then <b>Keep, Drop or Query</b>. Decisions stay on this device until you submit your batch. <a href="https://github.com/RuralScan/evidence/tree/main/workflows/submissions">Submit a CSV or extraction proposal</a>.</span>
         <button id="review-submit-all" type="button">Submit all my decisions (<span id="review-batch-count">0</span>)</button><span id="review-batch-status" role="status"></span>
         <button class="shell-link" type="button" onclick="DashboardShell.openReviewHelp()">How to review</button>
       </div>
@@ -1630,7 +1630,7 @@
                 <span style="font-size:11px; padding:5px 10px; border-radius:6px; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.25); color:var(--text-secondary);"><b style="color:#f59e0b;">UNSUPPORTED</b> — AI-flagged: a value the quote never contained (stripped)</span>
               </div>
               <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.6;">
-                <b style="color:var(--text-primary);">To review:</b> set your handle &#8594; choose <b style="color:var(--accent-emerald);">ok</b> (keep) or <b style="color:var(--accent-rose);">drop</b> (remove) + a reason &#8594; <b>Apply &amp; submit to main</b> writes it to the register, re-gates, and opens a PR subject to checks and required approvals.
+                <b style="color:var(--text-primary);">To review:</b> set your handle &#8594; compare the finding with its source &#8594; choose <b>Keep, Drop or Query</b> on the card &#8594; <b>Submit all my decisions</b> sends your batch to RuralScan/evidence for processing. A saved draft does not change the register.
                 <span style="color:var(--text-muted);">Working offline? Download your votes as CSV and submit it to RuralScan/evidence using the submission desk.</span>
                 <br><span style="color:var(--text-muted);">Per card: <b style="color:var(--accent-emerald);">ok</b> = keep · <b style="color:var(--accent-rose);">drop</b> = remove (needs a coded reason) · <b style="color:var(--accent-amber);">&#9873; query</b> = keep tentatively but raise an open question (write it in the note).</span>
               </div>
@@ -1674,13 +1674,14 @@
             <p id="public-review-history" hidden><a href="https://github.com/RuralScan/evidence/issues?q=is%3Aissue+author%3A%40me+submission+in%3Abody">My public RuralScan submissions</a></p>
             <div id="vf-cards" tabindex="-1" role="region" aria-label="Findings in current review queue" style="margin-top:12px;"></div>
             <div id="vf-actionbar" style="position:sticky; bottom:0; z-index:19; background:var(--bg-primary); border-bottom:1px solid var(--border-color); padding:6px 0 7px; display:flex; align-items:center; gap:9px; flex-wrap:wrap;">
-              <span id="vf-pending-count" style="font-size:11.5px; font-weight:700;" title="Your decisions saved locally but NOT yet applied + submitted to main. Applies EVERY pending decision (AI-flagged + AI-passed), not just the current queue. Click Apply & submit to main to ship them."></span>
+              <span id="vf-pending-count" style="font-size:11.5px; font-weight:700;" title="Your saved decisions across all queues. Submit your batch to RuralScan/evidence when ready."></span>
               <span style="margin-left:auto; display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <button class="pill-btn review-submit-bottom" type="button" onclick="ReviewBatch.open()">Submit all my decisions (<span data-review-batch-count>0</span>)</button>
                 <button id="vf-apply-btn" onclick="applyVfDecisions()" title="Applies your decisions to the registers AND submits them to main (opens a PR subject to checks and required approvals). One click." style="display:none; font-size:11px; font-weight:600; padding:6px 14px; border-radius:4px; background:var(--accent-emerald); color:#fff; border:none; cursor:pointer;">Submit reviews</button>
                 <button id="vf-download-btn" onclick="downloadVfDecisions()" style="font-size:11px; font-weight:600; padding:6px 14px; border-radius:4px; background:var(--accent-sky); color:#fff; border:none; cursor:pointer;">&#8595; Download CSV</button>
                 <details><summary style="cursor:pointer">More actions</summary>
                 <button onclick="openGapModal()" title="Report a variable / figure / table that should exist but isn't in the register — e.g. after checking a figure's variables are all extracted" style="font-size:10.5px; padding:5px 10px; border-radius:4px; background:transparent; color:var(--text-muted); border:1px solid var(--border-color); cursor:pointer;">&#9888; Report missing evidence</button>
-                <button onclick="resetVfDecisions()" title="un-decides only YOUR pending (not-yet-applied) decisions — the same ones the pending counter shows; applied/committed decisions + other reviewers untouched" style="font-size:10.5px; padding:5px 10px; border-radius:4px; background:transparent; color:var(--text-muted); border:1px solid var(--border-color); cursor:pointer;">Reset my decisions</button></details>
+                <button onclick="resetVfDecisions()" title="Review or remove your unsubmitted decisions. Recorded reviews are preserved." style="font-size:10.5px; padding:5px 10px; border-radius:4px; background:transparent; color:var(--text-muted); border:1px solid var(--border-color); cursor:pointer;">Manage saved decisions</button></details>
               </span>
             </div>
             <div id="vf-stats" style="display:none; margin-top:12px;"></div>
@@ -2163,7 +2164,7 @@
   // so the in-flight "Applying…" state set by applyVfDecisions is never disturbed.
   function _vfStyleApply(n){ var b=document.getElementById('vf-apply-btn'); if(!b)return;
     b.style.opacity=(n>0?'1':'0.45'); b.style.cursor=(n>0?'pointer':'not-allowed'); }
-  function _vfUpdatePending(){ var el=document.getElementById('vf-pending-count'); if(!el)return; var me=(window._vfReviewer||'').trim();
+  function _vfUpdatePending(){ if(reviewData.registerRevision && !window._reviewApi){ReviewBatch.refresh();return;} var el=document.getElementById('vf-pending-count'); if(!el)return; var me=(window._vfReviewer||'').trim();
     if(!me){ el.innerHTML='<span style="color:var(--text-muted); font-weight:400;">Pick your reviewer handle above the queue to start deciding.</span>'; _vfStyleApply(0); return; }
     // Apply ships EVERY pending decision, across all queues — so this total is scope- and mode-independent.
     // Break it into AI-flagged + AI-passed origin so the reviewer sees exactly what will be submitted.
@@ -2433,7 +2434,7 @@
       if(btn){btn.disabled=false;btn.textContent='Submit reviews';}
     }
   }
-  function downloadVfDecisions(){
+  function downloadVfDecisions(){ if(reviewData.registerRevision && !window._reviewApi){ReviewBatch.open();return;}
     var rows=window._vfFlagged||[]; var hdr=['evidence_id','source_id','variable','use_role','verdict','flag_reason','quote','relationship','decision','reason','reviewer','note'];
     function q(v){v=(v==null?'':String(v)); return '"'+v.replace(/"/g,'""')+'"';}
     var lines=[hdr.join(',')];
@@ -2476,7 +2477,7 @@
     vfUseDecisions(window._vfAllReviews || {});
     renderVfWorklist();
   }
-  async function resetVfDecisions(){ var me=(window._vfReviewer||'').trim(); if(!me){ alert('Set your reviewer handle first — reset only clears YOUR decisions.'); return; }
+  async function resetVfDecisions(){ if(reviewData.registerRevision && !window._reviewApi){ReviewBatch.open();return;} var me=(window._vfReviewer||'').trim(); if(!me){ alert('Set your reviewer handle first — reset only clears YOUR decisions.'); return; }
     // Reset = un-decide your PENDING (not-yet-applied) decisions only. Applied decisions are
     // the durable review record (register + review_log) and are never touched here — the old
     // version counted + cleared applied history too, so the dialog said "237" while Apply
@@ -2643,6 +2644,7 @@
   function _vfMergedReviews(eid){ var out={};
     var rl=vfReviewerEvents();
     rl.forEach(function(r){ if(r.evidence_id!==eid)return; var d=(r.decision||'').toLowerCase(); if(d==='reopen')delete out[r.reviewer]; else if(d)out[r.reviewer]=d; });
+    if(reviewData.registerRevision && !window._reviewApi) { var draft=ReviewBatch.get(eid); if(draft)out[draft.reviewer]=VoteDrafts.legacyDecision(draft.decision); return out; }
     var a=(window._vfAllReviews||{})[eid]||{};
     Object.keys(a).forEach(function(rv){ if(a[rv]&&a[rv].decision) out[rv]=a[rv].decision; });  // local pending/applied overrides
     return out; }
@@ -2745,7 +2747,7 @@
     var query=u.myDec==='flag'||u.myDec==='query';
     var answered=vfHasAnswerForReview(u.ev.evidence_id);
     var waiting=vfClarificationsFor(u.ev.evidence_id).some(function(g){var r=g.records.find(function(r){return r.evidence_id===u.ev.evidence_id;});return g.reviewer!=='Status reconciliation'&&(r.review_status||g.status)==='needs_investigation';});
-    if(view==='waiting')return (query||waiting)&&!answered&&!u.ev._reviewConflict;
+    if(view==='waiting')return !pending&&(query||waiting)&&!answered&&!u.ev._reviewConflict;
     if(pending)return false;
     if(u.conflictReviewed&&!answered)return false;
     return answered||u.ev._reviewConflict||u.ev._reviewQueue==='first';
@@ -3080,7 +3082,7 @@
     var _summaryHtml='<summary style="cursor:pointer; display:flex; align-items:center; gap:9px; flex-wrap:wrap; padding:9px 14px; border-left:4px solid '+_aiCol+'; border-radius:8px; background:var(--bg-secondary);">'+_aiBadge+_dropBadgeD+(window.DashboardPriority?DashboardPriority.badge(ev):'')+'<code style="color:var(--accent-sky); font-size:11.5px;">'+vfEsc(ev.evidence_id||'')+'</code><span style="font-size:11px; color:var(--text-secondary);">'+vfEsc(ev.variable||'')+' · '+vfEsc((ev.use_role||'').replace(/_/g,' '))+'</span>'+_decChipS+'<span style="margin-left:auto; display:inline-flex; gap:8px; align-items:center;">'+_revChipS+'</span></summary>';
     const intakeLane = ev.use_role === 'operational_risk' ? 'M2b' : ev.use_role === 'structural_suitability' ? 'T4' :
       (DashboardTables.matches(ev, 'T3') || DashboardTables.matches(ev, 'T6') ? 'T3/T6' : '');
-    const intakeLink = intakeLane && reviewData.registerRevision ? '<button type="button" class="finding-submit pill-btn" data-finding="'+vfEsc(ev.evidence_id)+'" data-lane="'+vfEsc(intakeLane)+'" data-revision="'+vfEsc(reviewData.registerRevision)+'">'+ReviewBatch.label(ev.evidence_id,reviewData.registerRevision)+'</button> · ' : '';
+    const inlineControls = intakeLane && reviewData.registerRevision && !window._reviewApi ? InlineReview.html(ev.evidence_id, intakeLane, reviewData.registerRevision) : '';
     var _card='<div data-vfeid="'+vfEsc(ev.evidence_id||'')+'" style="border:1px solid '+(dec?'var(--accent-emerald)':'var(--border-color)')+'; border-left:4px solid '+_aiCol+'; border-radius:8px; padding:14px 16px; margin-bottom:10px; background:var(--bg-secondary);">'
       +(_collap?'':('<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px;">'
       +_aiBadge+_dropBadgeD+(window.DashboardPriority?DashboardPriority.badge(ev):'')
@@ -3091,17 +3093,17 @@
       +(_collap && opts.formerlyCited?'<p>Previously cited in this table. <a href="https://github.com/CIAT/nbs_ruralscan/blob/'+vfEsc(reviewData.formerly_cited[window._vfScope.table][ev.evidence_id])+'">View the earlier CIAT table</a>.</p>':'')
       +(opts.myEvent?'<p><strong>Your recorded decision</strong> · '+vfEsc(opts.myEvent.date)+' · '+vfEsc(opts.myEvent.decision)+(opts.myEvent.reason?' · '+vfEsc(opts.myEvent.reason.replace(/_/g,' ')):'')+(opts.myEvent.note?'<br>'+vfEsc(opts.myEvent.note):'')+'</p>':'')
       +_chipRow
-      +'<p>'+intakeLink+'<a class="finding-ciat" href="'+vfEsc(DashboardTables.ciatUrl(ev.evidence_id))+'">CIAT source record</a></p>'
+      +'<details class="review-history-link"><summary>Earlier source record</summary><a class="finding-ciat" href="'+vfEsc(DashboardTables.ciatUrl(ev.evidence_id))+'">CIAT source record</a></details>'
       +(ev._reviewConflict?'<p style="border-left:3px solid var(--accent-amber);padding:8px"><b>Reviewers disagree:</b> this record has both Keep and Drop decisions. Check the reviewer notes below and give your judgement.</p>':'')
       +vfClarificationHtml(ev)
       +(window.DashboardPriority?DashboardPriority.card(ev):'')
-      +vfReviewMeaning(ev)
-      +vfSourceAuditHtml(ev)
+      +'<details class="review-extraction-details"><summary>Extraction context and checks</summary>'+vfReviewMeaning(ev)+vfSourceAuditHtml(ev)+'</details>'
+      +'<div class="review-source-pair"><div class="review-extracted">'
       +(ev.relationship && JSON.stringify(ev.relationship)!=='{}' && ev.relationship!=='{}' ? '<div style="font-size:11.5px;margin:5px 0;"><b>Extracted rule / values:</b> '+vfRelHtml(ev)+'</div>' : '')
       +vfRelatedTableHtml(ev)
       +(!passed?'<div style="font-size:11.5px;margin:5px 0;color:'+vc+';"><b>AI review flag:</b> '+vfEsc(reason)+'</div>':'')
       +'<div style="font-size:11.5px; margin:8px 0; color:var(--text-secondary); background:rgba(255,255,255,0.02); padding:9px 11px; border-radius:4px;"><b style="color:var(--text-muted);">Verbatim quote ('+vfEsc(page)+', '+vfEsc(vfLocHint(ev))+'):</b> '+vfEsc(ev.quote||'')+'</div>'
-      +(reviewData.registerRevision && !window._reviewApi ? SourcePreviews.card(ev.evidence_id) : cropImg)
+      +inlineControls+'</div><div class="review-original">'+(reviewData.registerRevision && !window._reviewApi ? SourcePreviews.card(ev.evidence_id) : cropImg)+'</div></div>'
       +decodedBlock
       +reviewsLine
       +'<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:12px; font-size:10.5px; border-top:1px solid var(--border-color); padding-top:10px;">'+doiHtml+((doiHtml&&pdfLink)?' &nbsp; ':'')+pdfLink+'</div>'
@@ -3142,7 +3144,7 @@
       if(cur<0||cur>=cards.length)return;
       var el=cards[cur]; var eid=el.getAttribute('data-vfeid'); if(!eid)return;        // gap cards etc. carry none
       if(reviewData.registerRevision && !window._reviewApi && ['k','d','q'].includes(k)){
-        var reviewButton=el.querySelector('.finding-submit'); if(reviewButton){e.preventDefault();reviewButton.click();} return;
+        e.preventDefault(); InlineReview.key(el,k); return;
       }
       if(k==='k'){ e.preventDefault(); setVfDecision(eid,'ok'); return; }
       if(k==='d'){ e.preventDefault();
@@ -3159,6 +3161,7 @@
 
   function renderVfWorklist() {
     if (!reviewData) return;
+    document.getElementById('tab-qaqc').toggleAttribute('data-public-review', Boolean(reviewData.registerRevision && !window._reviewApi));
     if(!window._vfSimpleView){window._vfSimpleView='todo';window._vfAxMe='any';window._vfAxOther='any';window._vfAxOrigin='any';}
     if (!window._vfDecisions){ try{ window._vfDecisions=JSON.parse(localStorage.getItem('vfDecisions')||'{}'); }catch(e){ window._vfDecisions={}; } }
     if (!window._vfReasons){ try{ window._vfReasons=JSON.parse(localStorage.getItem('vfReasons')||'{}'); }catch(e){ window._vfReasons={}; } }
@@ -3242,7 +3245,8 @@
     if(window._vfAxOther===undefined)window._vfAxOther='any';
     if(window._vfMyCall===undefined)window._vfMyCall='all';
     // reviewed-by predicates: pending (this session) + persistent store (all reviewers) + committed log.
-    var _store=(window._vfAllReviews||{}), _pend=(window._vfDecisions||{});
+    var publicQueue=reviewData.registerRevision && !window._reviewApi;
+    var _store=publicQueue ? {} : (window._vfAllReviews||{}), _pend=publicQueue ? ReviewBatch.pending(reviewData.registerRevision) : (window._vfDecisions||{});
     var _meH=(window._vfReviewer||'').trim();
     var _repeatConflicts=vfRepeatedConflicts(rlAll,_meH);
     // committed decisions per (id,reviewer). A 'reopen' row CLEARS that reviewer's prior decision —
@@ -3258,7 +3262,7 @@
     // Has MY decision been APPLIED (committed to the review_log, or stamped applied in the store)?
     // This — not the register's reviewer_ok/dropped state — decides settled (compact card) vs
     // in-progress (full editable card), so an applied *query* reads as settled like an ok/drop does.
-    var _meApplied=function(id){ if(_reopMe[id])return false; if((_rlByRev[id]||{})[_meH])return true; var s=_store[id]||{}; return !!(_meH&&s[_meH]&&(s[_meH].applied===true||s[_meH].applied==='true')); };
+    var _meApplied=function(id){ if(_pend[id]||_reopMe[id])return false; if((_rlByRev[id]||{})[_meH])return true; var s=_store[id]||{}; return !!(_meH&&s[_meH]&&(s[_meH].applied===true||s[_meH].applied==='true')); };
     // Build the annotated universe (deduped by evidence_id). flaggedRows/passedAll are already scoped.
     var _uni=[], _useen={};
     var _pushU=function(ev,origin,verdict,reason){ var id=ev.evidence_id; if(_useen[id])return; _useen[id]=1;
@@ -3346,7 +3350,7 @@
         }).join('') + '</div>';
       var maintenance='<details><summary>Team maintenance</summary>'+[['unresolved','Decision / status checks'],['approval_only','Missing review history'],['dropped','Dropped history'],['all','All records']].map(function(q){return '<button class="pill-btn" onclick="vfReviewQueue(\''+q[0]+'\')">'+q[1]+'</button>';}).join('')+'</details>';
       var cl=window._vfClarificationError?'<p>'+vfEsc(window._vfClarificationError)+'</p>':'';
-      fd.innerHTML=summary+(window.DashboardPriority?DashboardPriority.controls():'')+(isMyHistory?vfArchivedHistory(personal.archived)+vfRatingHistory(personal.ratings):'')+cl+'<details '+(window._vfMoreFilters?'open':'')+' ontoggle="window._vfMoreFilters=this.open"><summary style="cursor:pointer">More filters'+((window._vfScope.observations||'hide')==='hide'?' · site observations hidden':'')+(window._vfSimpleView==='advanced'&&!window._vfPriorityEvidence?' — custom view active':'')+'</summary><button class="pill-btn" onclick="vfSimpleQueue(\'advanced\')">Use custom filters</button>'+(window._vfAdvancedScopeHtml||'')+_bar+maintenance+'<details><summary>Review a whole source</summary><div id="vf-bulk"></div></details></details>'; }
+      fd.innerHTML=summary+(window.DashboardPriority?DashboardPriority.controls():'')+(isMyHistory?vfArchivedHistory(personal.archived)+vfRatingHistory(personal.ratings):'')+cl+'<details '+(window._vfMoreFilters?'open':'')+' ontoggle="window._vfMoreFilters=this.open"><summary style="cursor:pointer">More filters'+((window._vfScope.observations||'hide')==='hide'?' · site observations hidden':'')+(window._vfSimpleView==='advanced'&&!window._vfPriorityEvidence?' — custom view active':'')+'</summary><button class="pill-btn" onclick="vfSimpleQueue(\'advanced\')">Use custom filters</button>'+(window._vfAdvancedScopeHtml||'')+_bar+maintenance+'<details data-local-review-only><summary>Review a whole source</summary><div id="vf-bulk"></div></details></details>'; }
     // ---- apply the toggle filters to the universe (secondary filters via the shared _sec) ----
     var _list=_uni.filter(function(u){
       if(window._vfSimpleView!=='advanced')return _sec(u,'any','any');
@@ -6050,7 +6054,7 @@
 <script src="dashboard-relationships.js?v=1.2.1"></script>
 <script src="dashboard-tables.js?v=4"></script>
 <script src="dashboard-evidence.js?v=1.0.1"></script>
-<script src="dashboard-priority.js?v=1.12"></script>
+<script src="dashboard-priority.js?v=1.13"></script>
 <script src="review/priority-receipt.js"></script>
 <script src="review/priority-status.js?v=2"></script>
 <script src="dashboard-shell.js?v=1.9.0"></script>
@@ -6072,6 +6076,8 @@
 <script src="review/local-library.js?v=1"></script>
 <script src="review/source-previews.js?v=2"></script>
 <script src="review/batch-receipt.js"></script>
-<script src="review/submission.js"></script>
+<script src="review/vote-drafts.js?v=1"></script>
+<script src="review/submission.js?v=2"></script>
+<script src="review/inline-review.js?v=1"></script>
 </body>
 </html>
