@@ -7,7 +7,7 @@ const path = require('node:path');
 function render(events, notes = []) {
   const reviewData = {review_priorities: notes, corrections: events && {fixture: events}};
   const context = {window: {}, reviewData};
-  const code = fs.readFileSync(path.join(__dirname, '../dashboard-priority.js'), 'utf8');
+  const code = fs.readFileSync(path.join(__dirname, '../review/priority.js'), 'utf8');
   vm.runInNewContext(code, context);
   return context.window.DashboardPriority.card({evidence_id:'fixture'});
 }

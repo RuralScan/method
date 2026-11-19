@@ -2,7 +2,7 @@
 
 [Open Methodology](https://ruralscan.github.io/method/) · [Open the evidence review queue](https://ruralscan.github.io/method/dashboard.html#review-queue).
 
-The Methodology is the default home page, published at `reference/index.html`. Its version number and date are written by its own build (`reference/version.json`) and read from there for the version menu; they are not typed on this branch. Its active review workspace is at `dashboard.html`, with dedicated T3, T4, T6 and M2b queues, source previews, personal review history and submission controls. Both select the current 17 November edition in the version menu. The superseded 10 November dashboard overview remains at `legacy.html`, reached by explicitly selecting that edition.
+The Methodology is the default home page, published at `reference/index.html`. Its version number and date are written by its own build (`reference/version.json`) and read from there for the version menu; they are not typed on this branch. Its active review workspace is at `dashboard.html`, with dedicated T3, T4, T6 and M2b queues, source previews, personal review history and submission controls. Each selects its own entry in the live version menu. The old `legacy.html` address forwards to the current dashboard, preserving the requested view.
 
 Existing root bookmarks keep working: `/#review-evidence=…`, `/#review-priority=…`, table queues, source links and other dashboard fragments route to `dashboard.html` with their full query and fragment intact. Bare `/` and `/index.html` open Methodology. Review queue links are prominent in the Methodology header and version bar. No register or submission route changes with this navigation update.
 
@@ -33,3 +33,7 @@ Chrome and Edge can keep the directory handle in this site's IndexedDB storage. 
 Optional setup hints are in `review/library-locations.json`, keyed by reviewer handle. `peetmate` has the confirmed synced library and corpus-cache paths. These path hints are public, as authorized, but are not browser permissions or proof of a reviewer's identity. A new device or browser still needs its own folder selection. Connections apply to this browser, independently of the selected reviewer. Only add someone else's machine path with their authorization.
 
 Matching uses the registered path where possible and refuses ambiguous duplicate filenames. A local filename match is not a verified quotation or scientific approval. Published preview provenance checks and all submission decisions remain unchanged. The public site cannot open an arbitrary absolute path from Git: the browser grants access through its folder chooser. See [Chrome's folder-permission documentation](https://developer.chrome.com/blog/persistent-permissions-for-the-file-system-access-api).
+
+## Review component releases
+
+The review workspace is maintained under [`review/`](review/README.md), with its own version, content hashes and release notes. Its header shows the Review version and the official evidence revision. It remains at the existing dashboard address, shares the site navigation and is published by the existing Pages workflow. See the component guide for its host contract, release command and compatibility checks.

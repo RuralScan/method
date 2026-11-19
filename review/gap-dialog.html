@@ -1,0 +1,25 @@
+<!-- Report-missing-evidence (gap) modal — a DIRECT child of <body>, not of any tab pane:
+     it is opened from the QA/QC tab's action bar, and a modal nested inside an inactive
+     tab (display:none) can never show itself (a child display:block cannot override an
+     ancestor's display:none). -->
+<div id="gap-modal" onclick="if(event.target===this)closeGapModal()" style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.62); padding:56px 20px; overflow:auto;">
+  <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; max-width:560px; margin:0 auto; padding:20px 24px; box-shadow:0 12px 48px rgba(0,0,0,0.55);">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:6px; border-bottom:1px solid var(--border-color); padding-bottom:10px;">
+      <h3 style="margin:0; font-size:15px; color:var(--text-primary);">&#9888;&#65039; Report missing evidence</h3>
+      <button onclick="closeGapModal()" style="background:transparent; border:1px solid var(--border-color); color:var(--text-secondary); border-radius:4px; cursor:pointer; font-size:13px; padding:2px 9px;">&#10005;</button>
+    </div>
+    <p style="font-size:11.5px; color:var(--text-muted); margin:10px 0 12px; line-height:1.5;">Flag a variable / figure / table you expected but that isn't in the register (e.g. "Figure 7 lists slope but there's no slope row"). Logged to the in-repo gaps register (<code>pipeline/metrics/gaps.csv</code>) to feed a re-extraction sweep.</p>
+    <div id="gap-scope-ctx" style="font-size:10.5px; color:var(--text-secondary); margin-bottom:12px; background:rgba(255,255,255,0.02); border:1px solid var(--border-color); border-radius:6px; padding:7px 10px;"></div>
+    <div style="display:flex; flex-direction:column; gap:9px;">
+      <label style="font-size:11px; color:var(--text-muted);">Missing variable <span style="color:var(--text-muted);">(what should exist)</span><input id="gap-variable" placeholder="e.g. slope, tree_canopy_cover" style="width:100%; box-sizing:border-box; margin-top:3px; font-size:12px; padding:6px 8px; border-radius:4px; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color);"></label>
+      <label style="font-size:11px; color:var(--text-muted);">Location in the source <span style="color:var(--text-muted);">(optional)</span><input id="gap-location" placeholder="e.g. Figure 7 · p.13 · Table 3" style="width:100%; box-sizing:border-box; margin-top:3px; font-size:12px; padding:6px 8px; border-radius:4px; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color);"></label>
+      <label style="font-size:11px; color:var(--text-muted);">Source <span style="color:var(--text-muted);">(optional)</span><input id="gap-source" list="gap-src-list" placeholder="source_id, e.g. mucida_2023" style="width:100%; box-sizing:border-box; margin-top:3px; font-size:12px; padding:6px 8px; border-radius:4px; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color);"><datalist id="gap-src-list"></datalist></label>
+      <label style="font-size:11px; color:var(--text-muted);">Note<textarea id="gap-note" rows="3" placeholder="what's missing and where you saw it" style="width:100%; box-sizing:border-box; margin-top:3px; font-size:12px; padding:6px 8px; border-radius:4px; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); resize:vertical; font-family:inherit;"></textarea></label>
+    </div>
+    <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:14px;">
+      <button onclick="closeGapModal()" style="font-size:12px; padding:6px 14px; border-radius:4px; background:transparent; color:var(--text-secondary); border:1px solid var(--border-color); cursor:pointer;">Cancel</button>
+      <button onclick="submitGap()" style="font-size:12px; font-weight:600; padding:6px 16px; border-radius:4px; background:var(--accent-amber); color:#fff; border:none; cursor:pointer;">Log gap</button>
+    </div>
+    <div id="gap-msg" style="font-size:11px; margin-top:8px;"></div>
+  </div>
+</div>

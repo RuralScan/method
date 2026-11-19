@@ -1,0 +1,22 @@
+name: Review component checks
+on:
+  pull_request:
+    branches: [gh-pages]
+  push:
+    branches: [gh-pages]
+permissions:
+  contents: read
+jobs:
+  review-component:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify review release content
+        run: python3 -m review.build check
+      - name: Test review behavior and compatible routes
+        run: node --test tests/*.test.cjs
+      - name: Test component assembly and publication
+        run: python3 -m unittest discover -s tests -p 'test_*.py'

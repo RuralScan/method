@@ -33,7 +33,7 @@ function setup() {
   results.scrollIntoView = () => { results.scrolled = true; };
   context.window = context;
   vm.createContext(context);
-  for (const file of ['dashboard-tables.js','dashboard-priority.js']) {
+  for (const file of ['dashboard-tables.js','review/priority.js']) {
     vm.runInContext(fs.readFileSync(path.join(__dirname,'..',file),'utf8'),context);
   }
   return {context, api:context.DashboardPriority, results};
@@ -123,7 +123,7 @@ test('shared addressed requests leave active priorities, stay in history, and ch
 
 test('selected active requests remain reviewable after an earlier finding decision', () => {
   const {context,api} = setup();
-  const html=fs.readFileSync(path.join(__dirname,'..','dashboard.html'),'utf8');
+  const html=fs.readFileSync(path.join(__dirname,'..','review/workspace.js'),'utf8');
   vm.runInContext(html.match(/  function vfSimpleMatch\(u,view,status\)\{[\s\S]*?\n  \}/)[0],context);
   context.vfHasAnswerForReview=()=>false;context.vfClarificationsFor=()=>[];
   const unit={ev:{evidence_id:'wet-op',_reviewQueue:'recorded'},me:true,meApplied:true};

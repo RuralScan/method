@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "date": "2026-11-19",
+  "notes": [
+    "Review workspace extracted into a separately versioned component, retaining the sidebar, finding links, saved decisions and source previews.",
+    "Review header shows the component release and the official evidence revision separately."
+  ],
+  "files": {
+    "batch-receipt.js": "d77479a9c0f3b3ca0d8804b12e60397c4b9800611a29f33c48fc6658df49b6b0",
+    "browser-backup.html": "4bab4940112375fe5eadea79df91190a99f8cdd96618573e8f864a20eb56311b",
+    "browser-backup.js": "653736a3b3600f131957afcf59603d6ae1de0ba818d9173a57813938b9e61054",
+    "gap-dialog.html": "53403dc8a3cecfc5c1850972c2be758e66da598ae1f22ea331ffb992d9154ffb",
+    "inline-review.js": "c5b0f7b8c60f4e70aa2a27c680dd3a4153970a05cd7f063bda63bacb8d5fc517",
+    "library-locations.json": "0477628aaeb37aa4213b707290d0c651dcd26d1c1f0ffae787bc6ea5dc95b470",
+    "local-library.js": "e1e3e566737cdde9034536a94392c8a87bcc867b4b937c6be93b84e7c3badfcb",
+    "priority-receipt.js": "add8d49a5f272b797c11e3de078da9cfc753b7f2d8d55efc82711972fba345e0",
+    "priority-status.js": "a751e66659eee2d5af59ebcc6942d7c1790daf34ffa7732b5258d0156a17dd3c",
+    "priority.js": "ee861377729501f34661aaf3de190ac7a28a825fd3de1e04c75959b571a99926",
+    "source-previews.js": "5b1d678ad0f798ce64de887e2cf9d2c201ef208bb637a3e60c50f69b4c2228c8",
+    "submission-dialogs.html": "01cd8ab74260c840596871ef2c3b3891760949e651285ba2ecb4251d29e05b29",
+    "submission.js": "9f8e0faba33bd8769105905ff764021494688c27bfbd89272528c34ca7362dc3",
+    "vote-drafts.js": "d7b7385834eaa2f177ec22abcf1e22502244ba5bdd626ace079c6038e267d927",
+    "workspace.css": "4495b44ec8793c69140ef7819cf86e2a40bf48a47511b843a87d039397c76118",
+    "workspace.html": "9bd01e4aca4ea521f62e0138c4dd22a16afff23110fb2478e505361eff972545",
+    "workspace.js": "a69f25c45ecb559c642a92871d2422ea12a5e60af86d52dd349e6e2e6cd8a1ae"
+  },
+  "content_sha256": "52af30c72faae38b54d25418450761e5993a58ca29f6bbb41e8db11a14f7cd59",
+  "history": []
+}

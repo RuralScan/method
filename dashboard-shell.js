@@ -59,6 +59,7 @@
     } finally { restoringRoute = false; }
   }
   function onTab(tab, updateRoute) {
+    ReviewWorkspace.onTab(tab);
     var sourceTab = tab === 'tab-stocktake' || tab === 'tab-variables';
     byId('btn-stocktake').classList.toggle('shell-group-active', sourceTab);
     document.querySelectorAll('#tab-stocktake [data-shell-open], #tab-variables [data-shell-open]').forEach(function (button) {
@@ -162,14 +163,7 @@
     document.querySelectorAll('[data-review-view]').forEach(function (button) { button.addEventListener('click', function () { setView('review', button.dataset.reviewView); }); });
     document.querySelectorAll('[data-query-view]').forEach(function (button) { button.addEventListener('click', function () { setView('query', button.dataset.queryView); history.replaceState(null, '', queryRoutes[button.dataset.queryView]); if (button.dataset.queryView === 'explorer' && typeof window.refreshQueryProvenance === 'function') window.refreshQueryProvenance(); }); });
     document.querySelectorAll('[data-method-view]').forEach(function (button) { button.addEventListener('click', function () { setView('method', button.dataset.methodView); }); });
-    // The same controls stay in the sidebar on desktop and a disclosure on small screens.
-    var filterPanel = byId('vf-sidebar-panel');
-    var wideReview = window.matchMedia('(min-width: 1000px)');
-    function sizeReviewFilters() { if (filterPanel) filterPanel.open = wideReview.matches; }
-    sizeReviewFilters();
-    wideReview.addEventListener('change', sizeReviewFilters);
-    var guide = byId('review-reference-guide');
-    ['vf-howto', 'vf-reason-codes'].forEach(function (id) { var item = byId(id); if (item) guide.appendChild(item); });
+    ReviewWorkspace.mount();
     var controls = document.querySelector('#query-explorer-panel .sidebar-panel');
     if (controls) {
       var oldHelp = controls.querySelector(':scope > div:last-child');

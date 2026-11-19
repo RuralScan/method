@@ -1,5 +1,6 @@
 """Publish pinned editions, the active review workspace and the selected methodology home."""
 import csv
+from review.build import compose as compose_review
 from datetime import date
 from html import escape
 import io
@@ -448,6 +449,7 @@ def add_version_selectors(site, editions, ciat, reference):
     t3 = json.dumps(live_rating_reviews(site, ciat, snapshot["recipes"]), separators=(",", ":")).replace("<", "\\u003c")
     rating_data = f'<script type="application/json" id="live-t3-reviews">{t3}</script>'
     link = f'<link rel="describedby" type="application/ld+json" href="editions/{latest}/catalog.json">'
+    live.write_text(compose_review(live.read_text()))
     queue_file = publish_review_queue(site, ciat, snapshot)
     queue_meta = f'<meta name="ciat-review-snapshot" content="{queue_file}">'
     live.write_text(live.read_text().replace("</head>", link + batch_data + rating_data + queue_meta + "</head>", 1))
