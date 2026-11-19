@@ -168,10 +168,11 @@
     const disconnect = button('Disconnect', () => service.disconnect());
     actions.append(refresh, change, disconnect);
     const steps = el('ol');
-    steps.append(el('li', 'Click Connect PDF folder.'), el('li', 'Choose the folder containing your source PDFs, then allow access. Include the whole library — we also search its subfolders.'));
+    steps.append(el('li', 'Click Connect PDF folder and choose your synced team PDF library.'), el('li', 'Select the folder and allow access. Subfolders are included.'));
+    const permissionNote = el('p', 'A saved path is a location hint, not permission. Your browser needs you to select the folder once before this page can read its PDFs.');
     const privacy = el('p', supported ? 'PDFs stay on this device. Your browser remembers the folder and may ask to reconnect after a restart.' : 'PDFs stay on this device. Select the folder again after a reload, or use Chrome or Edge to remember it.');
-    body.append(steps, locations, privacy, actions); help.append(summary, body);
-    heading.append(title, subtitle); toolbar.append(heading, connect); panel.append(toolbar, status, help, input);
+    body.append(steps, permissionNote, privacy, actions); help.append(summary, body);
+    heading.append(title, subtitle); toolbar.append(heading, connect); panel.append(toolbar, status, locations, help, input);
     document.getElementById('review-library-controls').append(panel);
     let presets = {};
     function showLocations() {
@@ -185,7 +186,9 @@
         });
         row.append(el('strong', item.label), path, copy); locations.append(row);
       }
-      if (locations.childElementCount) locations.prepend(el('p', 'Can’t find it? Copy a saved location below. In the folder chooser, press ⌘⇧G on Mac and paste it; on Windows, paste into the address bar.'));
+      steps.firstElementChild.textContent = locations.childElementCount ? 'Copy the recommended path shown above, then click Connect PDF folder.' : 'Click Connect PDF folder and choose your synced team PDF library.';
+      steps.lastElementChild.textContent = locations.childElementCount ? 'In the folder chooser, press ⌘⇧G on Mac and paste the path; on Windows, paste into the address bar. Select that folder and allow access. Subfolders are included.' : 'Select the folder and allow access. Subfolders are included.';
+      locations.hidden = service.state().status === 'ready' || !locations.childElementCount;
     }
     fetch('review/library-locations.json').then(r => r.ok ? r.json() : {}).then(data => { presets = data; showLocations(); }).catch(() => {});
     document.getElementById('vf-reviewer').addEventListener('change', showLocations);
@@ -199,6 +202,7 @@
         'Choose your review library once. Matching PDFs open beside the finding.';
       connect.textContent = state.status === 'permission' ? 'Reconnect PDF folder' : state.status === 'loading' ? 'Connecting…' : 'Connect PDF folder';
       connect.onclick = () => state.status === 'permission' ? service.allow() : supported ? service.connect() : input.click();
+      locations.hidden = connected || !locations.childElementCount;
       connect.hidden = connected;
       connect.disabled = state.status === 'loading';
       summary.textContent = connected || state.name ? 'Folder options and help' : 'Help finding your folder';

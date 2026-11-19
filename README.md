@@ -26,7 +26,7 @@ Keyboard controls: **j** / **↓** next finding, **↑** previous, **k** Keep, *
 
 ## Connect a local PDF library
 
-In the review queue, open **PDF folder** beside the reviewer selector, then **Connect PDF folder**. Choose the synced SharePoint library or the local corpus cache. Subfolders are included. Opening a source preview finds its registered library path or source filename and displays the PDF at the cited page. Files remain on the device and are read only when opened; they are not submitted with reviews.
+In the review queue, open **PDF folder** beside the reviewer selector, then **Connect PDF folder**. Use the recommended synced SharePoint library path shown for your reviewer. Copy it into the browser’s folder chooser and allow read access; a saved path alone cannot grant access. Subfolders are included. Opening a source preview finds its registered library path or source filename and displays the PDF at the cited page. Files remain on the device and are read only when opened; they are not submitted with reviews.
 
 Chrome and Edge can keep the directory handle in this site's IndexedDB storage. After a restart they may require **Allow folder access**, which reconnects the remembered folder without selecting files again. Use **Refresh folder** after downloading new PDFs, **Change folder** to choose another location, and **Disconnect** to forget the handle and clear local previews. Other browsers use a folder selection for the current visit and say when reconnection after reload is required. OneDrive files must be available to read; make them available offline if a preview fails.
 

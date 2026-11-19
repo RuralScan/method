@@ -1,12 +1,8 @@
 {
   "peetmate": [
     {
-      "label": "Synced team PDF library (recommended)",
+      "label": "Recommended PDF folder on your computer",
       "path": "/Users/pstewarda/Library/CloudStorage/OneDrive-CGIAR/ClimateActionNetZero/1_Projects/D591_Rural-Scan_NBS/2_Technical_&_Data/library"
-    },
-    {
-      "label": "Local corpus cache (alternative)",
-      "path": "/Users/pstewarda/Documents/rprojects/nbs_ruralscan/.cache/corpus"
     }
   ]
 }
