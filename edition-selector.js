@@ -30,6 +30,7 @@
 
   select.addEventListener("change", () => {
     const option = select.selectedOptions[0];
+    if (option.hasAttribute('data-current-workspace')) return;
     const target = new URL(option.value, document.baseURI);
     let fragment;
     try { fragment = decodeURIComponent(location.hash.slice(1)); }

@@ -12,6 +12,8 @@ The review workspace has its own version and release notes in `release.json`. It
 
 The host provides `reviewData`, `setDashboardSnapshots`, `familyDisplayName`, `DashboardTables`, `DashboardShell`, shared theme variables and measured navigation heights. It calls `ReviewWorkspace.mount()` after the DOM exists, `start()` after data loads, `onTab(tabId)` on navigation and `updateBuild()` after a snapshot refresh. The component is a classic script so old inline card actions and integrations keep working; it is not yet a standalone application.
 
+The published workspace uses the current Methodology site's section navigation, read from its built home page. The version selector has one current Methodology edition; review releases and the workspace build remain in change history. Bare dashboard and old Overview/Methods bookmarks open the corresponding Methodology pages. Explicit queue, finding, source and evidence-tool routes retain their addresses and browser storage. Review views are tool controls, not a second numbered methodology.
+
 `publish_editions.py` composes the component before decorating the dashboard. There is one markup/controller source. The generated dashboard loads hashed component assets; missing fragments or unstamped changes fail the build. The Review version in **What changed? · history and feedback** follows component content. The same history panel identifies the whole dashboard by its publishing commit, separately from the older overview data snapshot. Evidence links use the full RuralScan/evidence SHA actually loaded, separately from the historical dashboard data version.
 
 ## Change and release

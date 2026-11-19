@@ -1,8 +1,8 @@
 {
-  "version": "1.1.2",
+  "version": "1.1.3",
   "date": "2026-11-19",
   "notes": [
-    "Simplify local PDFs to one visible Connect PDF folder action, with connection status and saved locations under help."
+    "Keep review inside current Methodology navigation; remove obsolete review tab numbers while preserving finding addresses and decisions."
   ],
   "files": {
     "batch-receipt.js": "d77479a9c0f3b3ca0d8804b12e60397c4b9800611a29f33c48fc6658df49b6b0",
@@ -20,11 +20,19 @@
     "submission.js": "9f8e0faba33bd8769105905ff764021494688c27bfbd89272528c34ca7362dc3",
     "vote-drafts.js": "d7b7385834eaa2f177ec22abcf1e22502244ba5bdd626ace079c6038e267d927",
     "workspace.css": "a9d7509193930ea80335dc32cbede6484a5f6242a16178996a948de5ec09fbec",
-    "workspace.html": "4f7720ddf6b4e55476b8368cad7932ac17f42b14df3cf04c76ba38df87758aec",
+    "workspace.html": "5cd2ebd3d3667bbab21d63491b13dc129465326e707dd202d7738db90a0e25ec",
     "workspace.js": "4e0369c549223dc50e787c1ccea98a076c2fd12d48b10923ccbb544b887b2699"
   },
-  "content_sha256": "5b30805f56050392ac72b4726265a3b90c7ce4c3bb66b34a7cb5cca3c48b4691",
+  "content_sha256": "14c13d01703c8718b937829539809936aff05c16ac010ddac0cb1eebb552f3bd",
   "history": [
+    {
+      "version": "1.1.2",
+      "date": "2026-11-19",
+      "notes": [
+        "Simplify local PDFs to one visible Connect PDF folder action, with connection status and saved locations under help."
+      ],
+      "content_sha256": "5b30805f56050392ac72b4726265a3b90c7ce4c3bb66b34a7cb5cca3c48b4691"
+    },
     {
       "version": "1.1.1",
       "date": "2026-11-19",
