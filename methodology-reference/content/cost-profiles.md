@@ -1,5 +1,5 @@
 ---
-title: Indicative cost profiles
+title: Economic profiles (T6E)
 slug: cost-profiles
 summary: Read, audit and correctly present a T6E economic-profile row: which cost indicators exist, how a cost class is set, when a value range may be published, and why the profile is not a cost-benefit analysis.
 sources:
@@ -107,6 +107,12 @@ Confidence on economic rows follows the same IPCC two-axis matrix as every gener
 These gates are strict by design, and at the pinned revision none of the agroforestry economic rows publishes a value range; those rows carry cost classes with their confidence instead. [src: schema/recipes/agroforestry/T6E_economic_profile.json]
 
 The spec's value-range unit enumeration is narrower than the set of units that may set a cost class: per-household, per-structure and per-cubic-metre figures can set an ordinal class through their own bands, but cannot form a published range. [src: schema/spec.md §T6] [src: schema/registers/BANDS_magnitude_bands.csv] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §ECON_UNITS]
+
+### Comparability and repeated economic observations
+
+A project total, a per-hectare establishment cost and an annual maintenance cost are different quantities. Retain cost scope, period, denominator, country and price year before assessing a class or range. Several line items from one budget, repeated estimates for the same project or a report repeating a study do not establish independent replication. A review and the primary costs it summarises can overlap even when their source identifiers differ. The common origin audit is in [[ch:compiling-evidence]].
+
+The numerical gates above describe the current compiler, not a guarantee that every eligible pair is economically interchangeable. In particular, a meta-analysis' stated study count does not resolve overlap with other included sources. A new pooling proposal must document that overlap and any differences in cost scope. If comparability is unresolved, retain the source figures and the limitation rather than present the observed range as a local budget or confidence interval. This guidance adds no currency conversion, inflation correction or new statistical estimator.
 
 ## Why currencies and price years are not normalised
 

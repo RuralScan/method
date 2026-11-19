@@ -34,8 +34,6 @@ METHOD_CH = [
 ]
 EVIDENCE_CH = [
     "evidence-principles",
-    "evidence-registry",
-    "combining-t4-evidence",
     "discovery",
     "acquisition",
     "extraction",

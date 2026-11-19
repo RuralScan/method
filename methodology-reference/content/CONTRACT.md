@@ -131,7 +131,7 @@ Part 1 Method: `scope-and-framework` · `scoping-walkthrough` · `m0-setup` · `
 `m2-climate-risk` · `m2b-project-risk` · `m3-characterisation` · `m4-hotspots` · `m5-scorecard` ·
 `m6-handoff` · `implementing-the-method`
 
-Part 2 Evidence methods: `evidence-principles` · `discovery` · `acquisition` · `extraction` ·
+Part 2 Evidence methods (shared foundations, acquisition-to-review sequence, common synthesis, then table-specific algorithms): `evidence-principles` · `discovery` · `acquisition` · `extraction` ·
 `review-and-quality` · `compiling-evidence` · `suitability-synthesis` · `effect-synthesis` · `cost-profiles`
 
 Not published (kept in `content/unpublished/`, do not link): `rulesets-and-learning` · `continue-with-ai`

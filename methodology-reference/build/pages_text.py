@@ -34,6 +34,7 @@ from core import (
     NAV,
     NAV_TIP,
     PIN,
+    PAGES,
     PRACTICE_IDS,
     PRACTICE_TEXT,
     PRODUCER,
@@ -368,8 +369,8 @@ EVIDENCE_STEPS = [
     ),
     (
         "Compile",
-        "Findings on the same question are pooled by a fixed rule into one row, with a confidence level.",
-        "Confidence comes from how much evidence there is and how far it agrees.",
+        "Compatible findings are interpreted under the method for their target table; unresolved choices remain visible.",
+        "Suitability rules, effect classes and cost profiles have different eligibility and synthesis rules.",
         "ch-compiling-evidence.html",
     ),
 ]
@@ -531,6 +532,17 @@ def build():
     chapter_pages("method.html", METHOD_CH, 2)
     chapter_pages("evidence-methods.html", EVIDENCE_CH, 3)
 
+    # Preserve the published guide addresses without retaining duplicate chapters in navigation.
+    for old, target in (("evidence-registry", "evidence-principles"),
+                        ("combining-t4-evidence", "compiling-evidence")):
+        destination = chapter_file(target)
+        filename = chapter_file(old)
+        page(filename, "evidence-methods.html", "Evidence guidance has moved",
+             f'<p>This guidance is now integrated into {link(destination, esc(TITLES[target]))}.</p>')
+        PAGES[filename] = PAGES[filename].replace(
+            "</head>", f'<link rel="canonical" href="{destination}">'
+            f'<meta http-equiv="refresh" content="0;url={destination}"></head>', 1)
+
     s = t4_status()
     kept = [u for u in data.EV if data.retained(u)]
     fam_registered = sorted({f["suitability_family_id"] for f in data.FAM})
@@ -562,11 +574,17 @@ def build():
     )
 
     body = (
-        "<p>No threshold, weight or effect in this method is taken from a document in one step. Each passes "
-        "through the five steps below, in order.</p>"
+        "<p>These methods explain how sources become evidence and how reviewed claims support different "
+        "analytical decisions. Start with "
+        + link(chapter_file("evidence-principles"), "Evidence records and source appraisal")
+        + " for the shared concepts, source limitations and roles of the analytical tables. "
+        "Then follow the preparation steps below.</p>"
         + evidence_flow()
-        + "<p>Each search and each finding also records the version of the instructions it was produced under, "
-        "so a past result can be reproduced with the instructions in force at the time.</p>"
+        + "<p>After review, " + link(chapter_file("compiling-evidence"), "Combining evidence into analytical tables")
+        + " covers compatibility, repeated observations, shared sources, weighting and uncertainty. "
+        "The following chapters specify separate algorithms for suitability (T4), hazard and scorecard effects "
+        "(T3/T6), and economic profiles (T6E). Dataset, hazard, context and priority configuration have different "
+        "requirements, linked from the opening chapter.</p>"
         + chapter_index(EVIDENCE_CH, 3)
         + f"<p>The result of applying these methods is counted in {link('evidence-base.html', 'the evidence base')} "
         f"and shown row by row under {link('practices.html', 'Practices')}.</p>"

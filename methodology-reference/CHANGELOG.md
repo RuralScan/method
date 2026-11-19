@@ -6,6 +6,14 @@ What changed in the Rural NbS Scan methodology, newest first. The build reads th
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.10.0] - 2026-11-19
+
+- Integrate source appraisal into the opening evidence chapter and place shared synthesis guidance after review.
+- Explain distinct evidence requirements for suitability, hazard and scorecard effects, economic profiles, datasets, priorities and context.
+- Consolidate repeated registry and weighting explanations; keep detailed algorithms in their table-specific chapters.
+- Clarify dependence controls and literature-derived expert judgement across the existing chapters.
+- Preserve links to the earlier guides while directing readers to their integrated locations.
+
 ## [0.9.0] - 2026-11-19
 
 - Explain evidence registry fields, source limitations and literature-derived expert judgement.
