@@ -122,6 +122,8 @@ Formulas go in fenced blocks tagged `formula`, written in plain text with Unicod
 (what is produced, at what grain, how to read it) · `## Worked illustration` (only from pinned
 material; omit if none) · `## Assumptions and limits` · `## Where this is configured`.
 
+For evidence-method chapters, hypothetical worked illustrations are allowed when explicitly labelled. Their numbers must not be presented as registered findings, calibrated thresholds or new policy. Show the decision and its consequence; verify any arithmetic against the stated method. Keep each detailed rule or lookup in one home chapter and cross-link it elsewhere.
+
 Target 1,500–3,000 words per module or method chapter; go longer where the source has the
 substance. Do not pad.
 
@@ -131,7 +133,7 @@ Part 1 Method: `scope-and-framework` · `scoping-walkthrough` · `m0-setup` · `
 `m2-climate-risk` · `m2b-project-risk` · `m3-characterisation` · `m4-hotspots` · `m5-scorecard` ·
 `m6-handoff` · `implementing-the-method`
 
-Part 2 Evidence methods (shared foundations, acquisition-to-review sequence, common synthesis, then table-specific algorithms): `evidence-principles` · `discovery` · `acquisition` · `extraction` ·
+Part 2 Evidence methods (shared foundations, acquisition-to-review sequence, common synthesis, then table-specific synthesis workflows): `evidence-principles` · `discovery` · `acquisition` · `extraction` ·
 `review-and-quality` · `compiling-evidence` · `suitability-synthesis` · `effect-synthesis` · `cost-profiles`
 
 Not published (kept in `content/unpublished/`, do not link): `rulesets-and-learning` · `continue-with-ai`

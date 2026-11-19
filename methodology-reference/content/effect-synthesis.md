@@ -29,7 +29,7 @@ sources:
 
 [[table:T3]] records how a practice responds to each climate hazard: whether it reduces the losses a hazard causes to rural livelihoods (`risk_role = livelihood_mitigation`, read by M2) and how badly the hazard damages the practice itself (`risk_role = asset_threat`, read by M2b). [[table:T6]] records how strongly a practice improves each priority of the opportunity space (rural poverty, food insecurity, biodiversity, carbon, erosion, water, gender, hazards). Cost rows sit in [[table:T6E]] and are covered in [[ch:cost-profiles]]. [src: methodology/T3_T6_developer_handover.md §1] [src: schema/spec.md §T3] [src: schema/spec.md §T6]
 
-How this step is run, and a planned change to how it is run, is in [[ch:compiling-evidence]].
+The shared compatibility and dependence audit is in [[ch:compiling-evidence]]. This chapter documents the deterministic method used for the pinned effect edition. The adopted agent-led change concerns T4; it does not replace these effect algorithms. Where a later accepted intake policy differs from the pinned compiler, that boundary is stated explicitly.
 
 These rows are **generated**, never extracted as rows from a paper. An earlier attempt asked each paper to yield a finished row. The quotes were real, but the numbers had incompatible denominators (Hedges' *g*, net present value per acre, benefit-cost ratios, project budget lines with no unit), context was recorded under many spellings, outcomes had no mapping to what the consumers key on, and one Swedish boreal cost figure sat as an equal beside a Sahelian yield claim. The method therefore keeps the verbatim evidence unit and changes the unit of output: pool every evidence unit that hits a table **cell**, reconcile deterministically, and emit one row per cell per applicability scope with its evidence IDs and a confidence expressed in IPCC calibrated language (not a statistically calibrated probability). [src: methodology/T3_T6_generation_method.md §0] [src: AGENTS.md §What is locked]
 
@@ -38,10 +38,10 @@ Five tenets follow. [src: methodology/T3_T6_generation_method.md §0]
 1. Ordinal first. The value is a direction, a strength class and a confidence expressed in IPCC calibrated language (not a statistically calibrated probability). Numbers appear only under explicit gates.
 2. Context bounds applicability. Every row carries the envelope of contexts its evidence came from and a transfer class against the investment target. A row built from high-income temperate evidence never silently sets a value for a low-income dryland.
 3. Role is the kind of claim; the crosswalk decides the table. One unit can feed both T3 and T6.
-4. Reuse the suitability engine. Tier and claim-basis weights, lineage de-duplication, the weighted median and the grey discount are imported from the suitability synthesiser (see [[ch:suitability-synthesis]]).
-5. Confidence is derived, never asserted. No person and no model writes a confidence level.
+4. Reuse legacy numerical utilities. The effect compiler imports tier and claim-basis factors, lineage utilities and the weighted median from the earlier suitability code. Their values are specified here for effects; this code dependency does not prescribe how the T4 agent reasons.
+5. The published confidence label is computed from the recorded inputs and project matrix. People still judge the source classifications and policy choices on which that calculation depends.
 
-The engine is deterministic: the same register produces byte-identical rows. [src: src/nbs_ruralscan/recipe/cell_synthesis.py]
+The engine is deterministic when evidence, configuration, target context and code revision are all fixed; the register alone is insufficient to reproduce an output. [src: src/nbs_ruralscan/recipe/cell_synthesis.py]
 
 ## What a cell is
 
@@ -72,7 +72,7 @@ A cell holds several layered rows: the **roll-up row** for the whole practice (`
 
 ### The effect claim
 
-An effect unit's `relationship` carries `direction` (`positive`, `negative`, `none`), `strength_class` (`slight`, `moderate`, `strong`, `unspecified`), `metric` (`smd_hedges_g`, `pct_change`, `ln_response_ratio`, `absolute`, `ordinal_rating`, `narrative`, and the contrast metrics), `magnitude` with optional bounds, `unit`, `significance` (`sig`, `ns`, `not_reported`), `n`, `design` and `outcome_raw` (the paper's own outcome wording). Every number must appear in the quote. [src: methodology/T3_T6_generation_method.md §3.2] [src: methodology/RULESET_VERSIONS.md]
+[[ch:extraction]] defines how the claim is recorded. The fields below are repeated only where their meaning is needed to follow the synthesis equations. An effect unit's `relationship` carries `direction` (`positive`, `negative`, `none`), `strength_class` (`slight`, `moderate`, `strong`, `unspecified`), `metric` (`smd_hedges_g`, `pct_change`, `ln_response_ratio`, `absolute`, `ordinal_rating`, `narrative`, and the contrast metrics), `magnitude` with optional bounds, `unit`, `significance` (`sig`, `ns`, `not_reported`), `n`, `design` and `outcome_raw` (the paper's own outcome wording). Every number must appear in the quote. [src: methodology/T3_T6_generation_method.md §3.2] [src: methodology/RULESET_VERSIONS.md]
 
 `direction` is stated on the **outcome as named**, not on "good for people": `erosion_hazard` with `direction = negative` means erosion went down. Each direction carries a verbatim `direction_cue`, and every effect variable has a row in the direction-sense lookup that says what positive and negative mean for it. The benefit frame is applied later by the engine, never by the extractor. [src: methodology/T3_T6_generation_method.md §3.2] [src: AGENTS.md §Don't]
 
@@ -98,7 +98,7 @@ A route can be switched off for one practice where its causal claim fails for th
 Before weighting, the engine applies the following rules. Each exclusion is logged with its reason. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §synthesise_cell]
 
 - Dropped units, units of another role, another practice or another family are excluded.
-- `species_specific` units never enter; `crop_specific` units enter only where the crop-scope policy admits them for the practice or family (see [[ch:suitability-synthesis]]).
+- At the pinned compiler revision, `species_specific` units are excluded and `crop_specific` units require admission by the crop-scope policy (see [[ch:extraction]]). A later accepted effect-intake policy allows per-species performance results as practice evidence, with taxa retained. The old exclusion explains the displayed historical output; it is not the current instruction for new effect intake and does not alter the T4 species-envelope boundary. [src: evidence:registers/methodology/decisions/method_decisions.csv]
 - In T3, a unit that **states** its hazard speaks only to that hazard's cell. A unit with no stated hazard is dropped when its variable routes to several hazards, and when it reaches the cell only through a proxy or component route: an infiltration gain in a normal year is water-stress evidence, not drought mitigation.
 - In T3, a named farming-system row is emitted only when at least one unit states that system; otherwise the all-systems row applies.
 - In T6 hazard priorities, a unit stating a different hazard is excluded.
@@ -110,7 +110,7 @@ A family whose spatial product type is `qualitative_only` is parked out of the g
 
 ## Step 2: lineage de-duplication for cells
 
-Echoes of one original collapse to it, as in suitability synthesis. A cell differs in one respect: a source may legitimately report several arms (two countries, or a meta-analysis' subgroup estimates). All units whose own source is the origin are therefore kept, and that source's weight is split equally across them:
+The pinned effect compiler resolves citation echoes to their original, using legacy lineage utilities. Within a cell, a source may legitimately report several arms (two countries, or a meta-analysis' subgroup estimates). All units whose own source is the origin are therefore kept, and that source's weight is split equally across them:
 
 ```formula
 share_u = 1 / k_s
@@ -201,10 +201,10 @@ Global rows are reconciled against the investment target `income_group = lic_lmi
 
 ### 4b. Bundles, counterfactuals and beneficiaries
 
-An effect measured on a bundle of practices is never credited in full to one of them. A unit tagged `attribution = bundled` is weighted by the stated share of the sample using the practice component, floored at 0.25, or by a flat 0.6 when no share is stated or when the component is mandatory in every comparison and cannot be separated:
+An inseparable bundled effect is not an isolated estimate for one component. The compiler applies an influence adjustment; that adjustment does not statistically identify the component effect. A unit tagged `attribution = bundled` is weighted by the stated share of the sample using the practice component, floored at 0.25, or by a flat 0.6 when no share is stated or when the component is mandatory in every comparison and cannot be separated:
 
 ```formula
-B = max(0.25, min(1, component_share_pct / 100))   if an adoption share is stated
+B = max(0.25, min(1, component_share_pct / 100))   if the share is an adoption share
 B = 0.6                                            otherwise
 ```
 
@@ -227,7 +227,7 @@ Some units are evidence for a row but may not set its class. They stay in the ro
 
 ### Evidence floor and data-deficient rows
 
-A cell states a class only when its voters clear a floor: at least two independent sources, or at least one measured finding (`primary_measured` or `table`). Below it, the row is still published, with its evidence and applicability, as **data deficient**: class blank, `evidence_level = limited`, `confidence = very_low`, and a `data_deficient_reason` naming what is missing. A blank reads as "does not work"; the truth is "not enough has been looked at". Consumers show "?" rather than zero. A data-deficient asset row states no sensitivity, so M2b treats it as not assessed rather than undamaged. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §meets_evidence_floor, data_deficient_record] [src: methodology/T3_T6_developer_handover.md §2]
+At the pinned revision, a cell clears the class floor with at least two distinct contributing source identifiers or one unit labelled `primary_measured` or `table`. These are implementation tests, not proof of independence or measurement: a table is a format and companion papers may share data. The basis/format separation and origin audit must remain visible when appraising the output. Below it, the row is still published, with its evidence and applicability, as **data deficient**: class blank, `evidence_level = limited`, `confidence = very_low`, and a `data_deficient_reason` naming what is missing. A blank means that the eligible evidence did not meet this class rule. It does not establish ineffectiveness or whether the search was complete. Consumers show "?" rather than zero. A data-deficient asset row states no sensitivity, so M2b treats it as not assessed rather than undamaged. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §meets_evidence_floor, data_deficient_record] [src: methodology/T3_T6_developer_handover.md §2]
 
 ## Step 6: reconcile direction, agreement and strength
 
@@ -241,12 +241,18 @@ rank = round( WM({ (sign_u × m_u, w_u) : sign_u = modal, m_u defined }) )
 ```
 
 - `A`: weighted sign agreement. Nulls count half toward the modal side.
-- `WM`: the weighted median of the suitability engine.
-- If no modal-sign unit states a strength, `rank = modal × 1` (the weakest class of that sign) and the row's `strength_basis` is `direction_only`.
-- If every direction-bearing unit is non-significant, the cell is `no_relationship` with `A = 1`: they agree there is no clear effect.
+- `WM`: the weighted-median utility shared with the legacy suitability code.
+- If no modal-sign unit states a strength, `rank = modal × 1` (the weakest class of that sign) and the row's `strength_basis` is `direction_only`. This is an effect-class display convention, not a measured small magnitude; it supplies no numeric endpoint for T4.
+- If every direction-bearing unit is non-significant, the compiler emits `no_relationship` with `A = 1`. Read this as no clear effect detected under that convention, not proof of zero effect or equivalence.
 - If no unit has a non-zero sign, the cell is `no_relationship`.
 
-This is the **modal-sign ordinal median**. Opposite-sign and null units are not averaged into the strength: they lower agreement, and through it confidence. Averaging them in would collapse two opposite findings into a false "no relationship" and would penalise twice, once in agreement and again in strength. `no_relationship` is emitted only when the evidence actually reports no effect. When the minority sign holds at least a third of the signed weight, the row states `conflicting_evidence` instead of a near-tie class. [src: methodology/T3_T6_generation_method.md §7.2] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §CONFLICT_MIN_SHARE] [src: AGENTS.md §What is locked]
+This is the **modal-sign ordinal median**. Opposite-sign and null units are not averaged into the strength: they lower agreement, and through it confidence. Averaging them in would collapse two opposite findings into a false "no relationship" and would penalise twice, once in agreement and again in strength. The `no_relationship` label also covers the all-non-significant case above; it must not be paraphrased as demonstrated absence of an effect. When the minority sign holds at least a third of the signed weight, the row states `conflicting_evidence` instead of a near-tie class. [src: methodology/T3_T6_generation_method.md §7.2] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §CONFLICT_MIN_SHARE] [src: AGENTS.md §What is locked]
+
+### Worked illustration: disagreement is not an average of zero
+
+Take three hypothetical independent, eligible effect findings for the same cell and context. Give each a final synthesis weight of 1 solely to illustrate the reconciliation rule. Two have benefit-frame rank +2 and one has rank −2. Then W+ = 2, W− = 1 and W0 = 0: agreement is 2/3 and the minority share is 1/3. The stated conflict threshold is reached, so the row is `conflicting_evidence`, not a weak positive mean or `no_relationship`.
+
+By contrast, three findings all tagged non-significant trigger the compiler's `no_relationship` branch. That is a different reason for the label and must be explained in the account. Neither example establishes a T4 threshold or a numerical probability of success. The weights are illustrative, not proposed defaults. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §_reconcile_rank]
 
 Ranks map to classes: [src: src/nbs_ruralscan/recipe/cell_synthesis.py §t6_effect_direction, t3_mitigation_potential, asset_sensitivity]
 
@@ -296,9 +302,9 @@ When a cell's majority says benefit, every measured unit showing **harm** (a rev
 
 ## Step 8: two-axis confidence
 
-Confidence follows the IPCC calibrated-language approach: an **evidence** axis and an **agreement** axis combine through a fixed matrix. [src: methodology/T3_T6_generation_method.md §7.4]
+The project combines an **evidence** axis and an **agreement** axis through its fixed matrix, using IPCC confidence vocabulary. [src: methodology/T3_T6_generation_method.md §7.4]
 
-**Evidence level** counts independent sources after de-duplication, with a meta-analysis counting as its stated number of pooled studies (n ≥ 2): [src: src/nbs_ruralscan/recipe/cell_synthesis.py §evidence_level, independent_sources]
+**Evidence level** uses the compiler's operational source count after lineage de-duplication, with a meta-analysis contributing its stated number of pooled studies (n ≥ 2). This count can overstate independent support where overlap is unrecorded; it is not a substitute for the origin audit in [[ch:compiling-evidence]]: [src: src/nbs_ruralscan/recipe/cell_synthesis.py §evidence_level, independent_sources]
 
 | `evidence_level` | Rule |
 |---|---|
@@ -310,9 +316,9 @@ Confidence follows the IPCC calibrated-language approach: an **evidence** axis a
 
 {{csv:schema/lookups/ipcc_confidence_matrix.csv}}
 
-The matrix follows the IPCC uncertainty guidance (Mastrandrea et al. 2010), unchanged in AR6. Expert-only evidence is an evidence property (`limited`, with `source_mix = expert_only`), not a confidence level; the former `expert_opinion` level was removed so that no cell can bypass the matrix. [src: methodology/T3_T6_generation_method.md §7.4]
+The evidence/agreement framing and confidence vocabulary draw on IPCC uncertainty guidance. The fixed matrix, count thresholds and agreement cut-offs here are project operational choices, not a numerical algorithm prescribed by the IPCC. Its guidance allows confidence judgement to vary for a given evidence/agreement combination. [IPCC uncertainty guidance](https://www.ipcc.ch/site/assets/uploads/2017/08/AR5_Uncertainty_Guidance_Note.pdf) Expert-only evidence is an evidence property (`limited`, with `source_mix = expert_only`), not a confidence level; the former `expert_opinion` level was removed so that no cell can bypass the matrix. [src: methodology/T3_T6_generation_method.md §7.4]
 
-Strength and confidence are separate and both are shown. "Slight benefit, very high confidence" is a well-established small effect; "strong benefit, low confidence" is a promising but thin finding. Transferability is deliberately not folded into confidence: confidence answers "how sure is the literature", the transfer class answers "does it apply here". [src: methodology/T3_T6_developer_handover.md §2] [src: methodology/T3_T6_generation_method.md §7.4]
+Strength and confidence are separate and both are shown. A row can report a small effect with high confidence or a strong effect with low confidence. Where `strength_basis = direction_only`, however, the slight class is the default described in Step 6, not evidence of a measured small magnitude. Transfer class is reported separately from confidence because applicability is a different question. They are not mathematically independent in this compiler: context-distance weights enter the agreement calculation and can therefore change confidence. Neither label is a local probability of success. [src: methodology/T3_T6_developer_handover.md §2] [src: methodology/T3_T6_generation_method.md §7.4]
 
 ## Step 9: the applicability envelope and transfer class
 
@@ -390,7 +396,7 @@ Where the farmer feels an effect differs by practice: trees on the farm affect t
 
 Asset-threat rows answer a different question from livelihood rows: how badly does the hazard damage the investment? They are built from `asset_vulnerability` units and feed M2b Stream A, which is a filter on the investment and is never summed with M2's livelihood risk (see [[ch:m2b-project-risk]]). [src: methodology/T3_T6_generation_method.md §7.5] [src: AGENTS.md §What is locked]
 
-Sourcing is layered. The seed is the WOCAT technology questionnaire's tolerance-to-extremes ratings, read from the structured questionnaire, cached as a deterministic transcript and converted rule by rule (no model) into units with a practitioner-rating design and the grey discount. Literature from the single-pass sweep (establishment mortality, windthrow, plantation fire, flood scour) adds to it; WOCAT-versus-literature concordance is what the agreement axis then measures. Many asset cells therefore remain honestly `limited`. [src: methodology/T3_T6_generation_method.md §9]
+Sourcing is layered. The seed is the WOCAT technology questionnaire's tolerance-to-extremes ratings, read from the structured questionnaire, cached as a deterministic transcript and converted rule by rule (no model) into units with a practitioner-rating design and the grey discount. Literature from the single-pass sweep (establishment mortality, windthrow, plantation fire, flood scour) adds to it; The agreement axis measures weighted sign agreement across the eligible units; it is not a separate test of WOCAT-versus-literature concordance. Many asset cells therefore remain honestly `limited`. [src: methodology/T3_T6_generation_method.md §9]
 
 The earlier specification also mentions an optional internal rating pass. That is outside the current literature-derived expert scope: expert judgements must come from published sources or documented accounts, with their original basis retained. [src: method:data-model/evidence-classification.json]
 
@@ -419,7 +425,7 @@ Weights are emitted only when every core hazard has an assessed (non-blank) asse
 
 `magnitude_summary` on a T6 effect row is emitted only when at least two independent sources in scope share a metric and a convertible unit: `{metric, unit, median, low, high, n, income_groups}`, with the weighted median and the observed extremes (never a confidence interval that was not measured). The pool is direction-aware: units opposing the row's direction are counted as excluded, never pooled. Cross-metric pooling is forbidden, and the number sits under the class; it is not an MCDA value. [src: methodology/T3_T6_generation_method.md §7.6] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §magnitude_summary]
 
-`justification` is a traceable account in the style of an IPCC evidence table: `statement`, `evidence_summary`, `agreement_note`, `mechanism`, `conditionality` or `caveats`, `key_evidence_ids` (up to five top-weight units) and `source_mix`, together with the flags from the steps above. Levels and classes are inserted by the engine. The only AI step is a gated prose writer, which may quote or paraphrase only the used units' quotes, may not introduce a number, source or direction absent from them, and cites evidence IDs per sentence; a deterministic check verifies every number. Until the writer runs, prose fields carry the engine statement marked as pending. [src: methodology/T3_T6_generation_method.md §8] [src: .agents/skills/source-command-t3t6-synthesise/SKILL.md]
+`justification` is a traceable account in the style of an IPCC evidence table: `statement`, `evidence_summary`, `agreement_note`, `mechanism`, `conditionality` or `caveats`, `key_evidence_ids` (up to five top-weight units) and `source_mix`, together with the flags from the steps above. Levels and classes are inserted by the engine. Within this effect-compilation stage, the AI step is a gated prose writer, which may quote or paraphrase only the used units' quotes, may not introduce a number, source or direction absent from them, and cites evidence IDs per sentence; a deterministic check verifies every number. Until the writer runs, prose fields carry the engine statement marked as pending. [src: methodology/T3_T6_generation_method.md §8] [src: .agents/skills/source-command-t3t6-synthesise/SKILL.md]
 
 ## Assumptions and limits
 
@@ -427,7 +433,7 @@ Weights are emitted only when every core hazard has an assessed (non-blank) asse
 - **Conventions, not calibration.** The band cuts for percent change and log response ratio, the design weights, the 0.7 proxy haircut, the transferability factors and the one-third conflict threshold are declared defaults, several pending ratification. They should be varied in sensitivity analysis. The two scales also disagree: the percent-change cut for strong is 30 %, but the log-response-ratio cut is 0.35 (about 42 %), so a 30 % gain is strong as a percent change and moderate as a log response ratio. [src: schema/registers/BANDS_magnitude_bands.csv]
 - **Coarse context.** Climate zone has four classes, and AEZ and farming system are often unknown in the evidence, so most scope rows are by income group; country and region scope rows do not yet exist.
 - **Fragility.** Thin cells can change class when one unit is added, dropped or re-reviewed. Classes move between builds as evidence is added; consumers read the tables at run time.
-- **Publication bias.** Benefits are over-reported. The grey discount, the maladaptation signal and the intensity discount partly offset this; no statistical correction is applied.
+- **Publication bias.** Selective reporting can favour benefits. Discounts and harm flags affect evidence already found; they cannot recover unpublished null or negative studies. No statistical publication-bias correction is applied.
 - **Transfer.** An `in_context` label means income-band match, not ecological equivalence. A feasibility study must still test the effect for the site, the farming system and the hazard regime.
 - **Cross-family tags vote.** In the family vote the cross-family tag counts as a family, although elsewhere it is described as shared context, not a sub-practice. A roll-up class can therefore be swayed by evidence that names no sub-practice.
 - **Do not combine across editions.** Row counts and classes belong to one build.

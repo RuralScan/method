@@ -20,30 +20,30 @@ sources:
   - schema/spec.md
   - evidence:workflows/review_exports/README.md
   - evidence:handbook/review-records.md
+  - evidence:workflows/submissions/README.md
 ---
 
 ## Why people review evidence
 
-The deterministic checks prove that a quote is real, that its numbers appear in it, and that some recognisable errors are absent. They cannot decide whether a claim is the right kind of claim, whether it was read correctly in context, or whether a published number is scientifically fit to drive a recipe. Those judgements are made by people. [src: src/nbs_ruralscan/schema_tools/check_numbers.py §module docstring] [src: .agents/skills/extraction_contracts/T4_review_contract.md §Numeric plausibility gate]
+Deterministic checks establish whether a passage matches the cached artefact and flag recognisable numerical or scope defects. Passing them does not prove that every number was interpreted correctly or that every error is absent. They cannot decide whether a claim is the right kind of claim, whether it was read correctly in context, or whether a published number is scientifically fit to drive a recipe. Those judgements are made by people. [src: src/nbs_ruralscan/schema_tools/check_numbers.py §module docstring] [src: .agents/skills/extraction_contracts/T4_review_contract.md §Numeric plausibility gate]
 
 The method places the human bottleneck where it matters. Extraction fidelity, harmonisation and an adversarial review pass run first, with automated triage. People review flagged and sampled units, the family schemes and recipe content, and later-stage outputs (dataset fitness, output validation, resolution). [src: methodology/T4_generation_method.md §7. Validation & sign-off]
 
 ## The review workspace
 
-Review happens in a dedicated workspace with two interfaces over the same records.
+Use the current finding queue to inspect the claim, source passage, context and revision, then save a Keep, Drop or Query decision. A saved browser draft is local. A submitted receipt records the vote; the evidence changes only after the protected register change is accepted and appears in the applied journal. Finding review and compiled-row rating review are separate records. [src: evidence:workflows/submissions/README.md] [src: evidence:handbook/review-records.md]
 
-- **A queue-based review dashboard** with three primary queues: units to review, units waiting for answers to a reviewer's question, and units the reviewer has already decided. Secondary filters separate units by origin, by whether others have reviewed them, and by claim scope (general, species, crop), with species and crop units reviewed in their own lane. [src: AGENTS.md §What is locked]
-- **A simple one-unit-at-a-time review page,** showing the extracted claim beside the highlighted source passage, the Population, Intervention, Comparator, Outcome and Study-design elements spelled out with each element flaggable, an advisory test of whether the practice is named in the quote, the source's own words for the practice, the band rule that set the strength (value, register rule, and whether the recorded strength follows it), and how many units from how many sources each generated row rests on. [src: AGENTS.md §File map]
+For a tabular claim, inspect the page image or available source preview with its caption and headers. Where no public preview is available, use the acquired source in the team library. The review must establish what the value refers to, not merely that its characters appear somewhere on the page. [src: evidence:workflows/submissions/README.md §Source previews]
 
-For tabular quotes, the reviewer can view an image of the page region from the cached PDF, so a table cell is judged with its caption and headers. [src: AGENTS.md §What is locked]
+The older local dashboard and one-unit review page remain relevant when replaying historical records. Their local Apply operation and CSV import behaviour are not the current hosted submission route. The historical importer can replay disagreements differently from the consensus workflow; a private preview is neither submission nor proof of application. [src: evidence:workflows/review_exports/README.md]
 
 ## The review decision
 
-Each reviewer gives one of three decisions per unit.
+Each reviewer gives one of three decisions per unit. The table describes the intended record state after an eligible decision is applied; saving or submitting a vote alone does not change the register.
 
 | Decision (dashboard) | Review page | Effect on the unit |
 |---|---|---|
-| Keep (`ok`) | Approve | evidence stands; `reviewer_ok = true`; any automatic flag is cleared |
+| Keep (`ok`) | Approve | the reviewed claim stands within its approval scope; this is not numerical-calibration approval |
 | Drop (`drop`) | Reject, with a reason code | `review_state = dropped`; the row and its history are retained |
 | Query (`query` or `flag`) | Hold | the unit stays active, unapproved, with the reviewer's question stamped and logged |
 
@@ -60,7 +60,7 @@ Every decision is logged with a reason code. The active codes are listed in the 
 | `smuggled_number` | a number in the relationship is not in the quote |
 | `wrong_variable` | mapped to the wrong canonical variable, often a proxy relabelled |
 | `wrong_practice` | the claim is about a different practice (PICOS failure) |
-| `species_envelope` | a species or crop envelope tagged as practice-level; the fix is re-tag and keep, never drop |
+| `species_envelope` | a species or crop envelope tagged as practice-level; correct scope rather than drop solely for that mismatch; assess other defects separately |
 | `table_error` | rows stitched across a table, or a garbled table reading |
 | `off_scope` | the passage is not the kind of claim the role needs (site description, methods, carbon accounting) |
 | `quote_too_narrow` | a bare cell or fragment without the sentence, header or caption |
@@ -82,26 +82,13 @@ Older codes merged into these (row-stitching and table-garble into `table_error`
 
 ## Several reviewers: consensus and conflict
 
-Decisions are stored per pair of evidence unit and reviewer. Applying them reduces the store to consensus. [src: AGENTS.md §What is locked] [src: src/nbs_ruralscan/schema_tools/submit_review.py §module docstring]
+Current submissions are checked against their authenticated reviewer, original receipt, finding identity and revision. Repeated identical receipts do not create additional reviewer votes. Opposing eligible ballots remain pending for reconciliation; a challenge to an existing reviewed finding must be reconciled with its recorded decision. The operator applies accepted changes against current registers through a protected pull request. [src: evidence:workflows/submissions/README.md §Apply approved submissions]
 
-```formula
-for each evidence unit e:
-  D_e = { d_r : reviewer r has a non-empty decision on e }
-  if D_e is empty            → no change
-  if all d_r in D_e agree    → apply that decision to e and append it to the review log
-  otherwise                  → conflict: nothing applied; e is left pending
-```
+Three states therefore remain distinct: a reviewer has expressed a judgement; eligible reviewers agree on a proposed change; the accepted change is committed and published. An uncontested ballot does not automatically bypass the integration gate. Check the applied journal and the finding at the same register revision before claiming completion. [src: evidence:handbook/review-records.md]
 
-- `d_r` is reviewer `r`'s decision (keep, drop or query) on unit `e`.
-- The review log records each applied decision with reviewer, date, reason and note.
+The historical local implementation stored decisions per evidence-unit/reviewer pair, applied agreement without a minimum reviewer quorum and reopened disagreement as conflict. Those semantics explain its saved logs. They do not mean that a late challenge in the hosted queue has already rewritten an applied record. [src: src/nbs_ruralscan/schema_tools/submit_review.py] [src: evidence:workflows/submissions/README.md]
 
-There is no quorum: one reviewer's decision applies if no one disagrees. [src: AGENTS.md §What is locked]
-
-Applied decisions remain viewable, re-openable and challengeable. If a second reviewer later disagrees with an applied decision, the unit is automatically re-opened as a conflict. [src: AGENTS.md §What is locked]
-
-Application is surgical. Decisions are replayed onto the *current* registers rather than merged from a reviewer's older working copy, so one reviewer's stale copy can never revert other people's rows. The decided changes, regenerated tables and log are then submitted together for integration. Only changes confined to the evidence register, the review log and generated files, from an allowed reviewer, are integrated automatically; anything else waits for human approval. [src: AGENTS.md §What is locked] [src: src/nbs_ruralscan/schema_tools/submit_review.py §module docstring]
-
-Compiled rows (generated hazard, scorecard and economic rows) have their own review log, keyed by row, reviewer, date and decision. [src: evidence:workflows/review_exports/README.md §Run the examples]
+Compiled hazard, scorecard and economic rows have their own rating-review history. Approving a source claim does not approve every derived row that cites it, and approving a row does not erase source-level limitations. [src: evidence:handbook/review-records.md]
 
 ## Soft delete: why evidence is never hard-deleted
 
@@ -113,7 +100,7 @@ The method keeps dropped evidence for three reasons.
 2. The audit trail must show what was rejected and why. A reader auditing a recipe row needs to see the evidence that was set aside, not only what was used.
 3. Rules change. Each unit carries the ruleset version under which it was last evaluated, so re-evaluations are auditable. A rule that later broadens (for example, readmitting crop-level evidence for a family) can bring dropped units back without re-extraction. [src: AGENTS.md §What is locked]
 
-Automatic quarantine follows the same model. When scope or practice checks fire on a unit no person has touched, the build soft-drops it and stamps the reason, so obvious errors do not crowd the reviewer's queue. It never re-quarantines a unit that a reviewer has approved, dropped, decided, or reopened. [src: src/nbs_ruralscan/schema_tools/quarantine.py §module docstring]
+In the pinned producer implementation, automatic quarantine follows the same model. When scope or practice checks fire on a unit no person has touched, the build soft-drops it and stamps the reason, so obvious errors do not crowd the reviewer's queue. It never re-quarantines a unit that a reviewer has approved, dropped, decided, or reopened. [src: src/nbs_ruralscan/schema_tools/quarantine.py §module docstring]
 
 Rule changes applied retroactively also use soft drops under a named rule rather than deletion, so every affected unit is reversible. [src: methodology/RULESET_VERSIONS.md §v1.6.18]
 
@@ -121,7 +108,7 @@ Generated rows may not cite dropped evidence: a check on each row's account fail
 
 ## Re-opening
 
-Any active, queried or dropped unit can be re-opened. Re-opening returns the unit to the active state, restores its most recent automatic flag text so it re-enters the worklist, and logs the reset under the reviewer's name, even if the unit was never approved, so that an old query cannot hide it. [src: src/nbs_ruralscan/schema_tools/review.py §reopen_units]
+For a current finding, submit a challenge or correction against its recorded revision and reconcile it through the submission workflow. The historical local review implementation can reopen any active, queried or dropped unit. Its reopening operation returns the unit to the active state, restores its most recent automatic flag text so it re-enters the worklist, and logs the reset under the reviewer's name, even if the unit was never approved, so that an old query cannot hide it. [src: src/nbs_ruralscan/schema_tools/review.py §reopen_units]
 
 ## Numeric plausibility review
 
@@ -144,9 +131,15 @@ Regional origin alone is not a plausibility defect. A complete quantitative tabl
 
 ### Why a qualitative keep is not numeric approval
 
-A reviewer's keep decision approves a unit within the scope reviewed: that the passage supports the claim, the variable is used, and the direction holds. It does not approve the numbers as an executable calibration. Variable use, direction and calibration are assessed separately, and a generic keep is explicitly not numerical approval. [src: .agents/skills/extraction_contracts/T4_review_contract.md §Numeric plausibility gate] [src: .agents/skills/extraction_contracts/T4_review_contract.md §Three independent assessments]
+A reviewer's keep decision approves only the interpretation actually reviewed. It does not imply that variable use, direction and numerical calibration all passed. It does not approve the numbers as an executable calibration. Variable use, direction and calibration are assessed separately, and a generic keep is explicitly not numerical approval. [src: .agents/skills/extraction_contracts/T4_review_contract.md §Numeric plausibility gate] [src: .agents/skills/extraction_contracts/T4_review_contract.md §Three independent assessments]
 
 The reason is structural. Direction-only evidence cannot create scores, interpolation, cutoffs or default weights, so if a keep were read as approving the numbers, a published class could become a recipe threshold without anyone having checked its scientific basis. The review card therefore states the exact approval question, what approval retains, and what it cannot activate. Held or unrecorded calibration is never presented as a score, a range or "reviewed". [src: .agents/skills/extraction_contracts/T4_review_contract.md §Agreement and review output]
+
+### Worked illustration: keep the source profile, hold its use
+
+The rainfall-class warning above has three possible dispositions, not one yes/no verdict. A reviewer can confirm that the source uses rainfall, accept its regional ordering, and leave the numerical transfer unresolved. The record should say which of those judgements passed and why the calibration remains held. A later generic Keep must not silently remove that hold.
+
+For the hypothetical soil-loss claim in [[ch:evidence-principles]], a source check may confirm the 20% figure yet reveal that the treatment included fertiliser alongside bunds. Correct the attribution or query it before accepting a practice-specific effect. Finding the number on the page resolves transcription; it does not isolate the bunds' contribution. [src: .agents/skills/extraction_contracts/T4_review_contract.md §Three independent assessments] [src: methodology/RULESET_VERSIONS.md §v1.6.7]
 
 ### The adversarial reviewer checklist
 
@@ -156,9 +149,9 @@ Agreement is reported as separate counts of variable use, direction and calibrat
 
 ### OCR-derived evidence
 
-Units quoted from OCR text cannot be approved until a person has checked a sample of their quotes against the page images: at least three per source or a fifth of its units, whichever is larger. [src: methodology/search_protocol.md §Scanned PDFs (no text layer)]
+For OCR-derived units, complete the page-image sample check specified in [[ch:acquisition]] before approval. Text-layer matching alone cannot resolve a misrecognised printed value. [src: methodology/search_protocol.md §Scanned PDFs (no text layer)]
 
-## The progress ledger
+## The progress ledger in the pinned edition
 
 Project progress is recorded per practice, table, discovery process and family in a progress ledger. It answers questions such as "has a targeted search been run for this family and table?" from a record, never from whether evidence happens to exist, because absence of evidence does not show that a search was not run. [src: src/nbs_ruralscan/schema_tools/ledger.py §module docstring]
 
@@ -182,13 +175,13 @@ Source records follow the same discipline. A newly acquired source starts as `pe
 
 ### Why progress cannot be claimed without a record
 
-Progress claims feed decisions: whether a family has evidence enough to synthesise, whether a scorecard cell is empty because nothing exists or because nobody looked. A claim that is not backed by a register record cannot be audited, and an unaudited "done" hides exactly the gaps a scoping tool must show. Tying each stage either to a logged protocol or to live register facts makes over-claiming a build failure rather than a matter of trust. [src: AGENTS.md §What is locked]
+Progress claims feed decisions: whether a family has evidence enough to synthesise, whether a scorecard cell is empty because nothing exists or because nobody looked. A claim that is not backed by a register record cannot be audited, and an unaudited "done" hides exactly the gaps a scoping tool must show. The checks make specific unsupported claims fail the build, while other gaps produce warnings. They do not prove that a completed search was exhaustive or that every lifecycle rule was enforced. [src: AGENTS.md §What is locked]
 
 Two corollaries follow. Effort counts (sources searched, units extracted, units reviewed) measure work, not the strength of evidence. And a local vote, a successful rehearsal or a feedback report does not establish that a review was submitted; only the corresponding event and state in the committed records do. [src: evidence:handbook/review-records.md §Find the right review record]
 
 ## Assumptions and limits
 
-- **No quorum.** A single reviewer can apply a decision when no one else has reviewed the unit. Most units are reviewed by one person, if at all.
+- **Consensus is not a second scientific review.** One eligible ballot can be uncontested; a protected application PR is a separate integration gate. Neither establishes that two people independently assessed the claim.
 - **Coverage is partial.** Review concentrates on flagged and sampled units. An unflagged, unreviewed unit has passed the deterministic checks only.
 - **Reason codes are coarse.** They route fixes well but compress nuanced judgements; the free-text note carries the detail.
 - **Plausibility review is documentary.** It records the scientific concern and the justification available; it is not automated validation and introduces no universal thresholds.
@@ -198,7 +191,8 @@ Two corollaries follow. Effort counts (sources searched, units extracted, units 
 ## Where this is configured
 
 - Review fields on [[table:EV]] (`reviewer_ok`, `review_state`, `ruleset_version`); search protocols in [[table:SRCH]].
-- Decision store, review log and consensus: `src/nbs_ruralscan/schema_tools/review.py`, `submit_review.py`.
+- Current submission, reconciliation and application: `workflows/submissions/` in the evidence repository; receipts and the applied journal identify published changes.
+- Historical decision store, review log and consensus: `src/nbs_ruralscan/schema_tools/review.py`, `submit_review.py`.
 - Automatic quarantine: `src/nbs_ruralscan/schema_tools/quarantine.py`.
 - Numeric plausibility gate and reviewer checklist: `.agents/skills/extraction_contracts/T4_review_contract.md`.
 - Progress ledger: `src/nbs_ruralscan/schema_tools/ledger.py`; effect-table progress: `src/nbs_ruralscan/schema_tools/table_progress.py`.

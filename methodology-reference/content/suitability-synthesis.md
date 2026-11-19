@@ -62,9 +62,17 @@ There is no instruction here to average all thresholds or multiply them by the h
 
 Keep evidence influence, within-study importance and runtime criterion weights separate. A source assigning 30% to slope in its own model has not established a 30% Rural Scan weight. Nor has a source-model zero automatically established a hard exclusion for all landscapes. Each proposed mapping or weight needs its own meaning and approval scope. [src: methodology/T4_variable_importance.md] [src: methodology/T4_developer_contract.md]
 
-### A worked interpretation
+### Worked illustration: context is not a boundary
 
-Suppose one account documents a practice between 600 and 900 mm annual rainfall, while a regional study reports several rainfall suitability classes. The agent should preserve the first as occurrence context and the second as a quantitative source profile. It must inspect the class meanings, measurement basis, host system, geography and uncertainty before proposing any synthesis. It cannot infer global failure below 600 mm, extend the regional classes into unobserved tails, or average the two ranges as equivalent thresholds.
+In this hypothetical illustration, one account documents a practice between 600 and 900 mm annual rainfall, while a regional study reports several rainfall suitability classes. The agent should preserve the first as occurrence context and the second as a quantitative source profile. It must inspect the class meanings, measurement basis, host system, geography and uncertainty before proposing any synthesis. It cannot infer global failure below 600 mm, extend the regional classes into unobserved tails, or average the two ranges as equivalent thresholds.
+
+Table: Hypothetical rainfall evidence, proposed disposition and unresolved question.
+
+| Evidence available | What the agent can propose | What remains to resolve |
+|---|---|---|
+| Occurrence between 600 and 900 mm only | Retain the observed setting as context | No source-supported failure limits or suitability scores |
+| Regional class profile with clear units and complete endpoints | Preserve the native profile as a candidate for its stated context | Measurement compatibility, scientific basis and transfer |
+| Reviewed compatible profiles from independent origins | Propose a scoped combination or explain why alternatives should remain separate | Justification of the chosen representation and scientific approval |
 
 The defensible outcome may be a context-specific profile, a qualitative direction with a calibration hold, or a supported proposal assembled from additional compatible evidence already in scope. Missing evidence is recorded as a gap. Synthesis does not itself authorise another extraction or discovery sweep. [src: .agents/skills/source-command-t4-synthesise/SKILL.md §Reproducible workflow]
 

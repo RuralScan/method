@@ -6,6 +6,14 @@ What changed in the Rural NbS Scan methodology, newest first. The build reads th
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.12.0] - 2026-11-19
+
+- Add labelled worked illustrations across the evidence workflow, including shared origins, conflicting effects and incomparable costs; keep linked example headings clear of the sticky navigation.
+- Give shared appraisal and dependence guidance one home; remove repeated band and comparator tables from extraction.
+- Correct contradictions about agent-led T4 synthesis, species scope, current review submission and historical compiler behaviour.
+- Clarify confidence conventions, non-significant results, incomplete independence checks and the limits of unharmonised cost figures.
+- Preserve the pinned analytical outputs and numerical policies; examples are explanatory, not new evidence or calibration.
+
 ## [0.11.0] - 2026-11-19
 
 - Describe agent-led T4 synthesis separately from deterministic validation, packaging and runtime evaluation.

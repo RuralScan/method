@@ -135,6 +135,7 @@ dl.facts dd, dl.facts dt { min-width: 0; }
 main > h1 { font-size: 2rem; font-weight: 700; line-height: 1.2; margin: .2rem 0 .6rem; letter-spacing: -.02em; }
 h2 { font-size: 1.4rem; font-weight: 700; letter-spacing: -.01em; margin: 2.2rem 0 .6rem; padding-top: .6rem; border-top: 1px solid var(--line); line-height: 1.25; }
 h3 { font-size: 1.1rem; margin: 1.6rem 0 .4rem; }
+h3[id] { scroll-margin-top: 1rem; }
 h4 { font-size: 1rem; margin: 1.2rem 0 .3rem; }
 p, ul, ol, dl { max-width: 78ch; }
 .lead { font-size: 1.12rem; color: var(--ink); max-width: 72ch; }

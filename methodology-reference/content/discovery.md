@@ -21,7 +21,7 @@ Discovery finds *what to look for and where*. It proposes candidate sources and 
 
 Discovery is not exhaustive. The method deliberately does not sweep tens of thousands of abstracts. It assembles a bounded, authority-weighted set of sources per practice and table, expands it only where that set leaves obvious gaps, and records the bounds so that a reader knows what the search could and could not have found. [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule]
 
-Each analytical table has its own corpus. A large stocktake of spatial-suitability and MCDA papers was the starting corpus for suitability ([[table:T4]]). It is a weak source for hazard response ([[table:T3]]) and scorecard effects ([[table:T6]]), which need effectiveness, impact and evaluation literature. Existing suitability papers are not proof of effect coverage, or the reverse. [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule] [src: methodology/T3_T6_generation_method.md §6. Sources]
+Each analytical table has its own corpus. A large stocktake of spatial-suitability and MCDA papers was the starting corpus for suitability ([[table:T4]]). It is a weak source for hazard response ([[table:T3]]) and scorecard effects ([[table:T6]]), which need effectiveness, impact and evaluation literature. A publication can be reused across searches, but existing suitability papers are not proof of effect coverage, or the reverse. [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule] [src: methodology/T3_T6_generation_method.md §6. Sources]
 
 ## The unit of search
 
@@ -32,6 +32,12 @@ A search is defined by four keys: practice, suitability family, table and discov
 - **Process.** One of the four discovery processes below.
 
 The generic and targeted searches are different nets with different recall. The union of the targeted family searches is not the parent search, and searches are never summed. A family with no targeted search is shown as "covered by the generic net, not targeted", never as done. [src: methodology/search_protocol.md §Generic (parent) search vs sub-practice search]
+
+### Worked illustration: reuse is not a duplicate vote
+
+Suppose the hypothetical rainwater-harvesting report in [[ch:evidence-principles]] was already acquired for T4. An effect-targeted search finds it again. Record `reuse` for the new effect scope and inspect its soil-loss comparison; do not create another source identity. A repository copy of the same report is a duplicate identity. A companion paper using the same plots is a separate publication with a possible shared data origin, which the dependence audit in [[ch:compiling-evidence]] must resolve.
+
+If the effect search finds no relevant comparator, record that gap. Neither a successful T4 search nor the presence of the report in the library establishes that the effect scope was searched, screened or extracted. [src: evidence:workflows/discovery/README.md §Record screening decisions] [src: methodology/search_protocol.md §What every search logs]
 
 ## The four discovery processes
 
@@ -52,24 +58,24 @@ Searches also follow references from strong seeds back to original methods and f
 
 ## The bounded, authority-weighted seed set
 
-Per practice and table, discovery assembles a capped seed set of roughly 10 to 20 authoritative sources, in approximate order of authority. [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule]
+Per practice and table, discovery assembles a capped seed set of roughly 10 to 20 authoritative sources. This orders search effort; it does not establish that each claim from an earlier-listed source is scientifically stronger. [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule]
 
 1. Authority sources with project relevance: the development bank's rural NbS catalogue and project evidence (implementation completion reports and independent evaluation reviews), decision-support tools named in the terms of reference, GEF and NBS investment materials, IPCC assessment chapters, FAO frameworks and practice databases, WRI restoration materials, and CGIAR system-level reviews.
 2. High-leverage "diamond" classes: WOCAT technology questionnaires (structured, grounded in lower-income contexts, covering requirements, impacts, costs and adoption), evidence gap maps (3ie, Campbell Collaboration, CEE), specialist practice databases from research centres, Indigenous and community land layers, and climate-smart agriculture adoption and barrier syntheses.
 3. Peer-reviewed syntheses: global-scale suitability models and MCDAs, major meta-analyses and reviews, and monitoring, evaluation and learning (MEL) reports from large programmes.
 4. Primary studies, admitted only when the seed set above is thin.
 
-FAO Ecocrop is restricted to modelling the understorey crop envelope of shaded perennial-crop systems and is excluded for general practice suitability. Global suitability models provide provisional defaults that local context overrides and dataset bindings can refine. [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule]
+FAO Ecocrop is restricted to modelling the understorey crop envelope of shaded perennial-crop systems and is excluded for general practice suitability. Global suitability models supply candidate criteria and profiles. Under agent-led T4 synthesis, their use as defaults requires an explicit transfer argument and approval; a context override or dataset binding does not validate the source model. [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule]
 
 Evidence gap maps play a second role: they show where empirical support is absent, so the method can avoid claiming precision it does not have. [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule]
 
-Adoption and dis-adoption studies and MEL reports are treated as observed-reality evidence, not a separate stream. They extend the "constrain by observed distribution" principle to the human side: if a practice is not adopted where its bioclimatic envelope is favourable, a system or operational constraint is binding. They are tagged `method_type = adoption_study` or `mel_report` and tiered like any other source. [src: methodology/T4_generation_method.md §Evidence-source principle]
+Adoption and dis-adoption studies and MEL reports are treated as observed-reality evidence, not a separate stream. They extend the "constrain by observed distribution" principle to the human side: non-adoption where the bioclimatic envelope appears favourable prompts investigation of system and operational barriers. It does not, on its own, identify a binding constraint or exclude unmeasured biophysical explanations. They are tagged `method_type = adoption_study` or `mel_report` and tiered like any other source. [src: methodology/T4_generation_method.md §Evidence-source principle]
 
 ### Why effect searches target syntheses first
 
 For hazard-response and scorecard effects, discovery searches for meta-analyses, systematic reviews, evidence gap maps and reviews first, then MEL and impact-assessment grey literature (completion reports, independent evaluations, programme impact studies), and seeks primary studies only to fill cells the syntheses leave empty. [src: methodology/search_protocol.md §Learnings from the agroforestry synthesis-first round] [src: methodology/T3_T6_generation_method.md §3.5 Single-pass extraction and deferred pointers]
 
-The reasons are practical and statistical. One good synthesis replaces many primary extractions. Pooled estimates are what the effect engine is built to reconcile, and syntheses are weighted above single studies and practitioner ratings in synthesis (see [[ch:effect-synthesis]]). Ex-ante project appraisal documents are proposals, never effect evidence. [src: methodology/T4_generation_method.md §Screening funnel] [src: methodology/search_protocol.md §Learnings from the agroforestry synthesis-first round]
+The reasons are practical and statistical. One well-matched synthesis can reduce repeated primary extraction, provided its coverage and underlying studies are understood. Pooled estimates are what the effect engine is built to reconcile, and syntheses are weighted above single studies and practitioner ratings in synthesis (see [[ch:effect-synthesis]]). Ex-ante project appraisal documents are proposals, never effect evidence. [src: methodology/T4_generation_method.md §Screening funnel] [src: methodology/search_protocol.md §Learnings from the agroforestry synthesis-first round]
 
 A reusable block of study-type terms (systematic review, systematic map, scoping review, evidence and gap map, evidence synthesis, umbrella review, review of reviews and similar) is kept verbatim and joined into synthesis-first queries. [src: methodology/search_protocol.md §Bibliographic sources]
 
@@ -130,7 +136,7 @@ The product workflow records each inspected record with one of six dispositions:
 
 ## The six-axis credibility rubric
 
-Each source that passes relevance is assessed on six orthogonal axes and an independence discount. [src: methodology/T4_generation_method.md §Screening funnel]
+Each source that passes relevance is assessed on six dimensions and an independence discount. These dimensions can overlap; the rubric does not establish statistical independence between them. [src: methodology/T4_generation_method.md §Screening funnel]
 
 | Axis | What is judged | Recorded on SRC as |
 |---|---|---|
@@ -146,15 +152,15 @@ Each source that passes relevance is assessed on six orthogonal axes and an inde
 
 The axes are not stored separately on every row. The audit-relevant fields are kept on the source record and the tier carries the summary. An older three-part rubric (content, impact, data quality) is one summary view of the same axes and produces the same tier. [src: methodology/T4_generation_method.md §Screening funnel]
 
-`benchmark_tier` takes `high`, `medium`, `low` or `external`. `external` is for citation-cascade pointers that were not screened and carries zero synthesis weight. Discovery prefers high and medium sources and admits low ones only when the seed set is genuinely thin for a variable. [src: schema/spec.md §SRC] [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule] A proposed tier must carry its reasons; unknown attributes remain unknown. [src: .agents/skills/source-command-discover-sources/SKILL.md §Search and screen]
+`benchmark_tier` takes `high`, `medium`, `low` or `external`. `external` marks citation-cascade pointers that were not screened. It carries zero weight in the legacy compiler; new T4 proposals likewise require screening before such a pointer can become eligible supporting evidence. Discovery prefers high and medium sources and admits low ones only when the seed set is genuinely thin for a variable. [src: schema/spec.md §SRC] [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule] A proposed tier must carry its reasons; unknown attributes remain unknown. [src: .agents/skills/source-command-discover-sources/SKILL.md §Search and screen]
 
-How tiers become numbers in synthesis is covered in [[ch:suitability-synthesis]] and [[ch:effect-synthesis]]. Grey literature receives an additional positive-bias discount for effect claims, because practitioner and agency reports tend to overstate benefits. [src: methodology/T3_T6_generation_method.md §6. Sources]
+The fixed tier factors used for the pinned effect outputs are documented in [[ch:effect-synthesis]]; historical T4 factors are in [[ch:t4-legacy-compiler]]. New T4 proposals must justify evidence influence under [[ch:suitability-synthesis]], rather than inherit those constants automatically. Grey literature receives an additional positive-bias discount for effect claims, because practitioner and agency reports tend to overstate benefits. [src: methodology/T3_T6_generation_method.md §6. Sources]
 
 ## The saturation stop
 
-Discovery stops adding sources when two conditions hold together: new sources add no new variables or thresholds, and tier coverage is adequate, which for shape-bearing claims means at least one high-tier and two medium-tier sources. The hard cap is about 20 sources per practice and table, lifted only with a recorded justification. [src: methodology/T4_generation_method.md §Screening funnel]
+The T4 seed-search stopping rule requires two conditions together: new sources add no new variables or thresholds, and tier coverage is adequate, which for shape-bearing claims means at least one high-tier and two medium-tier sources. The hard cap is about 20 sources per practice and table, lifted only with a recorded justification. [src: methodology/T4_generation_method.md §Screening funnel]
 
-A cap, an unavailable channel or a language gap is not evidence of saturation. Each run must report why work stopped and what remains. [src: .agents/skills/source-command-discover-sources/SKILL.md §Search and screen]
+The T4 variable/threshold criterion is not an effect- or cost-coverage test. Effect searches must record remaining outcome, comparator and context gaps; reaching the source cap cannot establish that a cell is adequately supported. A cap, an unavailable channel or a language gap is not evidence of saturation. Each run must report why work stopped and what remains. [src: .agents/skills/source-command-discover-sources/SKILL.md §Search and screen]
 
 ## What a search record holds
 
@@ -174,7 +180,7 @@ Each search run writes one row to the Search Register, [[table:SRCH]], per pract
 
 [src: methodology/search_protocol.md §What every search logs] [src: schema/structure/columns.json §SRCH]
 
-The required fields are the search identifier, practice, table, process, search terms, date and ruleset version. The table field accepts T4, T3 and T6; the process field accepts the four processes. [src: schema/structure/columns.json §SRCH]
+The required fields are the search identifier, practice, table, process, search terms, date and ruleset version. The table field accepts T4, T3 and T6; the process field accepts the four processes. Economic-profile discovery is recorded within the T6 effect/economic scope, with the economic target named in the protocol; T6E is the output table, not an additional SRCH table value. [src: schema/structure/columns.json §SRCH]
 
 ### The PRISMA-style counts
 

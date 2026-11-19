@@ -61,7 +61,7 @@ Families whose spatial product type is `qualitative_only` are parked out of the 
 
 ## Where cost evidence comes from
 
-Economic evidence is admitted only with a per-unit denominator. The preferred sources are World Bank project appraisal documents and implementation completion reports where they give denominators, structured project archetypes, and meta-analyses of adoption economics. Evidence must come from searches targeted at effects and costs; papers found for suitability are not a substitute. [src: methodology/T3_T6_generation_method.md §6]
+Monetary amounts need a per-unit denominator to enter cost-level cells. Relative savings and ordinal economic observations follow their own declared routes and do not become absolute cost amounts. The preferred sources are World Bank project appraisal documents and implementation completion reports where they give denominators, structured project archetypes, and meta-analyses of adoption economics. Evidence must come from searches targeted at effects and costs; papers found for suitability are not a substitute. [src: methodology/T3_T6_generation_method.md §6]
 
 Each cost unit records the currency year when the source states it (`currency_year`), the country and so the income group, and the denominator in `unit`. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §economic_value_range] [src: methodology/T3_T6_generation_method.md §3.3]
 
@@ -86,7 +86,7 @@ The thresholds are scoping-grade, set against a typical smallholder gross margin
 
 Two choices make the class honest about where it comes from. First, the income-band gate that governs value ranges also governs the class, so a class can never rest on a figure from another income band. Second, because economics are read ordinally, a single source may set the class, unlike effect magnitude summaries, which need two; the row's confidence (limited evidence, undefined agreement, so very low) carries the caveat. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §synthesise_cell, magnitude_summary]
 
-When a row states no class, the statement says why, so a blank is never read as "cheap": the evidence states no cost figure; no size band exists for the unit; every figure comes from another income group; or no two sources give a figure in the same unit. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §_no_cost_class_reason]
+When a row states no class, the statement says why, so a blank is never read as "cheap": there is no qualifying numeric figure, no size band for its unit, or no figure in the target income band. The legacy reason helper also has a fallback saying "no two sources give a figure in the same unit"; that wording must not be read as a two-source requirement for the ordinal class, which permits one source. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §_no_cost_class_reason]
 
 Confidence on economic rows follows the same IPCC two-axis matrix as every generated row. [src: schema/spec.md §T6]
 
@@ -108,6 +108,21 @@ These gates are strict by design, and at the pinned revision none of the agrofor
 
 The spec's value-range unit enumeration is narrower than the set of units that may set a cost class: per-household, per-structure and per-cubic-metre figures can set an ordinal class through their own bands, but cannot form a published range. [src: schema/spec.md §T6] [src: schema/registers/BANDS_magnitude_bands.csv] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §ECON_UNITS]
 
+### Worked illustration: cost level, annual flow and repetition
+
+The following figures are hypothetical, not registered cost estimates. Assume the target is a low/lower-middle-income context and all amounts have verified units and source identities.
+
+Table: Hypothetical economic observations and why they cannot all form one range.
+
+| Observation | Interpretation | Consequence for combination |
+|---|---|---|
+| A reports establishment at USD 400 per hectare | Up-front amount, with reported cost scope and price year | A candidate for the relevant cost-level cell |
+| B repeats A's USD 400 figure | The same underlying estimate | No additional independent support for a range |
+| C reports maintenance at USD 30 per hectare per year | Recurrent annual flow | A different indicator; do not mix it with the establishment amount |
+| D reports establishment at USD 600 per hectare in a high-income setting | Similar denominator, different income band | Excluded from this target's monetary range |
+
+For the target establishment estimate, these four publications leave only one identified in-band origin. An ordinal class may be possible if the unit has a band; a published range is not established by the repeated citation. An independent in-band estimate with comparable scope could change range eligibility, but it would not create a local budget or harmonise price years. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §economic_value_range, magnitude_summary]
+
 ### Comparability and repeated economic observations
 
 A project total, a per-hectare establishment cost and an annual maintenance cost are different quantities. Retain cost scope, period, denominator, country and price year before assessing a class or range. Several line items from one budget, repeated estimates for the same project or a report repeating a study do not establish independent replication. A review and the primary costs it summarises can overlap even when their source identifiers differ. The common origin audit is in [[ch:compiling-evidence]].
@@ -116,15 +131,17 @@ The numerical gates above describe the current compiler, not a guarantee that ev
 
 ## Why currencies and price years are not normalised
 
-No currency conversion, inflation adjustment or price-year harmonisation is applied, and consumers are instructed to show the range as is and never to compute new ratios. [src: methodology/T3_T6_developer_handover.md §3] [src: methodology/T3_T6_generation_method.md §7.7]
+No cross-source currency conversion, inflation adjustment or price-year harmonisation is applied at synthesis, and consumers are instructed to show the range as is and never to compute new ratios. [src: methodology/T3_T6_developer_handover.md §3] [src: methodology/T3_T6_generation_method.md §7.7]
 
-The reasons are methodological, not a shortcut:
+This is a declared scoping limitation, with the following consequences:
 
-- **The question is ordinal.** At scoping grade the decision-relevant reading is whether an amount is big or small for the context where it is spent. The income-banded classes answer that directly; a deflated, converted figure would imply a precision the evidence does not have. [src: schema/registers/BANDS_magnitude_bands.csv]
-- **Price levels do not transfer.** Costs depend on local labour, land and capital conditions. A conversion to a common currency and year would make figures look comparable while hiding exactly the differences the income-band exclusion is there to respect. [src: methodology/T3_T6_generation_method.md §7.7]
+- **The output is ordinal first.** Income-banded classes summarise the reported amounts at scoping grade. Ordinal labels do not remove sensitivity to price year, exchange rates or cost scope; a properly specified harmonisation could matter. [src: schema/registers/BANDS_magnitude_bands.csv]
+- **Harmonisation would not establish transfer.** A common currency and price year could improve monetary comparability, but would not equalise labour arrangements, land costs or project design. Income-band gates are only a coarse context control. [src: methodology/T3_T6_generation_method.md §7.7]
 - **Transparency is kept.** Each figure's currency year is recorded in `source_note`, so a feasibility economist can normalise later with project-specific deflators and exchange rates. [src: methodology/T3_T6_generation_method.md §7.7]
 
-Relative measures (percent changes in cost against a control) carry no denominator: they may vote on direction in `cost_reduction` but never set a value. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §_RELATIVE_METRICS]
+Reproducing a source's own USD conversion is different from harmonising across sources. The WOCAT acquisition adapter, for example, uses the account's reported exchange rate and calculation base and checks its printed total, as described in [[ch:acquisition]]. Synthesis does not subsequently convert it to a shared price year.
+
+Relative measures (percent changes in cost against a control) have a comparator baseline but no absolute monetary denominator: they may vote on direction in `cost_reduction` but never set a value. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §_RELATIVE_METRICS]
 
 ## Why this is not cost-benefit analysis
 
@@ -136,7 +153,7 @@ An economist can use a gated range for an indicative narrative without a full co
 
 - **Thresholds are conventions.** The cost bands are scoping-grade, anchored on an assumed smallholder gross margin, with simple multipliers for richer contexts. Different anchors would move some classes.
 - **Sparse, heterogeneous evidence.** Few sources report costs with a usable denominator; many rows are classed from one source and carry very low confidence. Classes can change as evidence is added.
-- **Mixed price years.** Pooled figures span different years and currencies. A class near a band edge is sensitive to inflation that is deliberately not corrected.
+- **Mixed price years.** Admitted monetary figures use the required unit labels but may retain different source price years and source conversion assumptions. A class near a band edge is sensitive to inflation that is deliberately not corrected.
 - **Implementation context.** Costs depend on project design, scale, implementer and labour arrangements that the evidence rarely reports consistently.
 - **What feasibility must still do.** Cost the specific design with local prices, discount rates and time horizons; value benefits; test sensitivity; and confirm financing and subsidy assumptions.
 
