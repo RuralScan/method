@@ -74,6 +74,12 @@ Conditional fields are `taxon` (required when the claim is species- or crop-spec
 
 Units must be readable without the paper. Every acronym for a practice, treatment or measured variable is expanded; the practice is described in plain words; the baseline is always recorded; an absolute amount is given beside a relative change where the source states one; a stated effect size is encoded rather than left as narrative; and the source table or figure is named with its caption. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Reviewer-readable units]
 
+## Knowledge basis and extraction format
+
+Current evidence intake separates `knowledge_basis` from `extraction_format`. A table can report expert judgement or measured results; its format does not establish scientific strength. Legacy `claim_basis` is retained for historical compiler reproduction. Table and figure labels migrate to unknown knowledge basis, never to inferred measurement. See [[ch:evidence-registry|the registry and source guide]] and [[ch:combining-t4-evidence|the synthesis and weighting guide]]. [src: method:data-model/evidence-classification.json]
+
+The field table above describes the pinned historical evidence edition. The additive extension applies to current intake; it does not retroactively validate or recalibrate those archived claims. Expert opinion in this workflow is extracted from literature, not obtained through a new consultation exercise.
+
 ## Quotes are sliced, never retyped
 
 The quote is cut programmatically from the page's extracted text, not typed. The provenance validator checks quotes against the same text layer, so a sliced quote passes by construction, whereas a retyped quote silently normalises characters (ligatures, dashes, spacing) and fails. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Common extraction defects]
