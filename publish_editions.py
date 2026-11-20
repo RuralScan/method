@@ -302,10 +302,11 @@ def publish_reference_menu(site, reference, labels, label, note):
         links = " · ".join(f'<strong>{group}</strong> ' + " · ".join(
             f'<a href="{escape(url, quote=True)}">{text}</a>' for url, text, _ in items) for group, items in groups)
         contents = path.read_text()
+        # Older reference builds repeated the masthead queue link in the version bar.
+        contents = re.sub(r'<a class="vb-live" href="[^"]*">[^<]*</a>', "", contents)
         substitutions = [
             (r'(<select id="dashboard-version"[^>]*>).*?</select>', lambda m: m[1] + menu + '</select>'),
             (r'<span id="dashboard-version-note">.*?</span>', f'<span id="dashboard-version-note">{note}</span>'),
-            (r'<a class="vb-live" href="[^"]*">[^<]*</a>', f'<a class="vb-live" href="{base}dashboard.html#review-queue">Review queue</a>'),
             (r'<a class="review-entry" href="[^"]*">Review queue</a>'
              r'(?:\s*<a class="help-entry github-entry"[^>]*>GitHub</a>)?',
              f'<a class="review-entry" href="{base}dashboard.html#review-queue">Review queue</a> '

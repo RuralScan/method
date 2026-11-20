@@ -122,6 +122,8 @@ class VersionMenuTest(unittest.TestCase):
                     self.assertEqual(chosen,'Methodology v0.8.0 · 18 Nov 2026')
                     self.assertIn('<option value="../reference/index.html" selected>',groups['Current version'])
                     self.assertIn(publish.tab_icon('methodology'),html)
+                    self.assertEqual(html.split('<main', 1)[0].count('>Review queue</a>'), 1)
+                    self.assertNotIn('class="vb-live"', html)
                     self.assertIn('href="../dashboard.html#review-queue">Review queue</a>',html)
                     self.assertIn('<span id="dashboard-version-note">Current draft</span>',html)
                     self.assertNotIn('Under review',html)
@@ -131,6 +133,20 @@ class VersionMenuTest(unittest.TestCase):
                     self.assertIn(f'data-edition="{editions[-1]["edition"]}" selected',groups['Earlier drafts'])
                     self.assertIn('<option value="../../dashboard.html#',groups['Current version'])
                     self.assertIn('../../dashboard.html#review-queue',html)
+
+    def test_reference_without_legacy_queue_link_publishes(self):
+        with TemporaryDirectory() as tmp:
+            site = Path(tmp)
+            editions, reference = self.prepare(site)
+            for page in (site / 'reference').glob('*.html'):
+                page.write_text(re.sub(r'<a class="vb-live".*?</a>', '', page.read_text()))
+            self.publish(site, editions, reference)
+            for page in (site / 'reference').glob('*.html'):
+                header = page.read_text().split('<main', 1)[0]
+                self.assertEqual(header.count('>Review queue</a>'), 1, page)
+            dashboard = (site / 'dashboard.html').read_text()
+            self.assertIn('<span>Comment on this page</span>', dashboard)
+            self.assertNotIn('<span>Review</span>', dashboard)
 
     def test_without_promotion_original_dashboard_remains_default(self):
         with TemporaryDirectory() as tmp:
