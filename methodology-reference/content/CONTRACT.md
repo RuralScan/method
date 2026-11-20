@@ -1,33 +1,14 @@
 # Chapter contract — RuralScan methodology reference
 
-You are writing chapters of a **comprehensive scientific methodology reference for technical
-users** (GIS analysts, data scientists, agronomists and ecologists on a development-bank task
-team, and the scientists who will maintain the method). A reader must be able to understand,
-audit and re-implement the method from these chapters without access to the authors. Depth is
-the point: state the rules, the formulas, the thresholds' origin, the assumptions and the limits.
-A thin summary with links out is a failure. Padding and unsupported claims are also a failure.
+Write a scientific methodology that a development-bank task team can read and an analyst can audit. Explain the decision, inputs, method, output meaning and material limits. Use plain language. Include equations when they define the reported result; keep detailed evidence-synthesis rules in their owning chapter and link to them elsewhere.
 
-## Where to read and write
+## Sources and editorial scope
 
-- WRITE ONLY to `content/<slug>.md` in this reference directory
-  for the slugs assigned to you. Create no other file anywhere. Edit no repository.
-- READ sources read-only. The scientific source of record is the CIAT repository at the pinned
-  producer commit **`e5c8da02e72810956cfd179cb32cd137fc4ba398`** (call it `P`). Its working
-  tree is AHEAD of `P` and has unrelated work in progress, so read files at the pin:
-  `git -C <producer checkout> show e5c8da02e72810956cfd179cb32cd137fc4ba398:<path>`
-  (list with `git -C ... ls-tree -r --name-only e5c8da02e72810956cfd179cb32cd137fc4ba398 <dir>`).
-  Useful roots at `P`: `methodology/` (framework.md, modules/, families/, T4_generation_method.md,
-  T3_T6_generation_method.md, T4_developer_contract.md, search_protocol.md, RULESET_VERSIONS.md,
-  farming_system_classifier.md, opportunity_space_T5.md, weight_normalisation.md, …),
-  `schema/spec.md`, `schema/structure/columns.json`, `schema/lookups/*.csv`, `schema/registers/*.csv`,
-  `schema/T1_data_registry.csv`, `schema/T2_climate_risk.csv`, `schema/T5_opportunity_space.csv`,
-  `schema/T7_geographic_context.csv`, `schema/recipes/<practice>/`, `AGENTS.md` (locked decisions),
-  `.agents/skills/` (extraction and synthesis contracts), `reference/`.
-- Product-facing companions (read from the working tree, read-only):
-  the method repository (handbook/, cookbook/, data-model/spec.md)
-  and the evidence repository (workflows/*/README.md, handbook/, examples/).
-- Git: only `git show`, `git ls-tree`, `git log`. Never checkout, pull, fetch, stash, reset, add,
-  commit. Run no build or generate script. No network.
+Read the revisions selected by `build/core.py` and the evidence release pin; `P` below means that pinned producer revision. Distinguish an immutable evidence edition from the current runtime implementation. A historical script or prototype is not evidence that its algorithm remains the current method. Check current runtime documentation when describing implementation, and record the revision inspected in the review response.
+
+Chapter edits do not change analytical tables or approve a new algorithm. Preserve the scientific constraints below. Keep unresolved implementation choices in the repository review record; describe limitations in a public chapter only when they affect what a reader can conclude. Never imply that removing a development-status paragraph validates the analysis.
+
+Use a versioned pull request, update `VERSION.json` and `CHANGELOG.md`, and build the pages with their link, provenance and caption checks. Preserve unrelated work.
 
 ## File format
 
@@ -67,21 +48,16 @@ Formulas go in fenced blocks tagged `formula`, written in plain text with Unicod
   `{{csv:schema/T2_climate_risk.csv|where=hazard_id=drought|limit=20}}`.
   Optional `exclude=column=value` omits matching rows from this display only; it never changes the register. Use `caption=Descriptive caption` to identify the displayed subset.
   Check the column names in the file before using `cols=`, `where=` or `exclude=`.
-- `{{attribution:primitives}}` on its own line where the inherited framework primitives are
-  introduced (the five fuzzy membership functions; hybrid AHP + CRITIC + Entropy weighting; the
-  reference MCDA implementation; the recipe-template and sub-practice-family patterns). Do not
-  write the attribution yourself.
 
 ## Content rules
 
 1. **Traceable.** Every rule, threshold, weight, enum and formula is followed by a `[src: …]`
-   citation to the file that states it. If two sources disagree, say so and cite both. If you
+   citation to the file that states it. Resolve superseded wording against the governing source. If an unresolved difference affects interpretation, state its practical consequence and cite the relevant sources; put the detailed reconciliation in the review record. If you
    cannot find the source for something you believe is true, leave it out.
 2. **No retyped rule tables.** Where a rule lives in a lookup or register CSV, use `{{csv:…}}`
    and explain it in prose. You may quote a single constant inline (for example a 0.7 haircut)
    with its citation.
-3. **Specification vs application.** Say precisely what is specified, what is implemented in the
-   evidence pipeline, and what is left to a country application. Do not claim a module has been
+3. **Specification vs application.** Keep method specification, evidence-edition contents and results of a country application distinct. Give the common reporting boundary in the application chapter rather than repeating development inventories in every module. Do not claim a module has been
    run, validated or calibrated unless a pinned file records it. Where the source marks something
    draft, pending, held or deferred, carry that status.
 4. **Scientific invariants that must survive** (do not soften or contradict):
@@ -120,13 +96,11 @@ Formulas go in fenced blocks tagged `formula`, written in plain text with Unicod
 
 `## Question this module answers` · `## Inputs` (tables, variables, user choices) ·
 `## Method` (numbered steps with formulas; one `###` per step where long) · `## Outputs`
-(what is produced, at what grain, how to read it) · `## Worked illustration` (only from pinned
-material; omit if none) · `## Assumptions and limits` · `## Where this is configured`.
+(what is produced, at what grain, how to read it) · `## Worked illustration` (from cited material or explicitly hypothetical) · `## Assumptions and limits` · `## Where this is configured`.
 
-For evidence-method chapters, hypothetical worked illustrations are allowed when explicitly labelled. Their numbers must not be presented as registered findings, calibrated thresholds or new policy. Show the decision and its consequence; verify any arithmetic against the stated method. Keep each detailed rule or lookup in one home chapter and cross-link it elsewhere.
+Hypothetical worked illustrations are allowed when explicitly labelled. Their numbers must not be presented as registered findings, calibrated thresholds or new policy. Show the decision and its consequence; verify any arithmetic against the stated method. Keep each detailed rule or lookup in one home chapter and cross-link it elsewhere.
 
-Target 1,500–3,000 words per module or method chapter; go longer where the source has the
-substance. Do not pad.
+Use the length needed for the decision and its interpretation, not a minimum word count. Prefer short module chapters with one home for each shared explanation. Evidence-method chapters may be longer where reproducibility requires the detail. Do not duplicate full registries already accessible in the data-model section.
 
 ## Chapter slugs (the complete set; link only to these)
 

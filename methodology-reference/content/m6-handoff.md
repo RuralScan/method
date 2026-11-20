@@ -4,19 +4,14 @@ slug: m6-handoff
 summary: Know exactly what a scoping run passes to feasibility (shortlist, flags, sensitive-variable prompts, safeguard triggers, guidance for unmapped practices and recorded design lessons) and where the scan's authority ends.
 sources:
   - methodology/modules/M6_handoff.md
-  - methodology/feasibility_notes.md
-  - methodology/framework.md
-  - methodology/T4_generation_method.md
-  - methodology/modules/M2b_project_risk.md
-  - methodology/modules/M3_characterisation.md
-  - methodology/modules/M4_hotspots.md
-  - methodology/modules/M5_scorecard.md
-  - methodology/T3_T6_generation_method.md
-  - schema/registers/FAM_family_registry.csv
-  - schema/registers/VONT_variable_ontology.csv
-  - schema/spec.md
   - AGENTS.md
+  - methodology/T4_generation_method.md
+  - methodology/modules/M5_scorecard.md
+  - schema/spec.md
   - method:handbook/implement-a-scan.md
+  - methodology/modules/M2b_project_risk.md
+  - schema/registers/FAM_family_registry.csv
+  - methodology/feasibility_notes.md
 ---
 
 ## Question this module answers
@@ -77,7 +72,7 @@ Tool names are references, not endorsements. [src: methodology/modules/M6_handof
 
 ### 5. Add the design step for tree-based practices
 
-For tree-based practices, add "right tree, right place": species or mixture selection, establishment feasibility and resilience to future climate. This step is keyed to the dominant farming-system class in the ranked units. [src: methodology/modules/M6_handoff.md §6] [src: methodology/modules/M6_handoff.md §10] It is the first place species-level reasoning enters. The scan reasons per suitability family and keeps species and crop envelopes out of practice-level suitability, retaining them for this later layer. [src: AGENTS.md §What is locked]
+For tree-based practices, add "right tree, right place": species or mixture selection, establishment feasibility and resilience to future climate. This step is keyed to the dominant farming-system class in the ranked units. [src: methodology/modules/M6_handoff.md §6] [src: methodology/modules/M6_handoff.md §10] The scan reasons per suitability family. Species-specific suitability envelopes are retained for later design; crop-specific evidence may inform a practice-level mapping only where its family policy explicitly permits it. [src: AGENTS.md §What is locked]
 
 ### 6. Tailor to the context
 
@@ -89,19 +84,7 @@ End with an explicit statement: the tool stops at scoping, next steps are indica
 
 ## The sensitive-variable recommendation
 
-Some variables are nationally derived and sovereignty-sensitive. A global model of population, poverty or crop production can diverge from, or appear to contradict, a country's official figures. [[table:VONT]] marks these `context_sensitivity = high`. [src: methodology/T4_generation_method.md §2.6]
-
-The hand-off card lists **every high-sensitivity variable the run consumed**, each with a prompt to confirm the source with the country. [src: methodology/modules/M6_handoff.md §6] [src: methodology/modules/M6_handoff.md §10] The variables flagged at the pin are:
-
-{{csv:schema/registers/VONT_variable_ontology.csv|where=context_sensitivity=high|cols=canonical_variable_id,label,context_sensitivity}}
-
-The recommendation has a fixed scope:
-
-- The scan **flags** the variable and **recommends** that its source be confirmed or replaced with a country-endorsed source during feasibility.
-- The scan **does not** negotiate, validate or endorse national data. That is downstream work, outside rapid scoping.
-- The flag is a labelling layer only. It does not change the suitability or hotspot analysis. [src: methodology/T4_generation_method.md §2.6] [src: schema/spec.md §VONT - Variable Ontology]
-
-The prose examples and the register do not fully agree. Population and production statistics are the guidance's examples of high sensitivity, but the T5 descriptors `rural_population` and `agricultural_production_value` are recorded as `medium` at the pin. [src: methodology/T4_generation_method.md §2.6] [src: schema/registers/VONT_variable_ontology.csv] Until the register is reconciled, a hand-off should list those two as well whenever they appear in a run.
+Carry the context-sensitive inputs used by the run into the hand-off, with a question about confirmation or replacement by a country-endorsed source. Population and production estimates need this care even where the recorded flag is incomplete. The scan identifies the question; it does not validate national statistics. [[ch:farming-systems-and-data]] owns the detailed guidance. [src: methodology/T4_generation_method.md §2.6]
 
 ## The safeguard trigger
 
@@ -153,25 +136,8 @@ These notes connect to synthesis rules. A bundled intervention is never credited
 
 [src: methodology/modules/M6_handoff.md §4] [src: methodology/modules/M6_handoff.md §10]
 
-## The limits of the scan
-
-The framework names what scoping does not do. These are the points where feasibility takes over. [src: methodology/framework.md §What this framework does not do]
-
-- **No ecosystem-service modelling.** InVEST, ARIES and similar models are downstream.
-- **No site-level design.** Opportunity space and hotspots come from gridded data at scoping resolution; they identify candidate areas, not plots.
-- **No cost-benefit analysis.** Costs are indicative and ordinal, with no inflation adjustment and no discounting. [src: methodology/T3_T6_generation_method.md §7.7]
-- **No optimisation.** The scan does not allocate budget or select a portfolio.
-- **No detailed climate impact modelling** beyond hazard exposure.
-- **No validation of national data.** Sensitive variables are flagged, not checked. [src: methodology/T4_generation_method.md §2.6]
-- **No calibrated local suitability numbers where calibration is held.** A held or unrecorded numerical calibration is never presented as a score, range or reviewed value; such rules stay directional until resolved. [src: AGENTS.md §What is locked]
-- **No transfer by assumption.** Effect classes from outside the target income band or agro-ecological context are labelled with their transfer class, or replaced by a gap for the AOI. [src: methodology/T3_T6_generation_method.md §5.5]
-- **No summing of the two risks.** Livelihood risk (M2) is a need layer; investment risk (M2b) is a filter. A combined risk number in a feasibility document would not come from this scan. [src: AGENTS.md §What is locked]
-
 ## Assumptions and limits
 
-- **Draft status.** The M6 specification is a draft. Its guidance notes, method library and design-step content are to be authored and reviewed by domain specialists, and placeholders are expected to be marked honestly where content is missing. [src: methodology/modules/M6_handoff.md §7] [src: methodology/modules/M6_handoff.md §9]
-- **Not implemented at the pin.** The hand-off assembly is described as function signatures; no hand-off card has been produced. [src: methodology/modules/M6_handoff.md §10]
-- **Open questions recorded in the source:** whether the method library should be a structured table or guidance notes; how prescriptive to be on tool choice (list options or recommend per context); and how to combine guidance when several practices overlap in a stacked cluster. [src: methodology/modules/M6_handoff.md §11]
 - **Indicative throughout.** Every number passed on comes from scoping-grade inputs and evidence synthesis. Feasibility must re-derive what the investment case depends on.
 - **Flags can be false negatives.** A missing IPLC polygon, a missing upload or a missing evidence row is absence of data, not absence of the issue.
 - **What feasibility must still do:** confirm boundaries, land availability and tenure on the ground; replace sensitive global datasets with country-endorsed ones; carry out FPIC and ESS7 procedures where triggered; quantify the effects and costs that matter with site data; design species and layouts; and decide, on those results, whether the practice proceeds.

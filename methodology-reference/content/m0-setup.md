@@ -4,14 +4,15 @@ slug: m0-setup
 summary: Shows how a scan is configured, how recipe and data readiness are checked before any analysis, and what the run configuration must record for a result to be reproducible.
 sources:
   - methodology/modules/M0_setup.md
+  - methodology/modules/README.md
+  - method:handbook/implement-a-scan.md
   - methodology/modules/M1_suitability.md
   - methodology/framework.md
-  - methodology/T4_generation_method.md
-  - methodology/T4_developer_contract.md
   - schema/spec.md
   - src/nbs_ruralscan/runtime/binding.py
-  - AGENTS.md
-  - method:handbook/implement-a-scan.md
+  - methodology/T4_generation_method.md
+  - methodology/T4_developer_contract.md
+  - method:handbook/start-here.md
 ---
 
 ## Question this module answers
@@ -130,8 +131,7 @@ The example shows the M0 principle at work. A country code can resolve a data bi
 ## Assumptions and limits
 
 - **Readiness is not validity.** M0 checks that data can be reached and that versions are recorded. It does not check that a dataset measures the variable the response requires, that units and depths match, or that a response transfers to the AOI. Those checks fall to M1 configuration and, ultimately, to feasibility work. [src: methodology/T4_developer_contract.md §Reproducible chain]
-- **Unresolved design questions.** The specification leaves open whether a multi-NbS session produces one configuration per NbS or one configuration with an NbS list; whether pending-upload datasets are supplied manually or through a guided ingestion step; and whether the default administrative level is ADM2 or set by recipe and AOI. [src: methodology/modules/M0_setup.md §11. Open questions]
-- **Default resolution is inconsistent between specifications** (5 km in M0, 1 km in M1). A run must state its resolution explicitly.
+- **State the analysis grid.** Choose and record a resolution supported by the selected inputs and variables; a demonstration default is not a universal analysis scale.
 - **Global fallbacks can hide local better data.** When a `requires_upload` binding falls back to a global default, the run proceeds; the flag must be carried into outputs and the hand-off, not dropped.
 - **Sensitive variables are flagged, not resolved.** Variables marked `context_sensitivity = high` (population, poverty, production statistics) should be confirmed against a country-endorsed source during feasibility. M0 does not perform that confirmation. [src: methodology/T4_generation_method.md §2.6]
 

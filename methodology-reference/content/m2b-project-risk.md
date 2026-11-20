@@ -4,32 +4,31 @@ slug: m2b-project-risk
 summary: After this chapter you can build and apply the investment-risk screen (Stream A asset hazard exposure from T2 and T3, Stream B operational and enabling-environment factors) as a filter or flag on the opportunity space, and know which parts are specified, generated or still open.
 sources:
   - methodology/modules/M2b_project_risk.md
-  - methodology/modules/M2_climate_risk.md
-  - schema/spec.md
-  - schema/structure/columns.json
-  - schema/T2_climate_risk.csv
-  - schema/lookups/m2b_variable_policy.csv
+  - AGENTS.md
+  - methodology/T3_T6_generation_method.md
+  - method:data-model/evidence-classification.json
   - schema/lookups/wocat_hazard_map.csv
-  - schema/lookups/README.md
+  - src/nbs_ruralscan/recipe/cell_synthesis.py
+  - methodology/effect_evidence_followups.md
+  - schema/structure/columns.json
+  - schema/spec.md
+  - src/nbs_ruralscan/recipe/synthesis.py
+  - schema/recipes/agroforestry/T4_suitability_mappings.csv
   - schema/registers/VONT_variable_ontology.csv
+  - methodology/opportunity_space_T5.md
+  - schema/lookups/README.md
+  - methodology/RULESET_VERSIONS.md
+  - schema/lookups/m2b_variable_policy.csv
+  - method:handbook/implement-a-scan.md
+  - schema/recipes/forest_restoration/T3_nbs_hazard_farming.csv
+  - schema/recipes/agroforestry/T3_nbs_hazard_farming.csv
+  - schema/recipes/riparian_buffer/T3_nbs_hazard_farming.csv
   - schema/recipes/agroforestry/T0_nbs_registry.csv
   - schema/recipes/forest_restoration/T0_nbs_registry.csv
   - schema/recipes/mangrove_restoration/T0_nbs_registry.csv
   - schema/recipes/riparian_buffer/T0_nbs_registry.csv
   - schema/recipes/water_harvesting_conservation/T0_nbs_registry.csv
   - schema/recipes/wetland_management/T0_nbs_registry.csv
-  - schema/recipes/forest_restoration/T3_nbs_hazard_farming.csv
-  - schema/recipes/agroforestry/T3_nbs_hazard_farming.csv
-  - schema/recipes/riparian_buffer/T3_nbs_hazard_farming.csv
-  - schema/recipes/agroforestry/T4_suitability_mappings.csv
-  - methodology/T3_T6_generation_method.md
-  - methodology/effect_evidence_followups.md
-  - methodology/opportunity_space_T5.md
-  - methodology/RULESET_VERSIONS.md
-  - src/nbs_ruralscan/recipe/cell_synthesis.py
-  - src/nbs_ruralscan/recipe/synthesis.py
-  - AGENTS.md
-  - method:handbook/implement-a-scan.md
 ---
 ## Question this module answers
 
@@ -164,10 +163,6 @@ The original draft multiplied by a separate per-hazard "asset fragility" term (`
 
 For future scenarios, rerun hazard assembly with future datasets, hold exposure and sensitivity constant, and recompose. [src: methodology/modules/M2b_project_risk.md §6]
 
-### Schema status of the Stream A proposal
-
-The module sheet proposed a T2 `risk_lens` field (`livelihood`, `project`, `shared`) and an `asset_exposure` value for `risk_component`. [src: methodology/modules/M2b_project_risk.md §9] Neither is in the column manifest: T2 has no `risk_lens` column and its `risk_component` enum holds hazard, exposure, sensitivity and adaptive capacity only. [src: schema/structure/columns.json §tables.T2] [src: schema/spec.md §T2] The T3 side of the proposal (`risk_role` and a sensitivity field) is implemented. So, at the pin, the asset-exposure layer has no home in T2 and must be configured in the run.
-
 ## Method, Stream B: operational and enabling environment
 
 ### Why these variables live here
@@ -211,15 +206,6 @@ The reasoning: adoption is an outcome of the enabling environment, not a cause o
 ### The safeguard flag
 
 Tenure carries an explicit safeguard flag. A hotspot that overlaps IPLC customary land raises `FPIC_REQUIRED = true` in the Module 6 hand-off and adds a scorecard note; LandMark and WWF/ICCA layers are the spatial input and the Bank's Environmental and Social Standard 7 is the policy hook. [src: methodology/modules/M2b_project_risk.md §12] The flag says consent is required; it does not assess whether consent has been or could be obtained.
-
-### Proposed refinements, not yet configured
-
-The sheet records two proposals for silvopastoral systems [src: methodology/modules/M2b_project_risk.md §12]:
-
-- **Grazing pressure.** Seedlings planted into active pasture suffer high mortality from browsing and trampling during establishment. Grazing land (ESA WorldCover) crossed with livestock density (FAO Gridded Livestock of the World) would flag high grazing pressure, with an "establishment fencing or rotational grazing plan" lever that overrides the flag.
-- **Common-property rangeland.** Fenced tree plots on customary or collective rangeland can trigger conflict over pasture access; overlap with customary land raises the FPIC flag.
-
-No grazing-pressure variable exists in the variable ontology at the pin, so the first proposal is not yet configurable. [src: schema/registers/VONT_variable_ontology.csv]
 
 ### How Stream B is applied
 
@@ -272,9 +258,8 @@ For the other five practices at least one core hazard lacks an assessed global a
 
 ## Assumptions and limits
 
-- **Draft, not run.** The module sheet is a draft request for comment, with methodology still to be confirmed before it becomes a product surface. No runtime module computes M2b at the pin. [src: methodology/modules/M2b_project_risk.md §Status] What is implemented is the evidence side: asset-threat rows, their sensitivity classes and derived weights, and the operational-risk evidence role with its variable policy.
 - **Thin evidence.** Asset vulnerability rests largely on WOCAT practitioner ratings with limited literature, so many cells are `limited` evidence with low or very low confidence, and the equal-weight fallback is common. [src: methodology/T3_T6_generation_method.md §9]
-- **Open composition.** Multiplicative against additive, the footprint proxy, class cut-offs, the establishment-period function and any Stream B thresholds are unspecified.
+- **Declare the formulation.** Any combined assessment must state its composition, footprint measure, class boundaries and treatment of the establishment period. Operational flags remain separate unless a documented method supports their combination.
 - **Asset-only hazards cannot be mapped yet**, because T2 has no hazard layer type for them.
 - **Equal weighting is a default, not a finding.** It means "insufficient evidence to differentiate", not "all hazards matter equally".
 - **Soft factors are flagged, not judged.** Stream B layers are often national or modelled and context-sensitive; the scoping output should recommend country-endorsed sources rather than validate them.

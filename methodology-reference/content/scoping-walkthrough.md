@@ -4,36 +4,18 @@ slug: scoping-walkthrough
 summary: After this chapter you can follow the method stage by stage as a task team would use it, see what a full realisation of the method looks like, and find the method chapter behind each stage.
 sources:
   - docs/redesign/index.html
+  - docs/redesign/help.html
+  - docs/redesign/v1b-fixture.js
+  - docs/redesign/05-hotspots.html
+  - docs/redesign/00-config.html
+  - docs/redesign/v1b-map.js
   - docs/redesign/01-setup.html
   - docs/redesign/02-practices.html
   - docs/redesign/03-opportunity.html
   - docs/redesign/04-risk.html
-  - docs/redesign/05-hotspots.html
   - docs/redesign/06-comparison.html
   - docs/redesign/07-next.html
-  - docs/redesign/00-config.html
-  - docs/redesign/help.html
-  - docs/redesign/v1b-fixture.js
   - docs/redesign/v1b-classification.js
-  - docs/redesign/v1b-road-example.js
-  - docs/redesign/v1b-map.js
-  - methodology/modules/M0_setup.md
-  - methodology/modules/M1_suitability.md
-  - methodology/modules/M2_climate_risk.md
-  - methodology/modules/M2b_project_risk.md
-  - methodology/framework.md
-  - methodology/opportunity_space_T5.md
-  - methodology/T3_T6_generation_method.md
-  - methodology/T3_T6_developer_handover.md
-  - methodology/T4_developer_contract.md
-  - schema/spec.md
-  - methodology/modules/M4_hotspots.md
-  - methodology/modules/M6_handoff.md
-  - schema/T5_opportunity_space.csv
-  - schema/registers/FAM_family_registry.csv
-  - schema/lookups/scorecard_rows.csv
-  - schema/lookups/scorecard_chip_scale.csv
-  - schema/lookups/scorecard_confidence_badge.csv
 ---
 ## What the visual methodology is
 
@@ -43,7 +25,7 @@ Its home page states its status: it is "an idealised implementation of the metho
 
 - **Every number and map is example data.** The maps are a synthetic surface (seeded value noise) on real Sierra Leone boundaries. The fixture contains "no thresholds, weights or evidence" and is "not derived from any schema table (T0–T7) or register". [src: docs/redesign/v1b-fixture.js §header] Effect chips, cost ranges, hazard classes and district ranks are authored illustrations, never evidence.
 - **It is a statement of intent, not an implementation.** No scoring runs: weight, rule and class edits change local previews only. [src: docs/redesign/05-hotspots.html §5.3] [src: docs/redesign/00-config.html §C.2]
-- **Where it differs from the module specifications** (see below), the tables and specifications at the pinned revision remain the source of record for anything a pipeline executes.
+- **Where it differs from the module specifications**, the tables and specifications at the pinned revision remain the source of record for anything a pipeline executes.
 
 The pages are live at [the visual methodology home page](https://ciat.github.io/nbs_ruralscan/redesign/index.html). The live pages may be later than this edition; every citation in this chapter points to the pinned files.
 
@@ -127,7 +109,7 @@ Stage 2 has no module of its own. It draws on the practice chapters, the family 
 
 **What the stage shows.** 5.1: "A hotspot is an intersection, not a sum": a cell in the opportunity space whose need is at or above the chosen hotspot score. Correlated need layers are clustered, one representing each group; "residents are not beneficiaries"; a national gender index (example 0.61) is context because "it cannot rank districts". [src: docs/redesign/05-hotspots.html §5.1] 5.2: layers grouped as climate hazard, NbS response, people and production (weighted), equity and inclusion (flags) and context (descriptors), each with a data-sensitivity mark. [src: docs/redesign/05-hotspots.html §5.2] 5.3: four steps from opportunity space to hotspot classes. [src: docs/redesign/05-hotspots.html §5.3] 5.4 and 5.5: a district ranking with a narrative, and a hotspot fingerprint. [src: docs/redesign/05-hotspots.html §5.4] [src: docs/redesign/05-hotspots.html §5.5]
 
-**The method behind it.** M4 standardises priorities, turns user settings into weights, optionally reconciles them with AHP + CRITIC + Entropy, combines them by weighted linear overlay inside the M1 mask, classifies, ranks administrative units and tests sensitivity ([[ch:m4-hotspots]]). Correlation reduction and the priority versus descriptor split are M3 ([[ch:m3-characterisation]]). Screen: [Stage 05 Priority hotspots](https://ciat.github.io/nbs_ruralscan/redesign/05-hotspots.html).
+**The method behind it.** M4 uses the recorded priority scaling and user weights to compare areas inside the M1 mask, explains the main drivers of their rank and tests sensitivity ([[ch:m4-hotspots]]). Correlation reduction and the priority versus descriptor split are M3 ([[ch:m3-characterisation]]). Screen: [Stage 05 Priority hotspots](https://ciat.github.io/nbs_ruralscan/redesign/05-hotspots.html).
 
 ## NbS comparison
 
@@ -159,56 +141,10 @@ Stage 2 has no module of its own. It draws on the practice chapters, the family 
 
 **The method behind it.** Dataset binding and context sensitivity ([[ch:farming-systems-and-data]], [[table:BIND]], [[table:VONT]]); membership functions and masks ([[ch:m1-suitability]], [[table:T4]]); two-stage variable selection with |r| > 0.7 ([[ch:m3-characterisation]]). Screen: [Technical configuration](https://ciat.github.io/nbs_ruralscan/redesign/00-config.html).
 
-## Where the visual methodology and the written specification differ
-
-The visual methodology and the written module specifications were revised at different times, and in several places they now describe different things. The table records the differences, most consequential first. It does not resolve them. Until they are reconciled, the tables and module specifications at the pinned revision remain the source of record for anything a pipeline executes.
-
-| Topic | What the visual methodology shows | What the written module specification says | Status |
-|---|---|---|---|
-| Project-risk composition | One flag per hazard, three classes per hazard (top quarter, next quarter, lower half), no overall risk score; only fire and flood mapped. [src: docs/redesign/04-risk.html §4.1.2] [src: docs/redesign/04-risk.html §4.1.3] | A composite across asset-threat hazards (suggested default: hazard × exposure × fragility per hazard, then a weighted sum across hazards), normalised to 0 to 1 and classed Low to Very High (cut-offs unspecified); exclude or flag High and Very High. Multiplicative against additive composition is listed as an open question. [src: methodology/modules/M2b_project_risk.md §6] [src: methodology/modules/M2b_project_risk.md §8] [src: methodology/modules/M2b_project_risk.md §11] ([[ch:m2b-project-risk]]) | Visual methodology is the later statement |
-| Soft enabling factors | Desk checks with suggested sources (roads, markets, tenure, extension, finance, conflict, labour), gaps carried into the brief; not mapped. [src: docs/redesign/04-risk.html §4.3] Other screens still call them "levers" shown in Stage 4. [src: docs/redesign/03-opportunity.html §3.1.3] [src: docs/redesign/00-config.html §C.3] | Eight mapped Stream B levers, including electrification, with indicative datasets, each a what-if scenario lever and a filter or flag input. [src: methodology/modules/M2b_project_risk.md §12] | Visual methodology is the later statement |
-| Safeguard for Indigenous peoples' and local communities' land | IPLC lands an overlay flag that is not weighted; potential impacts referred to environmental and social specialists, who assess consent requirements under the Environmental and Social Framework. [src: docs/redesign/05-hotspots.html §5.2] [src: docs/redesign/07-next.html §7.3] | An overlap of IPLC land with the opportunity space must set `FPIC_REQUIRED` and raise ESS7 in the hand-off. [src: methodology/modules/M6_handoff.md §10] [src: methodology/modules/M2b_project_risk.md §12] ([[ch:m6-handoff]]) | Open |
-| Budget | Affordable area = budget ÷ cost per unit, USD only, with an optional three years of maintenance. [src: docs/redesign/06-comparison.html §6.3] | The framework excludes optimisation and full cost-benefit analysis, offering only indicative economic archetypes [src: methodology/framework.md §What this framework does not do]; value ranges are shown as is, currencies and price years are never converted and consumers never compute new ratios. [src: methodology/T3_T6_developer_handover.md §3] ([[ch:cost-profiles]]) | Written specification is better founded (mixed-year, mixed-currency ranges are shown as is, with no new ratios) |
-| Weighting input | Objectives (five, tick two or three) choose which need layers appear; four presets plus custom set each layer to none, low, medium or high; Stage 1 says objectives do not re-weight any map. [src: docs/redesign/01-setup.html §1.1.1] [src: docs/redesign/05-hotspots.html §5.2] | Per-priority none, low, medium or high, coded 0 to 3 and normalised; no presets. M0 has no objectives input. [src: methodology/modules/M4_hotspots.md §6] [src: methodology/modules/M0_setup.md §3. Inputs] ([[ch:m4-hotspots]], [[ch:m0-setup]]) | Open |
-| Hybrid weighting | "The method combines expert weights with data-driven ones", AHP, CRITIC and entropy. [src: docs/redesign/05-hotspots.html §5.3] | Reconciliation is optional and off in the default configuration; the user's weights are used directly. [src: methodology/modules/M4_hotspots.md §6] | Open |
-| Which T5 layers are weighted | Gender inequality and IPLC lands are flags, not weighted; water stress sits under climate hazard; water quality and catchment water yield are absent. [src: docs/redesign/05-hotspots.html §5.2] | `gender_inequity` and `iplc_lands` are priorities in `equity_inclusion`; `water_stress` is `people_production`; `water_quality_risk` and `catchment_water_yield` are priorities. A national gender index becomes a qualifier through the spatial-grain rule. [src: schema/T5_opportunity_space.csv] [src: methodology/opportunity_space_T5.md §Spatial-grain rule] | Written specification is better founded (the T5 table is the ratified row set) |
-| Hotspot construction | A hotspot is an opportunity cell whose need class is at or above the chosen cut ("an intersection, not a sum"); suitability against need is shown as a 3 × 3 grid. [src: docs/redesign/05-hotspots.html §5.1] | A weighted overlay of priority layers inside the opportunity mask, classified into five classes, with a 5 × 5 suitability against priority raster and a priority scope (default very high and high). [src: methodology/modules/M4_hotspots.md §4] [src: methodology/modules/M4_hotspots.md §6] [src: methodology/modules/M4_hotspots.md §8] ([[ch:m4-hotspots]]) | Open |
-| Suitability classes | Very high, High, Moderate, Low; the user selects any set of classes (default Very high + High); example breaks at the 30th, 60th and 85th percentiles; excluded and no data kept separate. [src: docs/redesign/03-opportunity.html §3.1] [src: docs/redesign/v1b-fixture.js §breaks] | Four classes by quartile or natural breaks, with the opportunity space fixed as the top two [src: methodology/modules/M1_suitability.md §6.8 Classification & fingerprint extraction]; the reference implementation labels them unsuitable, marginal, moderate, highly suitable. [src: src/nbs_ruralscan/runtime/mcda.py] The same file's purpose and output sections describe five classes (very high, high, moderate, low, excluded), the labels the screens use. [src: methodology/modules/M1_suitability.md §1. Purpose] M4 lets the user choose which classes count. [src: methodology/modules/M4_hotspots.md §8] ([[ch:m1-suitability]]) | Open |
-| Livelihood climate risk | Each hazard (drought, flood, soil erosion, heat) mapped separately as classes of a hazard indicator (default three quantile classes, adjustable on the configuration page), with exposure shown only as population shares per class; no combined index, no mode. [src: docs/redesign/03-opportunity.html §3.3] [src: docs/redesign/00-config.html §C.5] | A composite index; the suggested default is a normalised weighted sum across hazards of hazard × exposure (Mode A) or hazard × exposure × vulnerability (Mode B), with the composition function still open; erosion is a T6 priority, not a T3 hazard. [src: methodology/modules/M2_climate_risk.md §6.5] [src: schema/spec.md §T3] ([[ch:m2-climate-risk]]) | Open |
-| Problem rows and effect wording | Stage 2 rows include rural income, water quality and carbon; Stage 3 has ten rows including soil degradation, carbon loss and water stress; words weak, moderate, strong benefit, no clear effect, adverse; low, medium, high confidence with a fictional source count. [src: docs/redesign/02-practices.html §2.3] [src: docs/redesign/03-opportunity.html §3.4] | Fixed generated rows: erosion, drought, flood, heat; biodiversity loss, carbon removals, rural poverty, gender inequality, food insecurity, water-table depletion (pooling water stress, catchment water yield and water quality); slight, moderate, strong benefit or harm; special chips for studies disagree, too little evidence, not assessed. [src: schema/lookups/scorecard_rows.csv] [src: schema/lookups/scorecard_chip_scale.csv] ([[ch:m5-scorecard]]) | Written specification is better founded (rows and scale are generated from lookups) |
-| Asset vulnerability source | Example classes High, Moderate, Low per hazard; some tagged "Expert judgement". [src: docs/redesign/04-risk.html §4.2] | `asset_sensitivity` none to very high, generated from a WOCAT seed and literature, with expert judgement extracted from publications and documented accounts; no new internal or external elicitation. [src: method:data-model/evidence-classification.json] [src: methodology/T3_T6_generation_method.md §9] [src: methodology/T3_T6_generation_method.md §7.5] Data-deficient classes are left blank. [src: methodology/T3_T6_developer_handover.md §2] | Written specification is better founded (every class, expert ratings included, is an evidence-traced row) |
-| Road and rural-services exposure | Roads, schools and health facilities exposed to flood, landslide or wildfire; an optional priority with weight 0 to 50% (default 20%): selected score = (1 − w) × base + w × exposed share of assessed road length. [src: docs/redesign/03-opportunity.html §3.5] [src: docs/redesign/v1b-road-example.js §render] | Infrastructure is not a top-level opportunity-space theme; it is a descriptor or a Stream B lever. [src: methodology/opportunity_space_T5.md §What did NOT make it (and why)] | Open |
-| Practice families | Assisted natural regeneration split into fallow regeneration, farmer-managed regeneration, enrichment planting; riparian into buffer strips and riparian forest restoration, labelled applicability zone; agroforestry linear plantings reported in km. [src: docs/redesign/02-practices.html §2.1] | Forest restoration families are passive, assisted, active planting, plantation, protection and community forest management; farmer-managed regeneration is the agroforestry regeneration family; both riparian families are `zonal_linear`; the agroforestry linear family is `applicability_zone`. [src: schema/registers/FAM_family_registry.csv] | Written specification is better founded (the family registry) |
-| Hard exclusion set | Stage 3 excludes built-up land, mangrove and wetland, and protected areas [src: docs/redesign/03-opportunity.html §3.1.1]; the configuration page lists protected areas, water bodies and built-up land, plus a slope-above-threshold mask preview (25 degrees) that is not applied to the walkthrough. [src: docs/redesign/00-config.html §C.3] | Hard exclusions are legal protected areas, water bodies and urban footprints [src: AGENTS.md §What is locked]; a source's low suitability is not a legal exclusion. [src: methodology/T4_developer_contract.md §Relationship functions and cross-paper harmonisation] M1's exclusion step nevertheless lists water bodies, settlements, strictly protected areas, slope above 35 degrees and soil depth below 25 cm as masks. [src: methodology/modules/M1_suitability.md §6.5 Structural exclusion masking] | Open (the screens and the written specification are each divided) |
-| Resolution, scenarios, classes | Cells 1, 5 or 10 km, walkthrough at 5 km; climate "Baseline 1995–2014" and "SSP2-4.5 about 2050"; four need classes and a High+ or Very high hotspot cut. [src: docs/redesign/01-setup.html §1.1.1] [src: docs/redesign/v1b-fixture.js §rollup] | M0 offers 5 km, 1 km, 500 m (default 5 km), M1 10 km to 100 m (default 1 km); T2 scenarios `baseline`, `future_ssp126`, `future_ssp245`, `future_ssp585`; M4 asks for five hotspot classes. [src: methodology/modules/M0_setup.md §3. Inputs] [src: methodology/modules/M1_suitability.md §3. Inputs] [src: schema/spec.md §T2] [src: methodology/modules/M4_hotspots.md §4] | Open |
-
-Some rows overlay differences inside the written specification itself (M1's class count, the default resolution, soft-lever routing); the module chapters record those.
-
-## What the visual methodology does not show
-
-Some parts of the method have no counterpart on any screen.
-
-- **Calibration status of suitability mappings.** The C.2 curves carry example parameters and no calibration status. For the pinned edition, a held or unrecorded calibration is never a score, a range or "reviewed"; the defensible statement is whether a site lies within a documented use range, with the score unassigned ([[ch:m1-suitability]], [[ch:suitability-synthesis]]). The curves are not approved responses.
-- **Transfer class and applicability of effect rows** (example evidence panels tag individual source lines direct, comparable or indicative, but no row-level transfer class or applicability envelope is shown), and effect locus, directness, the maladaptation caution and the `no_applicable_evidence` state ([[ch:effect-synthesis]], [[ch:m5-scorecard]]).
-- **Two-axis confidence.** One example row shows disagreement, but the evidence and agreement axes behind the three confidence words are not shown.
-- **Sensitivity outputs** from M1 and M4 ([[ch:m1-suitability]], [[ch:m4-hotspots]]).
-- **The data-readiness check**, needs-upload prompts and the resolution-honesty flag ([[ch:m0-setup]]).
-- **The two modes of livelihood risk** and the Mode B double-count guard ([[ch:m2-climate-risk]]), and T3 livelihood rows keyed by farming system.
-- **Practices beyond the three examples**, and most families of those three ([[ch:practice-mangrove_restoration]], [[ch:practice-water_harvesting_conservation]], [[ch:practice-wetland_management]]).
-
-The reverse also holds. The screens carry elements that no chapter specifies:
-
-- the affordable-area calculation (6.3) and the five-indicator reporting table (6.4);
-- the rural-services exposure example and its weighted road-exposure priority (3.5, 5.2, 5.4);
-- user-set class counts, directions and cut points for need and hazard indicators (C.5);
-- a sub-cell exclusion parcel that leaves the cell's class unchanged and is reported as its own shape (3.1);
-- residents per cell from a district total spread evenly, an example device with no method behind it [src: docs/redesign/v1b-fixture.js §residents];
-- two concept-only assistance features for drafting the brief and querying the evidence base (7.2).
-
 ## Assumptions and limits
 
 - **Example data only.** No figure, class, chip, cost or rank on the screens is a result; a reader who needs a value must go to the generated tables. [src: docs/redesign/v1b-fixture.js §header]
-- **A statement of intent.** The screens do not establish that any stage has been implemented, run, validated or calibrated; the module chapters record that status.
+- **A statement of intent.** The screens do not establish that any stage has been implemented, run, validated or calibrated; application reports state which analyses were actually performed.
 - **Not the source of record.** Where screens and specifications differ, the pinned tables and specifications govern execution. Being later is not the same as being reconciled.
 - **Scoping, not feasibility.** No site design, cost-benefit analysis or ecosystem-service modelling; residents are not beneficiaries; overlap is not compatibility. Feasibility must still confirm land, tenure and consent, replace sensitive global data with country-endorsed sources, quantify costs and effects with site data, and design layouts. [src: docs/redesign/index.html §H.4] [src: docs/redesign/05-hotspots.html §5.1] [src: docs/redesign/05-hotspots.html §5.2] [src: docs/redesign/06-comparison.html §6.1] [src: docs/redesign/07-next.html §7.3]
 - **Two risk lenses stay apart.** Livelihood risk (a need layer) and investment risk (a filter or flag) are never summed, with each other or with suitability.
