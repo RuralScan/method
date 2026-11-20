@@ -1,20 +1,18 @@
 name: Publish dashboard
 on:
+  pull_request:
+    branches: [gh-pages]
   push:
     branches: [gh-pages]
 permissions:
   contents: read
-  pages: write
-  id-token: write
 concurrency:
-  group: dashboard-pages
+  group: dashboard-pages-${{ github.event.pull_request.number || 'live' }}
   cancel-in-progress: false
 jobs:
-  publish:
+  build:
+    name: Build and validate the published site
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -35,7 +33,6 @@ jobs:
           mv site/dashboard.html site/legacy.html
       - name: Check out the methodology reference
         id: reference_source
-        continue-on-error: true
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: 937358e1477b49638b87c6a363e50bfc3a370827
@@ -44,7 +41,6 @@ jobs:
           persist-credentials: false
       - name: Build the listed methodology reference
         if: steps.reference_source.outcome == 'success'
-        continue-on-error: true
         env:
           NAMES: ${{ secrets.REFERENCE_PEOPLE }}
         run: |
@@ -63,6 +59,8 @@ jobs:
           pin() { sed -nE "s/^${1} = \"([0-9a-f]{40})\"$/\\1/p" build/core.py; }
           git fetch --quiet --no-tags origin "$(pin SITE_REV)"
           git clone --quiet https://github.com/RuralScan/evidence.git "$work/evidence"
+          # A pinned commit may not be reachable from the repository's current branches.
+          git -C "$work/evidence" fetch --quiet --no-tags origin "$(pin EVIDENCE_OPERATING)"
           git -C "$work/evidence" checkout --quiet --detach "$(pin EVIDENCE_OPERATING)"
           git clone --quiet --depth 1 https://github.com/RuralScan/runtime.git "$work/runtime"
           git clone --quiet --bare --single-branch --branch main --no-tags https://github.com/CIAT/nbs_ruralscan.git "$work/producer.git"
@@ -99,9 +97,35 @@ jobs:
           test -s site/reference/ch-combining-t4-evidence.html
       - name: Build and verify pinned methodology editions
         run: python3 publish_editions.py
-      - uses: actions/configure-pages@v5
+      - name: Check section 7 contains the version history
+        run: |
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          import re
+          page = Path('site/reference/editions.html').read_text()
+          tabs = re.search(r'<nav class="tabs".*?</nav>', page, re.S)[0]
+          assert re.search(r'<a href="editions.html"[^>]*aria-current="page"', tabs)
+          assert 'id="changes"' in page
+          assert 'id="methodology"' in page and 'id="evidence-base"' in page
+          old = Path('site/reference/changes.html').read_text()
+          assert 'location.replace("editions.html"' in old
+          print('Version history belongs to section 7; old URLs preserve their destination.')
+          PYTHON
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push'
         with:
           path: site
+  deploy:
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
       - uses: actions/deploy-pages@v4
         id: deploy
