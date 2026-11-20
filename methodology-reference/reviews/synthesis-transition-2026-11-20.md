@@ -25,7 +25,8 @@ AI-authored explanations downstream.
 |---|---|---|
 | Method suitability chapter | Described an agent workflow; admitted no validated production route | Retain that boundary; remove the compiler chapter and numeric-policy interface |
 | Evidence `workflows/submissions/queue_view.py` | Called `t4_build.synthesise` and `write_recipe` on every candidate build | Remove those calls; retain checksum-pinned T4 baseline rows with explicit historical status |
-| Evidence release and seed checks | Exposed whole-recipe rebuilds that executed T4 synthesis | Remove rebuild entrypoints; verify existing release stores read-only |
+| Evidence release and seed checks; method cookbook builder | Exposed whole-recipe rebuilds that executed T4 synthesis | Remove rebuild entrypoints; verify existing release stores read-only |
+| Older dashboard reference | Exposed numeric compilation policy and linked T4 rows to the old protocol | Remove policy page, label historical rows and link current agent guidance |
 | Archived `source-command-t4-synthesise` skill | Still ran `scripts/synthesise-recipe.py` | Obsolete execution recipe; current docs must not recommend its commands |
 | Effect chapter, `t3t6_build.py`, `cell_synthesis.py` | Deterministic eligibility, influence, direction/strength and confidence rules | Still implemented; an AI-led scientific proposal/acceptance route is missing |
 | Archived T3/T6 synthesis skill | Instructed agents to run the engine and never re-judge a class by hand | Conflicts with the intended AI-led target; AI prose alone does not resolve this |

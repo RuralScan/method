@@ -103,7 +103,6 @@ GRAINS = {
     "SRCH": "One logged search protocol within a run and scope.",
     "XW": "One route from an evidence outcome to an analytical target.",
     "BANDS": "One set of magnitude bands for an effect metric.",
-    "T4_NUMERIC_POLICY": "One evidence-specific decision governing numeric compilation.",
     "T4_RUN": "One approved input or setting for a suitability run.",
 }
 
@@ -143,6 +142,7 @@ def generate(method, ciat, write):
         if hashlib.sha256((method / relative).read_bytes()).hexdigest() != digest:
             raise ValueError(f"Definition mismatch: {relative}")
     manifest = json.loads((model / "structure/columns.json").read_text())["tables"]
+    manifest = {key: value for key, value in manifest.items() if key != "T4_NUMERIC_POLICY"}
     fields = definitions((model / "spec.md").read_text())
     cards = []
     for key, title, question, inputs, operation, output, limit in MODULES:

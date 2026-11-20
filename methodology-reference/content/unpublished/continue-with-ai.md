@@ -210,7 +210,7 @@ The loop has 17 steps. The first table and the subsections after it quote the pr
 | 8 Extract | Extract-evidence skill; `python -m nbs_ruralscan.ingest.build <pdf_dir>` | Staging only | `validate_units` (advisory self-check) | None |
 | 9 Validate and ingest | `scripts/ingest-effects-staging.py ... --dry-run`, then without `--dry-run` | Orchestrator only: EV rows | Verbatim page check, numbers, context, bands, identity, VONT, family; auto-quarantine | None; quarantine is reversible |
 | 10–11 Review and apply | Review server; review page exports | None (people decide) | Provenance guardrail on apply; CI on the submission | Keep, drop with reason, reclassify, query |
-| 12 Suitability synthesis | T4-synthesise skill; `scripts/synthesise-recipe.py` | Trial outputs; live CSV only after review | Structure, coverage, generate | Applicability, functions, masks and weights |
+| 12 Suitability synthesis | Agent-led proposal; production adapter pending | Traceable proposal and accepted mapping | Schema, provenance and representation validation | Applicability, functions, masks and weights |
 | 13 Effect synthesis | T3/T6-synthesise skill; `scripts/synthesise-t3t6.py` | Recipe CSVs and run report | Pre-synthesis gates; `check_account` | None at this step; rows reviewed at step 15 |
 | 14 Prose | `scripts/write-prose.py` | Staging bundle; prose sidecar via `merge` | `check_account` refuses on any flag | Writer flags uncertain phrasing for a person |
 | 15 Row review | `scripts/build-row-review-batch.py`; `scripts/apply-row-review-export.py` | Review log only | None | Approve, hold or reject each row |
@@ -323,24 +323,16 @@ The producer guides disagree on one point: the playbook and the onboarding guide
 
 ### Synthesise
 
-Suitability synthesis starts from reviewed evidence and the last accepted decision; unreviewed diagnostics need an explicit flag and an isolated output directory [src: .agents/skills/source-command-t4-synthesise/SKILL.md §Reproducible workflow]:
+T4 synthesis starts from reviewed evidence and the last accepted decision. The agent
+proposes the mapping and documents candidate use, scope, alternatives and uncertainty;
+scientific review accepts or holds that proposal. Deterministic checks validate and
+package the accepted representation. See [[ch:suitability-synthesis]].
 
-```sh
-PYTHONPATH=src python scripts/synthesise-recipe.py <nbs_id> --dry-run
-PYTHONPATH=src python scripts/synthesise-recipe.py <nbs_id> \
-  --output-dir <isolated-trial-directory> --report <trial-report.json>
-```
+The historical T4 compiler is retired. Do not use its former CLI or archived skill
+commands. Until the production proposal/acceptance adapter exists, publication keeps
+explicitly historical T4 baseline rows; new evidence does not regenerate them.
 
-Only after review of the differences does the agent regenerate the live CSV:
-
-```sh
-PYTHONPATH=src python scripts/synthesise-recipe.py <nbs_id>
-python src/nbs_ruralscan/schema_tools/generate.py schema
-python src/nbs_ruralscan/schema_tools/structure.py schema
-PYTHONPATH=src python -m nbs_ruralscan.schema_tools.t4_coverage
-```
-
-[src: .agents/skills/source-command-t4-synthesise/SKILL.md §Reproducible workflow]. Effect synthesis runs the gates on pooled units first, then the engine:
+Effect synthesis runs the gates on pooled units first, then the engine:
 
 ```sh
 python3 scripts/synthesise-t3t6.py <nbs_id> --dry-run     # preview table
