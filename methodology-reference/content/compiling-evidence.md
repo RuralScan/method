@@ -94,7 +94,7 @@ The decision record should state which estimates answer the target question, how
 
 ### What the pinned edition implements
 
-The historical controls differ. The earlier T4 compiler resolves citation lineage and applies its declared source/origin balancing; approved ordinal-profile pools permit one independent-origin contribution per interval or endpoint. T3/T6 resolves lineage but retains a source's eligible own arms, with a within-cell share factor of `1/k` across its `k` own units. T6E uses the effect machinery and adds economic eligibility and replication gates. [[ch:t4-legacy-compiler]] gives the old T4 rules; [[ch:effect-synthesis]] and [[ch:cost-profiles]] give the effect and economic rules. [src: src/nbs_ruralscan/recipe/synthesis.py §_resolve_root_origin] [src: methodology/T4_generation_method.md §Reviewed numeric class tables] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §dedupe_for_cells]
+T3/T6 resolves lineage but retains a source's eligible own arms, with a within-cell share factor of `1/k` across its `k` own units. T6E uses the effect machinery and adds economic eligibility and replication gates. [[ch:effect-synthesis]] and [[ch:cost-profiles]] document those implementations. New T4 proposals require explicit independent-origin accounting under [[ch:suitability-synthesis]]. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §dedupe_for_cells]
 
 These controls do not automatically identify shared datasets across unlinked papers, overlap between reviews and their primaries, or correlated observations. The effect share factor prevents influence increasing simply with the number of own arms; those arms can still have different design and context weights. It is not a covariance model or a guarantee that the resulting publications are independent.
 
@@ -113,7 +113,7 @@ For new synthesis proposals, report record, publication and identified-origin co
 
 [src: methodology/T4_variable_importance.md] [src: methodology/T4_generation_method.md §6] [src: methodology/modules/M4_hotspots.md] [src: methodology/T3_T6_generation_method.md §7]
 
-The fixed weights used by the pinned compilers are policy judgements, not inverse-variance meta-analysis weights. Effect factors belong in [[ch:effect-synthesis]] and historical T4 factors in [[ch:t4-legacy-compiler]]. For a new T4 proposal, the agent must justify its choice of influence or pooling method under [[ch:suitability-synthesis]]. The historical factors include mixed `claim_basis` labels. Separating knowledge basis and extraction format corrects the classification model; it does not itself approve replacement numerical factors or recalibrate past outputs. [src: method:data-model/evidence-classification.json]
+The fixed weights used by the pinned effect engine are policy judgements, not inverse-variance meta-analysis weights. Effect factors belong in [[ch:effect-synthesis]]. For a new T4 proposal, the agent must justify its choice of influence or pooling method under [[ch:suitability-synthesis]]. The historical factors include mixed `claim_basis` labels. Separating knowledge basis and extraction format corrects the classification model; it does not itself approve replacement numerical factors or recalibrate past outputs. [src: method:data-model/evidence-classification.json]
 
 A source tier may already consider context, independence and authority. Additional discounts need a stated rationale so the same weakness is not penalised repeatedly without consideration. Conversely, a high tier cannot supply missing source context or make a practitioner rating a measured effect. Increasing numerical precision in the output does not remove these limitations.
 
@@ -141,7 +141,7 @@ The review record should identify inputs and revisions, candidate dispositions, 
 
 ## Reproducing the accepted output
 
-The displayed edition retains its original compiler outputs. Reproduce them with the pinned inputs and code documented in [[ch:t4-legacy-compiler]], [[ch:effect-synthesis]] and [[ch:cost-profiles]]. For a newly accepted agent-led T4 mapping, replay the archived decision and validated representation. The workflow and implementation boundary have one home in [[ch:suitability-synthesis]]; a fresh model run is not a reproducibility guarantee.
+The displayed edition retains its original analytical outputs. Historical T4 records remain in immutable Git editions; the retired T4 synthesis route is no longer offered by current workflows. For a newly accepted agent-led T4 mapping, replay the archived decision and validated representation. The workflow and implementation boundary have one home in [[ch:suitability-synthesis]]; a fresh model run is not a reproducibility guarantee. [[ch:effect-synthesis]] and [[ch:cost-profiles]] document the existing effect and economic implementations.
 
 ## Assumptions and limits
 
@@ -151,4 +151,4 @@ The implemented lineage and source-sharing controls are useful but incomplete re
 
 ## Where this is configured
 
-[[table:EV]] and [[table:SRC]] provide claims, provenance, context and lineage; [[table:FAM]], [[table:VONT]] and [[table:XW]] provide families, quantities and routes. The agent proposal and accepted mapping govern new T4 synthesis; [[table:T4_RUN]] records execution settings. [[table:T4_NUMERIC_POLICY]] documents historical numeric compilation. [[table:BANDS]] and effect lookups govern effect and economic classification. The historical T4 record and specialist effect/economic chapters identify the pinned factors and code used for [[table:T4]], [[table:T3]], [[table:T6]] and [[table:T6E]].
+[[table:EV]] and [[table:SRC]] provide claims, provenance, context and lineage; [[table:FAM]], [[table:VONT]] and [[table:XW]] provide families, quantities and routes. The agent proposal and accepted mapping govern new T4 synthesis; [[table:T4_RUN]] records execution settings. [[table:BANDS]] and effect lookups govern effect and economic classification. The specialist effect/economic chapters identify the pinned factors and code used for [[table:T3]], [[table:T6]] and [[table:T6E]].

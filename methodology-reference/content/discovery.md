@@ -154,7 +154,7 @@ The axes are not stored separately on every row. The audit-relevant fields are k
 
 `benchmark_tier` takes `high`, `medium`, `low` or `external`. `external` marks citation-cascade pointers that were not screened. It carries zero weight in the legacy compiler; new T4 proposals likewise require screening before such a pointer can become eligible supporting evidence. Discovery prefers high and medium sources and admits low ones only when the seed set is genuinely thin for a variable. [src: schema/spec.md §SRC] [src: methodology/T4_generation_method.md §Bounded, authority-weighted seed-set rule] A proposed tier must carry its reasons; unknown attributes remain unknown. [src: .agents/skills/source-command-discover-sources/SKILL.md §Search and screen]
 
-The fixed tier factors used for the pinned effect outputs are documented in [[ch:effect-synthesis]]; historical T4 factors are in [[ch:t4-legacy-compiler]]. New T4 proposals must justify evidence influence under [[ch:suitability-synthesis]], rather than inherit those constants automatically. Grey literature receives an additional positive-bias discount for effect claims, because practitioner and agency reports tend to overstate benefits. [src: methodology/T3_T6_generation_method.md §6. Sources]
+The fixed tier factors used for the pinned effect outputs are documented in [[ch:effect-synthesis]]. New T4 proposals must justify evidence influence under [[ch:suitability-synthesis]], rather than inherit those constants automatically. Grey literature receives an additional positive-bias discount for effect claims, because practitioner and agency reports tend to overstate benefits. [src: methodology/T3_T6_generation_method.md §6. Sources]
 
 ## The saturation stop
 

@@ -531,14 +531,10 @@ def build():
     ]
     chapter_pages("method.html", METHOD_CH, 2)
     chapter_pages("evidence-methods.html", EVIDENCE_CH, 3)
-    historic, historic_toc = chapter_body("t4-legacy-compiler")
-    page("ch-t4-legacy-compiler.html", "editions.html", "Historical T4 compiler", historic,
-         crumbs=[("editions.html", "About versions and changes"), ("", "Historical T4 compiler")],
-         lead=summary("t4-legacy-compiler"), toc=historic_toc)
-
     # Preserve the published guide addresses without retaining duplicate chapters in navigation.
     for old, target in (("evidence-registry", "evidence-principles"),
-                        ("combining-t4-evidence", "compiling-evidence")):
+                        ("combining-t4-evidence", "compiling-evidence"),
+                        ("t4-legacy-compiler", "suitability-synthesis")):
         destination = chapter_file(target)
         filename = chapter_file(old)
         page(filename, "evidence-methods.html", "Evidence guidance has moved",

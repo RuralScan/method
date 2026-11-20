@@ -388,7 +388,6 @@ TABLE_NAMES = {
     "BANDS": "Magnitude bands",
     "TOOL": "Tool registry",
     "T4_RUN": "Suitability run policy",
-    "T4_NUMERIC_POLICY": "Numeric compilation policy",
 }
 ROW_TABLES = ("T4", "T3", "T6", "T6E")
 

@@ -2,7 +2,7 @@
   "format_version": 1,
   "kind": "method_definitions",
   "status": "draft_reference",
-  "source_revision": "861475fa649e11778b7de28c930496b1bb63bb0d",
+  "source_revision": "6314ec57bef7ceb78037b257b1ac1f53c57717dd",
   "structure_version": "0.4.1-evidence-classification",
   "sha256": {
     "data-model/configuration/BIND_dataset_binding.csv": "6aeb5481a121cca768efd69ebe277b95a85e2c7f1ef9941e9cc74536c9bcfa35",
@@ -18,7 +18,7 @@
     "data-model/configuration/recipes/riparian_buffer/T0_nbs_registry.csv": "3448d1af7042bf13573c1495abc94b4e023726ea7b91ea927b7f201d28600a06",
     "data-model/configuration/recipes/water_harvesting_conservation/T0_nbs_registry.csv": "10c18ae2c25d95d1bb37b079edf4050148719d51aff27973798ac81f8d0ca068",
     "data-model/configuration/recipes/wetland_management/T0_nbs_registry.csv": "f54f294d9c8129a53f2aa20873c0f2647ef853e5cce41057f54aa2b23f44c45c",
-    "data-model/spec.md": "aebe0f976efab7c8be1309b423d9513e8630a4e6113f3a1dcd1e44ff1bcf1da7",
+    "data-model/spec.md": "3640954e3c06f203fa8a63750f57e1322bd85ba7d223950e14dc091edd45a8fc",
     "data-model/structure/columns.json": "3ef46ea18e389e5327f41ec78879ececd426b238c8fef227d70ccfb96ce9f9fb",
     "data-model/evidence-classification.json": "f49149ea1548332d1b4f8351fb32aea713dce9e997b8367b04a1345d7f5708a9"
   },

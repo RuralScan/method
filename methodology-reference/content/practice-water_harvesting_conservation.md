@@ -126,7 +126,7 @@ No family has an executable mapping. Rooftop has none **by decision**; spate is 
 ## Where this is configured
 
 - Families: [[table:FAM]]; practice definition: [[table:T0]].
-- Suitability mappings and their holds: [[table:T4]], [[table:T4_NUMERIC_POLICY]]; dataset bindings: [[table:BIND]], [[table:T1]].
+- Suitability mappings and their holds: [[table:T4]]; dataset bindings: [[table:BIND]], [[table:T1]].
 - Hazard responses: [[table:T3]]; scorecard: [[table:T6]]; economic profiles: [[table:T6E]].
 - Evidence: [[table:EV]], [[table:SRC]]; variables: [[table:VONT]].
 - Lookups: `schema/lookups/effect_locus.csv`, `crop_scope_policy.csv`.

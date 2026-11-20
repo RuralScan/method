@@ -397,7 +397,7 @@ def native_assets():
     for t, stem in CONFIG.items():
         config.append(asset(t, TABLE_NAMES[t], f"schema/{stem}.csv", f"table-{t}.html"))
     for path in pinned_list("schema/lookups"):
-        if path.endswith(".csv"):
+        if path.endswith(".csv") and not path.endswith("/t4_numeric_compilation_policy.csv"):
             name = path.rsplit("/", 1)[-1][:-4]
             rules.append(asset(f"rule:{name}", words(name), path))
     return recipe, registers, config, rules
