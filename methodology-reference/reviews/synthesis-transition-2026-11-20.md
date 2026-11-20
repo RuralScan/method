@@ -53,3 +53,24 @@ The accepted decision and representation should be replayable. A fresh model run
 is not the reproducibility guarantee. Schema checks, provenance checks, numeric
 consistency and runtime execution remain deterministic. Historical outputs should
 not be overwritten or relabelled as agent-generated during this transition.
+
+## Follow-up implementation: AI-led T3/T6
+
+Pete explicitly authorised the new boundary in
+[issue #85](https://github.com/RuralScan/method/issues/85#issuecomment-7052114229).
+Decision `t3t6_agent_synthesis` now records AI scientific authoring and exact-output
+acceptance, superseding provisional-setter eligibility for new scientific outputs.
+
+Evidence now provides a versioned native agent skill, generated input snapshots,
+complete candidate dispositions, authored CSV proposals, authenticated reviewer
+receipts, append-only acceptance and accepted-only packaging. Publication no longer
+calls T3/T6 scoring or the shared T4 helpers. Held/stale outputs block release;
+withdrawals retain provenance. Runtime's `AcceptedEffects` verifies a trusted manifest
+and returns authored values unchanged. The old local skill and slash command redirect
+to the evidence workflow; synthesis and automatic fragility CLIs refuse execution.
+
+Existing analytical tables are unchanged and remain historical. No real scientific
+proposal has been accepted by this software change. A first bounded AI synthesis and
+reviewed release remain operational work. T4's production agent adapter remains
+outstanding; T6E is explicitly frozen pending its own contract. Earlier findings above
+are the audit history, not instructions to run the retired algorithms.

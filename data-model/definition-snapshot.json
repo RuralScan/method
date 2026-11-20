@@ -2,7 +2,7 @@
   "format_version": 1,
   "kind": "method_definitions",
   "status": "draft_reference",
-  "source_revision": "6314ec57bef7ceb78037b257b1ac1f53c57717dd",
+  "source_revision": "c30a99a15c97cdb2079c6ddc34ca8e8acdd3f0bf",
   "structure_version": "0.4.2-agent-effects",
   "sha256": {
     "data-model/configuration/BIND_dataset_binding.csv": "6aeb5481a121cca768efd69ebe277b95a85e2c7f1ef9941e9cc74536c9bcfa35",
