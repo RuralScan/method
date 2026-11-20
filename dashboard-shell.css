@@ -8,8 +8,10 @@ body > .app-header { top: 0; padding: 12px 24px; gap: 10px 24px; flex-wrap: wrap
 .programme-brand .brand-group { min-width: 0; max-width: 100%; }
 .project-brand { display: block; width: 300px; max-width: 100%; line-height: 0; background: #fff; border-radius: 6px; overflow: hidden; }
 .project-brand img { display: block; width: 100%; height: auto; }
-.programme-logo { flex: none; line-height: 0; border-radius: 6px; overflow: hidden; }
-.programme-logo img { display: block; width: auto; height: 48px; }
+.site-footer { margin-top: 24px; padding: 24px; border-top: 1px solid var(--border-color); background: var(--bg-secondary); }
+.footer-partners { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.partner-mark { display: flex; flex: none; align-items: center; justify-content: center; width: 190px; height: 120px; max-width: 100%; background: #fff; border-radius: 6px; line-height: 0; overflow: hidden; }
+.partner-mark img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; }
 .help-entry { color: var(--text-primary); font-size: 14px; font-weight: 600; text-decoration: none; }
 .help-entry:hover { text-decoration: underline; }
 .header-actions .review-entry { color: var(--text-primary); border-color: var(--accent-emerald); }
@@ -27,7 +29,7 @@ body > .app-header .edition-selector.dashboard-version-bar {
 .dashboard-version-bar #dashboard-version-note { color: var(--text-secondary); }
 .dashboard-version-bar button span { color: inherit; }
 .dashboard-version-bar .vb-changes { color: var(--text-primary); text-underline-offset: .2em; }
-.dashboard-version-bar :focus-visible, .programme-logo:focus-visible, .help-entry:focus-visible {
+.dashboard-version-bar :focus-visible, .partner-mark:focus-visible, .help-entry:focus-visible {
   outline: 3px solid var(--accent-sky); outline-offset: 2px;
 }
 body[data-theme="dark"] .vb-theme .icon-moon, body[data-theme="light"] .vb-theme .icon-sun { display: none; }

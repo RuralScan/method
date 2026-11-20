@@ -98,6 +98,11 @@ class VersionMenuTest(unittest.TestCase):
                     self.assertIn('id="review-table-description"',html)
                     self.assertNotIn('aria-label="Review findings by table"',html)
                     header=html.split('<header class="app-header">',1)[1].split('</header>',1)[0]
+                    self.assertNotIn('nbs-invest-logo.jpg', header)
+                    self.assertNotIn('alliance-logo.png', header)
+                    footer = html.split('<footer', 1)[1].split('</footer>', 1)[0]
+                    self.assertIn('assets/nbs-invest-logo.jpg', footer)
+                    self.assertIn('assets/alliance-logo.png', footer)
                     self.assertIn('aria-label="Dashboard version and tools"',header)
                     self.assertIn('id="dashboard-version"',header)
                     bar=html.split('aria-label="Dashboard version and tools">',1)[1].split('</div>',1)[0]
