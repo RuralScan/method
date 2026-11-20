@@ -20,6 +20,7 @@ jobs:
           repository: CIAT/nbs_ruralscan
           ref: bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06
           path: producer
+          fetch-depth: 0
           persist-credentials: false
           sparse-checkout-cone-mode: false
           sparse-checkout: |
@@ -52,6 +53,15 @@ jobs:
           ref: ${{ steps.reference_pins.outputs.evidence }}
           path: evidence-src
           persist-credentials: false
+      - name: Check out the runtime source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: RuralScan/runtime
+          path: runtime-src
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
       - name: Build the listed methodology reference
         if: steps.reference_source.outcome == 'success'
         env:
@@ -70,14 +80,13 @@ jobs:
 
           cd "$GITHUB_WORKSPACE/reference-src/methodology-reference"
           pin() { sed -nE "s/^${1} = \"([0-9a-f]{40})\"$/\\1/p" build/core.py; }
-          git fetch --quiet --no-tags origin "$(pin SITE_REV)"
-          git clone --quiet --depth 1 https://github.com/RuralScan/runtime.git "$work/runtime"
-          git clone --quiet --bare --single-branch --branch main --no-tags https://github.com/CIAT/nbs_ruralscan.git "$work/producer.git"
+          # Full source and producer history are already available from checkout steps.
+          git cat-file -e "$(pin SITE_REV)^{commit}"
           python3 -m venv "$work/venv"
-          "$work/venv/bin/pip" install --quiet 'markdown==3.11.3' 'duckdb==1.5.3' 'pandas==2.3.1'
+          "$work/venv/bin/pip" install 'markdown==3.11.3' 'duckdb==1.5.3' 'pandas==2.3.1'
 
           export RURALSCAN_PEOPLE="$work/people.txt" RURALSCAN_EVIDENCE="$GITHUB_WORKSPACE/evidence-src"
-          export RURALSCAN_RUNTIME="$work/runtime" RURALSCAN_CIAT="$work/producer.git"
+          export RURALSCAN_RUNTIME="$GITHUB_WORKSPACE/runtime-src" RURALSCAN_CIAT="$GITHUB_WORKSPACE/producer"
           "$work/venv/bin/python" -B build/fetch_package.py
           # A failed attribution check can report excerpts of private notes.
           if ! "$work/venv/bin/python" -B build/build.py --out "$stage/reference" > "$work/checks.log" 2>&1; then
