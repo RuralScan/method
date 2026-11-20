@@ -185,6 +185,7 @@ def run_checks():
         'href="editions.html#evidence-base"',
         'src="review-mode.js"',
         'href="help.html"',
+        f'src="{core.PROJECT_LOGO}"',
     )
     logo = f'src="{core.LOGO}"'
     bad = [

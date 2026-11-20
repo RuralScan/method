@@ -1,0 +1,3 @@
+Source: https://github.com/RuralScan/.github/blob/e4cadd878005b04f91cfd76ef89228e69c00c3d4/profile/assets/nbs-rural-scan-tagline.png
+Reuse: original image, unchanged; same logo and tagline as the GitHub organisation profile.
+SHA-256: 6104c1caacba811ad746f1bffbe4fee0bf12c4e84e13125a96b23afd5516c867

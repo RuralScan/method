@@ -6,6 +6,13 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.14.2] - 2026-11-20
+
+- Reuse the GitHub organisation's NBS Rural Scan logo and scoping tagline in the site header, with its original source recorded.
+- Keep the programme credit, theme controls and linked version information alongside the project branding.
+- Remove the repeated standalone Methodology label beside the linked methodology version.
+- Analytical values and the evidence-base edition are unchanged.
+
 ## [0.14.1] - 2026-11-20
 
 - Bring version explanations, full change history, source revisions and feedback together on About versions and changes.
