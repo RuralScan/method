@@ -16,6 +16,7 @@ from tempfile import TemporaryDirectory
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 EVIDENCE_REVISION = "1532768de6c688e2c8eb26097eb7618848390b1d"
+CHECKER_REVISION = "367ea5e90daa27107c0594f815b8a3474c19c68b"
 EVIDENCE_URL = "https://github.com/RuralScan/evidence.git"
 
 
@@ -25,8 +26,8 @@ def evidence_tools(root, local):
     subprocess.run(["git", "init", "--quiet", str(checkout)], check=True)
     origin = str(local.resolve(strict=True)) if local else EVIDENCE_URL
     for args in (
-        ["fetch", "--quiet", "--no-tags", "--depth=1", origin, EVIDENCE_REVISION],
-        ["checkout", "--quiet", "--detach", EVIDENCE_REVISION],
+        ["fetch", "--quiet", "--no-tags", "--depth=1", origin, CHECKER_REVISION],
+        ["checkout", "--quiet", "--detach", CHECKER_REVISION],
     ):
         subprocess.run(["git", *args], cwd=checkout, check=True)
     directory = checkout / "workflows" / "recipe_release"
@@ -53,7 +54,7 @@ def build(root, args):
 
     checker, pin = evidence_tools(root, args.evidence_repo)
     source = root / "producer"
-    store = root / "release"
+    store = args.store
     checker.snapshot(
         source,
         checker.REPOSITORY,
@@ -62,11 +63,10 @@ def build(root, args):
             "/src/",
             "/schema/",
             "/pipeline/acquisition_queue.csv",
-            "/pipeline/t4_audit/agroforestry/importance_2026-10-21/source_weight_trees.csv",
         ],
         args.ciat_repo,
     )
-    summary = checker.verify(source, store, pin, build=True, check_workbook=True)
+    summary = checker.verify(source, store, pin, check_workbook=True)
     from nbs_ruralscan.runtime.schema_loader import load_recipe_release
 
     release = load_recipe_release(store, pin["release_id"])
@@ -132,6 +132,8 @@ def build(root, args):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--store", type=Path, required=True,
+                        help="Existing immutable release store; analytical synthesis is retired")
     parser.add_argument(
         "--out",
         type=Path,

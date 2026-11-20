@@ -10,21 +10,21 @@ Use the browser’s **Print** command to print on A4 or US Letter, or choose **S
 
 ## Check a published guide
 
-From the root of the method repository, use Git, uv and Python 3.12. This command rebuilds the candidate and compares the public workbook byte for byte with its pinned edition. It also checks the seven Markdown pages and print edition against this checkout. The first run downloads pinned software and Git inputs.
+From the root of the method repository, use Git, uv and Python 3.12. This command verifies an existing immutable candidate store and compares the public workbook byte for byte with its pinned edition. It also checks the seven Markdown pages and print edition against this checkout. The first run downloads pinned software and Git inputs.
 
 ```sh
-uv run --python 3.12 --locked --script cookbook/build.py
+uv run --python 3.12 --locked --script cookbook/build.py --store /path/to/recipe-store
 ```
 
 For an offline check, use local clones containing the pinned commits and their objects, with the locked Python environment already in the uv cache:
 
 ```sh
-uv run --offline --python 3.12 --locked --script cookbook/build.py --offline \
+uv run --offline --python 3.12 --locked --script cookbook/build.py --store /path/to/recipe-store --offline \
   --evidence-repo /path/to/evidence --ciat-repo /path/to/nbs_ruralscan \
   --method-repo /path/to/method
 ```
 
-To inspect regenerated pages separately, append `--out /path/to/new-directory`. A successful run reports the candidate release ID, the workbook SHA-256, six practices, 28 families, 56 family-register entries and 806 analytical rows. Three register entries capture cross-family context. The build reads the pinned evidence checker and the candidate’s method lock. It validates the release members, method definition files and all six T0 identities before grouping analytical rows. A changed pin, missing family, mismatch in readiness counts or stale published page stops the check. [Pinned evidence release](https://github.com/RuralScan/evidence/blob/1532768de6c688e2c8eb26097eb7618848390b1d/workflows/recipe_release/pin.json)
+To inspect regenerated pages separately, append `--out /path/to/new-directory`. A successful run reports the candidate release ID, the workbook SHA-256, six practices, 28 families, 56 family-register entries and 806 analytical rows. Three register entries capture cross-family context. The build reads the pinned read-only evidence checker and the candidate’s method lock. T4 synthesis is retired; supply a previously published store rather than regenerating analytical tables. It validates the release members, method definition files and all six T0 identities before grouping analytical rows. A changed pin, missing family, mismatch in readiness counts or stale published page stops the check. [Pinned evidence release](https://github.com/RuralScan/evidence/blob/1532768de6c688e2c8eb26097eb7618848390b1d/workflows/recipe_release/pin.json)
 
 ## How rows are counted
 
@@ -34,4 +34,4 @@ The T4 readiness counts come from the candidate’s readiness report, restricted
 
 ## Refresh a guide
 
-When a new candidate is available, update the evidence revision in the builder and use its pinned method and producer revisions. Generate the Markdown and HTML together in a new directory. Review changes to family membership, spatial product types, scope counts and readiness alongside the practice-specific text before replacing the checked-in pages. Run the default check again. Candidate compilation, evidence review and runtime adoption have separate release histories.
+When a new candidate is available, update the evidence revision in the builder and use its pinned method and producer revisions. Generate the Markdown and HTML together in a new directory. Review changes to family membership, spatial product types, scope counts and readiness alongside the practice-specific text before replacing the checked-in pages. Run the store-based check again. Candidate compilation, evidence review and runtime adoption have separate release histories.

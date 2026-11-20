@@ -195,17 +195,17 @@ def terrace_note():
         "describes contour stone lines. Both are contextual records. The historical mapping "
         "records WorldClim precipitation; CHELSA BIO12 illustrates the catalogue’s global annual default.</p>"
         "<h3>Replay the decision</h3><p>From the pinned evidence checkout, with Git and uv installed:</p>"
-        "<p>Historical compiler <code>2023cb82</code> · 43 T4 rows. The terrace hold is recorded in this edition.</p>"
+        "<p>Historical analytical edition <code>2023cb82</code> · 43 T4 rows. The terrace hold is recorded in this edition.</p>"
         "<pre><code>uv run --python 3.12 --locked --script examples/terrace-rainfall/replay.py</code></pre><p>"
         + link(
             EVIDENCE_BASE + "examples/terrace-rainfall/README.md",
             "Historical replay, inputs and expected digest",
         )
-        + "</p><p>Candidate compiler <code>e5c8da02</code> · 806 analytical rows. This edition also records a hold.</p>"
-        "<pre><code>uv run --python 3.12 --locked --script workflows/recipe_release/check.py --check-method --json</code></pre><p>"
+        + "</p><p>Candidate analytical edition <code>e5c8da02</code> · 806 analytical rows. This edition also records a hold.</p>"
+        "<pre><code>uv run --python 3.12 --locked --script workflows/recipe_release/check.py --store /path/to/recipe-store --check-method --json</code></pre><p>"
         + link(
             EVIDENCE_BASE + "workflows/recipe_release/README.md",
-            "Rebuild the candidate and verify its method definitions",
+            "Verify an existing candidate and its method definitions",
         )
         + '</p><h3 id="downloads">Download the worked evidence tables</h3>'
         "<p>Join the mapping to its finding by <code>evidence_id</code>, then to WOCAT by "
@@ -493,17 +493,14 @@ def generate(out, evidence, ciat, write, sidecar, review_views):
         if table in {"T3", "T4", "T6"}:
             body += review_views.row_details(row, sidecar)
         body += decision(raw_rows[key], table)
-        protocol = (
-            "T4_generation_method.md" if table == "T4" else "T3_T6_generation_method.md"
-        )
-        body += (
-            "<p>"
-            + link(
-                f"https://github.com/CIAT/nbs_ruralscan/blob/{revision}/methodology/{protocol}",
-                f"Read the pinned {table} synthesis protocol",
-            )
-            + "</p>"
-        )
+        if table == "T4":
+            body += "<p>Historical mapping; not regenerated from current evidence. Agent synthesis is required for a new mapping.</p>"
+            protocol = "https://github.com/RuralScan/method/blob/main/methodology-reference/content/suitability-synthesis.md"
+            label = "Read the current agent-led T4 synthesis workflow"
+        else:
+            protocol = f"https://github.com/CIAT/nbs_ruralscan/blob/{revision}/methodology/T3_T6_generation_method.md"
+            label = f"Read the pinned {table} synthesis protocol"
+        body += "<p>" + link(protocol, label) + "</p>"
         for title, ids in [
             ("Direct supporting findings", row["evidence_ids"]),
             ("Additional contextual findings", row["context_ids"]),
