@@ -106,7 +106,11 @@ class VersionMenuTest(unittest.TestCase):
                     nav=header.split('aria-label="Methodology sections">',1)[1].split('</nav>',1)[0]
                     self.assertIn('id="btn-methods" href="reference/method.html"><span class="n">2</span> Method</a>',nav)
                     self.assertNotIn('aria-current=',nav)
-                    self.assertIn('href="reference/index.html">Rural NbS Scan</a>',header)
+                    self.assertIn('class="methodology-home project-brand" href="reference/index.html"',header)
+                    self.assertIn('src="reference/assets/nbs-rural-scan-tagline.png"',header)
+                    brand = re.search(r'<h1\b[^>]*id="app-title"[^>]*>(.*?)</h1>',header,re.S)[1]
+                    self.assertNotIn('<svg',brand)
+                    self.assertIn('alt="NBS Rural Scan',brand)
                     tools=html.split('aria-label="Evidence workspace tools">',1)[1].split('</nav>',1)[0]
                     self.assertNotIn('Methods',tools)
                     self.assertNotIn('Overview',tools)

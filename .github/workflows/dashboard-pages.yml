@@ -1,20 +1,18 @@
 name: Publish dashboard
 on:
+  pull_request:
+    branches: [gh-pages]
   push:
     branches: [gh-pages]
 permissions:
   contents: read
-  pages: write
-  id-token: write
 concurrency:
-  group: dashboard-pages
+  group: dashboard-pages-${{ github.event.pull_request.number || 'live' }}
   cancel-in-progress: false
 jobs:
-  publish:
+  build:
+    name: Build and validate the published site
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -22,6 +20,7 @@ jobs:
           repository: CIAT/nbs_ruralscan
           ref: bec50bc0f9dc74b3d5ffafcf881571a8a8ec5c06
           path: producer
+          fetch-depth: 0
           persist-credentials: false
           sparse-checkout-cone-mode: false
           sparse-checkout: |
@@ -35,16 +34,36 @@ jobs:
           mv site/dashboard.html site/legacy.html
       - name: Check out the methodology reference
         id: reference_source
-        continue-on-error: true
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          ref: 8fddfa8322da7ab79fddb70a1c13425685bfdd4a
+          ref: 937358e1477b49638b87c6a363e50bfc3a370827
           path: reference-src
           fetch-depth: 0
           persist-credentials: false
+      - name: Read the evidence operating revision
+        id: reference_pins
+        run: |
+          revision=$(sed -nE 's/^EVIDENCE_OPERATING = "([0-9a-f]{40})"$/\1/p' reference-src/methodology-reference/build/core.py)
+          test "${#revision}" -eq 40
+          echo "evidence=$revision" >> "$GITHUB_OUTPUT"
+      - name: Check out the pinned evidence revision
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: RuralScan/evidence
+          ref: ${{ steps.reference_pins.outputs.evidence }}
+          path: evidence-src
+          persist-credentials: false
+      - name: Check out the runtime source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: RuralScan/runtime
+          path: runtime-src
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
       - name: Build the listed methodology reference
         if: steps.reference_source.outcome == 'success'
-        continue-on-error: true
         env:
           NAMES: ${{ secrets.REFERENCE_PEOPLE }}
         run: |
@@ -61,16 +80,13 @@ jobs:
 
           cd "$GITHUB_WORKSPACE/reference-src/methodology-reference"
           pin() { sed -nE "s/^${1} = \"([0-9a-f]{40})\"$/\\1/p" build/core.py; }
-          git fetch --quiet --no-tags origin "$(pin SITE_REV)"
-          git clone --quiet https://github.com/RuralScan/evidence.git "$work/evidence"
-          git -C "$work/evidence" checkout --quiet --detach "$(pin EVIDENCE_OPERATING)"
-          git clone --quiet --depth 1 https://github.com/RuralScan/runtime.git "$work/runtime"
-          git clone --quiet --bare --single-branch --branch main --no-tags https://github.com/CIAT/nbs_ruralscan.git "$work/producer.git"
+          # Full source and producer history are already available from checkout steps.
+          git cat-file -e "$(pin SITE_REV)^{commit}"
           python3 -m venv "$work/venv"
-          "$work/venv/bin/pip" install --quiet 'markdown==3.11.3' 'duckdb==1.5.3' 'pandas==2.3.1'
+          "$work/venv/bin/pip" install 'markdown==3.11.3' 'duckdb==1.5.3' 'pandas==2.3.1'
 
-          export RURALSCAN_PEOPLE="$work/people.txt" RURALSCAN_EVIDENCE="$work/evidence"
-          export RURALSCAN_RUNTIME="$work/runtime" RURALSCAN_CIAT="$work/producer.git"
+          export RURALSCAN_PEOPLE="$work/people.txt" RURALSCAN_EVIDENCE="$GITHUB_WORKSPACE/evidence-src"
+          export RURALSCAN_RUNTIME="$GITHUB_WORKSPACE/runtime-src" RURALSCAN_CIAT="$GITHUB_WORKSPACE/producer"
           "$work/venv/bin/python" -B build/fetch_package.py
           # A failed attribution check can report excerpts of private notes.
           if ! "$work/venv/bin/python" -B build/build.py --out "$stage/reference" > "$work/checks.log" 2>&1; then
@@ -99,9 +115,35 @@ jobs:
           test -s site/reference/ch-combining-t4-evidence.html
       - name: Build and verify pinned methodology editions
         run: python3 publish_editions.py
-      - uses: actions/configure-pages@v5
+      - name: Check section 7 contains the version history
+        run: |
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          import re
+          page = Path('site/reference/editions.html').read_text()
+          tabs = re.search(r'<nav class="tabs".*?</nav>', page, re.S)[0]
+          assert re.search(r'<a href="editions.html"[^>]*aria-current="page"', tabs)
+          assert 'id="changes"' in page
+          assert 'id="methodology"' in page and 'id="evidence-base"' in page
+          old = Path('site/reference/changes.html').read_text()
+          assert 'location.replace("editions.html"' in old
+          print('Version history belongs to section 7; old URLs preserve their destination.')
+          PYTHON
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push'
         with:
           path: site
+  deploy:
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
       - uses: actions/deploy-pages@v4
         id: deploy

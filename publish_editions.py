@@ -221,7 +221,14 @@ def integrate_methodology_workspace(contents, navigation):
     contents = contents.replace('<body', '<body data-methodology-workspace', 1)
     contents = contents.replace('</head>', '<script src="home-route.js?v=2"></script></head>', 1)
     contents = contents.replace('</header>', navigation + '</header>', 1)
-    contents = contents.replace('        Rural NbS Scan\n', '        <a class="methodology-home" href="reference/index.html">Rural NbS Scan</a>\n', 1)
+    contents, brand_count = re.subn(
+        r'(<h1\b[^>]*id="app-title"[^>]*>).*?</h1>',
+        r'\1<a class="methodology-home project-brand" href="reference/index.html">'
+        '<img src="reference/assets/nbs-rural-scan-tagline.png" '
+        'alt="NBS Rural Scan — Scoping the potential of rural nature-based solutions in least developed countries" '
+        'width="2172" height="724"></a></h1>', contents, count=1, flags=re.S)
+    if brand_count != 1:
+        raise ValueError('Missing review workspace title for shared project branding')
     contents = contents.replace('<span class="brand-subtitle">Evidence for rural nature-based solutions</span>',
                                 '<span class="brand-subtitle">Methodology · evidence and review tools</span>', 1)
     match = re.search(r'<nav class="tab-nav"[^>]*>.*?</nav>', contents, re.S)

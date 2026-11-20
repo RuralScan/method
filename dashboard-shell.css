@@ -4,7 +4,10 @@ body > .app-header { top: 0; padding: 12px 24px; gap: 10px 24px; flex-wrap: wrap
 @media screen and (max-width: 760px) {
   body > .app-header { position: static; padding: 12px 16px; }
 }
-.programme-brand { display: flex; gap: 14px; align-items: center; min-width: 0; }
+.programme-brand { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; min-width: 0; }
+.programme-brand .brand-group { min-width: 0; max-width: 100%; }
+.project-brand { display: block; width: 300px; max-width: 100%; line-height: 0; background: #fff; border-radius: 6px; overflow: hidden; }
+.project-brand img { display: block; width: 100%; height: auto; }
 .programme-logo { flex: none; line-height: 0; border-radius: 6px; overflow: hidden; }
 .programme-logo img { display: block; width: auto; height: 48px; }
 .help-entry { color: var(--text-primary); font-size: 14px; font-weight: 600; text-decoration: none; }
