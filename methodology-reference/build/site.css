@@ -104,7 +104,8 @@ small { color: var(--muted); }
 .mast { position: sticky; top: 0; z-index: 20; background: var(--panel); border-bottom: 1px solid var(--line); }
 .mast > .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1rem; padding-top: .8rem; padding-bottom: .7rem; }
 .brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 22px; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
-.brand svg { width: 24px; height: 24px; flex: none; color: var(--accent-emerald); background: none; border: 0; border-radius: 0; }
+.project-brand { display: block; width: 300px; max-width: 100%; line-height: 0; background: #fff; border-radius: 6px; overflow: hidden; }
+.project-brand img { display: block; width: 100%; height: auto; }
 .sub { flex: none; color: var(--muted); font-size: .8rem; font-weight: 500; white-space: nowrap; }
 .brand { flex: none; white-space: nowrap; }
 .ed { flex: 1 1 14rem; min-width: min-content; margin-left: auto; text-align: right; color: var(--muted); font-size: .8rem; }

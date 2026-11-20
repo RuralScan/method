@@ -29,7 +29,7 @@ The methodology looks like the live evidence dashboard. That is the house style.
 | Tables, buttons, tab pills | 8px radius (`--radius-md`) |
 | Section tabs | Pills. The active tab has the card background, emerald text, a border and the card shadow. |
 | Table headers | Outfit 12px, upper case, 0.03em letter-spacing |
-| Brand | The NBS Invest programme logo, unmodified and linked to the programme page, then the open-book mark in emerald and "Rural NbS Scan" in Outfit 22px bold. The logo is 68px high. |
+| Brand | The unchanged NBS Rural Scan logo and tagline from the GitHub organisation profile, linked to the methodology home. It sits on its original white background in both themes. NBS Invest remains a separate programme mark linked to its programme page. |
 | Top bar | Shared with the visual methodology. See the next section. |
 | Page width | 1400px |
 
@@ -59,7 +59,9 @@ Below the bar, the header carries the programme logo, the brand, linked methodol
 
 **The review tool is the visual methodology's own.** The build reads `review-mode.js` and `review-mode.css` from the visual methodology at the revision pinned as `VISUAL_REV` in `build/core.py` and changes only the storage keys, the page targets, the page names and the issue address. Do not write a second feedback tool and do not edit the generated files; change the substitutions. The build fails if a substitution no longer matches.
 
-**The logo is read from the same revision,** with its source note written beside it (`assets/nbs-invest-logo.source.txt`). It is shown unmodified, to identify the programme context. It is the NBS Invest programme mark, not a World Bank corporate logo. Its use on this site awaits confirmation from the programme; `SHOW_PROGRAMME_LOGO` in `build/core.py` removes it from every page if needed.
+**The NBS Rural Scan project logo** is stored under `assets/`, with its original GitHub revision and checksum in `nbs-rural-scan-tagline.source.txt`. Reuse the exact asset in the published review workspace; do not redraw, crop or recolour it.
+
+**The NBS Invest programme logo is read from the visual methodology revision,** with its source note written beside it (`assets/nbs-invest-logo.source.txt`). It is shown unmodified, to identify the programme context. It is the NBS Invest programme mark, not a World Bank corporate logo. Its use on this site awaits confirmation from the programme; `SHOW_PROGRAMME_LOGO` in `build/core.py` removes it from every page if needed.
 
 **Help page.** `help.html` covers finding your way, giving feedback, contact, team and the programme. The contact, team and programme sections are read from the visual methodology's help page at `VISUAL_REV`, so the names have one home and this repository carries none. It is the only page that names people.
 
