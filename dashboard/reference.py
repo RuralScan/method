@@ -228,6 +228,11 @@ def generate(method, ciat, write):
                 f"{SOURCE}/recipes/agroforestry/T4_run_policy.csv",
                 "Agroforestry policy CSV",
             )
+        historical = (
+            '<p>Historical schema for this pinned data edition. New T3/T6 outputs use AI scientific synthesis and exact-output acceptance; T6E remains historical. '
+            + link("ai.html", "Read the current scientific workflow") + '</p>'
+            if key in {"T3", "T6", "T6E"} else ""
+        )
         grain = GRAINS[key]
         entries.append(
             f"<li data-filter-item>{badge(key)} {link('table-' + key + '.html', name)}<p>{grain}</p></li>"
@@ -236,7 +241,7 @@ def generate(method, ciat, write):
             f"table-{key}.html",
             "Methods",
             name,
-            f'<p>{badge(key)}</p><p class="lead">{grain}</p><dl><dt>Primary key</dt><dd><code>{escape(str(t["primary_key"]))}</code></dd><dt>Storage</dt><dd>{escape(t["location"])}</dd><dt>Use in the method</dt><dd>{module_refs or "Upstream evidence, configuration or compilation."}</dd></dl><p>{link(examples[key], "Inspect the example") + " · " if key in examples else ""}{source} · {link(BASE + "/spec.md", "Pinned field specification")}</p><h2>Declared relationships</h2><ul>{"".join(joins) or "<li>No foreign key declared in this manifest.</li>"}</ul><h2>Fields</h2><div class="scroll"><table><thead><tr><th>Field</th><th>Requirement</th><th>Meaning and units where specified</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>',
+            f'<p>{badge(key)}</p>{historical}<p class="lead">{grain}</p><dl><dt>Primary key</dt><dd><code>{escape(str(t["primary_key"]))}</code></dd><dt>Storage</dt><dd>{escape(t["location"])}</dd><dt>Use in the method</dt><dd>{module_refs or "Upstream evidence, configuration or compilation."}</dd></dl><p>{link(examples[key], "Inspect the example") + " · " if key in examples else ""}{source} · {link(BASE + "/spec.md", "Pinned field specification")}</p><h2>Declared relationships</h2><ul>{"".join(joins) or "<li>No foreign key declared in this manifest.</li>"}</ul><h2>Fields</h2><div class="scroll"><table><thead><tr><th>Field</th><th>Requirement</th><th>Meaning and units where specified</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>',
         )
     lookups = subprocess.check_output(
         [
