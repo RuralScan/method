@@ -217,6 +217,8 @@ FILES["assets/nbs-rural-scan-tagline.source.txt"] = (ROOT / "assets/nbs-rural-sc
 VISUAL_REV = CIAT_RETIRED
 PROGRAMME_URL = "https://www.worldbank.org/en/programs/nbs-invest"
 LOGO = "assets/nbs-invest-logo.jpg"
+ALLIANCE_LOGO = "assets/alliance-logo.png"
+ALLIANCE_URL = "https://alliancebioversityciat.org/"
 REVIEW_TARGETS = (
     ".pcard, .msteps li, .mrules li, table, figure, .card, .callout, dl.facts, pre, "
     ".chapter h2, .chapter h3, .chapter p, .chapter li, main > h2, main > p, main > ol > li, main > ul > li"
@@ -340,13 +342,19 @@ def _contacts():
 CONTACTS = _contacts()
 PROGRAMME_MARK = (
     (
-        f'<a class="programme" href="{PROGRAMME_URL}" aria-label="NBS Invest programme at the World Bank">'
+        f'<a class="partner-mark programme" href="{PROGRAMME_URL}" aria-label="NBS Invest programme at the World Bank">'
         f'<img src="{LOGO}" alt="NBS Invest: Accelerating Nature Based Solutions in Least Developed Countries" '
         'width="700" height="439"></a>'
     )
     if SHOW_PROGRAMME_LOGO
     else ""
 )
+ALLIANCE_MARK = (
+    f'<a class="partner-mark alliance" href="{ALLIANCE_URL}" aria-label="Alliance of Bioversity International and CIAT">'
+    f'<img src="{ALLIANCE_LOGO}" alt="Alliance Bioversity &amp; CIAT" width="1549" height="1126"></a>'
+)
+ASSETS[ALLIANCE_LOGO] = (ROOT / ALLIANCE_LOGO).read_bytes()
+FILES["assets/alliance-logo.source.txt"] = (ROOT / "assets/alliance-logo.source.txt").read_text()
 ASSETS[LOGO] = _visual("assets/nbs-invest-logo.jpg")
 FILES["assets/nbs-invest-logo.source.txt"] = _visual(
     "assets/nbs-invest-logo.source.txt"
@@ -767,7 +775,6 @@ def page(
 <a class="skip" href="#main">Skip to content</a>
 {version_bar(filename)}
 <header class="mast"><div class="wrap">
-{PROGRAMME_MARK}
 <a class="brand project-brand" href="index.html"><img src="{PROJECT_LOGO}" alt="{PROJECT_LOGO_ALT}" width="2172" height="724"></a>
 <span class="ed">{version_line(dated=False)}</span>
 <a class="help-entry" href="help.html">Help / Contact / Team</a>
@@ -779,7 +786,9 @@ def page(
 <main id="main">{trail}<h1>{esc(title)}</h1>{intro}{onpage}
 {body}
 </main></div>
-<footer><div class="wrap"><p>{version_line()}. Scoping method: it flags where to look;
+<footer><div class="wrap">
+<div class="footer-partners" role="group" aria-label="Programme and organisation">{PROGRAMME_MARK}{ALLIANCE_MARK}</div>
+<p>{version_line()}. Scoping method: it flags where to look;
 local feasibility assessment validates. <a href="editions.html">Editions and checks</a> ·
 <a href="glossary.html">Glossary</a></p></div></footer>
 <script src="site.js" defer></script>

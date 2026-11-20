@@ -8,6 +8,7 @@ file, with the same date; the build fails otherwise. `README.md` says when each 
 
 ## [0.14.3] - 2026-11-20
 
+- Move NBS Invest from the header to the footer and add the official Alliance logo alongside it.
 - Keep one Review queue link in the header and remove its duplicate from the version bar.
 - Rename the page-feedback control to Comment on this page, keeping it distinct from evidence-review decisions.
 - Analytical values and the evidence-base edition are unchanged.
