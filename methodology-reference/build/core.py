@@ -272,6 +272,9 @@ def _review_tool():
     sub(r"across all v2 pages", "across all reference pages")
     sub(r"v2 review notes", "Methodology review notes")
     sub(r"v2 prototype", "methodology")
+    sub(re.escape('<span>Review</span>'), '<span>Comment on this page</span>')
+    sub(re.escape("on ? 'Review on' : 'Review'"), "on ? 'Finish commenting' : 'Comment on this page'")
+    sub(re.escape('Review mode on —'), 'Commenting enabled —')
     css = _visual("review-mode.css").decode()
     css = re.sub(
         r"\A/\*.*?\*/",
@@ -665,7 +668,6 @@ def version_bar(filename):
         '<svg viewBox="0 0 16 16" aria-hidden="true"><path class="ic-moon" d="M11.5 10.6A5 5 0 0 1 5.4 4.5a5 5 0 1 0 6.1 6.1z"/>'
         '<g class="ic-sun"><circle cx="8" cy="8" r="2.8"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1'
         'M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1"/></g></svg><span>Light theme</span></button>'
-        f'<a class="vb-live" href="{esc(target)}">Live dashboard</a>'
         f"<noscript>{' · '.join(links)}</noscript></div></div>"
     )
 

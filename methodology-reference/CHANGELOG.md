@@ -6,6 +6,12 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.14.3] - 2026-11-20
+
+- Keep one Review queue link in the header and remove its duplicate from the version bar.
+- Rename the page-feedback control to Comment on this page, keeping it distinct from evidence-review decisions.
+- Analytical values and the evidence-base edition are unchanged.
+
 ## [0.14.2] - 2026-11-20
 
 - Reuse the GitHub organisation's NBS Rural Scan logo and scoping tagline in the site header, with its original source recorded.

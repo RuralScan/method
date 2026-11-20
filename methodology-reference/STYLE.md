@@ -52,10 +52,9 @@ Keep version selection, theme and review controls consistent across the site. Th
 | 1 | **Version** label and menu | Three groups, as on the live dashboard: Live, Under review, Earlier drafts. Built from the site's edition catalogue. This reference appears once, selected. |
 | 2 | Note | An "Under review" marker and one short line saying what this version is. |
 | 3 | **Dark theme / Light theme** button | Same moon and sun icons and wording as the visual methodology. |
-| 4 | **Review** button | Switches on the review tool. Reads "Review on" while active. |
-| 5 | Live dashboard | Link back to the live evidence dashboard. |
+| 4 | **Comment on this page** button | Enables page feedback. Reads "Finish commenting" while active; does not open the evidence-review queue. |
 
-Below the bar, the header carries the programme logo, the brand, linked methodology and evidence-base version numbers, **Help / Contact / Team** and the Review queue button. The version links open their matching sections on `editions.html`, which also contains the full change history. No separate About versions or What changed link. The header wraps without overlap, and anchor offsets follow its measured height.
+Below the bar, the header carries the programme logo, the brand, linked methodology and evidence-base version numbers, **Help / Contact / Team** and one Review queue button. Do not repeat that queue link in the version bar. The version links open their matching sections on `editions.html`, which also contains the full change history. No separate About versions or What changed link. The header wraps without overlap, and anchor offsets follow its measured height.
 
 **The review tool is the visual methodology's own.** The build reads `review-mode.js` and `review-mode.css` from the visual methodology at the revision pinned as `VISUAL_REV` in `build/core.py` and changes only the storage keys, the page targets, the page names and the issue address. Do not write a second feedback tool and do not edit the generated files; change the substitutions. The build fails if a substitution no longer matches.
 

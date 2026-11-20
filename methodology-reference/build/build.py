@@ -193,6 +193,10 @@ def run_checks():
         for n, h in core.PAGES.items()
         if not all(p in h for p in parts) or (logo in h) != core.SHOW_PROGRAMME_LOGO
     ]
+    bad += [n for n, h in core.PAGES.items()
+            if len(re.findall(r'<a\b[^>]*>Review queue</a>', h.split('<main', 1)[0])) != 1]
+    if '<span>Comment on this page</span>' not in core.FILES['review-mode.js']:
+        bad.append('Page feedback needs a distinct label')
     named = (
         "mailto:" in core.PAGES["help.html"] and 'id="team"' in core.PAGES["help.html"]
     )
