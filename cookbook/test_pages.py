@@ -1,6 +1,10 @@
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
+import io
+from contextlib import redirect_stderr
+from unittest.mock import patch
+import build
 
 from build import check_pages
 from pages import pages
@@ -55,3 +59,14 @@ class CookbookPagesTest(unittest.TestCase):
             (root / "retired.md").touch()
             with self.assertRaisesRegex(ValueError, "inventory differs"):
                 check_pages(root, expected)
+
+
+class RetiredSynthesisTest(unittest.TestCase):
+    def test_missing_store_stops_before_loading_producer(self):
+        error = io.StringIO()
+        with patch("sys.argv", ["cookbook/build.py"]), patch.object(build, "evidence_tools") as fetch:
+            with redirect_stderr(error), self.assertRaises(SystemExit) as result:
+                build.main()
+        self.assertEqual(result.exception.code, 2)
+        self.assertIn("--store", error.getvalue())
+        fetch.assert_not_called()
