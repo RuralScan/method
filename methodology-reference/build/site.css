@@ -58,7 +58,7 @@
   --warn-bg: rgba(225, 29, 72, .08); --hold-bg: rgba(217, 119, 6, .10);
 }
 * { box-sizing: border-box; }
-html { scroll-padding-top: 8.5rem; }
+html { scroll-padding-top: calc(var(--mast-height, 7.5rem) + 1rem); }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--sans); }
 h1, h2, h3, h4, .brand, .stats b, .pmain b, .mtitle, .msteps b { font-family: var(--head); }
 a { color: var(--accent); text-underline-offset: 2px; }
@@ -86,7 +86,6 @@ small { color: var(--muted); }
 .vb-theme .ic-sun { display: none; }
 .vb-theme.is-dark .ic-sun { display: inline; } .vb-theme.is-dark .ic-moon { display: none; }
 .vb-review[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-.vb-changes { margin-left: auto; }
 .vb-hist, .vb-live { color: var(--accent); text-decoration: none; }
 .vb-hist:hover, .vb-live:hover { text-decoration: underline; }
 .programme { flex: none; display: block; line-height: 0; border-radius: 6px; overflow: hidden; background: #fff; }
@@ -103,12 +102,12 @@ small { color: var(--muted); }
 .queues a:hover { background: var(--soft); }
 @media print { .vbar, .review-entry, .help-entry { display: none; } }
 .mast { position: sticky; top: 0; z-index: 20; background: var(--panel); border-bottom: 1px solid var(--line); }
-.mast > .wrap { display: flex; flex-wrap: nowrap; align-items: center; gap: .3rem 1rem; padding-top: .8rem; padding-bottom: .7rem; }
+.mast > .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1rem; padding-top: .8rem; padding-bottom: .7rem; }
 .brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 22px; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
 .brand svg { width: 24px; height: 24px; flex: none; color: var(--accent-emerald); background: none; border: 0; border-radius: 0; }
 .sub { flex: none; color: var(--muted); font-size: .8rem; font-weight: 500; white-space: nowrap; }
 .brand { flex: none; white-space: nowrap; }
-.ed { flex: 1 1 14rem; min-width: 0; margin-left: auto; text-align: right; color: var(--muted); font-size: .8rem; }
+.ed { flex: 1 1 14rem; min-width: min-content; margin-left: auto; text-align: right; color: var(--muted); font-size: .8rem; }
 .vpart { white-space: nowrap; }
 .tabs { border-top: 1px solid var(--line); background: var(--bg); }
 .tabs .wrap { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: thin; padding-top: 8px; padding-bottom: 8px; }
@@ -121,7 +120,7 @@ small { color: var(--muted); }
 /* layout */
 .layout { display: block; padding-top: 1.25rem; padding-bottom: 3rem; }
 .layout.with-side { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 2rem; align-items: start; }
-.side { position: sticky; top: 8.4rem; max-height: calc(100vh - 9.2rem); overflow: auto; font-size: .9rem; }
+.side { position: sticky; top: calc(var(--mast-height, 7.5rem) + .9rem); max-height: calc(100vh - var(--mast-height, 7.5rem) - 1.7rem); overflow: auto; font-size: .9rem; }
 .side summary { font-weight: 650; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; font-size: .75rem; cursor: pointer; margin-bottom: .4rem; }
 .side ol { list-style: none; margin: 0; padding: 0; }
 .side a { display: block; padding: .3rem .5rem; border-left: 3px solid transparent; color: var(--ink); text-decoration: none; border-radius: 0 4px 4px 0; }
@@ -262,7 +261,6 @@ footer p { max-width: none; }
   .side details:not([open]) summary { margin: 0; }
   .ed { margin-left: 0; flex-basis: 100%; text-align: left; }
   .mast > .wrap { flex-wrap: wrap; }
-  .vb-changes { margin-left: 0; }
   .onpage ul, ul.cols, ul.sources { columns: 1; }
   dl.facts { grid-template-columns: minmax(0, 1fr); }
   cite.src { white-space: normal; }
@@ -270,7 +268,6 @@ footer p { max-width: none; }
   table.evidence td:nth-child(5) { min-width: 14rem; }
   dl.facts dt { border-bottom: 0; padding-bottom: 0; }
   main > h1 { font-size: 1.5rem; }
-  html { scroll-padding-top: 8rem; }
   thead th { position: static; }
 }
 @media print {

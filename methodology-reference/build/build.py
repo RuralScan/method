@@ -181,7 +181,8 @@ def run_checks():
     parts = (
         'id="dashboard-version"',
         'id="theme-toggle"',
-        'class="vb-changes vb-hist" href="changes.html"',
+        'href="editions.html#methodology"',
+        'href="editions.html#evidence-base"',
         'src="review-mode.js"',
         'href="help.html"',
     )
@@ -203,7 +204,7 @@ def run_checks():
         if w in tool
     ]
     check(
-        "Shared top bar on every page: version menu, theme switch, review tool, help and change history; programme logo as switched; contacts on the help page",
+        "Shared top bar on every page: version menu, theme switch, review tool, help and linked version history; programme logo as switched; contacts on the help page",
         not bad and not stale and len(core.ASSETS[core.LOGO]) > 1000,
         ", ".join(bad[:5] + stale),
     )
@@ -359,11 +360,11 @@ def run_checks():
     )
     for name, ok, detail in pages_data.CHECKS:
         check(name, ok, detail)
-    stamp = f"Methodology v{core.VERSION}</span>"
+    stamp = f"Methodology v{core.VERSION}</a>"
     unstamped = sorted(
         name
         for name, html in core.PAGES.items()
-        if stamp not in html or f"Evidence base {core.EVIDENCE_BASE}" not in html
+        if stamp not in html or f"Evidence base v{core.EVIDENCE_BASE}" not in html
     )
     check(
         "Every page states the methodology version and the evidence base",
@@ -375,7 +376,9 @@ def run_checks():
     published = json.loads(core.FILES["version.json"])
     check(
         "The change history opens with the version in the version file",
-        f'id="v{core.VERSION}"' in core.PAGES["changes.html"]
+        all(core.PAGES["editions.html"].count(f'id="v{version}"') == 1
+            for version, _, _ in versioning.changelog()[0])
+        and 'location.hash || "#changes"' in core.PAGES["changes.html"]
         and (published["version"], published["date"])
         == versioning.changelog()[0][0][:2],
         f"v{core.VERSION}, {core.VERSION_DATE}",
