@@ -41,10 +41,10 @@ RISK_ROLE = {
     "asset_threat": "Threat to the investment (Module 2b)",
 }
 METHOD_CHAPTER = {
-    "T4": ("ch-suitability-synthesis.html", "How suitability mappings are compiled"),
+    "T4": ("ch-suitability-synthesis.html", "Agent-led suitability synthesis"),
     "T3": ("ch-effect-synthesis.html", "How hazard responses are synthesised"),
     "T6": ("ch-effect-synthesis.html", "How scorecard effects are synthesised"),
-    "T6E": ("ch-cost-profiles.html", "How indicative economic profiles are compiled"),
+    "T6E": ("ch-cost-profiles.html", "Historical indicative economic profiles"),
 }
 # Signals the effect synthesis records on a row. Wording follows the synthesis method.
 SIGNALS = [

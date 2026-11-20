@@ -80,45 +80,27 @@ Stream A combines T2 hazard layers with the T3 asset-threat rows, for baseline a
 
 From T3, take the practice's rows with `risk_role ∈ {asset_threat, both}`. This set is the complement of the M2 mitigation set in role, though a hazard can appear in both. If the practice has no screened asset hazard, M2b returns an explicit "no screened asset hazards" result, not an empty raster. [src: methodology/modules/M2b_project_risk.md §6]
 
-### Step A2. Where the asset-threat rows come from
+### Step A2. Accepted asset-threat judgments
 
-Asset-threat rows are generated, not authored. The evidence role `asset_vulnerability` records a claim that a hazard damages or kills the NbS asset (drought seedling mortality, plantation fire, windthrow, flood scour); it feeds T3 asset-threat rows only. It is distinct from `nbs_effect`, which records the practice changing an outcome and feeds livelihood rows and T6. [src: methodology/T3_T6_generation_method.md §3.1] The synthesis is described in [[ch:effect-synthesis]]; the parts specific to asset rows are these:
-
-- **Sourcing.** WOCAT technology questionnaires (section 6.3, tolerance to climate extremes) provide a seed; literature from the single extraction pass on establishment mortality, windthrow, plantation fire and flood scour adds to it. Expert judgement is taken from literature and documented accounts; the earlier optional internal rating route is outside this scope. [src: method:data-model/evidence-classification.json] A WOCAT-only cell is honestly graded `evidence_level = limited`. [src: methodology/T3_T6_generation_method.md §9]
-- **WOCAT mapping.** WOCAT disaster-coping keys map to T3 hazard types through a lookup. Most rows of that mapping are recorded as pending ratification. [src: schema/lookups/wocat_hazard_map.csv]
-
-{{csv:schema/lookups/wocat_hazard_map.csv|cols=wocat_group,wocat_key,hazard_type}}
-
-- **Rank to class.** The reconciled damage rank (0 to +3) maps to `asset_sensitivity`: 0 `none`, 1 `low`, 2 `moderate`, 3 `high`, or `very_high` only when the rank is 3 and confidence is at least `high`. [src: methodology/T3_T6_generation_method.md §7.5] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §asset_sensitivity]
-- **Data-deficient cells stay blank.** A data-deficient asset cell has a blank `asset_sensitivity`, not `none`, because `none` would tell M2b the asset is undamaged when the truth is "not enough evidence". [src: src/nbs_ruralscan/recipe/cell_synthesis.py §synthesise_cell]
-- **Grey discount.** Grey-literature asset units carry a discount factor of 0.6. [src: methodology/T3_T6_generation_method.md §7.8]
-- **Severity.** Asset units carry `context.hazard_severity` like any hazard unit: the author's own characterisation of the event, `unspecified` by default. [src: AGENTS.md §What is locked]
+AI synthesises the `asset_vulnerability` evidence into proposed sensitivity,
+confidence, applicability and rationale. Source-provenanced evidence and an exact
+scientific acceptance are required. `nbs_effect` claims about livelihood protection
+do not establish asset resilience. The workflow is described in [[ch:effect-synthesis]].
 
 ### Step A3. Asset-threat-only hazards
 
-Three hazard types exist **only** as asset-threat rows: `sedimentation` (siltation of dams and tanks), `extreme_rainfall` (storm damage to structures) and `landslide`. They are threats to the investment, not livelihood hazards, so they have no T3 livelihood cell and no crosswalk route to T6, and they are excluded from the hazard-completeness rule that governs `asset_risk_weight`. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §ASSET_ONLY_HAZARDS] [src: methodology/effect_evidence_followups.md §Decisions taken] A livelihood landslide cell with its own M2 layer was considered and parked. [src: methodology/effect_evidence_followups.md §8b B applied]
+`sedimentation`, `extreme_rainfall` and `landslide` remain descriptive asset threats
+where no corresponding T2 layer exists. Do not manufacture a mapped surface from a
+textual sensitivity judgment. These hazards do not enter the six-hazard weighted set.
 
-These three types are in the T3 hazard enum but not in the T2 hazard enum (`drought`, `flood`, `heat_stress`, `fire`, `wind_cyclone`, `waterlogging`, `frost`). [src: schema/structure/columns.json §tables.T3] [src: schema/structure/columns.json §tables.T2] No T2 hazard layer exists to map them, so at present they are descriptive rows: an application can report them but cannot compute a Stream A surface for them without first adding a hazard layer.
+### Step A4. Use accepted weights without filling gaps
 
-### Step A4. Hazard weights and the equal-weight fallback
-
-`asset_risk_weight` is a derived normalisation, never extracted:
-
-```formula
-w_h = r_h / Σ_{k ∈ H_core} r_k          if every hazard in H_core has an assessed global asset row
-w_h = 1 / |H_core|                       if every r_k = 0
-w_h = blank  →  M2b uses equal weights   otherwise
-```
-
-- `w_h`: `asset_risk_weight` for hazard `h`.
-- `r_h`: rank of the global, NbS-level asset row's `asset_sensitivity`: `none` 0, `low` 1, `moderate` 2, `high` 3, `very_high` 3.
-- `H_core`: the core T3 hazards `drought`, `flood`, `heat_stress`, `fire`, `wind_cyclone`, `waterlogging`. Asset-threat-only hazards are excluded; a row with blank sensitivity counts as missing.
-
-[src: src/nbs_ruralscan/recipe/cell_synthesis.py §asset_risk_weights] [src: methodology/T3_T6_generation_method.md §7.5]
-
-When the weights are blank, the practice is reported as `weights_incomplete` and M2b falls back to equal weights. [src: methodology/T3_T6_generation_method.md §7.5] Equal weighting is the documented default but remains an open question. [src: methodology/T3_T6_generation_method.md §16] The same fallback applies at runtime when the global row is `out_of_context` for the AOI: the consumer receives `no_applicable_evidence` instead of a class, M2b uses its equal-weight default, and the substitution is recorded in the run configuration. [src: methodology/T3_T6_generation_method.md §5.5]
-
-**Seven or six hazards.** The field reference and the generation method say weights are emitted only when the practice has an asset-threat row "for all 7 hazards". [src: schema/spec.md §T3] [src: methodology/T3_T6_generation_method.md §7.5] Frost has since been removed from T3 for every practice, and the implemented rule checks the six core hazards. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §T3_HAZARDS] The code is the operative rule.
+AI may propose asset weights with an explicit scientific rationale. Code checks
+that the accepted set covers drought, flood, heat stress, fire, wind/cyclone and
+waterlogging, and that weights sum to one. It never derives weights from sensitivity
+ranks. Missing, stale, held or out-of-context weights mean no accepted weighted
+assessment; there is no automatic equal-weight substitution. Historical outputs
+retain their original provenance and are not defaults for the accepted workflow.
 
 ### Step A5. Read the vulnerability window with the establishment period
 

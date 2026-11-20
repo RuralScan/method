@@ -14,6 +14,14 @@ sources:
   - AGENTS.md
 ---
 
+## Historical edition only
+
+The shared automatic effect/economic generator is retired. Existing T6E rows are
+frozen historical outputs. The numerical procedure below explains that immutable
+edition; it is not a supported command for producing new economic judgments.
+The new AI scientific acceptance contract covers T3/T6 only. A new T6E production
+workflow needs its own scientific contract and accepted outputs. See [[ch:effect-synthesis]].
+
 ## What a cost profile is for
 
 A task team scoping a nature-based solution needs to know whether a practice is cheap or expensive to establish and maintain where it would be invested, and whether it tends to raise income or cut production costs. The cost profile answers that at scoping grade: it gives an **ordinal cost class** ("small, moderate or large given the context") with a confidence expressed in IPCC calibrated language (not a statistically calibrated probability) and, only when strict gates are met, an indicative value range with its sources. [src: methodology/T3_T6_developer_handover.md §1] [src: schema/spec.md §T6]
@@ -22,7 +30,7 @@ It does not estimate net present value, rates of return or benefit-cost ratios, 
 
 ## Where cost rows live
 
-Cost and economic-indicator rows (`variable_type = economic_indicator`) are written to [[table:T6E]], the economic profile, not to the scorecard table [[table:T6]]. They share T6's columns and its generator, because they are produced by the same cell synthesis (see [[ch:effect-synthesis]]), but they feed the economic-profile panel, not the scorecard chips. [src: schema/spec.md §T6] [src: schema/structure/columns.json]
+Cost and economic-indicator rows (`variable_type = economic_indicator`) are written to [[table:T6E]], the economic profile, not to the scorecard table [[table:T6]]. They share T6's columns and historically shared its now-retired generator (see [[ch:effect-synthesis]]), but they feed the economic-profile panel, not the scorecard chips. [src: schema/spec.md §T6] [src: schema/structure/columns.json]
 
 A cost has no direction of benefit, so `effect_direction` is left blank on economic rows; the manifest makes it conditional, required only for non-economic rows. `economic_indicator_type` and, when gated in, `economic_value_range` carry the economic content. [src: schema/spec.md §T6] [src: src/nbs_ruralscan/recipe/cell_synthesis.py §synthesise_cell]
 
@@ -88,7 +96,7 @@ Two choices make the class honest about where it comes from. First, the income-b
 
 When a row states no class, the statement says why, so a blank is never read as "cheap": there is no qualifying numeric figure, no size band for its unit, or no figure in the target income band. The legacy reason helper also has a fallback saying "no two sources give a figure in the same unit"; that wording must not be read as a two-source requirement for the ordinal class, which permits one source. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §_no_cost_class_reason]
 
-Confidence on economic rows follows the same IPCC two-axis matrix as every generated row. [src: schema/spec.md §T6]
+Confidence on these historical economic rows used the former two-axis matrix; new T3/T6 confidence is authored and accepted. [src: schema/spec.md §T6]
 
 ## Gates on publishing a value range
 
@@ -127,7 +135,7 @@ For the target establishment estimate, these four publications leave only one id
 
 A project total, a per-hectare establishment cost and an annual maintenance cost are different quantities. Retain cost scope, period, denominator, country and price year before assessing a class or range. Several line items from one budget, repeated estimates for the same project or a report repeating a study do not establish independent replication. A review and the primary costs it summarises can overlap even when their source identifiers differ. The common origin audit is in [[ch:compiling-evidence]].
 
-The numerical gates above describe the current compiler, not a guarantee that every eligible pair is economically interchangeable. In particular, a meta-analysis' stated study count does not resolve overlap with other included sources. A new pooling proposal must document that overlap and any differences in cost scope. If comparability is unresolved, retain the source figures and the limitation rather than present the observed range as a local budget or confidence interval. This guidance adds no currency conversion, inflation correction or new statistical estimator.
+The numerical gates above describe the historical generator, not a guarantee that every eligible pair is economically interchangeable. In particular, a meta-analysis' stated study count does not resolve overlap with other included sources. A new pooling proposal must document that overlap and any differences in cost scope. If comparability is unresolved, retain the source figures and the limitation rather than present the observed range as a local budget or confidence interval. This guidance adds no currency conversion, inflation correction or new statistical estimator.
 
 ## Why currencies and price years are not normalised
 

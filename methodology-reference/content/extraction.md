@@ -212,7 +212,7 @@ The meaning of positive and negative for every effect variable, and whether a hi
 
 From ruleset v1.6.17, every unit with a direction also carries `direction_cue`, the shortest verbatim phrase from the quote that carries the movement. The self-check is to write "`<variable>` went up or down according to `<cue>`" and map up to positive and down to negative. Thinking "this is good, so positive" is the sign-frame defect. [src: .agents/skills/extraction_contracts/DIRECTION_ADDENDUM.md §New required key: `relationship.direction_cue`] [src: .agents/skills/extraction_contracts/DIRECTION_ADDENDUM.md §Self-check before emitting (say it in words)] The conversion to a benefit frame happens later, through the crosswalk's polarity. [src: schema/spec.md §XW]
 
-`framing = loss` marks a source that measured what happens when vegetation or the practice is lost or absent. The direction is recorded as measured and the engine flips it into the intervention-present frame; the extractor never pre-flips. [src: .agents/skills/extraction_contracts/T3_T6_extraction_contract.md §2.2]
+`framing = loss` marks a source that measured what happens when vegetation or the practice is lost or absent. The direction is recorded as measured and the AI must explain whether and how it supports an intervention-present inference; neither extraction nor validation automatically flips it. [src: .agents/skills/extraction_contracts/T3_T6_extraction_contract.md §2.2]
 
 Two related traps: a weakening service (sediment retention declining with age) is encoded on the service variable with the decay described, never as the opposite harm; and a spread of estimates across implementers or sites is dispersion, coded `direction = none`, not a sign. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Common extraction defects]
 
@@ -220,7 +220,7 @@ Two related traps: a weakening service (sediment retention declining with age) i
 
 ### Contrasts
 
-Some sources report a with-and-without (or after-and-before) pair. These use `metric = contrast` with `value_with` and `value_without`, both verbatim; the strength class is derived from their ratio against the response-ratio bands, and a zero baseline yields `strong`. An all-or-nothing statement with no number ("only fields with pits produced a harvest") is `complete_contrast`, strong by definition. Spelled-out multipliers ("two to three times", "doubled") count as numbers in the quote, and stated multipliers use a fold-change unit centred on 1. [src: methodology/RULESET_VERSIONS.md §v1.6.2]
+Some sources report a with-and-without (or after-and-before) pair. These use `metric = contrast` with `value_with` and `value_without`, both verbatim; the AI assesses the contrast and its comparator during synthesis. A zero baseline does not automatically imply a strong effect. An all-or-nothing statement with no number ("only fields with pits produced a harvest") is recorded as `complete_contrast`; its meaning and strength require scientific assessment. Spelled-out multipliers ("two to three times", "doubled") count as numbers in the quote, and stated multipliers use a fold-change unit centred on 1. [src: methodology/RULESET_VERSIONS.md §v1.6.2]
 
 ### Hazard severity and magnitude
 
@@ -236,7 +236,7 @@ Since ruleset v1.6.7, three context fields stop effects from being over-credited
 - `normal_year_reference` (`present` or `absent`): preserve whether a hazard-year gain can be distinguished from an ordinary production gain.
 - `beneficiary` (`farm_household`, `community` or `society`): record who receives the effect; societal avoided damage is not automatically household income.
 
-An effect estimated against an unmeasured but physically implied no-practice case is tagged `counterfactual = implied`. The eligibility consequences and numerical discounts belong in [[ch:effect-synthesis]], where they are applied together. [src: methodology/RULESET_VERSIONS.md §v1.9.7]
+An effect estimated against an unmeasured but physically implied no-practice case is tagged `counterfactual = implied`. The AI assesses its limitations and relevance under [[ch:effect-synthesis]]; validation applies no numerical discount. [src: methodology/RULESET_VERSIONS.md §v1.9.7]
 
 ### Comparators
 
@@ -262,7 +262,7 @@ Project appraisal documents, proposals and results frameworks state what a proje
 
 A tool's hard-coded thresholds, default weights, criteria and exclusion rules are evidence claims, extracted from its source files at a pinned commit with `file_line` locators. The tool gets a Source Register row and a TOOL metadata row, and its evidence units are linked back. [src: AGENTS.md §Don't] [src: schema/spec.md §TOOL]
 
-The legacy intake convention tags an unsupported hard-coded default as `claim_basis = expert_assertion`. Under the basis/format extension, inspect its origin: code may encode a measured, modelled, cited or judgement-based value, or leave the basis unresolved. `extraction_format = code` alone establishes none of those bases. New T4 proposals must appraise that origin rather than apply an automatic discount merely because the value was read from code. [src: method:data-model/evidence-classification.json] The spec's TOOL section also names `tool_default` as an alternative basis value, which is not in the Evidence Register's claim-basis list; the legacy default encoding uses `expert_assertion`. [src: AGENTS.md §Don't] [src: schema/spec.md §TOOL] [src: schema/spec.md §EV] Engines that compute weights at run time and hard-code nothing yield no extractable claim. Species-envelope scripts do not calibrate general practice suitability; their relevance to species selection remains separate. [src: AGENTS.md §Don't]
+The legacy intake convention tags an unsupported hard-coded default as `claim_basis = expert_assertion`. Under the basis/format extension, inspect its origin: code may encode a measured, modelled, cited or judgement-based value, or leave the basis unresolved. `extraction_format = code` alone establishes none of those bases. New T3/T6 and T4 proposals must appraise that origin rather than apply an automatic discount merely because the value was read from code. [src: method:data-model/evidence-classification.json] The spec's TOOL section also names `tool_default` as an alternative basis value, which is not in the Evidence Register's claim-basis list; the legacy default encoding uses `expert_assertion`. [src: AGENTS.md §Don't] [src: schema/spec.md §TOOL] [src: schema/spec.md §EV] Engines that compute weights at run time and hard-code nothing yield no extractable claim. Species-envelope scripts do not calibrate general practice suitability; their relevance to species selection remains separate. [src: AGENTS.md §Don't]
 
 A tool that uses rainfall or pH to select species is not calibrating a practice-establishment curve. That method use is retained separately, scoped to species selection, and counted apart from practice-level agreement. [src: .agents/skills/source-command-extract-evidence/references/defects.md §Main-paper extraction accounting (v1.6.15)]
 

@@ -25,3 +25,16 @@ class EvidenceClassificationSchema(unittest.TestCase):
             self.assertEqual(contract['legacy_mapping'][old], {'knowledge_basis': 'unknown', 'extraction_format': fmt})
         self.assertNotIn('table', contract['fields']['knowledge_basis']['values'])
         self.assertNotIn('expert_assertion', contract['fields']['extraction_format']['values'])
+
+
+class AgentEffectsSchema(unittest.TestCase):
+    def test_contract_vocabulary_and_snapshot_match(self):
+        contract = json.loads((ROOT / 'data-model/agent-effects-contract.json').read_text())
+        manifest = json.loads((ROOT / 'data-model/structure/columns.json').read_text())
+        snapshot = json.loads((ROOT / 'data-model/definition-snapshot.json').read_text())
+        for table, spec in contract['tables'].items():
+            self.assertEqual(spec['enum_values'], manifest['tables'][table]['enum_values'])
+            self.assertEqual(spec['required'], manifest['tables'][table]['required'])
+            self.assertIn('conflicting_evidence', spec['enum_values']['mitigation_potential' if table == 'T3' else 'effect_direction'])
+        path = 'data-model/agent-effects-contract.json'
+        self.assertEqual(hashlib.sha256((ROOT / path).read_bytes()).hexdigest(), snapshot['sha256'][path])

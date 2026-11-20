@@ -102,7 +102,7 @@ Archive the evidence and policy revisions, task or prompt, skill version, actual
 
 An agent can omit relevant evidence, misinterpret source classes or produce an unsupported synthesis despite correct citations. Complete candidate accounting, source review, boundary examples and scientific approval remain essential. Numerical validation cannot compensate for a weak ecological argument, and more dependent sources cannot resolve an incompatibility.
 
-This chapter specifies the adopted workflow and review requirements. It does not certify a completed production agent, alter historical T4 rows, or imply that T3/T6/T6E have moved to the same route. Suitability remains scoping-grade; local feasibility must still establish conditions, design and implementation requirements.
+This chapter specifies the adopted workflow and review requirements. It does not certify a completed production agent, alter historical T4 rows, or recalculate historical effects. T3/T6 now follow their own AI-led proposal/acceptance workflow in [[ch:effect-synthesis]]; T6E remains historical. Suitability remains scoping-grade; local feasibility must still establish conditions, design and implementation requirements.
 
 ## Where this is configured
 
