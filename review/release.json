@@ -1,11 +1,11 @@
 {
-  "version": "1.1.6",
-  "date": "2026-11-19",
+  "version": "1.2.0",
+  "date": "2026-11-20",
   "notes": [
-    "Restore highlighted PDF regions on finding cards when text excerpts are present; retain provenance checks, full-size links and numbered captions."
+    "Simplify review submission to a prefilled GitHub issue, with a downloaded CSV for larger batches, automatic receipt lookup, and preserved local decisions."
   ],
   "files": {
-    "batch-receipt.js": "d77479a9c0f3b3ca0d8804b12e60397c4b9800611a29f33c48fc6658df49b6b0",
+    "batch-receipt.js": "f1949162b51f00b7feb737181159af987b442a0b2c5e12fe116fe7750572c0ec",
     "browser-backup.html": "4bab4940112375fe5eadea79df91190a99f8cdd96618573e8f864a20eb56311b",
     "browser-backup.js": "653736a3b3600f131957afcf59603d6ae1de0ba818d9173a57813938b9e61054",
     "gap-dialog.html": "53403dc8a3cecfc5c1850972c2be758e66da598ae1f22ea331ffb992d9154ffb",
@@ -16,15 +16,23 @@
     "priority-status.js": "a751e66659eee2d5af59ebcc6942d7c1790daf34ffa7732b5258d0156a17dd3c",
     "priority.js": "3c933ec256197c6ebc889fdbfe0583fc2248debcce97c3453feaebb487d70c61",
     "source-previews.js": "2217d058366e9cc901cdd86bac68fef6b9ca4b0d353a58c7f721d566827fe429",
-    "submission-dialogs.html": "01cd8ab74260c840596871ef2c3b3891760949e651285ba2ecb4251d29e05b29",
-    "submission.js": "9f8e0faba33bd8769105905ff764021494688c27bfbd89272528c34ca7362dc3",
+    "submission-dialogs.html": "45bbf523c60deafaad9c2f4eaa4f1d8f7b347abd484701a314d483ed98122476",
+    "submission.js": "1a8446a43465b7e436a2c149110f42c50ee1ddde0536347dc631ab118981130a",
     "vote-drafts.js": "d7b7385834eaa2f177ec22abcf1e22502244ba5bdd626ace079c6038e267d927",
-    "workspace.css": "aecff0296513e93db4118730bac5c0fa03115d38ac03534bf1d67cee061186ff",
-    "workspace.html": "f4300ed9d793a1bb1c0291a3a738590c7c525c8bda66f5ee8166166426419308",
+    "workspace.css": "ebc35f16e696f8188ffb1708e2000a63cf13206d810ccdf688204c1a366bf135",
+    "workspace.html": "626dc59da1fb87557f3b3ba7df27aa57f76881b45fdec186d4ca78e1eb145747",
     "workspace.js": "7a14fcf0e64b92f798ab0f88b8ea654f6a710de396cdefebc6ec86a5fee4a11d"
   },
-  "content_sha256": "c330a9b36bca6c365dee9e302fac0a36d76b6d309788665608715ce655ed0348",
+  "content_sha256": "5370cc1afbe10cf8cb8f2b463b464cfe3253682288cae96ac37e83470dfc38f3",
   "history": [
+    {
+      "version": "1.1.6",
+      "date": "2026-11-19",
+      "notes": [
+        "Restore highlighted PDF regions on finding cards when text excerpts are present; retain provenance checks, full-size links and numbered captions."
+      ],
+      "content_sha256": "c330a9b36bca6c365dee9e302fac0a36d76b6d309788665608715ce655ed0348"
+    },
     {
       "version": "1.1.5",
       "date": "2026-11-19",

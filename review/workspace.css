@@ -236,3 +236,15 @@
 .source-preview figcaption { font-size:12px; color:var(--text-secondary); margin-top:6px; }
 
 .source-preview > div > small { display:block; margin-top:8px; }
+
+/* A compact handoff: decisions, one primary action, then receipt status. */
+#review-batch { width:min(52rem,90vw); max-width:52rem; max-height:85vh; overflow:auto; font-size:1rem; }
+.review-submit-card { border:1px solid var(--border-color); border-radius:8px; padding:1rem; margin:1rem 0; }
+.review-submit-card h3 { margin:0; }
+.review-submit-card p { margin:.6rem 0; }
+.review-submit-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin:1rem 0; }
+#review-batch .review-submit-primary { display:inline-block; padding:.7rem 1rem; border-radius:6px; background:var(--accent-sky); color:#07111e; text-decoration:none; font-weight:700; }
+#review-batch button { padding:.6rem .8rem; font:inherit; cursor:pointer; }
+#review-batch details { font-size:.875rem; }
+#review-batch li { overflow-wrap:anywhere; margin:.5rem 0; }
+.review-submission-history { border-top:1px solid var(--border-color); padding-top:1rem; }

@@ -8,8 +8,9 @@
     <p><button type="button" data-cancel>Cancel</button> <button type="submit" value="batch">Save to batch</button> <button type="submit" value="single">Submit this finding only</button></p>
   </form>
 </dialog>
-<dialog id="review-batch" aria-labelledby="review-batch-title"><h2 id="review-batch-title">Submit all my decisions</h2>
-  <p id="review-batch-owner"></p><div id="review-batch-groups"></div>
+<dialog id="review-batch" aria-labelledby="review-batch-title"><h2 id="review-batch-title">Submit my decisions</h2>
+  <p id="review-batch-owner"></p><p>Submit with the same GitHub account. Your decisions and notes will be public.</p><div id="review-batch-groups"></div>
   <p role="status" id="review-batch-message"></p>
-  <button type="button" data-close>Close</button>
+  <div class="review-submit-actions"><button type="button" id="review-check-submissions">Check submissions</button><button type="button" data-close>Close</button></div>
+  <details class="review-submission-history"><summary>My submissions</summary><div id="review-batch-history"></div></details>
 </dialog>

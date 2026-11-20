@@ -13,7 +13,7 @@
           <li><b>Read the claim and inspect its source.</b> Check the page or table, units, context, practice and intended use. Open the source region or full paper when the excerpt lacks context. Use Open source to read the paper in SharePoint or on its original website. No local-folder connection is needed. SharePoint may ask you to sign in; contact the library maintainer if access is missing. Local PDF viewing inside the dashboard is optional.</li>
           <li><b>Keep</b> when the extraction is faithful and relevant. <b>Drop</b> when it is unsuitable or incorrect: select a coded reason and explain it. Drop quarantines the record; it does not erase it. <b>Query</b> when clarification is needed: state what needs checking. A query is not approval.</li>
           <li><b>Review answers on the evidence card.</b> Choose <b>Answers ready</b> to find returned answers, including findings you previously queried. Read the answer and source, then Keep, Drop or Query. The sidebar <b>Follow-up</b> filter also exposes waiting questions, conflicts and requested rechecks. There is no separate answer-approval step; deciding one record does not approve the other records sharing its answer.</li>
-          <li><b>Choose Keep, Drop or Query on the card.</b> Your decision is saved on this device and the queue moves to the next finding. Choose <b>Submit all my decisions</b>, then create the GitHub issue. Its number is your receipt. Find it through <b>My reviewed</b>.</li>
+          <li><b>Choose Keep, Drop or Query on the card.</b> Your decision is saved on this device and the queue moves to the next finding. Choose <b>Submit my decisions</b>, then create the GitHub issue. Its number is your receipt. Find it through <b>My reviewed</b>.</li>
         </ol>
         <h4>If something needs attention</h4>
         <ul><li><b>Missing sources:</b> hydrate the corpus and use Recheck. A source-cache presence count is not a completed quote check; submission runs the provenance guardrail.</li><li><b>Missing extraction:</b> use Report missing evidence under More actions and identify the source and location.</li><li><b>Submission failed:</b> decisions remain saved locally. Read the reported error before retrying; do not start a second submission while one is still running.</li><li><b>Interface feedback:</b> use Feedback in the dashboard header. These notes stay in this browser at this address until exported; they do not Keep, Drop, Query or submit an evidence decision.</li></ul>
@@ -27,7 +27,7 @@
       <div id="readonly-banner" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:9px 16px; background:rgba(245,158,11,0.12); border-bottom:1px solid rgba(245,158,11,0.35); color:var(--text-primary); font-size:12.5px;">
         <span style="font-size:15px;">&#9888;&#65039;</span>
         <span>Read the finding and source, then <b>Keep, Drop or Query</b>. Decisions stay on this device until you submit your batch. <a href="https://github.com/RuralScan/evidence/tree/main/workflows/submissions">Submit a CSV or extraction proposal</a>.</span>
-        <button id="review-submit-all" type="button">Submit all my decisions (<span id="review-batch-count">0</span>)</button><span id="review-batch-status" role="status"></span>
+        <button id="review-submit-all" type="button">Submit my decisions (<span id="review-batch-count">0</span>)</button><span id="review-batch-status" role="status"></span>
         <button class="shell-link" type="button" onclick="DashboardShell.openReviewHelp()">How to review</button>
       </div>
     <div class="review-device-tools">
@@ -61,7 +61,7 @@
                 <span style="font-size:11px; padding:5px 10px; border-radius:6px; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.25); color:var(--text-secondary);"><b style="color:#f59e0b;">UNSUPPORTED</b> — AI-flagged: a value the quote never contained (stripped)</span>
               </div>
               <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.6;">
-                <b style="color:var(--text-primary);">To review:</b> set your handle &#8594; compare the finding with its source &#8594; choose <b>Keep, Drop or Query</b> on the card &#8594; <b>Submit all my decisions</b> sends your batch to RuralScan/evidence for processing. A saved draft does not change the register.
+                <b style="color:var(--text-primary);">To review:</b> set your handle &#8594; compare the finding with its source &#8594; choose <b>Keep, Drop or Query</b> on the card &#8594; <b>Submit my decisions</b> sends your batch to RuralScan/evidence for processing. A saved draft does not change the register.
                 <span style="color:var(--text-muted);">Working offline? Download your votes as CSV and submit it to RuralScan/evidence using the submission desk.</span>
                 <br><span style="color:var(--text-muted);">Per card: <b style="color:var(--accent-emerald);">ok</b> = keep · <b style="color:var(--accent-rose);">drop</b> = remove (needs a coded reason) · <b style="color:var(--accent-amber);">&#9873; query</b> = keep tentatively but raise an open question (write it in the note).</span>
               </div>
@@ -116,7 +116,7 @@
             <div id="vf-actionbar" style="position:sticky; bottom:0; z-index:19; background:var(--bg-primary); border-bottom:1px solid var(--border-color); padding:6px 0 7px; display:flex; align-items:center; gap:9px; flex-wrap:wrap;">
               <span id="vf-pending-count" style="font-size:11.5px; font-weight:700;" title="Your saved decisions across all queues. Submit your batch to RuralScan/evidence when ready."></span>
               <span style="margin-left:auto; display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap;">
-                <button class="pill-btn review-submit-bottom" type="button" onclick="ReviewBatch.open()">Submit all my decisions (<span data-review-batch-count>0</span>)</button>
+                <button class="pill-btn review-submit-bottom" type="button" onclick="ReviewBatch.open()">Submit my decisions (<span data-review-batch-count>0</span>)</button>
                 <button id="vf-apply-btn" onclick="applyVfDecisions()" title="Applies your decisions to the registers AND submits them to main (opens a PR subject to checks and required approvals). One click." style="display:none; font-size:11px; font-weight:600; padding:6px 14px; border-radius:4px; background:var(--accent-emerald); color:#fff; border:none; cursor:pointer;">Submit reviews</button>
                 <button id="vf-download-btn" onclick="downloadVfDecisions()" style="font-size:11px; font-weight:600; padding:6px 14px; border-radius:4px; background:var(--accent-sky); color:#fff; border:none; cursor:pointer;">&#8595; Download CSV</button>
                 <details><summary style="cursor:pointer">More actions</summary>
