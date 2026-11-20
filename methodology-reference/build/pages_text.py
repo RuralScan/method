@@ -832,7 +832,7 @@ def build():
         f"{link('evidence-base.html', 'Get and use the data')} lists every table with its address and checksum, a "
         "field guide and tested queries.</dd></div></dl>"
         '<h2 id="feedback">Giving feedback</h2>'
-        "<p>Choose <strong>Review</strong> in the bar at the top of any page. You can pin a comment to a table, "
+        "<p>Choose <strong>Comment on this page</strong> in the bar at the top of any page. You can pin a comment to a table, "
         "figure or paragraph, highlight text, or capture part of the screen, and give each note a type and a "
         "severity. The same review tool is used on the visual methodology and on the live evidence dashboard.</p><ul>"
         "<li>Notes stay in your browser. Nothing is sent until you choose to share.</li>"
@@ -1340,7 +1340,7 @@ def build():
     )
     body += (
         '<h2 id="feedback">Feedback and review history</h2>'
-        "<p>Choose <strong>Review</strong> in the top bar to leave notes on this methodology. "
+        "<p>Choose <strong>Comment on this page</strong> in the top bar to leave notes on this methodology. "
         f"{link('help.html#feedback', 'How to share feedback')}. Changes made in response appear in the history above.</p>"
         f"<p>{link(live('dashboard-history'), 'Dashboard build history and feedback')} records changes to the review workspace. "
         f"{link('review.html', 'Evidence review records')} describe finding-level decisions; these are distinct from methodology edits.</p>"

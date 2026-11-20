@@ -29,7 +29,7 @@ The methodology looks like the live evidence dashboard. That is the house style.
 | Tables, buttons, tab pills | 8px radius (`--radius-md`) |
 | Section tabs | Pills. The active tab has the card background, emerald text, a border and the card shadow. |
 | Table headers | Outfit 12px, upper case, 0.03em letter-spacing |
-| Brand | The unchanged NBS Rural Scan logo and tagline from the GitHub organisation profile, linked to the methodology home. It sits on its original white background in both themes. NBS Invest remains a separate programme mark linked to its programme page. |
+| Brand | The unchanged NBS Rural Scan logo and tagline from the GitHub organisation profile, linked to the methodology home. It sits on its original white background in both themes. NBS Invest and the Alliance of Bioversity International and CIAT appear as linked partner marks in the footer. |
 | Top bar | Shared with the visual methodology. See the next section. |
 | Page width | 1400px |
 
@@ -39,7 +39,7 @@ This was decided, not left open:
 
 - **The visual methodology keeps its own look** (light, editorial). It is a mock-up for discussion and is not restyled.
 - **The live dashboard and this reference share the dashboard's look** (dark by default), as set out above.
-- **All three share the frame:** the top bar, the review tool, the programme logo and the help link.
+- **All three share the frame:** the top bar, the review tool and the help link. Programme and organisation marks belong in the footer of the live dashboard and reference.
 
 Do not restyle the reference toward the visual methodology, or the reverse, to "finish" the alignment. Only the frame is shared.
 
@@ -52,16 +52,17 @@ Keep version selection, theme and review controls consistent across the site. Th
 | 1 | **Version** label and menu | Three groups, as on the live dashboard: Live, Under review, Earlier drafts. Built from the site's edition catalogue. This reference appears once, selected. |
 | 2 | Note | An "Under review" marker and one short line saying what this version is. |
 | 3 | **Dark theme / Light theme** button | Same moon and sun icons and wording as the visual methodology. |
-| 4 | **Review** button | Switches on the review tool. Reads "Review on" while active. |
-| 5 | Live dashboard | Link back to the live evidence dashboard. |
+| 4 | **Comment on this page** button | Enables page feedback. Reads "Finish commenting" while active; does not open the evidence-review queue. |
 
-Below the bar, the header carries the programme logo, the brand, linked methodology and evidence-base version numbers, **Help / Contact / Team** and the Review queue button. The version links open their matching sections on `editions.html`, which also contains the full change history. No separate About versions or What changed link. The header wraps without overlap, and anchor offsets follow its measured height.
+Below the bar, the header carries the Rural Scan brand, linked methodology and evidence-base version numbers, **Help / Contact / Team** and one Review queue button. Do not repeat that queue link in the version bar. The version links open their matching sections on `editions.html`, which also contains the full change history. No separate About versions or What changed link. The header wraps without overlap, and anchor offsets follow its measured height.
 
 **The review tool is the visual methodology's own.** The build reads `review-mode.js` and `review-mode.css` from the visual methodology at the revision pinned as `VISUAL_REV` in `build/core.py` and changes only the storage keys, the page targets, the page names and the issue address. Do not write a second feedback tool and do not edit the generated files; change the substitutions. The build fails if a substitution no longer matches.
 
 **The NBS Rural Scan project logo** is stored under `assets/`, with its original GitHub revision and checksum in `nbs-rural-scan-tagline.source.txt`. Reuse the exact asset in the published review workspace; do not redraw, crop or recolour it.
 
 **The NBS Invest programme logo is read from the visual methodology revision,** with its source note written beside it (`assets/nbs-invest-logo.source.txt`). It is shown unmodified, to identify the programme context. It is the NBS Invest programme mark, not a World Bank corporate logo. Its use on this site awaits confirmation from the programme; `SHOW_PROGRAMME_LOGO` in `build/core.py` removes it from every page if needed.
+
+**Footer partners.** Show NBS Invest and the Alliance logo together, each linked to its official website, on white backgrounds in both themes. Keep their original proportions, allow the row to wrap, and do not repeat either mark in the header. The unchanged Alliance colour PNG comes from its official logo kit; `assets/alliance-logo.source.txt` records the source and checksum.
 
 **Help page.** `help.html` covers finding your way, giving feedback, contact, team and the programme. The contact, team and programme sections are read from the visual methodology's help page at `VISUAL_REV`, so the names have one home and this repository carries none. It is the only page that names people.
 

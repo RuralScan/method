@@ -193,6 +193,16 @@ def run_checks():
         for n, h in core.PAGES.items()
         if not all(p in h for p in parts) or (logo in h) != core.SHOW_PROGRAMME_LOGO
     ]
+    bad += [n for n, h in core.PAGES.items()
+            if len(re.findall(r'<a\b[^>]*>Review queue</a>', h.split('<main', 1)[0])) != 1]
+    if '<span>Comment on this page</span>' not in core.FILES['review-mode.js']:
+        bad.append('Page feedback needs a distinct label')
+    for n, h in core.PAGES.items():
+        header, footer = h.split("<main", 1)[0], h.split("<footer>", 1)[1]
+        if core.LOGO in header or core.ALLIANCE_LOGO in header or core.ALLIANCE_LOGO not in footer:
+            bad.append(n)
+        if (logo in footer) != core.SHOW_PROGRAMME_LOGO:
+            bad.append(n)
     named = (
         "mailto:" in core.PAGES["help.html"] and 'id="team"' in core.PAGES["help.html"]
     )
@@ -205,7 +215,7 @@ def run_checks():
         if w in tool
     ]
     check(
-        "Shared top bar on every page: version menu, theme switch, review tool, help and linked version history; programme logo as switched; contacts on the help page",
+        "Shared top bar on every page: version menu, theme switch, review tool, help and linked version history; partner logos in the footer; contacts on the help page",
         not bad and not stale and len(core.ASSETS[core.LOGO]) > 1000,
         ", ".join(bad[:5] + stale),
     )
