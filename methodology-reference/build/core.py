@@ -767,7 +767,6 @@ def page(
 <header class="mast"><div class="wrap">
 {PROGRAMME_MARK}
 <a class="brand project-brand" href="index.html"><img src="{PROJECT_LOGO}" alt="{PROJECT_LOGO_ALT}" width="2172" height="724"></a>
-<span class="sub">Methodology</span>
 <span class="ed">{version_line(dated=False)}</span>
 <a class="help-entry" href="help.html">Help / Contact / Team</a>
 <a class="review-entry" href="{live("review-queue")}">Review queue</a>

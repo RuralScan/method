@@ -10,6 +10,7 @@ file, with the same date; the build fails otherwise. `README.md` says when each 
 
 - Reuse the GitHub organisation's NBS Rural Scan logo and scoping tagline in the site header, with its original source recorded.
 - Keep the programme credit, theme controls and linked version information alongside the project branding.
+- Remove the repeated standalone Methodology label beside the linked methodology version.
 - Analytical values and the evidence-base edition are unchanged.
 
 ## [0.14.1] - 2026-11-20
