@@ -3,21 +3,19 @@ title: Water harvesting and conservation
 slug: practice-water_harvesting_conservation
 summary: Understand how the method divides water harvesting by where the water comes from and how it is held, what each family can report spatially, why every suitability mapping is on hold, and how drought evidence is read.
 sources:
-  - methodology/families/water_harvesting.md
-  - methodology/audits/wh_scope_review_20261104/README.md
-  - schema/registers/FAM_family_registry.csv
   - schema/recipes/water_harvesting_conservation/T0_nbs_registry.csv
-  - schema/recipes/water_harvesting_conservation/README.md
+  - methodology/recipes/water_harvesting.md
+  - AGENTS.md
+  - methodology/audits/wh_scope_review_20261104/README.md
+  - methodology/families/water_harvesting.md
+  - schema/registers/FAM_family_registry.csv
   - schema/recipes/water_harvesting_conservation/T4_suitability_mappings.csv
+  - schema/recipes/water_harvesting_conservation/README.md
   - schema/recipes/water_harvesting_conservation/T3_nbs_hazard_farming.csv
   - schema/recipes/water_harvesting_conservation/T6_nbs_scorecard.csv
-  - methodology/recipes/water_harvesting.md
-  - methodology/T4_generation_method.md
-  - methodology/effect_evidence_followups.md
   - schema/lookups/effect_locus.csv
   - schema/lookups/crop_scope_policy.csv
-  - AGENTS.md
-  - method:cookbook/water_harvesting_conservation.md
+  - methodology/effect_evidence_followups.md
 ---
 ## Definition and boundary
 
@@ -34,8 +32,6 @@ Not every engineered structure is a nature-based solution. The registry establis
 ## Suitability families
 
 Families are grouped by which water-balance question their dominant limiting factor answers, the same logic the recipe uses to switch membership functions between sub-practices (for example, runoff membership increases for structures that store runoff and decreases for in-field conservation) [src: methodology/families/water_harvesting.md §1. The grouping principle].
-
-{{attribution:primitives}}
 
 The table below lists the land-based sub-practices and context tags registered for this practice. It excludes the historical rooftop-harvesting record: rooftop and household cisterns are outside this landscape scan. Inclusion in the table does not establish that a family has an executable mapping; the family discussions below give its status. [src: methodology/audits/wh_scope_review_20261104/README.md §Decision requested]
 

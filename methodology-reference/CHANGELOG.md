@@ -6,6 +6,14 @@ What changed in the Rural NbS Scan methodology, newest first. The build reads th
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.14.0] - 2026-11-20
+
+- Shorten the method chapters and give shared explanations one home, with links to the detailed evidence methods.
+- Remove superseded weighting routines, R-port descriptions and repeated development-status inventories from the method narrative.
+- Explain dataset selection without presenting the historical registry as the current pilot dataset list.
+- Refocus the application chapter on the scoping brief, reproducibility and interpretation of partial results.
+- Preserve evidence provenance, scientific limits and numbered table and figure captions; analytical tables and the evidence edition are unchanged.
+
 ## [0.13.0] - 2026-11-19
 
 - Add a title-based citation with the edition, URL and existing team credit.

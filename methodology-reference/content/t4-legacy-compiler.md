@@ -3,29 +3,30 @@ title: Historical T4 compiler
 slug: t4-legacy-compiler
 summary: Reproduce T4 rows in the pinned evidence edition using the earlier deterministic compiler; these algorithms do not prescribe new agent-led synthesis.
 sources:
+  - schema/spec.md
   - methodology/T4_generation_method.md
   - methodology/T4_developer_contract.md
-  - methodology/T4_variable_importance.md
-  - methodology/weight_normalisation.md
-  - .agents/skills/source-command-t4-synthesise/SKILL.md
-  - .agents/skills/extraction_contracts/T4_review_contract.md
-  - schema/spec.md
-  - schema/structure/columns.json
-  - schema/lookups/t4_numeric_compilation_policy.csv
-  - schema/lookups/crop_scope_policy.csv
-  - schema/recipes/agroforestry/T4_run_policy.csv
-  - schema/recipes/water_harvesting_conservation/T4_suitability_mappings.json
-  - src/nbs_ruralscan/recipe/synthesis.py
-  - src/nbs_ruralscan/recipe/support.py
-  - src/nbs_ruralscan/recipe/family.py
-  - src/nbs_ruralscan/recipe/developer_contract.py
-  - src/nbs_ruralscan/recipe/readiness.py
-  - src/nbs_ruralscan/recipe/calibration_requirements.py
   - AGENTS.md
+  - src/nbs_ruralscan/recipe/synthesis.py
+  - src/nbs_ruralscan/recipe/family.py
+  - .agents/skills/source-command-t4-synthesise/SKILL.md
+  - schema/lookups/crop_scope_policy.csv
+  - method:data-model/evidence-classification.json
+  - .agents/skills/extraction_contracts/T4_review_contract.md
+  - src/nbs_ruralscan/recipe/calibration_requirements.py
+  - src/nbs_ruralscan/recipe/readiness.py
+  - evidence:workflows/recipe_release/recipe_index.py
+  - evidence:workflows/recipe_release/README.md
+  - schema/recipes/water_harvesting_conservation/T4_suitability_mappings.json
   - method:handbook/read-a-suitability-recipe.md
   - evidence:examples/terrace-rainfall/README.md
-  - evidence:workflows/recipe_release/README.md
+  - src/nbs_ruralscan/recipe/developer_contract.py
   - evidence:workflows/recipe_release/counts.md
+  - src/nbs_ruralscan/recipe/support.py
+  - methodology/T4_variable_importance.md
+  - methodology/weight_normalisation.md
+  - schema/recipes/agroforestry/T4_run_policy.csv
+  - schema/lookups/t4_numeric_compilation_policy.csv
 ---
 
 ## Historical reproduction only
@@ -119,8 +120,6 @@ The broader audit of repeated observations, overlapping publications and shared 
 ### Relationship types
 
 Every mapping uses one canonical response vocabulary. [src: schema/spec.md §Relationship-type reference]
-
-{{attribution:primitives}}
 
 | `relationship_type` | Parameters | Meaning |
 |---|---|---|

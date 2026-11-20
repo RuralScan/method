@@ -3,20 +3,23 @@ title: Agroforestry
 slug: practice-agroforestry
 summary: Understand how the method divides agroforestry into suitability families, what each family can report spatially, which host systems gate it, and what the effect evidence covers and cannot claim.
 sources:
-  - methodology/families/agroforestry.md
-  - schema/registers/FAM_family_registry.csv
   - schema/recipes/agroforestry/T0_nbs_registry.csv
-  - schema/recipes/agroforestry/README.md
-  - schema/recipes/agroforestry/T4_suitability_mappings.csv
-  - schema/recipes/agroforestry/T4_run_policy.csv
-  - methodology/recipes/agroforestry.md
+  - methodology/families/forest_restoration.md
+  - methodology/families/agroforestry.md
+  - methodology/families/riparian_buffer.md
   - methodology/T4_generation_method.md
-  - schema/lookups/effect_locus.csv
-  - schema/lookups/comparator_policy.csv
-  - schema/lookups/crop_scope_policy.csv
-  - methodology/effect_evidence_followups.md
+  - schema/registers/FAM_family_registry.csv
+  - schema/recipes/agroforestry/README.md
   - AGENTS.md
-  - method:cookbook/agroforestry.md
+  - schema/recipes/agroforestry/T4_suitability_mappings.csv
+  - methodology/recipes/agroforestry.md
+  - schema/recipes/agroforestry/T4_run_policy.csv
+  - schema/recipes/agroforestry/T3_nbs_hazard_farming.csv
+  - schema/recipes/agroforestry/T6_nbs_scorecard.csv
+  - schema/lookups/effect_locus.csv
+  - schema/lookups/crop_scope_policy.csv
+  - schema/lookups/comparator_policy.csv
+  - methodology/effect_evidence_followups.md
 ---
 ## Definition and boundary
 
@@ -39,8 +42,6 @@ A suitability family is a set of sub-practices that share the dominant limiting 
 The registry rows for this practice:
 
 {{csv:schema/registers/FAM_family_registry.csv|where=nbs_id=agroforestry|cols=subpractice_id,name,suitability_family_id,spatial_product_type,dominant_limiting_factor}}
-
-{{attribution:primitives}}
 
 ### Planted silvoarable (`agroforestry__planted_silvoarable`)
 
