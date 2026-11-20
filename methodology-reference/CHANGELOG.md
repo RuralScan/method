@@ -6,6 +6,12 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.15.1] - 2026-11-20
+
+- Pin the evidence workflow that retains historical T4 rows without re-synthesis.
+- Retire the remaining cookbook rebuild path and obsolete T4 commands in draft guidance.
+- Label older dashboard mappings as historical and point to current agent-led synthesis.
+
 ## [0.15.0] - 2026-11-20
 
 - Retire the historical T4 compiler chapter and numeric-policy interface from current documentation; retain immutable evidence editions.
