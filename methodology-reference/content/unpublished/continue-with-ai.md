@@ -75,6 +75,13 @@ sources:
   - retired:methodology/migration/2026-11-05/migration-map.csv
 ---
 
+> **Historical draft, not current operating instructions.** T3/T6 scientific
+> synthesis now follows [[ch:effect-synthesis]] and RuralScan/evidence's
+> `workflows/synthesis/README.md`. AI authors judgments; code validates and packages
+> exact accepted outputs. The automatic effect generator is retired. T6E stays
+> historical. The remaining draft below documents the earlier transition.
+
+
 ## What this chapter is for
 
 Continuing the evidence base means three kinds of work: finding and acquiring more sources, extracting more findings (evidence units) from them, and re-running synthesis so that suitability rules, hazard rows and scorecard rows reflect the enlarged and reviewed evidence. The rules for each step are set out in [[ch:discovery]], [[ch:acquisition]], [[ch:extraction]], [[ch:review-and-quality]], [[ch:suitability-synthesis]], [[ch:effect-synthesis]] and [[ch:rulesets-and-learning]]. This chapter explains how to set up and operate the system that applies those rules: an AI coding agent of your choice, a set of versioned instruction files, deterministic checks, and people who approve what enters the record.
@@ -211,7 +218,6 @@ The loop has 17 steps. The first table and the subsections after it quote the pr
 | 9 Validate and ingest | `scripts/ingest-effects-staging.py ... --dry-run`, then without `--dry-run` | Orchestrator only: EV rows | Verbatim page check, numbers, context, bands, identity, VONT, family; auto-quarantine | None; quarantine is reversible |
 | 10–11 Review and apply | Review server; review page exports | None (people decide) | Provenance guardrail on apply; CI on the submission | Keep, drop with reason, reclassify, query |
 | 12 Suitability synthesis | Agent-led proposal; production adapter pending | Traceable proposal and accepted mapping | Schema, provenance and representation validation | Applicability, functions, masks and weights |
-| 13 Effect synthesis | T3/T6-synthesise skill; `scripts/synthesise-t3t6.py` | Recipe CSVs and run report | Pre-synthesis gates; `check_account` | None at this step; rows reviewed at step 15 |
 | 14 Prose | `scripts/write-prose.py` | Staging bundle; prose sidecar via `merge` | `check_account` refuses on any flag | Writer flags uncertain phrasing for a person |
 | 15 Row review | `scripts/build-row-review-batch.py`; `scripts/apply-row-review-export.py` | Review log only | None | Approve, hold or reject each row |
 | 16 Ledger and search register | `ledger` and `search_log` modules | Stamps for completed work only | `ledger.check` fails the build | None |
@@ -335,8 +341,6 @@ explicitly historical T4 baseline rows; new evidence does not regenerate them.
 Effect synthesis runs the gates on pooled units first, then the engine:
 
 ```sh
-python3 scripts/synthesise-t3t6.py <nbs_id> --dry-run     # preview table
-python3 scripts/synthesise-t3t6.py <nbs_id>               # writes the recipe CSVs + report
 python3 src/nbs_ruralscan/schema_tools/generate.py schema  # regenerate JSON
 python3 -m nbs_ruralscan.schema_tools.check_account schema/recipes/<nbs_id>/T6_nbs_scorecard.json
 ```

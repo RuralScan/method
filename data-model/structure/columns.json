@@ -1,5 +1,5 @@
 {
-  "manifest_version": "0.4.1-evidence-classification",
+  "manifest_version": "0.4.2-agent-effects",
   "spec_source": "data-model/spec.md",
   "generated": "2026-11-19",
   "note": "Machine-checkable column manifest for the T0-T7 tables + the evidence/configuration layer (SRC/EV/VONT/FAM). This is the authoritative column set for populated tables. STRUCTURE is locked at v0.4.0 (T3/T6 generation method columns added 2026-09-30, see methodology/T3_T6_generation_method.md section 11); CONTENT is draft/pending. Change the structure only by editing spec.md and regenerating this file. 'required' = must be present and non-empty on every row; 'optional' = column may be present, value may be blank; 'conditional' = required when the noted trigger holds; 'derived' = computed, not authored. 'fk' maps a column to its referenced table.column. Additive knowledge_basis/extraction_format separation: method issue #57. Legacy claim_basis remains for archived compiler compatibility.",
@@ -246,7 +246,8 @@
           "low",
           "moderate",
           "high",
-          "very_high"
+          "very_high",
+          "conflicting_evidence"
         ],
         "risk_role": [
           "livelihood_mitigation",
@@ -292,7 +293,7 @@
           "very_high"
         ]
       },
-      "note": "v0.4.0 (T3/T6 generation method): rows are generated per cell x applicability scope; blank scope_type/scope_id = global row; blank suitability_family_id = NbS roll-up row. mitigation_potential required when risk_role in {livelihood_mitigation, both}; asset_sensitivity + asset_risk_weight required when risk_role in {asset_threat, both}. confidence is derived (IPCC evidence x agreement matrix), never authored."
+      "note": "AI authors scientific synthesis, including direction/strength, evidence level, agreement, confidence and applicability. Exact proposals require scientific acceptance. Code validates and packages accepted values without re-rating. Historical rows remain historical. See agent-effects-contract.json and decision t3t6_agent_synthesis."
     },
     "T4": {
       "name": "Suitability Variable Mappings",
@@ -484,7 +485,8 @@
           "no_relationship",
           "slight_positive",
           "moderate_positive",
-          "strong_positive"
+          "strong_positive",
+          "conflicting_evidence"
         ],
         "effect_confidence": [
           "very_low",
@@ -518,7 +520,7 @@
           "high"
         ]
       },
-      "note": "v0.4.0: variable_id for climate_hazard_mitigation rows is the T5 climate_hazard priority id (drought_hazard), never the bare T3 hazard_type. Same scope/family row semantics as T3. magnitude_summary only when >=2 independent sources share metric+unit; economic_value_range under the hard gates in methodology/T3_T6_generation_method.md section 7.7."
+      "note": "AI authors scientific synthesis, including direction/strength, evidence level, agreement, confidence and applicability. Exact proposals require scientific acceptance. Code validates and packages accepted values without re-rating. Historical rows remain historical. See agent-effects-contract.json and decision t3t6_agent_synthesis."
     },
     "T6E": {
       "name": "NbS Economic Profile",

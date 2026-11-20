@@ -16,7 +16,7 @@ sources:
 
 Review establishes what a claim can support within its recorded scope. Synthesis decides how eligible claims contribute to a particular analytical output. It may produce a numeric rule, an ordinal class, conditional alternatives, a qualitative statement or an unresolved hold. A faithfully extracted number is not automatically eligible for every output. [src: methodology/T4_generation_method.md §0] [src: methodology/T3_T6_generation_method.md §7]
 
-This chapter gives the shared reasoning and its limits. The next chapter describes agent-led T4 synthesis; the following chapters describe effect and economic methods. Historical T4 algorithms are kept separately for reproduction of the pinned evidence edition. Shared guidance does not prescribe one automatic algorithm or introduce new numerical weights.
+This chapter gives the shared reasoning and its limits. The next chapter describes agent-led T4 synthesis; the following chapters describe effect and economic methods. Historical editions remain immutable; their retired algorithms are not supported production routes. T3/T6 scientific judgments now follow the AI-led proposal/acceptance workflow. Shared guidance does not prescribe one automatic algorithm or introduce new numerical weights.
 
 | Output | Unit of synthesis | What is combined | Detailed method |
 |---|---|---|---|
@@ -31,7 +31,7 @@ T0, T1, T2, T5 and T7 need justified configuration decisions rather than this sa
 
 ## A sequence for synthesis
 
-Use the following sequence to make the reasoning inspectable. It brings together the shared questions in the suitability and effect methods. The additional dependence and sensitivity checks below are review guidance where the current compiler does not implement them. [src: methodology/T4_generation_method.md §6] [src: methodology/T3_T6_generation_method.md §7]
+Use the following sequence to make the reasoning inspectable. It brings together the shared questions in the suitability and effect methods. Dependence and sensitivity are explicit AI reasoning and scientific review requirements. [src: methodology/T4_generation_method.md §6] [src: methodology/T3_T6_generation_method.md §7]
 
 1. **Specify the decision.** Identify table, practice/family, target quantity, intended context and output. Retrieve the previously accepted rule and its approval scope.
 2. **Assemble the candidate record.** Include contrary findings and identify dropped, held, out-of-scope and eligible units. Preserve reasons rather than silently removing inconvenient claims.
@@ -92,13 +92,14 @@ There are nine extracted records, four publications and two identified primary d
 
 The decision record should state which estimates answer the target question, how repeated observations are handled and what changes when each independent origin is left out. This is an illustration of the audit, not a new numerical weighting rule.
 
-### What the pinned edition implements
+### Current scientific responsibility
 
-T3/T6 resolves lineage but retains a source's eligible own arms, with a within-cell share factor of `1/k` across its `k` own units. T6E uses the effect machinery and adds economic eligibility and replication gates. [[ch:effect-synthesis]] and [[ch:cost-profiles]] document those implementations. New T4 proposals require explicit independent-origin accounting under [[ch:suitability-synthesis]]. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §dedupe_for_cells]
-
-These controls do not automatically identify shared datasets across unlinked papers, overlap between reviews and their primaries, or correlated observations. The effect share factor prevents influence increasing simply with the number of own arms; those arms can still have different design and context weights. It is not a covariance model or a guarantee that the resulting publications are independent.
-
-For new synthesis proposals, report record, publication and identified-origin counts separately, including unknown origins. Where overlap matters, prepare a documented inclusion decision or dependency-aware analysis for review. An agent-led T4 proposal must state and justify its synthesis choices; it must not silently rewrite the provenance of historical outputs. The [source-contribution plan](https://github.com/RuralScan/method/issues/44) tracks unresolved implementation work.
+AI proposals must report records, publications and identified origins separately,
+including unresolved overlap. Explain how repeated observations and review/primary
+relationships affect the judgment. Historical source-share factors do not calculate
+new judgments. Scientific review assesses the account; code checks complete candidate
+dispositions and preserves the accepted output. See [[ch:effect-synthesis]] and
+[[ch:suitability-synthesis]].
 
 ## Different meanings of weight
 
@@ -113,7 +114,7 @@ For new synthesis proposals, report record, publication and identified-origin co
 
 [src: methodology/T4_variable_importance.md] [src: methodology/T4_generation_method.md §6] [src: methodology/modules/M4_hotspots.md] [src: methodology/T3_T6_generation_method.md §7]
 
-The fixed weights used by the pinned effect engine are policy judgements, not inverse-variance meta-analysis weights. Effect factors belong in [[ch:effect-synthesis]]. For a new T4 proposal, the agent must justify its choice of influence or pooling method under [[ch:suitability-synthesis]]. The historical factors include mixed `claim_basis` labels. Separating knowledge basis and extraction format corrects the classification model; it does not itself approve replacement numerical factors or recalibrate past outputs. [src: method:data-model/evidence-classification.json]
+New T3/T6 and T4 proposals justify scientific influence and pooling choices. Fixed historic design weights, lineage discounts and confidence matrices are not new defaults. Code checks the proposal and exact acceptance; it does not compute these judgments. Historical values keep their historical provenance. See [[ch:effect-synthesis]] and [[ch:suitability-synthesis]].
 
 A source tier may already consider context, independence and authority. Additional discounts need a stated rationale so the same weakness is not penalised repeatedly without consideration. Conversely, a high tier cannot supply missing source context or make a practitioner rating a measured effect. Increasing numerical precision in the output does not remove these limitations.
 
@@ -147,7 +148,7 @@ The displayed edition retains its original analytical outputs. Historical T4 rec
 
 A pooled result is conditional on search coverage, source validity, dependence, compatibility and policy choices. Agreement among repeated or selectively reported claims can remain misleading. A narrow spread is not proof of low uncertainty, and absence of reported failures is not proof of safety or feasibility.
 
-The implemented lineage and source-sharing controls are useful but incomplete representations of study dependence. Sensitivity analyses and new statistical pooling require recorded methods and validation before their results can be presented as operational. Local feasibility must still test transfer, engineering requirements, costs and implementation conditions.
+AI origin accounting and source review remain necessary to assess study dependence. Sensitivity analyses and new statistical pooling require recorded methods and validation before their results can be presented as operational. Local feasibility must still test transfer, engineering requirements, costs and implementation conditions.
 
 ## Where this is configured
 
