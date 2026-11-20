@@ -39,6 +39,19 @@ jobs:
           path: reference-src
           fetch-depth: 0
           persist-credentials: false
+      - name: Read the evidence operating revision
+        id: reference_pins
+        run: |
+          revision=$(sed -nE 's/^EVIDENCE_OPERATING = "([0-9a-f]{40})"$/\1/p' reference-src/methodology-reference/build/core.py)
+          test "${#revision}" -eq 40
+          echo "evidence=$revision" >> "$GITHUB_OUTPUT"
+      - name: Check out the pinned evidence revision
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: RuralScan/evidence
+          ref: ${{ steps.reference_pins.outputs.evidence }}
+          path: evidence-src
+          persist-credentials: false
       - name: Build the listed methodology reference
         if: steps.reference_source.outcome == 'success'
         env:
@@ -58,18 +71,12 @@ jobs:
           cd "$GITHUB_WORKSPACE/reference-src/methodology-reference"
           pin() { sed -nE "s/^${1} = \"([0-9a-f]{40})\"$/\\1/p" build/core.py; }
           git fetch --quiet --no-tags origin "$(pin SITE_REV)"
-          git init --quiet "$work/evidence"
-          git -C "$work/evidence" remote add origin https://github.com/RuralScan/evidence.git
-          # Fetch the exact commit, including commits absent from current branch history.
-          # Match the shallow pinned checkout already used by methodology CI.
-          git -C "$work/evidence" fetch --quiet --depth=1 --no-tags origin "$(pin EVIDENCE_OPERATING)"
-          git -C "$work/evidence" checkout --quiet --detach "$(pin EVIDENCE_OPERATING)"
           git clone --quiet --depth 1 https://github.com/RuralScan/runtime.git "$work/runtime"
           git clone --quiet --bare --single-branch --branch main --no-tags https://github.com/CIAT/nbs_ruralscan.git "$work/producer.git"
           python3 -m venv "$work/venv"
           "$work/venv/bin/pip" install --quiet 'markdown==3.11.3' 'duckdb==1.5.3' 'pandas==2.3.1'
 
-          export RURALSCAN_PEOPLE="$work/people.txt" RURALSCAN_EVIDENCE="$work/evidence"
+          export RURALSCAN_PEOPLE="$work/people.txt" RURALSCAN_EVIDENCE="$GITHUB_WORKSPACE/evidence-src"
           export RURALSCAN_RUNTIME="$work/runtime" RURALSCAN_CIAT="$work/producer.git"
           "$work/venv/bin/python" -B build/fetch_package.py
           # A failed attribution check can report excerpts of private notes.
