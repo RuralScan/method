@@ -6,6 +6,13 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.14.4] - 2026-11-20
+
+- Repair data-model references and clarify which Git edition identifies the specification.
+- Expose the exact confidence matrix and badge lookup with hashes and immutable origins.
+- Clarify six-hazard weight completeness, pinned register ownership and retained versus reviewed evidence.
+- Explain the legacy knowledge-basis spelling without changing claims, weights or analytical outputs.
+
 ## [0.14.3] - 2026-11-20
 
 - Move NBS Invest from the header to the footer and add the official Alliance logo alongside it.

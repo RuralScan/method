@@ -22,10 +22,18 @@ The first release imports the compiler's existing records at [CIAT e43c42bd](htt
 |---|---|
 | TOOL, WOCAT hazard and impact source mappings, per-finding direction exceptions | RuralScan/evidence owns the records, their source locators and supporting findings. Its reviewed configuration PR uses the selected method vocabulary. |
 | Scorecard meanings, display vocabulary, comparison and pooling policies, routing and effect direction | RuralScan/method. Exact files and keys appear in the contract. |
-| IPCC confidence matrix and World Bank income groups | Method reference policy. Compiler uses the archived source bytes pinned in [archive.json](archive.json) pending redistribution clearance for these external references. |
+| IPCC-style confidence matrix | Method reference policy. The unchanged Rural Scan lookup is available as a [versioned reference copy](reference/README.md); the compiler still verifies its archived hash. This is Rural Scan's operational convention, not an IPCC-issued numeric standard. |
+| World Bank income groups | Method reference policy. Compiler uses the archived source bytes pinned in [archive.json](archive.json). [Exact upstream download](reference/README.md#other-archived-inputs); local redistribution remains pending review. |
 | T4 numeric compilation | Reusable conventions belong in method. Individual finding adjudications belong in evidence. Mixed archival table remains pinned until those two parts are split and reviewed. |
 | Searched-with-no-evidence rows | Evidence owns the search outcome. Compiler keeps the pinned search outcomes pending a dedicated structured update. |
 | Accepted T4 functions and run weights | Remain bound to their specific function fingerprints in the archived compiler. A changed function needs a separate scientific release. |
 | External class legends | Method reference material. Archive references retain source and version pending redistribution review. |
 
 The older [definition snapshot](../data-model/definition-snapshot.json) continues to resolve at its original Git revision. The five editable compiler registers are maintained in `data-model/configuration/`. Tool and source-mapping procedures are tracked in [RuralScan/evidence #40](https://github.com/RuralScan/evidence/issues/40).
+
+Evidence's copies of VONT, FAM, BIND, XW and BANDS are pinned mirrors. Its
+`configuration/method-pin.json` names the selected method revision and hashes;
+`workflows/submissions/configuration.py::verify_method` compares the copied bytes
+against that release. `check_registers.py` runs this verification in CI. Equality
+is required against the selected revision, not against a moving method `main`.
+See the [evidence adoption procedure](https://github.com/RuralScan/evidence/blob/e835eb6e7ed711a80e4593c0e9d66f9fbd3911b8/configuration/README.md).

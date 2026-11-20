@@ -419,7 +419,7 @@ a_h = r_h / Σ_{k ∈ H} r_k
 - `H`: the practice's core hazard set; `r_h`: the asset-sensitivity rank of hazard h on the global roll-up asset row (none 0, low 1, moderate 2, high and very high 3).
 - If every rank is zero, weights are equal.
 
-Weights are emitted only when every core hazard has an assessed (non-blank) asset row; a data-deficient row counts as missing. Otherwise the weights stay blank, the practice is reported as `weights_incomplete`, and M2b uses equal weights and says so. The method and schema text state the rule as "all seven hazards"; since frost left T3, the engine applies it to the six core hazards. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §asset_risk_weights] [src: schema/spec.md §T3] [src: methodology/T3_T6_generation_method.md §7.5]
+Weights are emitted only when every core hazard has an assessed (non-blank) asset row; a data-deficient row counts as missing. Otherwise the weights stay blank, the practice is reported as `weights_incomplete`, and M2b uses equal weights and says so. The archived method and schema text state the rule as "all seven hazards"; since frost left T3, the engine and current field reference apply it to the six core hazards. [src: src/nbs_ruralscan/recipe/cell_synthesis.py §asset_risk_weights] [src: schema/spec.md §T3] [src: methodology/T3_T6_generation_method.md §7.5]
 
 ## Step 13: numbers under the class, and the traceable account
 
