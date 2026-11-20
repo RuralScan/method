@@ -1,11 +1,26 @@
-# Schema spec — field-level reference (v0.4.1)
+# Schema spec — field-level reference
+
+**Edition:** cite this file's full RuralScan/method Git commit, not the historical
+v0.4.1 label alone. This is a living reference in the v0.4.x lineage: it includes
+the v0.4.2 conflict outcome and later additive evidence-classification changes.
+Historical version notes below describe individual changes, not a complete release.
+The [column manifest](structure/columns.json) defines the distributed structure;
+the [compiler release](../configuration/release.json) and the consuming evidence
+edition's method pin identify analytical configuration.
+
+**External reuse:** [download and verify confidence lookups](../configuration/reference/README.md),
+[resolve archived dependencies](../configuration/reference/README.md#other-archived-inputs),
+and [import evidence without conflating retention, review and knowledge basis](importing-evidence.md).
+Method owns VONT, FAM, BIND, XW and BANDS; evidence's copies are hash-checked mirrors
+of its selected method revision, not independent authoring surfaces. See
+[ownership and adoption](../configuration/README.md).
 
 > **v0.4.1 (2026-10-01)** — additive, from the PR6 agroforestry benchmark review: T6 `effect_direction` Required → Conditional
 > (blank on `economic_indicator` rows — a cost has no direction of benefit); **T5 `water_quality_risk`** priority row added under
 > `nbs_response` (17 rows: 13 priorities + 4 descriptors; `nbs_response` default weights 0.25 × 4) with XW routes for
 > `nutrient_removal` (direct), `stream_temperature` and `sediment_retention` (component). No new columns.
 
-> **v0.4.0 (2026-09-30)** — **T3/T6 generation method** ([`../methodology/T3_T6_generation_method.md`](../methodology/T3_T6_generation_method.md)):
+> **v0.4.0 (2026-09-30)** — **T3/T6 generation method** ([T3/T6 effect synthesis](../methodology-reference/content/effect-synthesis.md)):
 > T3/T6 become *generated* cell-synthesis tables. Additive columns on T3 + T6 (`suitability_family_id` · `scope_type` · `scope_id` ·
 > `applicability` · `evidence_level` · `agreement_level` · `context_dependent` · `family_spread`; T3 `asset_sensitivity`; T6
 > `magnitude_summary`); `confidence`/`effect_confidence` → IPCC five levels (`expert_opinion` removed); T3 `mitigation_potential`
@@ -20,7 +35,7 @@
 > **v0.3.0 (June 2026)** — large methodology batch: T5 ratification, farming-system vocab swap,
 > production-gap variable, T6 economic-profile generalisation + cost-effectiveness denominators,
 > M2b implementation variables. Companion methodology doc:
-> [`../methodology/opportunity_space_T5.md`](../methodology/opportunity_space_T5.md).
+> [T5 characterisation](../methodology-reference/content/m3-characterisation.md).
 >
 > **A — T5 (opportunity-space) ratification.**
 >
@@ -61,7 +76,7 @@
 >   GLAD/WorldCereal cropland · GLW livestock density · GMIA irrigation · Hansen/MapSPAM
 >   tree-perennial. **BIND-overridable** per country/region. Distinct from `aez`. Dixon
 >   farming-systems vocabulary becomes a documented crosswalk only (kept in
->   `schema/registers/FS_DIXON_CROSSWALK.md`). T7 + T3 rows migrated.
+>   [Dixon-to-EO crosswalk](https://github.com/CIAT/nbs_ruralscan/blob/e43c42bd581dba791ce1f1697b6b41952ab0cfe3/schema/registers/FS_DIXON_CROSSWALK.md)). T7 + T3 rows migrated.
 > - **`production_gap`** = shortfall vs the *attainable* productivity of the dominant farming
 >   system in the pixel — resolved per `farming_system` via BIND: yield-gap (GAEZ/MapSPAM) for
 >   cropping; forage/rangeland NPP gap for pastoral; mixed for mixed-system; **livestock side is
@@ -84,7 +99,7 @@
 >   `usd_per_ha_yr`, `usd_per_beneficiary`, `usd_per_tco2e`, `usd_per_farmer`. Draft-0 T6 rows
 >   migrated to the new shape.
 >
-> **E — M2b implementation variables.** Updated `methodology/modules/M2b_project_risk.md` with
+> **E — M2b implementation variables.** Updated [M2b project-risk reference](../methodology-reference/content/m2b-project-risk.md) with
 > the two streams: **A = asset hazard exposure** (T2 hazards × T3 `asset_threat`/`asset_risk_weight`,
 > baseline + future, modulated by T0 `establishment_period_years`); **B = operational / enabling
 > environment, scenario levers**: accessibility, electrification, tenure (incl. IPLC/customary
@@ -253,9 +268,9 @@
 > structure only by editing this spec, regenerating the manifest, and raising an issue — never by reshaping data files.
 
 > In-repo Markdown port of `NbS_Schema_Reference_v01_1.docx` (7 May 2026).
-> Source archived at [`design/NbS_Schema_Reference_v01.docx`](design/NbS_Schema_Reference_v01.docx).
-> Entity-relationship diagram: [`design/NbS_ERD_v01.html`](design/NbS_ERD_v01.html) (also published on the Pages site).
-> Worked draft-0 examples (Agroforestry · Water Harvesting): CSV + JSON for every table — see [`README.md`](README.md).
+> The original Word source is not included in this distribution.
+> [Archived entity-relationship diagram](https://github.com/CIAT/nbs_ruralscan/blob/e43c42bd581dba791ce1f1697b6b41952ab0cfe3/docs/erd.html).
+> Worked draft-0 examples (Agroforestry · Water Harvesting): CSV + JSON for every table — see [practice definitions](configuration/recipes).
 
 This document defines the complete field-level schemas for the eight JSON/tabular structures that form the
 analytical backbone of the Rural NbS Scan. They are the authoritative starting point for:
@@ -396,7 +411,7 @@ compositing.
 ## T3 — NbS × Hazard × Farming System
 
 Qualitative matrix of NbS mitigation potential against each climate hazard, per farming-system context, **generated by
-cell-level synthesis** over pooled evidence units (v0.4.0 — method: [`../methodology/T3_T6_generation_method.md`](../methodology/T3_T6_generation_method.md)).
+cell-level synthesis** over pooled evidence units (v0.4.0 — method: [T3/T6 effect synthesis](../methodology-reference/content/effect-synthesis.md)).
 One **cell** = `nbs_id` × `hazard_type` × `farming_system` (`all` where the relationship holds universally). A cell emits **one
 row per applicability scope**: the global row (`scope_type`/`scope_id` blank) plus scope rows where ≥ 2 independent sources in a
 context diverge (rows-per-scope, the BIND pattern). Optional `suitability_family_id` gives a family-level row; blank = the NbS
@@ -407,8 +422,8 @@ layer feeding M2 — an `nbs_effect` claim whose outcome is a hazard) or somethi
 project disaster-risk screen — an `asset_vulnerability` claim). M2b reads the `asset_threat` rows, their `asset_sensitivity`
 and `asset_risk_weight`; M2 reads the mitigation rows.
 
-**Confidence is derived, never authored:** `evidence_level` × `agreement_level` → `confidence` via the IPCC matrix
-(`schema/lookups/ipcc_confidence_matrix.csv`). `justification` is a **traceable account** (statement · evidence summary ·
+**Confidence is derived, never authored:** `evidence_level` × `agreement_level` → `confidence` via Rural Scan's IPCC-style lookup
+([confidence matrix](../configuration/reference/ipcc_confidence_matrix.csv)). `justification` is a **traceable account** (statement · evidence summary ·
 agreement note · key evidence_ids), IPCC evidence-table style.
 
 | Field | Type | Required | Description | Example |
@@ -423,7 +438,7 @@ agreement note · key evidence_ids), IPCC evidence-table style.
 | `risk_role` | enum | Required | `livelihood_mitigation` (→ M2) \| `asset_threat` (→ M2b) \| `both`. | `livelihood_mitigation` |
 | `mitigation_potential` | enum | **Conditional** *(v0.4.0: was Required)* | Required when `risk_role ∈ {livelihood_mitigation, both}`; blank on pure `asset_threat` rows. 7-point plus two outcomes: `very_negative` \| `negative` \| `none` \| `low` \| `moderate` \| `high` \| `very_high`, plus `conflicting_evidence` (v0.4.2, 2026-10-19 — material weight on both signs states the conflict rather than a near-tie class) and blank for a data-deficient cell. Derived from the modal-sign weighted-median rank; **`very_high` only when rank = 3 and `confidence ≥ high`**. | `moderate` |
 | `asset_sensitivity` | enum | Conditional *(v0.4.0)* | Required when `risk_role ∈ {asset_threat, both}`. How badly the hazard damages the NbS asset: `none` \| `low` \| `moderate` \| `high` \| `very_high`. Sourced from WOCAT tolerance ratings + literature (`asset_vulnerability` units). | `high` |
-| `asset_risk_weight` | float | Conditional | Required when `risk_role` includes `asset_threat` **and the NbS has an `asset_threat` row for all 7 hazards**; otherwise blank (M2b falls back to equal weights). **Derived** normalisation of `asset_sensitivity` ranks across the NbS's hazards (sum = 1), never extracted. | `0.40` |
+| `asset_risk_weight` | float | Conditional | Required when `risk_role` includes `asset_threat` **and the NbS has an assessed (non-blank) asset-threat row for every core T3 hazard** (the six `hazard_type` values above; frost is excluded); otherwise blank (M2b falls back to equal weights). **Derived** normalisation of `asset_sensitivity` ranks across the NbS's hazards (sum = 1), never extracted. | `0.40` |
 | `mitigation_mechanism` | string | Required | How the NbS mitigates (or is damaged by) the hazard, 1–3 sentences written by the prose writer from the cited units' quotes. | `Tree canopy reduces evapotranspiration…` |
 | `evidence_level` | enum | Required *(v0.4.0)* | IPCC evidence axis: `limited` (≤ 2 independent sources, or all secondary/assertion) \| `medium` (3–4, mixed basis) \| `robust` (≥ 5 with ≥ 2 primary or a high-tier meta-analysis). Counted after lineage dedupe. | `medium` |
 | `agreement_level` | enum | Required *(v0.4.0)* | IPCC agreement axis from weighted sign agreement *A*: `high` (≥ 0.8) \| `medium` (0.6–0.8) \| `low` (< 0.6). | `high` |
@@ -550,7 +565,7 @@ interval interiors are rejected at compilation. Shared boundaries belonging to t
 classes return unknown. Unreported gaps/tails stay unknown. Existing `points` syntax
 remains supported. Numeric profiles do not participate in categorical host-mask execution.
 
-`schema/lookups/t4_numeric_compilation_policy.csv` is manifest-validated configuration
+[Archived T4 numeric compilation policy](https://github.com/CIAT/nbs_ruralscan/blob/e43c42bd581dba791ce1f1697b6b41952ab0cfe3/schema/lookups/t4_numeric_compilation_policy.csv) is manifest-validated configuration
 keyed by evidence ID. It names the approved source encoding, declared source unit, full
 ordinal scale, optional descending-range permission, applicability note, and explicit
 holds. It does not override EV approval, role or species/crop routing. Scores use source
@@ -623,7 +638,7 @@ T6 row and are identical across NbS.
 > to household profit and so to poverty).
 
 Per-NbS effect on each **T5 priority** variable, plus economic indicators — **generated by cell-level synthesis** (v0.4.0,
-method: [`../methodology/T3_T6_generation_method.md`](../methodology/T3_T6_generation_method.md)). One **cell** =
+method: [T3/T6 effect synthesis](../methodology-reference/content/effect-synthesis.md)). One **cell** =
 `nbs_id` × `variable_id` (effects) or `nbs_id` × `economic_indicator_type` (economics); one row per applicability scope, with
 family rows and the NbS roll-up exactly as T3. **T6 effect rows link only to T5 `mcda_role = priority` rows**; the
 T5↔T6 join on `variable_id` × `nbs_id` gives the NbS-specific modulation of the `nbs_response` layers (see T5).
@@ -662,7 +677,7 @@ narrative without a full CBA — **scoping-grade, not CBA**.
 
 AEZ, farming-system, administrative and hydrological context definitions used to resolve context-specific
 overrides in T4. The EO-derived farming-system classifier is described in
-`methodology/farming_system_classifier.md`. T7 provides
+[farming systems and data](../methodology-reference/content/farming-systems-and-data.md). T7 provides
 the controlled vocabulary the pipeline looks up by `context_type` + `value_in_dataset` when reading
 raster/vector data.
 
@@ -683,7 +698,7 @@ raster/vector data.
 ## Evidence & configuration layer (upstream of T0–T7)
 
 Added v0.2. These tables feed the evidence-based analytical tables (**T3, T4, T6**) and are produced by the T4
-generation method ([`../methodology/T4_generation_method.md`](../methodology/T4_generation_method.md)). They make
+generation method ([T4 synthesis](../methodology-reference/content/suitability-synthesis.md)). They make
 every analytical value traceable: **T4 row → `evidence_id`s → source (tier, page, quote)**. Source tier is stored
 once on the Source Register and reached by `source_id` join — never copied onto evidence rows.
 
@@ -734,6 +749,7 @@ One row per **atomic claim**. The structured replacement for free-text justifica
 | `extraction_confidence` | enum | Required | Transcription fidelity. | `high` |
 | `quote` · `page` | string/int | Required | Verbatim + page (provenance). | `"…slope 0 to 5…", p.11` |
 | `reviewer_ok` | boolean | Optional | Human-validated. | `false` |
+| `review_state` | string | Optional | `dropped` = soft-deleted and excluded from synthesis; blank = retained, not necessarily reviewed or approved. Preserve the raw value. See the [import guide](importing-evidence.md) for an explicit derived retention flag. | `dropped` |
 | `raw_name` | string | Optional *(paper-first sweep)* | The paper's surface name **before** harmonisation to the canonical variable. Preserves the mapping audit (`gradient` → `slope`). | `Slope degree` |
 | `observed_dataset` | string | Optional *(paper-first sweep)* | Which dataset the paper actually used to operationalise the variable. Free-text or T1 `dataset_id` when catalogued. Feeds resolution-audit decisions. | `SRTM 90m` · `worldclim_v2_bioclim` |
 | `attribution` | string | Optional *(source-attribution requirement)* | Free-text citation pointer when the paper *attributes* the threshold/variable selection to a source not in our screened corpus. Pairs with `lineage_of` (which targets corpus sources). | `Harrison (2016) — slope >35% cut` |
@@ -928,7 +944,7 @@ new NbS later requires only adding rows, not code changes.
 
 Optional `harmonization` JSON on `T4_NUMERIC_POLICY` stores the approved semantic
 score crosswalk and explicit compatible-pool assignments. See the policy contract
-in `methodology/T4_generation_method.md`. T4 `relationship_params` retains original
+in [historical T4 compiler reference](../methodology-reference/content/t4-legacy-compiler.md). T4 `relationship_params` retains original
 source profiles and adds `harmonization.pools` (exact interval/endpoint summaries)
 and `harmonization.review` (unresolved crosswalks/applicability). Each summary cell
 retains median bounds, scalar score or null, source range, independent-source

@@ -17,6 +17,7 @@ It supports early investment scoping. It does not replace feasibility studies, e
 - [Record or look up a scientific method decision](decisions/README.md). Cite the decision code and method revision to trace its ruling and implementation.
 - [Understand evidence types and source limitations](methodology-reference/content/evidence-principles.md), then [combine evidence across analytical tables](methodology-reference/content/compiling-evidence.md).
 - [Read the data model](data-model/spec.md): fields, controlled vocabularies, table structure and configuration.
+- [Reuse the confidence matrix and badge lookup](configuration/reference/README.md): exact files, immutable origins and SHA-256 checks. [Import evidence safely](data-model/importing-evidence.md).
 - [Label schema tables in figures, notebooks and printouts](design/README.md).
 - [Browse all six practice definitions](data-model/configuration/recipes). [Check their source versions, dependencies and limitations](data-model/baseline.md).
 - [Run the implementation](https://github.com/RuralScan/runtime): data access, computation and reproducible notebooks.

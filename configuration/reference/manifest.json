@@ -1,0 +1,23 @@
+{
+  "format": "ruralscan.reference-lookups.v1",
+  "files": {
+    "configuration/reference/ipcc_confidence_matrix.csv": {
+      "sha256": "ae32f02c79be6d17dbfef90e601f47f53750b59643033c03d32069463d051d35",
+      "origin": {
+        "repository": "CIAT/nbs_ruralscan",
+        "revision": "e43c42bd581dba791ce1f1697b6b41952ab0cfe3",
+        "path": "schema/lookups/ipcc_confidence_matrix.csv"
+      },
+      "transformation": "none"
+    },
+    "configuration/lookups/scorecard_confidence_badge.csv": {
+      "sha256": "d0a19ab62f3af68fbe82b0b1afd0dc03354af86438ea087a1f22f8d123841dc1",
+      "origin": {
+        "repository": "RuralScan/method",
+        "revision": "e50a3a01b6b164bebed8dfd09229c4df83086c01",
+        "path": "configuration/lookups/scorecard_confidence_badge.csv"
+      },
+      "transformation": "none"
+    }
+  }
+}
