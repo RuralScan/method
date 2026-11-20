@@ -134,7 +134,7 @@ The scheme note says only the planted family has T4 rows. That is out of date at
 
 - Families and grouping rationale: [[table:FAM]].
 - Practice definition, economic archetype and indicative costs: [[table:T0]].
-- Suitability mappings: [[table:T4]]; run policy: [[table:T4_RUN]]; numeric policy: [[table:T4_NUMERIC_POLICY]].
+- Suitability mappings: [[table:T4]]; run policy: [[table:T4_RUN]].
 - Dataset resolution by context (for example MapSPAM default, national commodity override): [[table:BIND]] and [[table:T1]].
 - Hazard responses: [[table:T3]]; scorecard: [[table:T6]]; economic profiles: [[table:T6E]].
 - Evidence and sources: [[table:EV]], [[table:SRC]]; variables: [[table:VONT]].

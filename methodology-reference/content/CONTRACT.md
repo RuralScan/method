@@ -32,7 +32,7 @@ Formulas go in fenced blocks tagged `formula`, written in plain text with Unicod
 ### Links and directives (the generator resolves these; use them, do not hand-write URLs)
 
 - Chapter: `[[ch:<slug>]]` or `[[ch:<slug>|link text]]`. Valid slugs are listed below.
-- Data-model table entry: `[[table:T4]]` (IDs: T0 T1 T2 T3 T4 T5 T6 T6E T7 SRC EV VONT FAM BIND SRCH XW BANDS TOOL T4_RUN T4_NUMERIC_POLICY).
+- Data-model table entry: `[[table:T4]]` (IDs: T0 T1 T2 T3 T4 T5 T6 T6E T7 SRC EV VONT FAM BIND SRCH XW BANDS TOOL T4_RUN).
 - Variable: `[[var:<variable_id>]]` (IDs from `schema/registers/VONT_variable_ontology.csv`).
 - Practice: `[[practice:<nbs_id>]]` (agroforestry, forest_restoration, mangrove_restoration,
   riparian_buffer, water_harvesting_conservation, wetland_management).

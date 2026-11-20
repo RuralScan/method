@@ -110,7 +110,7 @@ The note says no wetland T4 rows exist; that is out of date at the pin [src: sch
 ## Where this is configured
 
 - Families: [[table:FAM]]; practice definition: [[table:T0]].
-- Suitability step profiles: [[table:T4]], [[table:T4_NUMERIC_POLICY]]; dataset bindings: [[table:BIND]], [[table:T1]].
+- Suitability step profiles: [[table:T4]]; dataset bindings: [[table:BIND]], [[table:T1]].
 - Hazard responses: [[table:T3]]; scorecard: [[table:T6]]; economic profiles: [[table:T6E]].
 - Evidence: [[table:EV]], [[table:SRC]]; variables: [[table:VONT]].
 - Lookups: `schema/lookups/effect_locus.csv`, `comparator_policy.csv`, `crop_scope_policy.csv`.

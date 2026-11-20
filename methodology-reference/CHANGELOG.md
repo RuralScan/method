@@ -6,6 +6,12 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.15.0] - 2026-11-20
+
+- Retire the historical T4 compiler chapter and numeric-policy interface from current documentation; retain immutable evidence editions.
+- Describe T4 baseline retention and the outstanding agent proposal/acceptance implementation.
+- Distinguish the recorded T4 decision from the intended, still unimplemented AI-led T3/T6 workflow.
+
 ## [0.14.4] - 2026-11-20
 
 - Repair data-model references and clarify which Git edition identifies the specification.

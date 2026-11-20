@@ -565,13 +565,12 @@ interval interiors are rejected at compilation. Shared boundaries belonging to t
 classes return unknown. Unreported gaps/tails stay unknown. Existing `points` syntax
 remains supported. Numeric profiles do not participate in categorical host-mask execution.
 
-[Archived T4 numeric compilation policy](https://github.com/CIAT/nbs_ruralscan/blob/e43c42bd581dba791ce1f1697b6b41952ab0cfe3/schema/lookups/t4_numeric_compilation_policy.csv) is manifest-validated configuration
-keyed by evidence ID. It names the approved source encoding, declared source unit, full
-ordinal scale, optional descending-range permission, applicability note, and explicit
-holds. It does not override EV approval, role or species/crop routing. Scores use source
-rank / configured full scale maximum; a low class is positive and zero is reserved for
-explicitly unsuitable. These are design scores, not measured probabilities. Source
-profiles remain separate, with no automatic regional or cross-family inheritance.
+An accepted profile records its source encoding, declared unit, full ordinal scale,
+applicability and holds. Any score transformation requires an explicit scientific
+rationale and acceptance; source ranks do not automatically become Rural Scan
+scores. Design scores are not measured probabilities. Profiles remain separate
+unless an accepted synthesis justifies combining them. EV approval alone does not
+approve a mapping or regional or cross-family transfer.
 
 
 > `ecocrop` is **not** a base type — it is a multi-dimensional composite (`{ t_min, t_opt_low, t_opt_high, t_max }`
@@ -940,16 +939,14 @@ new NbS later requires only adding rows, not code changes.
 
 *Ported from `NbS_Schema_Reference_v01_1.docx` — v0.1 Draft, 7 May 2026.*
 
-### T4 numeric harmonization policy (2026-10-20; issue #365)
+### T4 source profiles and accepted mappings
 
-Optional `harmonization` JSON on `T4_NUMERIC_POLICY` stores the approved semantic
-score crosswalk and explicit compatible-pool assignments. See the policy contract
-in [historical T4 compiler reference](../methodology-reference/content/t4-legacy-compiler.md). T4 `relationship_params` retains original
-source profiles and adds `harmonization.pools` (exact interval/endpoint summaries)
-and `harmonization.review` (unresolved crosswalks/applicability). Each summary cell
-retains median bounds, scalar score or null, source range, independent-source
-counts, weight coverage and flags. Null is unknown, never zero. Derived summaries
-are regenerated from CSV policy and evidence; no new T4 columns are introduced.
+T4 `relationship_params` may retain source profiles and accepted harmonization
+summaries, including unresolved applicability and crosswalk holds. These are
+representations of recorded scientific decisions, not instructions to regenerate
+mappings from legacy numeric policy. Null is unknown, never zero. New mappings
+follow the [agent-led synthesis workflow](../methodology-reference/content/suitability-synthesis.md).
+Historical records remain readable without an active T4 compiler.
 
 
 ## T4_RUN — approved analytical policy (27 October 2026)

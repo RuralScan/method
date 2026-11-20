@@ -54,16 +54,14 @@ are current or transferable. Download bytes must match the listed SHA-256.
 
 | Input | Immutable download | SHA-256 |
 |---|---|---|
-| `t4_numeric_compilation_policy` | [CSV](https://raw.githubusercontent.com/CIAT/nbs_ruralscan/e43c42bd581dba791ce1f1697b6b41952ab0cfe3/schema/lookups/t4_numeric_compilation_policy.csv) · [source](https://github.com/CIAT/nbs_ruralscan/blob/e43c42bd581dba791ce1f1697b6b41952ab0cfe3/schema/lookups/t4_numeric_compilation_policy.csv) | `0613e337b0bb4d98a507f66d8c1ffe1080d94de0da3a18bc495eab4d8cd6bc73` |
 | `wb_income_groups` | [CSV](https://raw.githubusercontent.com/CIAT/nbs_ruralscan/e43c42bd581dba791ce1f1697b6b41952ab0cfe3/schema/lookups/wb_income_groups.csv) · [source](https://github.com/CIAT/nbs_ruralscan/blob/e43c42bd581dba791ce1f1697b6b41952ab0cfe3/schema/lookups/wb_income_groups.csv) | `286c52a26a23daa78009907ea32c9a359b5042b38e67492218bc4eceb751d662` |
 | `searched_no_evidence` | [CSV](https://raw.githubusercontent.com/CIAT/nbs_ruralscan/e43c42bd581dba791ce1f1697b6b41952ab0cfe3/schema/lookups/searched_no_evidence.csv) · [source](https://github.com/CIAT/nbs_ruralscan/blob/e43c42bd581dba791ce1f1697b6b41952ab0cfe3/schema/lookups/searched_no_evidence.csv) | `37d30ba30352f4d108c7afedacfa038ab3a7d1e6c3ef1caebf0d45601b37a9c8` |
 
-The T4 table contains finding-specific adjudications alongside reusable conventions;
-use the [historical compiler explanation](../../methodology-reference/content/t4-legacy-compiler.md#the-numeric-compilation-policy)
-and retain every hold. The income-group table is an archived classification, not a live
-World Bank feed. Searched-with-no-evidence rows are recorded search outcomes, not zero
-NbS effects. This index does not relocate ownership or clear pending local redistribution
-of those tables.
+The retired T4 input remains only in immutable provenance manifests; it is not a
+supported synthesis input. The income-group table is an archived classification,
+not a live World Bank feed. Searched-with-no-evidence rows are recorded search
+outcomes, not zero NbS effects. This index does not relocate ownership or clear
+pending local redistribution of those tables.
 
 [Current T4 synthesis](../../methodology-reference/content/suitability-synthesis.md) ·
 [T3/T6 synthesis](../../methodology-reference/content/effect-synthesis.md) ·

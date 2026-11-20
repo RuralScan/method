@@ -30,7 +30,10 @@ from core import (
 )
 
 MANIFEST = pinned_json("schema/structure/columns.json")
-TABLES = MANIFEST["tables"]
+# The immutable source manifest still describes retired tables. Current reference
+# pages expose only supported interfaces; do not rewrite the source schema.
+TABLES = {key: value for key, value in MANIFEST["tables"].items()
+          if key != "T4_NUMERIC_POLICY"}
 EXPLAINED_IN = {
     "T0": ["m0-setup", "m2b-project-risk", "m6-handoff"],
     "T1": ["m0-setup", "farming-systems-and-data"],
@@ -51,7 +54,6 @@ EXPLAINED_IN = {
     "BANDS": ["effect-synthesis"],
     "TOOL": ["extraction"],
     "T4_RUN": ["suitability-synthesis"],
-    "T4_NUMERIC_POLICY": ["suitability-synthesis", "review-and-quality"],
 }
 SPEC_HEADING = {
     "T0": "## T0",
@@ -72,12 +74,11 @@ SPEC_HEADING = {
     "BANDS": "### BANDS",
     "TOOL": "### TOOL",
     "T4_RUN": "## T4_RUN",
-    "T4_NUMERIC_POLICY": "### T4 numeric",
     "SRCH": "### SRCH",
 }
 GROUPS = [
     ("Configuration", ["T0", "T7", "T1", "T5", "T2"]),
-    ("Recipe tables", ["T4", "T4_RUN", "T4_NUMERIC_POLICY", "T3", "T6", "T6E"]),
+    ("Recipe tables", ["T4", "T4_RUN", "T3", "T6", "T6E"]),
     (
         "Evidence and configuration registers",
         ["FAM", "VONT", "BIND", "EV", "SRC", "TOOL", "SRCH", "XW", "BANDS"],
@@ -122,7 +123,6 @@ def edition_rows(table_id):
         "XW": "schema/registers/XW_target_crosswalk.csv",
         "BANDS": "schema/registers/BANDS_magnitude_bands.csv",
         "TOOL": "schema/registers/TOOL_tool_registry.csv",
-        "T4_NUMERIC_POLICY": "schema/lookups/t4_numeric_compilation_policy.csv",
     }
     if table_id in fixed:
         rows = pinned_csv(fixed[table_id])
@@ -222,7 +222,7 @@ def diagram():
         short = name if len(name) <= 19 else name[:18] + "…"
         parts.append(
             f'<a href="table-{t}.html"><g class="node" data-t="{key}"><rect x="{x:.0f}" y="{y:.0f}" width="{bw}" height="{bh}" rx="5"/>'
-            f'<text x="{x + bw / 2:.0f}" y="{y + 18:.0f}" class="id">{esc(t.replace("T4_NUMERIC_POLICY", "T4 numeric"))}</text>'
+            f'<text x="{x + bw / 2:.0f}" y="{y + 18:.0f}" class="id">{esc(t)}</text>'
             f'<text x="{x + bw / 2:.0f}" y="{y + 34:.0f}" class="nm">{esc(short)}</text></g></a>'
         )
     parts.append("</svg>")
