@@ -142,8 +142,8 @@
   function enable(on) {
     setOn(on);
     document.body.classList.toggle('rv-on', on);
-    var t = document.getElementById('rv-toggle'); t.setAttribute('aria-pressed', String(on)); t.querySelector('span').textContent = on ? 'Review on' : 'Review';
-    if (on) { pins(); paintHighlights(); toast('Review on. Dashboard comments stay in this browser until you export them. Use Review queue for evidence decisions.'); }
+    var t = document.getElementById('rv-toggle'); t.setAttribute('aria-pressed', String(on)); t.querySelector('span').textContent = on ? 'Finish commenting' : 'Comment on this page';
+    if (on) { pins(); paintHighlights(); toast('Commenting enabled. Dashboard comments stay in this browser until you export them. Use Review queue for evidence decisions.'); }
     else { exitModes(); closeComposer(); ui.drawer.hidden = true; ui.menu.hidden = true; ui.tip.hidden = true; if (window.CSS && CSS.highlights) CSS.highlights.delete('rv'); }
   }
   function loadH2C() {
