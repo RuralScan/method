@@ -16,7 +16,7 @@
     return button;
   };
   function drafts() {
-    return store.list(reviewer());
+    return BatchReceipt.pending(store.list(reviewer()), BatchReceipt.history(localStorage,reviewer()));
   }
   function refresh() {
     const count = drafts().length;
@@ -24,15 +24,24 @@
     for (const node of document.querySelectorAll('[data-review-batch-count]')) node.textContent = count;
     if (byId('vf-pending-count')) byId('vf-pending-count').textContent = reviewer() ? (count ? count + (count === 1 ? ' decision' : ' decisions') + ' saved on this device — not submitted yet' : 'No unsubmitted decisions on this device') : 'Choose your reviewer name to start.';
   }
+  let appliedJournal={};
+  function receiptFor(row) {
+    if (!row) return null;
+    const item=BatchReceipt.history(localStorage,row.reviewer).find(r=>r.rows.some(old=>JSON.stringify(old)===JSON.stringify(row)));
+    if (!item) return null;
+    const applied=appliedJournal[String(item.number)];
+    return {...item, applied:applied?.digest===item.digest && applied.actor?.toLowerCase()===item.reviewer.toLowerCase()};
+  }
   function label(id, revision) {
     const saved = localStorage.getItem(key({reviewer:reviewer(), revision, evidence_id:id}));
     return saved ? 'Edit saved decision' : 'Review finding';
   }
   window.ReviewBatch = {refresh, label, drafts, get:id => store.get({reviewer:reviewer(), revision:reviewData.registerRevision, evidence_id:id}),
+    receipt:receiptFor,
     pending:revision => store.pending(reviewer(), revision),
     save:row => { store.save({...row, reviewer:reviewer()}); refresh(); },
     remove:row => { store.remove({...row, reviewer:reviewer()}); refresh(); },
-    open:() => { showBatches(); batch.showModal(); }};
+    open:() => { showBatches(); batch.showModal(); checkReceipts(); }};
   window.addEventListener('storage', () => { refresh(); if (batch.open) showBatches(); });
 
   document.addEventListener('click', event => {
@@ -85,68 +94,99 @@
     byId('review-batch-status').textContent = finding + ' saved to your batch.';
   });
 
-  let csvUrls = [];
-  function showBatches() {
+  let csvUrls = [], rendering = 0, checking = false, checkedAt = 0;
+  const message = text => { byId('review-batch-message').textContent=text; };
+  function download(prepared) {
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([prepared.csv],{type:'text/csv;charset=utf-8'}));
+    csvUrls.push(a.href); a.download=prepared.filename; a.click();
+  }
+  async function showBatches() {
+    const generation=++rendering;
     csvUrls.forEach(url=>URL.revokeObjectURL(url)); csvUrls=[];
-    const host = byId('review-batch-groups'); host.replaceChildren();
-    const rows = drafts();
-    byId('review-batch-owner').textContent = rows.length ? reviewer() + ' · ' + rows.length + ' saved. Submit with this GitHub account.' :
-      (reviewer() ? 'No saved decisions for '+reviewer()+'.' : 'Choose your reviewer name to start a batch.');
-    byId('review-batch-message').textContent = '';
-    for (const group of chunks(rows)) {
-      const body = receiptBody(group);
-      const title = 'Finding review batch · ' + group.length + ' · ' + group[0].reviewer;
-      const section = document.createElement('section');
-      const details = document.createElement('details'), summary = document.createElement('summary');
-      summary.textContent = group.length + ' decisions · register ' + group[0].revision.slice(0,8);
-      const list = document.createElement('ul');
-      for (const row of group) {
-        const li = document.createElement('li');
-        li.append(row.lane+' · '+row.evidence_id+' · '+row.decision+(row.reason?' · '+row.reason:'')+(row.note?' · '+row.note:'')+' ',
-          action('Remove from batch', () => { localStorage.removeItem(key(row)); refresh(); showBatches(); }));
-        list.append(li);
+    const host=byId('review-batch-groups'); host.replaceChildren();
+    const rows=drafts();
+    byId('review-batch-owner').textContent=reviewer() ? reviewer()+' · '+rows.length+' decisions ready to submit' : 'Choose your reviewer name to start.';
+    byId('review-batch-message').textContent='';
+    try {
+      for (const group of chunks(rows)) {
+        const prepared=await BatchReceipt.prepare(group);
+        if (generation!==rendering) return;
+        const section=document.createElement('section'); section.className='review-submit-card';
+        const title=document.createElement('h3'); title.textContent=group.length+' decisions';
+        const summary=document.createElement('p');
+        summary.textContent=['approve','reject','hold'].map(v=>group.filter(r=>r.decision===v).length+' '+({approve:'Keep',reject:'Drop',hold:'Query'})[v]).join(' · ');
+        const help=document.createElement('p'); help.className='review-submit-instruction';
+        help.textContent=prepared.attachment
+          ? 'Open submission downloads your CSV and opens GitHub. Attach that file, wait for upload to finish, then click Create.'
+          : 'Your decisions are already included. Open submission, then click Create on GitHub.';
+        const open=document.createElement('a'); open.className='review-submit-primary';
+        open.href=prepared.url; open.target='_blank'; open.rel='noopener'; open.textContent='Open submission';
+        open.addEventListener('click',()=>{
+          if (prepared.attachment) download(prepared);
+          message('Finish on GitHub, then return here. Your decisions stay saved until we find the matching submission.');
+        });
+        const actions=document.createElement('div'); actions.className='review-submit-actions';
+        actions.append(open,action(prepared.attachment?'Download CSV again':'Download a CSV copy',()=>download(prepared)));
+        const details=document.createElement('details'), label=document.createElement('summary'), list=document.createElement('ul');
+        label.textContent='Check decisions · '+group.map(r=>r.lane).filter((v,i,a)=>a.indexOf(v)===i).join(', ')+' · revision '+group[0].revision.slice(0,8);
+        for(const row of group){
+          const li=document.createElement('li'); li.textContent=row.evidence_id+' · '+({approve:'Keep',reject:'Drop',hold:'Query'})[row.decision]+(row.note?' · '+row.note:'')+' ';
+          li.append(action('Remove',()=>{store.remove(row);refresh();showBatches();}));list.append(li);
+        }
+        details.append(label,list);section.append(title,summary,help,actions,details);host.append(section);
       }
-      details.append(summary,list); section.append(details);
-      const csv = document.createElement('a');
-      csv.href = URL.createObjectURL(new Blob([JSON.parse(body.slice(header.length)).payload], {type:'text/csv;charset=utf-8'}));
-      csvUrls.push(csv.href);
-      csv.download = 'ruralscan-'+group[0].reviewer+'-'+group[0].revision+'-'+csvUrls.length+'.csv';
-      csv.textContent = 'Download these decisions as CSV'; section.append(csv,document.createElement('br'));
-      let href = inbox + new URLSearchParams({title,body});
-      if (href.length > 6000) {
-        href = inbox + new URLSearchParams({title});
-        const help = document.createElement('p');
-        help.textContent = 'Copy this batch, open GitHub, paste into the issue description and choose Create.';
-        const payload = document.createElement('textarea');
-        payload.readOnly = true; payload.value = body; payload.setAttribute('aria-label','Batch issue description');
-        section.append(help,action('Copy batch',async () => {
-          try { await navigator.clipboard.writeText(body); byId('review-batch-message').textContent='Batch copied.'; }
-          catch { payload.focus(); payload.select(); byId('review-batch-message').textContent='Copy the selected description.'; }
-        }),payload);
-      }
-      const open = document.createElement('a');
-      open.href = href; open.target = '_blank'; open.rel = 'noopener'; open.textContent = 'Open batch in GitHub';
-      const label = document.createElement('label');
-      label.textContent = ' After creating the issue, enter its receipt number ';
-      const input = document.createElement('input'); input.type='number'; input.min='1';
-      label.append(input);
-      section.append(open,label,action('Confirm receipt',async () => {
-        const status = byId('review-batch-message');
-        if (!/^[1-9]\d*$/.test(input.value)) { status.textContent='Enter the GitHub issue number.'; return; }
-        try {
-          const res = await fetch('https://api.github.com/repos/RuralScan/evidence/issues/'+input.value,{cache:'no-store'});
-          if (!res.ok) throw Error('Receipt unavailable. Saved decisions retained.');
-          const issue = await res.json();
-          if (issue.pull_request || issue.user?.login?.toLowerCase() !== group[0].reviewer.toLowerCase() ||
-              issue.body?.replaceAll('\r\n','\n').trim() !== body) throw Error('Receipt differs from this batch. Saved decisions retained.');
-          for (const r of group) if (localStorage.getItem(key(r)) === JSON.stringify(r)) localStorage.removeItem(key(r));
-          refresh(); showBatches(); status.textContent='Receipt #'+issue.number+' confirmed. Submitted decisions await register processing.';
-        } catch (error) { status.textContent=error.message; }
-      }));
-      host.append(section);
+      renderHistory();
+      if (!rows.length && BatchReceipt.history(localStorage,reviewer()).length) document.querySelector('.review-submission-history').open=true;
+    } catch(error){message(error.message);}
+  }
+  function renderHistory(journal=appliedJournal) {
+    appliedJournal=journal;
+    const host=byId('review-batch-history');host.replaceChildren();
+    for(const item of BatchReceipt.history(localStorage,reviewer())){
+      const applied=journal[String(item.number)];
+      const done=applied?.digest===item.digest && applied.actor?.toLowerCase()===item.reviewer.toLowerCase();
+      const p=document.createElement('p'), link=document.createElement('a');
+      link.href=item.url;link.target='_blank';link.rel='noopener';link.textContent='Submission #'+item.number;
+      p.append(link,' · '+item.rows.length+' decisions · '+(done?'Applied':'Submitted · awaiting validation and processing'));
+      host.append(p);
     }
   }
-  byId('review-submit-all').addEventListener('click',() => { showBatches(); batch.showModal(); });
-  batch.querySelector('[data-close]').addEventListener('click',() => batch.close());
-  batch.addEventListener('close',() => { if (typeof renderVfWorklist === 'function') renderVfWorklist(); for (const b of document.querySelectorAll('.finding-submit')) b.textContent=label(b.dataset.finding,b.dataset.revision); });
+  async function checkReceipts(force=false) {
+    if(checking || !reviewer() || (!force && Date.now()-checkedAt<3000))return;
+    checking=true;checkedAt=Date.now();
+    const actor=reviewer();
+    const status=byId('review-check-submissions');status.disabled=true;
+    try {
+      const groups=await Promise.all(chunks(drafts()).map(BatchReceipt.prepare));
+      let matched=0;
+      if(groups.length){
+        for(let page=1;page<=3;page++){
+          const res=await fetch('https://api.github.com/repos/RuralScan/evidence/issues?state=all&sort=created&direction=desc&per_page=100&creator='+encodeURIComponent(actor)+'&page='+page,{cache:'no-store'});
+          if(!res.ok)throw Error('Could not check GitHub submissions. Your decisions remain saved; try Check submissions again.');
+          const issues=await res.json();
+          for(const group of [...groups]){
+            const issue=issues.find(i=>BatchReceipt.matches(i,group));
+            if(issue){await BatchReceipt.remember(localStorage,issue,group);groups.splice(groups.indexOf(group),1);matched++;}
+          }
+          if(!groups.length||issues.length<100)break;
+        }
+      }
+      if(actor!==reviewer())return;
+      refresh();await showBatches();
+      if(matched)message('Submission found. Decisions are saved here while validation and register processing finish.');
+      else if(groups.length && force)message('No matching submission yet. Finish creating it on GitHub, then check again. Decisions remain saved.');
+      try {
+        const res=await fetch('https://raw.githubusercontent.com/RuralScan/evidence/main/registers/applied-receipts.json',{cache:'no-store'});
+        if(res.ok && actor===reviewer())renderHistory(await res.json());
+      } catch { /* Receipt links remain usable when the register cannot be reached. */ }
+    } catch(error){message(error.message);}
+    finally {checking=false;status.disabled=false;}
+  }
+  byId('review-submit-all').addEventListener('click',()=>ReviewBatch.open());
+  byId('review-check-submissions').addEventListener('click',()=>checkReceipts(true));
+  window.addEventListener('focus',()=>{if(batch.open)checkReceipts();});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden&&batch.open)checkReceipts();});
+  batch.querySelector('[data-close]').addEventListener('click',()=>batch.close());
+  batch.addEventListener('close',()=>{if(typeof renderVfWorklist==='function')renderVfWorklist();for(const b of document.querySelectorAll('.finding-submit'))b.textContent=label(b.dataset.finding,b.dataset.revision);});
 })();
