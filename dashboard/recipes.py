@@ -497,9 +497,14 @@ def generate(out, evidence, ciat, write, sidecar, review_views):
             body += "<p>Historical mapping; not regenerated from current evidence. Agent synthesis is required for a new mapping.</p>"
             protocol = "https://github.com/RuralScan/method/blob/main/methodology-reference/content/suitability-synthesis.md"
             label = "Read the current agent-led T4 synthesis workflow"
+        elif table in {"T3", "T6"}:
+            body += "<p>Historical effect row; not an accepted AI synthesis output. New judgments require an AI proposal and scientific acceptance.</p>"
+            protocol = "https://github.com/RuralScan/method/blob/main/methodology-reference/content/effect-synthesis.md"
+            label = "Read the current AI-led T3/T6 synthesis workflow"
         else:
-            protocol = f"https://github.com/CIAT/nbs_ruralscan/blob/{revision}/methodology/T3_T6_generation_method.md"
-            label = f"Read the pinned {table} synthesis protocol"
+            body += "<p>Historical economic profile; new T6E synthesis is outside the current AI effect contract.</p>"
+            protocol = "https://github.com/RuralScan/method/blob/main/methodology-reference/content/cost-profiles.md"
+            label = "Read about the historical economic profile"
         body += "<p>" + link(protocol, label) + "</p>"
         for title, ids in [
             ("Direct supporting findings", row["evidence_ids"]),

@@ -1,6 +1,7 @@
 """Data-model pages: relationship diagram, table dictionary, variables, datasets, rule tables."""
 
 import re
+import json
 
 import data
 import markdown
@@ -34,6 +35,10 @@ MANIFEST = pinned_json("schema/structure/columns.json")
 # pages expose only supported interfaces; do not rewrite the source schema.
 TABLES = {key: value for key, value in MANIFEST["tables"].items()
           if key != "T4_NUMERIC_POLICY"}
+# Effects now have an AI authoring contract; old data counts remain historical.
+CURRENT_EFFECTS = json.loads((METHOD / "data-model/structure/columns.json").read_bytes())
+for effect_table in ("T3", "T6"):
+    TABLES[effect_table] = CURRENT_EFFECTS["tables"][effect_table]
 EXPLAINED_IN = {
     "T0": ["m0-setup", "m2b-project-risk", "m6-handoff"],
     "T1": ["m0-setup", "farming-systems-and-data"],
@@ -299,7 +304,8 @@ def table_page(table_id):
     body += '<h2 id="fields">Fields</h2>' + table(
         ["Field", "Rule", "References", "Allowed values"],
         field_rows,
-        caption=f"{esc(table_id)} · fields in the frozen column manifest {esc(MANIFEST['manifest_version'])}",
+        caption=(f"{esc(table_id)} · current AI scientific output fields" if table_id in {"T3", "T6"}
+                 else f"{esc(table_id)} · fields in the frozen column manifest {esc(MANIFEST['manifest_version'])}"),
     )
     body += (
         '<p class="basis">Rules: <em>required</em> present and non-empty on every row; <em>optional</em> may be blank; '
