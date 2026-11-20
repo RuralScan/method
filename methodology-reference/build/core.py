@@ -591,7 +591,7 @@ NAV_TIP = {
     "data-model.html": "Every table and field the rules are written in.",
     "practices.html": "Each practice: its families, its rules and ratings, and the evidence behind each.",
     "evidence-base.html": "Download and query the data, and follow a rule back to its source.",
-    "editions.html": "Version numbers, what is established, how to reproduce, glossary.",
+    "editions.html": "About versions, change history, what is established, how to reproduce, glossary.",
 }
 SITE_NAME = "Rural NbS Scan methodology"
 SIDE = {}  # section file -> [(href, label)], filled by the build before pages are written
@@ -605,10 +605,10 @@ def version_line(*more, dated=True):
     `more` adds parts at the end. The header leaves the date to the version menu directly above it.
     """
     state = " (draft)" if VERSION_STATUS == "draft" else ""
-    parts = [f'<span class="vno">Methodology v{VERSION}</span>{state}']
+    parts = [f'<a class="vno" href="editions.html#methodology">Methodology v{VERSION}</a>{state}']
     if dated:
         parts.append(versioning.short_date(VERSION_DATE))
-    parts += [f"Evidence base {EVIDENCE_BASE}", *more]
+    parts += [f'<a href="editions.html#evidence-base">Evidence base v{EVIDENCE_BASE}</a>', *more]
     return " ".join(
         f'<span class="vpart">{part}{" ·" if i < len(parts) - 1 else ""}</span>'
         for i, part in enumerate(parts)
@@ -666,7 +666,6 @@ def version_bar(filename):
         '<svg viewBox="0 0 16 16" aria-hidden="true"><path class="ic-moon" d="M11.5 10.6A5 5 0 0 1 5.4 4.5a5 5 0 1 0 6.1 6.1z"/>'
         '<g class="ic-sun"><circle cx="8" cy="8" r="2.8"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1'
         'M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1"/></g></svg><span>Light theme</span></button>'
-        '<a class="vb-changes vb-hist" href="changes.html">What changed? · history and feedback</a>'
         f'<a class="vb-live" href="{esc(target)}">Live dashboard</a>'
         f"<noscript>{' · '.join(links)}</noscript></div></div>"
     )
@@ -770,7 +769,7 @@ def page(
 {PROGRAMME_MARK}
 <a class="brand" href="index.html">{BRAND_ICON}Rural NbS Scan</a>
 <span class="sub">Methodology</span>
-<span class="ed">{version_line('<a href="editions.html">about versions</a>', dated=False)}</span>
+<span class="ed">{version_line(dated=False)}</span>
 <a class="help-entry" href="help.html">Help / Contact / Team</a>
 <a class="review-entry" href="{live("review-queue")}">Review queue</a>
 </div>
@@ -782,7 +781,6 @@ def page(
 </main></div>
 <footer><div class="wrap"><p>{version_line()}. Scoping method: it flags where to look;
 local feasibility assessment validates. <a href="editions.html">Editions and checks</a> ·
-<a href="changes.html">What changed</a> ·
 <a href="glossary.html">Glossary</a></p></div></footer>
 <script src="site.js" defer></script>
 <script src="review-mode.js" defer></script>

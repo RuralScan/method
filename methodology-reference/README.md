@@ -46,7 +46,7 @@ Versions before 1.0.0 are drafts (`"status": "draft"`). Version 1.0.0 is the fir
 (`"status": "released"`).
 
 Each version needs an entry at the top of `CHANGELOG.md`, headed `## [0.8.1] - 2026-11-20`, with one bullet per
-change in plain words. The "What changed" page and the release notes are made from it. Write for a reader of
+change in plain words. The change history on "About versions and changes" and the release notes are made from it. Write for a reader of
 the pages: no names, no pull request or issue numbers.
 
 Three things hold this in place. The build fails if the top changelog entry is not the version in

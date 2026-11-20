@@ -1,10 +1,16 @@
 # Changelog
 
 What changed in the Rural NbS Scan methodology, newest first. The build reads this file to make the
-"What changed" page, and the release notes on GitHub are taken from it.
+change history on "About versions and changes", and the release notes on GitHub are taken from it.
 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
+
+## [0.14.1] - 2026-11-20
+
+- Bring version explanations, full change history, source revisions and feedback together on About versions and changes.
+- Link the methodology and evidence-base version numbers directly to their explanations; remove separate header links for version help and change history.
+- Preserve older change-history links and version anchors; analytical values and the evidence-base edition are unchanged.
 
 ## [0.14.0] - 2026-11-20
 

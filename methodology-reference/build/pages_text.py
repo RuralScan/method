@@ -524,7 +524,7 @@ def build():
         (chapter_file(s), TITLES.get(s, s)) for s in EVIDENCE_CH
     ]
     SIDE["editions.html"] = [
-        ("editions.html", "Versions and editions"),
+        ("editions.html", "About versions and changes"),
         ("status.html", "What is established"),
         ("reproduce.html", "Reproduce and check"),
         ("glossary.html", "Glossary"),
@@ -533,7 +533,7 @@ def build():
     chapter_pages("evidence-methods.html", EVIDENCE_CH, 3)
     historic, historic_toc = chapter_body("t4-legacy-compiler")
     page("ch-t4-legacy-compiler.html", "editions.html", "Historical T4 compiler", historic,
-         crumbs=[("editions.html", "Versions and editions"), ("", "Historical T4 compiler")],
+         crumbs=[("editions.html", "About versions and changes"), ("", "Historical T4 compiler")],
          lead=summary("t4-legacy-compiler"), toc=historic_toc)
 
     # Preserve the published guide addresses without retaining duplicate chapters in navigation.
@@ -826,7 +826,7 @@ def build():
         f"{link(chapter_file('scoping-walkthrough'), 'The scoping walkthrough')} connects the two, screen by screen.</dd></div>"
         "<div><dt>Which version am I looking at?</dt><dd>The line at the top of every page gives two numbers: "
         "the version of this methodology and the evidence base it reports. The version menu above it lists this "
-        "methodology first, then the superseded evidence dashboard, then earlier drafts. "
+        "methodology first, followed by earlier drafts. Select either version number to read its explanation and change history. "
         f"{link('editions.html#numbers', 'What the numbers mean')}.</dd></div>"
         "<div><dt>Can I download the data?</dt><dd>Yes. "
         f"{link('evidence-base.html', 'Get and use the data')} lists every table with its address and checksum, a "
@@ -864,31 +864,27 @@ def build():
     def entries(items):
         return "<ul>" + "".join(f"<li>{esc(x)}</li>" for x in items) + "</ul>"
 
-    body = (
-        "<p>What changed in this methodology, newest first. Each numbered version is also a "
-        f"{link(RELEASES_URL, 'tagged release in the method repository')}, so its exact text can be recovered. "
-        f"{link('editions.html#numbers', 'What the numbers mean')}.</p>"
-        f"<p>The evidence and the ratings reported here are those of evidence base {esc(EVIDENCE_BASE)}. "
-        "They do not change between these entries unless an entry says so.</p>"
+    history = (
+        '<h2 id="changes">What changed</h2>'
+        "<p>Methodology changes, newest first. Each numbered version has "
+        f"{link(RELEASES_URL, 'release notes and a fixed source revision on GitHub')}. "
+        "The evidence and ratings stay the same unless an entry explicitly records an evidence-base change.</p>"
         + "".join(
-            f'<h2 id="v{esc(version)}">v{esc(version)} · {versioning.long_date(day)}</h2>{entries(items)}'
+            f'<h3 id="v{esc(version)}">v{esc(version)} · {versioning.long_date(day)}</h3>{entries(items)}'
             for version, day, items in versions
         )
-        + '<h2 id="earlier">Before version numbers</h2>'
-        "<p>Changes made before this methodology carried a version number, by date.</p>"
-        + "".join(f"<h3>{esc(day)}</h3>{entries(items)}" for day, items in earlier)
-        + '<h2 id="feedback">Feedback</h2>'
-        "<p>Choose <strong>Review</strong> in the bar at the top of any page to leave notes on what you see. "
-        f"{link('help.html#feedback', 'How the review tool works')}. Feedback that has been acted on appears "
-        "in the entries above.</p>"
+        + '<h3 id="earlier">Before version numbers</h3>'
+        + "".join(f"<h4>{esc(day)}</h4>{entries(items)}" for day, items in earlier)
     )
-    page(
-        "changes.html",
-        "index.html",
-        "What changed",
-        body,
-        lead="History of this methodology and how to give feedback on it.",
-    )
+    # Keep shared historical URLs, including version anchors, without duplicating the history.
+    page("changes.html", "editions.html", "Version history has moved",
+         '<p>Version explanations and the full change history are now together on '
+         + link('editions.html#changes', 'About versions and changes') + '.</p>'
+         + ''.join(f'<span id="v{esc(v)}"></span>' for v, _, _ in versions)
+         + '<span id="earlier"></span><span id="feedback"></span>')
+    PAGES["changes.html"] = PAGES["changes.html"].replace(
+        '</head>', '<link rel="canonical" href="editions.html">'
+        '<script>location.replace("editions.html" + (location.hash || "#changes"));</script></head>', 1)
 
     # ------------------------------------------------------------ status
     by_practice = []
@@ -1289,38 +1285,25 @@ def build():
     ]
     state = "draft" if VERSION_STATUS == "draft" else "released"
     body = (
-        '<h2 id="numbers">Version numbers</h2>'
-        "<p>Two numbers identify what you are reading. Both are shown at the top of every page.</p>"
-        + table(
-            ["Number", "On this page", "Form", "It goes up when"],
-            [
-                [
-                    "Methodology",
-                    f"v{esc(VERSION)}, {state}, {versioning.long_date(VERSION_DATE)}",
-                    "major.minor.patch",
-                    (
-                        "Major: the method works differently, so results could change. Minor: a chapter or section is "
-                        "added or rewritten. Patch: wording, corrections or layout."
-                    ),
-                ],
-                [
-                    "Evidence base",
-                    f"{esc(EVIDENCE_BASE)}, {versioning.long_date(EVIDENCE_BASE_DATE)}",
-                    "year.month.release",
-                    (
-                        "A new fixed set of rule tables and evidence registers is adopted. The number gives the year and "
-                        "month, then counts the releases in that month."
-                    ),
-                ],
-            ],
-            caption="The two version numbers",
-        )
-        + "<p>Versions before 1.0.0 are drafts; version 1.0.0 will be the first released version. Each numbered "
-        f"version is a {link(RELEASES_URL, 'tagged release in the method repository')}, and "
-        f"{link('changes.html', 'What changed')} lists what each one altered. An evidence base number stands for "
-        "the identifiers in the next table. The live dashboard reads current review records, so it can show a "
-        "later state than any numbered evidence base.</p>"
-        '<h2 id="inputs">What this version was built from</h2>'
+        '<h2 id="numbers">About the version numbers</h2>'
+        "<p>Two independently numbered versions identify what you are reading: the written methodology "
+        "and the fixed evidence base it reports. Updating the text does not by itself change the evidence or ratings.</p>"
+        '<h3 id="methodology">Methodology version</h3>'
+        f"<p><strong>v{esc(VERSION)}</strong> · {state} · {versioning.long_date(VERSION_DATE)}. "
+        "The number follows <strong>major.minor.patch</strong>: major changes alter how the method works and "
+        "could change results; minor changes add or rewrite chapters or sections; patch changes correct wording "
+        "or layout. Versions before 1.0.0 are drafts; 1.0.0 will be the first released version.</p>"
+        f"<p>{link('#changes', 'Read the change history below')} or "
+        f"{link(RELEASES_URL, 'open the tagged releases on GitHub')} to recover an earlier version.</p>"
+        '<h3 id="evidence-base">Evidence-base version</h3>'
+        f"<p><strong>v{esc(EVIDENCE_BASE)}</strong> · {versioning.long_date(EVIDENCE_BASE_DATE)}. "
+        "The number follows <strong>year.month.release</strong>: the year and month, then the release number "
+        "within that month. It changes when a new fixed set of analytical tables and evidence registers is adopted. "
+        "The exact inputs are recorded below. Current review decisions can be newer than this fixed evidence base.</p>"
+        f"<p>{link('evidence-base.html', 'Browse and download this evidence base')}. "
+        f"{link('#inputs', 'See its exact source revisions')}.</p>"
+        + history
+        + '<h2 id="inputs">What this version was built from</h2>'
         "<p>An edition is one fixed set of inputs. Everything in this methodology is read from the identifiers "
         "below, so a number here can be reproduced exactly. Counts from different editions are never added, "
         "subtracted or turned into a rate.</p>"
@@ -1355,12 +1338,22 @@ def build():
         "used on the first screen for the same state. Schema and ruleset versions are separate and are named as versions. "
         f"See the {link('glossary.html', 'glossary')}.</p>"
     )
+    body += (
+        '<h2 id="feedback">Feedback and review history</h2>'
+        "<p>Choose <strong>Review</strong> in the top bar to leave notes on this methodology. "
+        f"{link('help.html#feedback', 'How to share feedback')}. Changes made in response appear in the history above.</p>"
+        f"<p>{link(live('dashboard-history'), 'Dashboard build history and feedback')} records changes to the review workspace. "
+        f"{link('review.html', 'Evidence review records')} describe finding-level decisions; these are distinct from methodology edits.</p>"
+    )
     page(
         "editions.html",
         "editions.html",
-        "Versions and editions",
+        "About versions and changes",
         body,
-        lead="What the version numbers mean, which inputs this version was built from, and how they differ from the country pilot's.",
+        lead="Version meanings, full change history, exact inputs and feedback in one place.",
+        toc=[("methodology", "Methodology version"), ("evidence-base", "Evidence-base version"),
+             ("changes", "What changed"), ("inputs", "Exact inputs"),
+             ("live", "Current review records"), ("words", "Terms"), ("feedback", "Feedback")],
     )
 
     # ------------------------------------------------------------ glossary

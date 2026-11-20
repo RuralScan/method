@@ -45,7 +45,7 @@ Do not restyle the reference toward the visual methodology, or the reverse, to "
 
 ## The top bar is shared with the visual methodology
 
-Every product a reviewer moves between should carry the same controls in the same order, so nobody has to relearn them. The model is the visual methodology's version bar.
+Keep version selection, theme and review controls consistent across the site. The methodology masthead links its two version numbers to one page containing explanations and change history.
 
 | Position | Control | Rule |
 |---|---|---|
@@ -53,10 +53,9 @@ Every product a reviewer moves between should carry the same controls in the sam
 | 2 | Note | An "Under review" marker and one short line saying what this version is. |
 | 3 | **Dark theme / Light theme** button | Same moon and sun icons and wording as the visual methodology. |
 | 4 | **Review** button | Switches on the review tool. Reads "Review on" while active. |
-| 5 | **What changed? · history and feedback** | Opens `changes.html`. |
-| 6 | Live dashboard | Link back to the live evidence dashboard. |
+| 5 | Live dashboard | Link back to the live evidence dashboard. |
 
-Below the bar, the header carries the programme logo, the brand, the edition line, **Help / Contact / Team** and the Review queue button.
+Below the bar, the header carries the programme logo, the brand, linked methodology and evidence-base version numbers, **Help / Contact / Team** and the Review queue button. The version links open their matching sections on `editions.html`, which also contains the full change history. No separate About versions or What changed link. The header wraps without overlap, and anchor offsets follow its measured height.
 
 **The review tool is the visual methodology's own.** The build reads `review-mode.js` and `review-mode.css` from the visual methodology at the revision pinned as `VISUAL_REV` in `build/core.py` and changes only the storage keys, the page targets, the page names and the issue address. Do not write a second feedback tool and do not edit the generated files; change the substitutions. The build fails if a substitution no longer matches.
 

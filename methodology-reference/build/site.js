@@ -64,6 +64,16 @@
       status.textContent = terms.length ? shown + ' of ' + rows.length + ' shown' : '';
     });
   });
+  // Version links and other anchors must remain visible below the wrapping sticky masthead.
+  var mast = document.querySelector('.mast');
+  if (mast) {
+    var measureMast = function () {
+      document.documentElement.style.setProperty('--mast-height', mast.getBoundingClientRect().height + 'px');
+    };
+    measureMast();
+    if (window.ResizeObserver) new ResizeObserver(measureMast).observe(mast);
+    window.addEventListener('load', function () { measureMast(); reveal(); });
+  }
   // Open a collapsed block when a link targets something inside it.
   function reveal() {
     if (!location.hash) return;
