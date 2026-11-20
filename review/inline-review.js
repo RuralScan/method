@@ -7,6 +7,7 @@ const InlineReview = (() => {
   const codes = () => [...new Set([..._VF_RC_PASSED, ..._VF_RC_FLAGGED])];
   function html(id, lane, revision) {
     const saved = ReviewBatch.get(id);
+    const receipt = ReviewBatch.receipt?.(saved);
     const values = edits.get(identity(id,revision)) || saved || {};
     return '<form class="inline-review" aria-label="Your decision for '+vfEsc(id)+'" data-finding="'+vfEsc(id)+'" data-lane="'+vfEsc(lane)+'" data-revision="'+vfEsc(revision)+'" data-reviewer="'+vfEsc(owner())+'">'
       +'<div class="inline-review-fields"><label>Reason<select name="reason"><option value="">Choose if needed · required for Drop</option>'
@@ -14,8 +15,8 @@ const InlineReview = (() => {
       +'<label>Note / question<textarea name="note" rows="2" maxlength="1000" placeholder="Optional for Keep; write your question before Query">'+vfEsc(values.note || '')+'</textarea></label></div>'
       +'<div class="inline-review-actions"><strong>Your decision</strong>'
       +Object.entries(labels).map(([value,label])=>'<button type="button" data-decision="'+value+'" class="review-'+value+'" aria-pressed="'+(saved?.decision===value)+'">'+({approve:'✓ ',reject:'✕ ',hold:'? '})[value]+label+'</button>').join('')
-      +'<button type="button" data-undo'+(!saved?' hidden':'')+'>Undo saved decision</button>'
-      +'<output role="status">'+(saved?'Saved on this device · '+labels[saved.decision]+' · not submitted':'Choose a decision to save it to your batch.')+'</output></div></form>';
+      +'<button type="button" data-undo'+(!saved || receipt?' hidden':'')+'>Undo saved decision</button>'
+      +'<output role="status">'+(receipt ? '<a href="'+vfEsc(receipt.url)+'" target="_blank" rel="noopener">Submission #'+receipt.number+'</a> · '+(receipt.applied?'Applied':'Submitted · awaiting validation and processing') : saved?'Saved on this device · '+labels[saved.decision]+' · not submitted':'Choose a decision to save it to your batch.')+'</output></div></form>';
   }
   function row(form, decision) {
     if (form.dataset.reviewer !== owner()) throw Error('Reviewer changed. Reopen this finding before saving.');

@@ -9,7 +9,7 @@
     "browser-backup.html": "4bab4940112375fe5eadea79df91190a99f8cdd96618573e8f864a20eb56311b",
     "browser-backup.js": "653736a3b3600f131957afcf59603d6ae1de0ba818d9173a57813938b9e61054",
     "gap-dialog.html": "53403dc8a3cecfc5c1850972c2be758e66da598ae1f22ea331ffb992d9154ffb",
-    "inline-review.js": "c5b0f7b8c60f4e70aa2a27c680dd3a4153970a05cd7f063bda63bacb8d5fc517",
+    "inline-review.js": "47702e1b558155db289f8664050e1fd192ed579cca37aa537d2c26e4df98f84f",
     "library-locations.json": "48bc6a0afb6eac3748d2bff258ff16d60794bbb95d47e4f702c7a2c15d788baa",
     "local-library.js": "df89252b02092b5a712a00aaa7a2680859665f803c79056a8590c41a4562edab",
     "priority-receipt.js": "add8d49a5f272b797c11e3de078da9cfc753b7f2d8d55efc82711972fba345e0",
@@ -17,13 +17,13 @@
     "priority.js": "3c933ec256197c6ebc889fdbfe0583fc2248debcce97c3453feaebb487d70c61",
     "source-previews.js": "2217d058366e9cc901cdd86bac68fef6b9ca4b0d353a58c7f721d566827fe429",
     "submission-dialogs.html": "45bbf523c60deafaad9c2f4eaa4f1d8f7b347abd484701a314d483ed98122476",
-    "submission.js": "1a8446a43465b7e436a2c149110f42c50ee1ddde0536347dc631ab118981130a",
+    "submission.js": "c5c4559b25d5a0a3b41c30d6b3a0e3e51eff2f99084c7aafd8e3e0bf7a9afa94",
     "vote-drafts.js": "d7b7385834eaa2f177ec22abcf1e22502244ba5bdd626ace079c6038e267d927",
     "workspace.css": "ebc35f16e696f8188ffb1708e2000a63cf13206d810ccdf688204c1a366bf135",
     "workspace.html": "626dc59da1fb87557f3b3ba7df27aa57f76881b45fdec186d4ca78e1eb145747",
     "workspace.js": "7a14fcf0e64b92f798ab0f88b8ea654f6a710de396cdefebc6ec86a5fee4a11d"
   },
-  "content_sha256": "5370cc1afbe10cf8cb8f2b463b464cfe3253682288cae96ac37e83470dfc38f3",
+  "content_sha256": "80dc1c682c95efe583af558ee552c0328f1ac7ee6816188ff9c025838fdd2dde",
   "history": [
     {
       "version": "1.1.6",

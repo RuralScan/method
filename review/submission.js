@@ -24,11 +24,20 @@
     for (const node of document.querySelectorAll('[data-review-batch-count]')) node.textContent = count;
     if (byId('vf-pending-count')) byId('vf-pending-count').textContent = reviewer() ? (count ? count + (count === 1 ? ' decision' : ' decisions') + ' saved on this device — not submitted yet' : 'No unsubmitted decisions on this device') : 'Choose your reviewer name to start.';
   }
+  let appliedJournal={};
+  function receiptFor(row) {
+    if (!row) return null;
+    const item=BatchReceipt.history(localStorage,row.reviewer).find(r=>r.rows.some(old=>JSON.stringify(old)===JSON.stringify(row)));
+    if (!item) return null;
+    const applied=appliedJournal[String(item.number)];
+    return {...item, applied:applied?.digest===item.digest && applied.actor?.toLowerCase()===item.reviewer.toLowerCase()};
+  }
   function label(id, revision) {
     const saved = localStorage.getItem(key({reviewer:reviewer(), revision, evidence_id:id}));
     return saved ? 'Edit saved decision' : 'Review finding';
   }
   window.ReviewBatch = {refresh, label, drafts, get:id => store.get({reviewer:reviewer(), revision:reviewData.registerRevision, evidence_id:id}),
+    receipt:receiptFor,
     pending:revision => store.pending(reviewer(), revision),
     save:row => { store.save({...row, reviewer:reviewer()}); refresh(); },
     remove:row => { store.remove({...row, reviewer:reviewer()}); refresh(); },
@@ -131,7 +140,8 @@
       if (!rows.length && BatchReceipt.history(localStorage,reviewer()).length) document.querySelector('.review-submission-history').open=true;
     } catch(error){message(error.message);}
   }
-  function renderHistory(journal={}) {
+  function renderHistory(journal=appliedJournal) {
+    appliedJournal=journal;
     const host=byId('review-batch-history');host.replaceChildren();
     for(const item of BatchReceipt.history(localStorage,reviewer())){
       const applied=journal[String(item.number)];
