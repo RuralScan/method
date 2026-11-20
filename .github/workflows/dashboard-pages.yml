@@ -58,9 +58,11 @@ jobs:
           cd "$GITHUB_WORKSPACE/reference-src/methodology-reference"
           pin() { sed -nE "s/^${1} = \"([0-9a-f]{40})\"$/\\1/p" build/core.py; }
           git fetch --quiet --no-tags origin "$(pin SITE_REV)"
-          git clone --quiet https://github.com/RuralScan/evidence.git "$work/evidence"
-          # A pinned commit may not be reachable from the repository's current branches.
-          git -C "$work/evidence" fetch --quiet --no-tags origin "$(pin EVIDENCE_OPERATING)"
+          git init --quiet "$work/evidence"
+          git -C "$work/evidence" remote add origin https://github.com/RuralScan/evidence.git
+          # Fetch the exact commit, including commits absent from current branch history.
+          # Match the shallow pinned checkout already used by methodology CI.
+          git -C "$work/evidence" fetch --quiet --depth=1 --no-tags origin "$(pin EVIDENCE_OPERATING)"
           git -C "$work/evidence" checkout --quiet --detach "$(pin EVIDENCE_OPERATING)"
           git clone --quiet --depth 1 https://github.com/RuralScan/runtime.git "$work/runtime"
           git clone --quiet --bare --single-branch --branch main --no-tags https://github.com/CIAT/nbs_ruralscan.git "$work/producer.git"
