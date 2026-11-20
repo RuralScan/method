@@ -6,6 +6,13 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.16.0] - 2026-11-20
+
+- Make T3/T6 scientific synthesis AI-led, with complete candidate accounting and exact-output human acceptance.
+- Retire automatic effect scoring; code validates, packages and reads accepted judgments without re-rating.
+- Specify immutable proposals, stale-input holds, accepted withdrawals and runtime manifest verification.
+- Preserve existing T3/T6 and T6E as historical outputs; do not retrospectively label them AI-accepted.
+
 ## [0.15.1] - 2026-11-20
 
 - Pin the evidence workflow that retains historical T4 rows without re-synthesis.

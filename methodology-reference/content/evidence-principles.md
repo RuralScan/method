@@ -19,7 +19,7 @@ The evidence system supports several different questions: where a practice can f
 
 The common principle is to keep the source, the extracted claim and the analytical decision separate. Extraction records what a source states, with its context and locator. Review checks that interpretation. Synthesis decides what eligible claims support for a particular table and scope. A verified quotation does not, by itself, establish a transferable threshold, a causal effect or a locally applicable cost. [src: methodology/T4_generation_method.md §0] [src: methodology/T3_T6_generation_method.md §3]
 
-This chapter explains those shared foundations. The next four chapters follow the work in order: [[ch:discovery]], [[ch:acquisition]], [[ch:extraction]] and [[ch:review-and-quality]]. After review, [[ch:compiling-evidence]] explains compatibility, dependence and weighting across tables. The specialist chapters then describe agent-led T4 proposals and the separate effect and economic compilation methods. Worked illustrations are labelled as hypothetical; their numbers are teaching examples, not registered findings or approved parameters.
+This chapter explains those shared foundations. The next four chapters follow the work in order: [[ch:discovery]], [[ch:acquisition]], [[ch:extraction]] and [[ch:review-and-quality]]. After review, [[ch:compiling-evidence]] explains compatibility, dependence and weighting across tables. The specialist chapters then describe agent-led T3/T6 and T4 proposals and the separate effect and economic compilation methods. Worked illustrations are labelled as hypothetical; their numbers are teaching examples, not registered findings or approved parameters.
 
 ### Worked illustration: one account, four different claims
 
@@ -44,7 +44,7 @@ The provenance chain for a literature-supported analytical value is:
 analytical row → evidence identifier → source identifier → locator and source quotation
 ```
 
-The analytical row also needs the synthesis policy and recorded decisions that transformed the claims. Provenance answers where a value came from. Reproducing a compiled output additionally requires its evidence, policy, context and code revision; an agent-led T4 output also requires the accepted proposal and review decision, rather than a fresh interpretation by the model. [src: methodology/T4_generation_method.md §Synthesis decision record] [src: methodology/T3_T6_generation_method.md §7]
+The analytical row also needs the synthesis policy and recorded decisions that transformed the claims. Provenance answers where a value came from. Reproducing a compiled output additionally requires its evidence, policy, context and code revision; an agent-led T3/T6 and T4 output also requires the accepted proposal and review decision, rather than a fresh interpretation by the model. [src: methodology/T4_generation_method.md §Synthesis decision record] [src: methodology/T3_T6_generation_method.md §7]
 
 | Record | What one record represents | What it does not establish |
 |---|---|---|

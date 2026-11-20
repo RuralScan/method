@@ -1,7 +1,8 @@
-# Confidence lookups for reuse
+# Historical confidence lookup and current display mapping
 
-This reference edition exposes the exact Rural Scan confidence derivation and display
-mapping. Both files have immutable origins and SHA-256 digests in
+This reference edition preserves the historical Rural Scan confidence derivation and display
+mapping. New T3/T6 confidence is authored by AI and scientifically accepted; this matrix
+does not calculate new confidence judgments. Both files have immutable origins and SHA-256 digests in
 [manifest.json](manifest.json). Cite the full method Git commit containing this manifest
 and the selected file hash. The manifest format version describes its shape; the commit
 identifies the content edition.
@@ -16,9 +17,9 @@ language**, not an IPCC-issued numeric standard, probability or independent vali
 The files are original project configuration distributed under the repository's
 [MIT licence](../../LICENSE); no external figure or report is reproduced here. The badge
 is a display reduction: keep the original five-level confidence in stored data.
-Evidence quantity/quality and agreement must first be assessed using the
+Current scientific reasoning follows the
 [effect-synthesis method](../../methodology-reference/content/effect-synthesis.md).
-These two lookups alone do not reproduce its evidence weighting, caps or transfer checks.
+The matrix documents the retired procedure. The badge lookup may still reduce an accepted confidence label for display, without changing its stored value.
 
 ## Verify an edition
 
