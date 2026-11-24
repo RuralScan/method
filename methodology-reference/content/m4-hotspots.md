@@ -3,6 +3,9 @@ title: "M4: Priority hotspots"
 slug: m4-hotspots
 summary: Rank candidate areas by declared development priorities and explain the weights, drivers and sensitivity of the shortlist.
 sources:
+  - method:priority/README.md
+  - method:data-model/priority-contract.json
+  - method:methodology-reference/reviews/critic-assessment-2026-11-24.md
   - methodology/modules/M4_hotspots.md
   - method:handbook/implement-a-scan.md
   - methodology/opportunity_space_T5.md
@@ -25,62 +28,63 @@ Table: Inputs to priority ranking.
 |---|---|
 | M1 opportunity-space mask | Limits the comparison to candidate areas. |
 | M3 priority layers | Describe climate-related need, production, poverty, biodiversity and equity. |
-| T5 priority settings | Identify eligible indicators, direction and scaling rules. |
+| T2/T5 priority settings | Identify eligible indicators, direction and scaling rules. |
 | Recorded user weights | State the relative emphasis on each selected priority. |
 | Geographic units | Define the areas to be compared and shortlisted. |
 | M2b risk flags, if used | Provide a separate investment-risk screen. |
 
 [src: methodology/modules/M4_hotspots.md §3]
 
-Only T5 rows marked `priority` enter the score. Descriptors such as population counts provide context. Country-level values cannot distinguish locations within a country; they are reported as context or qualified flags rather than as spatially differentiating priorities. [[ch:m3-characterisation]] describes this screening and the treatment of related indicators. [src: methodology/opportunity_space_T5.md §Spatial-grain rule]
+Only selected T2 or T5 rows marked `priority` enter the score. Descriptors such as population counts provide context. Country-level values cannot distinguish locations within a country; they are reported as context or qualified flags rather than as spatially differentiating priorities. [[ch:m3-characterisation]] describes this screening and the treatment of related indicators. [src: methodology/opportunity_space_T5.md §Spatial-grain rule]
 
 ## Method
 
-### 1. State what a high priority value means
+### 1. Use the declared problem classes
 
-Each indicator needs a declared direction, scaling rule and reference frame. A high value must consistently mean more of the concern being prioritised. Priority scaling is therefore different from suitability, where an intermediate optimum may be appropriate. [src: methodology/modules/M4_hotspots.md §9]
+M3 produces none, low, medium and high concern scores of 0, 0.33, 0.66 and 1. Each selected variable retains its raw value, unit and classification rule. Threshold classes express the declared fixed reference; terciles express position within a stated reference population. A relative high class does not establish absolute severity. See [[ch:m3-characterisation]] for classification and duplicate-concern checks. [src: method:data-model/priority-contract.json]
 
-A **fixed reference** uses externally justified thresholds and supports comparisons across places or time. A **relative reference** ranks conditions within a stated area or distribution. Relative ranking helps reveal local contrasts, but even a low-need area will have a highest-ranked location. Show raw values and their units beside transformed scores so relative rank is not mistaken for absolute severity. [src: methodology/modules/M4_hotspots.md §9]
+### 2. Record user priorities
 
-Record the actual transform, bounds or reference distribution used in the application. The data table and the application configuration must identify the same rule; a display label alone is insufficient to reproduce a ranking. [src: methodology/modules/M3_characterisation.md §13] [src: methodology/modules/M4_hotspots.md §9]
+Give each selected concern an explicit nonnegative weight. Zero leaves it out. At least one weight must be positive. These weights express the user's priorities; they are different from the four problem-class scores and from a source's influence on scientific synthesis. If an interface offers low/medium/high weights, it must show the numeric convention it uses. The evaluator does not infer default or equal weights from missing settings. [src: method:priority/README.md §Correlation and weighting]
 
-### 2. Record the team's priorities and weights
+Record the representative chosen for each concern and the reason. Themes organise the explanation; they do not secretly multiply the weights. If theme controls are added later, their translation into final per-concern weights must be explicit and approved. [src: method:priority/README.md]
 
-The module specification offers the settings none, low, medium and high, coded 0, 1, 2 and 3 and normalised across the selected priorities:
-
-```formula
-w_j = c_j / Σ_k c_k
-```
-
-`c_j` is the recorded code for priority `j`; `w_j` is its resulting weight. At least one priority must be selected for the denominator to be non-zero. The coding is a decision convention: it does not measure how much more valuable one outcome is than another. [src: methodology/modules/M4_hotspots.md §6]
-
-An application records the final criterion set and weights, including any theme-level choices and treatment of related indicators. Its rationale should be understandable in terms of the investment question. Re-run with plausible alternative priorities and weights to show which assumptions drive the shortlist. [src: schema/spec.md §Theme weights and NbS-response layers] [src: method:handbook/implement-a-scan.md §3. Build the scoping brief]
-
-Weights extracted from published models describe those models' emphasis. Study counts and evidence-quality weights serve different purposes. None automatically becomes the team's priority weight. Detailed treatment of literature weights belongs in [[ch:suitability-synthesis]]. [src: methodology/weight_normalisation.md §Scope - evidence, not an MCDA input]
-
-### 3. Combine priorities within the candidate area
-
-The module's weighted-overlay formulation is:
+### 3. Sum and normalise once
 
 ```formula
-H(x) = Σ_j w_j p_j(x),       Σ_j w_j = 1
+w_j = u_j / Σ_k u_k
+H(x) = Σ_j w_j p_j(x)
 ```
 
-`H(x)` is the priority index at location `x` within the opportunity space, `p_j(x)` is the standardised value of selected priority `j`, and `w_j` is its recorded weight. Outside that space no hotspot score is assigned. [src: methodology/modules/M4_hotspots.md §6]
+`u_j` is the recorded user weight; `w_j` is its normalised contribution. `p_j(x)` is the problem-class score at location `x`. `H(x)` is the combined priority within the opportunity space. The denominator and selected concern set are the same for every scored pixel. [src: method:priority/README.md §Correlation and weighting]
 
-A weighted sum is compensatory: a strong contribution from one priority can offset a weak contribution from another. Show the main drivers of each shortlisted area's rank so a high combined score is not interpreted as high need on every indicator. [src: methodology/modules/M4_hotspots.md §13]
+Any missing positive-weight indicator makes the pixel unknown. A missing zero-weight indicator does not block it. Outside the opportunity space the pixel is excluded; an unknown mask stays unknown. The final score is already between 0 and 1, so there is no second pixel-based rescaling and no quintile re-binning. Show each concern's contribution alongside the total. [src: method:data-model/priority-contract.json]
 
-Keep the two risk lenses separate. Livelihood climate risk may contribute to need, but its component variables must not be counted again as independent priorities. Investment risk from M2b is a flag or chosen filter, never an additional term in `H`. State whether climate need was represented through separate hazards or a composite; do not include both. [src: methodology/modules/M4_hotspots.md §7] [src: methodology/modules/M2_climate_risk.md §10]
+Keep M2b investment-risk screening separate. T2 now supplies individual climate-risk variables, not a second composite Climate Risk Index to add alongside its components. A high priority score indicates combined need or concern, not confirmed suitability or intervention effectiveness. [src: method:priority/README.md]
 
-### 4. Rank areas and show suitability alongside priority
+### 4. Assess CRITIC without replacing user priorities
 
-Use the application's declared geographic units and aggregation measure to rank candidate areas. Record whether the ranking reflects mean priority, the share above a chosen threshold, or another documented summary. Show the strongest contributing priorities, data coverage and relevant population or production totals with their denominators. [src: methodology/modules/M4_hotspots.md §6] [src: method:handbook/implement-a-scan.md §3. Build the scoping brief]
+CRITIC derives weights from variation and correlations in the supplied indicators. We tested the implementation against its original published example and ran controlled checks for duplicates, constant indicators, opposing signals, changing study areas and classifying values. It is useful for sensitivity analysis, but those weights answer a different question from the user's priorities. [src: method:methodology-reference/reviews/critic-assessment-2026-11-24.md]
 
-Display suitability and priority as separate dimensions. A high-suitability, high-need area answers a different planning question from a high-suitability, low-need area. Class boundaries and the number of display classes belong in the map legend and run record. Quantile classes are relative positions in the stated distribution, not universal severity thresholds. [src: methodology/modules/M4_hotspots.md §8] [src: methodology/modules/M4_hotspots.md §9]
+The tests show that changing the area, discretisation or scaling can materially change CRITIC weights. Identical indicators leave the method without identifiable weights; it must not invent an equal-weight fallback. Correlation also cannot decide which of two records is the canonical representation of a concern. Keep CRITIC **diagnostic only** in this version; there is no automatic CRITIC, entropy or AHP multiplier. [src: method:methodology-reference/reviews/critic-assessment-2026-11-24.md]
 
-### 5. Test whether the shortlist changes
+### 5. Test the shortlist
 
-Repeat the ranking with plausible alternative priority settings and document which areas remain prominent and which move substantially. Record the settings tested and the resulting rank changes. Where data coverage or scaling choices could change the result, assess those alongside weights rather than treating weight sensitivity as total uncertainty. [src: method:handbook/implement-a-scan.md §3. Build the scoping brief]
+Repeat the ranking with plausible user weights, alternative justified classifications and representative choices. Show which locations change and why. Keep suitability, evidence of intervention response, investment-risk flags and data coverage alongside priority. The resulting shortlist directs local investigation; it does not validate an investment. [src: method:priority/README.md] [src: method:handbook/implement-a-scan.md §3. Build the scoping brief]
+
+## Worked illustration
+
+This is hypothetical, not a country calibration. Give poverty a weight of 3 and flood concern a weight of 1. The normalised weights are 0.75 and 0.25.
+
+Table: Hypothetical problem classes and user-weighted scores.
+
+| Cell | Poverty score | Flood score | Priority calculation | Result |
+|---|---:|---:|---|---:|
+| A | 1 | 0.33 | 0.75 × 1 + 0.25 × 0.33 | 0.8325 |
+| B | 0.66 | 1 | 0.75 × 0.66 + 0.25 × 1 | 0.745 |
+| C | Unknown | 1 | Missing a positive-weight criterion | Unknown |
+
+A ranks above B under these priorities. Increasing the user's emphasis on flood concern can reverse that order. Neither ranking proves greater intervention benefit. [src: method:priority/README.md]
 
 ## Reading a hotspot
 
@@ -101,3 +105,5 @@ Missing or coarse data can hide local disadvantage. Sensitivity tests reveal dep
 ## Where this is configured
 
 [[table:T5]] defines priorities and descriptors. [[table:T1]] and [[table:BIND]] describe the inputs and their spatial support; [[table:T7]] defines comparison units. The run record supplies the selected priorities, final weights, scaling, class boundaries and sensitivity scenarios. [[table:T2]] supports the check against counting climate-risk components twice.
+
+The shared classification contract defines the active calculation. Historical index modes, theme defaults and T6 effect multipliers are not imported into it. [src: method:priority/README.md]

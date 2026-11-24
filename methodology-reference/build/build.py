@@ -399,6 +399,19 @@ def run_checks():
         core.EVIDENCE_REV == core.EVIDENCE_OPERATING,
         f"checkout {core.EVIDENCE_REV[:8]}; described {core.EVIDENCE_OPERATING[:8]}",
     )
+    policy = json.loads((core.METHOD / "data-model/priority-contract.json").read_text())
+    flow_page = core.PAGES["ch-m3-characterisation.html"]
+    flow = re.search(r'<ol class="priority-flow">(.*?)</ol>', flow_page, re.S)
+    legend = " · ".join(f"{name.title()} {score:g}" for name, score in policy["class_scores"].items())
+    check("Section 2.8 renders six accessible workflow steps and the contract class scores",
+          flow is not None and flow.group(1).count('<li>') == 6 and legend in flow.group(1)
+          and 'M2b investment-risk screening stays separate' in flow_page)
+    check("Current T2/T5 classification definitions distinguish archived records",
+          all('id="current-priority"' in core.PAGES[f"table-{tid}.html"]
+              and '<summary>Historical edition fields and records</summary>' in core.PAGES[f"table-{tid}.html"]
+              and all(f'<code>{field}</code>' in core.PAGES[f"table-{tid}.html"]
+                      for field in policy['table_fields'][tid]['fields'])
+              for tid in ('T2', 'T5')))
     return results
 
 

@@ -373,3 +373,14 @@ table.fields td:nth-child(4) { min-width: 22ch; }
   .msteps, .msteps.seven { grid-template-columns: 1fr; gap: 1.3rem; }
   .msteps li:not(:last-child)::after, .msteps.seven li:not(:last-child)::after { content: "\2193"; top: auto; bottom: -1.25rem; right: 50%; transform: translateX(50%); }
 }
+
+/* Priority workflow is an ordered list: usable without scripts or hover. */
+.priority-workflow{margin:1.5rem 0}
+.priority-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;padding:0;list-style:none;counter-reset:priority-step}
+.priority-flow li{counter-increment:priority-step;position:relative;border:1px solid var(--border-color);border-radius:10px;padding:1rem;background:var(--panel)}
+.priority-flow li::before{content:counter(priority-step);display:inline-grid;place-items:center;width:1.8rem;height:1.8rem;border:1px solid currentColor;border-radius:50%;margin-bottom:.5rem;color:var(--accent-emerald)}
+.priority-flow small,.priority-flow strong,.priority-flow span{display:block}
+.priority-flow strong{margin:.4rem 0;font-size:1.05rem}
+.priority-flow span,.priority-flow small{font-size:.86rem;line-height:1.5}
+@media(max-width:760px){.priority-flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.priority-flow{grid-template-columns:1fr}}

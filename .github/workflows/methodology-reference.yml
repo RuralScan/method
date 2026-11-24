@@ -6,11 +6,17 @@ on:
     branches: [main]
     paths:
       - 'methodology-reference/**'
+      - 'priority/**'
+      - 'data-model/priority-contract.json'
+      - 'data-model/spec.md'
       - '.github/workflows/methodology-reference.yml'
   push:
     branches: [main]
     paths:
       - 'methodology-reference/**'
+      - 'priority/**'
+      - 'data-model/priority-contract.json'
+      - 'data-model/spec.md'
       - '.github/workflows/methodology-reference.yml'
   schedule:
     - cron: '17 6 * * *'

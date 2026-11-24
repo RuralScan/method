@@ -38,3 +38,17 @@ class AgentEffectsSchema(unittest.TestCase):
             self.assertIn('conflicting_evidence', spec['enum_values']['mitigation_potential' if table == 'T3' else 'effect_direction'])
         path = 'data-model/agent-effects-contract.json'
         self.assertEqual(hashlib.sha256((ROOT / path).read_bytes()).hexdigest(), snapshot['sha256'][path])
+
+
+class PrioritySchema(unittest.TestCase):
+    def test_contract_is_in_definition_snapshot(self):
+        relative = 'data-model/priority-contract.json'
+        snapshot = json.loads((ROOT / 'data-model/definition-snapshot.json').read_text())
+        self.assertEqual(hashlib.sha256((ROOT / relative).read_bytes()).hexdigest(),
+                         snapshot['sha256'][relative])
+        contract = json.loads((ROOT / relative).read_text())
+        spec = (ROOT / 'data-model/spec.md').read_text()
+        for table in ('T2', 'T5'):
+            section = spec.split('## ' + table + ' —', 1)[1].split('\n## ', 1)[0]
+            for field in contract['table_fields'][table]['fields']:
+                self.assertIn('`' + field + '`', section)

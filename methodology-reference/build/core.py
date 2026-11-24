@@ -371,7 +371,7 @@ TABLE_FILES = {
 TABLE_NAMES = {
     "T0": "Practice registry",
     "T1": "Data registry",
-    "T2": "Climate risk formulation",
+    "T2": "Climate-risk variables",
     "T3": "Hazard responses",
     "T4": "Suitability mappings",
     "T5": "Opportunity-space variables",
