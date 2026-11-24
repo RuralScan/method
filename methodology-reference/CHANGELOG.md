@@ -6,6 +6,12 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.17.0] - 2026-11-24
+
+- Introduce the data model with a linked narrative explaining the role of every table before the relationship diagram.
+- Distinguish finding review, AI synthesis, scientific acceptance and runtime use, including historical outputs and unfinished synthesis routes.
+- Explain where investment-risk screening sits across the tables without treating the module as a separate table.
+
 ## [0.16.1] - 2026-11-24
 
 - Give every data-model table a full-name tooltip explaining its purpose and where the link leads.

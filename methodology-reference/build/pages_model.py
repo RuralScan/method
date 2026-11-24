@@ -260,6 +260,52 @@ def diagram():
     return "".join(parts)
 
 
+def table_overview():
+    """Reader-facing story; definitions stay in the linked table dictionary."""
+    def item(table_id, label=None):
+        return link(f"table-{table_id}.html", esc(label or table_id))
+
+    return (
+        '<h2 id="overview">How the tables work together</h2>'
+        '<p>The tables connect a scoping question to its evidence, spatial data and recorded decisions. '
+        'They make those decisions traceable and usable by software; they do not all perform the same job.</p>'
+        f'<p><strong>Define what is being assessed.</strong> {item("T0")} describes each nature-based practice. '
+        f'{item("FAM")} groups subpractices into suitability families with shared limiting conditions. '
+        f'{item("T7")} identifies the geographic and farming-system contexts in which a rule or finding applies.</p>'
+        f'<p><strong>Preserve the evidence behind decisions.</strong> {item("SRCH")} records searches and screening; '
+        f'{item("SRC")} catalogues the sources found. {item("EV")} holds individual findings, with their '
+        f'quotations, locators and review state. {item("TOOL")} records tools and methods used as sources. '
+        'Finding review establishes what an extracted claim can support; it does not approve a resulting recipe.</p>'
+        f'<p><strong>Connect findings to variables and maps.</strong> {item("VONT")} defines variable names, '
+        f'meanings and units. {item("T1")} catalogues datasets, while {item("BIND")} connects each variable '
+        f'to a suitable dataset for its context. {item("XW")} links reported outcomes to analytical targets; '
+        'the synthesis still has to justify their scientific relevance.</p>'
+        f'<p><strong>Answer the scoping questions.</strong> {item("T4")} records where a practice '
+        f'family could fit; {item("T4_RUN")} records suitability execution settings, separately from how '
+        f'the mapping was derived. {item("T2")} records climate-risk variables. {item("T3")} records hazard '
+        f'responses, keeping protection of livelihoods separate from threats to the investment. '
+        f'{item("T5")} defines variables that describe opportunity areas and priorities for locating hotspots. '
+        f'{item("T6")} records effects on scorecard priorities, and {item("T6E")} holds indicative economic profiles.</p>'
+        '<p>M2b is the '
+        + link(chapter_file("m2b-project-risk"), 'investment-risk screening module')
+        + ', not a separate table in this edition. Its hazard screen uses T2 and the investment-risk part of T3; '
+        'operational findings remain in EV with their own role. Investment-risk screening stays separate from '
+        'the priority score.</p>'
+        '<p><strong>Turn evidence into accepted outputs.</strong> AI authors new scientific synthesis proposals '
+        'from the evidence and configuration. Code validates '
+        'the proposal; a human reviewer accepts the exact scientific judgments; code then packages the accepted '
+        'values for runtime use without re-rating them.</p>'
+        '<p>The '
+        + link(chapter_file("effect-synthesis"), 'T3/T6 proposal and acceptance route')
+        + ' is implemented. The '
+        + link(chapter_file("suitability-synthesis"), 'agent-led T4 workflow')
+        + ' is adopted, but its production proposal and packaging route remains outstanding. '
+        'Existing T3, T4 and T6 outputs remain historical until explicitly replaced by accepted outputs; new T6E '
+        f'synthesis is frozen. {item("BANDS")} preserves historical magnitude classifications and does not '
+        'automatically score new AI effect proposals.</p>'
+    )
+
+
 def table_page(table_id):
     spec = TABLES[table_id]
     count, rows = edition_rows(table_id)
@@ -429,11 +475,10 @@ def build():
                 ]
             )
     body = (
-        "<p>The method is configured in tables. Analytical rules, datasets, response functions and weights "
-        "are held in these tables and in the rule tables, so the tables are the method in "
-        "machine-readable form. Some synthesis constants remain in code and are stated in the chapters. "
-        "The column sets are frozen in a manifest and checked by a validator; "
-        "the diagram and lists on this page are generated from that manifest, so they cannot drift from it.</p>"
+        table_overview()
+        + "<p>The diagram below shows table references, not the order of AI work or review. "
+        "Definitions are generated from the pinned structural manifest, with the current T3/T6 scientific "
+        "output contract. Row counts describe the historical data edition; they do not count accepted AI proposals.</p>"
         f'<p class="basis">Column manifest {esc(MANIFEST["manifest_version"])} at the pinned revision. '
         f"{len(TABLES)} tables, {sum(len(references(t)) for t in TABLES)} references between them.</p>"
         '<h2 id="diagram">Relationship diagram</h2>'
@@ -461,6 +506,7 @@ def build():
         body,
         lead=f"{len(TABLES)} tables that hold the method, their fields and how they join.",
         toc=[
+            ("overview", "How the tables work together"),
             ("diagram", "Relationship diagram"),
             ("tables", f"The {len(TABLES)} tables"),
             ("relationships", "Relationships"),
