@@ -125,3 +125,9 @@ variable ontology (`[[var:…]]`), practice data pages (`[[practice:…]]`), and
 
 Return 5 lines maximum: files written with word counts, any source you could not open, and any
 place where sources contradict each other or where you had to leave a gap.
+
+## Priority workflow
+
+`{{priority-workflow}}` renders the ordered M1–M4 classification and weighting diagram.
+Its four class scores come from `data-model/priority-contract.json`; text, order and caption
+remain accessible without scripts or hover. M2b is labelled as a separate screen.

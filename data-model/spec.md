@@ -306,7 +306,7 @@ the vocabularies to lock up front.)
 |---|---|---|---|
 | **T0** NbS Registry | Master record per NbS, economic archetype, evidence quality | yes (`nbs_id`) | `recipes/<nbs_id>/` |
 | **T1** Data Registry | Dataset catalog, access routes, citations, limitations | no | schema root |
-| **T2** Climate Risk Formulation | Risk variables, hazard/exposure formula, double-count guard | no | schema root |
+| **T2** Climate-risk variables | Named concerns, classification references and shared concern identities | no | schema root |
 | **T3** NbS × Hazard × Farming | Qualitative mitigation-potential matrix · `risk_role` + asset-threat weights for M2b | yes (`nbs_id`) | `recipes/<nbs_id>/` |
 | **T4** Suitability Mappings | Response functions, scenario flags, context overrides | yes (`nbs_id`) | `recipes/<nbs_id>/` |
 | **T5** Opportunity Space Vars | TTL-facing priority layers (`mcda_role = priority` \| `descriptor`) | no | schema root |
@@ -379,32 +379,44 @@ use a dataset is derived on demand from the T2/T4 joins, not stored.
 
 ---
 
-## T2 — Climate Risk Formulation
+## T2 — Climate-risk variables
 
-Variables for hazard, exposure, sensitivity and adaptive capacity, plus the composite-index formula.
-AR6-consistent: **Risk = Hazard × Exposure × Vulnerability**, where Vulnerability = f(Sensitivity, Adaptive
-Capacity). Weights must sum to **1.0 per `scenario_type` group**. `double_count_risk` is the guard against a
-variable appearing in both the risk index and the opportunity space — the pipeline checks it before
-compositing.
+Registry of climate-risk variables, without a composite climate-risk index. Current priority calculations follow
+[`priority-contract.json`](priority-contract.json) and the [classification and weighting method](../priority/README.md).
+These are the current configuration fields; archived CSVs in `configuration/` retain their original
+columns and values. They require an explicit reviewed migration before use in this route.
 
-| Field | Type | Required | Description | Example |
-|---|---|---|---|---|
-| `variable_id` | string | Required | Unique identifier for this risk variable. | `drought_spei12_baseline` |
-| `dataset_id` | string | Required | FK → `T1.dataset_id`. | `spei_global_v26` |
-| `risk_component` | enum | Required | `hazard` \| `exposure` \| `sensitivity` \| `adaptive_capacity`. | `hazard` |
-| `hazard_type` | enum | Conditional | Required if `risk_component = hazard`. `drought` \| `flood` \| `heat_stress` \| `fire` \| `wind_cyclone` \| `waterlogging` \| `frost`. | `drought` |
-| `variable` | string | Required | FK → Variable Ontology (canonical name + unit live there). | `spei12` |
-| `scenario_type` | enum | Required | `baseline` \| `future_ssp126` \| `future_ssp245` \| `future_ssp585`. | `baseline` |
-| `use_in_simplified_mode` | boolean | Required | Include in simplified (climate-index-only) mode. | `true` |
-| `use_in_advanced_mode` | boolean | Required | Include in advanced (hazard × exposure) mode. | `true` |
-| `double_count_risk` | enum | Required | `risk_only` \| `opportunity_space_only` \| `shared` (shared → pipeline uses `risk_only` by default). | `risk_only` |
-| `normalisation_method` | enum | Required | `min_max` \| `percentile_clip` \| `log_transform` \| `none`. | `percentile_clip` |
-| `normalisation_params` | object | Optional | e.g. `{ p_low: 2, p_high: 98 }`. | `{ p_low: 2, p_high: 98 }` |
-| `weight_default` | float | Required | Default weight in composite index (0–1; per-scenario weights sum to 1). | `0.35` |
-| `weight_adjustable` | boolean | Required | Can TTL/analyst adjust this weight? | `true` |
-| `directionality` | enum | Required | `positive_risk` \| `negative_risk` (e.g. adaptive capacity = `negative_risk`). | `positive_risk` |
-| `evidence_ids` | string[] | Required | FK list → EV (provenance: source · tier · page · quote). | `['ev_spei_vicente10']` |
-| `justification` | string | Optional | One-line summary, generated from the evidence units. | `SPEI-12 is standard drought metric…` |
+| Field | Meaning |
+|---|---|
+| `variable_id` | Stable variable identifier |
+| `variable` | Canonical quantity in VONT |
+| `dataset_id` | Context-resolved dataset in T1/BIND |
+| `hazard_type` | Named hazard, where relevant |
+| `scenario_type` | Baseline or stated future scenario |
+| `unit` | Native measurement unit |
+| `mcda_role` | Priority, descriptor or investment-risk screen |
+| `concern_id` | Shared concern identity; do not count a T2/T5 alias twice |
+| `classification_id` | Reference to one versioned classification rule |
+
+Each selected priority references a rule with method, direction, unit, context, version and decision
+reference. Thresholds are the default: three increasing, upper-inclusive raw-value cutoffs map to
+none **0**, low **0.33**, medium **0.66**, high **1**; reverse the class labels for decreasing concern.
+Relative terciles require a reference population and period, realised cutoffs and reference hash.
+A separate no-problem condition is needed to create a none class. Missing data stays unknown.
+Quintiles are not supported. The contract defines the rule fields and the exact tie convention.
+
+Use one explicit representative per shared concern, including T2/T5 aliases, with a recorded reason.
+Only priority rows enter the user-weighted mean. Descriptors and M2b investment-risk screens remain
+separate. The runtime records normalized user weights, contributions, missingness and provenance;
+it does not import historical defaults, climate index modes or implicit theme weights. CRITIC is
+a sensitivity diagnostic, not an automatic multiplier or a substitute for user priorities.
+
+The T6 link supports interpretation of response evidence alongside need; no automatic T6 effect
+multiplier is used in this priority route. Dataset bindings, rule calibration and scientific
+acceptance remain explicit prerequisites for an actual analysis. No universal thresholds are supplied.
+
+[Historical field definitions](https://github.com/RuralScan/method/blob/99f8598282bcc01fc68fb1ca450d6e81c6b5e471/data-model/spec.md)
+remain available for reproducing earlier editions.
 
 ---
 
@@ -580,45 +592,43 @@ approve a mapping or regional or cross-family transfer.
 
 ---
 
-## T5 — Opportunity Space Variables
+## T5 — Opportunity-space variables
 
-Layers characterising the opportunity space that TTLs weight and combine to identify hotspots. They describe
-the *characteristics* of the geographic space within the biophysical opportunity space — **not** suitability
-constraints. Climate risk enters here via `is_climate_risk_component = true`, but `double_count_risk` in T2
-prevents double-counting.
+Registry of opportunity-space priorities and descriptors. Current priority calculations follow
+[`priority-contract.json`](priority-contract.json) and the [classification and weighting method](../priority/README.md).
+These are the current configuration fields; archived CSVs in `configuration/` retain their original
+columns and values. They require an explicit reviewed migration before use in this route.
 
-| Field | Type | Required | Description | Example |
-|---|---|---|---|---|
-| `variable_id` | string | Required | Unique identifier. | `rural_poverty_headcount` |
-| `variable` | string | Required | FK → Variable Ontology (canonical name, unit, and `group_id` for theme roll-up live there). | `rural_poverty_headcount` |
-| `theme` | enum | Required | Hotspot pillar for grouping + theme-level weighting in M4. `climate_hazard` \| `nbs_response` \| `people_production` \| `infrastructure` \| `equity_gender` (v0.2.8 — equity / gender / GESI is its own theme, not folded into people_production). | `equity_gender` |
-| `dataset_id` | string | Required | FK → `T1.dataset_id`. | `worldpop_poverty_2020` |
-| `directionality_of_concern` | enum | Required | `high_is_bad` \| `low_is_bad` \| `context_dependent` (sets dashboard colours). | `high_is_bad` |
-| `ttl_priority_label` | string | Required | Short label in the weighting interface. | `Poverty` |
-| `ttl_priority_description` | string | Required | 1–2 sentence explanation for the TTL. | `Areas with high poverty headcount…` |
-| `is_climate_risk_component` | boolean | Required | Also used in T2 (pipeline uses T2 `double_count_risk` to avoid duplication). | `false` |
-| `aggregation_method` | enum | Required | `mean` \| `sum` \| `max` \| `majority` \| `area_weighted_mean`. | `mean` |
-| `normalisation_method` | enum | Required | `min_max` \| `percentile_clip` \| `log_transform` \| `none`. | `percentile_clip` |
-| `weight_default` | float | Required | Default weight of this variable **within its theme** for the hotspot MCDA (0–1; weights within a theme normalise to 1). TTL-adjustable at M4. | `0.25` |
-| `has_future_projection` | boolean | Required | Future projection available. | `false` |
-| `is_active` | boolean | Required | Include in current prototype. | `true` |
-| `evidence_ids` | string[] | Optional | FK list → EV where a literature claim backs inclusion (context layers may be data-only). | `['ev_poverty_wb24']` |
+| Field | Meaning |
+|---|---|
+| `variable_id` | Stable variable identifier |
+| `variable` | Canonical quantity in VONT |
+| `dataset_id` | Context-resolved dataset in T1/BIND |
+| `theme` | Thematic grouping for interpretation |
+| `unit` | Native measurement unit |
+| `mcda_role` | Priority or descriptor |
+| `concern_id` | Shared concern identity, including climate variables also present in T2 |
+| `classification_id` | Reference to one versioned classification rule |
 
-### Theme weights and NbS-response layers
+Each selected priority references a rule with method, direction, unit, context, version and decision
+reference. Thresholds are the default: three increasing, upper-inclusive raw-value cutoffs map to
+none **0**, low **0.33**, medium **0.66**, high **1**; reverse the class labels for decreasing concern.
+Relative terciles require a reference population and period, realised cutoffs and reference hash.
+A separate no-problem condition is needed to create a none class. Missing data stays unknown.
+Quintiles are not supported. The contract defines the rule fields and the exact tie convention.
 
-**Theme weights.** Variable weights normalise within a theme; the *theme-level* defaults that set how much each
-pillar drives the hotspot index live in a small `theme_weights` lookup at the schema root. With the v0.2.8 split
-the pilot defaults are **5 × 0.20** across `climate_hazard` · `nbs_response` · `people_production` · `infrastructure` · `equity_gender` (previously 4 × 0.25; TTL-adjustable at M4). Earlier pilot defaults:
-`climate_hazard` 0.30 · `nbs_response` 0.25 · `people_production` 0.30 · `infrastructure` 0.15). All TTL-adjustable
-at M4. (A row carrying `weight_default` × its theme weight gives the variable's contribution before user reweighting.)
+Use one explicit representative per shared concern, including T2/T5 aliases, with a recorded reason.
+Only priority rows enter the user-weighted mean. Descriptors and M2b investment-risk screens remain
+separate. The runtime records normalized user weights, contributions, missingness and provenance;
+it does not import historical defaults, climate index modes or implicit theme weights. CRITIC is
+a sensitivity diagnostic, not an automatic multiplier or a substitute for user priorities.
 
-**NbS-response layers (`theme = nbs_response`).** These are the only T5 variables whose magnitude is
-**NbS-specific** — e.g. erosion-reduction potential, water-yield benefit, carbon sequestration, biodiversity
-co-benefit. They are **derived, not stored as fixed rasters**: the shared T5 row defines the underlying
-need/biophysical layer + direction + `dataset_id`; the per-NbS strength comes from the matching **T6** scorecard
-effect, joined on `variable_id` + `nbs_id` (`effect_direction` / `effect_mechanism`). So no extra table is needed —
-the T5↔T6 link already carries the NbS-specific modulation. Pure context layers (poverty, market access) have no
-T6 row and are identical across NbS.
+The T6 link supports interpretation of response evidence alongside need; no automatic T6 effect
+multiplier is used in this priority route. Dataset bindings, rule calibration and scientific
+acceptance remain explicit prerequisites for an actual analysis. No universal thresholds are supplied.
+
+[Historical field definitions](https://github.com/RuralScan/method/blob/99f8598282bcc01fc68fb1ca450d6e81c6b5e471/data-model/spec.md)
+remain available for reproducing earlier editions.
 
 ---
 
@@ -637,7 +647,7 @@ Per-NbS effect on each **T5 priority** variable, with historical economic column
 method: [T3/T6 effect synthesis](../methodology-reference/content/effect-synthesis.md)). One **cell** =
 `nbs_id` × `variable_id` (effects) or `nbs_id` × `economic_indicator_type` (economics); one row per applicability scope, with
 family rows and the NbS roll-up exactly as T3. **T6 effect rows link only to T5 `mcda_role = priority` rows**; the
-T5↔T6 join on `variable_id` × `nbs_id` gives the NbS-specific modulation of the `nbs_response` layers (see T5).
+T5↔T6 join on `variable_id` × `nbs_id` supplies response interpretation alongside priority; it is not an automatic multiplier of the current T2/T5 priority score.
 The AI explains outcome-to-priority routing using `XW`, identifies proxies and justifies their relevance; extraction does not relabel outcomes to force a route. The historical T6E edition retains the economic columns and gates below; new T3/T6 proposals cannot author economic rows. An economist can use `economic_value_range` for an indicative
 narrative without a full CBA — **scoping-grade, not CBA**.
 
@@ -916,9 +926,9 @@ every `evidence_id` in T2/T3/T4/T5/T6 exists in **EV**; every `source_id` in EV 
 `suitability_family_id` in T4 (and EV) exists in **FAM**. A missing target raises an explicit error — never a
 silent gap.
 
-**Climate mode switch.** A top-level `climate_mode = 'simplified' | 'advanced'`. Simplified filters T2 rows by
-`use_in_simplified_mode = true` and uses only the composite climate index as a single variable; advanced uses
-all `use_in_advanced_mode = true` rows and computes hazard × exposure × vulnerability explicitly.
+**Current climate-variable route.** T2 supplies named concerns and classification references under
+`ruralscan.priority.v1`. Historical simplified/advanced mode fields remain only in archived definitions;
+the current priority evaluator does not combine a climate index or import those settings.
 
 **Scenario / what-if logic.** For each T4 row with `is_scenario_candidate = true`, expose a UI toggle. Toggling
 off sets that variable's suitability to 1.0 (constraint removed); the pipeline recomputes the composite

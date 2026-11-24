@@ -6,6 +6,13 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.18.0] - 2026-11-24
+
+- Define explicit T2/T5 problem classes, shared concern identities and user-weighted priority scores.
+- Show the classification-to-priority workflow in section 2.8, with missing data and investment risk kept distinct.
+- Assess CRITIC against its published example and controlled sensitivity tests; retain it as a diagnostic.
+- Separate current priority definitions from uncalibrated historical tables and index settings.
+
 ## [0.17.0] - 2026-11-24
 
 - Introduce the data model with a linked narrative explaining the role of every table before the relationship diagram.

@@ -32,7 +32,7 @@ The specification sheet is a draft (v0.1) authored to match the setup screen of 
 | NbS selection, one or more | user | `T0.nbs_id` | Each selected NbS gets its own opportunity space; the sub-practice variant is chosen per NbS. |
 | Geographic scope | user | [[table:T7]] | Country or region, sub-national focus, and administrative level, using neutral codes (ADM0, ADM1, ADM2). |
 | Resolution | user | run configuration | See the resolution note below. |
-| Climate-risk mode | user | run configuration | Mode A (hazard × exposure, default) or Mode B (hazard × exposure × vulnerability). |
+| Climate variables and scenarios | user | run configuration | Named T2 concerns, explicit classification rules and baseline/future scenarios; no composite climate-risk mode. |
 | Scenarios to compare | user | run configuration | `baseline` plus one or more future scenarios. |
 | Recipe and datasets | T0, T1, T4, T5 | schema rows | For the recipe summary and data-readiness check. |
 

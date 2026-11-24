@@ -1,12 +1,14 @@
 """Render authored chapters: front matter, directives, links, citations, pinned rule tables."""
 
 import re
+import json
 
 import markdown
 from core import (
     BLOCKED_KEYS,
     CIAT_URL,
     CONTENT,
+    METHOD,
     PRACTICE_IDS,
     REPO_URLS,
     TABLE_NAMES,
@@ -86,6 +88,24 @@ def read(slug):
             elif line.strip().startswith("- ") and key:
                 meta.setdefault(key + "_list", []).append(line.strip()[2:].strip())
     return meta, raw.strip()
+
+
+def priority_workflow():
+    policy = json.loads((METHOD / "data-model/priority-contract.json").read_text())
+    scores = " · ".join(f"{name.title()} {score:g}" for name, score in policy["class_scores"].items())
+    steps = [
+        ("M1 · Candidate area", "Opportunity space", "Keep excluded and unknown areas separate."),
+        ("M2 / M3 · Inputs", "T2 + T5 variables", "Read each concern in its native unit."),
+        ("M3 · Classification", "Problem classes", scores),
+        ("M3 · Overlap check", "One concern, one entry", "Check correlations; record representative choices."),
+        ("M4 · User priorities", "Choose weights", "Show each weight; zero excludes a concern."),
+        ("M4 · Priority map", "Sum ÷ total weight", "Add weight × class score; divide by the sum of weights."),
+    ]
+    items = "".join(f'<li><small>{esc(stage)}</small><strong>{esc(title)}</strong><span>{esc(note)}</span></li>'
+                    for stage, title, note in steps)
+    return ('<figure class="priority-workflow"><ol class="priority-flow">' + items + '</ol>'
+            '<figcaption>Figure 1. Classify concerns, check overlap, then apply user weights inside '
+            'the opportunity space. M2b investment-risk screening stays separate.</figcaption></figure>')
 
 
 def _csv_table(spec, slug):
@@ -222,6 +242,8 @@ def chapter_body(slug):
         raw,
         flags=re.MULTILINE,
     )
+    raw = re.sub(r"^\{\{priority-workflow\}\}\s*$", lambda m: stash(priority_workflow()),
+                 raw, flags=re.MULTILINE)
     leftover = re.findall(r"\{\{[^}]*\}\}", raw)
     if leftover:
         PROBLEMS.append(f"{slug}: unresolved directives {leftover[:3]}")

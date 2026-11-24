@@ -1,8 +1,10 @@
 ---
-title: "M3: Characterising the opportunity space"
+title: "M3: Classifying the opportunity space"
 slug: m3-characterisation
 summary: Describe people, production and environmental concerns within candidate areas without confusing context with priority or benefit.
 sources:
+  - method:priority/README.md
+  - method:data-model/priority-contract.json
   - methodology/modules/M3_characterisation.md
   - method:handbook/implement-a-scan.md
   - methodology/opportunity_space_T5.md
@@ -18,6 +20,14 @@ sources:
 ## Question this module answers
 
 Module 3 (M3) describes who and what lies within the opportunity space: rural people, production systems, environmental conditions and development concerns. It supplies context and eligible priority indicators to M4. It does not rank areas or estimate the benefits an intervention would cause. [src: methodology/modules/M3_characterisation.md §2]
+
+## From opportunity space to priority
+
+First classify each selected concern inside the opportunity space. Check overlapping indicators, then apply the user's weights to obtain the priority score in M4. Raw values, problem classes and weights remain visible separately. [src: method:priority/README.md]
+
+{{priority-workflow}}
+
+M2b sits beside this workflow as an investment-risk screen. It never contributes another weighted term. The highest score identifies the strongest combination of selected concerns, not the greatest proven benefit from an intervention. [src: method:priority/README.md]
 
 ## Inputs
 
@@ -49,15 +59,21 @@ Select data for the target geography through [[table:T1]] and [[table:BIND]], fo
 
 A priority needs subnational information to distinguish locations within a country. A country-only value remains context or a qualified flag. Report unavailable indicators and any fallback sources so the reader can see which concerns the assessment covers. [src: methodology/opportunity_space_T5.md §Spatial-grain rule]
 
-### 2. Identify related indicators before prioritisation
+### 2. Classify each concern and retain raw values
 
-Group indicators by their meaning, then inspect their relationships within the area of interest. Select and record representatives where related layers would otherwise count the same underlying pattern repeatedly. Retain the full set for interpretation and record which indicator each representative stands for. Statistical correlation alone does not establish that two policy concerns are interchangeable. [src: methodology/framework.md §Variable selection (two stages)] [src: methodology/modules/M3_characterisation.md §4]
+Each T2 or T5 priority refers to a versioned classification rule. The common scores are **none = 0, low = 0.33, medium = 0.66, high = 1**. They describe the concern being prioritised, not suitability, a probability or a measured intervention benefit. Descriptors remain in their original units. [src: method:data-model/priority-contract.json]
 
-Check overlap with the M2 vulnerability formulation. A concern already included in a climate-risk composite should not silently gain extra weight through another entry in M4. Descriptors carry no weight and can remain available for explanation. [src: methodology/modules/M3_characterisation.md §9]
+**Thresholds are the default.** Record three ordered cutoffs in native units, the direction of concern, context and justification. A value exactly on a cutoff belongs to the lower raw-value interval; reverse the class labels where lower raw values mean more concern. Keep the source values and units available beside the classes. [src: method:priority/README.md §Classification]
 
-### 3. Standardise priorities and retain raw values
+**Terciles are a relative alternative.** Use an explicitly identified reference area/population and period, retaining its realised cutoffs for comparisons. Three groups cannot create a fourth no-problem class: define a defensible no-problem condition first, or use only low, medium and high. Do not split tied values to force equal group sizes. Collapsed cutoffs require another rule. Quintiles are not used. [src: method:priority/README.md §Classification]
 
-Apply the declared direction and scaling rule to each eligible priority. Keep raw values and units beside the transformed layer. The reference frame determines whether the score expresses absolute severity or relative position within the study area; [[ch:m4-hotspots]] owns that explanation. Descriptors remain in their original interpretable units. [src: methodology/modules/M3_characterisation.md §13] [src: methodology/modules/M4_hotspots.md §9]
+A missing value is **unknown**, never none. A rule needs its own reference, units, scope and decision record; this method supplies no unreviewed universal cutoffs for poverty, drought or other concerns. AI may propose a classification with supporting reasoning; validating its format does not approve its science. [src: method:priority/README.md §Execution and approval boundary]
+
+### 3. Check overlap and correlations before weighting
+
+Group variables by meaning, then inspect their raw and classified relationships inside the opportunity space. Choose and record one representative for each shared concern. A climate variable appearing in both T2 and T5 must not enter twice under different names. Preserve the omitted variables for interpretation and explain the choice. Correlation alone does not make distinct policy concerns interchangeable. [src: method:priority/README.md §Correlation and weighting]
+
+The reference evaluator reports correlations but does not automatically delete variables or change weights. CRITIC is assessed as a comparison method in [[ch:m4-hotspots]], not adopted as a hidden correction to user priorities. The final selection and any retained correlated concerns belong in the sensitivity record. [src: method:priority/README.md §Correlation and weighting]
 
 ### 4. Summarise the candidate areas
 
@@ -87,4 +103,4 @@ Characterisation is limited by the dates, spatial support and coverage of its in
 
 ## Where this is configured
 
-[[table:T5]] identifies themes and roles; [[table:T1]] and [[table:BIND]] describe data and contextual choices; [[table:VONT]] describes units, resolution and sensitivity; [[table:T7]] defines summary units. The application records transformations, indicator selection, unavailable data and overlap checks with [[table:T2]].
+[[table:T5]] identifies themes and roles; [[table:T1]] and [[table:BIND]] describe data and contextual choices; [[table:VONT]] describes units, resolution and sensitivity; [[table:T7]] defines summary units. [[table:T2]] supplies climate-variable definitions. Both registries reference the shared classification contract; the run record retains resolved cutoffs, reference hashes, indicator selection, unavailable data and user weights. [src: method:data-model/priority-contract.json]

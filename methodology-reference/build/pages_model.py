@@ -94,7 +94,7 @@ GROUPS = [
 TABLE_HELP = {
     "T0": "Defines each practice and its implementation profile.",
     "T1": "Lists datasets, how to access them and their limitations.",
-    "T2": "Defines the variables and formulations used to assess climate risk.",
+    "T2": "Registers climate-risk variables and explicit problem-classification rules; no composite climate-risk index.",
     "T3": "Records effects on livelihood hazards and threats to the investment as separate assessments.",
     "T4": "Links environmental or land-use conditions to suitability for a practice family.",
     "T4_RUN": "Records inputs and execution settings for a suitability run.",
@@ -419,6 +419,20 @@ def table_page(table_id):
             "SRCH": ("searches.html", "Search records"),
         }[table_id]
         body += f"<p>{count:,} rows, shown in {link(where[0], where[1])}.</p>"
+    current_toc = []
+    if table_id in {"T2", "T5"}:
+        policy = json.loads((METHOD / "data-model/priority-contract.json").read_text())
+        current = policy["table_fields"][table_id]
+        intro = '<h2 id="current-priority">Current classification interface</h2>'
+        intro += '<p>' + esc(current["purpose"]) + '</p>'
+        intro += '<p>These fields define the new priority configuration. The archived CSV rows below have not been migrated or calibrated. They are not runnable defaults.</p>'
+        intro += table(["Field", "Meaning"], [[code(k), esc(v)] for k, v in current["fields"].items()],
+                       caption=table_id + " · current variable definition")
+        intro += table(["Rule field", "Meaning"], [[code(k), esc(v)] for k, v in policy["rule_fields"].items()],
+                       caption="Shared problem-classification rule")
+        intro += '<p>See ' + link('ch-m3-characterisation.html', 'classification workflow') + ' and ' + link('ch-m4-hotspots.html', 'explicit user weighting') + '. Machine-readable contract: ' + link(METHOD_URL + 'data-model/priority-contract.json', 'priority-contract.json') + '.</p>'
+        body = intro + '<details><summary>Historical edition fields and records</summary>' + body + '</details>'
+        current_toc = [("current-priority", "Current classification interface")]
     page(
         f"table-{table_id}.html",
         "data-model.html",
@@ -426,7 +440,7 @@ def table_page(table_id):
         body,
         crumbs=[("data-model.html", "Data model"), ("", table_id)],
         lead=f"{badge(table_id)} {esc(spec['name'])}",
-        toc=[("fields", "Fields")]
+        toc=current_toc + [("fields", "Historical fields" if current_toc else "Fields")]
         + ([("spec", "Specification text")] if section else [])
         + [("contents", "Contents in this edition")],
     )
