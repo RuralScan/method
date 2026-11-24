@@ -90,6 +90,29 @@ GROUPS = [
     ),
 ]
 
+# Explain the purpose on hover and to assistive technology, not just the table ID.
+TABLE_HELP = {
+    "T0": "Defines each practice and its implementation profile.",
+    "T1": "Lists datasets, how to access them and their limitations.",
+    "T2": "Defines the variables and formulations used to assess climate risk.",
+    "T3": "Records effects on livelihood hazards and threats to the investment as separate assessments.",
+    "T4": "Links environmental or land-use conditions to suitability for a practice family.",
+    "T4_RUN": "Records inputs and execution settings for a suitability run.",
+    "T5": "Lists variables that describe opportunity areas and priorities used to rank hotspots.",
+    "T6": "Records assessed effects of a practice on scorecard priorities, with their evidence and context.",
+    "T6E": "Records indicative economic values, units and evidence. Existing profiles are historical; new synthesis is frozen.",
+    "T7": "Defines geographic and farming-system contexts used by the other tables.",
+    "FAM": "Groups subpractices into suitability families with shared limiting conditions.",
+    "VONT": "Gives each analytical variable a consistent name, definition and unit.",
+    "BIND": "Connects a variable to the dataset appropriate for its geographic context.",
+    "EV": "Stores individual findings with their source, quoted passage, location and review state.",
+    "SRC": "Catalogues source documents, their identity and where reviewers can find them.",
+    "TOOL": "Catalogues documented tools and methods used as sources.",
+    "SRCH": "Records search terms, scope, screening criteria and counts so searches can be traced.",
+    "XW": "Links reported outcomes to analytical targets. Relevance still requires scientific judgment.",
+    "BANDS": "Records historical magnitude bands. These do not automatically score new AI synthesis outputs.",
+}
+
 
 def references(table_id):
     out = []
@@ -192,8 +215,7 @@ def diagram():
         for i, t in enumerate(ids):
             pos[t] = (20 + i * gap, 50 + band * 170)
     parts = [
-        f'<svg viewBox="0 0 {width} {height}" role="img" aria-labelledby="erd-title erd-desc" class="erd">',
-        '<title id="erd-title">Relationships between the twenty tables</title>',
+        f'<svg viewBox="0 0 {width} {height}" role="group" aria-label="Table relationships" aria-describedby="erd-desc" class="erd">',
         '<desc id="erd-desc">Each line joins a table to a table it references. The same relationships are listed in the table below the figure.</desc>',
     ]
     for band, (label, ids) in enumerate(GROUPS):
@@ -215,7 +237,9 @@ def diagram():
                 mid = (sy + ty) / 2
                 d = f"M{sx:.0f},{sy:.0f} C{sx:.0f},{mid:.0f} {tx:.0f},{mid:.0f} {tx:.0f},{ty:.0f}"
             parts.append(
-                f'<path d="{d}" class="edge"><title>{esc(t)}.{esc(field)} references {esc(target)}.{esc(column)}</title></path>'
+                f'<path d="{d}" class="edge"><title>{esc(TABLE_NAMES[t])} ({esc(t)}) links to '
+                f'{esc(TABLE_NAMES[target])} ({esc(target)}).\n'
+                f'Join: {esc(t)}.{esc(field)} → {esc(target)}.{esc(column)}</title></path>'
             )
     for t, (x, y) in pos.items():
         key = (
@@ -225,8 +249,10 @@ def diagram():
         )
         name = TABLE_NAMES[t]
         short = name if len(name) <= 19 else name[:18] + "…"
+        hint = f"{t} — {name}\n{TABLE_HELP[t]}\nOpen the definition, fields and recorded contents."
         parts.append(
-            f'<a href="table-{t}.html"><g class="node" data-t="{key}"><rect x="{x:.0f}" y="{y:.0f}" width="{bw}" height="{bh}" rx="5"/>'
+            f'<a href="table-{t}.html" aria-label="{esc(hint)}"><g class="node" data-t="{key}">'
+            f'<title>{esc(hint)}</title><rect x="{x:.0f}" y="{y:.0f}" width="{bw}" height="{bh}" rx="5"/>'
             f'<text x="{x + bw / 2:.0f}" y="{y + 18:.0f}" class="id">{esc(t)}</text>'
             f'<text x="{x + bw / 2:.0f}" y="{y + 34:.0f}" class="nm">{esc(short)}</text></g></a>'
         )
@@ -404,16 +430,17 @@ def build():
             )
     body = (
         "<p>The method is configured in tables. Analytical rules, datasets, response functions and weights "
-        "are held in these twenty tables and in the rule tables, so the tables are the method in "
+        "are held in these tables and in the rule tables, so the tables are the method in "
         "machine-readable form. Some synthesis constants remain in code and are stated in the chapters. "
         "The column sets are frozen in a manifest and checked by a validator; "
         "the diagram and lists on this page are generated from that manifest, so they cannot drift from it.</p>"
         f'<p class="basis">Column manifest {esc(MANIFEST["manifest_version"])} at the pinned revision. '
         f"{len(TABLES)} tables, {sum(len(references(t)) for t in TABLES)} references between them.</p>"
         '<h2 id="diagram">Relationship diagram</h2>'
-        f"<figure>{diagram()}<figcaption>Lines join a table to the tables it references. Select a table to open its definition. "
+        f"<figure>{diagram()}<figcaption>Hover over a table for its full name and purpose; select it to open its definition. "
+        "Lines show references between tables, not the order of synthesis. "
         "The same relationships are listed below.</figcaption></figure>"
-        '<h2 id="tables">The twenty tables</h2>'
+        f'<h2 id="tables">The {len(TABLES)} tables</h2>'
         + table(
             ["", "Table", "Layer", "Key", "Rows in this edition", "References"],
             index,
@@ -432,10 +459,10 @@ def build():
         "data-model.html",
         "Data model",
         body,
-        lead="Twenty tables that hold the method, their fields and how they join.",
+        lead=f"{len(TABLES)} tables that hold the method, their fields and how they join.",
         toc=[
             ("diagram", "Relationship diagram"),
-            ("tables", "The twenty tables"),
+            ("tables", f"The {len(TABLES)} tables"),
             ("relationships", "Relationships"),
         ],
     )
