@@ -6,6 +6,12 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.16.1] - 2026-11-24
+
+- Give every data-model table a full-name tooltip explaining its purpose and where the link leads.
+- Name both tables in relationship hints and clarify that the lines show references, not synthesis order.
+- Derive the displayed table count from the current manifest instead of retaining the retired table's count.
+
 ## [0.16.0] - 2026-11-20
 
 - Make T3/T6 scientific synthesis AI-led, with complete candidate accounting and exact-output human acceptance.
