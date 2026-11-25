@@ -1,0 +1,807 @@
+{
+  "format": "ruralscan.binding-candidates.v1",
+  "status": "technical_proposals_not_accepted_bindings",
+  "candidates": [
+    {
+      "binding_id": "fao_di_annual_candidate",
+      "variable_id": "drought_hazard",
+      "registry": "T5",
+      "concern_id": "drought",
+      "mcda_role": "priority",
+      "dataset_id": "fao_asis_di_annual",
+      "route": "arcgis_image_service",
+      "asset": "https://asis-esri.fao.org/image/rest/services/DI_A/ImageServer",
+      "field": "pixel",
+      "auxiliary_fields": [
+        "Year",
+        "Season",
+        "Land_Type"
+      ],
+      "unit": "wVHI_percent",
+      "spatial_support": "GAUL2 administrative seasonal aggregate rasterized at approximately 1 km; not independent pixel impact",
+      "temporal_support": "1984–2025 annual growing-season observations; choose explicit years",
+      "selectors": {
+        "required": [
+          "Year",
+          "Season",
+          "Land_Type"
+        ],
+        "allowed": {
+          "Year": {
+            "min": 1984,
+            "max": 2025
+          },
+          "Season": [
+            "Season 1",
+            "Season 2"
+          ],
+          "Land_Type": [
+            "Cropland",
+            "Grassland"
+          ]
+        },
+        "resolve": "Query dimensions; require exactly one record; resolve its OBJECTID for this request. Never persist sample OBJECTID as stable identity.",
+        "renderingRule": {
+          "rasterFunction": "None"
+        },
+        "mosaic": "esriMosaicLockRaster with the freshly resolved OBJECTID",
+        "resampling": "nearest; preserve original administrative support"
+      },
+      "decode": {
+        "scale": 100,
+        "offset": 0,
+        "valid_range": [
+          0,
+          1
+        ],
+        "special_values": {
+          "251": "off_season",
+          "252": "unknown",
+          "253": "no_season",
+          "254": "outside_host_system",
+          "255": "water"
+        },
+        "guards": [],
+        "missing_state": "unknown",
+        "clip": false
+      },
+      "inspection_status": "sample_checked",
+      "observation_refs": [
+        {
+          "observation_id": "fao_di_live",
+          "path": "observations/fao_di_live.json",
+          "sha256": "86f20a0e0cd56c1f82a09e009c679cb60a1258a521f19d97d674d9ba3c6c0f68"
+        },
+        {
+          "observation_id": "fao_gee_access",
+          "path": "observations/fao_gee_access.json",
+          "sha256": "3121ccc09fb17112d07440fc164b49f19bdf88e97a62d218a2ff9a1a650c8b78"
+        }
+      ],
+      "blocking": [
+        "Choose period, growing season and crop/pasture system for the actual AOI; no default mixed mosaic.",
+        "Check mask/phenology/irrigation relevance and valid-season coverage.",
+        "Select one drought concern representative; no automatic sum of severity, extent, recurrence and SPEI.",
+        "No accepted long-term livelihood classifier or pilot context.",
+        "Native five-band legend has unresolved equality at 42 and no accepted four-class collapse."
+      ],
+      "documentation": [
+        "https://www.fao.org/giews/earthobservation/access.jsp",
+        "https://www.fao.org/giews/earthobservation/faq.jsp"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "fao_asi_annual_candidate",
+      "variable_id": "drought_hazard",
+      "registry": "T5",
+      "concern_id": "drought",
+      "mcda_role": "priority",
+      "dataset_id": "fao_asis_asi_annual",
+      "route": "arcgis_image_service",
+      "asset": "https://asis-esri.fao.org/image/rest/services/ASI_A/ImageServer",
+      "field": "pixel",
+      "auxiliary_fields": [
+        "Year",
+        "Season",
+        "Land_Type"
+      ],
+      "unit": "percent_affected_area",
+      "spatial_support": "GAUL2 affected crop/grassland area percentage on approximately 1 km grid",
+      "temporal_support": "1984–2025 annual growing-season observations; wVHI < 0.35 affected-area definition",
+      "selectors": {
+        "required": [
+          "Year",
+          "Season",
+          "Land_Type"
+        ],
+        "allowed": {
+          "Year": {
+            "min": 1984,
+            "max": 2025
+          },
+          "Season": [
+            "Season 1",
+            "Season 2"
+          ],
+          "Land_Type": [
+            "Cropland",
+            "Grassland"
+          ]
+        },
+        "resolve": "Query dimensions; require exactly one record; resolve its OBJECTID for this request. Never persist sample OBJECTID as stable identity.",
+        "renderingRule": {
+          "rasterFunction": "None"
+        },
+        "mosaic": "esriMosaicLockRaster with the freshly resolved OBJECTID",
+        "resampling": "nearest; preserve original administrative support"
+      },
+      "decode": {
+        "scale": 1,
+        "offset": 0,
+        "valid_range": [
+          0,
+          100
+        ],
+        "special_values": {
+          "251": "off_season",
+          "252": "unknown",
+          "253": "no_season",
+          "254": "outside_host_system",
+          "255": "water"
+        },
+        "guards": [],
+        "missing_state": "unknown",
+        "clip": false
+      },
+      "inspection_status": "sample_checked",
+      "observation_refs": [
+        {
+          "observation_id": "fao_asi_live",
+          "path": "observations/fao_asi_live.json",
+          "sha256": "3b8a2ed5f3468ae833a6979c1387a0455f953e26f4c0eadb54e3175312b9a2d7"
+        }
+      ],
+      "blocking": [
+        "Choose period, growing season and crop/pasture system for the actual AOI; no default mixed mosaic.",
+        "Check mask/phenology/irrigation relevance and valid-season coverage.",
+        "Select one drought concern representative; no automatic sum of severity, extent, recurrence and SPEI.",
+        "No accepted long-term livelihood classifier or pilot context."
+      ],
+      "documentation": [
+        "https://www.fao.org/giews/earthobservation/access.jsp",
+        "https://www.fao.org/giews/earthobservation/faq.jsp"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "fao_hdf_candidate",
+      "variable_id": "drought_hazard",
+      "registry": "T5",
+      "concern_id": "drought",
+      "mcda_role": "priority",
+      "dataset_id": "fao_asis_hdf",
+      "route": "arcgis_image_service",
+      "asset": "https://asis-esri.fao.org/image/rest/services/HDF/ImageServer",
+      "field": "pixel",
+      "auxiliary_fields": [
+        "Season",
+        "Land_Type",
+        "Drought_Affected_Area"
+      ],
+      "unit": "percent_affected_seasons_unverified",
+      "spatial_support": "GAUL2 summary raster; approximately 1 km delivery",
+      "temporal_support": "Unresolved: access 1984–2025; item extent 1984–2024; formula ends 2023",
+      "selectors": {
+        "required": [
+          "Season",
+          "Land_Type",
+          "Drought_Affected_Area"
+        ],
+        "allowed": {
+          "Season": [
+            "Season 1",
+            "Season 2"
+          ],
+          "Land_Type": [
+            "Cropland",
+            "Grassland"
+          ],
+          "Drought_Affected_Area": [
+            "Land Affected > 30 Percent",
+            "Land Affected > 50 Percent"
+          ]
+        }
+      },
+      "decode": null,
+      "inspection_status": "metadata_checked",
+      "observation_refs": [
+        {
+          "observation_id": "fao_hdf_metadata",
+          "path": "observations/fao_hdf_metadata.json",
+          "sha256": "b3a70b3d59162540d127dead2ee9fb37612a3faa42fa2e9dbe419b5a41f5fd5e"
+        }
+      ],
+      "blocking": [
+        "Resolve actual denominator/period and sample raw values before defining conversion.",
+        "Choose period, growing season and crop/pasture system for the actual AOI; no default mixed mosaic.",
+        "Check mask/phenology/irrigation relevance and valid-season coverage.",
+        "Select one drought concern representative; no automatic sum of severity, extent, recurrence and SPEI.",
+        "No accepted long-term livelihood classifier or pilot context."
+      ],
+      "documentation": [
+        "https://www.fao.org/giews/earthobservation/access.jsp",
+        "https://www.fao.org/giews/earthobservation/faq.jsp"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "fao_di_gee_access_candidate",
+      "variable_id": "drought_hazard",
+      "registry": "T5",
+      "concern_id": "drought",
+      "mcda_role": "priority",
+      "dataset_id": "fao_asis_di_annual_gee",
+      "route": "earth_engine",
+      "asset": "projects/UNFAO/ASIS/DI-A",
+      "field": "unverified",
+      "auxiliary_fields": [],
+      "unit": "unverified",
+      "spatial_support": "Unverified asset schema",
+      "temporal_support": "Unverified asset coverage",
+      "selectors": {
+        "required": [
+          "authorized_asset_access"
+        ]
+      },
+      "decode": null,
+      "inspection_status": "access_unavailable",
+      "observation_refs": [
+        {
+          "observation_id": "fao_gee_access",
+          "path": "observations/fao_gee_access.json",
+          "sha256": "3121ccc09fb17112d07440fc164b49f19bdf88e97a62d218a2ff9a1a650c8b78"
+        }
+      ],
+      "blocking": [
+        "Documented asset returned not-found/no-permission; do not copy ArcGIS field names into an uninspected GEE schema.",
+        "Official ArcGIS candidate above provides the sampled route."
+      ],
+      "documentation": [
+        "https://www.fao.org/giews/earthobservation/access.jsp",
+        "https://www.fao.org/giews/earthobservation/faq.jsp",
+        "https://www.fao.org/giews/earthobservation/asis/data/ref/ASIS_GEE_AdjustmentNote_2026.pdf"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "spei03_211_candidate",
+      "variable_id": "drought_hazard",
+      "registry": "T5",
+      "concern_id": "drought",
+      "mcda_role": "priority",
+      "dataset_id": "csic_spei_2_11",
+      "route": "earth_engine",
+      "asset": "CSIC/SPEI/2_11",
+      "field": "SPEI_03_month",
+      "auxiliary_fields": [],
+      "unit": "dimensionless_standardized_anomaly",
+      "spatial_support": "0.5 degree native geographic grid; approximately 55 km at equator",
+      "temporal_support": "Monthly 1901–2024; select explicit event/season/reference period",
+      "selectors": {
+        "required": [
+          "period_start",
+          "period_end",
+          "temporal_statistic"
+        ],
+        "alternatives_same_concern": [
+          "T5:drought_hazard",
+          "T2:drought_spei12_baseline"
+        ]
+      },
+      "decode": {
+        "scale": 1,
+        "offset": 0,
+        "valid_range": null,
+        "special_values": {},
+        "guards": [],
+        "missing_state": "unknown",
+        "clip": false
+      },
+      "inspection_status": "sample_checked",
+      "observation_refs": [
+        {
+          "observation_id": "spei_live",
+          "path": "observations/spei_live.json",
+          "sha256": "84ca4aed0b012fe4296ad5a9c7a143f6f22693d48425f4ee7674f54da80f0a7d"
+        }
+      ],
+      "blocking": [
+        "Choose period, growing season and crop/pasture system for the actual AOI; no default mixed mosaic.",
+        "Check mask/phenology/irrigation relevance and valid-season coverage.",
+        "Select one drought concern representative; no automatic sum of severity, extent, recurrence and SPEI.",
+        "No accepted long-term livelihood classifier or pilot context.",
+        "Do not clip at ±2.33 catalogue display limits; do not interpolate coarse support into fine-scale independent evidence.",
+        "Historical SPEI 2.6 mean/trend binding is not adopted."
+      ],
+      "documentation": [
+        "https://developers.google.com/earth-engine/datasets/catalog/CSIC_SPEI_2_11"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "spei12_211_candidate",
+      "variable_id": "drought_spei12_baseline",
+      "registry": "T2",
+      "concern_id": "drought",
+      "mcda_role": "priority",
+      "dataset_id": "csic_spei_2_11",
+      "route": "earth_engine",
+      "asset": "CSIC/SPEI/2_11",
+      "field": "SPEI_12_month",
+      "auxiliary_fields": [],
+      "unit": "dimensionless_standardized_anomaly",
+      "spatial_support": "0.5 degree native geographic grid; approximately 55 km at equator",
+      "temporal_support": "Monthly 1901–2024; select explicit event/season/reference period",
+      "selectors": {
+        "required": [
+          "period_start",
+          "period_end",
+          "temporal_statistic"
+        ],
+        "alternatives_same_concern": [
+          "T5:drought_hazard",
+          "T2:drought_spei12_baseline"
+        ]
+      },
+      "decode": {
+        "scale": 1,
+        "offset": 0,
+        "valid_range": null,
+        "special_values": {},
+        "guards": [],
+        "missing_state": "unknown",
+        "clip": false
+      },
+      "inspection_status": "sample_checked",
+      "observation_refs": [
+        {
+          "observation_id": "spei_live",
+          "path": "observations/spei_live.json",
+          "sha256": "84ca4aed0b012fe4296ad5a9c7a143f6f22693d48425f4ee7674f54da80f0a7d"
+        }
+      ],
+      "blocking": [
+        "Choose period, growing season and crop/pasture system for the actual AOI; no default mixed mosaic.",
+        "Check mask/phenology/irrigation relevance and valid-season coverage.",
+        "Select one drought concern representative; no automatic sum of severity, extent, recurrence and SPEI.",
+        "No accepted long-term livelihood classifier or pilot context.",
+        "Do not clip at ±2.33 catalogue display limits; do not interpolate coarse support into fine-scale independent evidence.",
+        "Historical SPEI 2.6 mean/trend binding is not adopted."
+      ],
+      "documentation": [
+        "https://developers.google.com/earth-engine/datasets/catalog/CSIC_SPEI_2_11"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "aqueduct_bws_annual_candidate",
+      "variable_id": "water_stress",
+      "registry": "T5",
+      "concern_id": "water_stress",
+      "mcda_role": "priority",
+      "dataset_id": "wri_aqueduct4_baseline_annual",
+      "route": "earth_engine_table",
+      "asset": "WRI/Aqueduct_Water_Risk/V4/baseline_annual",
+      "field": "bws_raw",
+      "auxiliary_fields": [
+        "bws_cat",
+        "bws_label",
+        "pfaf_id",
+        "aqid",
+        "string_id",
+        "gid_0",
+        "gid_1"
+      ],
+      "unit": "withdrawal_to_available_supply_ratio",
+      "spatial_support": "HydroBASINS sub-basin basis; annual feature geometry intersects admin/aquifer units",
+      "temporal_support": "2019 target baseline estimated from smoothed 1979–2019 inputs; annual is demand-weighted monthly ratios",
+      "selectors": {
+        "required": [
+          "AOI"
+        ],
+        "allowed": {},
+        "category_alias": "category <- bws_cat",
+        "aggregation": "Use actual fragment geometry; preserve pfaf_id identity, avoid counting intersections as independent basins.",
+        "native_categories": {
+          "-9999": "unknown",
+          "-1": "arid_low_use",
+          "0": "low",
+          "1": "low_medium",
+          "2": "medium_high",
+          "3": "high",
+          "4": "extremely_high"
+        }
+      },
+      "decode": {
+        "scale": 1,
+        "offset": 0,
+        "valid_range": [
+          0,
+          null
+        ],
+        "special_values": {
+          "-9999": "unknown",
+          "9999": "physical_scarcity"
+        },
+        "guards": [
+          {
+            "field": "category",
+            "missing": "unknown",
+            "equals": {
+              "-9999": "unknown",
+              "-1": "arid_low_use"
+            },
+            "valid_values": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "missing_state": "unknown",
+        "clip": false
+      },
+      "inspection_status": "sample_checked",
+      "observation_refs": [
+        {
+          "observation_id": "aqueduct_live",
+          "path": "observations/aqueduct_live.json",
+          "sha256": "48e5b3c8f9aff7f3c9f04f134b8af51bf1b4de0001137d46e39da78fa99d30eb"
+        }
+      ],
+      "blocking": [
+        "Raw ratios above 1 conflict with technical note clipping wording; resolve before numerical rule adoption.",
+        "Retain native category and special flags; no accepted four-class collapse.",
+        "Physical scarcity 9999 is not a percentage; category -1 controls arid/low-use state even when raw=1.",
+        "Missing monthly numeric properties remain unknown.",
+        "Context, seasonal relevance and geometry alignment remain to be checked."
+      ],
+      "documentation": [
+        "https://developers.google.com/earth-engine/datasets/catalog/WRI_Aqueduct_Water_Risk_V4_baseline_annual",
+        "https://www.wri.org/research/aqueduct-40-updated-decision-relevant-global-water-risk-indicators"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "aqueduct_bws_monthly_candidate",
+      "variable_id": "water_stress",
+      "registry": "T5",
+      "concern_id": "water_stress",
+      "mcda_role": "priority",
+      "dataset_id": "wri_aqueduct4_baseline_monthly",
+      "route": "earth_engine_table",
+      "asset": "WRI/Aqueduct_Water_Risk/V4/baseline_monthly",
+      "field": "bws_{month:02d}_raw",
+      "auxiliary_fields": [
+        "bws_{month:02d}_cat",
+        "bws_{month:02d}_label",
+        "pfaf_id"
+      ],
+      "unit": "withdrawal_to_available_supply_ratio",
+      "spatial_support": "HydroBASINS sub-basin basis; annual feature geometry intersects admin/aquifer units",
+      "temporal_support": "Calendar-month 2019 target baseline estimated from smoothed historical inputs; not a monthly time series",
+      "selectors": {
+        "required": [
+          "AOI",
+          "month"
+        ],
+        "allowed": {
+          "month": {
+            "min": 1,
+            "max": 12
+          }
+        },
+        "category_alias": "category <- bws_{month:02d}_cat",
+        "aggregation": "Use actual fragment geometry; preserve pfaf_id identity, avoid counting intersections as independent basins.",
+        "native_categories": {
+          "-9999": "unknown",
+          "-1": "arid_low_use",
+          "0": "low",
+          "1": "low_medium",
+          "2": "medium_high",
+          "3": "high",
+          "4": "extremely_high"
+        }
+      },
+      "decode": {
+        "scale": 1,
+        "offset": 0,
+        "valid_range": [
+          0,
+          null
+        ],
+        "special_values": {
+          "-9999": "unknown",
+          "9999": "physical_scarcity"
+        },
+        "guards": [
+          {
+            "field": "category",
+            "missing": "unknown",
+            "equals": {
+              "-9999": "unknown",
+              "-1": "arid_low_use"
+            },
+            "valid_values": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "missing_state": "unknown",
+        "clip": false
+      },
+      "inspection_status": "sample_checked",
+      "observation_refs": [
+        {
+          "observation_id": "aqueduct_live",
+          "path": "observations/aqueduct_live.json",
+          "sha256": "48e5b3c8f9aff7f3c9f04f134b8af51bf1b4de0001137d46e39da78fa99d30eb"
+        }
+      ],
+      "blocking": [
+        "Raw ratios above 1 conflict with technical note clipping wording; resolve before numerical rule adoption.",
+        "Retain native category and special flags; no accepted four-class collapse.",
+        "Physical scarcity 9999 is not a percentage; category -1 controls arid/low-use state even when raw=1.",
+        "Missing monthly numeric properties remain unknown.",
+        "Context, seasonal relevance and geometry alignment remain to be checked."
+      ],
+      "documentation": [
+        "https://developers.google.com/earth-engine/datasets/catalog/WRI_Aqueduct_Water_Risk_V4_baseline_annual",
+        "https://www.wri.org/research/aqueduct-40-updated-decision-relevant-global-water-risk-indicators"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "hansen_forest_loss_candidate",
+      "variable_id": "forest_cover_loss",
+      "registry": "proposed_successor",
+      "concern_id": "forest_loss",
+      "mcda_role": "priority",
+      "dataset_id": "hansen_gfc_2025_v1_13",
+      "route": "earth_engine",
+      "asset": "UMD/hansen/global_forest_change_2025_v1_13",
+      "field": "loss",
+      "auxiliary_fields": [
+        "lossyear",
+        "datamask",
+        "treecover2000"
+      ],
+      "unit": "binary_tree_cover_loss_event",
+      "spatial_support": "0.00025 degree native grid, approximately 28 m at equator; derive area on an appropriate grid",
+      "temporal_support": "2001–2025; lossyear 1–25 maps to 2001–2025",
+      "selectors": {
+        "required": [
+          "forest_definition",
+          "period_start",
+          "period_end",
+          "AOI"
+        ],
+        "event_year": "2000 + lossyear for valid detected events only"
+      },
+      "decode": {
+        "scale": 1,
+        "offset": 0,
+        "valid_range": [
+          0,
+          1
+        ],
+        "special_values": {},
+        "guards": [
+          {
+            "field": "datamask",
+            "missing": "unknown",
+            "equals": {
+              "0": "outside_valid_land",
+              "2": "water"
+            },
+            "valid_values": [
+              1
+            ]
+          }
+        ],
+        "missing_state": "unknown",
+        "clip": false
+      },
+      "inspection_status": "sample_checked",
+      "observation_refs": [
+        {
+          "observation_id": "forest_loss_live",
+          "path": "observations/forest_loss_live.json",
+          "sha256": "3c65fcf9f62c23ce6de706f4d6b0a8c87b2a4794584efb95833a66c0633d617b"
+        }
+      ],
+      "blocking": [
+        "Proposed variable only; do not bind the legacy carbon_sequestration_potential ID.",
+        "Tree-cover loss is not carbon mass or necessarily deforestation; degradation coverage incomplete.",
+        "No arbitrary canopy threshold chosen; define/review eligible forest and denominator.",
+        "lossyear missing can mean no event; require valid-land datamask=1 and loss=0 for a zero-event observation."
+      ],
+      "documentation": [
+        "https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2025_v1_13"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "forest_gross_emissions_candidate",
+      "variable_id": "forest_carbon_loss_emissions",
+      "registry": "proposed_successor",
+      "concern_id": "forest_carbon_loss",
+      "mcda_role": "priority",
+      "dataset_id": "gfw_forest_emissions_model_v1_4_2",
+      "route": "earth_engine_community",
+      "asset": "projects/sat-io/open-datasets/forest_carbon_fluxes/gross_emissions",
+      "field": "b1",
+      "auxiliary_fields": [],
+      "unit": "Mg_CO2e_per_ha_over_2001_2024",
+      "spatial_support": "0.00025 degree model grid; stand-replacing forest disturbance emissions",
+      "temporal_support": "Cumulative 2001–2024, model v1.4.2; not annual observations",
+      "selectors": {
+        "required": [
+          "source_version_pin",
+          "forest_coverage_mask",
+          "AOI"
+        ],
+        "annual_average_if_explicitly_adopted": "divide cumulative value by 24; does not recover annual event timing"
+      },
+      "decode": {
+        "scale": 1,
+        "offset": 0,
+        "valid_range": [
+          0,
+          null
+        ],
+        "special_values": {},
+        "guards": [],
+        "missing_state": "unknown",
+        "clip": false
+      },
+      "inspection_status": "sample_checked",
+      "observation_refs": [
+        {
+          "observation_id": "forest_emissions_live",
+          "path": "observations/forest_emissions_live.json",
+          "sha256": "f6a6fbe7f5633983b54215c8fd6758d85a1c92ed2ef32256ab554f101ec4ccbb"
+        }
+      ],
+      "blocking": [
+        "Pin definitive upstream raster/version/hash; convenience EE mirror is mutable.",
+        "Do not combine 2001–2024 model with 2025 Hansen loss timing; match the producer input edition.",
+        "Modelled emissions, not observed carbon stock decline; not comprehensive wetland/soil/degradation coverage.",
+        "Successor definition and classification remain unaccepted. Missing/non-event zero semantics need provider mask verification."
+      ],
+      "documentation": [
+        "https://essd.copernicus.org/articles/17/1217/2025/",
+        "https://data.globalforestwatch.org/datasets/forest-greenhouse-gas-emissions",
+        "https://gee-community-catalog.org/projects/cflux/"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "naturebase_afc_potential_candidate",
+      "variable_id": "avoided_forest_conversion_potential",
+      "registry": "proposed_descriptor",
+      "concern_id": "practice_specific_mitigation_potential",
+      "mcda_role": "descriptor",
+      "dataset_id": "naturebase_afc_v2_2024_06_06",
+      "route": "http_zip",
+      "asset": "https://naturebase-shared-docs.s3.amazonaws.com/Data-download/for_afc_total.zip",
+      "field": "for_afc_tco2eha.tif:band1",
+      "auxiliary_fields": [],
+      "unit": "tCO2e_per_ha_per_year",
+      "spatial_support": "EPSG:4326; 0.00898315284119522 degree pixels; fractional pathway area needs denominator validation",
+      "temporal_support": "Modelled average annual rate 2017–2021; assumed constant over accounting horizon",
+      "selectors": {
+        "required": [
+          "practice_applicability_mask",
+          "area_denominator",
+          "AOI"
+        ],
+        "member_sha256": "24511e2e55d38ec9249b1c1de1947b2ce22d99f70a9a893c463a7b0d3e8e9571",
+        "license": "CC-BY-NC-SA-4.0"
+      },
+      "decode": {
+        "scale": 1,
+        "offset": 0,
+        "valid_range": [
+          0,
+          null
+        ],
+        "special_values": {
+          "-3.4028234663852886e+38": "unknown"
+        },
+        "guards": [],
+        "missing_state": "unknown",
+        "clip": false
+      },
+      "inspection_status": "sample_checked",
+      "observation_refs": [
+        {
+          "observation_id": "naturebase_afc_inspection",
+          "path": "observations/naturebase_afc_inspection.json",
+          "sha256": "2fd5ac1d2fa978c6b5a280a63aa237d90778299dbaeab0fb793adc66bb5220cf"
+        }
+      ],
+      "blocking": [
+        "Potential descriptor only, not carbon-loss need or an accepted effect value.",
+        "Zero observed even at ocean diagnostic point; require separate applicability/land mask.",
+        "README filename/CRS/publication caveats are stale; actual raster header and member hash preserved.",
+        "Inspect counterfactual, units/area denominator and hierarchy before aggregation; other 19 pathways remain unverified."
+      ],
+      "documentation": [
+        "https://app.naturebase.org/data",
+        "https://naturebase-shared-docs.s3.amazonaws.com/NCS_Accounting_rules_narrative.pdf"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "landmark_community_overlap_candidate",
+      "variable_id": "iplc_lands",
+      "registry": "T5",
+      "concern_id": "iplc_overlap_and_safeguards",
+      "mcda_role": "descriptor",
+      "dataset_id": "landmark_community_lands_2026_06",
+      "route": "download_form",
+      "asset": "https://www.landmarkmap.org/data-methods/access-data",
+      "field": "unverified",
+      "auxiliary_fields": [],
+      "unit": "mapped_overlap_presence_unknown",
+      "spatial_support": "Community/territory vectors; geometry/coverage unverified",
+      "temporal_support": "Provider lists June 2026 update; feature dates unverified",
+      "selectors": {
+        "required": [
+          "authorized_download",
+          "specific_terms",
+          "country_completeness"
+        ],
+        "license": "CC-BY-SA-4.0"
+      },
+      "decode": null,
+      "inspection_status": "access_unavailable",
+      "observation_refs": [
+        {
+          "observation_id": "landmark_access",
+          "path": "observations/landmark_access.json",
+          "sha256": "a50bc1349f5d7c84558f63aab1a9c8a58fb6dbc8d31e732b43a9f0dcf7fc4a93"
+        }
+      ],
+      "blocking": [
+        "Download form and terms agreement not submitted; vector fields and country completeness not verified.",
+        "Unscored characterization/safeguard follow-up; no polygon does not establish no IPLC presence.",
+        "Indicative rights/national percentage layers cannot substitute for community boundaries."
+      ],
+      "documentation": [
+        "https://www.landmarkmap.org/data-methods/access-data"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    }
+  ]
+}

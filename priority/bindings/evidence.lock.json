@@ -1,0 +1,6 @@
+{
+  "repository": "https://github.com/RuralScan/evidence.git",
+  "revision": "4b46b23b54c96c5627f24b873c3eb6c6e7559274",
+  "manifest_path": "workflows/priority_classification/binding_checks/2026-11-25/manifest.json",
+  "manifest_sha256": "78e5ff82ae892e720bf56b17e512b0d23a98bb1bc5f3f14933151687e598fd6b"
+}
