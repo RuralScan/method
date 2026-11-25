@@ -1,0 +1,2978 @@
+[
+  {
+    "name": "diagnostic_0_gt_30",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      -11,
+      8
+    ],
+    "threshold": 30,
+    "series": [
+      {
+        "year": 1984,
+        "value": 0.0
+      },
+      {
+        "year": 1985,
+        "value": 4.0
+      },
+      {
+        "year": 1986,
+        "value": 26.5
+      },
+      {
+        "year": 1987,
+        "value": 2.5
+      },
+      {
+        "year": 1988,
+        "value": 35.5
+      },
+      {
+        "year": 1989,
+        "value": 0.0
+      },
+      {
+        "year": 1990,
+        "value": 0.0
+      },
+      {
+        "year": 1991,
+        "value": 0.0
+      },
+      {
+        "year": 1992,
+        "value": 0.0
+      },
+      {
+        "year": 1993,
+        "value": 0.0
+      },
+      {
+        "year": 1994,
+        "value": 6.5
+      },
+      {
+        "year": 1995,
+        "value": 0.0
+      },
+      {
+        "year": 1996,
+        "value": 0.0
+      },
+      {
+        "year": 1997,
+        "value": 0.0
+      },
+      {
+        "year": 1998,
+        "value": 0.0
+      },
+      {
+        "year": 1999,
+        "value": 0.0
+      },
+      {
+        "year": 2000,
+        "value": 0.0
+      },
+      {
+        "year": 2001,
+        "value": 0.0
+      },
+      {
+        "year": 2002,
+        "value": 0.0
+      },
+      {
+        "year": 2003,
+        "value": 8.0
+      },
+      {
+        "year": 2004,
+        "value": 17.5
+      },
+      {
+        "year": 2005,
+        "value": 0.0
+      },
+      {
+        "year": 2006,
+        "value": 0.0
+      },
+      {
+        "year": 2007,
+        "value": 6.0
+      },
+      {
+        "year": 2008,
+        "value": 0.0
+      },
+      {
+        "year": 2009,
+        "value": 22.0
+      },
+      {
+        "year": 2010,
+        "value": 0.0
+      },
+      {
+        "year": 2011,
+        "value": 0.0
+      },
+      {
+        "year": 2012,
+        "value": 3.0
+      },
+      {
+        "year": 2013,
+        "value": 0.5
+      },
+      {
+        "year": 2014,
+        "value": 1.0
+      },
+      {
+        "year": 2015,
+        "value": 3.5
+      },
+      {
+        "year": 2016,
+        "value": 0.5
+      },
+      {
+        "year": 2017,
+        "value": 1.0
+      },
+      {
+        "year": 2018,
+        "value": 0.5
+      },
+      {
+        "year": 2019,
+        "value": 1.0
+      },
+      {
+        "year": 2020,
+        "value": 1.5
+      },
+      {
+        "year": 2021,
+        "value": 0.5
+      },
+      {
+        "year": 2022,
+        "value": 0.5
+      },
+      {
+        "year": 2023,
+        "value": 0.0
+      },
+      {
+        "year": 2024,
+        "value": 0.5
+      },
+      {
+        "year": 2025,
+        "value": 0.0
+      }
+    ],
+    "expected": {
+      "state": "numeric",
+      "value": 2.380952380952381,
+      "valid_seasons": 42,
+      "expected_seasons": 42,
+      "event_count": 1
+    }
+  },
+  {
+    "name": "diagnostic_0_gt_50",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      -11,
+      8
+    ],
+    "threshold": 50,
+    "series": [
+      {
+        "year": 1984,
+        "value": 0.0
+      },
+      {
+        "year": 1985,
+        "value": 4.0
+      },
+      {
+        "year": 1986,
+        "value": 26.5
+      },
+      {
+        "year": 1987,
+        "value": 2.5
+      },
+      {
+        "year": 1988,
+        "value": 35.5
+      },
+      {
+        "year": 1989,
+        "value": 0.0
+      },
+      {
+        "year": 1990,
+        "value": 0.0
+      },
+      {
+        "year": 1991,
+        "value": 0.0
+      },
+      {
+        "year": 1992,
+        "value": 0.0
+      },
+      {
+        "year": 1993,
+        "value": 0.0
+      },
+      {
+        "year": 1994,
+        "value": 6.5
+      },
+      {
+        "year": 1995,
+        "value": 0.0
+      },
+      {
+        "year": 1996,
+        "value": 0.0
+      },
+      {
+        "year": 1997,
+        "value": 0.0
+      },
+      {
+        "year": 1998,
+        "value": 0.0
+      },
+      {
+        "year": 1999,
+        "value": 0.0
+      },
+      {
+        "year": 2000,
+        "value": 0.0
+      },
+      {
+        "year": 2001,
+        "value": 0.0
+      },
+      {
+        "year": 2002,
+        "value": 0.0
+      },
+      {
+        "year": 2003,
+        "value": 8.0
+      },
+      {
+        "year": 2004,
+        "value": 17.5
+      },
+      {
+        "year": 2005,
+        "value": 0.0
+      },
+      {
+        "year": 2006,
+        "value": 0.0
+      },
+      {
+        "year": 2007,
+        "value": 6.0
+      },
+      {
+        "year": 2008,
+        "value": 0.0
+      },
+      {
+        "year": 2009,
+        "value": 22.0
+      },
+      {
+        "year": 2010,
+        "value": 0.0
+      },
+      {
+        "year": 2011,
+        "value": 0.0
+      },
+      {
+        "year": 2012,
+        "value": 3.0
+      },
+      {
+        "year": 2013,
+        "value": 0.5
+      },
+      {
+        "year": 2014,
+        "value": 1.0
+      },
+      {
+        "year": 2015,
+        "value": 3.5
+      },
+      {
+        "year": 2016,
+        "value": 0.5
+      },
+      {
+        "year": 2017,
+        "value": 1.0
+      },
+      {
+        "year": 2018,
+        "value": 0.5
+      },
+      {
+        "year": 2019,
+        "value": 1.0
+      },
+      {
+        "year": 2020,
+        "value": 1.5
+      },
+      {
+        "year": 2021,
+        "value": 0.5
+      },
+      {
+        "year": 2022,
+        "value": 0.5
+      },
+      {
+        "year": 2023,
+        "value": 0.0
+      },
+      {
+        "year": 2024,
+        "value": 0.5
+      },
+      {
+        "year": 2025,
+        "value": 0.0
+      }
+    ],
+    "expected": {
+      "state": "numeric",
+      "value": 0.0,
+      "valid_seasons": 42,
+      "expected_seasons": 42,
+      "event_count": 0
+    }
+  },
+  {
+    "name": "diagnostic_1_gt_30",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      36,
+      0
+    ],
+    "threshold": 30,
+    "series": [
+      {
+        "year": 1984,
+        "value": 30.5
+      },
+      {
+        "year": 1985,
+        "value": 0.0
+      },
+      {
+        "year": 1986,
+        "value": 2.5
+      },
+      {
+        "year": 1987,
+        "value": 0.0
+      },
+      {
+        "year": 1988,
+        "value": 0.0
+      },
+      {
+        "year": 1989,
+        "value": 2.0
+      },
+      {
+        "year": 1990,
+        "value": 0.0
+      },
+      {
+        "year": 1991,
+        "value": 4.0
+      },
+      {
+        "year": 1992,
+        "value": 3.5
+      },
+      {
+        "year": 1993,
+        "value": 0.0
+      },
+      {
+        "year": 1994,
+        "value": 0.0
+      },
+      {
+        "year": 1995,
+        "value": 0.0
+      },
+      {
+        "year": 1996,
+        "value": 5.0
+      },
+      {
+        "year": 1997,
+        "value": 2.5
+      },
+      {
+        "year": 1998,
+        "value": 0.0
+      },
+      {
+        "year": 1999,
+        "value": 0.0
+      },
+      {
+        "year": 2000,
+        "value": 56.0
+      },
+      {
+        "year": 2001,
+        "value": 0.0
+      },
+      {
+        "year": 2002,
+        "value": 0.5
+      },
+      {
+        "year": 2003,
+        "value": 0.0
+      },
+      {
+        "year": 2004,
+        "value": 1.5
+      },
+      {
+        "year": 2005,
+        "value": 0.5
+      },
+      {
+        "year": 2006,
+        "value": 3.0
+      },
+      {
+        "year": 2007,
+        "value": 1.0
+      },
+      {
+        "year": 2008,
+        "value": 3.0
+      },
+      {
+        "year": 2009,
+        "value": 34.5
+      },
+      {
+        "year": 2010,
+        "value": 0.5
+      },
+      {
+        "year": 2011,
+        "value": 4.5
+      },
+      {
+        "year": 2012,
+        "value": 0.0
+      },
+      {
+        "year": 2013,
+        "value": 0.0
+      },
+      {
+        "year": 2014,
+        "value": 7.5
+      },
+      {
+        "year": 2015,
+        "value": 1.0
+      },
+      {
+        "year": 2016,
+        "value": 0.0
+      },
+      {
+        "year": 2017,
+        "value": 20.5
+      },
+      {
+        "year": 2018,
+        "value": 0.5
+      },
+      {
+        "year": 2019,
+        "value": 6.5
+      },
+      {
+        "year": 2020,
+        "value": 0.0
+      },
+      {
+        "year": 2021,
+        "value": 0.5
+      },
+      {
+        "year": 2022,
+        "value": 3.5
+      },
+      {
+        "year": 2023,
+        "value": 1.0
+      },
+      {
+        "year": 2024,
+        "value": 0.5
+      },
+      {
+        "year": 2025,
+        "value": 0.0
+      }
+    ],
+    "expected": {
+      "state": "numeric",
+      "value": 7.142857142857143,
+      "valid_seasons": 42,
+      "expected_seasons": 42,
+      "event_count": 3
+    }
+  },
+  {
+    "name": "diagnostic_1_gt_50",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      36,
+      0
+    ],
+    "threshold": 50,
+    "series": [
+      {
+        "year": 1984,
+        "value": 30.5
+      },
+      {
+        "year": 1985,
+        "value": 0.0
+      },
+      {
+        "year": 1986,
+        "value": 2.5
+      },
+      {
+        "year": 1987,
+        "value": 0.0
+      },
+      {
+        "year": 1988,
+        "value": 0.0
+      },
+      {
+        "year": 1989,
+        "value": 2.0
+      },
+      {
+        "year": 1990,
+        "value": 0.0
+      },
+      {
+        "year": 1991,
+        "value": 4.0
+      },
+      {
+        "year": 1992,
+        "value": 3.5
+      },
+      {
+        "year": 1993,
+        "value": 0.0
+      },
+      {
+        "year": 1994,
+        "value": 0.0
+      },
+      {
+        "year": 1995,
+        "value": 0.0
+      },
+      {
+        "year": 1996,
+        "value": 5.0
+      },
+      {
+        "year": 1997,
+        "value": 2.5
+      },
+      {
+        "year": 1998,
+        "value": 0.0
+      },
+      {
+        "year": 1999,
+        "value": 0.0
+      },
+      {
+        "year": 2000,
+        "value": 56.0
+      },
+      {
+        "year": 2001,
+        "value": 0.0
+      },
+      {
+        "year": 2002,
+        "value": 0.5
+      },
+      {
+        "year": 2003,
+        "value": 0.0
+      },
+      {
+        "year": 2004,
+        "value": 1.5
+      },
+      {
+        "year": 2005,
+        "value": 0.5
+      },
+      {
+        "year": 2006,
+        "value": 3.0
+      },
+      {
+        "year": 2007,
+        "value": 1.0
+      },
+      {
+        "year": 2008,
+        "value": 3.0
+      },
+      {
+        "year": 2009,
+        "value": 34.5
+      },
+      {
+        "year": 2010,
+        "value": 0.5
+      },
+      {
+        "year": 2011,
+        "value": 4.5
+      },
+      {
+        "year": 2012,
+        "value": 0.0
+      },
+      {
+        "year": 2013,
+        "value": 0.0
+      },
+      {
+        "year": 2014,
+        "value": 7.5
+      },
+      {
+        "year": 2015,
+        "value": 1.0
+      },
+      {
+        "year": 2016,
+        "value": 0.0
+      },
+      {
+        "year": 2017,
+        "value": 20.5
+      },
+      {
+        "year": 2018,
+        "value": 0.5
+      },
+      {
+        "year": 2019,
+        "value": 6.5
+      },
+      {
+        "year": 2020,
+        "value": 0.0
+      },
+      {
+        "year": 2021,
+        "value": 0.5
+      },
+      {
+        "year": 2022,
+        "value": 3.5
+      },
+      {
+        "year": 2023,
+        "value": 1.0
+      },
+      {
+        "year": 2024,
+        "value": 0.5
+      },
+      {
+        "year": 2025,
+        "value": 0.0
+      }
+    ],
+    "expected": {
+      "state": "numeric",
+      "value": 2.380952380952381,
+      "valid_seasons": 42,
+      "expected_seasons": 42,
+      "event_count": 1
+    }
+  },
+  {
+    "name": "diagnostic_2_gt_30",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      84,
+      28
+    ],
+    "threshold": 30,
+    "series": [
+      {
+        "year": 1984,
+        "value": 0.5
+      },
+      {
+        "year": 1985,
+        "value": 10.5
+      },
+      {
+        "year": 1986,
+        "value": 15.5
+      },
+      {
+        "year": 1987,
+        "value": 24.5
+      },
+      {
+        "year": 1988,
+        "value": 0.0
+      },
+      {
+        "year": 1989,
+        "value": 6.5
+      },
+      {
+        "year": 1990,
+        "value": 0.0
+      },
+      {
+        "year": 1991,
+        "value": 0.0
+      },
+      {
+        "year": 1992,
+        "value": 12.0
+      },
+      {
+        "year": 1993,
+        "value": 0.0
+      },
+      {
+        "year": 1994,
+        "value": 0.0
+      },
+      {
+        "year": 1995,
+        "value": 7.5
+      },
+      {
+        "year": 1996,
+        "value": 0.0
+      },
+      {
+        "year": 1997,
+        "value": 0.0
+      },
+      {
+        "year": 1998,
+        "value": 0.0
+      },
+      {
+        "year": 1999,
+        "value": 0.5
+      },
+      {
+        "year": 2000,
+        "value": 0.0
+      },
+      {
+        "year": 2001,
+        "value": 0.0
+      },
+      {
+        "year": 2002,
+        "value": 5.5
+      },
+      {
+        "year": 2003,
+        "value": 29.0
+      },
+      {
+        "year": 2004,
+        "value": 0.5
+      },
+      {
+        "year": 2005,
+        "value": 7.5
+      },
+      {
+        "year": 2006,
+        "value": 0.5
+      },
+      {
+        "year": 2007,
+        "value": 14.0
+      },
+      {
+        "year": 2008,
+        "value": 0.0
+      },
+      {
+        "year": 2009,
+        "value": 1.0
+      },
+      {
+        "year": 2010,
+        "value": 0.0
+      },
+      {
+        "year": 2011,
+        "value": 0.0
+      },
+      {
+        "year": 2012,
+        "value": 0.0
+      },
+      {
+        "year": 2013,
+        "value": 0.0
+      },
+      {
+        "year": 2014,
+        "value": 3.0
+      },
+      {
+        "year": 2015,
+        "value": 0.5
+      },
+      {
+        "year": 2016,
+        "value": 1.0
+      },
+      {
+        "year": 2017,
+        "value": 0.5
+      },
+      {
+        "year": 2018,
+        "value": 0.5
+      },
+      {
+        "year": 2019,
+        "value": 0.0
+      },
+      {
+        "year": 2020,
+        "value": 0.0
+      },
+      {
+        "year": 2021,
+        "value": 0.5
+      },
+      {
+        "year": 2022,
+        "value": 0.0
+      },
+      {
+        "year": 2023,
+        "value": 0.5
+      },
+      {
+        "year": 2024,
+        "value": 0.0
+      },
+      {
+        "year": 2025,
+        "value": 0.5
+      }
+    ],
+    "expected": {
+      "state": "numeric",
+      "value": 0.0,
+      "valid_seasons": 42,
+      "expected_seasons": 42,
+      "event_count": 0
+    }
+  },
+  {
+    "name": "diagnostic_2_gt_50",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      84,
+      28
+    ],
+    "threshold": 50,
+    "series": [
+      {
+        "year": 1984,
+        "value": 0.5
+      },
+      {
+        "year": 1985,
+        "value": 10.5
+      },
+      {
+        "year": 1986,
+        "value": 15.5
+      },
+      {
+        "year": 1987,
+        "value": 24.5
+      },
+      {
+        "year": 1988,
+        "value": 0.0
+      },
+      {
+        "year": 1989,
+        "value": 6.5
+      },
+      {
+        "year": 1990,
+        "value": 0.0
+      },
+      {
+        "year": 1991,
+        "value": 0.0
+      },
+      {
+        "year": 1992,
+        "value": 12.0
+      },
+      {
+        "year": 1993,
+        "value": 0.0
+      },
+      {
+        "year": 1994,
+        "value": 0.0
+      },
+      {
+        "year": 1995,
+        "value": 7.5
+      },
+      {
+        "year": 1996,
+        "value": 0.0
+      },
+      {
+        "year": 1997,
+        "value": 0.0
+      },
+      {
+        "year": 1998,
+        "value": 0.0
+      },
+      {
+        "year": 1999,
+        "value": 0.5
+      },
+      {
+        "year": 2000,
+        "value": 0.0
+      },
+      {
+        "year": 2001,
+        "value": 0.0
+      },
+      {
+        "year": 2002,
+        "value": 5.5
+      },
+      {
+        "year": 2003,
+        "value": 29.0
+      },
+      {
+        "year": 2004,
+        "value": 0.5
+      },
+      {
+        "year": 2005,
+        "value": 7.5
+      },
+      {
+        "year": 2006,
+        "value": 0.5
+      },
+      {
+        "year": 2007,
+        "value": 14.0
+      },
+      {
+        "year": 2008,
+        "value": 0.0
+      },
+      {
+        "year": 2009,
+        "value": 1.0
+      },
+      {
+        "year": 2010,
+        "value": 0.0
+      },
+      {
+        "year": 2011,
+        "value": 0.0
+      },
+      {
+        "year": 2012,
+        "value": 0.0
+      },
+      {
+        "year": 2013,
+        "value": 0.0
+      },
+      {
+        "year": 2014,
+        "value": 3.0
+      },
+      {
+        "year": 2015,
+        "value": 0.5
+      },
+      {
+        "year": 2016,
+        "value": 1.0
+      },
+      {
+        "year": 2017,
+        "value": 0.5
+      },
+      {
+        "year": 2018,
+        "value": 0.5
+      },
+      {
+        "year": 2019,
+        "value": 0.0
+      },
+      {
+        "year": 2020,
+        "value": 0.0
+      },
+      {
+        "year": 2021,
+        "value": 0.5
+      },
+      {
+        "year": 2022,
+        "value": 0.0
+      },
+      {
+        "year": 2023,
+        "value": 0.5
+      },
+      {
+        "year": 2024,
+        "value": 0.0
+      },
+      {
+        "year": 2025,
+        "value": 0.5
+      }
+    ],
+    "expected": {
+      "state": "numeric",
+      "value": 0.0,
+      "valid_seasons": 42,
+      "expected_seasons": 42,
+      "event_count": 0
+    }
+  },
+  {
+    "name": "diagnostic_3_gt_30",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      20,
+      10
+    ],
+    "threshold": 30,
+    "series": [
+      {
+        "year": 1984,
+        "value": 254.0
+      },
+      {
+        "year": 1985,
+        "value": 254.0
+      },
+      {
+        "year": 1986,
+        "value": 254.0
+      },
+      {
+        "year": 1987,
+        "value": 254.0
+      },
+      {
+        "year": 1988,
+        "value": 254.0
+      },
+      {
+        "year": 1989,
+        "value": 254.0
+      },
+      {
+        "year": 1990,
+        "value": 254.0
+      },
+      {
+        "year": 1991,
+        "value": 254.0
+      },
+      {
+        "year": 1992,
+        "value": 254.0
+      },
+      {
+        "year": 1993,
+        "value": 254.0
+      },
+      {
+        "year": 1994,
+        "value": 254.0
+      },
+      {
+        "year": 1995,
+        "value": 254.0
+      },
+      {
+        "year": 1996,
+        "value": 254.0
+      },
+      {
+        "year": 1997,
+        "value": 254.0
+      },
+      {
+        "year": 1998,
+        "value": 254.0
+      },
+      {
+        "year": 1999,
+        "value": 254.0
+      },
+      {
+        "year": 2000,
+        "value": 254.0
+      },
+      {
+        "year": 2001,
+        "value": 254.0
+      },
+      {
+        "year": 2002,
+        "value": 254.0
+      },
+      {
+        "year": 2003,
+        "value": 254.0
+      },
+      {
+        "year": 2004,
+        "value": 254.0
+      },
+      {
+        "year": 2005,
+        "value": 254.0
+      },
+      {
+        "year": 2006,
+        "value": 254.0
+      },
+      {
+        "year": 2007,
+        "value": 254.0
+      },
+      {
+        "year": 2008,
+        "value": 254.0
+      },
+      {
+        "year": 2009,
+        "value": 254.0
+      },
+      {
+        "year": 2010,
+        "value": 254.0
+      },
+      {
+        "year": 2011,
+        "value": 254.0
+      },
+      {
+        "year": 2012,
+        "value": 254.0
+      },
+      {
+        "year": 2013,
+        "value": 254.0
+      },
+      {
+        "year": 2014,
+        "value": 254.0
+      },
+      {
+        "year": 2015,
+        "value": 254.0
+      },
+      {
+        "year": 2016,
+        "value": 254.0
+      },
+      {
+        "year": 2017,
+        "value": 254.0
+      },
+      {
+        "year": 2018,
+        "value": 254.0
+      },
+      {
+        "year": 2019,
+        "value": 254.0
+      },
+      {
+        "year": 2020,
+        "value": 254.0
+      },
+      {
+        "year": 2021,
+        "value": 254.0
+      },
+      {
+        "year": 2022,
+        "value": 254.0
+      },
+      {
+        "year": 2023,
+        "value": 254.0
+      },
+      {
+        "year": 2024,
+        "value": 254.0
+      },
+      {
+        "year": 2025,
+        "value": 254.0
+      }
+    ],
+    "expected": {
+      "state": "incomplete_series",
+      "value": null,
+      "valid_seasons": 0,
+      "expected_seasons": 42,
+      "event_count": 0
+    }
+  },
+  {
+    "name": "diagnostic_3_gt_50",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      20,
+      10
+    ],
+    "threshold": 50,
+    "series": [
+      {
+        "year": 1984,
+        "value": 254.0
+      },
+      {
+        "year": 1985,
+        "value": 254.0
+      },
+      {
+        "year": 1986,
+        "value": 254.0
+      },
+      {
+        "year": 1987,
+        "value": 254.0
+      },
+      {
+        "year": 1988,
+        "value": 254.0
+      },
+      {
+        "year": 1989,
+        "value": 254.0
+      },
+      {
+        "year": 1990,
+        "value": 254.0
+      },
+      {
+        "year": 1991,
+        "value": 254.0
+      },
+      {
+        "year": 1992,
+        "value": 254.0
+      },
+      {
+        "year": 1993,
+        "value": 254.0
+      },
+      {
+        "year": 1994,
+        "value": 254.0
+      },
+      {
+        "year": 1995,
+        "value": 254.0
+      },
+      {
+        "year": 1996,
+        "value": 254.0
+      },
+      {
+        "year": 1997,
+        "value": 254.0
+      },
+      {
+        "year": 1998,
+        "value": 254.0
+      },
+      {
+        "year": 1999,
+        "value": 254.0
+      },
+      {
+        "year": 2000,
+        "value": 254.0
+      },
+      {
+        "year": 2001,
+        "value": 254.0
+      },
+      {
+        "year": 2002,
+        "value": 254.0
+      },
+      {
+        "year": 2003,
+        "value": 254.0
+      },
+      {
+        "year": 2004,
+        "value": 254.0
+      },
+      {
+        "year": 2005,
+        "value": 254.0
+      },
+      {
+        "year": 2006,
+        "value": 254.0
+      },
+      {
+        "year": 2007,
+        "value": 254.0
+      },
+      {
+        "year": 2008,
+        "value": 254.0
+      },
+      {
+        "year": 2009,
+        "value": 254.0
+      },
+      {
+        "year": 2010,
+        "value": 254.0
+      },
+      {
+        "year": 2011,
+        "value": 254.0
+      },
+      {
+        "year": 2012,
+        "value": 254.0
+      },
+      {
+        "year": 2013,
+        "value": 254.0
+      },
+      {
+        "year": 2014,
+        "value": 254.0
+      },
+      {
+        "year": 2015,
+        "value": 254.0
+      },
+      {
+        "year": 2016,
+        "value": 254.0
+      },
+      {
+        "year": 2017,
+        "value": 254.0
+      },
+      {
+        "year": 2018,
+        "value": 254.0
+      },
+      {
+        "year": 2019,
+        "value": 254.0
+      },
+      {
+        "year": 2020,
+        "value": 254.0
+      },
+      {
+        "year": 2021,
+        "value": 254.0
+      },
+      {
+        "year": 2022,
+        "value": 254.0
+      },
+      {
+        "year": 2023,
+        "value": 254.0
+      },
+      {
+        "year": 2024,
+        "value": 254.0
+      },
+      {
+        "year": 2025,
+        "value": 254.0
+      }
+    ],
+    "expected": {
+      "state": "incomplete_series",
+      "value": null,
+      "valid_seasons": 0,
+      "expected_seasons": 42,
+      "event_count": 0
+    }
+  },
+  {
+    "name": "diagnostic_4_gt_30",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      25,
+      22
+    ],
+    "threshold": 30,
+    "series": [
+      {
+        "year": 1984,
+        "value": 254.0
+      },
+      {
+        "year": 1985,
+        "value": 254.0
+      },
+      {
+        "year": 1986,
+        "value": 254.0
+      },
+      {
+        "year": 1987,
+        "value": 254.0
+      },
+      {
+        "year": 1988,
+        "value": 254.0
+      },
+      {
+        "year": 1989,
+        "value": 254.0
+      },
+      {
+        "year": 1990,
+        "value": 254.0
+      },
+      {
+        "year": 1991,
+        "value": 254.0
+      },
+      {
+        "year": 1992,
+        "value": 254.0
+      },
+      {
+        "year": 1993,
+        "value": 254.0
+      },
+      {
+        "year": 1994,
+        "value": 254.0
+      },
+      {
+        "year": 1995,
+        "value": 254.0
+      },
+      {
+        "year": 1996,
+        "value": 254.0
+      },
+      {
+        "year": 1997,
+        "value": 254.0
+      },
+      {
+        "year": 1998,
+        "value": 254.0
+      },
+      {
+        "year": 1999,
+        "value": 254.0
+      },
+      {
+        "year": 2000,
+        "value": 254.0
+      },
+      {
+        "year": 2001,
+        "value": 254.0
+      },
+      {
+        "year": 2002,
+        "value": 254.0
+      },
+      {
+        "year": 2003,
+        "value": 254.0
+      },
+      {
+        "year": 2004,
+        "value": 254.0
+      },
+      {
+        "year": 2005,
+        "value": 254.0
+      },
+      {
+        "year": 2006,
+        "value": 254.0
+      },
+      {
+        "year": 2007,
+        "value": 254.0
+      },
+      {
+        "year": 2008,
+        "value": 254.0
+      },
+      {
+        "year": 2009,
+        "value": 254.0
+      },
+      {
+        "year": 2010,
+        "value": 254.0
+      },
+      {
+        "year": 2011,
+        "value": 254.0
+      },
+      {
+        "year": 2012,
+        "value": 254.0
+      },
+      {
+        "year": 2013,
+        "value": 254.0
+      },
+      {
+        "year": 2014,
+        "value": 254.0
+      },
+      {
+        "year": 2015,
+        "value": 254.0
+      },
+      {
+        "year": 2016,
+        "value": 254.0
+      },
+      {
+        "year": 2017,
+        "value": 254.0
+      },
+      {
+        "year": 2018,
+        "value": 254.0
+      },
+      {
+        "year": 2019,
+        "value": 254.0
+      },
+      {
+        "year": 2020,
+        "value": 254.0
+      },
+      {
+        "year": 2021,
+        "value": 254.0
+      },
+      {
+        "year": 2022,
+        "value": 254.0
+      },
+      {
+        "year": 2023,
+        "value": 254.0
+      },
+      {
+        "year": 2024,
+        "value": 254.0
+      },
+      {
+        "year": 2025,
+        "value": 254.0
+      }
+    ],
+    "expected": {
+      "state": "incomplete_series",
+      "value": null,
+      "valid_seasons": 0,
+      "expected_seasons": 42,
+      "event_count": 0
+    }
+  },
+  {
+    "name": "diagnostic_4_gt_50",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      25,
+      22
+    ],
+    "threshold": 50,
+    "series": [
+      {
+        "year": 1984,
+        "value": 254.0
+      },
+      {
+        "year": 1985,
+        "value": 254.0
+      },
+      {
+        "year": 1986,
+        "value": 254.0
+      },
+      {
+        "year": 1987,
+        "value": 254.0
+      },
+      {
+        "year": 1988,
+        "value": 254.0
+      },
+      {
+        "year": 1989,
+        "value": 254.0
+      },
+      {
+        "year": 1990,
+        "value": 254.0
+      },
+      {
+        "year": 1991,
+        "value": 254.0
+      },
+      {
+        "year": 1992,
+        "value": 254.0
+      },
+      {
+        "year": 1993,
+        "value": 254.0
+      },
+      {
+        "year": 1994,
+        "value": 254.0
+      },
+      {
+        "year": 1995,
+        "value": 254.0
+      },
+      {
+        "year": 1996,
+        "value": 254.0
+      },
+      {
+        "year": 1997,
+        "value": 254.0
+      },
+      {
+        "year": 1998,
+        "value": 254.0
+      },
+      {
+        "year": 1999,
+        "value": 254.0
+      },
+      {
+        "year": 2000,
+        "value": 254.0
+      },
+      {
+        "year": 2001,
+        "value": 254.0
+      },
+      {
+        "year": 2002,
+        "value": 254.0
+      },
+      {
+        "year": 2003,
+        "value": 254.0
+      },
+      {
+        "year": 2004,
+        "value": 254.0
+      },
+      {
+        "year": 2005,
+        "value": 254.0
+      },
+      {
+        "year": 2006,
+        "value": 254.0
+      },
+      {
+        "year": 2007,
+        "value": 254.0
+      },
+      {
+        "year": 2008,
+        "value": 254.0
+      },
+      {
+        "year": 2009,
+        "value": 254.0
+      },
+      {
+        "year": 2010,
+        "value": 254.0
+      },
+      {
+        "year": 2011,
+        "value": 254.0
+      },
+      {
+        "year": 2012,
+        "value": 254.0
+      },
+      {
+        "year": 2013,
+        "value": 254.0
+      },
+      {
+        "year": 2014,
+        "value": 254.0
+      },
+      {
+        "year": 2015,
+        "value": 254.0
+      },
+      {
+        "year": 2016,
+        "value": 254.0
+      },
+      {
+        "year": 2017,
+        "value": 254.0
+      },
+      {
+        "year": 2018,
+        "value": 254.0
+      },
+      {
+        "year": 2019,
+        "value": 254.0
+      },
+      {
+        "year": 2020,
+        "value": 254.0
+      },
+      {
+        "year": 2021,
+        "value": 254.0
+      },
+      {
+        "year": 2022,
+        "value": 254.0
+      },
+      {
+        "year": 2023,
+        "value": 254.0
+      },
+      {
+        "year": 2024,
+        "value": 254.0
+      },
+      {
+        "year": 2025,
+        "value": 254.0
+      }
+    ],
+    "expected": {
+      "state": "incomplete_series",
+      "value": null,
+      "valid_seasons": 0,
+      "expected_seasons": 42,
+      "event_count": 0
+    }
+  },
+  {
+    "name": "diagnostic_5_gt_30",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      -55,
+      -12
+    ],
+    "threshold": 30,
+    "series": [
+      {
+        "year": 1984,
+        "value": 0.0
+      },
+      {
+        "year": 1985,
+        "value": 0.0
+      },
+      {
+        "year": 1986,
+        "value": 0.0
+      },
+      {
+        "year": 1987,
+        "value": 0.0
+      },
+      {
+        "year": 1988,
+        "value": 0.0
+      },
+      {
+        "year": 1989,
+        "value": 0.0
+      },
+      {
+        "year": 1990,
+        "value": 33.0
+      },
+      {
+        "year": 1991,
+        "value": 0.0
+      },
+      {
+        "year": 1992,
+        "value": 0.0
+      },
+      {
+        "year": 1993,
+        "value": 0.0
+      },
+      {
+        "year": 1994,
+        "value": 2.5
+      },
+      {
+        "year": 1995,
+        "value": 0.0
+      },
+      {
+        "year": 1996,
+        "value": 0.0
+      },
+      {
+        "year": 1997,
+        "value": 0.0
+      },
+      {
+        "year": 1998,
+        "value": 0.0
+      },
+      {
+        "year": 1999,
+        "value": 0.0
+      },
+      {
+        "year": 2000,
+        "value": 0.0
+      },
+      {
+        "year": 2001,
+        "value": 39.0
+      },
+      {
+        "year": 2002,
+        "value": 0.0
+      },
+      {
+        "year": 2003,
+        "value": 15.0
+      },
+      {
+        "year": 2004,
+        "value": 43.5
+      },
+      {
+        "year": 2005,
+        "value": 3.0
+      },
+      {
+        "year": 2006,
+        "value": 1.0
+      },
+      {
+        "year": 2007,
+        "value": 1.0
+      },
+      {
+        "year": 2008,
+        "value": 1.5
+      },
+      {
+        "year": 2009,
+        "value": 0.5
+      },
+      {
+        "year": 2010,
+        "value": 0.5
+      },
+      {
+        "year": 2011,
+        "value": 1.0
+      },
+      {
+        "year": 2012,
+        "value": 0.5
+      },
+      {
+        "year": 2013,
+        "value": 0.0
+      },
+      {
+        "year": 2014,
+        "value": 0.0
+      },
+      {
+        "year": 2015,
+        "value": 0.0
+      },
+      {
+        "year": 2016,
+        "value": 2.5
+      },
+      {
+        "year": 2017,
+        "value": 0.5
+      },
+      {
+        "year": 2018,
+        "value": 0.0
+      },
+      {
+        "year": 2019,
+        "value": 0.0
+      },
+      {
+        "year": 2020,
+        "value": 0.5
+      },
+      {
+        "year": 2021,
+        "value": 1.0
+      },
+      {
+        "year": 2022,
+        "value": 0.5
+      },
+      {
+        "year": 2023,
+        "value": 0.5
+      },
+      {
+        "year": 2024,
+        "value": 1.0
+      },
+      {
+        "year": 2025,
+        "value": 0.5
+      }
+    ],
+    "expected": {
+      "state": "numeric",
+      "value": 7.142857142857143,
+      "valid_seasons": 42,
+      "expected_seasons": 42,
+      "event_count": 3
+    }
+  },
+  {
+    "name": "diagnostic_5_gt_50",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      -55,
+      -12
+    ],
+    "threshold": 50,
+    "series": [
+      {
+        "year": 1984,
+        "value": 0.0
+      },
+      {
+        "year": 1985,
+        "value": 0.0
+      },
+      {
+        "year": 1986,
+        "value": 0.0
+      },
+      {
+        "year": 1987,
+        "value": 0.0
+      },
+      {
+        "year": 1988,
+        "value": 0.0
+      },
+      {
+        "year": 1989,
+        "value": 0.0
+      },
+      {
+        "year": 1990,
+        "value": 33.0
+      },
+      {
+        "year": 1991,
+        "value": 0.0
+      },
+      {
+        "year": 1992,
+        "value": 0.0
+      },
+      {
+        "year": 1993,
+        "value": 0.0
+      },
+      {
+        "year": 1994,
+        "value": 2.5
+      },
+      {
+        "year": 1995,
+        "value": 0.0
+      },
+      {
+        "year": 1996,
+        "value": 0.0
+      },
+      {
+        "year": 1997,
+        "value": 0.0
+      },
+      {
+        "year": 1998,
+        "value": 0.0
+      },
+      {
+        "year": 1999,
+        "value": 0.0
+      },
+      {
+        "year": 2000,
+        "value": 0.0
+      },
+      {
+        "year": 2001,
+        "value": 39.0
+      },
+      {
+        "year": 2002,
+        "value": 0.0
+      },
+      {
+        "year": 2003,
+        "value": 15.0
+      },
+      {
+        "year": 2004,
+        "value": 43.5
+      },
+      {
+        "year": 2005,
+        "value": 3.0
+      },
+      {
+        "year": 2006,
+        "value": 1.0
+      },
+      {
+        "year": 2007,
+        "value": 1.0
+      },
+      {
+        "year": 2008,
+        "value": 1.5
+      },
+      {
+        "year": 2009,
+        "value": 0.5
+      },
+      {
+        "year": 2010,
+        "value": 0.5
+      },
+      {
+        "year": 2011,
+        "value": 1.0
+      },
+      {
+        "year": 2012,
+        "value": 0.5
+      },
+      {
+        "year": 2013,
+        "value": 0.0
+      },
+      {
+        "year": 2014,
+        "value": 0.0
+      },
+      {
+        "year": 2015,
+        "value": 0.0
+      },
+      {
+        "year": 2016,
+        "value": 2.5
+      },
+      {
+        "year": 2017,
+        "value": 0.5
+      },
+      {
+        "year": 2018,
+        "value": 0.0
+      },
+      {
+        "year": 2019,
+        "value": 0.0
+      },
+      {
+        "year": 2020,
+        "value": 0.5
+      },
+      {
+        "year": 2021,
+        "value": 1.0
+      },
+      {
+        "year": 2022,
+        "value": 0.5
+      },
+      {
+        "year": 2023,
+        "value": 0.5
+      },
+      {
+        "year": 2024,
+        "value": 1.0
+      },
+      {
+        "year": 2025,
+        "value": 0.5
+      }
+    ],
+    "expected": {
+      "state": "numeric",
+      "value": 0.0,
+      "valid_seasons": 42,
+      "expected_seasons": 42,
+      "event_count": 0
+    }
+  },
+  {
+    "name": "diagnostic_6_gt_30",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      30,
+      -15
+    ],
+    "threshold": 30,
+    "series": [
+      {
+        "year": 1984,
+        "value": 254.0
+      },
+      {
+        "year": 1985,
+        "value": 254.0
+      },
+      {
+        "year": 1986,
+        "value": 254.0
+      },
+      {
+        "year": 1987,
+        "value": 254.0
+      },
+      {
+        "year": 1988,
+        "value": 254.0
+      },
+      {
+        "year": 1989,
+        "value": 254.0
+      },
+      {
+        "year": 1990,
+        "value": 254.0
+      },
+      {
+        "year": 1991,
+        "value": 254.0
+      },
+      {
+        "year": 1992,
+        "value": 254.0
+      },
+      {
+        "year": 1993,
+        "value": 254.0
+      },
+      {
+        "year": 1994,
+        "value": 254.0
+      },
+      {
+        "year": 1995,
+        "value": 254.0
+      },
+      {
+        "year": 1996,
+        "value": 254.0
+      },
+      {
+        "year": 1997,
+        "value": 254.0
+      },
+      {
+        "year": 1998,
+        "value": 254.0
+      },
+      {
+        "year": 1999,
+        "value": 254.0
+      },
+      {
+        "year": 2000,
+        "value": 254.0
+      },
+      {
+        "year": 2001,
+        "value": 254.0
+      },
+      {
+        "year": 2002,
+        "value": 254.0
+      },
+      {
+        "year": 2003,
+        "value": 254.0
+      },
+      {
+        "year": 2004,
+        "value": 254.0
+      },
+      {
+        "year": 2005,
+        "value": 254.0
+      },
+      {
+        "year": 2006,
+        "value": 254.0
+      },
+      {
+        "year": 2007,
+        "value": 254.0
+      },
+      {
+        "year": 2008,
+        "value": 254.0
+      },
+      {
+        "year": 2009,
+        "value": 254.0
+      },
+      {
+        "year": 2010,
+        "value": 254.0
+      },
+      {
+        "year": 2011,
+        "value": 254.0
+      },
+      {
+        "year": 2012,
+        "value": 254.0
+      },
+      {
+        "year": 2013,
+        "value": 254.0
+      },
+      {
+        "year": 2014,
+        "value": 254.0
+      },
+      {
+        "year": 2015,
+        "value": 254.0
+      },
+      {
+        "year": 2016,
+        "value": 254.0
+      },
+      {
+        "year": 2017,
+        "value": 254.0
+      },
+      {
+        "year": 2018,
+        "value": 254.0
+      },
+      {
+        "year": 2019,
+        "value": 254.0
+      },
+      {
+        "year": 2020,
+        "value": 254.0
+      },
+      {
+        "year": 2021,
+        "value": 254.0
+      },
+      {
+        "year": 2022,
+        "value": 254.0
+      },
+      {
+        "year": 2023,
+        "value": 254.0
+      },
+      {
+        "year": 2024,
+        "value": 254.0
+      },
+      {
+        "year": 2025,
+        "value": 254.0
+      }
+    ],
+    "expected": {
+      "state": "incomplete_series",
+      "value": null,
+      "valid_seasons": 0,
+      "expected_seasons": 42,
+      "event_count": 0
+    }
+  },
+  {
+    "name": "diagnostic_6_gt_50",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      30,
+      -15
+    ],
+    "threshold": 50,
+    "series": [
+      {
+        "year": 1984,
+        "value": 254.0
+      },
+      {
+        "year": 1985,
+        "value": 254.0
+      },
+      {
+        "year": 1986,
+        "value": 254.0
+      },
+      {
+        "year": 1987,
+        "value": 254.0
+      },
+      {
+        "year": 1988,
+        "value": 254.0
+      },
+      {
+        "year": 1989,
+        "value": 254.0
+      },
+      {
+        "year": 1990,
+        "value": 254.0
+      },
+      {
+        "year": 1991,
+        "value": 254.0
+      },
+      {
+        "year": 1992,
+        "value": 254.0
+      },
+      {
+        "year": 1993,
+        "value": 254.0
+      },
+      {
+        "year": 1994,
+        "value": 254.0
+      },
+      {
+        "year": 1995,
+        "value": 254.0
+      },
+      {
+        "year": 1996,
+        "value": 254.0
+      },
+      {
+        "year": 1997,
+        "value": 254.0
+      },
+      {
+        "year": 1998,
+        "value": 254.0
+      },
+      {
+        "year": 1999,
+        "value": 254.0
+      },
+      {
+        "year": 2000,
+        "value": 254.0
+      },
+      {
+        "year": 2001,
+        "value": 254.0
+      },
+      {
+        "year": 2002,
+        "value": 254.0
+      },
+      {
+        "year": 2003,
+        "value": 254.0
+      },
+      {
+        "year": 2004,
+        "value": 254.0
+      },
+      {
+        "year": 2005,
+        "value": 254.0
+      },
+      {
+        "year": 2006,
+        "value": 254.0
+      },
+      {
+        "year": 2007,
+        "value": 254.0
+      },
+      {
+        "year": 2008,
+        "value": 254.0
+      },
+      {
+        "year": 2009,
+        "value": 254.0
+      },
+      {
+        "year": 2010,
+        "value": 254.0
+      },
+      {
+        "year": 2011,
+        "value": 254.0
+      },
+      {
+        "year": 2012,
+        "value": 254.0
+      },
+      {
+        "year": 2013,
+        "value": 254.0
+      },
+      {
+        "year": 2014,
+        "value": 254.0
+      },
+      {
+        "year": 2015,
+        "value": 254.0
+      },
+      {
+        "year": 2016,
+        "value": 254.0
+      },
+      {
+        "year": 2017,
+        "value": 254.0
+      },
+      {
+        "year": 2018,
+        "value": 254.0
+      },
+      {
+        "year": 2019,
+        "value": 254.0
+      },
+      {
+        "year": 2020,
+        "value": 254.0
+      },
+      {
+        "year": 2021,
+        "value": 254.0
+      },
+      {
+        "year": 2022,
+        "value": 254.0
+      },
+      {
+        "year": 2023,
+        "value": 254.0
+      },
+      {
+        "year": 2024,
+        "value": 254.0
+      },
+      {
+        "year": 2025,
+        "value": 254.0
+      }
+    ],
+    "expected": {
+      "state": "incomplete_series",
+      "value": null,
+      "valid_seasons": 0,
+      "expected_seasons": 42,
+      "event_count": 0
+    }
+  },
+  {
+    "name": "diagnostic_7_gt_30",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      38,
+      10
+    ],
+    "threshold": 30,
+    "series": [
+      {
+        "year": 1984,
+        "value": 254.0
+      },
+      {
+        "year": 1985,
+        "value": 254.0
+      },
+      {
+        "year": 1986,
+        "value": 254.0
+      },
+      {
+        "year": 1987,
+        "value": 254.0
+      },
+      {
+        "year": 1988,
+        "value": 254.0
+      },
+      {
+        "year": 1989,
+        "value": 254.0
+      },
+      {
+        "year": 1990,
+        "value": 254.0
+      },
+      {
+        "year": 1991,
+        "value": 254.0
+      },
+      {
+        "year": 1992,
+        "value": 254.0
+      },
+      {
+        "year": 1993,
+        "value": 254.0
+      },
+      {
+        "year": 1994,
+        "value": 254.0
+      },
+      {
+        "year": 1995,
+        "value": 254.0
+      },
+      {
+        "year": 1996,
+        "value": 254.0
+      },
+      {
+        "year": 1997,
+        "value": 254.0
+      },
+      {
+        "year": 1998,
+        "value": 254.0
+      },
+      {
+        "year": 1999,
+        "value": 254.0
+      },
+      {
+        "year": 2000,
+        "value": 254.0
+      },
+      {
+        "year": 2001,
+        "value": 254.0
+      },
+      {
+        "year": 2002,
+        "value": 254.0
+      },
+      {
+        "year": 2003,
+        "value": 254.0
+      },
+      {
+        "year": 2004,
+        "value": 254.0
+      },
+      {
+        "year": 2005,
+        "value": 254.0
+      },
+      {
+        "year": 2006,
+        "value": 254.0
+      },
+      {
+        "year": 2007,
+        "value": 254.0
+      },
+      {
+        "year": 2008,
+        "value": 254.0
+      },
+      {
+        "year": 2009,
+        "value": 254.0
+      },
+      {
+        "year": 2010,
+        "value": 254.0
+      },
+      {
+        "year": 2011,
+        "value": 254.0
+      },
+      {
+        "year": 2012,
+        "value": 254.0
+      },
+      {
+        "year": 2013,
+        "value": 254.0
+      },
+      {
+        "year": 2014,
+        "value": 254.0
+      },
+      {
+        "year": 2015,
+        "value": 254.0
+      },
+      {
+        "year": 2016,
+        "value": 254.0
+      },
+      {
+        "year": 2017,
+        "value": 254.0
+      },
+      {
+        "year": 2018,
+        "value": 254.0
+      },
+      {
+        "year": 2019,
+        "value": 254.0
+      },
+      {
+        "year": 2020,
+        "value": 254.0
+      },
+      {
+        "year": 2021,
+        "value": 254.0
+      },
+      {
+        "year": 2022,
+        "value": 254.0
+      },
+      {
+        "year": 2023,
+        "value": 254.0
+      },
+      {
+        "year": 2024,
+        "value": 254.0
+      },
+      {
+        "year": 2025,
+        "value": 254.0
+      }
+    ],
+    "expected": {
+      "state": "incomplete_series",
+      "value": null,
+      "valid_seasons": 0,
+      "expected_seasons": 42,
+      "event_count": 0
+    }
+  },
+  {
+    "name": "diagnostic_7_gt_50",
+    "observation_id": "fao_annual_recurrence",
+    "point": [
+      38,
+      10
+    ],
+    "threshold": 50,
+    "series": [
+      {
+        "year": 1984,
+        "value": 254.0
+      },
+      {
+        "year": 1985,
+        "value": 254.0
+      },
+      {
+        "year": 1986,
+        "value": 254.0
+      },
+      {
+        "year": 1987,
+        "value": 254.0
+      },
+      {
+        "year": 1988,
+        "value": 254.0
+      },
+      {
+        "year": 1989,
+        "value": 254.0
+      },
+      {
+        "year": 1990,
+        "value": 254.0
+      },
+      {
+        "year": 1991,
+        "value": 254.0
+      },
+      {
+        "year": 1992,
+        "value": 254.0
+      },
+      {
+        "year": 1993,
+        "value": 254.0
+      },
+      {
+        "year": 1994,
+        "value": 254.0
+      },
+      {
+        "year": 1995,
+        "value": 254.0
+      },
+      {
+        "year": 1996,
+        "value": 254.0
+      },
+      {
+        "year": 1997,
+        "value": 254.0
+      },
+      {
+        "year": 1998,
+        "value": 254.0
+      },
+      {
+        "year": 1999,
+        "value": 254.0
+      },
+      {
+        "year": 2000,
+        "value": 254.0
+      },
+      {
+        "year": 2001,
+        "value": 254.0
+      },
+      {
+        "year": 2002,
+        "value": 254.0
+      },
+      {
+        "year": 2003,
+        "value": 254.0
+      },
+      {
+        "year": 2004,
+        "value": 254.0
+      },
+      {
+        "year": 2005,
+        "value": 254.0
+      },
+      {
+        "year": 2006,
+        "value": 254.0
+      },
+      {
+        "year": 2007,
+        "value": 254.0
+      },
+      {
+        "year": 2008,
+        "value": 254.0
+      },
+      {
+        "year": 2009,
+        "value": 254.0
+      },
+      {
+        "year": 2010,
+        "value": 254.0
+      },
+      {
+        "year": 2011,
+        "value": 254.0
+      },
+      {
+        "year": 2012,
+        "value": 254.0
+      },
+      {
+        "year": 2013,
+        "value": 254.0
+      },
+      {
+        "year": 2014,
+        "value": 254.0
+      },
+      {
+        "year": 2015,
+        "value": 254.0
+      },
+      {
+        "year": 2016,
+        "value": 254.0
+      },
+      {
+        "year": 2017,
+        "value": 254.0
+      },
+      {
+        "year": 2018,
+        "value": 254.0
+      },
+      {
+        "year": 2019,
+        "value": 254.0
+      },
+      {
+        "year": 2020,
+        "value": 254.0
+      },
+      {
+        "year": 2021,
+        "value": 254.0
+      },
+      {
+        "year": 2022,
+        "value": 254.0
+      },
+      {
+        "year": 2023,
+        "value": 254.0
+      },
+      {
+        "year": 2024,
+        "value": 254.0
+      },
+      {
+        "year": 2025,
+        "value": 254.0
+      }
+    ],
+    "expected": {
+      "state": "incomplete_series",
+      "value": null,
+      "valid_seasons": 0,
+      "expected_seasons": 42,
+      "event_count": 0
+    }
+  }
+]

@@ -135,7 +135,10 @@
           "rasterFunction": "None"
         },
         "mosaic": "esriMosaicLockRaster with the freshly resolved OBJECTID",
-        "resampling": "nearest; preserve original administrative support"
+        "resampling": "nearest; preserve original administrative support",
+        "pixelType": "F32",
+        "raw_point_endpoint": "getSamples with one resolved raster per year; return all requested diagnostic locations",
+        "precision": "Native F32 half-percent values must survive; service-default U8 output can round before threshold comparison."
       },
       "decode": {
         "scale": 1,
@@ -161,6 +164,11 @@
           "observation_id": "fao_asi_live",
           "path": "observations/fao_asi_live.json",
           "sha256": "3b8a2ed5f3468ae833a6979c1387a0455f953e26f4c0eadb54e3175312b9a2d7"
+        },
+        {
+          "observation_id": "fao_annual_recurrence",
+          "path": "observations/fao_annual_recurrence.json",
+          "sha256": "da98194e5022a05e49b8c655f5f517643fd25d3691a3d54906c2fa64dc75e0a5"
         }
       ],
       "blocking": [
@@ -213,7 +221,8 @@
             "Land Affected > 30 Percent",
             "Land Affected > 50 Percent"
           ]
-        }
+        },
+        "replacement_binding_id": "fao_asi_recurrence_candidate"
       },
       "decode": null,
       "inspection_status": "metadata_checked",
@@ -255,7 +264,8 @@
       "selectors": {
         "required": [
           "authorized_asset_access"
-        ]
+        ],
+        "replacement_binding_id": "fao_di_annual_candidate"
       },
       "decode": null,
       "inspection_status": "access_unavailable",
@@ -427,7 +437,9 @@
           "2": "medium_high",
           "3": "high",
           "4": "extremely_high"
-        }
+        },
+        "producer_encoding_verified": "Pinned WRI notebook retains raw ratios above 1. Read published native category and label; no clipping.",
+        "producer_annual_scarcity": "Published annual calculation replaces monthly 9999 by 2 for weighting, then forces annual 9999 when >=6 months have no supply; no-supply/arid overrides follow."
       },
       "decode": {
         "scale": 1,
@@ -466,10 +478,14 @@
           "observation_id": "aqueduct_live",
           "path": "observations/aqueduct_live.json",
           "sha256": "48e5b3c8f9aff7f3c9f04f134b8af51bf1b4de0001137d46e39da78fa99d30eb"
+        },
+        {
+          "observation_id": "aqueduct_production_semantics",
+          "path": "observations/aqueduct_production_semantics.json",
+          "sha256": "4a917a0913d56fa0f7b95736f791caf058d1d4722aecf1abf6ce83c3262fb375"
         }
       ],
       "blocking": [
-        "Raw ratios above 1 conflict with technical note clipping wording; resolve before numerical rule adoption.",
         "Retain native category and special flags; no accepted four-class collapse.",
         "Physical scarcity 9999 is not a percentage; category -1 controls arid/low-use state even when raw=1.",
         "Missing monthly numeric properties remain unknown.",
@@ -521,7 +537,8 @@
           "2": "medium_high",
           "3": "high",
           "4": "extremely_high"
-        }
+        },
+        "producer_encoding_verified": "Pinned WRI notebook retains raw ratios above 1. Read published native category and label; no clipping."
       },
       "decode": {
         "scale": 1,
@@ -560,10 +577,14 @@
           "observation_id": "aqueduct_live",
           "path": "observations/aqueduct_live.json",
           "sha256": "48e5b3c8f9aff7f3c9f04f134b8af51bf1b4de0001137d46e39da78fa99d30eb"
+        },
+        {
+          "observation_id": "aqueduct_production_semantics",
+          "path": "observations/aqueduct_production_semantics.json",
+          "sha256": "4a917a0913d56fa0f7b95736f791caf058d1d4722aecf1abf6ce83c3262fb375"
         }
       ],
       "blocking": [
-        "Raw ratios above 1 conflict with technical note clipping wording; resolve before numerical rule adoption.",
         "Retain native category and special flags; no accepted four-class collapse.",
         "Physical scarcity 9999 is not a percentage; category -1 controls arid/low-use state even when raw=1.",
         "Missing monthly numeric properties remain unknown.",
@@ -667,7 +688,8 @@
           "forest_coverage_mask",
           "AOI"
         ],
-        "annual_average_if_explicitly_adopted": "divide cumulative value by 24; does not recover annual event timing"
+        "annual_average_if_explicitly_adopted": "divide cumulative value by 24; does not recover annual event timing",
+        "replacement_binding_id": "forest_gross_emissions_2025_candidate"
       },
       "decode": {
         "scale": 1,
@@ -768,37 +790,248 @@
       "concern_id": "iplc_overlap_and_safeguards",
       "mcda_role": "descriptor",
       "dataset_id": "landmark_community_lands_2026_06",
-      "route": "download_form",
-      "asset": "https://www.landmarkmap.org/data-methods/access-data",
-      "field": "unverified",
-      "auxiliary_fields": [],
+      "route": "approved_official_zip",
+      "asset": "https://landmark.wridata.org/LandMark/CommunityLevelData/Indigenous_Comm_Lands/v202606/Indigenous_comm_lands_public_202606.zip",
+      "field": "geometry",
+      "auxiliary_fields": [
+        "landmark_i",
+        "layer",
+        "identity",
+        "form_rec",
+        "doc_status",
+        "country",
+        "iso_code",
+        "data_src",
+        "data_src_l",
+        "data_date",
+        "download"
+      ],
       "unit": "mapped_overlap_presence_unknown",
-      "spatial_support": "Community/territory vectors; geometry/coverage unverified",
-      "temporal_support": "Provider lists June 2026 update; feature dates unverified",
+      "spatial_support": "EPSG:3857 official polygons and points; preserve source scale; geodesic/equal-area overlap, never area from points or raw Shape_Area",
+      "temporal_support": "Official June 2026 package; preserve per-feature source and dates",
       "selectors": {
         "required": [
-          "authorized_download",
-          "specific_terms",
-          "country_completeness"
+          "AOI",
+          "country_completeness",
+          "source_conditions"
         ],
-        "license": "CC-BY-SA-4.0"
+        "license": "CC-BY-SA-4.0 plus contributing-source conditions",
+        "metadata_dataset": "landmark_ip_lc_and_indicative_poly/v20260617",
+        "archive_sha256": "15f5181fbcc5032a10eb26803027997cae8c4ba5416a2f1755b5a100f58b949c",
+        "layers": [
+          "LandMark_IP_LC_point_public_v202606",
+          "LandMark_IP_LC_poly_public_v202606"
+        ],
+        "id_field": "landmark_i",
+        "layer_filter": [
+          "Indigenous Lands",
+          "Community Lands"
+        ],
+        "download_filter": "Yes",
+        "geometry_policy": "polygons: mapped overlap; points: presence only; no automatic buffers",
+        "absence_policy": "unknown_without_independent_completeness_evidence"
       },
       "decode": null,
-      "inspection_status": "access_unavailable",
+      "inspection_status": "metadata_checked",
       "observation_refs": [
         {
           "observation_id": "landmark_access",
           "path": "observations/landmark_access.json",
           "sha256": "a50bc1349f5d7c84558f63aab1a9c8a58fb6dbc8d31e732b43a9f0dcf7fc4a93"
+        },
+        {
+          "observation_id": "landmark_current_metadata",
+          "path": "observations/landmark_current_metadata.json",
+          "sha256": "23dfcfd32097e74dc4228db030bbe9ebc41bc2cad69b2446ec7ae526402ab009"
+        },
+        {
+          "observation_id": "landmark_official_download",
+          "path": "observations/landmark_official_download.json",
+          "sha256": "77508090e024ee0f91af1e645810235ef8ad2a089b6f574f8d378f573404fa15"
         }
       ],
       "blocking": [
-        "Download form and terms agreement not submitted; vector fields and country completeness not verified.",
-        "Unscored characterization/safeguard follow-up; no polygon does not establish no IPLC presence.",
-        "Indicative rights/national percentage layers cannot substitute for community boundaries."
+        "Country/AOI completeness and current local-source fitness need review; no mapped feature does not prove absence.",
+        "Retain source attribution/conditions, geometry type and uncertainty; points cannot be represented as polygon area.",
+        "IPLC remains an unscored descriptor and safeguard follow-up, not a priority score."
       ],
       "documentation": [
         "https://www.landmarkmap.org/data-methods/access-data"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "fao_asi_recurrence_candidate",
+      "variable_id": "drought_hazard",
+      "registry": "T5",
+      "concern_id": "drought",
+      "mcda_role": "priority",
+      "dataset_id": "fao_asis_asi_1984_2025_recurrence",
+      "route": "derived_arcgis_annual",
+      "asset": "https://asis-esri.fao.org/image/rest/services/ASI_A/ImageServer",
+      "field": "percent_valid_seasons_affected",
+      "auxiliary_fields": [
+        "Year",
+        "Season",
+        "Land_Type"
+      ],
+      "unit": "percent_valid_growing_seasons",
+      "spatial_support": "GAUL2 affected crop/grassland area percentage on approximately 1 km grid",
+      "temporal_support": "1984–2025 inclusive; 42 selected growing seasons, one per year; choose one Season and Land_Type",
+      "selectors": {
+        "required": [
+          "Season",
+          "Land_Type",
+          "affected_area_threshold",
+          "AOI"
+        ],
+        "allowed": {
+          "Year": {
+            "min": 1984,
+            "max": 2025
+          },
+          "Season": [
+            "Season 1",
+            "Season 2"
+          ],
+          "Land_Type": [
+            "Cropland",
+            "Grassland"
+          ]
+        },
+        "resolve": "Query dimensions; require exactly one record; resolve its OBJECTID for this request. Never persist sample OBJECTID as stable identity.",
+        "renderingRule": {
+          "rasterFunction": "None"
+        },
+        "mosaic": "esriMosaicLockRaster with the freshly resolved OBJECTID",
+        "resampling": "nearest; preserve original administrative support",
+        "pixelType": "F32",
+        "raw_point_endpoint": "getSamples with one resolved raster per year; return all requested diagnostic locations",
+        "precision": "Native F32 half-percent values must survive; service-default U8 output can round before threshold comparison.",
+        "derivation": {
+          "source_binding_id": "fao_asi_annual_candidate",
+          "start_year": 1984,
+          "end_year": 2025,
+          "allowed_affected_area_thresholds": [
+            30,
+            50
+          ],
+          "event_operator": ">",
+          "denominator": "valid selected growing seasons",
+          "require_complete_period": true,
+          "missing_or_special": "retain counts and completeness; no numeric frequency unless all 42 annual observations are valid"
+        }
+      },
+      "decode": {
+        "scale": 1,
+        "offset": 0,
+        "valid_range": [
+          0,
+          100
+        ],
+        "special_values": {
+          "251": "off_season",
+          "252": "unknown",
+          "253": "no_season",
+          "254": "outside_host_system",
+          "255": "water"
+        },
+        "guards": [],
+        "missing_state": "unknown",
+        "clip": false
+      },
+      "inspection_status": "sample_checked",
+      "observation_refs": [
+        {
+          "observation_id": "fao_asi_live",
+          "path": "observations/fao_asi_live.json",
+          "sha256": "3b8a2ed5f3468ae833a6979c1387a0455f953e26f4c0eadb54e3175312b9a2d7"
+        },
+        {
+          "observation_id": "fao_annual_recurrence",
+          "path": "observations/fao_annual_recurrence.json",
+          "sha256": "da98194e5022a05e49b8c655f5f517643fd25d3691a3d54906c2fa64dc75e0a5"
+        }
+      ],
+      "blocking": [
+        "Choose crop/pasture system, growing season and 30% versus 50% affected-area event definition for the AOI.",
+        "Four-point valid cropland diagnostics are not local livelihood validation; other diagnostic points have no host-system coverage.",
+        "No accepted four-class priority classification. Use one representative for shared drought concern."
+      ],
+      "documentation": [
+        "https://www.fao.org/giews/earthobservation/access.jsp",
+        "https://www.fao.org/giews/earthobservation/faq.jsp"
+      ],
+      "scientifically_accepted": false,
+      "runtime_ready": false
+    },
+    {
+      "binding_id": "forest_gross_emissions_2025_candidate",
+      "variable_id": "forest_carbon_loss_emissions",
+      "registry": "proposed_successor",
+      "concern_id": "forest_carbon_loss",
+      "mcda_role": "priority",
+      "dataset_id": "gfw_forest_emissions_model_v1_4_3_20260327",
+      "route": "producer_s3_range",
+      "asset": "https://gfw2-data.s3.amazonaws.com/climate/carbon_model/gross_emissions/all_drivers/all_gases/biomass_soil/standard/forest_extent/per_hectare/20260327/{tile_id}_gross_emis_all_gases_all_drivers_Mg_CO2e_ha_biomass_soil_forest_extent_2001_25.tif",
+      "field": "band1",
+      "auxiliary_fields": [],
+      "unit": "Mg_CO2e_per_ha_over_2001_2025",
+      "spatial_support": "0.00025 degree model grid; stand-replacing forest disturbance emissions",
+      "temporal_support": "Cumulative 2001–2025; model v1.4.3, producer run 20260327, GFW v20260327",
+      "selectors": {
+        "required": [
+          "AOI",
+          "forest_coverage_definition",
+          "per_tile_object_fingerprint"
+        ],
+        "producer_commit": "ab90fec791c08c93c030c68f691c2ea3fc677a14",
+        "gfw_dataset_version": "v20260327",
+        "model_version": "1.4.3",
+        "producer_run": "20260327",
+        "matched_loss_binding_id": "hansen_forest_loss_candidate",
+        "sample_tile": "10S_060W",
+        "sample_tile_etag": "\"75f290c5cfef391226f156b2cdf64fa1-87\"",
+        "sample_tile_version_id": "8.Ovnw_dUM8pmIiSNruHxmP.6FwtXwYr",
+        "sample_window_sha256": "b49aa65b464bda2a6db06decb4589ec1f07d5572ec3a5249fffa82f273cd6b4d",
+        "read_guard": "Capture each requested tile ETag/length; send If-Match on reads and fail if changed. Historical version GET returned 403. ETag is not SHA-256.",
+        "annual_average_if_explicitly_adopted": "divide by 25; not annual event observations",
+        "loss_matching_scope": "Same 2025 edition as producer GFW2025 input; verify native pixel alignment and coverage for AOI, not a claim of byte identity."
+      },
+      "decode": {
+        "scale": 1,
+        "offset": 0,
+        "valid_range": [
+          0,
+          null
+        ],
+        "special_values": {
+          "0": "unknown"
+        },
+        "guards": [],
+        "missing_state": "unknown",
+        "clip": false
+      },
+      "inspection_status": "sample_checked",
+      "observation_refs": [
+        {
+          "observation_id": "forest_emissions_producer_pin",
+          "path": "observations/forest_emissions_producer_pin.json",
+          "sha256": "301c2a540a5f1ea14ec6d10eddbc6fdc8340bb5b76b1ffe34067b3986930c7e1"
+        }
+      ],
+      "blocking": [
+        "Proposed forest-loss/emissions definition and classification require scientific acceptance.",
+        "Define eligible forest/area denominator for AOI; no implicit 30% canopy cutoff.",
+        "Only one native tile window sampled; record fingerprints and coverage for every tile used by a pilot.",
+        "Native zero is nodata; no false zero-emissions inference. Model does not cover all wetland/soil-carbon decline."
+      ],
+      "documentation": [
+        "https://essd.copernicus.org/articles/17/1217/2025/",
+        "https://data.globalforestwatch.org/datasets/forest-greenhouse-gas-emissions",
+        "https://gee-community-catalog.org/projects/cflux/",
+        "https://data-api.globalforestwatch.org/dataset/gfw_forest_carbon_gross_emissions/v20260327"
       ],
       "scientifically_accepted": false,
       "runtime_ready": false
