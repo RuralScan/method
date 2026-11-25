@@ -400,3 +400,9 @@ table.fields td:nth-child(4) { min-width: 22ch; }
 .priority-flow span,.priority-flow small{font-size:.86rem;line-height:1.5}
 @media(max-width:760px){.priority-flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.priority-flow{grid-template-columns:1fr}}
+
+/* Practice summaries retain the full earlier edition behind explicit disclosure. */
+.practice-detail { margin: 1.2rem 0; padding: 1rem; border: 1px solid var(--line); border-radius: .6rem; }
+.practice-detail > summary { cursor: pointer; font-weight: 700; }
+.local-toc { margin-top: 1rem; }
+.local-toc ul { list-style: none; padding-left: .5rem; }

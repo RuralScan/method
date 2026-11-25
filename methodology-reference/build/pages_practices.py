@@ -1,6 +1,8 @@
 """Practice pages and one detail page per recipe row."""
 
 from collections import Counter
+import csv
+import re
 
 import data
 import pages_coverage
@@ -9,6 +11,8 @@ from chapters import chapter_body
 from core import (
     BLOCKED_KEYS,
     CIAT_URL,
+    METHOD,
+    METHOD_URL,
     PRACTICE_IDS,
     PRACTICE_TEXT,
     PRODUCTS,
@@ -870,26 +874,71 @@ def effect_tables(practice, t, family=None, heading=""):
     return (f"<h4>{esc(heading)}</h4>" if heading else "") + out
 
 
+def current_families(practice):
+    path = "data-model/configuration/FAM_family_registry.csv"
+    with (METHOD / path).open(newline="") as handle:
+        definitions = [r for r in csv.DictReader(handle) if r["nbs_id"] == practice]
+    rows = []
+    for r in definitions:
+        family = r["suitability_family_id"]
+        label = words(family.split("__", 1)[-1])
+        detail = (
+            f'<details id="definition-{esc(r["subpractice_id"])}"><summary>{esc(r["name"])}</summary>'
+            f'<p>{text(r["definition"])}</p><p><strong>Shared limiting factor:</strong> '
+            f'{text(r["dominant_limiting_factor"])}</p><p><strong>Spatial product:</strong> '
+            f'{esc(r["spatial_product_type"])}</p><p><strong>Why grouped here:</strong> '
+            f'{text(r["grouping_rationale"])}</p><p>Stable ID: {code(r["subpractice_id"])}; '
+            f'family ID: {code(family)}.</p></details>'
+        )
+        rows.append([detail, esc(label)])
+    return (
+        '<h2 id="current-families">Sub-practices and suitability families</h2>'
+        '<p>Select a name to read its definition. Families group practices with shared limiting factors; '
+        'they are not evidence silos. Specific findings contribute to broader summaries once per finding. '
+        'Broader evidence remains available as context without being assigned to every child.</p>'
+        + table(
+            ['<abbr title="A named intervention; select its name for definition and stable identifier">Sub-practice</abbr>',
+             '<abbr title="Practices sharing the dominant factors that limit where they fit">Suitability family</abbr>'],
+            rows, caption=f"{practice_name(practice)} · current definitions and family assignments")
+        + '<p class="basis">Definition source: ' + link(METHOD_URL + path, 'Versioned family register')
+        + '. Definition changes do not migrate earlier evidence or transfer review approvals.</p>'
+    )
+
+
 def practice_page(practice):
     name = practice_name(practice)
     t0 = data.pinned_json(f"schema/recipes/{practice}/T0_nbs_registry.json")[0]
     counts = {t: data.ROW_COUNTS[(practice, t)] for t in ROW_TABLES}
     fams = data.FAMILIES[practice]
     lead = esc(PRACTICE_TEXT[practice][0])
-    body = (
-        pages_coverage.headline(practice) + pages_coverage.lane_table(practice)
-        + pages_coverage.scope_table(practice)
-        + '<h2 id="historical-rows">Historical recipe rows</h2><div class="stats">'
+    intro, chapter_toc = chapter_body(f"practice-{practice}")
+    # Keep the original definition and every old anchor; longer edition-specific
+    # reasoning opens on demand (site.js also opens it for incoming deep links).
+    sections = re.split(r'(?=<h2\b)', intro)
+    definition = "".join(part for part in sections if 'id="definition-and-boundary"' in part)
+    background = "".join(part for part in sections if 'id="definition-and-boundary"' not in part)
+    body = '<section class="chapter">' + definition + '</section>'
+    body += pages_coverage.headline(practice)
+    body += '<p>' + link(f"evidence-practice-{practice}.html", "Explore evidence by table, family and review status →") + '</p>'
+    body += current_families(practice)
+    body += (
+        '<details class="practice-detail"><summary>Background and sources from the historical recipe edition</summary>'
+        '<p class="basis">This account explains the earlier recipe edition. Its family scheme, rules and '
+        'implementation status may differ from the current definitions above. It is not a new AI synthesis '
+        'or a record of current scientific acceptance.</p><ul>'
+        + ''.join(f'<li>{link("#" + ident, esc(label))}</li>' for ident, label in chapter_toc if ident != 'definition-and-boundary')
+        + '</ul>' + background + '</details>'
+        '<details class="practice-detail"><summary>Historical recipe records · T4, T3, T6 and T6E</summary>'
+        '<h2 id="historical-rows">Historical recipe rows</h2><div class="stats">'
         + "".join(
             f"<div><b>{counts[t]}</b><span>{badge(t)} {esc(TABLE_NAMES[t])}</span></div>"
             for t in ROW_TABLES
         )
-        + f"<div><b>{len([f for f in fams if f in data.FAMILY_ROWS])}</b><span>registered suitability families</span></div></div>"
-        + '<p class="basis">Rows in the historical draft recipe edition. These are not counts of current evidence or accepted agent syntheses.</p>'
+        + '</div><p class="basis">Rows in the historical draft recipe edition. These are not counts of current '
+        'evidence or accepted agent syntheses. '
+        + link(f"evidence-practice-{practice}.html", "See all collected evidence, including pending findings") + '.</p>'
+        + '<nav aria-label="Historical recipe tables"><p>' + ' · '.join(link('#' + t, esc(TABLE_NAMES[t])) for t in ROW_TABLES) + '</p></nav>'
     )
-    intro, toc = chapter_body(f"practice-{practice}")
-    body += '<section class="chapter">' + intro + "</section>"
-
     body += '<h2 id="registry">Practice registry record</h2>' + render_value(
         {k: v for k, v in t0.items() if k not in {"nbs_id", "is_active"}}
     )
@@ -980,13 +1029,12 @@ def practice_page(practice):
             elif "qualitative_only" in data.family_product(f) and not is_cross(f):
                 body += f'<h3>{esc(family_name(f))}</h3><p class="empty">Parked: qualitative guidance only (no map, no generated effect rows).</p>'
 
-    toc = [("review-coverage", "Evidence collected and reviewed"), ("historical-rows", "Historical recipe rows")] + toc + [
-        ("registry", "Practice registry record"),
-        ("families", "Suitability families"),
-        ("T4", TABLE_NAMES["T4"]),
-        ("T3", TABLE_NAMES["T3"]),
-        ("T6", TABLE_NAMES["T6"]),
-        ("T6E", TABLE_NAMES["T6E"]),
+    body += "</details>"
+    toc = [
+        ("definition-and-boundary", "Definition and boundary"),
+        ("review-coverage", "Reviewed versus total evidence"),
+        ("current-families", "Sub-practices and families"),
+        ("historical-rows", "Historical recipe records"),
     ]
     page(
         f"practice-{practice}.html",
@@ -1003,7 +1051,7 @@ FAMILY_CAPTION = {}
 
 
 def practice_cards():
-    """Current review coverage; historical recipe counts remain in the table below."""
+    """Practice directory with the same pinned counts used in section 6."""
     cards = []
     for p in PRACTICE_IDS:
         node = "practice:" + p
@@ -1074,17 +1122,16 @@ def build():
         ]
     )
     body = (
-        pages_coverage.headline()
-        + '<h2 id="evidence">Evidence by practice</h2>'
+        '<h2 id="evidence"><span id="review-coverage"></span>Choose a practice</h2>'
         '<p>Each card counts unique findings at the practice and its more specific scopes. Pending findings remain '
-        'visible before synthesis; broader findings remain available as context on each practice page.</p>'
+        'visible before synthesis. Open a practice for definitions, or browse its findings in section 6.</p>'
         + practice_cards()
         + '<p class="basis">Bars show review progress, not evidence strength. '
         + link('evidence-counts.html#practice', 'The same review counts as a table, with definitions') + '.</p>'
+        '<details class="practice-detail"><summary>Historical recipe output counts</summary>'
         '<h2 id="rows">Historical recipe rows by practice and table</h2>'
-        "<p>Each practice page gives the scientific basis of its family scheme, then every compiled row "
-        "of the draft recipe edition with its status, uncertainty and evidence. Suitability is reasoned "
-        "per family, because sub-practices with different limiting factors cannot share one map.</p>"
+        "<p>These are output rows from the earlier recipe edition, not collected findings. "
+        "Open a practice’s Historical recipe records to inspect each row, its findings and sources.</p>"
         + table(
             [
                 "Practice",
@@ -1101,19 +1148,14 @@ def build():
         + f'<p class="basis">{sum(total.values())} recipe rows in total: {sum(1 for r in data.ROWS if r["family"])} scoped to a family '
         f"(including named cross-family context) and {sum(1 for r in data.ROWS if not r['family'])} at practice level. "
         "Counts are rows in this edition and say nothing about evidence strength.</p>"
-        "<h2>How to read a practice page</h2><ol>"
-        "<li><strong>Family scheme.</strong> Which sub-practices are grouped, the limiting factor they share, and what kind of spatial product the family supports.</li>"
-        "<li><strong>Suitability mappings.</strong> One row per variable and family, with its function role and calibration status. Operational scenarios are tabled separately.</li>"
-        "<li><strong>Hazard responses.</strong> Risk to livelihoods and threat to the investment, shown separately.</li>"
-        "<li><strong>Scorecard effects and indicative economic profiles.</strong> Direction, two-axis confidence, transfer class and any recorded harm.</li>"
-        "<li><strong>Row detail.</strong> Every row opens to its full record and the findings and sources behind it.</li></ol>"
+        "</details>"
     )
     page(
         "practices.html",
         "practices.html",
         "Practices",
         body,
-        lead="Six nature-based practices, their collected evidence, review progress and historical recipe rows.",
+        lead="What each practice means, which sub-practices it includes, and how much of its evidence has been reviewed.",
     )
     for p in PRACTICE_IDS:
         practice_page(p)

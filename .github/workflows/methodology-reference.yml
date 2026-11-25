@@ -9,6 +9,7 @@ on:
       - 'priority/**'
       - 'data-model/priority-contract.json'
       - 'data-model/spec.md'
+      - 'data-model/configuration/FAM_family_registry.csv'
       - '.github/workflows/methodology-reference.yml'
   push:
     branches: [main]
@@ -17,6 +18,7 @@ on:
       - 'priority/**'
       - 'data-model/priority-contract.json'
       - 'data-model/spec.md'
+      - 'data-model/configuration/FAM_family_registry.csv'
       - '.github/workflows/methodology-reference.yml'
   schedule:
     - cron: '17 6 * * *'
@@ -120,3 +122,5 @@ jobs:
         run: python -B build/build.py --out "$RUNNER_TEMP/reference-site"
       - name: Check every browser drill-down against the published counts
         run: node methodology-reference/build/test_review_coverage.cjs "$RUNNER_TEMP/reference-site"
+      - name: Check practice definitions, evidence navigation and historical links
+        run: python methodology-reference/build/test_practice_navigation.py "$RUNNER_TEMP/reference-site"

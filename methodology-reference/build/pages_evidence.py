@@ -214,6 +214,7 @@ def source_page(source):
 def build():
     SIDE["evidence-base.html"] = [
         ("evidence-base.html", "Get and use the data"),
+        ("evidence-findings.html", "Browse findings"),
         ("data-guide.html", "Field guide and joins"),
         ("data-queries.html", "Query the data"),
         ("evidence-counts.html", "Counts and definitions"),

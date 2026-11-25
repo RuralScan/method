@@ -102,7 +102,7 @@ def practice_table():
         c = coverage.load().counts(node)
         rows.append(
             [
-                link(f"practice-{p}.html#review-coverage", esc(practice_name(p))),
+                link(f"evidence-practice-{p}.html", esc(practice_name(p))),
                 progress(node),
                 finding_link(str(c["awaiting"]), node, state="awaiting"),
                 finding_link(str(c["held"]), node, state="held"),
@@ -254,6 +254,25 @@ def build():
         body,
         lead="Reviewed versus total, with pending, held and broader evidence still accessible.",
     )
+    for practice in PRACTICE_IDS:
+        name = practice_name(practice)
+        body = (
+            '<p>' + link(f"practice-{practice}.html", "Practice definition and sub-practices") + ' · '
+            + finding_link("Browse all retained findings →", "practice:" + practice) + '</p>'
+            + headline(practice)
+            + '<p>' + finding_link("Browse reviewed and kept findings", "practice:" + practice, state="reviewed_kept") + '</p>'
+            + '<h2 id="lanes">Evidence by table and review lane</h2>' + lane_table(practice)
+            + '<h2 id="scopes">Family and broader evidence</h2>' + scope_table(practice)
+            + '<h2 id="records">Historical recipe records</h2><p>Compiled outputs are separate from collected findings. '
+            'A practice can have pending evidence without a compiled mapping. '
+            + link(f"practice-{practice}.html#historical-rows", "Inspect the earlier T4, T3, T6 and T6E records") + '.</p>'
+        )
+        page(f"evidence-practice-{practice}.html", "evidence-base.html", name + ": evidence",
+             body, crumbs=[("evidence-base.html", "Evidence base"), ("", name)],
+             lead="Review progress and findings, including pending, held and broader evidence.",
+             toc=[("review-coverage", "Reviewed versus total"), ("lanes", "Tables and review lanes"),
+                  ("scopes", "Family and broader evidence"), ("records", "Historical outputs")])
+
     options = lambda values: "".join(
         f'<option value="{esc(k)}">{esc(v)}</option>' for k, v in values.items()
     )
