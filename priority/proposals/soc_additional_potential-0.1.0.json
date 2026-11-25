@@ -1,0 +1,75 @@
+{
+  "format": "ruralscan.priority-proposal.v1",
+  "classification_id": "soc_additional_potential",
+  "version": "0.1.0",
+  "author_assessment": "held",
+  "variables": [
+    "carbon_sequestration_potential"
+  ],
+  "concern_id": "carbon_sequestration",
+  "role": "priority",
+  "quantity": "Additional SOC change relative to business-as-usual management",
+  "unit": "t C/ha/year",
+  "temporal_statistic": "Common management scenario and horizon; divide stock change by years",
+  "context": {
+    "geography": null,
+    "period": null,
+    "scenario": "baseline",
+    "purpose": "method_review_only_not_pilot"
+  },
+  "spatial_support": "Verified potential product required; existing stock map cannot substitute",
+  "binding": {
+    "dataset_id": null,
+    "asset": null,
+    "field": null,
+    "source_unit": "t C/ha/year",
+    "scale": 1,
+    "offset": 0,
+    "domain": {
+      "min": null,
+      "max": null
+    },
+    "nodata": "unknown",
+    "validation": "not_verified"
+  },
+  "method": null,
+  "direction": "higher_is_more_concern",
+  "cuts": null,
+  "endpoint": "upper_inclusive",
+  "missing": "unknown",
+  "class_scores": {
+    "none": 0,
+    "low": 0.33,
+    "medium": 0.66,
+    "high": 1
+  },
+  "class_meanings": null,
+  "reference_sample": null,
+  "sources": [
+    {
+      "repository": "RuralScan/evidence",
+      "revision": "341f551dc8aa384b40d4f8aacb1e169325b46b92",
+      "path": "workflows/priority_classification/packets/fao_gsocseq_definition.json",
+      "sha256": "82d3df7a84bc5b89aad86e3e3a2363a372bcb24d2fd4e4f1e35017ec53337e2d",
+      "source_id": null,
+      "finding_ids": [],
+      "review_state": "unreviewed_staging"
+    }
+  ],
+  "input_sha256": {
+    "data-model/configuration/T2_climate_risk.csv": "be738086bdc53e86cc31878d6311c80ab839ac9bf999a63efbcb572629eff5c1",
+    "data-model/configuration/T5_opportunity_space.csv": "cd5cb481fe0e47a97b8945332cf66b20158ebdaeadd90181a3ea511b266470cc",
+    "data-model/configuration/T1_data_registry.csv": "1746c118f1c13594e18baf884238718e67d8f528d2c1ac25d2c6d0ca2e55e5b0",
+    "data-model/configuration/VONT_variable_ontology.csv": "c9ea583a49df91220ad2737acfcee9bf0943af04ed158f40d9bbee10dc349b42",
+    "data-model/configuration/BIND_dataset_binding.csv": "6aeb5481a121cca768efd69ebe277b95a85e2c7f1ef9941e9cc74536c9bcfa35"
+  },
+  "rationale": "Keep potential distinct from existing stock and from delivered intervention benefit. Existing GSOCmap binding cannot support this quantity.",
+  "alternatives": [],
+  "blockers": [
+    "Select/register GSOCseq or another verified potential product",
+    "Agree management counterfactual, horizon and interpretation of priority",
+    "No supported cutoffs; leave empty"
+  ],
+  "supersedes": null,
+  "decision_id": "priority_soc_additional_potential_v010"
+}

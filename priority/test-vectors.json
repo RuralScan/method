@@ -1,0 +1,217 @@
+{
+  "format": "ruralscan.priority-conformance.v1",
+  "status": "review_vectors_not_pilot_results",
+  "classification": {
+    "proposal": "spei12_event-0.1.0",
+    "unit": "unitless",
+    "cases": [
+      {
+        "raw": -2.01,
+        "class": "high"
+      },
+      {
+        "raw": -2,
+        "class": "high"
+      },
+      {
+        "raw": -1.999,
+        "class": "medium"
+      },
+      {
+        "raw": -1.5,
+        "class": "medium"
+      },
+      {
+        "raw": -1.499,
+        "class": "low"
+      },
+      {
+        "raw": -1,
+        "class": "low"
+      },
+      {
+        "raw": -0.999,
+        "class": "none"
+      },
+      {
+        "raw": 0,
+        "class": "none"
+      },
+      {
+        "raw": null,
+        "class": null
+      }
+    ]
+  },
+  "forward_synthetic": {
+    "cuts": [
+      0,
+      20,
+      40
+    ],
+    "unit": "percent",
+    "direction": "higher_is_more_concern",
+    "domain": [
+      0,
+      100
+    ],
+    "cases": [
+      [
+        0,
+        "none"
+      ],
+      [
+        20,
+        "low"
+      ],
+      [
+        40,
+        "medium"
+      ],
+      [
+        40.01,
+        "high"
+      ],
+      [
+        -1,
+        null
+      ],
+      [
+        101,
+        null
+      ]
+    ]
+  },
+  "conversion_synthetic": {
+    "source_unit": "percent",
+    "target_unit": "fraction",
+    "scale": 0.01,
+    "offset": 0,
+    "input": 20,
+    "expected": 0.2,
+    "note": "Explicit adapter conversion; percent input passed directly to fraction rule must fail."
+  },
+  "aggregation": [
+    {
+      "weights": [
+        3,
+        1
+      ],
+      "scores": [
+        1,
+        0.33
+      ],
+      "mask": true,
+      "expected": 0.8325
+    },
+    {
+      "weights": [
+        3,
+        1
+      ],
+      "scores": [
+        0.66,
+        1
+      ],
+      "mask": true,
+      "expected": 0.745
+    },
+    {
+      "weights": [
+        1,
+        3
+      ],
+      "scores": [
+        1,
+        0.33
+      ],
+      "mask": true,
+      "expected": 0.4975
+    },
+    {
+      "weights": [
+        1,
+        3
+      ],
+      "scores": [
+        0.66,
+        1
+      ],
+      "mask": true,
+      "expected": 0.915
+    },
+    {
+      "weights": [
+        3,
+        1
+      ],
+      "scores": [
+        1,
+        null
+      ],
+      "mask": true,
+      "expected": null
+    },
+    {
+      "weights": [
+        3,
+        0
+      ],
+      "scores": [
+        1,
+        null
+      ],
+      "mask": true,
+      "expected": 1
+    },
+    {
+      "weights": [
+        3,
+        1
+      ],
+      "scores": [
+        1,
+        0.33
+      ],
+      "mask": false,
+      "expected": "excluded"
+    },
+    {
+      "weights": [
+        3,
+        1
+      ],
+      "scores": [
+        1,
+        0.33
+      ],
+      "mask": null,
+      "expected": null
+    }
+  ],
+  "must_reject": [
+    "all_zero_weights",
+    "negative_or_nonfinite_weights",
+    "duplicate_concern_even_if_T2_T5_alias",
+    "descriptor_or_investment_risk_in_score",
+    "unaccepted_or_changed_rule_hash",
+    "changed_binding_or_source_receipt",
+    "unresolved_arid_status",
+    "SPEI_event_rule_applied_to_frequency",
+    "baseline_future_quantity_or_reference_mismatch",
+    "IPLC_binary_forced_into_thresholds",
+    "collapsed_tercile_cuts",
+    "terciles_without_pinned_reference",
+    "unknown_units",
+    "post_aggregation_quintile_or_minmax_remapping"
+  ],
+  "spatial_acceptance": [
+    "Verify actual assets, fields, units, fill values, native support and quality flags.",
+    "Choose geography, reference/future periods and context before classifying.",
+    "Align CRS/grid/masks without creating finer information than native support.",
+    "Keep source classes/raw values alongside decision classes.",
+    "Retain raw/classified correlation diagnostics and representative rationale.",
+    "Keep fixed denominator and show contributions that sum to score.",
+    "Record source/method package hashes and final user weights."
+  ]
+}

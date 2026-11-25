@@ -1,0 +1,12 @@
+{
+  "repository": "RuralScan/evidence",
+  "revision": "341f551dc8aa384b40d4f8aacb1e169325b46b92",
+  "status": "unreviewed_source_packets",
+  "files": {
+    "workflows/priority_classification/packets/copernicus_spei_2026.json": "28bf8393ade51e7f29c2b6f57dff6f0ad00ba9cdb88888cb14b4de7482f03037",
+    "workflows/priority_classification/packets/landmark_completeness.json": "f213b8ec123cac5456dd76e3eb92f9bc974d7a85d93dec93b233a72a97460c44",
+    "workflows/priority_classification/packets/fao_gsocseq_definition.json": "82d3df7a84bc5b89aad86e3e3a2363a372bcb24d2fd4e4f1e35017ec53337e2d",
+    "workflows/priority_classification/packets/wri_aqueduct40_2023.json": "950855fd102cf0c91377c71790c4d45992aa309ef2b1fe5dc681f3d802b0eabb",
+    "workflows/priority_classification/packets/aqueduct_gee_catalogue.json": "8c67e084db59a2c3e4557f18712edc5efcec9bbe1c3db46cc0bc420ad77cd426"
+  }
+}

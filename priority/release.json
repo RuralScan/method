@@ -1,0 +1,36 @@
+{
+  "format": "ruralscan.priority-review-manifest.v1",
+  "status": "proposals_only_not_runtime_release",
+  "contract_sha256": "a4969d7549f73486798c792100a4cfdcfae750bfb2526fe147ca51c2e13ae9e2",
+  "proposal_schema_sha256": "f74fcb2466fb93178dae931be3b676a25715bf8dde4093ff9247c2e662bab3c6",
+  "audit_sha256": "17bbd7c9a20ea21ba5563ff881cd23e4bcd714c7849b2c6363e6c300fe604672",
+  "evidence_lock_sha256": "8acea25deb44e16b73e4c37aabfaf54b808bfdf3c8448504a81f43b88794d899",
+  "proposals": {
+    "priority/proposals/aqueduct_bws-0.1.0.json": {
+      "file_sha256": "4a5c9c2e1e1d48dc731af128d613096f267b7b7480d65d99cd2e2c478bbf0f33",
+      "proposal_sha256": "637ea5c24ea76b09d02c833f9cd8be5da663ffd6257a6d5fbcee95b9ee1bf101",
+      "decision_id": "priority_aqueduct_bws_v010"
+    },
+    "priority/proposals/drought_climatology-0.1.0.json": {
+      "file_sha256": "f0abc5a45c64673910e3504db0872f2cc955e2a21b669488ba0602c5d3a2c371",
+      "proposal_sha256": "c087778b1171c7fd16da8f2f5e865a751a9ae7a274c50a53c05f96433e0b0f48",
+      "decision_id": "priority_drought_climatology_v010"
+    },
+    "priority/proposals/iplc_presence-0.1.0.json": {
+      "file_sha256": "050473f42d974725f56b38b279504634c25025dad72b24309b629870e1bfb3f3",
+      "proposal_sha256": "622f41697608ea6c5b2c84363c0283dd835dde9813b59e04cfd5a4f7d90b0b8d",
+      "decision_id": "priority_iplc_presence_v010"
+    },
+    "priority/proposals/soc_additional_potential-0.1.0.json": {
+      "file_sha256": "d37e4c643ce940604a717174c599fc4f998e7b2f0825ec382770862568ee35ea",
+      "proposal_sha256": "f9d08a8a9dc50e5f7213cd331ad435233485711e2e23e1799434e14a82f9cda7",
+      "decision_id": "priority_soc_additional_potential_v010"
+    },
+    "priority/proposals/spei12_event-0.1.0.json": {
+      "file_sha256": "819ed7296b5cde5349a09ce34e7875d19f7f9e22eb3e913af23006643c99dcfd",
+      "proposal_sha256": "c3b5c8a5a195d618f3258f73854a9d913ad70bd9c2d1c76c53f7677135d74206",
+      "decision_id": "priority_spei12_event_v010"
+    }
+  },
+  "accepted_rules": []
+}
