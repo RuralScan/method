@@ -40,6 +40,20 @@ class AgentEffectsSchema(unittest.TestCase):
         self.assertEqual(hashlib.sha256((ROOT / path).read_bytes()).hexdigest(), snapshot['sha256'][path])
 
 
+class AgentT4Schema(unittest.TestCase):
+    def test_contract_is_pinned_without_claiming_runtime_readiness(self):
+        path = 'data-model/agent-t4-contract.json'
+        contract = json.loads((ROOT / path).read_bytes())
+        snapshot = json.loads((ROOT / 'data-model/definition-snapshot.json').read_bytes())
+        self.assertEqual(hashlib.sha256((ROOT / path).read_bytes()).hexdigest(), snapshot['sha256'][path])
+        self.assertEqual(len(contract['columns']), len(set(contract['columns'])))
+        self.assertIn('evidence_ids', contract['json_fields'])
+        self.assertIn('applicability', contract['columns'])
+        self.assertIn('calibration_hold', contract['readiness'])
+        self.assertFalse(contract['output_semantics']['runtime_implemented'])
+        self.assertTrue(contract['output_semantics']['partial_package'])
+
+
 class PrioritySchema(unittest.TestCase):
     def test_contract_is_in_definition_snapshot(self):
         relative = 'data-model/priority-contract.json'

@@ -982,8 +982,9 @@ Historical records remain readable without an active T4 compiler.
 T4_RUN records execution settings for a suitability recipe, not the scientific process that derives its
 mappings. AI authoring does not remove the need to record accepted functions, weights, masks and missing-value
 behaviour. Existing rows belong to the historical recipe edition. Their presence or successful validation
-does not establish that a new AI-authored T4 package is available or ready to run. The production T4 proposal
-and acceptance/package route remains outstanding; see the [agent-led workflow](../methodology-reference/content/suitability-synthesis.md).
+does not establish that a new AI-authored T4 package is available or ready to run. New mapping proposals follow
+the separate [versioned T4 contract](agent-t4-contract.md), with evidence-side acceptance and packaging and
+separate runtime integration; see the [agent-led workflow](../methodology-reference/content/suitability-synthesis.md).
 
 `T4_NUMERIC_POLICY`, the earlier numeric synthesis-policy table, is a different interface: it is retired
 from current scientific authoring and retained in historical records. It must not be used to silently

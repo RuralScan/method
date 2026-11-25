@@ -300,7 +300,8 @@ def table_overview():
         + link(chapter_file("effect-synthesis"), 'T3/T6 proposal and acceptance route')
         + ' is implemented. The '
         + link(chapter_file("suitability-synthesis"), 'agent-led T4 workflow')
-        + ' is adopted, but its production proposal and packaging route remains outstanding. '
+        + ' has a versioned proposal, acceptance and mapping-package contract. Its evidence implementation '
+        'and the separate runtime integration require their own approval; the contract does not approve a mapping. '
         'Existing T3, T4 and T6 outputs remain historical until explicitly replaced by accepted outputs; new T6E '
         f'synthesis is frozen. {item("XW")} and {item("BANDS")} remain pinned definition inputs to '
         'the effect-proposal workflow. They preserve routing references and magnitude conventions; their '
