@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Priority classification proposal (draft storage contract)",
+  "description": "Structural envelope; catalogue.py additionally enforces scientific-contract invariants, joins, hashes, cuts and relative samples. No acceptance is conferred by validation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "classification_id",
+    "version",
+    "author_assessment",
+    "variables",
+    "concern_id",
+    "role",
+    "quantity",
+    "unit",
+    "temporal_statistic",
+    "context",
+    "spatial_support",
+    "binding",
+    "method",
+    "direction",
+    "cuts",
+    "endpoint",
+    "missing",
+    "class_scores",
+    "class_meanings",
+    "reference_sample",
+    "sources",
+    "input_sha256",
+    "rationale",
+    "alternatives",
+    "blockers",
+    "supersedes",
+    "decision_id"
+  ],
+  "properties": {
+    "format": {
+      "const": "ruralscan.priority-proposal.v1"
+    },
+    "classification_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "author_assessment": {
+      "enum": [
+        "proposed",
+        "held"
+      ]
+    },
+    "variables": {
+      "type": "array"
+    },
+    "concern_id": {
+      "type": "string"
+    },
+    "role": {
+      "enum": [
+        "priority",
+        "descriptor",
+        "investment_risk"
+      ]
+    },
+    "quantity": {
+      "type": "string"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "temporal_statistic": {
+      "type": "string"
+    },
+    "context": {
+      "type": "object"
+    },
+    "spatial_support": {
+      "type": "string"
+    },
+    "binding": {
+      "type": "object"
+    },
+    "method": {
+      "enum": [
+        null,
+        "thresholds",
+        "terciles"
+      ]
+    },
+    "direction": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cuts": {
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "endpoint": {
+      "const": "upper_inclusive"
+    },
+    "missing": {
+      "const": "unknown"
+    },
+    "class_scores": {
+      "type": "object"
+    },
+    "class_meanings": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "reference_sample": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "sources": {
+      "type": "array"
+    },
+    "input_sha256": {
+      "type": "object"
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "alternatives": {
+      "type": "array"
+    },
+    "blockers": {
+      "type": "array"
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "decision_id": {
+      "type": "string"
+    }
+  }
+}

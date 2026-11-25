@@ -28,6 +28,10 @@ CRITIC is available for comparison only. It does not silently supply weights, ch
 
 ## Execution and approval boundary
 
-RuralScan/runtime implements this contract in `nbs_runtime.priority`, with an independently pinned copy of the method contract. An analysis records its context, variable/rule versions, data references, aligned input hashes, reference-sample hashes, selection reasons and final weights. The initial example and tests use synthetic data. No real country thresholds or newly approved pilot results are bundled.
+A reference evaluator is proposed in [runtime draft PR #11](https://github.com/RuralScan/runtime/pull/11); adoption is tracked in [runtime issue #12](https://github.com/RuralScan/runtime/issues/12). Runtime main has not adopted that draft. Its proposed `nbs_runtime.priority` module carries an independently pinned copy of the method contract. An analysis records its context, variable/rule versions, data references, aligned input hashes, reference-sample hashes, selection reasons and final weights. The initial example and tests use synthetic data. No real country thresholds or newly approved pilot results are bundled.
 
 The API operates on aligned pixel sequences. A spatial caller remains responsible for CRS, grid alignment, valid-domain masks, dataset fitness and the actual geographic scope. This route does not alter the existing T4 notebook or run a live pilot. To adopt it for a pilot, supply reviewed classifications and dataset bindings, document the correlation review, then inspect the resulting coverage and sensitivity with the intended users.
+
+## Classification catalogue under review
+
+[Variable-by-variable audit](audit.md) · [Catalogue, acceptance and release proposal](catalogue.md) · [Runtime conformance vectors](test-vectors.json). The catalogue has no accepted runtime rules. Source observations, classification acceptance and user weights remain separate.

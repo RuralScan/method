@@ -1,0 +1,89 @@
+{
+  "format": "ruralscan.priority-proposal.v1",
+  "classification_id": "spei12_event",
+  "version": "0.1.0",
+  "author_assessment": "proposed",
+  "variables": [
+    "drought_spei12_baseline",
+    "drought_hazard"
+  ],
+  "concern_id": "drought",
+  "role": "priority",
+  "quantity": "Monthly SPEI-12 anomaly, not long-term event frequency",
+  "unit": "unitless",
+  "temporal_statistic": "One monthly observation of 12-month accumulation; baseline fit must be pinned",
+  "context": {
+    "geography": null,
+    "period": null,
+    "scenario": "baseline",
+    "purpose": "method_review_only_not_pilot"
+  },
+  "spatial_support": "Native source grid; CSIC historical reference is 0.5 degree",
+  "binding": {
+    "dataset_id": null,
+    "asset": null,
+    "field": null,
+    "source_unit": "unitless",
+    "scale": 1,
+    "offset": 0,
+    "domain": {
+      "min": null,
+      "max": null
+    },
+    "nodata": "unknown",
+    "validation": "not_verified"
+  },
+  "method": "thresholds",
+  "direction": "lower_is_more_concern",
+  "cuts": [
+    -2,
+    -1.5,
+    -1
+  ],
+  "endpoint": "upper_inclusive",
+  "missing": "unknown",
+  "class_scores": {
+    "none": 0,
+    "low": 0.33,
+    "medium": 0.66,
+    "high": 1
+  },
+  "class_meanings": {
+    "high": "SPEI <= -2; extreme dry anomaly",
+    "medium": "-2 < SPEI <= -1.5; very dry anomaly",
+    "low": "-1.5 < SPEI <= -1; moderate dry anomaly",
+    "none": "SPEI > -1; no classified dry anomaly for this observation"
+  },
+  "reference_sample": null,
+  "sources": [
+    {
+      "repository": "RuralScan/evidence",
+      "revision": "341f551dc8aa384b40d4f8aacb1e169325b46b92",
+      "path": "workflows/priority_classification/packets/copernicus_spei_2026.json",
+      "sha256": "28bf8393ade51e7f29c2b6f57dff6f0ad00ba9cdb88888cb14b4de7482f03037",
+      "source_id": null,
+      "finding_ids": [],
+      "review_state": "unreviewed_staging"
+    }
+  ],
+  "input_sha256": {
+    "data-model/configuration/T2_climate_risk.csv": "be738086bdc53e86cc31878d6311c80ab839ac9bf999a63efbcb572629eff5c1",
+    "data-model/configuration/T5_opportunity_space.csv": "cd5cb481fe0e47a97b8945332cf66b20158ebdaeadd90181a3ea511b266470cc",
+    "data-model/configuration/T1_data_registry.csv": "1746c118f1c13594e18baf884238718e67d8f528d2c1ac25d2c6d0ca2e55e5b0",
+    "data-model/configuration/VONT_variable_ontology.csv": "c9ea583a49df91220ad2737acfcee9bf0943af04ed158f40d9bbee10dc349b42",
+    "data-model/configuration/BIND_dataset_binding.csv": "6aeb5481a121cca768efd69ebe277b95a85e2c7f1ef9941e9cc74536c9bcfa35"
+  },
+  "rationale": "Propose dry-event severity mapping from Copernicus Table 2: extremely dry -> high, very dry -> medium, moderately dry -> low, all values > -1 -> none of this dry-event signal. Wet anomalies are not absence of other hazards. This is a proposed event-level interpretation, not a calibrated T5 climatological surface.",
+  "alternatives": [
+    "Use a different SPEI accumulation window only through a separately scoped rule.",
+    "Treat event severity as descriptive until long-term priority statistic is agreed."
+  ],
+  "blockers": [
+    "Source packet not canonically registered/reviewed",
+    "CSIC v2.6 asset, reference fit, fill values and baseline period unverified",
+    "T5 frequency/severity reducer not defined; event rule cannot activate current T5",
+    "Pilot context and target-period applicability not accepted"
+  ],
+  "supersedes": null,
+  "decision_id": "priority_spei12_event_v010"
+}
