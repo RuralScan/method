@@ -1,0 +1,37 @@
+{
+  "format": "ruralscan.binding-candidate-columns.v1",
+  "columns": [
+    "binding_id",
+    "variable_id",
+    "registry",
+    "concern_id",
+    "mcda_role",
+    "dataset_id",
+    "route",
+    "asset",
+    "field",
+    "auxiliary_fields",
+    "unit",
+    "spatial_support",
+    "temporal_support",
+    "selectors",
+    "decode",
+    "inspection_status",
+    "observation_refs",
+    "blocking",
+    "documentation",
+    "scientifically_accepted",
+    "runtime_ready"
+  ],
+  "json_columns": [
+    "auxiliary_fields",
+    "blocking",
+    "decode",
+    "documentation",
+    "observation_refs",
+    "runtime_ready",
+    "scientifically_accepted",
+    "selectors"
+  ],
+  "status": "proposal_only"
+}

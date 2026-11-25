@@ -1,0 +1,292 @@
+[
+  {
+    "name": "DI observed 0.605 becomes 60.5",
+    "binding_id": "fao_di_annual_candidate",
+    "raw": 0.605,
+    "auxiliary": {},
+    "expected": {
+      "state": "numeric",
+      "value": 60.5
+    },
+    "provenance": "fao_di_live: raw point 36,0",
+    "expected_unit": "wVHI_percent"
+  },
+  {
+    "name": "DI special before scaling 251",
+    "binding_id": "fao_di_annual_candidate",
+    "raw": 251,
+    "auxiliary": {},
+    "expected": {
+      "state": "off_season",
+      "value": null
+    },
+    "provenance": "fao_di_live service special codes; 254 sampled",
+    "expected_unit": "wVHI_percent"
+  },
+  {
+    "name": "DI special before scaling 252",
+    "binding_id": "fao_di_annual_candidate",
+    "raw": 252,
+    "auxiliary": {},
+    "expected": {
+      "state": "unknown",
+      "value": null
+    },
+    "provenance": "fao_di_live service special codes; 254 sampled",
+    "expected_unit": "wVHI_percent"
+  },
+  {
+    "name": "DI special before scaling 253",
+    "binding_id": "fao_di_annual_candidate",
+    "raw": 253,
+    "auxiliary": {},
+    "expected": {
+      "state": "no_season",
+      "value": null
+    },
+    "provenance": "fao_di_live service special codes; 254 sampled",
+    "expected_unit": "wVHI_percent"
+  },
+  {
+    "name": "DI special before scaling 254",
+    "binding_id": "fao_di_annual_candidate",
+    "raw": 254,
+    "auxiliary": {},
+    "expected": {
+      "state": "outside_host_system",
+      "value": null
+    },
+    "provenance": "fao_di_live service special codes; 254 sampled",
+    "expected_unit": "wVHI_percent"
+  },
+  {
+    "name": "DI special before scaling 255",
+    "binding_id": "fao_di_annual_candidate",
+    "raw": 255,
+    "auxiliary": {},
+    "expected": {
+      "state": "water",
+      "value": null
+    },
+    "provenance": "fao_di_live service special codes; 254 sampled",
+    "expected_unit": "wVHI_percent"
+  },
+  {
+    "name": "ASI zero is zero affected area",
+    "binding_id": "fao_asi_annual_candidate",
+    "raw": 0,
+    "auxiliary": {},
+    "expected": {
+      "state": "numeric",
+      "value": 0
+    },
+    "provenance": "fao_asi_live: raw point 84,28",
+    "expected_unit": "percent_affected_area"
+  },
+  {
+    "name": "ASI missing is not zero",
+    "binding_id": "fao_asi_annual_candidate",
+    "raw": null,
+    "auxiliary": {},
+    "expected": {
+      "state": "unknown",
+      "value": null
+    },
+    "provenance": "constructed edge case",
+    "expected_unit": "percent_affected_area"
+  },
+  {
+    "name": "DI invalid fraction is not clipped",
+    "binding_id": "fao_di_annual_candidate",
+    "raw": 1.2,
+    "auxiliary": {},
+    "expected": {
+      "state": "outside_domain",
+      "value": null
+    },
+    "provenance": "constructed edge case",
+    "expected_unit": "wVHI_percent"
+  },
+  {
+    "name": "SPEI keeps real extreme 3",
+    "binding_id": "spei03_211_candidate",
+    "raw": -5.391118049621582,
+    "auxiliary": {},
+    "expected": {
+      "state": "numeric",
+      "value": -5.391118049621582
+    },
+    "provenance": "spei_live: native December 2024 global extrema",
+    "expected_unit": "dimensionless_standardized_anomaly"
+  },
+  {
+    "name": "SPEI keeps real extreme 12",
+    "binding_id": "spei12_211_candidate",
+    "raw": 4.002783298492432,
+    "auxiliary": {},
+    "expected": {
+      "state": "numeric",
+      "value": 4.002783298492432
+    },
+    "provenance": "spei_live: native December 2024 global extrema",
+    "expected_unit": "dimensionless_standardized_anomaly"
+  },
+  {
+    "name": "Aqueduct ratio above one retained",
+    "binding_id": "aqueduct_bws_annual_candidate",
+    "raw": 30.1385661925886,
+    "auxiliary": {
+      "category": 4
+    },
+    "expected": {
+      "state": "numeric",
+      "value": 30.1385661925886
+    },
+    "provenance": "aqueduct_live annual maximum excluding sentinel values",
+    "expected_unit": "withdrawal_to_available_supply_ratio"
+  },
+  {
+    "name": "Aqueduct arid category outranks numeric raw",
+    "binding_id": "aqueduct_bws_annual_candidate",
+    "raw": 1,
+    "auxiliary": {
+      "category": -1
+    },
+    "expected": {
+      "state": "arid_low_use",
+      "value": null
+    },
+    "provenance": "aqueduct_live category -1 example",
+    "expected_unit": "withdrawal_to_available_supply_ratio"
+  },
+  {
+    "name": "Aqueduct scarcity sentinel not a percentage",
+    "binding_id": "aqueduct_bws_annual_candidate",
+    "raw": 9999,
+    "auxiliary": {
+      "category": 4
+    },
+    "expected": {
+      "state": "physical_scarcity",
+      "value": null
+    },
+    "provenance": "constructed edge case",
+    "expected_unit": "withdrawal_to_available_supply_ratio"
+  },
+  {
+    "name": "Aqueduct nodata",
+    "binding_id": "aqueduct_bws_annual_candidate",
+    "raw": -9999,
+    "auxiliary": {
+      "category": -9999
+    },
+    "expected": {
+      "state": "unknown",
+      "value": null
+    },
+    "provenance": "constructed edge case",
+    "expected_unit": "withdrawal_to_available_supply_ratio"
+  },
+  {
+    "name": "Aqueduct missing category blocks raw",
+    "binding_id": "aqueduct_bws_annual_candidate",
+    "raw": 1,
+    "auxiliary": {},
+    "expected": {
+      "state": "unknown",
+      "value": null
+    },
+    "provenance": "constructed edge case",
+    "expected_unit": "withdrawal_to_available_supply_ratio"
+  },
+  {
+    "name": "Monthly missing field unknown",
+    "binding_id": "aqueduct_bws_monthly_candidate",
+    "raw": null,
+    "auxiliary": {
+      "category": null
+    },
+    "expected": {
+      "state": "unknown",
+      "value": null
+    },
+    "provenance": "aqueduct_live monthly first feature lacks numeric January fields",
+    "expected_unit": "withdrawal_to_available_supply_ratio"
+  },
+  {
+    "name": "Hansen real no-event on valid land",
+    "binding_id": "hansen_forest_loss_candidate",
+    "raw": 0,
+    "auxiliary": {
+      "datamask": 1
+    },
+    "expected": {
+      "state": "numeric",
+      "value": 0
+    },
+    "provenance": "forest_loss_live zero-event samples",
+    "expected_unit": "binary_tree_cover_loss_event"
+  },
+  {
+    "name": "Hansen ocean zero excluded",
+    "binding_id": "hansen_forest_loss_candidate",
+    "raw": 0,
+    "auxiliary": {
+      "datamask": 0
+    },
+    "expected": {
+      "state": "outside_valid_land",
+      "value": null
+    },
+    "provenance": "forest_loss_live ocean 0,0",
+    "expected_unit": "binary_tree_cover_loss_event"
+  },
+  {
+    "name": "Hansen missing mask unknown",
+    "binding_id": "hansen_forest_loss_candidate",
+    "raw": 0,
+    "auxiliary": {},
+    "expected": {
+      "state": "unknown",
+      "value": null
+    },
+    "provenance": "constructed edge case",
+    "expected_unit": "binary_tree_cover_loss_event"
+  },
+  {
+    "name": "Forest emissions remains cumulative",
+    "binding_id": "forest_gross_emissions_candidate",
+    "raw": 720,
+    "auxiliary": {},
+    "expected": {
+      "state": "numeric",
+      "value": 720
+    },
+    "provenance": "constructed edge case",
+    "expected_unit": "Mg_CO2e_per_ha_over_2001_2024"
+  },
+  {
+    "name": "Naturebase TIFF nodata",
+    "binding_id": "naturebase_afc_potential_candidate",
+    "raw": -3.4028234663852886e+38,
+    "auxiliary": {},
+    "expected": {
+      "state": "unknown",
+      "value": null
+    },
+    "provenance": "naturebase_afc_inspection raster nodata header",
+    "expected_unit": "tCO2e_per_ha_per_year"
+  },
+  {
+    "name": "Naturebase stored zero does not imply applicability",
+    "binding_id": "naturebase_afc_potential_candidate",
+    "raw": 0,
+    "auxiliary": {},
+    "expected": {
+      "state": "numeric",
+      "value": 0
+    },
+    "provenance": "naturebase_afc_inspection ocean point; oracle does not establish coverage",
+    "expected_unit": "tCO2e_per_ha_per_year"
+  }
+]
