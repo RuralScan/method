@@ -639,7 +639,9 @@ def build():
         1 for f in tables["findings"] if '"study_country"' in f["study_context"]
     )
     body = (
-        pages_coverage.headline() + pages_coverage.practice_table()
+        '<p>Use this section to browse findings, check review progress and download data. '
+        + link("practices.html", "Practice definitions and family boundaries are in section 5") + '.</p>'
+        + pages_coverage.headline() + pages_coverage.practice_table()
         + "<p>" + link("evidence-findings.html", "Browse all collected findings, including pending and broader evidence") + " · "
         + link("evidence-counts.html#downloads", "Download review coverage and finding IDs") + "</p>"
         + '<h2 id="historical-edition">Historical recipe-edition data</h2>'
@@ -811,8 +813,10 @@ def build():
         "evidence-base.html",
         "Evidence base: get and use the data",
         body,
-        lead="Download the evidence behind every rating, read what each field means, and query it. Everything here is fixed to one edition.",
+        lead="Explore collected evidence and review progress. Historical recipe downloads retain their separate edition pin.",
         toc=[
+            ("review-coverage", "Current review progress"),
+            ("historical-edition", "Historical recipe edition"),
             ("download", "Download the edition tables"),
             ("native", "Tables the package does not carry"),
             ("later", "Registers after this edition"),

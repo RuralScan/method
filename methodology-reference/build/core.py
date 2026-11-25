@@ -598,8 +598,8 @@ NAV_TIP = {
     "method.html": "The analysis, step by step: questions, inputs, formulas, outputs and limits.",
     "evidence-methods.html": "How sources are found, read, checked and pooled into rules.",
     "data-model.html": "Every table and field the rules are written in.",
-    "practices.html": "Each practice: its families, its rules and ratings, and the evidence behind each.",
-    "evidence-base.html": "Download and query the data, and follow a rule back to its source.",
+    "practices.html": "Practice definitions, sub-practices and review progress.",
+    "evidence-base.html": "Browse findings, check detailed review coverage, and download data.",
     "editions.html": "About versions, change history, what is established, how to reproduce, glossary.",
 }
 SITE_NAME = "Rural NbS Scan methodology"
@@ -731,6 +731,10 @@ def page(
             items.append(
                 f'<li><a href="{href}"{cur}><span class="n">{number}.{j}</span> {esc(label)}</a></li>'
             )
+        if toc and section == "practices.html":
+            items.append('<li class="local-toc"><strong>On this page</strong><ul>' + ''.join(
+                f'<li><a href="#{ident}">{esc(label)}</a></li>' for ident, label in toc
+            ) + '</ul></li>')
         side = (
             '<nav class="side" aria-label="Section contents"><details open>'
             f"<summary>In this section</summary><ol>{''.join(items)}</ol></details></nav>"

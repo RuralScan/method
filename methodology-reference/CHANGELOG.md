@@ -6,6 +6,13 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.21.0] - 2026-11-25
+
+- Make Practices a concise definition directory with reviewed-and-kept versus total retained counts.
+- Show the current family catalogue with expandable sub-practice definitions, including the agreed agroforestry linear-family split.
+- Put detailed lane and scope coverage on practice evidence pages in section 6; keep pending, held and broader findings accessible.
+- Fold historical explanations and recipe tables away by default while preserving their anchors and every row-detail link.
+
 ## [0.20.0] - 2026-11-25
 
 - Migrate all eleven T2 identities into a current climate-variable registry without composite-index modes or default weights.
