@@ -169,6 +169,16 @@ def check(root=ROOT, evidence_repo=None, base=None):
     for path, expected in audit["input_sha256"].items():
         require(sha256((root / path).read_bytes()).hexdigest() == expected, f"Stale audit dependency: {path}")
     lock = json.loads((root / "priority/evidence.lock.json").read_text())
+    locks = [lock] + [json.loads(p.read_text()) for p in sorted((root / "priority/source-locks").glob("*.json"))]
+    pinned = {}
+    for item in locks:
+        require(item["repository"] == "RuralScan/evidence" and re.fullmatch(r"[0-9a-f]{40}", item["revision"]), "Unpinned evidence lock")
+        for name, expected in item["files"].items():
+            require(re.fullmatch(r"workflows/priority_classification/(packets/[a-z0-9_]+\.json|batches/[a-z0-9-]+/candidate\.json)", name), "Invalid evidence lock path")
+            require(re.fullmatch(r"[0-9a-f]{64}", expected), "Invalid evidence lock hash")
+            key = (item["revision"], name)
+            require(key not in pinned or pinned[key] == expected, "Conflicting evidence lock")
+            pinned[key] = expected
     files, identities = {}, set()
     for path in sorted((root / "priority/proposals").glob("*.json")):
         rule = json.loads(path.read_text()); value = validate(rule)
@@ -185,13 +195,13 @@ def check(root=ROOT, evidence_repo=None, base=None):
             require(all(sha256((root / name).read_bytes()).hexdigest() == expected
                         for name, expected in rule["input_sha256"].items()), "Stale current rule dependencies")
         for source in rule["sources"]:
-            require(source["revision"] == lock["revision"] and source["sha256"] == lock["files"].get(source["path"]), "Stale evidence lock")
+            require(source["sha256"] == pinned.get((source["revision"], source["path"])), "Stale evidence lock")
         files[str(path.relative_to(root))] = {"file_sha256": sha256(path.read_bytes()).hexdigest(), "proposal_sha256": value, "decision_id": rule["decision_id"]}
     if evidence_repo:
-        for path, expected in lock["files"].items():
-            require(sha256(git_blob(evidence_repo, lock["revision"], path)).hexdigest() == expected, f"Source packet mismatch: {path}")
+        for (revision, path), expected in pinned.items():
+            require(sha256(git_blob(evidence_repo, revision, path)).hexdigest() == expected, f"Source packet mismatch: {path}")
     if base:
-        old = subprocess.check_output(["git", "ls-tree", "-r", "--name-only", base, "--", "priority/proposals"], cwd=root, text=True).splitlines()
+        old = subprocess.check_output(["git", "ls-tree", "-r", "--name-only", base, "--", "priority/proposals", "priority/source-locks"], cwd=root, text=True).splitlines()
         for path in old:
             require((root / path).exists() and (root / path).read_bytes() == git_blob(root, base, path), "Published proposal versions are immutable; add a successor")
     return {"format": "ruralscan.priority-review-manifest.v1", "status": "proposals_only_not_runtime_release", "contract_sha256": sha256((root / "data-model/priority-contract.json").read_bytes()).hexdigest(), "proposal_schema_sha256": sha256((root / "priority/proposal-schema.json").read_bytes()).hexdigest(), "audit_sha256": sha256((root / "priority/audit.json").read_bytes()).hexdigest(), "evidence_lock_sha256": sha256((root / "priority/evidence.lock.json").read_bytes()).hexdigest(), "proposals": files, "accepted_rules": []}

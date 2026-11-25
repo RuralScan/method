@@ -63,6 +63,10 @@ class Consolidation(unittest.TestCase):
             rule = json.loads(original.read_bytes()); rule['version'] = '0.2.0'
             rule['input_sha256'] = {name:sha256((root/name).read_bytes()).hexdigest() for name in package.DEFINITIONS}
             successor = root / 'priority/proposals/spei12_event-0.2.0.json'
+            lock = {'repository':'RuralScan/evidence','revision':'f'*40,'status':'synthetic_unreviewed',
+                    'files':{'workflows/priority_classification/batches/fixture/candidate.json':'e'*64}}
+            source = rule['sources'][0]; source.update(revision=lock['revision'],path=next(iter(lock['files'])),sha256='e'*64)
+            folder = root/'priority/source-locks';folder.mkdir();(folder/'fixture.json').write_text(json.dumps(lock))
             successor.write_text(json.dumps(rule))
             manifest = catalogue.check(root)
             self.assertEqual(len(manifest['proposals']),6)
