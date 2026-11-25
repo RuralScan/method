@@ -222,5 +222,41 @@
     "definition_change_recomputes_outputs": false,
     "affected_proposals_need_new_input_hashes_and_acceptance": true,
     "historical_gate_reuse": "not_authorized_by_definition_change"
+  },
+  "evidence_aggregation": {
+    "decision_id": "agroforestry_evidence_aggregation",
+    "levels": [
+      "subpractice",
+      "suitability_family",
+      "optional_evidence_group",
+      "practice"
+    ],
+    "groups": {
+      "agroforestry__linear_plantings": {
+        "label": "Linear plantings",
+        "nbs_id": "agroforestry",
+        "families": [
+          "agroforestry__boundary_planting",
+          "agroforestry__wind_shelter",
+          "agroforestry__contour_buffers"
+        ],
+        "is_suitability_family": false,
+        "is_legacy_family_alias": false
+      }
+    },
+    "specific_to_broad": true,
+    "allow_direct_broader_evidence": true,
+    "show_broader_support_for_sparse_children": true,
+    "retain_original_scope_and_review_status": true,
+    "parent_count": "union_of_evidence_ids",
+    "independence": "reviewed_study_origin_not_row_count",
+    "scientific_summary": "scope_justified_ai_proposal_with_human_acceptance",
+    "parent_claims_support_for_every_child": false,
+    "automatic_downward_inheritance": false,
+    "pool_placement_rules": false,
+    "missing_child_support_is_zero": false,
+    "report_child_coverage_and_conflict": true,
+    "existing_synthesis_eligibility_applies": true,
+    "consumer_implementation": "pending_separate_evidence_adoption"
   }
 }
