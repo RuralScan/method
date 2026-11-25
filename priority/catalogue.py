@@ -176,7 +176,14 @@ def check(root=ROOT, evidence_repo=None, base=None):
         require(identity not in identities, "Duplicate rule version")
         identities.add(identity)
         require(set(rule["variables"]) <= {v for _, v in keys}, "Unknown variable")
-        require(rule["input_sha256"] == audit["input_sha256"], "Stale rule dependencies")
+        if set(rule["input_sha256"]) == set(audit["input_sha256"]):
+            # Immutable first-batch proposals retain their original dependency set.
+            require(rule["input_sha256"] == audit["input_sha256"], "Stale rule dependencies")
+        else:
+            current = set(audit["input_sha256"]) | {"priority/T5_classification_refs.csv", "priority/routing-directions.json"}
+            require(set(rule["input_sha256"]) == current, "Incomplete current rule dependencies")
+            require(all(sha256((root / name).read_bytes()).hexdigest() == expected
+                        for name, expected in rule["input_sha256"].items()), "Stale current rule dependencies")
         for source in rule["sources"]:
             require(source["revision"] == lock["revision"] and source["sha256"] == lock["files"].get(source["path"]), "Stale evidence lock")
         files[str(path.relative_to(root))] = {"file_sha256": sha256(path.read_bytes()).hexdigest(), "proposal_sha256": value, "decision_id": rule["decision_id"]}

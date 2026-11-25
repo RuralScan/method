@@ -53,6 +53,24 @@ class Consolidation(unittest.TestCase):
             path.write_bytes(path.read_bytes()+b'\n')
             with self.assertRaisesRegex(ValueError,'Preserved T5 proposal changed'): t5_refs.check(root)
 
+    def test_catalogue_can_admit_future_proposal_with_current_routing_pins(self):
+        from hashlib import sha256
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            for directory in ['priority','data-model']:
+                shutil.copytree(catalogue.ROOT / directory,root / directory)
+            original = root / 'priority/proposals/spei12_event-0.1.0.json'
+            rule = json.loads(original.read_bytes()); rule['version'] = '0.2.0'
+            rule['input_sha256'] = {name:sha256((root/name).read_bytes()).hexdigest() for name in package.DEFINITIONS}
+            successor = root / 'priority/proposals/spei12_event-0.2.0.json'
+            successor.write_text(json.dumps(rule))
+            manifest = catalogue.check(root)
+            self.assertEqual(len(manifest['proposals']),6)
+            self.assertEqual(manifest['accepted_rules'],[])
+            rule['input_sha256']['priority/routing-directions.json'] = '0'*64
+            successor.write_text(json.dumps(rule))
+            with self.assertRaisesRegex(ValueError,'Stale current rule dependencies'): catalogue.check(root)
+
     def test_candidate_reference_path_is_narrow_and_does_not_approve_it(self):
         rule = json.loads((catalogue.ROOT/'priority/proposals/spei12_event-0.1.0.json').read_text())
         rule['sources'][0]['path']='workflows/priority_classification/batches/t5-2026-11-25/candidate.json'
