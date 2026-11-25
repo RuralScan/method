@@ -1,0 +1,239 @@
+{
+  "format": "ruralscan.t5-interpretation-review.v1",
+  "status": "proposed_not_accepted",
+  "evidence_batch": {
+    "repository": "RuralScan/evidence",
+    "revision": "7a134a578209b9eb1c51319f8c6d18dc78f7ebda",
+    "path": "workflows/priority_classification/batches/t5-2026-11-25/candidate.json",
+    "sha256": "4378a7a01456c690f43a49e323c97436daa3a24ef06abc0dfda081c2d2e6e23d"
+  },
+  "records": [
+    {
+      "variable_id": "drought_hazard",
+      "proposal_ref": "priority/proposals/drought_climatology-0.1.0.json",
+      "related_event_proposal": "priority/proposals/spei12_event-0.1.0.json",
+      "findings": [
+        {
+          "candidate_finding_id": "xce_spei_dry_event_classes",
+          "version": "0.1.0",
+          "sha256": "5fbab5fb92f6257daa1bb6fb1c8558a45d145d214e15a4fa25f89a0d8f1ec7d2"
+        },
+        {
+          "candidate_finding_id": "xce_spei_standardization",
+          "version": "0.1.0",
+          "sha256": "ea705ad7939e5bdefa855c2ebf8b31b4da4ea7052e721abb2f2ac8874f1acb0f"
+        }
+      ],
+      "status": "held",
+      "interpretation": "Event severity can be described using the source bands, but cannot activate a long-term T5 drought surface.",
+      "class_mapping": [
+        {
+          "source_class": "extremely dry",
+          "proposed_class": "high",
+          "score": 1,
+          "scope": "event-only candidate; not T5 climatology"
+        },
+        {
+          "source_class": "very dry",
+          "proposed_class": "medium",
+          "score": 0.66,
+          "scope": "event-only candidate; not T5 climatology"
+        },
+        {
+          "source_class": "moderately dry",
+          "proposed_class": "low",
+          "score": 0.33,
+          "scope": "event-only candidate; not T5 climatology"
+        },
+        {
+          "source_class": "SPEI > -1 (remaining source observations)",
+          "proposed_class": "none",
+          "score": 0,
+          "scope": "event-only candidate; not T5 climatology"
+        }
+      ],
+      "uncertainty": {
+        "source": "Factsheet caption says SPI while table and section describe SPEI.",
+        "transfer": "Copernicus classes do not verify the legacy CSIC product or fit.",
+        "interpretation": "Long-term statistic, reference population/period and class cutoffs unresolved."
+      },
+      "examples": [
+        {
+          "raw": -2,
+          "unit": "unitless",
+          "event_candidate_class": "high",
+          "T5_class": null
+        },
+        {
+          "raw": 0,
+          "unit": "unitless",
+          "event_candidate_class": "none",
+          "T5_class": null
+        }
+      ],
+      "next_decision": "Choose drought frequency, duration or accumulated severity, with fit, period and binding; review a successor proposal.",
+      "human_decision": null
+    },
+    {
+      "variable_id": "water_stress",
+      "proposal_ref": "priority/proposals/aqueduct_bws-0.1.0.json",
+      "related_event_proposal": null,
+      "findings": [
+        {
+          "candidate_finding_id": "xce_aqueduct_quantity_support",
+          "version": "0.1.0",
+          "sha256": "e1517526e74dfdcf6d68fc3cc161c520e1a55fa503f3b79f41d3b0f957c1e0c2"
+        },
+        {
+          "candidate_finding_id": "xce_aqueduct_provider_bands",
+          "version": "0.1.0",
+          "sha256": "4067692124e4c6a98d10c444e34c5640fee332dba10e8409fdd75365a74bdb7b"
+        },
+        {
+          "candidate_finding_id": "xce_aqueduct_catalogue_fields",
+          "version": "0.1.0",
+          "sha256": "58b994aaeb500962268a5d41b566855a6179868da6d8ee85810f24122ff1747a"
+        }
+      ],
+      "status": "held",
+      "interpretation": "Retain provider categories descriptively until a four-class interpretation and special-status policy are explicitly accepted.",
+      "class_mapping": [
+        {
+          "source_class": "low",
+          "proposed_class": null,
+          "score": null,
+          "scope": "provider category only"
+        },
+        {
+          "source_class": "low-medium",
+          "proposed_class": null,
+          "score": null,
+          "scope": "provider category only"
+        },
+        {
+          "source_class": "medium-high",
+          "proposed_class": null,
+          "score": null,
+          "scope": "provider category only"
+        },
+        {
+          "source_class": "high",
+          "proposed_class": null,
+          "score": null,
+          "scope": "provider category only"
+        },
+        {
+          "source_class": "extremely high",
+          "proposed_class": null,
+          "score": null,
+          "scope": "provider category only"
+        },
+        {
+          "source_class": "arid and low water use",
+          "proposed_class": null,
+          "score": null,
+          "scope": "provider category only"
+        }
+      ],
+      "uncertainty": {
+        "source": "Printed category ranges do not define all endpoints; formula and clipping prose conflict.",
+        "transfer": "Basin support persists after polygon intersections; live values/statuses unverified.",
+        "interpretation": "No source-defined none; neither a zero-only none nor five-to-four collapse is approved."
+      },
+      "examples": [
+        {
+          "raw": 0,
+          "unit": "fraction",
+          "T5_class": null,
+          "reason": "True raw zero does not by itself approve a semantic none class."
+        },
+        {
+          "raw": 0.4,
+          "unit": "fraction",
+          "T5_class": null,
+          "reason": "Exact provider endpoint and method mapping remain unresolved."
+        }
+      ],
+      "next_decision": "Keep scoring held, or propose a fully specified successor mapping; three-class threshold mode would require a separate contract extension.",
+      "human_decision": null
+    },
+    {
+      "variable_id": "iplc_lands",
+      "proposal_ref": "priority/proposals/iplc_presence-0.1.0.json",
+      "related_event_proposal": null,
+      "findings": [
+        {
+          "candidate_finding_id": "xce_landmark_missingness",
+          "version": "0.1.0",
+          "sha256": "9bb29c10b7049dad2150c0abc9b0ae749ff4914814a10f1bdfc77a515fa18929"
+        }
+      ],
+      "status": "held",
+      "interpretation": "Propose mapped-presence/unknown safeguarding information; do not infer a severity gradient or confirmed absence.",
+      "class_mapping": [
+        {
+          "source_class": "mapped presence",
+          "proposed_class": null,
+          "score": null,
+          "scope": "safeguard interpretation proposal"
+        },
+        {
+          "source_class": "unmapped/unknown",
+          "proposed_class": null,
+          "score": null,
+          "scope": "safeguard interpretation proposal"
+        }
+      ],
+      "uncertainty": {
+        "source": "Coverage is incomplete.",
+        "transfer": "Feature date and target-country completeness unverified.",
+        "interpretation": "Current historical priority role is retained, but binary scoring is unsupported."
+      },
+      "examples": [
+        {
+          "raw": "unmapped",
+          "T5_class": null,
+          "reason": "Unknown, not none."
+        }
+      ],
+      "next_decision": "Decide safeguard/descriptor routing or an explicit categorical extension; retain historical ID and prior role until then.",
+      "human_decision": null
+    },
+    {
+      "variable_id": "carbon_sequestration_potential",
+      "proposal_ref": "priority/proposals/soc_additional_potential-0.1.0.json",
+      "related_event_proposal": null,
+      "findings": [
+        {
+          "candidate_finding_id": "xce_soc_change_comparators",
+          "version": "0.1.0",
+          "sha256": "c4ee729560088672041efe970bf0566e9ee27b2f1de101e4cff44dbf733c5187"
+        },
+        {
+          "candidate_finding_id": "xce_soc_stock_input_support",
+          "version": "0.1.0",
+          "sha256": "43eec41ac653ea7af072e9c0727afe4363a0e785ab654cec7001399ef522c5ac"
+        }
+      ],
+      "status": "held",
+      "interpretation": "Additional management-related stock change requires a counterfactual and common horizon; initial stock cannot be inverted into potential.",
+      "class_mapping": [],
+      "uncertainty": {
+        "source": "Historical stock observations differ from nominal model-baseline year.",
+        "transfer": "Management scenario, soil depth, horizon and potential-output asset need verification.",
+        "interpretation": "High potential as high priority is a policy interpretation; avoided loss differs from net removal."
+      },
+      "examples": [
+        {
+          "raw": 50,
+          "unit": "t C/ha",
+          "T5_class": null,
+          "reason": "Stock alone cannot establish a t C/ha/year additional rate."
+        }
+      ],
+      "next_decision": "Select and verify potential output, management counterfactual and horizon, then justify priority classes in a successor proposal.",
+      "human_decision": null
+    }
+  ],
+  "accepted_rules": []
+}

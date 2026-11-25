@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install source-replay dependency
-        run: python3 -m pip install 'pymupdf==1.27.2.3'
+        run: python3 -m pip install 'pymupdf==1.27.2.3' 'jsonschema==4.25.1'
       - name: Read source packet revision
         id: pin
         run: |
@@ -39,6 +39,10 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: |
           python3 priority/catalogue.py check --evidence-repo _priority-evidence --base "$BASE_SHA"
+          python3 priority/t5_refs.py
+          T5_PIN=$(python3 -c "import json; print(json.load(open('priority/t5-evidence.lock.json'))['revision'])")
+          git -C _priority-evidence fetch --depth=1 origin "$T5_PIN"
+          python3 priority/t5_review.py --evidence-repo _priority-evidence
           python3 -m unittest discover -v -s priority
       - name: Check accepted package history against current evidence main
         env:

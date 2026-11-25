@@ -16,8 +16,9 @@ REV = re.compile(r"[0-9a-f]{40}")
 PROPOSAL = re.compile(r"priority/proposals/[a-z0-9_]+-[0-9]+\.[0-9]+\.[0-9]+\.json")
 BINDING_CHECKS = {"asset_identity", "units_and_conversion", "nodata_and_domain", "spatial_support", "temporal_statistic", "scenario", "context_resolution"}
 STORAGE_ACCEPTANCE = "Accept priority catalogue sidecar storage and release contract v1."
+ROUTING = {"priority/T5_classification_refs.csv", "priority/routing-directions.json"}
 DEFINITIONS = {f"data-model/configuration/{name}.csv" for name in
-               ("T1_data_registry", "T2_climate_risk", "T5_opportunity_space", "VONT_variable_ontology", "BIND_dataset_binding")}
+               ("T1_data_registry", "T2_climate_risk", "T5_opportunity_space", "VONT_variable_ontology", "BIND_dataset_binding")} | ROUTING
 
 
 def git(root, *args):
@@ -95,6 +96,18 @@ def binding_receipt(rule, record, current):
     return decision
 
 
+def scoring_route(rule, t5, routing_rows, directions):
+    routing = {r['variable_id']: r for r in routing_rows}
+    require(len(routing) == len(routing_rows) and set(routing) == set(t5), 'Incomplete or duplicated T5 routing')
+    blocked = set(directions['blocked_scoring_variables'])
+    require(not blocked.intersection(rule['variables']), 'Variable is blocked pending a separately defined successor')
+    for variable in rule['variables']:
+        if variable not in t5: continue
+        row = routing[variable]
+        require(row['mcda_role'] == 'priority', 'Unscored descriptor cannot be released as a priority')
+        require(row['concern_id'] == rule['concern_id'], 'Rule does not match the current concern')
+
+
 def build(method, revision, method_base, evidence, evidence_base, paths, fetch=github_pr):
     merged(method, revision, method_base)
     require(paths and len(paths) == len(set(paths)), "Select at least one unique proposal")
@@ -120,7 +133,7 @@ def build(method, revision, method_base, evidence, evidence_base, paths, fetch=g
         approvals.append(authorize(method, decision, revision, method_base, fetch))
         require(set(rule["input_sha256"]) == DEFINITIONS, "Incomplete definition/binding dependency set")
         for name, expected in rule["input_sha256"].items():
-            require(re.fullmatch(r"data-model/configuration/[A-Za-z0-9_]+\.csv", name), "Invalid definition dependency")
+            require(name in DEFINITIONS, "Invalid definition dependency")
             body = blob(method, revision, name)
             require(sha256(body).hexdigest() == expected and body == blob(method, method_base, name), "Definition or binding dependency is stale")
             dependencies[name] = expected
@@ -128,6 +141,9 @@ def build(method, revision, method_base, evidence, evidence_base, paths, fetch=g
         require(set(rule["variables"]) <= ontology, "Missing canonical variable")
         t5 = {r["variable_id"]: r for r in rows(blob(method, revision, "data-model/configuration/T5_opportunity_space.csv"))}
         require(all(t5[v]["mcda_role"] == "priority" for v in rule["variables"] if v in t5), "Descriptor cannot be scored through an alias")
+        routing = rows(blob(method, revision, "priority/T5_classification_refs.csv"))
+        directions = json.loads(blob(method, revision, "priority/routing-directions.json"))
+        scoring_route(rule, t5, routing, directions)
         binding_path = f"priority/binding-verifications/{digest(rule['binding'])}-{digest(rule['context'])}.json"
         binding = json.loads(blob(method, revision, binding_path))
         binding_decision = binding_receipt(rule, binding, current)

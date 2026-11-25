@@ -85,6 +85,9 @@ class Release(unittest.TestCase):
         for name, body in definitions.items():
             target = self.root / f"data-model/configuration/{name}.csv"
             target.parent.mkdir(parents=True, exist_ok=True); target.write_text(body)
+        route = self.root / 'priority/T5_classification_refs.csv'; route.parent.mkdir(parents=True)
+        route.write_text('variable_id,mcda_role,concern_id\n' + ''.join(f"{v},priority,{rule['concern_id']}\n" for v in variables))
+        (self.root / 'priority/routing-directions.json').write_text(json.dumps({'blocked_scoring_variables': {}}))
         rule["input_sha256"] = {name: sha256((self.root / name).read_bytes()).hexdigest() for name in package.DEFINITIONS}
         record = {"format": "ruralscan.priority-binding-verification.v1", "binding_sha256": catalogue.digest(rule["binding"]),
                   "context_sha256": catalogue.digest(rule["context"]), "variables": variables,
@@ -92,7 +95,7 @@ class Release(unittest.TestCase):
                   "checks": {k: "Synthetic observation" for k in package.BINDING_CHECKS},
                   "evidence": [{"url": "https://example.org", "locator": "Synthetic fixture"}], "decision_id": "binding_fixture"}
         target = self.root / f"priority/binding-verifications/{catalogue.digest(rule['binding'])}-{catalogue.digest(rule['context'])}.json"
-        target.parent.mkdir(parents=True); target.write_bytes(catalogue.encoded(record))
+        target.parent.mkdir(parents=True, exist_ok=True); target.write_bytes(catalogue.encoded(record))
         path = "priority/proposals/spei12_event-0.1.0.json"
         target = self.root / path; target.parent.mkdir(); target.write_bytes(catalogue.encoded(rule))
         (self.root / "data-model/priority-contract.json").write_text("{}\n")

@@ -1,0 +1,57 @@
+{
+  "repository": "RuralScan/method",
+  "source_revision": "a117e32c254782b2c8934513cd2eca0e46945794",
+  "superseded_pr": 104,
+  "files": [
+    {
+      "source_path": "priority/T5_classification_refs.csv",
+      "preserved_path": "priority/history/t5-proposal/T5_classification_refs.csv",
+      "sha256": "7c59f2babea2f2be4f403d35bfb3c69bc3ef1fd57f6ca9924fe7c6de055e4222"
+    },
+    {
+      "source_path": "priority/interpretations/t5-first-batch-0.1.0.json",
+      "preserved_path": "priority/history/t5-proposal/interpretations/t5-first-batch-0.1.0.json",
+      "sha256": "66305ecc0c8a605fe20da47ccb9b7ceb9e28fb12b62d3991fbb260e5c12f6305"
+    },
+    {
+      "source_path": "priority/profiles/t5-0.1.0.json",
+      "preserved_path": "priority/history/t5-proposal/profiles/t5-0.1.0.json",
+      "sha256": "8cca9ab89df97ef580e6cbfdbbe10fcc9b4c69fc5bd81c2b38df654093971d82"
+    },
+    {
+      "source_path": "priority/t5-evidence.lock.json",
+      "preserved_path": "priority/history/t5-proposal/t5-evidence.lock.json",
+      "sha256": "6782c7835939865c3ab4798ada955bdd20323efed5ee527532033decec876851"
+    },
+    {
+      "source_path": "priority/t5-fields-and-evidence-route.md",
+      "preserved_path": "priority/history/t5-proposal/t5-fields-and-evidence-route.md",
+      "sha256": "0d24f94745ea2e6a1371b3f63fb28a218d168b8468b7ec3bf572cd0d78ad77a4"
+    },
+    {
+      "source_path": "priority/t5-structure.json",
+      "preserved_path": "priority/history/t5-proposal/t5-structure.json",
+      "sha256": "736999d9c83d4092922d12d5a6521a9be7a0c9ccbef27eb8d9587207f139b1ce"
+    },
+    {
+      "source_path": "priority/t5_refs.py",
+      "preserved_path": "priority/history/t5-proposal/t5_refs.py.txt",
+      "sha256": "8261731dd02969a00f8f49ab3ba6313539e2cdcbbb982ca9d291d757aa1fec87"
+    },
+    {
+      "source_path": "priority/t5_review.py",
+      "preserved_path": "priority/history/t5-proposal/t5_review.py.txt",
+      "sha256": "bc0b1abda7f222e465c070cc00160b2bda82caf12eb1ba7f518206bf0f404ab8"
+    },
+    {
+      "source_path": "priority/test_t5_refs.py",
+      "preserved_path": "priority/history/t5-proposal/test_t5_refs.py.txt",
+      "sha256": "e3d0d05eab3cbee7dd70a45dacddc751a7bfd517bb2544d06286c30b941701ad"
+    },
+    {
+      "source_path": "priority/test_t5_review.py",
+      "preserved_path": "priority/history/t5-proposal/test_t5_review.py.txt",
+      "sha256": "b082fad760c46f5d1b8eed4c44a182e65fb7bacf1a5424b7a0daa53b9f021aa7"
+    }
+  ]
+}

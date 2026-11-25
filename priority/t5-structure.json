@@ -1,0 +1,43 @@
+{
+  "format": "ruralscan.t5-extension-manifest.v1",
+  "status": "proposed_not_accepted",
+  "activation": "disabled",
+  "table": "priority/T5_classification_refs.csv",
+  "primary_key": "variable_id",
+  "columns": [
+    "variable_id",
+    "mcda_role",
+    "concern_id",
+    "profile_ref",
+    "proposed_rule_ref",
+    "accepted_rule_ref",
+    "classification_status"
+  ],
+  "profile_file": "priority/profiles/t5-0.2.0.json",
+  "profile_fields": [
+    "quantity",
+    "unit",
+    "temporal_statistic",
+    "spatial_support",
+    "context",
+    "binding_candidates",
+    "binding_status",
+    "uncertainty",
+    "missing",
+    "blockers"
+  ],
+  "readiness_states": [
+    "held",
+    "descriptor"
+  ],
+  "accepted_rules": [],
+  "dependencies": {
+    "data-model/configuration/T5_opportunity_space.csv": "cd5cb481fe0e47a97b8945332cf66b20158ebdaeadd90181a3ea511b266470cc",
+    "data-model/configuration/T1_data_registry.csv": "1746c118f1c13594e18baf884238718e67d8f528d2c1ac25d2c6d0ca2e55e5b0",
+    "data-model/configuration/VONT_variable_ontology.csv": "c9ea583a49df91220ad2737acfcee9bf0943af04ed158f40d9bbee10dc349b42",
+    "data-model/configuration/BIND_dataset_binding.csv": "6aeb5481a121cca768efd69ebe277b95a85e2c7f1ef9941e9cc74536c9bcfa35",
+    "data-model/priority-contract.json": "a4969d7549f73486798c792100a4cfdcfae750bfb2526fe147ca51c2e13ae9e2",
+    "priority/routing-directions.json": "a04cd8795e18274207d0004d9bcd5d21fc30ff6cf4a43acc18c9dd93017b7f32"
+  },
+  "schema_issue": "https://github.com/RuralScan/method/issues/103"
+}

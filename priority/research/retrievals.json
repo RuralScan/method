@@ -1,0 +1,46 @@
+{
+  "status": "research_retrievals_not_registered",
+  "retrievals": [
+    {
+      "file": "fao_asis_legend.jpg",
+      "url": "https://www.fao.org/giews/earthobservation/country/imgs/MUVHI_legend.JPG",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "file": "naturebase_accounting.pdf",
+      "url": "https://naturebase-shared-docs.s3.amazonaws.com/NCS_Accounting_rules_narrative.pdf",
+      "resolved_url": "https://naturebase-shared-docs.s3.amazonaws.com/NCS_Accounting_rules_narrative.pdf",
+      "bytes": 705159,
+      "sha256": "ba5cff6d9555b2fd23e7451ab9be18a253af21781636a73633910b62b070a01d"
+    },
+    {
+      "file": "fao_asis_faq.html",
+      "url": "https://www.fao.org/giews/earthobservation/faq.jsp",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "file": "fao_asis_access.html",
+      "url": "https://www.fao.org/giews/earthobservation/access.jsp",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "file": "wri_faq.md",
+      "url": "https://raw.githubusercontent.com/wri/Aqueduct40/master/data_FAQ.md",
+      "resolved_url": "https://raw.githubusercontent.com/wri/Aqueduct40/master/data_FAQ.md",
+      "bytes": 12898,
+      "sha256": "85105c9319f053802e44ddc59c4627e68a30276e99421cc4591fd04b574ed022"
+    },
+    {
+      "file": "water_stress_sdg.pdf",
+      "url": "https://unstats.un.org/sdgs/metadata/files/metadata-06-04-02.pdf",
+      "resolved_url": "https://unstats.un.org/sdgs/metadata/files/metadata-06-04-02.pdf",
+      "bytes": 279234,
+      "sha256": "6105ec271189d41deb7761bcbc12a8de24a97c346b9b22be3523e93a1f56ca3a"
+    }
+  ],
+  "inspection_notes": [
+    "FAO HTML/direct image fetch returned 403; official intensity legend subsequently inspected in browser.",
+    "Naturebase live catalogue inspected in browser across all three NCS-filter pages; 20 individual pathways, not 29.",
+    "No new research source receives a canonical ID or human review state here."
+  ]
+}

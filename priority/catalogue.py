@@ -92,7 +92,7 @@ def validate(rule):
     for source in rule["sources"]:
         require(set(source) == {"repository", "revision", "path", "sha256", "source_id", "finding_ids", "review_state"}, "Invalid source reference")
         require(source["repository"] == "RuralScan/evidence" and re.fullmatch(r"[0-9a-f]{40}", source["revision"]), "Unpinned source repository")
-        require(re.fullmatch(r"workflows/priority_classification/packets/[a-z0-9_]+\.json", source["path"]), "Invalid packet path")
+        require(re.fullmatch(r"workflows/priority_classification/(packets/[a-z0-9_]+\.json|batches/[a-z0-9-]+/candidate\.json)", source["path"]), "Invalid packet path")
         require(re.fullmatch(r"[0-9a-f]{64}", source["sha256"]), "Invalid source packet digest")
     require(rule["input_sha256"] and all(re.fullmatch(r"[0-9a-f]{64}", h) for h in rule["input_sha256"].values()), "Missing definition dependency hashes")
     return digest(rule)
