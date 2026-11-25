@@ -2,7 +2,7 @@
 
 [Machine-readable contract](../data-model/priority-contract.json). This is the current T2/T5 priority interface. The CSVs in `data-model/configuration/` and their frozen definition snapshot retain historical inputs; their old normalization, default-weight and climate-mode fields do not supply defaults to this route. Adopting the new contract does not calibrate those historical variables or change any evidence finding.
 
-T2 is a registry of climate-risk variables. There is no combined Climate Risk Index or Mode A/B calculation in this route. T5 identifies priorities and descriptors. Each selected variable refers to one classification rule and a shared `concern_id`. The same climate concern appearing in both registries must enter the stack once. M2b investment risk remains a separate screen.
+The [current T2 registry](t2/README.md) preserves all eleven IDs with explicit candidate data and readiness blockers. Its historical CSV remains available for reproduction. T2 is a registry of climate-risk variables. There is no combined Climate Risk Index or Mode A/B calculation in this route. T5 identifies priorities and descriptors. Each selected variable refers to one classification rule and a shared `concern_id`. The same climate concern appearing in both registries must enter the stack once. M2b investment risk remains a separate screen.
 
 ## Classification
 
