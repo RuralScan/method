@@ -6,6 +6,11 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.22.0] - 2026-11-25
+
+- Define the versioned T4 scientific proposal, exact human acceptance and mapping-package interface.
+- Keep source holds, historical mappings and runtime implementation distinct from accepted scientific outputs.
+
 ## [0.21.1] - 2026-11-25
 
 - Clarify why XW and BANDS remain inputs to AI synthesis without automatically assigning scientific weights or ratings.
