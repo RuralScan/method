@@ -17,6 +17,8 @@ from collections import Counter
 from pathlib import Path
 
 import data
+import pages_coverage
+import review_coverage
 from core import (
     CATALOG_URL,
     CIAT_RAW,
@@ -637,6 +639,10 @@ def build():
         1 for f in tables["findings"] if '"study_country"' in f["study_context"]
     )
     body = (
+        pages_coverage.headline() + pages_coverage.practice_table()
+        + "<p>" + link("evidence-findings.html", "Browse all collected findings, including pending and broader evidence") + " · "
+        + link("evidence-counts.html#downloads", "Download review coverage and finding IDs") + "</p>"
+        + '<h2 id="historical-edition">Historical recipe-edition data</h2>'
         "<p>This section is for getting the evidence out and using it. Every rating in the method rests on "
         "findings extracted from sources. The tables below hold those findings, the sources, the rows they "
         "support and the review status of each, for one fixed edition. They are plain CSV files with a "
@@ -644,7 +650,7 @@ def build():
         "where they sit.</p>" + stats
         + f"<p>Of {len(data.EV):,} registered findings, {sum(data.retained(u) for u in data.EV):,} are retained and "
         f"{sum(not data.retained(u) for u in data.EV):,} are dropped but preserved for audit. "
-        "Practice summaries count retained findings; downloads include both states. "
+        "These historical downloads include both states. Current review-coverage counts above use a separate, later snapshot. "
         + link("evidence-counts.html#definitions", "Count definitions") + ".</p>"
         '<div class="grid3">'
         f'<div class="card"><h3>1. Download</h3><p>Ten tables, one edition, each with a checksum. '
@@ -1070,6 +1076,9 @@ def build():
         "name": "Rural NbS Scan methodology: downloadable data",
         "release": RELEASE,
         "producerRevision": PRODUCER,
+        "reviewCoverage": {**review_coverage.load().metadata(),
+                           "counts": "data/review-coverage.json", "csv": "data/review-coverage.csv",
+                           "findings": "data/review-findings.json", "browse": "evidence-findings.html"},
         "accessRights": descriptor["accessRights"],
         "citation": descriptor["citation"],
         "package": {
@@ -1148,11 +1157,19 @@ def llms(descriptor, resources, tables, counts):
         "## Edition",
         "",
         f"- Recipe release: {RELEASE} (candidate, not released)",
-        f"- Producer revision of every table and register: {PRODUCER}",
+        f"- Historical recipe-edition producer revision: {PRODUCER}",
         f"- Data package edition: {PACKAGE_EDITION}",
         "- Counts from different revisions describe different records. Do not add them or treat a difference as new evidence for this edition.",
         "",
-        "## Data package (start here)",
+        "## Review coverage in sections 5 and 6",
+        "",
+        f"- Official review queue revision: {review_coverage.PIN['revision']}; SHA-256 {review_coverage.PIN['sha256']}",
+        "- [Counts and definitions](data/review-coverage.json), [CSV](data/review-coverage.csv), [finding IDs and scopes](data/review-findings.json).",
+        "- Reviewed means reviewed and kept. Total retained = reviewed and kept + pending + held. Rejected findings remain separate.",
+        "- Broader evidence is context, not assigned to children. T3/T6 cited subsets overlap; use all collected effects to include uncited pending findings.",
+        "- These counts are separate from the historical recipe edition below. They do not claim new synthesis or runtime approval.",
+        "",
+        "## Historical data package",
         "",
         f"- [Package description, Frictionless Tabular Data Package]({PACKAGE_URL}): fields, types, allowed values, keys, joins, checksums. SHA-256 {PACKAGE_SHA256}",
         f"- [Edition catalogue, schema.org JSON-LD]({EDITION_CATALOG_URL})",

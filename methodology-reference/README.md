@@ -28,6 +28,29 @@ The build also reads the published site branch of this repository at one fixed r
 `build/core.py`) for the live dashboard's label, its producer revisions, the data package edition and the list of drafts. Run
 `git fetch origin gh-pages` once so that revision is available locally.
 
+### Review coverage in sections 5 and 6
+
+`review-coverage-pin.json` pins the official RuralScan/evidence review queue by full revision and
+SHA-256. `fetch_package.py` downloads it beside the historical recipe package; the offline build
+checks its digest again. To refresh coverage, update that pin and the methodology version, then
+rebuild and run the checks. This does not change the historical recipe edition or any review decisions.
+
+Both sections use `build/review_coverage.py`: reviewed and kept / total retained, with pending,
+held and rejected states visible. The denominator is kept + pending + held. Each scope uses unique
+finding IDs, and broader or earlier-scope pointers are not added to child totals. All collected T3/T6
+effects include uncited findings; the queue's T3 and T6 membership lists are labelled as cited subsets.
+
+The count links open a read-only, paginated finding browser. Every finding links to its live review
+card, which may be newer than the pinned count. JSON and CSV coverage exports carry definitions and
+source metadata, and are listed in `data/assets.json` and `llms.txt`.
+
+    python3 -B -m unittest discover -s build -p test_review_coverage.py
+    node build/test_review_coverage.cjs site
+
+The tests reconcile official EV and review-log status, queue membership, practice totals, pending
+findings with no compiled mapping, deduplication, broader context and earlier-scope retention. The
+JavaScript test checks every generated scope/lane/relationship count against the browser selector.
+
 ## Version numbers
 
 The methodology carries one version number, written major.minor.patch. It is kept in `VERSION.json` with its

@@ -6,6 +6,13 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.19.0] - 2026-11-25
+
+- Show reviewed-and-kept versus total retained findings in Practices and Evidence base, from one pinned official review queue.
+- Keep pending, held, rejected and broader evidence accessible, including findings with no compiled recipe row.
+- Preserve earlier family scopes while source-scope review is pending; deduplicate parent totals by evidence ID.
+- Add linked finding drill-downs and machine-readable coverage exports, with historical recipe outputs clearly distinguished.
+
 ## [0.18.0] - 2026-11-24
 
 - Define explicit T2/T5 problem classes, shared concern identities and user-weighted priority scores.

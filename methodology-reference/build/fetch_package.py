@@ -18,6 +18,7 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import core
+import review_coverage
 
 
 def get(url):
@@ -33,6 +34,11 @@ def digest(raw):
 
 
 def main():
+    review_raw = get(review_coverage.URL)
+    review_coverage.verified(review_raw)
+    review_coverage.CACHE.parent.mkdir(parents=True, exist_ok=True)
+    review_coverage.CACHE.write_bytes(review_raw)
+    print(f"Verified review coverage at {review_coverage.PIN['revision']}")
     catalog = json.loads(get(core.EDITION_CATALOG_URL))
     listed = [
         d.get("sha256")

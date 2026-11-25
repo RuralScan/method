@@ -3,6 +3,8 @@
 from collections import Counter
 
 import data
+import pages_coverage
+import review_coverage
 from chapters import chapter_body
 from core import (
     BLOCKED_KEYS,
@@ -28,7 +30,6 @@ from core import (
     text,
     words,
 )
-from pages_evidence import practices_of
 
 # Presentation notes for historical registry records, not synthesis eligibility rules.
 # Source: methodology/audits/wh_scope_review_20261104/README.md, Decision requested.
@@ -876,13 +877,15 @@ def practice_page(practice):
     fams = data.FAMILIES[practice]
     lead = esc(PRACTICE_TEXT[practice][0])
     body = (
-        '<div class="stats">'
+        pages_coverage.headline(practice) + pages_coverage.lane_table(practice)
+        + pages_coverage.scope_table(practice)
+        + '<h2 id="historical-rows">Historical recipe rows</h2><div class="stats">'
         + "".join(
             f"<div><b>{counts[t]}</b><span>{badge(t)} {esc(TABLE_NAMES[t])}</span></div>"
             for t in ROW_TABLES
         )
         + f"<div><b>{len([f for f in fams if f in data.FAMILY_ROWS])}</b><span>registered suitability families</span></div></div>"
-        + '<p class="basis">Rows in the draft recipe edition. Counts are rows, not evidence strength.</p>'
+        + '<p class="basis">Rows in the historical draft recipe edition. These are not counts of current evidence or accepted agent syntheses.</p>'
     )
     intro, toc = chapter_body(f"practice-{practice}")
     body += '<section class="chapter">' + intro + "</section>"
@@ -936,6 +939,7 @@ def practice_page(practice):
     for f in fams:
         subs = data.FAMILY_ROWS.get(f, [])
         body += f'<h3 id="fam-{esc(f)}">{esc(family_name(f))}</h3>'
+        body += pages_coverage.family_suitability(f)
         if f in FAMILY_SCOPE_NOTES:
             body += f'<p class="empty">{esc(FAMILY_SCOPE_NOTES[f])}</p>'
             continue
@@ -976,7 +980,7 @@ def practice_page(practice):
             elif "qualitative_only" in data.family_product(f) and not is_cross(f):
                 body += f'<h3>{esc(family_name(f))}</h3><p class="empty">Parked: qualitative guidance only (no map, no generated effect rows).</p>'
 
-    toc = toc + [
+    toc = [("review-coverage", "Evidence collected and reviewed"), ("historical-rows", "Historical recipe rows")] + toc + [
         ("registry", "Practice registry record"),
         ("families", "Suitability families"),
         ("T4", TABLE_NAMES["T4"]),
@@ -998,50 +1002,23 @@ def practice_page(practice):
 FAMILY_CAPTION = {}
 
 
-def practice_facts():
-    """Counts per practice, with the same definitions as the counts page."""
-    kept = [u for u in data.EV if data.retained(u)]
-    facts = []
-    for p in PRACTICE_IDS:
-        facts.append(
-            {
-                "practice": p,
-                "families": len(
-                    {f["suitability_family_id"] for f in data.FAM if f["nbs_id"] == p}
-                ),
-                "searches": sum(1 for x in data.SRCH if x.get("nbs_id") == p),
-                "sources": sum(1 for x in data.SRC if p in practices_of(x)),
-                "findings": sum(1 for u in kept if u.get("nbs_id") == p),
-                "rows": {t: data.ROW_COUNTS[(p, t)] for t in ROW_TABLES},
-            }
-        )
-    return facts
-
-
 def practice_cards():
-    """One card per practice: what it is, and how much evidence the edition holds for it."""
-    facts = practice_facts()
-    top = max(f["findings"] for f in facts)
+    """Current review coverage; historical recipe counts remain in the table below."""
     cards = []
-    for f in facts:
-        p = f["practice"]
-        name = esc(practice_name(p))
-        share = round(100 * f["findings"] / top)
-        rows = "".join(
-            f"<li>{badge(t)} {esc(TABLE_NAMES[t])} "
-            + (f"<b>{n}</b>" if n else '<b class="none">0 compiled</b>')
-            + "</li>"
-            for t, n in f["rows"].items()
-        )
+    for p in PRACTICE_IDS:
+        node = "practice:" + p
+        c = review_coverage.load().counts(node)
+        share = round(100 * c["reviewed_kept"] / c["retained_total"]) if c["retained_total"] else 0
         cards.append(
-            f'<article class="pcard"><h3>{link(f"practice-{p}.html", name)}</h3>'
+            f'<article class="pcard"><h3>{link(f"practice-{p}.html", esc(practice_name(p)))}</h3>'
             f'<p class="pdesc">{esc(PRACTICE_TEXT[p][0])}</p>'
-            f'<p class="pmain"><b>{f["findings"]:,}</b> retained findings from <b>{f["sources"]:,}</b> sources</p>'
-            f'<div class="meter" role="img" aria-label="{f["findings"]:,} findings, {share} percent of the '
-            f'largest practice" title="{f["findings"]:,} findings retained"><span style="width:{share}%"></span></div>'
-            f'<p class="pmeta">{f["families"]} {"family" if f["families"] == 1 else "families"} · '
-            f"{f['searches']} recorded searches · {sum(f['rows'].values())} compiled rows</p>"
-            f'<ul class="prows">{rows}</ul></article>'
+            f'<p class="pmain">{pages_coverage.progress(node)} reviewed and kept / total retained</p>'
+            f'<div class="meter" role="img" aria-label="{share} percent of retained findings reviewed and kept">'
+            f'<span style="width:{share}%"></span></div>'
+            '<p>' + pages_coverage.finding_link(f"{c['awaiting']:,} awaiting review or resolution", node, state="awaiting")
+            + f" (including {c['held']} held). "
+            + pages_coverage.finding_link(f"{c['rejected']} rejected", node, state="rejected") + '.</p>'
+            + pages_coverage.finding_link("Browse findings →", node) + '</article>'
         )
     return f'<div class="pgrid">{"".join(cards)}</div>'
 
@@ -1096,55 +1073,15 @@ def build():
             f"<strong>{total['T6E']}</strong>",
         ]
     )
-    kept = [u for u in data.EV if data.retained(u)]
-    headline = [
-        (
-            f"{len(PRACTICE_IDS)}",
-            "practices covered",
-            "Nature-based practices with evidence in this edition.",
-        ),
-        (
-            f"{len({f['suitability_family_id'] for f in data.FAM})}",
-            "registered family identifiers",
-            "Registered identifiers include cross-family context and excluded historical records; consult each practice’s scope notes.",
-        ),
-        (
-            f"{len(data.SRC):,}",
-            "sources registered",
-            "Papers, practitioner records and tools that passed screening.",
-        ),
-        (
-            f"{len(kept):,}",
-            "findings retained",
-            "One finding is one claim from one source, stored with its quote.",
-        ),
-        (
-            f"{len(data.ROWS):,}",
-            "rows compiled",
-            "Rules and ratings pooled from the findings.",
-        ),
-    ]
     body = (
-        '<div class="stats big">'
-        + "".join(
-            f'<div title="{esc(tip)}"><b>{n}</b><span>{esc(label)}</span></div>'
-            for n, label, tip in headline
-        )
-        + "</div>"
-        + f'<p>{len(data.EV):,} findings are registered: {len(kept):,} retained and {len(data.EV) - len(kept):,} dropped but preserved for audit. '
-        "Retained does not mean human-approved or eligible for every analytical table. Family counts include cross-family context and historical records; each practice page states exclusions. "
-        + link("evidence-counts.html#definitions", "Count definitions") + ".</p>"
-        '<h2 id="evidence">How much evidence each practice has</h2>'
-        "<p>For each practice the team searched the literature and practitioner databases, read the sources, "
-        "extracted findings with their quotes, and compiled them into rows: where the practice fits, how it "
-        "responds to hazards, what it delivers, and what it costs.</p>"
+        pages_coverage.headline()
+        + '<h2 id="evidence">Evidence by practice</h2>'
+        '<p>Each card counts unique findings at the practice and its more specific scopes. Pending findings remain '
+        'visible before synthesis; broader findings remain available as context on each practice page.</p>'
         + practice_cards()
-        + '<p class="basis">Bars compare retained findings across practices. Counts show coverage and effort, not '
-        "strength of evidence: a row built on many findings can still carry low confidence, and each row states "
-        "its own. Zero compiled rows means this edition has no output for that table; it does not mean no evidence was found. "
-        "A source that serves two practices is counted under both. "
-        f"{link('evidence-counts.html#practice', 'The same counts as a table, with definitions')}.</p>"
-        '<h2 id="rows">Rows by practice and table</h2>'
+        + '<p class="basis">Bars show review progress, not evidence strength. '
+        + link('evidence-counts.html#practice', 'The same review counts as a table, with definitions') + '.</p>'
+        '<h2 id="rows">Historical recipe rows by practice and table</h2>'
         "<p>Each practice page gives the scientific basis of its family scheme, then every compiled row "
         "of the draft recipe edition with its status, uncertainty and evidence. Suitability is reasoned "
         "per family, because sub-practices with different limiting factors cannot share one map.</p>"
@@ -1158,7 +1095,7 @@ def build():
                 TABLE_NAMES["T6E"],
             ],
             cards,
-            caption="Six practices in this draft edition · rows by table",
+            caption="Six practices in the historical draft recipe edition · output rows by table",
             numeric=(1, 2, 3, 4, 5),
         )
         + f'<p class="basis">{sum(total.values())} recipe rows in total: {sum(1 for r in data.ROWS if r["family"])} scoped to a family '
@@ -1176,7 +1113,7 @@ def build():
         "practices.html",
         "Practices",
         body,
-        lead="Six nature-based practices, their suitability families and every compiled row.",
+        lead="Six nature-based practices, their collected evidence, review progress and historical recipe rows.",
     )
     for p in PRACTICE_IDS:
         practice_page(p)
