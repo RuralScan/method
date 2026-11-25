@@ -88,6 +88,8 @@ def release(root, base, approvals):
 
     transition = validate_family_transition(root)
     require(transition["decision_id"] in active, "Family transition needs a decided method code")
+    aggregation_code = transition["evidence_aggregation"]["decision_id"]
+    require(aggregation_code in active, "Evidence aggregation needs a decided method code")
     return dict(
         format="ruralscan.compiler-definitions.v1",
         files=files,
@@ -95,6 +97,7 @@ def release(root, base, approvals):
             "file": TRANSITION,
             "sha256": sha256((root / TRANSITION).read_bytes()).hexdigest(),
             "decision_id": transition["decision_id"],
+            "aggregation_decision_id": aggregation_code,
             "adoption": "separate_evidence_compatibility_and_scope_review_required",
         },
         archive=json.loads((root / "configuration/archive.json").read_bytes()),

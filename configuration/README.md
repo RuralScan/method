@@ -24,6 +24,11 @@ previous definitions and requires source review before any existing finding is
 reassigned. This release must not be adopted in evidence until a separate PR
 supports historical family resolution and preserves evidence and review history.
 Changing the method pin alone is not that migration.
+The same transition requires upward evidence aggregation from specific practices
+to families, evidence groups and the practice as a whole. Broader evidence remains
+visible when a child has little direct support. Parent counts deduplicate findings;
+scientific summaries retain coverage and disagreement and need human acceptance.
+Grouping evidence does not merge placement rules or approve downward inheritance.
 
 Archived confidence matrices, weighting factors and former T4 inputs remain only for
 understanding immutable historical editions. The T4 compiler and automatic T3/T6

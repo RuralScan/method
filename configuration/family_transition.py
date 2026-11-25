@@ -94,4 +94,30 @@ def validate(root):
             outputs["affected_proposals_need_new_input_hashes_and_acceptance"] is True and
             outputs["historical_gate_reuse"] == "not_authorized_by_definition_change",
             "Definition edit cannot accept scientific outputs")
+    aggregation = data["evidence_aggregation"]
+    require(aggregation["levels"] == ["subpractice", "suitability_family", "optional_evidence_group", "practice"],
+            "Missing evidence aggregation levels")
+    groups = aggregation["groups"]
+    require(set(groups) == {"agroforestry__linear_plantings"}, "Missing linear evidence group")
+    for uid, group in groups.items():
+        require(uid not in old_families | new_families and group["nbs_id"] == data["nbs_id"] and
+                group["is_suitability_family"] is False and group["is_legacy_family_alias"] is False,
+                "Evidence group cannot replace a suitability or legacy family")
+        require(len(group["families"]) == len(set(group["families"])) and
+                set(group["families"]) == set(data["display_groups"][group["label"]]),
+                "Incomplete evidence group membership")
+    for key in ("specific_to_broad", "allow_direct_broader_evidence", "show_broader_support_for_sparse_children",
+                "retain_original_scope_and_review_status", "report_child_coverage_and_conflict",
+                "existing_synthesis_eligibility_applies"):
+        require(aggregation[key] is True, f"Missing aggregation safeguard: {key}")
+    for key in ("parent_claims_support_for_every_child", "automatic_downward_inheritance",
+                "pool_placement_rules", "missing_child_support_is_zero"):
+        require(aggregation[key] is False, f"Unsafe evidence aggregation: {key}")
+    for key, value in {
+        "parent_count": "union_of_evidence_ids",
+        "independence": "reviewed_study_origin_not_row_count",
+        "scientific_summary": "scope_justified_ai_proposal_with_human_acceptance",
+        "consumer_implementation": "pending_separate_evidence_adoption",
+    }.items():
+        require(aggregation[key] == value, f"Invalid evidence aggregation: {key}")
     return data

@@ -62,6 +62,12 @@ class AgroforestryTransition(unittest.TestCase):
                 (lambda d: d["evidence_migration"].update(automatic_reassignment=True), "Unsafe evidence migration"),
                 (lambda d: d["evidence_migration"].update(reuse_approval_for_changed_scope=True), "Unsafe evidence migration"),
                 (lambda d: d["scientific_outputs"].update(definition_change_recomputes_outputs=True), "cannot accept"),
+                (lambda d: d["evidence_aggregation"]["groups"]["agroforestry__linear_plantings"]["families"].pop(), "Incomplete evidence group"),
+                (lambda d: d["evidence_aggregation"].update(specific_to_broad=False), "Missing aggregation safeguard"),
+                (lambda d: d["evidence_aggregation"].update(parent_count="sum_of_child_counts"), "Invalid evidence aggregation"),
+                (lambda d: d["evidence_aggregation"].update(automatic_downward_inheritance=True), "Unsafe evidence aggregation"),
+                (lambda d: d["evidence_aggregation"].update(missing_child_support_is_zero=True), "Unsafe evidence aggregation"),
+                (lambda d: d["evidence_aggregation"].update(pool_placement_rules=True), "Unsafe evidence aggregation"),
             ]
             for mutate, message in mutations:
                 with self.subTest(message=message):
