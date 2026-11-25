@@ -1,0 +1,88 @@
+{
+  "format": "ruralscan.priority-proposal.v1",
+  "classification_id": "aqueduct_bws",
+  "version": "0.1.0",
+  "author_assessment": "held",
+  "variables": [
+    "water_stress"
+  ],
+  "concern_id": "water_stress",
+  "role": "priority",
+  "quantity": "Total demand relative to available renewable water supply",
+  "unit": "fraction",
+  "temporal_statistic": "Aqueduct 4.0 annual baseline; monthly demand-weighted aggregation, 1979\u20132019 inputs",
+  "context": {
+    "geography": null,
+    "period": null,
+    "scenario": "baseline",
+    "purpose": "method_review_only_not_pilot"
+  },
+  "spatial_support": "HydroBASINS 6; use basin support despite finer polygon intersections",
+  "binding": {
+    "dataset_id": "wri_aqueduct_water_stress",
+    "asset": "WRI/Aqueduct_Water_Risk/V4/baseline_annual",
+    "field": "bws_raw",
+    "source_unit": "fraction",
+    "scale": 1,
+    "offset": 0,
+    "domain": {
+      "min": 0,
+      "max": 1
+    },
+    "nodata": "unknown; status and sentinel validation required",
+    "validation": "documentation_only"
+  },
+  "method": null,
+  "direction": "higher_is_more_concern",
+  "cuts": null,
+  "endpoint": "upper_inclusive",
+  "missing": "unknown",
+  "class_scores": {
+    "none": 0,
+    "low": 0.33,
+    "medium": 0.66,
+    "high": 1
+  },
+  "class_meanings": null,
+  "reference_sample": null,
+  "sources": [
+    {
+      "repository": "RuralScan/evidence",
+      "revision": "341f551dc8aa384b40d4f8aacb1e169325b46b92",
+      "path": "workflows/priority_classification/packets/wri_aqueduct40_2023.json",
+      "sha256": "950855fd102cf0c91377c71790c4d45992aa309ef2b1fe5dc681f3d802b0eabb",
+      "source_id": null,
+      "finding_ids": [],
+      "review_state": "unreviewed_staging"
+    },
+    {
+      "repository": "RuralScan/evidence",
+      "revision": "341f551dc8aa384b40d4f8aacb1e169325b46b92",
+      "path": "workflows/priority_classification/packets/aqueduct_gee_catalogue.json",
+      "sha256": "8c67e084db59a2c3e4557f18712edc5efcec9bbe1c3db46cc0bc420ad77cd426",
+      "source_id": null,
+      "finding_ids": [],
+      "review_state": "unreviewed_staging"
+    }
+  ],
+  "input_sha256": {
+    "data-model/configuration/T2_climate_risk.csv": "be738086bdc53e86cc31878d6311c80ab839ac9bf999a63efbcb572629eff5c1",
+    "data-model/configuration/T5_opportunity_space.csv": "cd5cb481fe0e47a97b8945332cf66b20158ebdaeadd90181a3ea511b266470cc",
+    "data-model/configuration/T1_data_registry.csv": "1746c118f1c13594e18baf884238718e67d8f528d2c1ac25d2c6d0ca2e55e5b0",
+    "data-model/configuration/VONT_variable_ontology.csv": "c9ea583a49df91220ad2737acfcee9bf0943af04ed158f40d9bbee10dc349b42",
+    "data-model/configuration/BIND_dataset_binding.csv": "6aeb5481a121cca768efd69ebe277b95a85e2c7f1ef9941e9cc74536c9bcfa35"
+  },
+  "rationale": "Keep source bands at 10/20/40/80 percent separate from proposed method classes. No source-defined none category. Do not relabel low stress as none or treat arid status as a raw negative number.",
+  "alternatives": [
+    "Hold under v1; preserve five provider classes for description (recommended first release).",
+    "Propose new three-class threshold mode with fixed cuts 0.2 and 0.4, low/medium/high only, preserving source detail; endpoint and arid treatment need review.",
+    "Four-class [0, 0.2, 0.4] would reserve none for validated zero demand ratio, not low stress; this is a design interpretation, not source-established none."
+  ],
+  "blockers": [
+    "Decide four-class mapping or reviewed three-class threshold extension",
+    "Verify raw value domain, NoData and arid status in actual asset",
+    "Register/review source packets; approve context and binding"
+  ],
+  "supersedes": null,
+  "decision_id": "priority_aqueduct_bws_v010"
+}

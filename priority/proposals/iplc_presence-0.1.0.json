@@ -1,0 +1,74 @@
+{
+  "format": "ruralscan.priority-proposal.v1",
+  "classification_id": "iplc_presence",
+  "version": "0.1.0",
+  "author_assessment": "held",
+  "variables": [
+    "iplc_lands"
+  ],
+  "concern_id": "iplc_inclusion",
+  "role": "priority",
+  "quantity": "Mapped Indigenous/community land presence",
+  "unit": "binary",
+  "temporal_statistic": "Feature-specific mapped snapshot",
+  "context": {
+    "geography": null,
+    "period": null,
+    "scenario": "baseline",
+    "purpose": "method_review_only_not_pilot"
+  },
+  "spatial_support": "Mapped polygons; outside mapped coverage unknown",
+  "binding": {
+    "dataset_id": null,
+    "asset": null,
+    "field": null,
+    "source_unit": "binary",
+    "scale": 1,
+    "offset": 0,
+    "domain": {
+      "min": null,
+      "max": null
+    },
+    "nodata": "unknown",
+    "validation": "not_verified"
+  },
+  "method": null,
+  "direction": null,
+  "cuts": null,
+  "endpoint": "upper_inclusive",
+  "missing": "unknown",
+  "class_scores": {
+    "none": 0,
+    "low": 0.33,
+    "medium": 0.66,
+    "high": 1
+  },
+  "class_meanings": null,
+  "reference_sample": null,
+  "sources": [
+    {
+      "repository": "RuralScan/evidence",
+      "revision": "341f551dc8aa384b40d4f8aacb1e169325b46b92",
+      "path": "workflows/priority_classification/packets/landmark_completeness.json",
+      "sha256": "f213b8ec123cac5456dd76e3eb92f9bc974d7a85d93dec93b233a72a97460c44",
+      "source_id": null,
+      "finding_ids": [],
+      "review_state": "unreviewed_staging"
+    }
+  ],
+  "input_sha256": {
+    "data-model/configuration/T2_climate_risk.csv": "be738086bdc53e86cc31878d6311c80ab839ac9bf999a63efbcb572629eff5c1",
+    "data-model/configuration/T5_opportunity_space.csv": "cd5cb481fe0e47a97b8945332cf66b20158ebdaeadd90181a3ea511b266470cc",
+    "data-model/configuration/T1_data_registry.csv": "1746c118f1c13594e18baf884238718e67d8f528d2c1ac25d2c6d0ca2e55e5b0",
+    "data-model/configuration/VONT_variable_ontology.csv": "c9ea583a49df91220ad2737acfcee9bf0943af04ed158f40d9bbee10dc349b42",
+    "data-model/configuration/BIND_dataset_binding.csv": "6aeb5481a121cca768efd69ebe277b95a85e2c7f1ef9941e9cc74536c9bcfa35"
+  },
+  "rationale": "Propose retaining a safeguard/context overlay while scoring is held. Rights presence is not a graded deficit; missing mapping cannot be coded as zero. Preserve historical T5 designation pending decision.",
+  "alternatives": [],
+  "blockers": [
+    "Binary/categorical scoring unsupported by current contract",
+    "Coverage and purpose decision required; no forced numerical cutoffs"
+  ],
+  "supersedes": null,
+  "decision_id": "priority_iplc_presence_v010"
+}
