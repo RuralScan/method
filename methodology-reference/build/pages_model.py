@@ -385,14 +385,17 @@ def table_page(table_id):
         "<em>conditional</em> required when its trigger holds; <em>derived</em> computed, never authored by hand.</p>"
     )
     section = spec_section(table_id)
+    spec_block = ""
     if section:
-        body += (
+        spec_block = (
             '<h2 id="spec">Specification text</h2>'
             f'<p class="basis">From the method data-model specification ({link(METHOD_URL + "data-model/spec.md", "spec.md")}'
             + (", section shared with Scorecard effects" if table_id == "T6E" else "")
             + ").</p>"
             + f'<div class="spec">{section}</div>'
         )
+        if table_id != "T2":
+            body += spec_block
     body += '<h2 id="contents">Contents in this edition</h2>'
     if rows is not None:
         body += csv_table(
@@ -437,7 +440,7 @@ def table_page(table_id):
                        caption="Shared problem-classification rule")
         intro += '<p>See ' + link('ch-m3-characterisation.html', 'classification workflow') + ' and ' + link('ch-m4-hotspots.html', 'explicit user weighting') + '. Machine-readable contract: ' + link(METHOD_URL + 'data-model/priority-contract.json', 'priority-contract.json') + '.</p>'
         if table_id == 'T2':
-            intro = current_t2.render() + intro
+            intro = current_t2.render() + intro + spec_block
         body = intro + '<details><summary>Historical edition fields and records</summary>' + body + '</details>'
         current_toc = ([("current-t2", "Current entries"), ("t2-blockers", "Before use"), ("t2-fields", "Current fields")] if table_id == "T2" else []) + [("current-priority", "Classification interface")]
     page(
@@ -446,7 +449,7 @@ def table_page(table_id):
         f"{TABLE_NAMES[table_id]} ({table_id})",
         body,
         crumbs=[("data-model.html", "Data model"), ("", table_id)],
-        lead=f"{badge(table_id)} {esc(spec['name'])}",
+        lead=f"{badge(table_id)} {esc(TABLE_NAMES[table_id] if table_id == 'T2' else spec['name'])}",
         toc=current_toc + [("fields", "Historical fields" if current_toc else "Fields")]
         + ([("spec", "Specification text")] if section else [])
         + [("contents", "Contents in this edition")],
