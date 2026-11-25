@@ -11,9 +11,10 @@
   },
   "family_transition": {
     "adoption": "separate_evidence_compatibility_and_scope_review_required",
+    "aggregation_decision_id": "agroforestry_evidence_aggregation",
     "decision_id": "agroforestry_family_definitions",
     "file": "configuration/family-transitions/agroforestry-2026-11-24.json",
-    "sha256": "4689bc2cfbe401592bb6b6aec6f15d5ca7afc00bf6a4b052324d76c9213bdbbc"
+    "sha256": "ee6ac0d7142ccb600ab8c294f2feeee323b8e6e9ebe40a3725ce4e7cfb4dab14"
   },
   "files": {
     "schema/lookups/comparator_policy.csv": {
