@@ -22,6 +22,7 @@ jobs:
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json
           print('revision=' + json.load(open('priority/evidence.lock.json'))['revision'])
+          print('t5_revision=' + json.load(open('priority/t5-evidence.lock.json'))['revision'])
           PY
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -29,9 +30,17 @@ jobs:
           ref: ${{ steps.pin.outputs.revision }}
           path: _priority-evidence
           persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: RuralScan/evidence
+          ref: ${{ steps.pin.outputs.t5_revision }}
+          path: _t5-evidence
+          persist-credentials: false
       - name: Check catalogue, source packets and immutable versions
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: |
           python3 priority/catalogue.py check --evidence-repo _priority-evidence --base "$BASE_SHA"
+          python3 priority/t5_refs.py
+          python3 priority/t5_review.py --evidence-repo _t5-evidence
           python3 -m unittest discover -v -s priority
