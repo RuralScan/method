@@ -16,7 +16,7 @@ This migration registers definitions, not accepted classifications. Every entry 
 
 `concern_id` identifies possible overlap with T5 or another scenario. It is not a claim that different physical quantities are equivalent. Choose a valid representative for a concern in the declared scenario; do not add baseline and future drought as two independent priorities, or rainfall and runoff as independently proven flood layers. T5 literature/classification work owns the subsequent cross-table reconciliation.
 
-`classification_id` and `classification_version` will identify an exact accepted classification through the shared priority workflow. Both are empty and `classification_status=not_assessed` in this migration. The open catalogue proposal in [method #100](https://github.com/RuralScan/method/pull/100) is not an accepted release and supplies no defaults here. Finding review, classification acceptance and user weights remain separate.
+`classification_id` and `classification_version` will identify an exact accepted classification through the shared priority workflow. Both are empty and `classification_status=not_assessed` in this migration. The catalogue introduced by [method #100](https://github.com/RuralScan/method/pull/100) is now present on main, but remains a proposed acceptance/release contract with zero accepted calibrations; it supplies no defaults here. Finding review, classification acceptance and user weights remain separate.
 
 `readiness=blocked` and `blockers` explain what prevents use. These are implementation readiness flags, **not human hold/reject votes**. The current schema deliberately has no ready state. A later reviewed contract must implement and test the acceptance/binding gate before it can advertise ready inputs.
 
