@@ -6,7 +6,7 @@
   "structure_version": "0.4.2-agent-effects",
   "sha256": {
     "data-model/configuration/BIND_dataset_binding.csv": "6aeb5481a121cca768efd69ebe277b95a85e2c7f1ef9941e9cc74536c9bcfa35",
-    "data-model/configuration/FAM_family_registry.csv": "3050387be3fd30d2913effcde7dc51fe60de833366be95fb111518959e214136",
+    "data-model/configuration/FAM_family_registry.csv": "c9117feae1fd9d39a099fbfcc172e32daa845596e8cad80cbde93a00851d07c8",
     "data-model/configuration/T1_data_registry.csv": "1746c118f1c13594e18baf884238718e67d8f528d2c1ac25d2c6d0ca2e55e5b0",
     "data-model/configuration/T2_climate_risk.csv": "be738086bdc53e86cc31878d6311c80ab839ac9bf999a63efbcb572629eff5c1",
     "data-model/configuration/T5_opportunity_space.csv": "cd5cb481fe0e47a97b8945332cf66b20158ebdaeadd90181a3ea511b266470cc",
@@ -22,9 +22,11 @@
     "data-model/structure/columns.json": "9bdc7d7bd35d816592985bd6701be581e631de7fe71a7fdec6be6340ae10fd82",
     "data-model/evidence-classification.json": "f49149ea1548332d1b4f8351fb32aea713dce9e997b8367b04a1345d7f5708a9",
     "data-model/agent-effects-contract.json": "238ddcbdce73e311ba316030789b984c308f382a3b8d610c7779b1c5be4011de",
-    "data-model/priority-contract.json": "a4969d7549f73486798c792100a4cfdcfae750bfb2526fe147ca51c2e13ae9e2"
+    "data-model/priority-contract.json": "a4969d7549f73486798c792100a4cfdcfae750bfb2526fe147ca51c2e13ae9e2",
+    "configuration/family-transitions/agroforestry-2026-11-24.json": "4689bc2cfbe401592bb6b6aec6f15d5ca7afc00bf6a4b052324d76c9213bdbbc"
   },
   "classification_decision": "https://github.com/RuralScan/method/issues/57",
   "synthesis_decision": "https://github.com/RuralScan/method/issues/85#issuecomment-7052114229",
-  "priority_interface": "ruralscan.priority.v1; historical CSV columns are unchanged"
+  "priority_interface": "ruralscan.priority.v1; historical CSV columns are unchanged",
+  "family_transition": "configuration/family-transitions/agroforestry-2026-11-24.json"
 }
