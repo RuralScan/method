@@ -113,6 +113,10 @@ jobs:
       - name: Download and verify the published data package
         working-directory: methodology-reference
         run: python build/fetch_package.py
+      - name: Reconcile coverage with the official review queue
+        run: python -B -m unittest discover -s methodology-reference/build -p test_review_coverage.py
       - name: Build the reference and run its checks
         working-directory: methodology-reference
         run: python -B build/build.py --out "$RUNNER_TEMP/reference-site"
+      - name: Check every browser drill-down against the published counts
+        run: node methodology-reference/build/test_review_coverage.cjs "$RUNNER_TEMP/reference-site"

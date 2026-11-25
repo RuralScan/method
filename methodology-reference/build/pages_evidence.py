@@ -203,7 +203,8 @@ def source_page(source):
         body,
         crumbs=[
             ("evidence-base.html", "Evidence base"),
-            ("sources.html", "Sources"),
+            ("evidence-findings.html", "Browse collected findings"),
+        ("sources.html", "Sources"),
             ("", sid),
         ],
         lead=esc(source.get("citation") or ""),
@@ -430,9 +431,9 @@ def build():
         f"The method is described in {link('ch-discovery.html', 'discovery')}.</p>"
     )
     page(
-        "evidence-counts.html",
+        "edition-counts.html",
         "evidence-base.html",
-        "Counts and definitions",
+        "Historical edition counts and definitions",
         body,
         crumbs=[
             ("evidence-base.html", "Evidence base"),

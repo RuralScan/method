@@ -12,6 +12,8 @@ import re
 import shutil
 import sys
 from pathlib import Path
+from html import unescape
+from urllib.parse import parse_qs, urlsplit
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -20,6 +22,8 @@ import chapters
 import core
 import data
 import pages_data
+import pages_coverage
+import review_coverage
 import pages_evidence
 import pages_model
 import pages_practices
@@ -129,7 +133,8 @@ def run_checks():
         for href in set(re.findall(r'href="([^"]+)"', html)):
             if re.match(r"^[a-z]+:", href) or href.startswith("//"):
                 continue
-            target, _, frag = href.partition("#")
+            parsed = urlsplit(href)
+            target, frag = parsed.path, parsed.fragment
             target = target or name
             if (
                 target in ("site.css", "site.js", "reproduce.html")
@@ -147,6 +152,22 @@ def run_checks():
         "; ".join(broken[:8])
         + (f" (+{len(broken) - 8} more)" if len(broken) > 8 else ""),
     )
+
+    invalid_coverage_links = []
+    model = review_coverage.load()
+    for name, html in core.PAGES.items():
+        for href in re.findall(r'href="([^"]+)"', html):
+            parsed = urlsplit(unescape(href))
+            if parsed.path != "evidence-findings.html" or not parsed.query:
+                continue
+            params = parse_qs(parsed.query, keep_blank_values=True)
+            allowed = {"node": {"", *model.nodes}, "lane": set(review_coverage.LANES),
+                       "state": set(review_coverage.STATES), "relation": set(review_coverage.RELATIONS)}
+            if set(params) != set(allowed) or any(len(values) != 1 or values[0] not in allowed[key]
+                                                  for key, values in params.items() if key in allowed):
+                invalid_coverage_links.append(f"{name}: {href}")
+    check("Every coverage count links to a valid scope, lane, status and relationship",
+          not invalid_coverage_links, "; ".join(invalid_coverage_links[:8]))
 
     # The help page is the one page that names people: the project contacts and team, read from the
     # visual methodology. Every other page is checked.
@@ -431,10 +452,14 @@ def main():
     pages_practices.build()
     pages_model.build()
     pages_evidence.build()
+    pages_coverage.build()
     pages_data.build()
     pages_text.build()
 
+    model = review_coverage.load()
     results = run_checks()
+    results.append(("Coverage matches every finding and hierarchy count in the pinned review queue", True,
+                    f"{len(model.findings):,} findings; {len(model.nodes)} scopes; revision {review_coverage.PIN['revision']}"))
     rows = [
         [
             core.esc(n),
@@ -458,7 +483,7 @@ def main():
         "<p>From the reference directory, with the method, evidence and producer repositories available locally:</p>"
         "<pre><code>python3 build/fetch_package.py\n"
         "uv run --with markdown --with duckdb --with pandas python3 -B build/build.py --out site</code></pre>"
-        "<p>The first command downloads the published data package once and verifies it. The build then reads that copy, "
+        "<p>The first command downloads the historical data package and the separately pinned review snapshot, and verifies both. The build then reads that copy, "
         "checks every checksum again and runs the query recipes against it. DuckDB and pandas are needed only for those recipes.</p>"
         "<p>The build takes its edition from the release pin, not from constants in the build code. To move "
         "to a new edition, update the pin and rebuild; the row totals are then checked against the counts "
