@@ -302,8 +302,10 @@ def table_overview():
         + link(chapter_file("suitability-synthesis"), 'agent-led T4 workflow')
         + ' is adopted, but its production proposal and packaging route remains outstanding. '
         'Existing T3, T4 and T6 outputs remain historical until explicitly replaced by accepted outputs; new T6E '
-        f'synthesis is frozen. {item("BANDS")} preserves historical magnitude classifications and does not '
-        'automatically score new AI effect proposals.</p>'
+        f'synthesis is frozen. {item("XW")} and {item("BANDS")} remain pinned definition inputs to '
+        'the effect-proposal workflow. They preserve routing references and magnitude conventions; their '
+        'historical multipliers and bands do not automatically score new AI effect proposals. '
+        'The retired T4 numeric synthesis policy is distinct from T4_RUN execution settings.</p>'
     )
 
 

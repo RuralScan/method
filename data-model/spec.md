@@ -843,10 +843,16 @@ governs `T4.context_overrides`.
 
 ### XW — Target Crosswalk (evidence outcome → consumer key) *(v0.4.0)*
 
-The **only** place an EV outcome variable (`erosion_hazard`, `household_income`) becomes a T3 `hazard_type`, a T5
-`variable_id` or a T6 `economic_indicator_type`. Extraction records the VONT canonical outcome the paper measured; XW routes
-it at synthesis. Many-to-many (`drought_hazard` → T3 `drought` **and** T6 `drought_hazard`). No row without a VONT id; an
-unmapped variable is catalogued, feeds no cell, and is listed in the run report. Method §4.
+XW records candidate links from an EV outcome variable (`erosion_hazard`, `household_income`) to a T3
+`hazard_type`, a T5 `variable_id` or a historical economic indicator. Extraction records the VONT canonical
+outcome the paper measured. Links can be many-to-many (`drought_hazard` → T3 `drought` **and** T6
+`drought_hazard`); each crosswalk row requires a VONT id.
+
+**Current role:** XW remains a pinned definition input to the AI effect-proposal workflow. The agent must
+justify routing, proximity and direction for the evidence in context; a crosswalk match alone does not
+establish an effect. Human acceptance approves the exact proposal. Code validates and packages accepted
+outputs without applying the historical `weight_factor` as an automatic scientific weight. Unmapped
+outcomes remain visible in EV and need an explicit routing decision before supporting an output.
 
 | Field | Type | Req | Description | Example |
 |---|---|---|---|---|
@@ -856,15 +862,22 @@ unmapped variable is catalogued, feeds no cell, and is listed in the run report.
 | `target_key` | string | Required | T3 `hazard_type`, T5 `variable_id`, or an `economic_indicator_type` literal. | `soil_erosion_risk` |
 | `polarity` | enum | Required | `same` \| `inverted` — converts the unit's direction on the **outcome as measured** into the **benefit frame** of the generated row (positive = the NbS helps). `inverted` for `high_is_bad` outcomes (erosion, hazards, costs-as-outcomes), `same` for `low_is_bad` ones (yield, income, carbon, biodiversity). | `inverted` |
 | `proximity` | enum | Required | `direct` \| `proxy` \| `component`. Proxies/components are named as such in the traceable account. | `direct` |
-| `weight_factor` | float | Required | Synthesis weight multiplier. Defaults: direct 1.0 · proxy 0.7 · component 0.7. | `1.0` |
+| `weight_factor` | float | Required | Historical compiler multiplier, retained for interpretation of earlier outputs. It is not an automatic weight for current AI synthesis. Historical defaults: direct 1.0 · proxy 0.7 · component 0.7. | `1.0` |
 | `rationale` | string | Required | Why this mapping (cite the proximate-over-distal principle where relevant). | |
 | `ratified_by` · `ratified_date` | string · date | Optional | Identifier of the reviewer who approved the mapping, and the approval date. | `reviewer_01` · `2026-09-30` |
 
 ### BANDS — Magnitude bands (metric → strength class) *(v0.4.0)*
 
-Machine-readable conversion of a reported effect magnitude to `strength_class`, applied at extraction and verified by
-`check_bands.py`. One row per `metric` × class; `abs_min` inclusive, `abs_max` exclusive, on |magnitude|. `ordinal_rating`
-rows map a source scale value (e.g. WOCAT tolerance "not well") to a class per adapter. Method §3.4.
+Magnitude conventions used to interpret extracted `strength_class` labels and historical outputs.
+The earlier extraction route applied these bands and checked them with `check_bands.py`. One row per
+`metric` × class; `abs_min` inclusive, `abs_max` exclusive, on |magnitude|. `ordinal_rating` rows map a
+source scale value (e.g. WOCAT tolerance "not well") to a class per adapter.
+
+**Current role:** BANDS remains a pinned definition input to the AI effect-proposal workflow. Keeping it
+preserves the basis of recorded labels; it does not make those labels the rating of a synthesis row.
+The agent reasons about direction, strength, comparability and uncertainty across evidence, and a human
+accepts the exact proposal. No BANDS lookup automatically scores a new T3/T6 output. This register is
+separate from the T2/T5 problem-classification rules for opportunity-space variables.
 
 | Field | Type | Req | Description | Example |
 |---|---|---|---|---|
@@ -966,7 +979,19 @@ Historical records remain readable without an active T4 compiler.
 
 ## T4_RUN — approved analytical policy (27 October 2026)
 
-Schema extension tracked in GitHub issue #455. Per-recipe `T4_run_policy.csv` is the authoritative policy; typed JSON is generated. It does not replace T4 evidence mappings. Primary key `policy_row_id`; one row per policy and numeric criterion.
+T4_RUN records execution settings for a suitability recipe, not the scientific process that derives its
+mappings. AI authoring does not remove the need to record accepted functions, weights, masks and missing-value
+behaviour. Existing rows belong to the historical recipe edition. Their presence or successful validation
+does not establish that a new AI-authored T4 package is available or ready to run. The production T4 proposal
+and acceptance/package route remains outstanding; see the [agent-led workflow](../methodology-reference/content/suitability-synthesis.md).
+
+`T4_NUMERIC_POLICY`, the earlier numeric synthesis-policy table, is a different interface: it is retired
+from current scientific authoring and retained in historical records. It must not be used to silently
+regenerate T4 mappings from new evidence.
+
+The following describes the retained T4_RUN contract. Schema extension tracked in GitHub issue #455.
+Per-recipe `T4_run_policy.csv` records the policy; typed JSON is generated. It does not replace T4 evidence
+mappings. Primary key `policy_row_id`; one row per policy and numeric criterion.
 
 Fields: `policy_id`, `nbs_id`, `system`, `output_label`; `variable_group`, `rule_id`, `function_id`, `function_fingerprint`; `group_weight`, `criterion_weight`; `aggregation`, `sensitivity_aggregation`, `missing_values`, `gate_policy`, `applicability`, `decision_reference`. All are required.
 
