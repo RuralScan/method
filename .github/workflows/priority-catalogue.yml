@@ -2,10 +2,10 @@ name: Priority classification catalogue
 on:
   pull_request:
     branches: [main]
-    paths: ['priority/**', 'data-model/configuration/**', 'data-model/priority-contract.json', '.github/workflows/priority-catalogue.yml']
+    paths: ['decisions/**', 'priority/**', 'data-model/configuration/**', 'data-model/priority-contract.json', '.github/workflows/priority-catalogue.yml']
   push:
     branches: [main]
-    paths: ['priority/**', 'data-model/configuration/**', 'data-model/priority-contract.json', '.github/workflows/priority-catalogue.yml']
+    paths: ['decisions/**', 'priority/**', 'data-model/configuration/**', 'data-model/priority-contract.json', '.github/workflows/priority-catalogue.yml']
 permissions:
   contents: read
 jobs:
@@ -16,6 +16,11 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Install source-replay dependency
+        run: python3 -m pip install 'pymupdf==1.27.2.3'
       - name: Read source packet revision
         id: pin
         run: |
@@ -35,3 +40,11 @@ jobs:
         run: |
           python3 priority/catalogue.py check --evidence-repo _priority-evidence --base "$BASE_SHA"
           python3 -m unittest discover -v -s priority
+      - name: Check accepted package history against current evidence main
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          git clone --single-branch --branch main --no-tags https://github.com/RuralScan/evidence.git "$RUNNER_TEMP/priority-evidence-main"
+          EVIDENCE_BASE=$(git -C "$RUNNER_TEMP/priority-evidence-main" rev-parse HEAD)
+          python3 priority/package.py check-history --method-base "$BASE_SHA" --evidence-repo "$RUNNER_TEMP/priority-evidence-main" --evidence-base "$EVIDENCE_BASE"
