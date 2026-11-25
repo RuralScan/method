@@ -1,0 +1,141 @@
+{
+  "format": "ruralscan.t2-registry-schema.v1",
+  "version": "1.0.0",
+  "table": "T2",
+  "primary_key": "variable_id",
+  "encoding": "UTF-8",
+  "delimiter": ",",
+  "empty_value": "unknown_or_not_established_not_zero",
+  "status": "registry_only_not_accepted_calibration",
+  "fields": {
+    "variable_id": {
+      "type": "string",
+      "description": "Stable T2 entry ID, preserved from the historical registry.",
+      "required": true,
+      "identifier": true
+    },
+    "variable": {
+      "type": "string",
+      "description": "Existing variable key; retained without asserting a verified ontology or dataset match.",
+      "required": true,
+      "identifier": true
+    },
+    "label": {
+      "type": "string",
+      "description": "Short human-readable name of the intended variable.",
+      "required": true
+    },
+    "quantity": {
+      "type": "string",
+      "description": "Physical or contextual quantity intended; unresolved composites are named explicitly.",
+      "required": true
+    },
+    "unit": {
+      "type": "string",
+      "description": "Intended native unit, not an assertion that the candidate dataset supplies it. Blank if unresolved.",
+      "required": false
+    },
+    "temporal_statistic": {
+      "type": "string",
+      "description": "Temporal statistic required; an unresolved aggregation must be resolved before use.",
+      "required": true
+    },
+    "hazard_type": {
+      "type": "string",
+      "description": "Named hazard when applicable; blank for contextual variables.",
+      "required": false,
+      "enum": [
+        "drought",
+        "heat_stress",
+        "flood"
+      ]
+    },
+    "scenario_type": {
+      "type": "string",
+      "description": "Historical scenario identity, preserved; not a resolved time interval.",
+      "required": true,
+      "enum": [
+        "baseline",
+        "future_ssp245"
+      ]
+    },
+    "reference_period": {
+      "type": "string",
+      "description": "Explicit time interval after review; blank in this migration.",
+      "required": false
+    },
+    "context_id": {
+      "type": "string",
+      "description": "Applicable geographic/context identity after review; blank in this migration.",
+      "required": false
+    },
+    "mcda_role": {
+      "type": "string",
+      "description": "Proposed routing for migration review; priority does not mean ready to score.",
+      "required": true,
+      "enum": [
+        "priority",
+        "descriptor",
+        "investment_risk"
+      ]
+    },
+    "concern_id": {
+      "type": "string",
+      "description": "Candidate shared concern for overlap review; not proof of interchangeability.",
+      "required": true,
+      "identifier": true
+    },
+    "candidate_dataset_id": {
+      "type": "string",
+      "description": "Historical T1 pointer retained for audit, not a verified binding.",
+      "required": true,
+      "identifier": true
+    },
+    "dataset_id": {
+      "type": "string",
+      "description": "Reserved for a verified context-resolved T1/BIND dataset; empty in this migration.",
+      "required": false,
+      "identifier": true
+    },
+    "binding_status": {
+      "type": "string",
+      "description": "Verification of intended quantity against candidate dataset.",
+      "required": true,
+      "enum": [
+        "unverified"
+      ]
+    },
+    "classification_id": {
+      "type": "string",
+      "description": "Reserved for an accepted classification identifier; blank until a tested acceptance route exists.",
+      "required": false,
+      "identifier": true
+    },
+    "classification_version": {
+      "type": "string",
+      "description": "Exact accepted classification version; blank in this migration.",
+      "required": false
+    },
+    "classification_status": {
+      "type": "string",
+      "description": "No accepted calibration is claimed by the migration.",
+      "required": true,
+      "enum": [
+        "not_assessed"
+      ]
+    },
+    "readiness": {
+      "type": "string",
+      "description": "Analytical readiness, distinct from human finding review. No ready state in this schema.",
+      "required": true,
+      "enum": [
+        "blocked"
+      ]
+    },
+    "blockers": {
+      "type": "string",
+      "description": "Quantity, data or calibration questions that must be resolved before analytical use.",
+      "required": true
+    }
+  }
+}

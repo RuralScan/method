@@ -1118,8 +1118,11 @@ def build():
             "files": later,
         },
     }
+    import current_t2
+    assets["currentT2"] = current_t2.publish(CHECKS)
     FILES["data/assets.json"] = json.dumps(assets, indent=1) + "\n"
     FILES["llms.txt"] = llms(descriptor, resources, tables, counts)
+    FILES["llms.txt"] += "\nCurrent T2 registry: table-T2.html#current-t2. Machine-readable manifest: data/current-t2/priority/t2/manifest.json. Eleven preserved IDs; zero runnable variables. This registry does not supply accepted calibration.\n"
     listed = [a["url"] for a in assets["native"]["files"]] + [
         r["url"] for r in assets["package"]["resources"]
     ]

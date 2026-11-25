@@ -3,6 +3,8 @@ title: "M2: Rural climate risk to livelihoods"
 slug: m2-climate-risk
 summary: Interpret climate-related need, distinguish hazard exposure from intervention response, and compare scenarios consistently.
 sources:
+  - method:priority/t2/README.md
+  - method:priority/t2/variables.csv
   - method:priority/README.md
   - method:data-model/priority-contract.json
   - methodology/modules/M2_climate_risk.md
@@ -35,7 +37,7 @@ Table: Information required for a livelihood climate-risk assessment.
 
 [src: methodology/modules/M2_climate_risk.md §3]
 
-[[table:T2]] records named climate-risk variables and classification references; [[table:T3]] records practice responses to hazards. Archived T2 rows retain earlier settings and are not calibrated defaults for this route. Apply the data-selection checks in [[ch:farming-systems-and-data]]. [src: method:data-model/spec.md §T2] [src: method:priority/README.md]
+[[table:T2]] records named climate-risk variables and classification references; [[table:T3]] records practice responses to hazards. The current T2 registry preserves all eleven IDs, with candidate datasets and explicit blockers. None is yet an accepted, runnable classification. Historical mode and default-weight fields remain in the archived CSV, not the current interface. [src: method:priority/t2/README.md] Apply the data-selection checks in [[ch:farming-systems-and-data]]. [src: method:data-model/spec.md §T2] [src: method:priority/README.md]
 
 ## Method
 
@@ -61,7 +63,7 @@ Each variable records its unit, scenario, context, shared concern identity and c
 
 Use compatible hazard quantities, periods, units and reference scales. A difference between separately rescaled maps can reflect the scaling change as well as climate change. Do not interpret a change between unlike metrics as a change in physical risk. Record the scenario, future horizon and exposure assumptions with each comparison. [src: methodology/modules/M2_climate_risk.md §6.6]
 
-The published T2 edition contains proxy and comparability issues, including a rainfall-based flood proxy and different baseline and future drought inputs. Those entries cannot be treated as a validated paired change analysis. The application must establish compatible inputs before making that comparison. [src: schema/T2_climate_risk.csv] [src: schema/registers/BIND_dataset_binding.csv]
+The T2 migration records unresolved proxy and comparability issues, including a rainfall-based flood proxy and different baseline and future drought inputs. Those entries cannot be treated as a validated paired change analysis. [src: method:priority/t2/variables.csv] The application must establish compatible inputs before making that comparison. [src: schema/T2_climate_risk.csv] [src: schema/registers/BIND_dataset_binding.csv]
 
 ### 5. Summarise and test interpretation
 

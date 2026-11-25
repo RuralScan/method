@@ -5,6 +5,7 @@ import json
 
 import data
 import markdown
+import current_t2
 from chapters import TITLES, chapter_file
 from core import (
     BLOCKED_KEYS,
@@ -425,14 +426,20 @@ def table_page(table_id):
         current = policy["table_fields"][table_id]
         intro = '<h2 id="current-priority">Current classification interface</h2>'
         intro += '<p>' + esc(current["purpose"]) + '</p>'
-        intro += '<p>These fields define the new priority configuration. The archived CSV rows below have not been migrated or calibrated. They are not runnable defaults.</p>'
-        intro += table(["Field", "Meaning"], [[code(k), esc(v)] for k, v in current["fields"].items()],
-                       caption=table_id + " · current variable definition")
+        if table_id == 'T2':
+            intro += '<p>The current T2 registry above implements these definition fields. Classification references remain empty; it supplies no accepted analytical defaults.</p>'
+        else:
+            intro += '<p>These fields define the new priority configuration. The archived CSV rows below have not been migrated or calibrated. They are not runnable defaults.</p>'
+        if table_id != "T2":
+            intro += table(["Field", "Meaning"], [[code(k), esc(v)] for k, v in current["fields"].items()],
+                           caption=table_id + " · current variable definition")
         intro += table(["Rule field", "Meaning"], [[code(k), esc(v)] for k, v in policy["rule_fields"].items()],
                        caption="Shared problem-classification rule")
         intro += '<p>See ' + link('ch-m3-characterisation.html', 'classification workflow') + ' and ' + link('ch-m4-hotspots.html', 'explicit user weighting') + '. Machine-readable contract: ' + link(METHOD_URL + 'data-model/priority-contract.json', 'priority-contract.json') + '.</p>'
+        if table_id == 'T2':
+            intro = current_t2.render() + intro
         body = intro + '<details><summary>Historical edition fields and records</summary>' + body + '</details>'
-        current_toc = [("current-priority", "Current classification interface")]
+        current_toc = ([("current-t2", "Current entries"), ("t2-blockers", "Before use"), ("t2-fields", "Current fields")] if table_id == "T2" else []) + [("current-priority", "Classification interface")]
     page(
         f"table-{table_id}.html",
         "data-model.html",

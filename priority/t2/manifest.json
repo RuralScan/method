@@ -1,0 +1,43 @@
+{
+  "format": "ruralscan.t2-registry-manifest.v1",
+  "version": "1.0.0",
+  "status": "registry_only_not_accepted_calibration",
+  "table": "T2",
+  "primary_key": "variable_id",
+  "rows": 11,
+  "runnable_variables": 0,
+  "accepted_classifications": [],
+  "source": {
+    "repository": "RuralScan/method",
+    "revision": "8432c9e29b270e5d31ef5cfef9325c5a78eed7ca",
+    "path": "data-model/configuration/T2_climate_risk.csv",
+    "sha256": "be738086bdc53e86cc31878d6311c80ab839ac9bf999a63efbcb572629eff5c1"
+  },
+  "files": [
+    {
+      "path": "priority/t2/variables.csv",
+      "sha256": "d0bc7d6c033bb7777291add25aea979accde2aafa77c78c1e6e0cb5f2bd935e7",
+      "media_type": "text/csv"
+    },
+    {
+      "path": "priority/t2/schema.json",
+      "sha256": "d9419e96cba01fbd2187130bcfbacdb25f4eda7e43af393367ccbc5e9d51f0d8",
+      "media_type": "application/json"
+    },
+    {
+      "path": "priority/t2/migration.json",
+      "sha256": "02934dee2ccf528e3253248bbd5caec23e8e0a90b3b37570056acd4d79384b30",
+      "media_type": "application/json"
+    },
+    {
+      "path": "data-model/priority-contract.json",
+      "sha256": "a4969d7549f73486798c792100a4cfdcfae750bfb2526fe147ca51c2e13ae9e2",
+      "media_type": "application/json"
+    },
+    {
+      "path": "data-model/configuration/T1_data_registry.csv",
+      "sha256": "1746c118f1c13594e18baf884238718e67d8f528d2c1ac25d2c6d0ca2e55e5b0",
+      "media_type": "text/csv"
+    }
+  ]
+}

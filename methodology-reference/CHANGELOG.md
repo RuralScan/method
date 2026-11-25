@@ -6,6 +6,12 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.20.0] - 2026-11-25
+
+- Migrate all eleven T2 identities into a current climate-variable registry without composite-index modes or default weights.
+- Expose candidate datasets, intended quantities, proposed routing and unresolved classification/binding blockers.
+- Publish linked CSV, field schema and migration metadata; preserve historical records and mark all current entries as not ready for analysis.
+
 ## [0.19.0] - 2026-11-25
 
 - Show reviewed-and-kept versus total retained findings in Practices and Evidence base, from one pinned official review queue.
