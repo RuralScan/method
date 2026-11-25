@@ -11,7 +11,9 @@
       "url": "https://naturebase-shared-docs.s3.amazonaws.com/NCS_Accounting_rules_narrative.pdf",
       "resolved_url": "https://naturebase-shared-docs.s3.amazonaws.com/NCS_Accounting_rules_narrative.pdf",
       "bytes": 705159,
-      "sha256": "ba5cff6d9555b2fd23e7451ab9be18a253af21781636a73633910b62b070a01d"
+      "sha256": "ba5cff6d9555b2fd23e7451ab9be18a253af21781636a73633910b62b070a01d",
+      "library_path": "2_Technical_&_Data/library/0_Methodology_&_Frameworks/priority_classification/research_2026_11_25/naturebase_accounting.pdf",
+      "accession_state": "local_synced_folder_copy_verified_remote_access_unconfirmed"
     },
     {
       "file": "fao_asis_faq.html",
@@ -28,19 +30,24 @@
       "url": "https://raw.githubusercontent.com/wri/Aqueduct40/master/data_FAQ.md",
       "resolved_url": "https://raw.githubusercontent.com/wri/Aqueduct40/master/data_FAQ.md",
       "bytes": 12898,
-      "sha256": "85105c9319f053802e44ddc59c4627e68a30276e99421cc4591fd04b574ed022"
+      "sha256": "85105c9319f053802e44ddc59c4627e68a30276e99421cc4591fd04b574ed022",
+      "library_path": "2_Technical_&_Data/library/0_Methodology_&_Frameworks/priority_classification/research_2026_11_25/wri_faq.md",
+      "accession_state": "local_synced_folder_copy_verified_remote_access_unconfirmed"
     },
     {
       "file": "water_stress_sdg.pdf",
       "url": "https://unstats.un.org/sdgs/metadata/files/metadata-06-04-02.pdf",
       "resolved_url": "https://unstats.un.org/sdgs/metadata/files/metadata-06-04-02.pdf",
       "bytes": 279234,
-      "sha256": "6105ec271189d41deb7761bcbc12a8de24a97c346b9b22be3523e93a1f56ca3a"
+      "sha256": "6105ec271189d41deb7761bcbc12a8de24a97c346b9b22be3523e93a1f56ca3a",
+      "library_path": "2_Technical_&_Data/library/0_Methodology_&_Frameworks/priority_classification/research_2026_11_25/water_stress_sdg.pdf",
+      "accession_state": "local_synced_folder_copy_verified_remote_access_unconfirmed"
     }
   ],
   "inspection_notes": [
     "FAO HTML/direct image fetch returned 403; official intensity legend subsequently inspected in browser.",
     "Naturebase live catalogue inspected in browser across all three NCS-filter pages; 20 individual pathways, not 29.",
-    "No new research source receives a canonical ID or human review state here."
+    "No new research source receives a canonical ID or human review state here.",
+    "Three successful research downloads are copied byte-for-byte to the team-library mirror; publisher/title acquisition receipts and remote access remain unverified."
   ]
 }
