@@ -11,10 +11,10 @@ Status: **proposed storage and review contract; no accepted calibration release*
 | Classification proposal | Method: `priority/proposals/<id>-<version>.json` | Exact scientific quantity, context, binding, rule, uncertainty and dependency hashes |
 | Scientific disposition | Existing method `decisions/events.csv` → `current.csv` | Protected human PR decision, not a finding vote or author assertion |
 | Review inventory | Method: `priority/release.json` | Byte/proposal hashes, source lock and zero accepted runtime rules; explicitly not a runtime package |
-| Accepted package (future) | Method: `priority/releases/<sha256>.json`, pinned by Git SHA | Only individually accepted, complete rules; append-only, never overwrite |
+| Accepted package (gated) | Method: `priority/releases/<sha256>.json`, pinned by Git SHA | Only individually accepted, complete rules; append-only, never overwrite |
 | Run choices | Runtime analysis manifest | Representative concerns, scenario, context, aligned input hashes and user weights |
 
-The new JSON sidecar leaves historical CSV columns intact. This is not an addition to the old compiler-definition manifest: that manifest enforces an unchanged CSV inventory, and evidence's adopter explicitly allows only five mirrored registers and named lookups. Widening it would silently change two consumer contracts. Proposed priority release metadata is a separate, typed, content-addressed interface. Before activation, accept `priority_catalogue_release` and implement the separate evidence adoption lock/receipt. No existing compiler pin changes here.
+The new JSON sidecar leaves historical CSV columns intact. This is not an addition to the old compiler-definition manifest: that manifest enforces an unchanged CSV inventory, and evidence's adopter explicitly allows only five mirrored registers and named lookups. Widening it would silently change two consumer contracts. Proposed priority release metadata is a separate, typed, content-addressed interface. Before activation, accept `priority_catalogue_release` and complete source review and binding verification. The separate evidence adoption lock/receipt is implemented in the companion evidence change. No existing compiler pin changes here.
 
 ## Exact review decisions requested
 
@@ -45,9 +45,25 @@ Format validation does not authenticate human approval. GitHub's protected, revi
 
 ## Immutable release and adoption route
 
-The current executable produces a **review manifest only**, always with `accepted_rules=[]`. It has no publish or accepted-release CLI. `eligible()` and immutable-write tests exercise the structural gates using synthetic fixtures; they do not create real decisions. Production activation requires the decisions above and the missing evidence intake/adoption implementation.
+`catalogue.py` still produces a **review manifest only**, always with `accepted_rules=[]`. `package.py` adds private accepted-package preparation and replay; it cannot merge or publish. All real candidates remain blocked. Tests use synthetic decisions and never create project approvals.
 
-Once approved, the production release route must:
+Storage acceptance requires the exact `ruling` text: `Accept priority catalogue sidecar storage and release contract v1.` A decided rejection cannot pass. Each classification requires the exact proposal/context acceptance above. The cited method PR must be human-merged to main, contain that ruling, and introduce it relative to its first parent. An unrelated later merge cannot authenticate an older decision.
+
+Binding verification lives in immutable `priority/binding-verifications/<binding-sha256>-<context-sha256>.json`. Required fields: `format=ruralscan.priority-binding-verification.v1`, `binding_sha256`, `context_sha256`, `variables`, `binding_ids`, `checks`, `evidence` (URL and locator), and `decision_id`. Checks record observations for asset identity, units/conversion, nodata/domain, spatial support, temporal statistic, scenario and context resolution. Exact acceptance is `Accept priority binding verification sha256:<record-hash>.` The package gate resolves those BIND IDs to the rule's variables, T1 dataset and field; requires all five T1/T2/T5/VONT/BIND input hashes; and rejects changed inputs or decisions. Human verification remains necessary for spatial and scientific fitness.
+
+Source references use evidence-owned `psrc_<hash>` and `pfind_<hash>` identities. The packet, source acquisition and finding bytes must agree. Findings must be kept at both the selected evidence revision and the current inspected main base. A later hold, rejection, conflict or reopening blocks new preparation/adoption. No self-asserted `review_state=kept` can satisfy this gate.
+
+```sh
+python3 priority/package.py prepare --method-revision FULL_MERGED_SHA --method-base FULL_MAIN_SHA \
+  --evidence-repo /path/to/evidence --evidence-base FULL_EVIDENCE_MAIN_SHA \
+  --proposal priority/proposals/example-0.2.0.json --out /private/new-release
+```
+
+The command needs authenticated read access through `gh` and the evidence source-check dependencies. Use trusted repository checkouts and explicit current main bases. Preparing an artifact does not publish it: publication requires a separate reviewed method PR adding the generated bytes under `priority/releases/`. Evidence adoption executes the producer from that merged release commit and records its independent full pin. The package contains no self-referential Git SHA.
+
+Tests exercise complete synthetic package construction/replay, source gating, exact approval provenance, tampering and stale definitions. Evidence tests separately exercise actual acquisition and source-review resolution. There is no real accepted package to test or adopt yet.
+
+The gated production route follows these requirements:
 
 1. Read exact merged method and evidence revisions; verify they belong to the approved repository histories. Verify source registration, kept finding receipts and bindings against their pinned artefacts, not self-asserted strings in a proposal.
 2. Require the storage decision and each classification decision to be decided at that method revision, with exact acceptance text, matching context and human protected-PR provenance. Reject held/rejected/superseded states, unresolved blockers, missing ontology or binding, descriptors and investment-risk roles.
@@ -57,7 +73,7 @@ Once approved, the production release route must:
 6. Runtime validates exact binding, raw units, spatial support, scenario, period and masks before classification. One explicitly chosen representative per concern; repeated concern IDs fail. Missing positive-weight inputs give unknown; descriptors and M2b cannot enter the stack.
 7. Roll back by selecting a previously accepted immutable package and recording a new adoption receipt. Keep both packages and all decisions. Historical reproduction is distinct from selecting a superseded rule for new production.
 
-These requirements are intentionally stricter than the pure `eligible()` prototype. Its fixture-based test checks hash equality and blocking fields; it cannot establish GitHub review identity, source acquisition or spatial fitness. No file in this PR is an accepted release.
+The package gate is stricter than the pure `eligible()` structural predicate. It verifies merged decision provenance and source acquisition/review references; it does not replace human scientific or spatial fitness review. Multiple rules may share a concern in the catalogue as alternatives; runtime must select only one per concern. No file in this change is an accepted release.
 
 ## Bounded evidence and conformance
 

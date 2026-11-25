@@ -60,7 +60,7 @@ class Catalogue(unittest.TestCase):
         rule["binding"].update(validation="verified", dataset_id="fixture", asset="fixture", field="fixture")
         rule["sources"][0].update(review_state="kept", source_id="fixture", finding_ids=["fixture"])
         decisions = {"priority_catalogue_release": {"status": "decided"}, rule["decision_id"]: {
-            "status": "decided", "outcome": acceptance_text(rule), "decision_ref": "https://github.com/RuralScan/method/pull/1"}}
+            "status": "decided", "ruling": acceptance_text(rule), "decision_ref": "https://github.com/RuralScan/method/pull/1"}}
         return rule, decisions
 
     def test_acceptance_is_exact_and_rejects_stale_content(self):

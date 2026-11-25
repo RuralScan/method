@@ -132,7 +132,7 @@ def eligible(rule, decisions):
     route = decisions.get("priority_catalogue_release", {})
     require(route.get("status") == "decided", "Storage/release contract not accepted")
     decision = decisions.get(rule["decision_id"], {})
-    require(decision.get("status") == "decided" and decision.get("outcome") == acceptance_text(rule), "No exact-content classification acceptance")
+    require(decision.get("status") == "decided" and decision.get("ruling") == acceptance_text(rule), "No exact-content classification acceptance")
     require(re.fullmatch(r"https://github.com/RuralScan/method/pull/[0-9]+", decision.get("decision_ref", "")), "Acceptance needs protected review PR")
 
 
