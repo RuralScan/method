@@ -302,8 +302,12 @@ def publish_reference_menu(site, reference, labels, label, note):
         links = " · ".join(f'<strong>{group}</strong> ' + " · ".join(
             f'<a href="{escape(url, quote=True)}">{text}</a>' for url, text, _ in items) for group, items in groups)
         contents = path.read_text()
+        main = re.search(r'<main(?:\s|>)', contents)
+        if main is None:
+            raise ValueError(f"Expected main content after shared navigation in {path}")
+        navigation, content = contents[:main.start()], contents[main.start():]
         # Older reference builds repeated the masthead queue link in the version bar.
-        contents = re.sub(r'<a class="vb-live" href="[^"]*">[^<]*</a>', "", contents)
+        navigation = re.sub(r'<a class="vb-live" href="[^"]*">[^<]*</a>', "", navigation)
         substitutions = [
             (r'(<select id="dashboard-version"[^>]*>).*?</select>', lambda m: m[1] + menu + '</select>'),
             (r'<span id="dashboard-version-note">.*?</span>', f'<span id="dashboard-version-note">{note}</span>'),
@@ -315,10 +319,13 @@ def publish_reference_menu(site, reference, labels, label, note):
             (r'<noscript>.*?</noscript>', '<noscript>' + links + '</noscript>'),
         ]
         for pattern, replacement in substitutions:
-            contents, count = re.subn(pattern, replacement, contents, flags=re.S)
+            # Page content can have its own fallback (for example finding downloads).
+            # Only the shared navigation belongs to this publishing transform.
+            navigation, count = re.subn(pattern, replacement, navigation, flags=re.S)
             if count != 1:
                 raise ValueError(f"Expected one shared navigation element in {path}: {pattern}")
-        contents = re.sub(r'(<label for="dashboard-version">).*?</label>', r'\1Version</label>', contents)
+        navigation = re.sub(r'(<label for="dashboard-version">).*?</label>', r'\1Version</label>', navigation)
+        contents = navigation + content
         if 'rel="icon"' not in contents:
             contents = contents.replace("</head>", tab_icon("methodology") + "</head>", 1)
         path.write_text(contents)

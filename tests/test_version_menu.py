@@ -242,6 +242,27 @@ class VersionMenuTest(unittest.TestCase):
                     self.publish(site,editions,reference)
                 self.assertFalse((site/'index.html').exists())
 
+    def test_finding_browser_noscript_download_help_survives_publication(self):
+        fallback = '<noscript><p>Use the downloadable finding IDs and statuses without JavaScript.</p></noscript>'
+        with TemporaryDirectory() as tmp:
+            site=Path(tmp);editions,reference=self.prepare(site)
+            page=site/'reference/evidence-findings.html'
+            page.write_text(REFERENCE.replace('</main>',fallback+'</main>'))
+            self.publish(site,editions,reference)
+            html=page.read_text()
+            self.assertEqual(html.count(fallback),1)
+            self.assertIn('Current version',html.split('<main>',1)[0])
+            self.assertIn('Current version',html.split('<noscript>',1)[1].split('</noscript>',1)[0])
+
+    def test_content_fallback_cannot_replace_missing_navigation_fallback(self):
+        with TemporaryDirectory() as tmp:
+            site=Path(tmp);editions,reference=self.prepare(site)
+            page=site/'reference/evidence-findings.html'
+            content=REFERENCE.replace('<noscript>Old links</noscript>','')
+            page.write_text(content.replace('</main>','<noscript>Finding downloads</noscript></main>'))
+            with self.assertRaisesRegex(ValueError,'Expected one shared navigation element'):
+                self.publish(site,editions,reference)
+
     def test_reference_markup_changes_cannot_silently_leave_stale_navigation(self):
         with TemporaryDirectory() as tmp:
             site=Path(tmp);editions,reference=self.prepare(site)
