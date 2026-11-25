@@ -1,0 +1,17 @@
+{
+  "format": "ruralscan.priority-routing-directions.v1",
+  "date": "2026-11-25",
+  "authority": "Pete explicit directions in the consolidated Opportunity variables classification chat",
+  "scope": "Proposal routing and release restrictions; not scientific threshold acceptance",
+  "role_overrides": {
+    "iplc_lands": {
+      "historical_role": "priority",
+      "effective_role": "descriptor",
+      "instruction": "this does not need score, nor should it have one, it just presence absence, neither good nor bad"
+    }
+  },
+  "blocked_scoring_variables": {
+    "carbon_sequestration_potential": "Legacy stock/potential binding cannot represent observed carbon-loss need. A separately defined successor is required."
+  },
+  "human_classification_acceptance": false
+}

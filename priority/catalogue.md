@@ -80,3 +80,7 @@ The package gate is stricter than the pure `eligible()` structural predicate. It
 Five source packets support five rule proposals. Drought event severity is the only populated cutoff candidate; drought climatology, Aqueduct mapping, IPLC presence and carbon potential keep unverified cuts empty. Sources are pinned in [evidence.lock.json](evidence.lock.json), with limits and precise locators. The PDFs were inspected visually. Copernicus's current PDF is dated 2026, although search results returned an older edition; the saved artefact hash resolves that ambiguity.
 
 [Conformance vectors](test-vectors.json) cover reverse/forward endpoints, true zero, unknown, held rules, domains, units, fixed weights, mask states, duplicate concerns and scenario incompatibility. They are an integration specification for runtime [issue #12](https://github.com/RuralScan/runtime/issues/12), not evidence of runtime adoption. The draft evaluator in [PR #11](https://github.com/RuralScan/runtime/pull/11) remains unmerged.
+
+## Consolidated T5 routing
+
+Current routing is documented in [consolidation.md](consolidation.md). Accepted packages additionally pin `priority/T5_classification_refs.csv` and `priority/routing-directions.json`; unscored descriptors and blocked successor aliases cannot be released as scoring rules. Candidate-bundle references preserve complete individual findings through the same evidence store and human review ledger as earlier packet findings.

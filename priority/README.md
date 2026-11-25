@@ -35,3 +35,5 @@ The API operates on aligned pixel sequences. A spatial caller remains responsibl
 ## Classification catalogue under review
 
 [Variable-by-variable audit](audit.md) · [Catalogue, acceptance and release proposal](catalogue.md) · [Runtime conformance vectors](test-vectors.json). The catalogue has no accepted runtime rules. Source observations, classification acceptance and user weights remain separate.
+
+Current consolidated route: [T5 profiles, routing and preservation](consolidation.md). Historical 0.1 proposals remain immutable; IPLC is now unscored in the current sidecar.

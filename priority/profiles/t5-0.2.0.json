@@ -1,0 +1,549 @@
+{
+  "format": "ruralscan.t5-profiles.v1",
+  "version": "0.2.0",
+  "status": "proposed_not_accepted",
+  "profiles": {
+    "drought_hazard": {
+      "quantity": "Growing-season agricultural drought intensity, affected crop/pasture area and event recurrence; quantity/binding proposal under review",
+      "unit": "unresolved",
+      "temporal_statistic": "Long-term baseline and reducer unresolved; future flag is not a binding",
+      "spatial_support": "SPEI native 0.5 degree, not VONT 5 km",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "Shares drought concern with both T2 SPEI entries. Source event severity classes do not calibrate a long-term frequency map. Keep event-rule candidate separate from current T5 activation."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "Select and verify crop/pasture-season indicator and spatial support; validate relation to livelihood impacts.",
+        "FAO ASIS provider classes support seasonal interpretation; no accepted long-term frequency bands or pilot binding."
+      ]
+    },
+    "flood_hazard": {
+      "quantity": "River flood depth at fixed return period",
+      "unit": "m",
+      "temporal_statistic": "Baseline, return period explicit; future dataset missing",
+      "spatial_support": "JRC product support must be verified by edition",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [
+        {
+          "binding_id": "flood_hazard__global",
+          "dataset_id": "jrc_global_flood_hazard",
+          "record_sha256": "773dead454a85abcccf863ececca44cf183b218d6a04d88f5d8aa25fd4ae21f8"
+        }
+      ],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "T5 includes pluvial wording; T1 is river only. BIND requests 100-year but URL names rp50. Return period, protection assumptions, domain/dry-cell meaning and actual asset must agree."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "T5 includes pluvial wording; T1 is river only. BIND requests 100-year but URL names rp50. Return period, protection assumptions, domain/dry-cell meaning and actual asset must agree."
+      ]
+    },
+    "heat_stress_hazard": {
+      "quantity": "Extreme heat frequency",
+      "unit": "days/year",
+      "temporal_statistic": "Threshold and daily series period missing; future dataset unresolved",
+      "spatial_support": "Daily input support unresolved",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [
+        {
+          "binding_id": "heat_stress_hazard__global",
+          "dataset_id": "chelsa_bioclim_v21_baseline",
+          "record_sha256": "9c82f467d61f0e777390e67d14e99054f9d34028ad4d1f125c6c57da3ce1d3ae"
+        }
+      ],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "VONT days/year conflicts with BIND BIO5 temperature. BIO5 cannot yield extreme-day frequency. Related T2 entry shares concern but not numeric rule."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "VONT days/year conflicts with BIND BIO5 temperature. BIO5 cannot yield extreme-day frequency. Related T2 entry shares concern but not numeric rule."
+      ]
+    },
+    "soil_erosion_risk": {
+      "quantity": "Annual soil loss",
+      "unit": "t/ha/year (proposed)",
+      "temporal_statistic": "Modelled long-term mean; period unspecified",
+      "spatial_support": "RUSLE model support unresolved",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "No T5 dataset or BIND; VONT suggests SoilGrids, which is not erosion rate. Require complete erosion model factors/validation; do not infer avoidable loss from baseline loss."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "No T5 dataset or BIND; VONT suggests SoilGrids, which is not erosion rate. Require complete erosion model factors/validation; do not infer avoidable loss from baseline loss."
+      ]
+    },
+    "carbon_sequestration_potential": {
+      "quantity": "Unresolved successor: observed forest, wetland or soil carbon loss/degradation need; legacy potential ID retained only for traceability",
+      "unit": "Not yet selected; ecosystem loss area is not automatically carbon emissions",
+      "temporal_statistic": "Observed loss/change over an explicit recent period, with trajectory and uncertainty",
+      "spatial_support": "GSOCseq support if selected; existing GSOCmap 1 km",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "Carbon stock, observed loss and counterfactual mitigation potential are different quantities. No scoring release under the unresolved legacy alias."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "Define a new canonical loss-need variable and dataset binding through the method decision route; do not relabel a stock or potential raster.",
+        "Keep practice-specific avoided-emission/removal potential as separate descriptive information or Next steps."
+      ]
+    },
+    "biodiversity_priority": {
+      "quantity": "BII intactness",
+      "unit": "verified proportion or percent",
+      "temporal_statistic": "Model edition 2016; underlying reference period unrecorded",
+      "spatial_support": "~1 km model; uncertainty spatially uneven",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [
+        {
+          "binding_id": "biodiversity_priority__global",
+          "dataset_id": "bii_nhm_global",
+          "record_sha256": "87b60556ae90a6477810ceac17ebfd59f5a1fa541d5a705eddfef49c6abc9f36"
+        }
+      ],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "Low intactness may indicate restoration need, not conservation importance. Agree objective before inversion; do not treat KBA binary status as same quantity. No defensible three-cutoff mapping identified."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "Low intactness may indicate restoration need, not conservation importance. Agree objective before inversion; do not treat KBA binary status as same quantity. No defensible three-cutoff mapping identified."
+      ]
+    },
+    "water_quality_risk": {
+      "quantity": "Nutrient, sediment or thermal stress",
+      "unit": "metric-specific",
+      "temporal_statistic": "Monitoring statistic and season unresolved",
+      "spatial_support": "Catchment/monitoring reach or admin support unresolved",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "T5 has no dataset; no actual VONT or BIND row despite prose claiming requires_upload. Distinct constituents cannot share thresholds. Need explicit endpoint and downstream routing."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "T5 has no dataset; no actual VONT or BIND row despite prose claiming requires_upload. Distinct constituents cannot share thresholds. Need explicit endpoint and downstream routing."
+      ]
+    },
+    "water_stress": {
+      "quantity": "Aqueduct BWS demand/available renewable supply",
+      "unit": "fraction",
+      "temporal_statistic": "Aqueduct 4.0 baseline, 1979\u20132019 input; annual weighted statistic",
+      "spatial_support": "HydroBASINS 6; polygon intersections do not add information",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [
+        {
+          "binding_id": "water_stress__global",
+          "dataset_id": "wri_aqueduct_water_stress",
+          "record_sha256": "87b3f0f16ff9f0300c2e4fc2d7c40b29946b299c8599fad3ce1b2446c9916cc5"
+        }
+      ],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "T5 calls composite; BWS is one ratio. T1 grid/1 km label conflicts with basin support. Official GEE FeatureCollection available. Five source categories plus arid status do not directly yield four method classes; zero/none and endpoints require decision."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "Keep Aqueduct withdrawals/supply, SDG withdrawals/(resources-environmental flows), and blue-water consumption/availability distinct.",
+        "Verify exact product fields, native categories, arid special values, temporal support and livelihood relevance before classification."
+      ]
+    },
+    "rural_poverty": {
+      "quantity": "Poverty headcount share",
+      "unit": "percent",
+      "temporal_statistic": "Survey year, poverty line and PPP vintage required",
+      "spatial_support": "Actual admin1+ survey support; verify country availability",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [
+        {
+          "binding_id": "rural_poverty__global",
+          "dataset_id": "world_bank_poverty_pip",
+          "record_sha256": "eea4faef3bab8c389451b0a12822571888a4372af0d92e277e6082c0d8ba1769"
+        }
+      ],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "PIP label does not prove rural subnational observations. Need exact series/geography/denominator. Population allocation cannot manufacture within-admin poverty variation; national-only values are flags."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "PIP label does not prove rural subnational observations. Need exact series/geography/denominator. Population allocation cannot manufacture within-admin poverty variation; national-only values are flags."
+      ]
+    },
+    "food_insecurity": {
+      "quantity": "Food-insecure share",
+      "unit": "percent; IPC phase is separate ordinal quantity",
+      "temporal_statistic": "Survey/analysis period and severity definition required",
+      "spatial_support": "Survey/admin or IPC analysis-area support",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "No VONT/BIND/T5 dataset. IPC phase, FIES prevalence and hunger months are non-equivalent. Keep separate from poverty; choose one measure before thresholds."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "No VONT/BIND/T5 dataset. IPC phase, FIES prevalence and hunger months are non-equivalent. Keep separate from poverty; choose one measure before thresholds."
+      ]
+    },
+    "production_gap": {
+      "quantity": "(Attainable minus actual)/attainable production",
+      "unit": "percent (proposal)",
+      "temporal_statistic": "Common period, management and attainable benchmark",
+      "spatial_support": "Per farming system; source support unresolved",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [
+        {
+          "binding_id": "production_gap__cropping_rainfed",
+          "dataset_id": "",
+          "record_sha256": "5fba8fb465cd77701eba394b230238354ae52309de86a79bc8b2485fbed09cf5"
+        },
+        {
+          "binding_id": "production_gap__cropping_irrigated",
+          "dataset_id": "",
+          "record_sha256": "a6c283efe2fe7727bfc04a89663fb1582a3a7558641c00cb656a24e06c1316bf"
+        },
+        {
+          "binding_id": "production_gap__mixed_crop_livestock",
+          "dataset_id": "",
+          "record_sha256": "0a6d23bd28b0f90c67d7abcf133e014d39a83e9eaa6df2b09225729f24af41c3"
+        },
+        {
+          "binding_id": "production_gap__pastoral_rangeland",
+          "dataset_id": "",
+          "record_sha256": "721756fe5084e4f74e8da7046a993a3086427e54c62fdc15d668a36b2e097c0e"
+        },
+        {
+          "binding_id": "production_gap__agro_pastoral",
+          "dataset_id": "",
+          "record_sha256": "8ad2b18cc45af9aff18a132d1fe8b2d8d39ad86b2f67597b8c54a5c9d1bcb8d1"
+        },
+        {
+          "binding_id": "production_gap__tree_perennial",
+          "dataset_id": "",
+          "record_sha256": "d8100a0292be3c86759023adc397d53faa0f4fb0b01cea45c78561a162e4ca2f"
+        }
+      ],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "Six BIND rows all require upload. Yield and NPP are not interchangeable; mixed-system combination lacks weights/units. No default cutoffs; attainable zero and negative gaps need policy."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "Six BIND rows all require upload. Yield and NPP are not interchangeable; mixed-system combination lacks weights/units. No default cutoffs; attainable zero and negative gaps need policy."
+      ]
+    },
+    "agricultural_dependency": {
+      "quantity": "Agricultural employment share",
+      "unit": "percent",
+      "temporal_statistic": "Annual selected series; year missing",
+      "spatial_support": "Admin0 in current binding",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [
+        {
+          "binding_id": "agricultural_dependency__global",
+          "dataset_id": "ilo_labour_statistics",
+          "record_sha256": "610984662c0c8fc9798656b8e44cbc5812c2b77f54707d048da3fc11f2d21a2f"
+        }
+      ],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "National ILO series cannot differentiate within-country hotspots. Employment share is not household livelihood dependence. Obtain admin1+ data or retain national qualified flag; no raster upscaling claim."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "National ILO series cannot differentiate within-country hotspots. Employment share is not household livelihood dependence. Obtain admin1+ data or retain national qualified flag; no raster upscaling claim."
+      ]
+    },
+    "gender_inequity": {
+      "quantity": "UNDP GII",
+      "unit": "unitless",
+      "temporal_statistic": "2022 per T1; snapshot must be pinned",
+      "spatial_support": "Admin0",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [
+        {
+          "binding_id": "gender_inequity__global",
+          "dataset_id": "undp_gii_national",
+          "record_sha256": "c6a25dbf2a81f39103b0c8f114e54752ddb6324c3bd7b1918b3cfc6117e1c292"
+        }
+      ],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "Retain T5 priority designation historically; current binding only qualifies national context. No within-country scoring without justified subnational measure; GII is not directly disaggregated by rasterization."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "Retain T5 priority designation historically; current binding only qualifies national context. No within-country scoring without justified subnational measure; GII is not directly disaggregated by rasterization."
+      ]
+    },
+    "iplc_lands": {
+      "quantity": "Mapped Indigenous Peoples and local community land overlap; presence, verified absence, or unknown",
+      "unit": "categorical; no score",
+      "temporal_statistic": "Latest mapped edition with coverage date and completeness recorded",
+      "spatial_support": "Mapped community polygons; coverage gaps remain unknown",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [
+        {
+          "binding_id": "iplc_lands__global",
+          "dataset_id": "landmark_iplc_lands",
+          "record_sha256": "79aa3b1b8e87313050d4b40b24242faa746a1128767d0fc8947f04298d3f648a"
+        }
+      ],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "Descriptive overlap and safeguard follow-up; neither positive nor negative preference. Presence alone is not risk severity or an exclusion."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "Verify mapped coverage and lineage; absence requires explicit completeness evidence. No scoring rule is requested."
+      ]
+    },
+    "rural_population": {
+      "quantity": "Rural population density",
+      "unit": "persons/km2",
+      "temporal_statistic": "2020 snapshot and explicit rural-mask year",
+      "spatial_support": "100 m estimates; aggregate counts conservatively",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "T2 exposure shares concern, not permission to score. WorldPop counts versus density and constrained/unconstrained asset discrepancy require metadata check; density is not beneficiary count."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "T2 exposure shares concern, not permission to score. WorldPop counts versus density and constrained/unconstrained asset discrepancy require metadata check; density is not beneficiary count."
+      ]
+    },
+    "accessibility_travel_time": {
+      "quantity": "Travel time to nearest city >=50,000 people",
+      "unit": "minutes",
+      "temporal_statistic": "2015 surface",
+      "spatial_support": "~1 km model",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [
+        {
+          "binding_id": "accessibility_travel_time__global",
+          "dataset_id": "nelson_accessibility_2015",
+          "record_sha256": "459b252248399c61f8cb207c30d81052e6e47bca0755acf801294d0ab2b6e34e"
+        },
+        {
+          "binding_id": "market_access__global",
+          "dataset_id": "nelson_accessibility_2015",
+          "record_sha256": "4a7106aa4d94633f2310ac87416cd55d1f85056ac93c8a3e47016b8d7ac317c3"
+        }
+      ],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "Two equal-ranked global BIND rows target same dataset. Resolve duplicate binding ambiguity. City access is a market proxy, not verified market access; differs from T2 road distance. M2b use remains separate."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "Two equal-ranked global BIND rows target same dataset. Resolve duplicate binding ambiguity. City access is a market proxy, not verified market access; differs from T2 road distance. M2b use remains separate."
+      ]
+    },
+    "farm_size": {
+      "quantity": "Field-size category",
+      "unit": "categorical; farm area not established",
+      "temporal_statistic": "Lesiv 2019 edition; observation period to verify",
+      "spatial_support": "~1 km sampled/modelled support",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [
+        {
+          "binding_id": "farm_size__global",
+          "dataset_id": "lesiv_smallholder_farm_size",
+          "record_sha256": "a5dd77d06dcab399d734e0ca9215bb816705100607a37dc7711ecbb088b91ad5"
+        }
+      ],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "Field size is not farm size or smallholder status. VONT ha and T5 mean farm size exceed available interpretation. Preserve category, uncertainty and proxy caveat; no priority classification."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "Field size is not farm size or smallholder status. VONT ha and T5 mean farm size exceed available interpretation. Preserve category, uncertainty and proxy caveat; no priority classification."
+      ]
+    },
+    "agricultural_production_value": {
+      "quantity": "Annual crop value density",
+      "unit": "USD/ha/year (proposed)",
+      "temporal_statistic": "MapSPAM 2017 per T1 plus price/base-currency year",
+      "spatial_support": "~10 km allocation; crop mix and denominators required",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [
+        {
+          "binding_id": "agricultural_production_value__global",
+          "dataset_id": "mapspam_v2",
+          "record_sha256": "fa36acdba9128c0901a771167887469c439f71b00b07d0b17909d9b7921c2fce"
+        }
+      ],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "Production tonnes/area/yield are not monetary value without crop prices and currency conversion. Verify version/variables; no unsupported price-weighted total or priority score."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "Production tonnes/area/yield are not monetary value without crop prices and currency conversion. Verify version/variables; no unsupported price-weighted total or priority score."
+      ]
+    },
+    "catchment_water_yield": {
+      "quantity": "Downstream supply deficit or yield change",
+      "unit": "unresolved",
+      "temporal_statistic": "Baseline need versus intervention effect unresolved; season/horizon required",
+      "spatial_support": "Catchment outlets and receiving users",
+      "context": {
+        "geography": null,
+        "period": null,
+        "scenario": "baseline",
+        "purpose": "method_review_only_not_pilot"
+      },
+      "binding_candidates": [],
+      "binding_status": "unverified",
+      "uncertainty": {
+        "source": "Dataset edition, coverage and uncertainty require verification.",
+        "transfer": "No country or pilot context has been accepted.",
+        "interpretation": "No VONT/BIND/dataset. T5 wording is an effect, not baseline need. More yield is not automatically more concern. Keep distinct from local soil moisture/water stress; choose endpoint before any monotonic rule."
+      },
+      "missing": "unknown",
+      "blockers": [
+        "No VONT/BIND/dataset. T5 wording is an effect, not baseline need. More yield is not automatically more concern. Keep distinct from local soil moisture/water stress; choose endpoint before any monotonic rule."
+      ]
+    }
+  }
+}
