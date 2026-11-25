@@ -84,9 +84,19 @@ def release(root, base, approvals):
         tables[path.stem] = rows
     require(not approvals, f"Unknown or unused target(s): {sorted(approvals)}")
     check_compatibility(root, tables)
+    from family_transition import TRANSITION, validate as validate_family_transition
+
+    transition = validate_family_transition(root)
+    require(transition["decision_id"] in active, "Family transition needs a decided method code")
     return dict(
         format="ruralscan.compiler-definitions.v1",
         files=files,
+        family_transition={
+            "file": TRANSITION,
+            "sha256": sha256((root / TRANSITION).read_bytes()).hexdigest(),
+            "decision_id": transition["decision_id"],
+            "adoption": "separate_evidence_compatibility_and_scope_review_required",
+        },
         archive=json.loads((root / "configuration/archive.json").read_bytes()),
     )
 

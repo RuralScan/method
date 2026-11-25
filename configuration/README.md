@@ -17,6 +17,14 @@ Editable definitions live in `data-model/configuration/`; the release inventory 
 hash checks remain enforced. Evidence's VONT, FAM, BIND, XW and BANDS copies are pinned
 mirrors verified against the selected method revision, never a moving branch.
 
+The [agroforestry definition decision](agroforestry-definitions.md) separates
+boundary planting, wind shelter and contour buffers. Its pinned
+[transition crosswalk](family-transitions/agroforestry-2026-11-24.json) retains the
+previous definitions and requires source review before any existing finding is
+reassigned. This release must not be adopted in evidence until a separate PR
+supports historical family resolution and preserves evidence and review history.
+Changing the method pin alone is not that migration.
+
 Archived confidence matrices, weighting factors and former T4 inputs remain only for
 understanding immutable historical editions. The T4 compiler and automatic T3/T6
 scoring are retired from supported scientific production. T6E remains a historical
