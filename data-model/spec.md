@@ -383,20 +383,29 @@ use a dataset is derived on demand from the T2/T4 joins, not stored.
 
 Registry of climate-risk variables, without a composite climate-risk index. Current priority calculations follow
 [`priority-contract.json`](priority-contract.json) and the [classification and weighting method](../priority/README.md).
-These are the current configuration fields; archived CSVs in `configuration/` retain their original
-columns and values. They require an explicit reviewed migration before use in this route.
+The current registry is [`priority/t2/variables.csv`](../priority/t2/variables.csv), with a
+[field schema](../priority/t2/schema.json), [migration trace](../priority/t2/migration.json) and
+[descriptive manifest](../priority/t2/manifest.json). All eleven IDs are preserved. The old CSV in
+`configuration/` remains historical; it is not the current T2 interface.
+
+This initial migration has **zero runnable variables**. Candidate dataset pointers remain auditable,
+but verified `dataset_id` and classification references are empty. All entries are blocked pending
+quantity, context, dataset and classification resolution. Role and concern assignments are proposed
+routing for review, not accepted calibration. See [T2 registry guide](../priority/t2/README.md).
 
 | Field | Meaning |
 |---|---|
 | `variable_id` | Stable variable identifier |
-| `variable` | Canonical quantity in VONT |
-| `dataset_id` | Context-resolved dataset in T1/BIND |
+| `variable` | Existing variable key; ontology and quantity matching still require verification |
+| `candidate_dataset_id` | Historical T1 pointer, not yet verified for the intended quantity |
+| `dataset_id` | Verified context-resolved dataset in T1/BIND; empty in this migration |
 | `hazard_type` | Named hazard, where relevant |
 | `scenario_type` | Baseline or stated future scenario |
 | `unit` | Native measurement unit |
 | `mcda_role` | Priority, descriptor or investment-risk screen |
 | `concern_id` | Shared concern identity; do not count a T2/T5 alias twice |
-| `classification_id` | Reference to one versioned classification rule |
+| `classification_id`, `classification_version` | Exact accepted rule reference; empty in this migration |
+| `binding_status`, `classification_status`, `readiness`, `blockers` | Explicit unresolved state and work needed; these are not human finding-review votes |
 
 Each selected priority references a rule with method, direction, unit, context, version and decision
 reference. Thresholds are the default: three increasing, upper-inclusive raw-value cutoffs map to
@@ -407,7 +416,7 @@ Quintiles are not supported. The contract defines the rule fields and the exact 
 
 Use one explicit representative per shared concern, including T2/T5 aliases, with a recorded reason.
 Only priority rows enter the user-weighted mean. Descriptors and M2b investment-risk screens remain
-separate. The runtime records normalized user weights, contributions, missingness and provenance;
+separate. A conforming consumer must record normalized user weights, contributions, missingness and provenance;
 it does not import historical defaults, climate index modes or implicit theme weights. CRITIC is
 a sensitivity diagnostic, not an automatic multiplier or a substitute for user priorities.
 

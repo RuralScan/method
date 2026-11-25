@@ -16,6 +16,7 @@ It supports early investment scoping. It does not replace feasibility studies, e
 - [Work through the Haiti notebook and prepare a scoping brief](handbook/implement-a-scan.md).
 - [Record or look up a scientific method decision](decisions/README.md). Cite the decision code and method revision to trace its ruling and implementation.
 - [Understand evidence types and source limitations](methodology-reference/content/evidence-principles.md), then [combine evidence across analytical tables](methodology-reference/content/compiling-evidence.md).
+- [Read the current T2 climate-variable registry](priority/t2/README.md): preserved IDs, candidate data, proposed roles and explicit classification blockers; no composite-index defaults.
 - [Read the data model](data-model/spec.md): fields, controlled vocabularies, table structure and configuration.
 - [Reuse the confidence matrix and badge lookup](configuration/reference/README.md): exact files, immutable origins and SHA-256 checks. [Import evidence safely](data-model/importing-evidence.md).
 - [Label schema tables in figures, notebooks and printouts](design/README.md).
