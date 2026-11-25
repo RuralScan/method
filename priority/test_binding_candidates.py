@@ -15,7 +15,7 @@ class BindingCandidateTests(unittest.TestCase):
     def test_generated_projection_and_observed_encoding_vectors(self):
         bindings.validate(self.rows)
         self.assertEqual((bindings.ROOT / 'candidates.json').read_bytes(), bindings.generated(self.rows))
-        self.assertEqual(len(self.rows), 12)
+        self.assertEqual(len(self.rows), 14)
 
     def test_di_wrong_percent_scale_rejected_by_real_sample(self):
         self.row('fao_di_annual_candidate')['decode']['scale'] = 1
@@ -64,6 +64,15 @@ class BindingCandidateTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'carbon alias'):
             bindings.validate(self.rows)
 
+    def test_landmark_acquired_schema_and_unscored_presence(self):
+        row = self.row('landmark_community_overlap_candidate')
+        self.assertEqual(row['route'], 'approved_official_zip')
+        self.assertEqual(row['selectors']['id_field'], 'landmark_i')
+        self.assertEqual(row['selectors']['layer_filter'], ['Indigenous Lands', 'Community Lands'])
+        self.assertEqual(row['selectors']['absence_policy'], 'unknown_without_independent_completeness_evidence')
+        self.assertEqual(row['mcda_role'], 'descriptor')
+        self.assertIsNone(row['decode'])
+
     def test_modified_pinned_observation_rejected(self):
         lock = json.loads((bindings.ROOT / 'evidence.lock.json').read_text())
         # Reproduce the pinned manifest shape without requiring a network or evidence checkout.
@@ -78,3 +87,49 @@ class BindingCandidateTests(unittest.TestCase):
         with patch.object(bindings.Path, 'read_text', read_text), patch.object(bindings.subprocess, 'check_output', side_effect=[manifest, b'changed observation']):
             with self.assertRaisesRegex(ValueError, 'Observation hash mismatch'):
                 bindings.check_evidence(self.rows, '/unused-fixture')
+
+class RecurrenceTests(unittest.TestCase):
+    def setUp(self):
+        self.rows = {r['binding_id']: r for r in bindings.read_rows()}
+        self.candidate = self.rows['fao_asi_recurrence_candidate']
+        self.source = self.rows['fao_asi_annual_candidate']
+        self.series = [{'year': y, 'value': 0} for y in range(1984, 2026)]
+
+    def calculate(self, threshold=30):
+        return bindings.inspect_recurrence(self.candidate, self.source, self.series, threshold)
+
+    def test_strict_threshold_and_half_percent_preserved(self):
+        self.series[0]['value'] = 30
+        self.series[1]['value'] = 30.5
+        self.assertEqual(self.calculate()['event_count'], 1)
+        self.assertAlmostEqual(self.calculate()['value'], 100 / 42)
+
+    def test_missing_year_not_shorter_denominator(self):
+        self.series.pop()
+        result = self.calculate()
+        self.assertEqual(result['valid_seasons'], 41)
+        self.assertEqual(result['state'], 'incomplete_series')
+        self.assertIsNone(result['value'])
+
+    def test_special_codes_not_drought_events(self):
+        self.series[0]['value'] = 254
+        self.assertEqual(self.calculate()['event_count'], 0)
+        self.assertIsNone(self.calculate()['value'])
+
+    def test_duplicate_year_rejected(self):
+        self.series.append(self.series[0])
+        with self.assertRaisesRegex(ValueError, 'Duplicate'):
+            self.calculate()
+
+    def test_arbitrary_event_cutoff_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'Unsupported'):
+            self.calculate(25)
+
+    def test_source_quantization_rejected(self):
+        self.source['selectors']['pixelType'] = 'U8'
+        with self.assertRaisesRegex(ValueError, 'float-preserving'):
+            bindings.validate(list(self.rows.values()))
+
+    def test_producer_zero_is_unknown(self):
+        self.assertEqual(bindings.inspect_numeric(self.rows['forest_gross_emissions_2025_candidate'], 0),
+                         {'state': 'unknown', 'value': None})

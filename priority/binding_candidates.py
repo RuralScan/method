@@ -56,6 +56,29 @@ def inspect_numeric(row, raw, auxiliary=None):
     return {'state': 'numeric', 'value': raw * spec['scale'] + spec['offset']}
 
 
+def inspect_recurrence(candidate, source, series, threshold):
+    """Review arithmetic for a declared annual series; not a spatial runtime adapter."""
+    spec = candidate['selectors']['derivation']
+    require(source['binding_id'] == spec['source_binding_id'], 'Wrong recurrence source')
+    require(threshold in spec['allowed_affected_area_thresholds'], 'Unsupported affected-area event threshold')
+    require(spec['event_operator'] == '>' and spec['require_complete_period'] is True,
+            'Recurrence requires explicit strict event and complete-period semantics')
+    years = set(range(spec['start_year'], spec['end_year'] + 1))
+    seen, valid, events = set(), 0, 0
+    for item in series:
+        year = item['year']
+        require(year in years and year not in seen, 'Duplicate or out-of-period growing season')
+        seen.add(year)
+        decoded = inspect_numeric(source, item['value'])
+        if decoded['state'] == 'numeric':
+            valid += 1
+            events += decoded['value'] > threshold
+    complete = valid == len(years)
+    return {'state': 'numeric' if complete else 'incomplete_series',
+            'value': 100 * events / valid if complete else None,
+            'valid_seasons': valid, 'expected_seasons': len(years), 'event_count': events}
+
+
 def validate(rows, root=ROOT):
     require(bool(rows), 'Empty binding proposal')
     ids = set()
@@ -99,6 +122,33 @@ def validate(rows, root=ROOT):
         require(by_id[vector['binding_id']]['unit'] == vector['expected_unit'], 'Encoding unit regression: ' + vector['name'])
         actual = inspect_numeric(by_id[vector['binding_id']], vector['raw'], vector.get('auxiliary'))
         require(actual == vector['expected'], 'Encoding regression: ' + vector['name'])
+    recurrence = by_id['fao_asi_recurrence_candidate']
+    source = by_id[recurrence['selectors']['derivation']['source_binding_id']]
+    require(source['selectors']['pixelType'] == 'F32', 'ASI recurrence requires float-preserving input')
+    for vector in json.loads((root / 'recurrence-vectors.json').read_text()):
+        actual = inspect_recurrence(recurrence, source, vector['series'], vector['threshold'])
+        require(actual == vector['expected'], 'Recurrence regression: ' + vector['name'])
+    # The producer-native source is a distinct version/encoding from the old convenience mirror.
+    producer = by_id['forest_gross_emissions_2025_candidate']
+    require(producer['selectors']['matched_loss_binding_id'] == 'hansen_forest_loss_candidate'
+            and producer['selectors']['model_version'] == '1.4.3'
+            and producer['selectors']['gfw_dataset_version'] == 'v20260327'
+            and producer['unit'] == 'Mg_CO2e_per_ha_over_2001_2025', 'Forest model/loss edition mismatch')
+    require(inspect_numeric(producer, 0) == {'state': 'unknown', 'value': None},
+            'Producer-native nodata zero cannot become zero emissions')
+    holds = json.loads((root / 'holds.json').read_text())
+    require(holds['runtime_release_ready'] is False, 'Hold resolution cannot release a pilot')
+    seen_holds = set()
+    observations = {ref['observation_id'] for row in rows for ref in row['observation_refs']}
+    for hold in holds['holds']:
+        require(hold['id'] not in seen_holds, 'Duplicate hold ID')
+        seen_holds.add(hold['id'])
+        require(hold['status'] in {'resolved', 'resolved_by_replacement', 'context_required', 'scientific_review'}, 'Invalid hold status')
+        require(set(hold['bindings']) <= by_id.keys() and bool(hold['bindings']), 'Unknown hold binding')
+        require(set(hold['observations']) <= observations and bool(hold['observations']), 'Missing hold provenance')
+        require(bool(hold['resolution']), 'Missing hold disposition')
+        if hold['status'] == 'resolved_by_replacement':
+            require(hold['replacement_binding_id'] in hold['bindings'], 'Replacement binding missing')
     return rows
 
 
