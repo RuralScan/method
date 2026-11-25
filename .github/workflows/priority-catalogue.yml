@@ -38,10 +38,16 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: |
+          python3 - <<'PYLOCK' > "$RUNNER_TEMP/priority-source-revisions"
+          import json, pathlib, re
+          locks = [pathlib.Path('priority/t5-evidence.lock.json'), *pathlib.Path('priority/source-locks').glob('*.json')]
+          for revision in sorted({json.loads(path.read_text())['revision'] for path in locks}):
+              assert re.fullmatch('[0-9a-f]{40}', revision)
+              print(revision)
+          PYLOCK
+          while IFS= read -r revision; do git -C _priority-evidence fetch --depth=1 origin "$revision"; done < "$RUNNER_TEMP/priority-source-revisions"
           python3 priority/catalogue.py check --evidence-repo _priority-evidence --base "$BASE_SHA"
           python3 priority/t5_refs.py
-          T5_PIN=$(python3 -c "import json; print(json.load(open('priority/t5-evidence.lock.json'))['revision'])")
-          git -C _priority-evidence fetch --depth=1 origin "$T5_PIN"
           python3 priority/t5_review.py --evidence-repo _priority-evidence
           python3 -m unittest discover -v -s priority
       - name: Check accepted package history against current evidence main
