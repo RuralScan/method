@@ -33,7 +33,7 @@ Alternative screened: *State of Nature 2016*, printed pages 70–71, Figure 46, 
 - The legacy `bii_nhm_global` pointer references the 2016 publication. Its circa-2005 layer must not be labelled current-year loss. *State of Nature 2016*, page 71, explicitly describes the 2005 pressure inputs. Prefer an appropriate newer edition if available and compatible, after confirming its reference state, native resolution, units, valid domain, masks, coverage and access conditions. Do not subtract different model editions to invent a trend.
 - The global class convention does not require World Bank income groups. Country/biome adjustments remain possible where better local evidence supports them; record and justify any override.
 
-No current raster has been sampled or selected in this review. Existing profile and T5 routing remain held; interpretation approval does not turn an old dataset pointer into an inspected binding. Once the input is selected and its transformation verified, the contextual row can record `method=thresholds`, depletion units, `direction=higher_is_more_concern`, cutoffs 10/20/40, the exact BII-to-depletion transformation, source/version, rationale and limitations. The table's binding currently permits positive scale only, so do not encode `100 − BII` as a silently accepted negative scale or invent a derived input asset. No core rule is activated by this approval record.
+At the initial class review no current raster had been sampled or selected; the subsequent v2.1.1 inspection below now resolves native units, years, grid and missing-value handling. Existing profile and T5 routing remain held; interpretation approval does not turn an old dataset pointer into an inspected binding. Once the input is selected and its transformation verified, the contextual row can record `method=thresholds`, depletion units, `direction=higher_is_more_concern`, cutoffs 10/20/40, the exact BII-to-depletion transformation, source/version, rationale and limitations. The table's binding currently permits positive scale only, so do not encode `100 − BII` as a silently accepted negative scale or invent a derived input asset. No core rule is activated by this approval record.
 
 Climate hazards remain pending Brayden's reply. The Bank's [infrastructure exposure work](../infrastructure/README.md) stays active alongside the nine problems; this biodiversity proposal does not change that scope or add another problem variable.
 
@@ -52,8 +52,38 @@ Archive members were read back and verified. Remote SharePoint access was not ch
 
 ## Next binding inspection: NHM v2.1.1 limited release
 
-26 November 2026 follow-up after selecting provisional Haiti infrastructure sources. The [producer catalogue](https://data.nhm.ac.uk/dataset/bii-developed-by-nhm-v2-1-1-limited-release), resource [c4c281c4-befa-4e1b-a162-ba2f25e5ae82](https://data.nhm.ac.uk/dataset/bii-developed-by-nhm-v2-1-1-limited-release/resource/c4c281c4-befa-4e1b-a162-ba2f25e5ae82), identifies **v2.1.1 (Open Access, Limited Release)**, updated 9 October 2024, as a newer candidate than the legacy Newbold 2016 pointer. The resource catalogue reports a ZIP of 45,890,222 bytes. Catalogue temporal extent is 2000–2020, but this is explicitly a temporally limited release: it does not establish which years are in the ZIP. The producer directs requests for the complete annual series, finer resolution and commercial use to its Biodiversity Futures Lab.
+26 November 2026 follow-up after selecting provisional Haiti infrastructure sources. The [producer catalogue](https://data.nhm.ac.uk/dataset/bii-developed-by-nhm-v2-1-1-limited-release), resource [c4c281c4-befa-4e1b-a162-ba2f25e5ae82](https://data.nhm.ac.uk/dataset/bii-developed-by-nhm-v2-1-1-limited-release/resource/c4c281c4-befa-4e1b-a162-ba2f25e5ae82), identifies **v2.1.1 (Open Access, Limited Release)**, updated 9 October 2024, as a newer candidate than the legacy Newbold 2016 pointer. The DataCite DOI record was fetched and its title matched the provider's citation.
 
-The advertised licence is **CC-BY-NC-SA 4.0**. It must not inherit the old T1 entry's CC-BY-4.0 label. Catalogue access succeeded in the browser after initial command-line requests returned HTTP 403. The download panel offers a no-notification option; this was selected, with no email/personal details entered. **Start was not submitted:** the producer states that downloading records agreement to the terms. Exact download approval is still needed under the browser's action-time agreement rule. No contact message was sent.
+Pete explicitly approved the download and **CC-BY-NC-SA 4.0** licence for non-commercial inspection. The browser request used “No notification (check status manually)”; no name/email was submitted. Download request d8de77a1-d640-4a1d-8214-34f8aef1d55d completed on 26 November 2026 at 22:17:15, and the actual archive was acquired. Initial command-line HTTP 403 was an access-route issue, resolved through the normal browser. No contact message was sent. The returned outer manifest refers to an older cached request dated 10 November; preserve it alongside the actual request record, not as a new dataset edition.
 
-This advances source identity and acquisition-route inspection, not raster verification. File contents, native resolution, actual year selection, units, valid range, mask and Haiti coverage remain unverified. The separate NHM explanatory page illustrates a 2020 map at 0.25 degrees; that caption is not evidence of the ZIP's native grid. No raster bytes/hash or class results are claimed. Do not activate the old pointer merely because the newer candidate is awaiting acquisition, and do not apply the approved percentage bands to unknown units. After acquisition, verify these properties and the explicit BII-to-depletion transform before proposing an executable binding. The approved maximum-with-KBA rule and nine-variable scope remain unchanged.
+The ZIP contains five GeoTIFFs and their year sidecars, README and licence. Reading every raster verified the following candidate binding:
+
+| Property | Verified value / interpretation |
+|---|---|
+| Proposed input | Latest year in this public package: **bii-2020_v2-1-1.tif**, band 1; a current candidate for acquisition/fit review, not an activated runtime binding |
+| Available observations | **2000, 2005, 2010, 2015, 2020**; not an annual time series |
+| Grid | EPSG:4326, 4,320 columns × 2,160 rows, **5 arc-minutes** (0.0833333333 degrees), about 10 km at the equator |
+| Coverage | Global raster extent; valid terrestrial support follows the native mask. Extent is not complete local coverage |
+| Values | Native Float64, percentage BII **0–100**, scale 1, offset 0, one band |
+| Missing | **NaN nodata**; retain the mask. Do not substitute zero, intactness 100 or a Very little class |
+| Actual 2020 valid domain | 2,170,764 valid cells; minimum 0.42, maximum 99.96. Across all five rasters: no unmasked nonfinite, negative or above-100 values |
+| Approved interpretation | Apply the existing BII remaining-percentage bands, or explicitly derive depletion = 100 − BII before the existing 10/20/40 cuts. Retain boundary equality and raw BII |
+| Use conditions | CC-BY-NC-SA 4.0, as approved for non-commercial inspection; never inherit the legacy CC-BY-4.0 label or assume permission for every downstream use |
+
+The original README confirms the percentage units, five years and 5-arc-minute grid. Its native resolution supersedes the unrelated 0.25-degree example-map caption as evidence about this package. This is much coarser than the legacy approximately 1 km pointer: newer observation/model edition does not automatically make it better for every application.
+
+Three diagnostic Haiti locations returned finite 2020 BII values: (-72.325, 18.54) = 3.51; (-74.1, 18.64) = 63.40; (-72.2, 19.5) = 53.72. These verify readable land cells, not national completeness or an opportunity-space result. The diagnostic bounding-box read includes ocean and neighboring territory and must not be reported as Haiti statistics.
+
+**Remaining fit limit:** use this public edition as coarse landscape context only; resampling cannot recover farm-scale variation. Combining its classes with finer KBA distances retains two different spatial supports. Keep each input's resolution and driver visible. The producer offers a complete series and improved resolution on request; finer licensed data may be needed for pilot differentiation. Acquisition approval does not decide that trade-off, approve a new runtime release or waive source conditions. The existing positive-scale-only binding transform still cannot silently encode 100 − BII; an explicit reviewed transformation remains required. KBA polygon acquisition remains separate. No additional core variable is introduced.
+
+### Acquired source preservation
+
+Source bytes, the DataCite record, acquisition log, reproducible raster probe and results are archived in the team-library mirror at `0_Methodology_&_Frameworks/priority_classification/bii_binding_2026_11_26/reviewed_sources.zip`, SHA-256 **57e742d788a8bfb0d6e28f7da2d8b2014df5f038691da2f25832d7f01ed7f2af**. Archive members and copied bytes were read back and verified; remote SharePoint access was not checked. This is inspection provenance, not SRC/EV scientific acceptance.
+
+| File | Bytes / SHA-256 |
+|---|---|
+| Producer download wrapper | 45,890,689 bytes; d5e7dfcaf2fbaac1dd1aeff3139ae753f7f9ba560be4203d5c17a79ac4b314af |
+| Nested resource ZIP | 45,890,222 bytes, matching catalogue size; 4bcc68c57396a0e82670f5319fcaeb747d7a52f9d91b21d36ae6a88d099178d1 |
+| 2020 GeoTIFF | 10,327,863 bytes; d2142dd8d6d0bf1a08268d9a9a03c7a9b9ab4d834714d7fea35de621559a72b4 |
+
+`probe_bii.py` runs with rasterio 1.5.2 and numpy 2.4.6. Its JSON retains per-raster hashes, grid metadata, domain and missing-value checks and diagnostic locations. Both original archives are preserved through the nested download; no producer executable code was run.
