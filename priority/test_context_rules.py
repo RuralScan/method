@@ -148,5 +148,33 @@ class ContextRules(unittest.TestCase):
             writer=csv.DictWriter(f,fieldnames=fields);writer.writeheader();writer.writerows(candidates)
         with self.assertRaisesRegex(ValueError,'Stale generated'):rules.check(self.root)
 
+    def test_food_levels_require_available_applicable_assessment(self):
+        rule=rules.resolve('food_insecurity',vintage='FY2027',root=self.root)
+        self.assertIsNone(rule['binding_candidate'])
+        self.assertFalse(rule['runtime_ready'])
+        for level,label in [(1,'none'),(2,'low'),(3,'medium'),(4,'high')]:
+            self.assertIsNone(rules.preview_documented_category(rule,level,unit='ipc_chronic_area_level'))
+            self.assertIsNone(rules.preview_documented_category(rule,level,unit='ipc_chronic_area_level',assessment_available=True))
+            self.assertIsNone(rules.preview_documented_category(rule,level,unit='ipc_chronic_area_level',assessment_applicable=True))
+            self.assertEqual(rules.preview_documented_category(rule,level,unit='ipc_chronic_area_level',
+                assessment_available=True,assessment_applicable=True),label)
+        for value in [None,0,5,-9999,2.5,True,float('nan')]:
+            self.assertIsNone(rules.preview_documented_category(rule,value,unit='ipc_chronic_area_level',
+                assessment_available=True,assessment_applicable=True))
+        with self.assertRaisesRegex(ValueError,'do not substitute'):
+            rules.preview_documented_category(rule,2,unit='ipc_acute_phase',assessment_available=True,assessment_applicable=True)
+        with self.assertRaisesRegex(ValueError,'local assessment'):
+            rules.preview_category_record(rule,2,2)
+
+    def test_food_placeholder_cannot_claim_inspected_binding(self):
+        rows=self.read('rules.csv');food=next(r for r in rows if r['variable_id']=='food_insecurity')
+        binding=json.loads(food['binding']);binding['validation']='table_inspected';food['binding']=json.dumps(binding)
+        self.write('rules.csv',rows)
+        with self.assertRaisesRegex(ValueError,'Unresolved category input'):rules.bundle(self.root)
+        binding['validation']='requires_local_assessment';food['binding']=json.dumps(binding)
+        mapping=json.loads(food['category_map']);mapping['5']='high';food['category_map']=json.dumps(mapping)
+        self.write('rules.csv',rows)
+        with self.assertRaisesRegex(ValueError,'declared domain exactly'):rules.bundle(self.root)
+
 
 if __name__ == '__main__':unittest.main()

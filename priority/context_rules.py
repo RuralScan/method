@@ -93,7 +93,8 @@ def bundle(root=ROOT):
         binding = row['binding']
         require(set(binding) == {'dataset_id','asset','field','source_unit','scale','offset','spatial_support','validation'}, 'Incomplete binding')
         require(all(binding[k] for k in ('dataset_id','asset','field','source_unit','spatial_support')), 'Missing binding identity')
-        require(binding['validation'] in {'table_inspected','documentation_only'} and finite(binding['scale']) and binding['scale'] > 0 and finite(binding['offset']), 'Invalid binding conversion/status')
+        require(binding['validation'] in {'table_inspected','documentation_only','requires_local_assessment'} and finite(binding['scale']) and binding['scale'] > 0 and finite(binding['offset']), 'Invalid binding conversion/status')
+        require(binding['validation'] != 'requires_local_assessment' or row['method'] == 'categories', 'Local assessment rule must preserve published categories')
         lo, hi = row['domain_min'], row['domain_max']
         require(finite(lo) and (hi is None or finite(hi) and lo < hi), 'Invalid classification domain')
         require(row['method'] in {'terciles','thresholds','categories'}, 'Invalid classification method')
@@ -110,6 +111,15 @@ def bundle(root=ROOT):
             candidates = [c for c in read_rows(root / 'priority/bindings')
                           if c['variable_id'] == row['variable_id'] and c['asset'] == binding['asset']
                           and c['dataset_id'] == binding['dataset_id'] and binding['field'] in c['auxiliary_fields']]
+            if binding['validation'] == 'requires_local_assessment':
+                require(not candidates, 'Local assessment placeholder conflicts with inspected binding')
+                require(hi is not None and lo.is_integer() and hi.is_integer() and hi - lo < 100,
+                        'Invalid published category domain')
+                require(set(row['category_map']) == {str(i) for i in range(int(lo),int(hi)+1)},
+                        'Published categories must cover the declared domain exactly')
+                row.update(binding_candidate=None, reference_sample=None, cuts=None, missing='unknown',
+                           endpoint='provider_category', runtime_ready=False)
+                continue
             require(len(candidates) == 1 and candidates[0]['decode'] is not None, 'Unresolved category input binding')
             candidate = candidates[0]
             declared = candidate['selectors']['native_categories']
@@ -216,6 +226,7 @@ def preview_category_record(rule, raw, category):
     from binding_candidates import inspect_numeric
     require(rule['method'] == 'categories', 'Not a category rule')
     candidate = rule['binding_candidate']
+    require(candidate is not None, 'Select an applicable local assessment before previewing source records')
     result = {'class':None, 'state':'unknown', 'raw':raw, 'category':category}
     if not finite(raw) or not finite(category) or not float(category).is_integer():
         return result
@@ -232,6 +243,18 @@ def preview_category_record(rule, raw, category):
     key = str(int(category)) if state == 'numeric' else state
     result.update(state=state, **{'class':rule['category_map'].get(key)})
     return result
+
+
+def preview_documented_category(rule, value, *, unit, assessment_available=False, assessment_applicable=False):
+    """Review published category meanings only within explicitly available, applicable coverage."""
+    require(rule['method'] == 'categories' and rule['binding']['validation'] == 'requires_local_assessment',
+            'Not a local assessment category rule')
+    require(unit == rule['unit'], 'Input units differ; do not substitute another classification')
+    if assessment_available is not True or assessment_applicable is not True:
+        return None
+    if not finite(value) or not float(value).is_integer():
+        return None
+    return rule['category_map'].get(str(int(value)))
 
 
 if __name__ == '__main__':

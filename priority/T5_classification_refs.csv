@@ -8,7 +8,7 @@ biodiversity_priority,priority,biodiversity_restoration_need,priority/profiles/t
 water_quality_risk,priority,water_quality,priority/profiles/t5-0.2.0.json#water_quality_risk,,,,held
 water_stress,priority,water_stress,priority/profiles/t5-0.2.0.json#water_stress,priority/classifications/rules.csv#water_stress_aqueduct,,,held
 rural_poverty,priority,rural_poverty,priority/profiles/t5-0.2.0.json#rural_poverty,priority/classifications/rules.csv#poverty_wb_income,,,held
-food_insecurity,priority,food_insecurity,priority/profiles/t5-0.2.0.json#food_insecurity,,,,held
+food_insecurity,priority,food_insecurity,priority/profiles/t5-0.2.0.json#food_insecurity,priority/classifications/rules.csv#food_insecurity_ipc_chronic,,,held
 production_gap,priority,production_gap,priority/profiles/t5-0.2.0.json#production_gap,,,,held
 agricultural_dependency,priority,agricultural_dependency,priority/profiles/t5-0.2.0.json#agricultural_dependency,,,,held
 gender_inequity,priority,gender_inequity,priority/profiles/t5-0.2.0.json#gender_inequity,,,,held

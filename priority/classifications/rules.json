@@ -3,10 +3,10 @@
   "runtime_ready": false,
   "input_sha256": {
     "priority/classifications/columns.json": "95b0fd9cf114bcd7b6ee6ba6f10e4343722c5bab158cf63a6ad455bbe18b3112",
-    "priority/classifications/rules.csv": "eab0edf9d03b9d3a08d096fb57b7f5867ecff552b37365ffa63c5e3db02bc92c",
+    "priority/classifications/rules.csv": "2342753c7702e49b216be819bbd8e7bd0dac3949a1b1847fc10ecc3a7e1a51ae",
     "priority/classifications/reference_samples.csv": "b80d52b46a1d0b1e0ce55dc2297ab981cb58ce72800486fae3ff783b856e9760",
     "priority/classifications/country_groups.csv": "ca84f757fb2c4006a4f6647adc16cb326b0f64b2a317de7b30bdc72cda1e9ce2",
-    "priority/classifications/sources.csv": "ff4d76676b837d9237dd78d89e7831deea39b23350614cf9fa5cbdc836e0c59d"
+    "priority/classifications/sources.csv": "793864b5b984a7806400807330729d86819386c5d880324d4b816c236fbec042"
   },
   "rules": [
     {
@@ -389,6 +389,60 @@
         "scientifically_accepted": false,
         "runtime_ready": false
       },
+      "reference_sample": null,
+      "cuts": null,
+      "missing": "unknown",
+      "endpoint": "provider_category",
+      "runtime_ready": false
+    },
+    {
+      "rule_set_id": "food_insecurity_ipc_chronic",
+      "classification_id": "food_insecurity_ipc_chronic_levels",
+      "version": "0.1.0",
+      "variable_id": "food_insecurity",
+      "concern_id": "food_insecurity",
+      "context_type": "global",
+      "context_value": "global",
+      "context_vintage": "",
+      "reference_scope": "Published IPC chronic area analyses only; country coverage and validity period must be checked",
+      "reference_year": "assessment-specific; no selected edition",
+      "method": "categories",
+      "unit": "ipc_chronic_area_level",
+      "direction": "higher_is_more_concern",
+      "none_upper": null,
+      "low_upper": null,
+      "medium_upper": null,
+      "domain_min": 1.0,
+      "domain_max": 4.0,
+      "reference_sample_id": "",
+      "source_ids": [
+        "ipc_chronic_parameters"
+      ],
+      "binding": {
+        "dataset_id": "ipc_chronic_area_assessment_required",
+        "asset": "https://www.ipcinfo.org/ipcinfo-website/ipc-overview-and-classification-system/ipc-chronic-food-insecurity-classification/en/",
+        "field": "Published chronic area level; exact dataset field pending local assessment selection",
+        "source_unit": "ipc_chronic_area_level",
+        "scale": 1,
+        "offset": 0,
+        "spatial_support": "Published assessment areas only; retain boundaries, assessment dates and validity; no continuous global layer assumed",
+        "validation": "requires_local_assessment"
+      },
+      "category_map": {
+        "1": "none",
+        "2": "low",
+        "3": "medium",
+        "4": "high"
+      },
+      "class_meanings": {
+        "none": "Very little: IPC chronic Level 1 Minimal; not absence of food-insecure households",
+        "low": "IPC chronic Level 2 Mild",
+        "medium": "IPC chronic Level 3 Moderate",
+        "high": "IPC chronic Level 4 Severe"
+      },
+      "rationale": "Pete approved these four classes, rationale and coverage limits on 2026-11-25: IPC chronic area levels 1 Minimal -> Very little, 2 Mild -> Low, 3 Moderate -> Medium, 4 Severe -> High. Published chronic severity fits medium- and long-term rural investment scoping. Reuse an applicable published classification, not a new IPC assessment. Country coverage and validity differ; outside assessed coverage, missing, invalid and inapplicable records remain unknown. Acute IPC phases and FIES prevalence are not equivalent. Local dataset selection and runtime release remain outstanding. See priority/research/2026-11-25-food-insecurity-classes.md for approval quote and source rationale.",
+      "status": "proposed",
+      "binding_candidate": null,
       "reference_sample": null,
       "cuts": null,
       "missing": "unknown",
@@ -1966,6 +2020,13 @@
       "sha256": "85105c9319f053802e44ddc59c4627e68a30276e99421cc4591fd04b574ed022",
       "locator": "Water Risk Interpretation / How do I interpret scores?; Water Stress / raw values 9999 and -9999",
       "description": "Pinned provider guidance: arid/low-use priority and physical-scarcity versus missing encoding. Snapshot retained in water-stress source archive."
+    },
+    {
+      "source_id": "ipc_chronic_parameters",
+      "url": "https://www.ipcinfo.org/ipc-manual-interactive/ipc-chronic-food-insecurity-protocols/function-2-classify-severity-and-identify-key-drivers/protocol-23-adhere-to-analytical-parameters/en/",
+      "sha256": "3008021f8cd6b516adce743bc50f4d34a613ed19124b022946dc834149e631f0",
+      "locator": "Protocol 2.3: parameters b-c (purpose and four levels), e-f (area classification), i (validity); saved web-text excerpt lines 88-116",
+      "description": "Publisher page retrieved through web text extraction; hash identifies the saved excerpt, not original HTML. Direct HTML fetch returned 403. Published classes and applicability, not a downloaded country dataset."
     }
   ]
 }
