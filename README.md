@@ -41,3 +41,19 @@ Matching uses the registered path where possible and refuses ambiguous duplicate
 ## Review component releases
 
 The review workspace is maintained under [`review/`](review/README.md), with its own version, content hashes and release notes. Its header shows the Review version and the official evidence revision. It remains at the existing dashboard address, shares the site navigation and is published by the existing Pages workflow. See the component guide for its host contract, release command and compatibility checks.
+
+## Machine-readable discovery
+
+The root and Methodology home expose a `rel="describedby"` link to `discovery.json`.
+The review workspace exposes the same link alongside its historical edition catalogue.
+Root `llms.txt` links both current resources and archived analytical evidence.
+`publish_discovery.py` generates these from the built reference version, asset metadata,
+review component release and pinned workflow checkout. Coverage distributions include
+checksums and the official source revision. Existing edition catalogues remain unchanged.
+
+The index distinguishes live RuralScan registers from historical CIAT provenance. Current
+register and runtime pointers are explicitly moving links, not pinned releases. Public
+access does not grant a data reuse licence, and no durable archive is claimed. A licence,
+licensor, preservation service and catalogue acceptance must be confirmed separately.
+
+Test with `python3 -m unittest discover -s tests -p test_discovery.py`.
