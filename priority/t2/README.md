@@ -37,3 +37,5 @@ The manifest is a versioned registry inventory, **not an accepted calibration or
 ## What remains
 
 Resolve quantity and dataset inconsistencies, record supporting evidence through the reviewed classification route, settle context/period and accept exact rule versions. Only then can the runtime owner adopt an independently pinned package. Runtime code, T5, the evidence register and historical publication pins are unchanged by this registry migration.
+
+Pete requested alignment with Brayden's intended hazard variables on 25 November 2026. The [alignment review and Teams confirmation request](../research/2026-11-25-climate-hazard-alignment.md) distinguish the stocktake's broad hazard families from exact indicators that remain unconfirmed. Legacy candidates in this registry must not be described as Brayden-approved selections.

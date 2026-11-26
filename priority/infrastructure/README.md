@@ -13,6 +13,10 @@ The project feedback log records the World Bank team and Pete's 9 November reque
 
 Start with roads as the existing worked example; include schools and health facilities where suitable inventories exist. The visual method names Geofabrik/OpenStreetMap roads and country inventories (Haiti MSPP health facilities and CNIGS schools in its example). These are leads, not verified global coverage or adopted bindings. Pilot-country data determine what is possible.
 
+The Phase 3, 4 & 5 methodology deliverable also identifies roads, power lines and buildings as critical-infrastructure interests, starting with flood exposure. Retain power lines and buildings as additional inventory candidates where coverage permits; the examples above are not an exhaustive asset list. Locator: team project `4_Outputs_&_Reporting/4_Reporting/4. Phase 3,4 & 5 reporting/NbS_RuralScan_Methodology_Deliverable_Phase 3,4 & 5.docx`, paragraph on assessing protection of critical infrastructure; original-byte SHA-256 `8db2a7ab536325ddce111dbd1f4b0e9782de9334e1f0a96475632528e8b7045b`. The later exposure-only instruction still governs the output.
+
+The [flood-depth proposal](../research/2026-11-25-flood-hazard-classes.md) identifies a physical river-hazard candidate for this overlay. Its return period and coverage must be declared; river-flood maps cannot stand in for coastal or surface-water flooding. Brayden has been asked to confirm the hazard variables before a default is adopted.
+
 The mock-up lists river flood, landslide and wildfire overlays. Check each source's actual meaning before use: susceptibility, current alerts, historical burn footprints and event hazard maps are not interchangeable. This optional overlay does not expand the nine-problem classification list. Keep it distinct from risk to the NbS investment itself.
 
 Current status: requirement and output specification retained; no pilot asset inventory selected, no new exposure computed, no operational weighting adopted. Source: retired producer `docs/redesign/FEEDBACK_LOG.md`, entries dated 2026-11-09, and current published Stages 03/05.
