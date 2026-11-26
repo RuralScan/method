@@ -6,6 +6,12 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.23.0] - 2026-11-26
+
+- Shorten setup, investment-risk, hand-off and walkthrough chapters around the decisions readers need to make.
+- Remove repeated catalogues and obsolete illustrative defaults while retaining headings, scientific limits and links to detailed rules.
+- Align investment-risk weighting and T4 implementation status with the current accepted contracts; keep software checks distinct from scientific acceptance and runtime readiness.
+
 ## [0.22.0] - 2026-11-25
 
 - Define the versioned T4 scientific proposal, exact human acceptance and mapping-package interface.
