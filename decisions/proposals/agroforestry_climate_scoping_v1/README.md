@@ -30,7 +30,7 @@ An absent, mismatched or unsupported subpractice/pathway does not inherit a fami
 
 ## What the evidence check does—and does not—establish
 
-Six newly admitted method/context sources have no new evidence units. The three Niger references pass the pending FMNR rule and remain moisture-limited under the cold minimum. Three selected southern treeline references pass the broad cold screen. These are targeted contradiction/sensitivity checks, not field validation of accuracy. The planted-tree ecological-anchor source retains its recorded artifact recovery hold until that follow-up is actually completed.
+Six newly admitted method/context sources have no new evidence units. The three Niger references pass the pending FMNR rule and remain moisture-limited under the cold minimum. Three selected southern treeline references pass the broad cold screen. These are targeted contradiction/sensitivity checks, not field validation of accuracy. Acquisition update after proposal registration: Berdugo’s 29-page accepted manuscript was recovered from the UPF repository, DOI/title verified and hash-matched in the shared-library mirror. [Draft evidence PR #117](https://github.com/RuralScan/evidence/pull/117) proposes its source admission; the supplement remains a separate acquisition gap. This closes the manuscript recovery hold without changing the numerical proposal or conferring scientific approval.
 
 The remaining substantive decision is acceptance of the transparent proxy and policy transfers above. No farm survey, species palette, density target, engineering model or global survival calibration is being made a prerequisite for this restricted scoping claim. Scientific reviewers may reject or narrow the convention; source admission cannot settle that judgment.
 
