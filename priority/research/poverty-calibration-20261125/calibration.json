@@ -1,0 +1,490 @@
+{
+  "status": "exploratory_contextual_calibration_not_accepted_runtime_rule",
+  "source_sha256": "a4b47f19b3cac0d9a3604bdb174de1a6f2b56908e3afbb143e68f8a139330671",
+  "groups_sha256": "f164422e0c9868d12775727c88fc5fc4242512acc4006cc501fbcc5792c96b5d",
+  "group_notes": [
+    {
+      "Notes": "This table classifies all World Bank member countries (189) and all other economies with populations of more than 30,000. "
+    },
+    {
+      "Notes": "For FY27 (July 1, 2026–June 30, 2027), income groups are defined using 2025 GNI per capita (Atlas method): low income (LIC) ($1,175 or less); lower middle income (LMC) ($1,176–$4,635); upper middle income (UMC) ($4,636–$14,375); and high income (HIC) (above $14,375). Income classifications set on July 1 remain in effect until the next July 1."
+    },
+    {
+      "Notes": "IDA countries are those that lack the financial ability to borrow from IBRD. IDA credits are deeply concessional—interest-free loans and grants for programs aimed at boosting economic growth and improving living conditions. IBRD loans are noncessional. Blend countries are eligible for IDA credits because of their low per capita incomes but are also eligible for IBRD because they are financially creditworthy."
+    },
+    {
+      "Notes": "The term country, used interchangeably with economy, does not imply political independence but refers to any territory for which authorities report separate social or economic statistics. "
+    }
+  ],
+  "sheet": "Data 2024",
+  "lineup_year": 2024,
+  "source_vintage": "Fall 2026",
+  "source_rows": 1977,
+  "source_countries": 172,
+  "weighting": "one equally weighted source subnational area; not population-weighted",
+  "quantile_method": "linear interpolation at (n-1)*q, q=1/3 and 2/3",
+  "none_condition": null,
+  "zero_handling": "retained in low; rounded zero does not establish absence of poverty",
+  "results": [
+    {
+      "cohort": "low",
+      "income_groups": [
+        "Low income"
+      ],
+      "field": "poor300_ln",
+      "definition": "% of population living in households with consumption or income per person below the $3.00 poverty line at 2021 international prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+      "countries": 19,
+      "areas": 339,
+      "excluded_national_countries": [
+        "SSD",
+        "SYR"
+      ],
+      "countries_with_no_source_rows": [
+        "AFG",
+        "ERI",
+        "PRK",
+        "SOM"
+      ],
+      "excluded_invalid_rows": 0,
+      "zero_estimates": 1,
+      "survey_year_range": [
+        2014,
+        2023
+      ],
+      "missing_new_geometry_ids": 57,
+      "max_vintage_gap": 10,
+      "cuts_percent": [
+        40.86,
+        67.17333333333333
+      ],
+      "class_counts_low_medium_high": [
+        113,
+        113,
+        113
+      ],
+      "reference_sample_sha256": "efc51cf12e918f4e61225447623fa2ad761e0173c73d6b20da75a7cb06a96dfe",
+      "sample_file": "calibration_low_poor300_ln_sample.json"
+    },
+    {
+      "cohort": "low",
+      "income_groups": [
+        "Low income"
+      ],
+      "field": "poor420_ln",
+      "definition": "% of population living in households with consumption or income per person below the $4.20 poverty line at 2021 international prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+      "countries": 19,
+      "areas": 339,
+      "excluded_national_countries": [
+        "SSD",
+        "SYR"
+      ],
+      "countries_with_no_source_rows": [
+        "AFG",
+        "ERI",
+        "PRK",
+        "SOM"
+      ],
+      "excluded_invalid_rows": 0,
+      "zero_estimates": 0,
+      "survey_year_range": [
+        2014,
+        2023
+      ],
+      "missing_new_geometry_ids": 57,
+      "max_vintage_gap": 10,
+      "cuts_percent": [
+        66.63333333333333,
+        84.89333333333333
+      ],
+      "class_counts_low_medium_high": [
+        113,
+        113,
+        113
+      ],
+      "reference_sample_sha256": "38f0d52a8e75926f8e4fa7de02863e2399fef794f72e2973c2eef5d40276b956",
+      "sample_file": "calibration_low_poor420_ln_sample.json"
+    },
+    {
+      "cohort": "lower_middle",
+      "income_groups": [
+        "Lower middle income"
+      ],
+      "field": "poor300_ln",
+      "definition": "% of population living in households with consumption or income per person below the $3.00 poverty line at 2021 international prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+      "countries": 43,
+      "areas": 525,
+      "excluded_national_countries": [
+        "HND",
+        "NIC",
+        "VEN"
+      ],
+      "countries_with_no_source_rows": [
+        "KHM"
+      ],
+      "excluded_invalid_rows": 0,
+      "zero_estimates": 28,
+      "survey_year_range": [
+        2009,
+        2024
+      ],
+      "missing_new_geometry_ids": 50,
+      "max_vintage_gap": 15,
+      "cuts_percent": [
+        5.916666666666663,
+        39.486666666666665
+      ],
+      "class_counts_low_medium_high": [
+        175,
+        175,
+        175
+      ],
+      "reference_sample_sha256": "658bf299598e764324cdc2c8ff25af03c7e45267c3bb6305cb0dd82b0bdb65a5",
+      "sample_file": "calibration_lower_middle_poor300_ln_sample.json"
+    },
+    {
+      "cohort": "lower_middle",
+      "income_groups": [
+        "Lower middle income"
+      ],
+      "field": "poor420_ln",
+      "definition": "% of population living in households with consumption or income per person below the $4.20 poverty line at 2021 international prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+      "countries": 43,
+      "areas": 525,
+      "excluded_national_countries": [
+        "HND",
+        "NIC",
+        "VEN"
+      ],
+      "countries_with_no_source_rows": [
+        "KHM"
+      ],
+      "excluded_invalid_rows": 0,
+      "zero_estimates": 7,
+      "survey_year_range": [
+        2009,
+        2024
+      ],
+      "missing_new_geometry_ids": 50,
+      "max_vintage_gap": 15,
+      "cuts_percent": [
+        21.65333333333333,
+        62.02
+      ],
+      "class_counts_low_medium_high": [
+        175,
+        175,
+        175
+      ],
+      "reference_sample_sha256": "ad5b44a229de303ad190c7314a8ea27c930bc7d67db056a04c6d3c584f20b218",
+      "sample_file": "calibration_lower_middle_poor420_ln_sample.json"
+    },
+    {
+      "cohort": "upper_middle",
+      "income_groups": [
+        "Upper middle income"
+      ],
+      "field": "poor300_ln",
+      "definition": "% of population living in households with consumption or income per person below the $3.00 poverty line at 2021 international prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+      "countries": 43,
+      "areas": 745,
+      "excluded_national_countries": [
+        "CHN",
+        "DOM",
+        "DZA",
+        "FSM",
+        "GRD",
+        "JAM",
+        "LCA",
+        "MHL",
+        "SUR",
+        "TKM",
+        "TUV",
+        "WSM"
+      ],
+      "countries_with_no_source_rows": [
+        "CUB",
+        "DMA",
+        "LBY",
+        "VCT"
+      ],
+      "excluded_invalid_rows": 0,
+      "zero_estimates": 195,
+      "survey_year_range": [
+        2005,
+        2024
+      ],
+      "missing_new_geometry_ids": 79,
+      "max_vintage_gap": 19,
+      "cuts_percent": [
+        0.22,
+        4.2700000000000005
+      ],
+      "class_counts_low_medium_high": [
+        249,
+        248,
+        248
+      ],
+      "reference_sample_sha256": "92e5ae4c5f9f35c0cf34456d71bdccc562531d956a98dfb01c9196ebd3c9c321",
+      "sample_file": "calibration_upper_middle_poor300_ln_sample.json"
+    },
+    {
+      "cohort": "upper_middle",
+      "income_groups": [
+        "Upper middle income"
+      ],
+      "field": "poor420_ln",
+      "definition": "% of population living in households with consumption or income per person below the $4.20 poverty line at 2021 international prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+      "countries": 43,
+      "areas": 745,
+      "excluded_national_countries": [
+        "CHN",
+        "DOM",
+        "DZA",
+        "FSM",
+        "GRD",
+        "JAM",
+        "LCA",
+        "MHL",
+        "SUR",
+        "TKM",
+        "TUV",
+        "WSM"
+      ],
+      "countries_with_no_source_rows": [
+        "CUB",
+        "DMA",
+        "LBY",
+        "VCT"
+      ],
+      "excluded_invalid_rows": 0,
+      "zero_estimates": 103,
+      "survey_year_range": [
+        2005,
+        2024
+      ],
+      "missing_new_geometry_ids": 79,
+      "max_vintage_gap": 19,
+      "cuts_percent": [
+        1.37,
+        12.030000000000001
+      ],
+      "class_counts_low_medium_high": [
+        250,
+        247,
+        248
+      ],
+      "reference_sample_sha256": "85a76aeebd7f60b633c6b5e0639beb25aaf1e7387be8449f5367c3a83136aa53",
+      "sample_file": "calibration_upper_middle_poor420_ln_sample.json"
+    },
+    {
+      "cohort": "low_lower_middle",
+      "income_groups": [
+        "Low income",
+        "Lower middle income"
+      ],
+      "field": "poor300_ln",
+      "definition": "% of population living in households with consumption or income per person below the $3.00 poverty line at 2021 international prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+      "countries": 62,
+      "areas": 864,
+      "excluded_national_countries": [
+        "HND",
+        "NIC",
+        "SSD",
+        "SYR",
+        "VEN"
+      ],
+      "countries_with_no_source_rows": [
+        "AFG",
+        "ERI",
+        "KHM",
+        "PRK",
+        "SOM"
+      ],
+      "excluded_invalid_rows": 0,
+      "zero_estimates": 29,
+      "survey_year_range": [
+        2009,
+        2024
+      ],
+      "missing_new_geometry_ids": 107,
+      "max_vintage_gap": 15,
+      "cuts_percent": [
+        19.11333333333333,
+        50.629999999999995
+      ],
+      "class_counts_low_medium_high": [
+        288,
+        288,
+        288
+      ],
+      "reference_sample_sha256": "09cc6eb43a6572edf5d469c775fb290ef2a813642d0db5cb15fbc45ffda79c7b",
+      "sample_file": "calibration_low_lower_middle_poor300_ln_sample.json"
+    },
+    {
+      "cohort": "low_lower_middle",
+      "income_groups": [
+        "Low income",
+        "Lower middle income"
+      ],
+      "field": "poor420_ln",
+      "definition": "% of population living in households with consumption or income per person below the $4.20 poverty line at 2021 international prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+      "countries": 62,
+      "areas": 864,
+      "excluded_national_countries": [
+        "HND",
+        "NIC",
+        "SSD",
+        "SYR",
+        "VEN"
+      ],
+      "countries_with_no_source_rows": [
+        "AFG",
+        "ERI",
+        "KHM",
+        "PRK",
+        "SOM"
+      ],
+      "excluded_invalid_rows": 0,
+      "zero_estimates": 7,
+      "survey_year_range": [
+        2009,
+        2024
+      ],
+      "missing_new_geometry_ids": 107,
+      "max_vintage_gap": 15,
+      "cuts_percent": [
+        40.203333333333326,
+        73.38000000000001
+      ],
+      "class_counts_low_medium_high": [
+        288,
+        288,
+        288
+      ],
+      "reference_sample_sha256": "115acfe1d76276039d346d941d75034ea8df6e00bd9db9ae33c58801ec27585d",
+      "sample_file": "calibration_low_lower_middle_poor420_ln_sample.json"
+    },
+    {
+      "cohort": "all_low_middle",
+      "income_groups": [
+        "Low income",
+        "Lower middle income",
+        "Upper middle income"
+      ],
+      "field": "poor300_ln",
+      "definition": "% of population living in households with consumption or income per person below the $3.00 poverty line at 2021 international prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+      "countries": 105,
+      "areas": 1609,
+      "excluded_national_countries": [
+        "CHN",
+        "DOM",
+        "DZA",
+        "FSM",
+        "GRD",
+        "HND",
+        "JAM",
+        "LCA",
+        "MHL",
+        "NIC",
+        "SSD",
+        "SUR",
+        "SYR",
+        "TKM",
+        "TUV",
+        "VEN",
+        "WSM"
+      ],
+      "countries_with_no_source_rows": [
+        "AFG",
+        "CUB",
+        "DMA",
+        "ERI",
+        "KHM",
+        "LBY",
+        "PRK",
+        "SOM",
+        "VCT"
+      ],
+      "excluded_invalid_rows": 0,
+      "zero_estimates": 224,
+      "survey_year_range": [
+        2005,
+        2024
+      ],
+      "missing_new_geometry_ids": 186,
+      "max_vintage_gap": 19,
+      "cuts_percent": [
+        2.1,
+        26.07
+      ],
+      "class_counts_low_medium_high": [
+        537,
+        536,
+        536
+      ],
+      "reference_sample_sha256": "b0aa34a89f548688a35771650203c13c8bdb3c0a2eebb1542e4e5fcee5220245",
+      "sample_file": "calibration_all_low_middle_poor300_ln_sample.json"
+    },
+    {
+      "cohort": "all_low_middle",
+      "income_groups": [
+        "Low income",
+        "Lower middle income",
+        "Upper middle income"
+      ],
+      "field": "poor420_ln",
+      "definition": "% of population living in households with consumption or income per person below the $4.20 poverty line at 2021 international prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+      "countries": 105,
+      "areas": 1609,
+      "excluded_national_countries": [
+        "CHN",
+        "DOM",
+        "DZA",
+        "FSM",
+        "GRD",
+        "HND",
+        "JAM",
+        "LCA",
+        "MHL",
+        "NIC",
+        "SSD",
+        "SUR",
+        "SYR",
+        "TKM",
+        "TUV",
+        "VEN",
+        "WSM"
+      ],
+      "countries_with_no_source_rows": [
+        "AFG",
+        "CUB",
+        "DMA",
+        "ERI",
+        "KHM",
+        "LBY",
+        "PRK",
+        "SOM",
+        "VCT"
+      ],
+      "excluded_invalid_rows": 0,
+      "zero_estimates": 110,
+      "survey_year_range": [
+        2005,
+        2024
+      ],
+      "missing_new_geometry_ids": 186,
+      "max_vintage_gap": 19,
+      "cuts_percent": [
+        7.9399999999999995,
+        49.65
+      ],
+      "class_counts_low_medium_high": [
+        537,
+        536,
+        536
+      ],
+      "reference_sample_sha256": "5ba7fb8bc77453718e8f56bb6d41dbe00d06d24a0942f015df5e765c2078cd71",
+      "sample_file": "calibration_all_low_middle_poor420_ln_sample.json"
+    }
+  ]
+}

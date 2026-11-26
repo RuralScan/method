@@ -6,6 +6,10 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.24.0] - 2026-11-25
+
+- Require contextual poverty classification and global income-tier reference distributions; preserve raw rates and provenance.
+
 ## [0.23.0] - 2026-11-26
 
 - Shorten setup, investment-risk, hand-off and walkthrough chapters around the decisions readers need to make.
