@@ -24,7 +24,7 @@
     "data-model/agent-effects-contract.json": "238ddcbdce73e311ba316030789b984c308f382a3b8d610c7779b1c5be4011de",
     "data-model/priority-contract.json": "a4969d7549f73486798c792100a4cfdcfae750bfb2526fe147ca51c2e13ae9e2",
     "configuration/family-transitions/agroforestry-2026-11-24.json": "ee6ac0d7142ccb600ab8c294f2feeee323b8e6e9ebe40a3725ce4e7cfb4dab14",
-    "data-model/agent-t4-contract.json": "9e109220c116a972ec6535d789b093600f1d0f90b748f15e408f37486a7c825d"
+    "data-model/agent-t4-contract.json": "131b675745384152b589dcc09c0279b7ead2b2ad97d4790f9e1f39a2106a36d6"
   },
   "classification_decision": "https://github.com/RuralScan/method/issues/57",
   "synthesis_decision": "https://github.com/RuralScan/method/issues/85#issuecomment-7052114229",
