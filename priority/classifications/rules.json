@@ -3,7 +3,7 @@
   "runtime_ready": false,
   "input_sha256": {
     "priority/classifications/columns.json": "8be6b0e78e91bf9b8e4bf0341403272fcc3028ccb1189e9c79b06b7936a94af6",
-    "priority/classifications/rules.csv": "0487226250f79f5a5c73c58fbf3c8c03209f1b39dfb265b75a7828ef9cc84ee6",
+    "priority/classifications/rules.csv": "0aeb5b44b87bb4056f081efbe487a5b7547cbd2922de9cc50a859e28a7459c94",
     "priority/classifications/reference_samples.csv": "b80d52b46a1d0b1e0ce55dc2297ab981cb58ce72800486fae3ff783b856e9760",
     "priority/classifications/country_groups.csv": "ca84f757fb2c4006a4f6647adc16cb326b0f64b2a317de7b30bdc72cda1e9ce2",
     "priority/classifications/sources.csv": "43e8677e94020c88cc99fa39720ff7a904c3e9fd5445d5b64a32a11828a0f936"
@@ -223,7 +223,7 @@
         "medium": "Moderate modelled water erosion",
         "high": "Published high or higher erosion bands combined"
       },
-      "rationale": "Keep published very-low, low and moderate bands; merge high and higher bands into high. Use RuralScan upper-inclusive endpoints. Very little is not absence or a soil-specific safe-loss threshold. Candidate binding is documentation-only.",
+      "rationale": "Pete approved these four class definitions on 2026-11-25: Very little 0-1; Low >1-3; Medium >3-5; High >5 tonnes/ha/year. Retain published very-low, low and moderate bands; merge published high and higher bands. RuralScan uses upper-inclusive endpoints. The article applies European Soil Bureau bands globally; 5 starts its high class while 10 is its separate generic tolerable-erosion benchmark, neither a soil-specific safe-loss guarantee. Approval covers the class interpretation; the documentation-only binding and runtime release remain unapproved. See priority/research/2026-11-25-soil-erosion-global-classes.md for the approval quote and rationale.",
       "status": "proposed",
       "reference_sample": null,
       "cuts": [
