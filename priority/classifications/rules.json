@@ -8,7 +8,7 @@
     "priority/classifications/country_groups.csv": "ca84f757fb2c4006a4f6647adc16cb326b0f64b2a317de7b30bdc72cda1e9ce2",
     "priority/classifications/sources.csv": "7f7293192ab91c3a74c7c1cd309d8065303482bcff660c55645d6da49797c3fb",
     "priority/classifications/supplementary_rules.csv": "d82a7001d8bd55f51e23cca0cc8e8f9da007bdd18fc7b48d7d5e223534300952",
-    "priority/classifications/visual_variables.csv": "cd19f8f7a1d058a40a3b794351ce041df91fc56f3b64fe8d0fd9d1ccd7e6f78f"
+    "priority/classifications/visual_variables.csv": "46f59a17a60b015db7eb73f5b8459ae874437a7ea51ad99a3a9189ead5e606a7"
   },
   "rules": [
     {
@@ -638,7 +638,7 @@
     {
       "visual_key": "biod",
       "variable_id": "biodiversity_priority",
-      "label": "Biodiversity loss"
+      "label": "Biodiversity priority"
     },
     {
       "visual_key": "carbon",

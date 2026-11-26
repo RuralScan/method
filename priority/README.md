@@ -52,4 +52,4 @@ While hazard confirmation is pending, [biodiversity loss](research/2026-11-26-bi
 
 Dataset follow-up: [first inspected binding candidates](bindings/README.md), with exact evidence pins, CSV-generated proposals and remaining adoption checks.
 
-[Conservation importance](conservation/README.md): KBA overlay approved separately from biodiversity loss. Pete proposed within/very-close/close/beyond codes 3/2/1/0; distance settings and authorised polygon binding remain pending. No default MCDA weight. Next infrastructure binding: [roads](infrastructure/2026-11-26-roads-binding.md).
+[Biodiversity priority](conservation/README.md): Pete requested one layer combining BII depletion and KBA proximity. Taking the higher ordinal class is proposed, retaining the driver and both source inputs. This replaces the separate KBA overlay presentation; distance settings, binding and combination ratification remain pending. One core entry and one potential weight, not two. Next infrastructure binding: [roads](infrastructure/2026-11-26-roads-binding.md).
