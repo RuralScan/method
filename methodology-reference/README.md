@@ -40,6 +40,16 @@ held and rejected states visible. The denominator is kept + pending + held. Each
 finding IDs, and broader or earlier-scope pointers are not added to child totals. All collected T3/T6
 effects include uncited findings; the queue's T3 and T6 membership lists are labelled as cited subsets.
 
+Source counts use distinct `source_id` values within exactly the same scope, lane and
+relationship. `sources_retained` counts works reporting at least one kept, pending or held
+finding; `sources_registered` also includes works with rejected-only findings. A source can
+span several practices, lanes or review states, so their source counts must not be added.
+The finding browser counts sources after applying every filter, including search, across
+all matching pages. A source count does not imply source-wide approval or independent studies.
+Duplicate publications under different source IDs require identity review; counts do not merge them by citation text.
+Study/data/judgement origins require the separate synthesis audit; coverage leaves their
+independence unassessed. Counts never select effect direction or assign synthesis weights.
+
 The count links open a read-only, paginated finding browser. Every finding links to its live review
 card, which may be newer than the pinned count. JSON and CSV coverage exports carry definitions and
 source metadata, and are listed in `data/assets.json` and `llms.txt`.

@@ -115,6 +115,46 @@ class ReviewCoverage(unittest.TestCase):
             self.model.counts("practice:agroforestry"),
         )
 
+    def test_sources_match_registered_findings_and_status_not_recipe_rows(self):
+        units = self.queue["registers"]["EV_evidence_register"]
+        for practice in {u["nbs_id"] for u in units}:
+            selected = [u for u in units if u["nbs_id"] == practice]
+            counts = self.model.counts("practice:" + practice)
+            retained = [u for u in selected if self.queue["evidence_hierarchy"]
+                        ["findings"][u["evidence_id"]]["review_status"] != "rejected"]
+            self.assertEqual(counts["sources_registered"], len({u["source_id"] for u in selected}))
+            self.assertEqual(counts["sources_retained"], len({u["source_id"] for u in retained}))
+
+    def test_repeated_sources_and_mixed_review_states_do_not_add_votes(self):
+        # The same work crosses child scopes and statuses; a second is rejected-only.
+        model = coverage.Coverage.__new__(coverage.Coverage)
+        model.findings = {
+            "keep": {"source_id": "paper_a", "status": "reviewed_kept", "lanes": ["all", "T3", "T6"]},
+            "pending": {"source_id": "paper_a", "status": "pending", "lanes": ["all", "T3"]},
+            "hold": {"source_id": "paper_a", "status": "held", "lanes": ["all", "T4"]},
+            "drop": {"source_id": "paper_b", "status": "rejected", "lanes": ["all", "T4"]},
+        }
+        model.views = {"parent": {
+            "direct_evidence_ids": ["keep"],
+            "descendant_evidence_ids": ["keep", "pending", "hold", "drop"],
+            "broader_evidence_ids": [], "legacy_scope_evidence_ids": [],
+        }}
+        c = model.counts("parent")
+        self.assertEqual((c["registered_total"], c["retained_total"], c["reviewed_kept"]), (4, 3, 1))
+        self.assertEqual((c["sources_registered"], c["sources_retained"]), (2, 1))
+        self.assertEqual(model.counts("parent", "T4")["sources_retained"], 1)
+        self.assertEqual(model.counts("parent", "T6")["sources_retained"], 1)
+        self.assertEqual(model.counts("parent", "M2b")["sources_retained"], 0)
+        self.assertEqual(model.counts("parent", relation="broader")["sources_registered"], 0)
+        self.assertNotIn("independent_studies", c)
+
+    def test_missing_source_fails_instead_of_counting_unknown_as_a_source(self):
+        for sid in ("", "missing"):
+            queue = json.loads(json.dumps(self.queue))
+            queue["registers"]["EV_evidence_register"][0]["source_id"] = sid
+            with self.assertRaisesRegex(ValueError, "no registered source"):
+                coverage.Coverage(queue)
+
     def test_corrupt_input_fails_closed(self):
         with self.assertRaisesRegex(ValueError, "does not match"):
             coverage.verified(b"{}")

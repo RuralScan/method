@@ -48,6 +48,10 @@ DEFINITIONS = {
     "legacy": "Pointers to earlier family scopes awaiting source-scope review; not silently assigned to new families.",
     "effects": "All nbs_effect and asset_vulnerability findings, including uncited and pending findings.",
     "T3_T6": "Cited subsets use the queue membership lists. They can overlap and do not exhaust collected effects.",
+    "sources_registered": "Distinct source_id among all registered findings in this scope/lane/relation, including rejected findings.",
+    "sources_retained": "Distinct source_id among retained findings in this scope/lane/relation. A source with several findings counts once; this does not mean all its findings are reviewed or kept.",
+    "source_overlap": "A source can appear in several practices, lanes or review states. Recompute the union of source IDs; do not add subgroup source counts.",
+    "independent_origins": "Not assessed by these coverage counts. Source records are reporting works, not verified independent studies. Dependence and mixed results require synthesis review.",
     "meaning": "Coverage and review progress, not strength of evidence, synthesis acceptance or runtime readiness.",
 }
 
@@ -82,6 +86,8 @@ class Coverage:
         cited = {t: set(queue["membership"][t]) for t in ("T3", "T6")}
         for u in units:
             eid = u["evidence_id"]
+            if not u.get("source_id") or u["source_id"] not in sources:
+                raise ValueError(f"Finding has no registered source: {eid}")
             h = hierarchy["findings"][eid]
             if h["review_status"] not in {
                 "reviewed_kept",
@@ -150,6 +156,11 @@ class Coverage:
         ids = self.ids(node, lane, relation)
         c = Counter(self.findings[eid]["status"] for eid in ids)
         return {
+            "sources_registered": len({self.findings[eid]["source_id"] for eid in ids}),
+            "sources_retained": len({
+                self.findings[eid]["source_id"] for eid in ids
+                if self.findings[eid]["status"] != "rejected"
+            }),
             "registered_total": len(ids),
             "retained_total": len(ids) - c["rejected"],
             "reviewed_kept": c["reviewed_kept"],
@@ -179,6 +190,8 @@ class Coverage:
                     **{
                         field: {"type": "integer", "minimum": 0}
                         for field in (
+                            "sources_registered",
+                            "sources_retained",
                             "registered_total",
                             "retained_total",
                             "reviewed_kept",

@@ -19,7 +19,8 @@
       (!term || [f.evidence_id, f.source_id, f.citation, f.variable].join(' ').toLowerCase().includes(term)))
       .sort((a, b) => a.evidence_id.localeCompare(b.evidence_id));
   }
-  if (typeof module !== 'undefined') module.exports = { select, matchStatus };
+  const sourceCount = findings => new Set(findings.map(f => f.source_id)).size;
+  if (typeof module !== 'undefined') module.exports = { select, matchStatus, sourceCount };
   if (typeof document === 'undefined') return;
   const root = document.getElementById('coverage-browser');
   if (!root) return;
@@ -61,7 +62,7 @@
       const results = select(data, filters);
       const c = { reviewed_kept: 0, pending: 0, held: 0, rejected: 0 };
       for (const f of results) c[f.status]++;
-      status.textContent = `${results.length.toLocaleString()} findings in this view · ${c.reviewed_kept} reviewed and kept · ${c.pending} pending · ${c.held} held · ${c.rejected} rejected`;
+      status.textContent = `${results.length.toLocaleString()} findings from ${sourceCount(results).toLocaleString()} source records in this view · ${c.reviewed_kept} reviewed and kept · ${c.pending} pending · ${c.held} held · ${c.rejected} rejected`;
       document.getElementById('coverage-scope-note').textContent = filters.relation === 'broader' ?
         'Broader context is not assigned to this child and is not added to its total.' : filters.relation === 'legacy' ?
           'Earlier family scopes need source-scope review before reassignment. Existing IDs and decisions are preserved.' :

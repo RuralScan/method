@@ -34,11 +34,11 @@ def pin_note():
     )
 
 
-def progress(node="", lane="all"):
+def progress(node="", lane="all", *, show_sources=True):
     c = coverage.load().counts(node, lane)
     return finding_link(
         f"<strong>{c['reviewed_kept']:,} / {c['retained_total']:,}</strong>", node, lane
-    )
+    ) + (f"<br><small>from {c['sources_retained']:,} source records</small>" if show_sources else "")
 
 
 def headline(practice=""):
@@ -47,12 +47,16 @@ def headline(practice=""):
     return (
         '<section class="review-coverage"><h2 id="review-coverage">Evidence collected and reviewed</h2>'
         '<div class="stats">'
-        f"<div><b>{progress(node)}</b><span>reviewed and kept / total retained</span></div>"
+        f"<div><b>{progress(node, show_sources=False)}</b><span>findings reviewed and kept / total retained"
+        f"<br>from {c['sources_retained']:,} source records</span></div>"
         f"<div><b>{finding_link(format(c['awaiting'], ','), node, state='awaiting')}</b><span>awaiting review or resolution</span></div>"
         f"<div><b>{finding_link(format(c['held'], ','), node, state='held')}</b><span>held · included in awaiting</span></div>"
         f"<div><b>{finding_link(format(c['rejected'], ','), node, state='rejected')}</b><span>rejected · excluded, history kept</span></div></div>"
         "<p>Total retained = reviewed and kept + pending + held. A hold remains unresolved. "
-        "Counts measure coverage, not evidence strength or approval of a synthesis.</p>"
+        "Counts describe findings. Source records are the works reporting retained findings, not independent studies. "
+        "Neither count measures evidence strength or approval of a synthesis. "
+        + link("ch-compiling-evidence.html#repeated-observations-publications-and-author-groups", "How repeated findings are handled")
+        + ".</p>"
         + pin_note()
         + "</section>"
     )
@@ -278,7 +282,9 @@ def build():
     )
     body = (
         pin_note()
-        + "<p>Browse the findings behind a count. Open a finding to inspect its source and review history in the live queue.</p>"
+        + "<p>Browse the findings behind a count. Source counts use the same filters and cover all matching pages. "
+        "Source records are not independent studies; independence has not been assessed in this view. "
+        "Open a finding to inspect its source and review history in the live queue.</p>"
         '<div id="coverage-browser"><form id="coverage-filters" class="grid3">'
         '<label>Practice or evidence scope<select name="node"><option value="">All practices</option></select></label>'
         '<label>Evidence lane<select name="lane">'
