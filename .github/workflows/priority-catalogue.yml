@@ -48,6 +48,7 @@ jobs:
           while IFS= read -r revision; do git -C _priority-evidence fetch --depth=1 origin "$revision"; done < "$RUNNER_TEMP/priority-source-revisions"
           python3 priority/catalogue.py check --evidence-repo _priority-evidence --base "$BASE_SHA"
           python3 priority/t5_refs.py
+          python3 priority/context_rules.py check
           python3 priority/binding_candidates.py check --evidence-repo _priority-evidence
           python3 priority/t5_review.py --evidence-repo _priority-evidence
           python3 -m unittest discover -v -s priority

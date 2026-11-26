@@ -1,0 +1,1797 @@
+{
+  "format": "ruralscan.context-classification-review.v1",
+  "runtime_ready": false,
+  "input_sha256": {
+    "priority/classifications/columns.json": "8be6b0e78e91bf9b8e4bf0341403272fcc3028ccb1189e9c79b06b7936a94af6",
+    "priority/classifications/rules.csv": "0487226250f79f5a5c73c58fbf3c8c03209f1b39dfb265b75a7828ef9cc84ee6",
+    "priority/classifications/reference_samples.csv": "b80d52b46a1d0b1e0ce55dc2297ab981cb58ce72800486fae3ff783b856e9760",
+    "priority/classifications/country_groups.csv": "ca84f757fb2c4006a4f6647adc16cb326b0f64b2a317de7b30bdc72cda1e9ce2",
+    "priority/classifications/sources.csv": "43e8677e94020c88cc99fa39720ff7a904c3e9fd5445d5b64a32a11828a0f936"
+  },
+  "rules": [
+    {
+      "rule_set_id": "poverty_wb_income",
+      "classification_id": "poverty_wb_lic",
+      "version": "0.1.0",
+      "variable_id": "rural_poverty",
+      "concern_id": "rural_poverty",
+      "context_type": "wb_income_group",
+      "context_value": "LIC",
+      "context_vintage": "FY2027",
+      "reference_scope": "global_within_income_group",
+      "reference_year": "2024",
+      "method": "terciles",
+      "unit": "percent",
+      "direction": "higher_is_more_concern",
+      "none_upper": null,
+      "low_upper": 40.86,
+      "medium_upper": 67.17333333333333,
+      "domain_min": 0.0,
+      "domain_max": 100.0,
+      "reference_sample_id": "poverty_lic_2024_fy2027",
+      "source_ids": [
+        "gsap_fall2026",
+        "wb_income_fy2027"
+      ],
+      "binding": {
+        "dataset_id": "world_bank_gsap_fall2026",
+        "asset": "https://datacatalogfiles.worldbank.org/ddh-published/0042041/DR0052555/AM26%20-%20GSAP%20data.xlsx",
+        "field": "Data 2024!poor300_ln",
+        "source_unit": "fraction",
+        "scale": 100,
+        "offset": 0,
+        "spatial_support": "Published representative subnational survey areas; all-population estimates, not rural-only",
+        "validation": "table_inspected"
+      },
+      "class_meanings": {
+        "none": "Not established; no none class",
+        "low": "Lower third within stated global income tier",
+        "medium": "Middle third within stated global income tier",
+        "high": "Upper third within stated global income tier"
+      },
+      "rationale": "Equal-area-record terciles of $3/day (2021 PPP) headcount within this global income tier. National-only records excluded; zero estimates retained as low, not absence. Classes are relative; contextual review required.",
+      "status": "proposed",
+      "reference_sample": {
+        "n": 339,
+        "countries": 19,
+        "sha256": "3ab9b3acf3a018cd068e55fe7728c7111e4d67949ae1a1f31d1a8735da1cb95e",
+        "algorithm": "linear_n_minus_1",
+        "weighting": "equal_source_area",
+        "none_condition": null
+      },
+      "cuts": [
+        40.86,
+        67.17333333333333
+      ],
+      "missing": "unknown",
+      "endpoint": "upper_inclusive",
+      "runtime_ready": false
+    },
+    {
+      "rule_set_id": "poverty_wb_income",
+      "classification_id": "poverty_wb_lmc",
+      "version": "0.1.0",
+      "variable_id": "rural_poverty",
+      "concern_id": "rural_poverty",
+      "context_type": "wb_income_group",
+      "context_value": "LMC",
+      "context_vintage": "FY2027",
+      "reference_scope": "global_within_income_group",
+      "reference_year": "2024",
+      "method": "terciles",
+      "unit": "percent",
+      "direction": "higher_is_more_concern",
+      "none_upper": null,
+      "low_upper": 5.916666666666663,
+      "medium_upper": 39.486666666666665,
+      "domain_min": 0.0,
+      "domain_max": 100.0,
+      "reference_sample_id": "poverty_lmc_2024_fy2027",
+      "source_ids": [
+        "gsap_fall2026",
+        "wb_income_fy2027"
+      ],
+      "binding": {
+        "dataset_id": "world_bank_gsap_fall2026",
+        "asset": "https://datacatalogfiles.worldbank.org/ddh-published/0042041/DR0052555/AM26%20-%20GSAP%20data.xlsx",
+        "field": "Data 2024!poor300_ln",
+        "source_unit": "fraction",
+        "scale": 100,
+        "offset": 0,
+        "spatial_support": "Published representative subnational survey areas; all-population estimates, not rural-only",
+        "validation": "table_inspected"
+      },
+      "class_meanings": {
+        "none": "Not established; no none class",
+        "low": "Lower third within stated global income tier",
+        "medium": "Middle third within stated global income tier",
+        "high": "Upper third within stated global income tier"
+      },
+      "rationale": "Equal-area-record terciles of $3/day (2021 PPP) headcount within this global income tier. National-only records excluded; zero estimates retained as low, not absence. Classes are relative; contextual review required.",
+      "status": "proposed",
+      "reference_sample": {
+        "n": 525,
+        "countries": 43,
+        "sha256": "dbe714888ee4a0bb37be8d6922a8e0be7268c094dbdca700f61b500d3a3e6335",
+        "algorithm": "linear_n_minus_1",
+        "weighting": "equal_source_area",
+        "none_condition": null
+      },
+      "cuts": [
+        5.916666666666663,
+        39.486666666666665
+      ],
+      "missing": "unknown",
+      "endpoint": "upper_inclusive",
+      "runtime_ready": false
+    },
+    {
+      "rule_set_id": "poverty_wb_income",
+      "classification_id": "poverty_wb_umc",
+      "version": "0.1.0",
+      "variable_id": "rural_poverty",
+      "concern_id": "rural_poverty",
+      "context_type": "wb_income_group",
+      "context_value": "UMC",
+      "context_vintage": "FY2027",
+      "reference_scope": "global_within_income_group",
+      "reference_year": "2024",
+      "method": "terciles",
+      "unit": "percent",
+      "direction": "higher_is_more_concern",
+      "none_upper": null,
+      "low_upper": 0.22,
+      "medium_upper": 4.2700000000000005,
+      "domain_min": 0.0,
+      "domain_max": 100.0,
+      "reference_sample_id": "poverty_umc_2024_fy2027",
+      "source_ids": [
+        "gsap_fall2026",
+        "wb_income_fy2027"
+      ],
+      "binding": {
+        "dataset_id": "world_bank_gsap_fall2026",
+        "asset": "https://datacatalogfiles.worldbank.org/ddh-published/0042041/DR0052555/AM26%20-%20GSAP%20data.xlsx",
+        "field": "Data 2024!poor300_ln",
+        "source_unit": "fraction",
+        "scale": 100,
+        "offset": 0,
+        "spatial_support": "Published representative subnational survey areas; all-population estimates, not rural-only",
+        "validation": "table_inspected"
+      },
+      "class_meanings": {
+        "none": "Not established; no none class",
+        "low": "Lower third within stated global income tier",
+        "medium": "Middle third within stated global income tier",
+        "high": "Upper third within stated global income tier"
+      },
+      "rationale": "Equal-area-record terciles of $3/day (2021 PPP) headcount within this global income tier. National-only records excluded; zero estimates retained as low, not absence. Classes are relative; contextual review required.",
+      "status": "proposed",
+      "reference_sample": {
+        "n": 745,
+        "countries": 43,
+        "sha256": "3e048a7f40173bb04fd166ebfa8c738ce753dcd43755054c4cd4d3c82471fabf",
+        "algorithm": "linear_n_minus_1",
+        "weighting": "equal_source_area",
+        "none_condition": null
+      },
+      "cuts": [
+        0.22,
+        4.2700000000000005
+      ],
+      "missing": "unknown",
+      "endpoint": "upper_inclusive",
+      "runtime_ready": false
+    },
+    {
+      "rule_set_id": "soil_erosion_published",
+      "classification_id": "soil_erosion_glosem",
+      "version": "0.1.0",
+      "variable_id": "soil_erosion_risk",
+      "concern_id": "soil_erosion",
+      "context_type": "global",
+      "context_value": "global",
+      "context_vintage": "",
+      "reference_scope": "GloSEM global water-erosion model support",
+      "reference_year": "2012",
+      "method": "thresholds",
+      "unit": "tonnes_per_ha_per_year",
+      "direction": "higher_is_more_concern",
+      "none_upper": 1.0,
+      "low_upper": 3.0,
+      "medium_upper": 5.0,
+      "domain_min": 0.0,
+      "domain_max": null,
+      "reference_sample_id": "",
+      "source_ids": [
+        "borrelli2017_classes",
+        "glosem2012_catalogue"
+      ],
+      "binding": {
+        "dataset_id": "glosem_2012_global_25km_candidate",
+        "asset": "https://esdac.jrc.ec.europa.eu/content/global-soil-erosion",
+        "field": "RUSLE Soil loss in 2012 (catalogue output label; raster field not yet verified)",
+        "source_unit": "tonnes_per_ha_per_year",
+        "scale": 1,
+        "offset": 0,
+        "spatial_support": "Distributed 25km global raster; do not imply original 250m or finer information",
+        "validation": "documentation_only"
+      },
+      "class_meanings": {
+        "none": "Very little modelled water erosion; not zero or a safe-loss guarantee",
+        "low": "Low modelled water erosion",
+        "medium": "Moderate modelled water erosion",
+        "high": "Published high or higher erosion bands combined"
+      },
+      "rationale": "Keep published very-low, low and moderate bands; merge high and higher bands into high. Use RuralScan upper-inclusive endpoints. Very little is not absence or a soil-specific safe-loss threshold. Candidate binding is documentation-only.",
+      "status": "proposed",
+      "reference_sample": null,
+      "cuts": [
+        1.0,
+        3.0,
+        5.0
+      ],
+      "missing": "unknown",
+      "endpoint": "upper_inclusive",
+      "runtime_ready": false
+    }
+  ],
+  "countries": [
+    {
+      "country_code": "ABW",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "AFG",
+      "income_group": "LIC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "AGO",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ALB",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "AND",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ARE",
+      "income_group": "HIC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ARG",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ARM",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ASM",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ATG",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "AUS",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "AUT",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "AZE",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BDI",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BEL",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BEN",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BFA",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BGD",
+      "income_group": "LMC",
+      "region": "South Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BGR",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BHR",
+      "income_group": "HIC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BHS",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BIH",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BLR",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BLZ",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BMU",
+      "income_group": "HIC",
+      "region": "North America",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BOL",
+      "income_group": "LMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BRA",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BRB",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BRN",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BTN",
+      "income_group": "LMC",
+      "region": "South Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "BWA",
+      "income_group": "UMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CAF",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CAN",
+      "income_group": "HIC",
+      "region": "North America",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CHE",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CHI",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CHL",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CHN",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CIV",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CMR",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "COD",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "COG",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "COL",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "COM",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CPV",
+      "income_group": "UMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CRI",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CUB",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CUW",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CYM",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CYP",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "CZE",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "DEU",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "DJI",
+      "income_group": "LMC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "DMA",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "DNK",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "DOM",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "DZA",
+      "income_group": "UMC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ECU",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "EGY",
+      "income_group": "LMC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ERI",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ESP",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "EST",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ETH",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "FIN",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "FJI",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "FRA",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "FRO",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "FSM",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GAB",
+      "income_group": "UMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GBR",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GEO",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GHA",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GIB",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GIN",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GMB",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GNB",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GNQ",
+      "income_group": "UMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GRC",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GRD",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GRL",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GTM",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GUM",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "GUY",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "HKG",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "HND",
+      "income_group": "LMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "HRV",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "HTI",
+      "income_group": "LMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "HUN",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "IDN",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "IMN",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "IND",
+      "income_group": "LMC",
+      "region": "South Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "IRL",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "IRN",
+      "income_group": "UMC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "IRQ",
+      "income_group": "UMC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ISL",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ISR",
+      "income_group": "HIC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ITA",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "JAM",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "JOR",
+      "income_group": "UMC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "JPN",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "KAZ",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "KEN",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "KGZ",
+      "income_group": "LMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "KHM",
+      "income_group": "LMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "KIR",
+      "income_group": "LMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "KNA",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "KOR",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "KWT",
+      "income_group": "HIC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "LAO",
+      "income_group": "LMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "LBN",
+      "income_group": "LMC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "LBR",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "LBY",
+      "income_group": "UMC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "LCA",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "LIE",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "LKA",
+      "income_group": "UMC",
+      "region": "South Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "LSO",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "LTU",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "LUX",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "LVA",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MAC",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MAF",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MAR",
+      "income_group": "LMC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MCO",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MDA",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MDG",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MDV",
+      "income_group": "UMC",
+      "region": "South Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MEX",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MHL",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MKD",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MLI",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MLT",
+      "income_group": "HIC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MMR",
+      "income_group": "LMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MNE",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MNG",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MNP",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MOZ",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MRT",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MUS",
+      "income_group": "UMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MWI",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "MYS",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "NAM",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "NCL",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "NER",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "NGA",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "NIC",
+      "income_group": "LMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "NLD",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "NOR",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "NPL",
+      "income_group": "LMC",
+      "region": "South Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "NRU",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "NZL",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "OMN",
+      "income_group": "HIC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "PAK",
+      "income_group": "LMC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "PAN",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "PER",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "PHL",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "PLW",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "PNG",
+      "income_group": "LMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "POL",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "PRI",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "PRK",
+      "income_group": "LIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "PRT",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "PRY",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "PSE",
+      "income_group": "LMC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "PYF",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "QAT",
+      "income_group": "HIC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ROU",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "RUS",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "RWA",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SAU",
+      "income_group": "HIC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SDN",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SEN",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SGP",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SLB",
+      "income_group": "LMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SLE",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SLV",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SMR",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SOM",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SRB",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SSD",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "STP",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SUR",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SVK",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SVN",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SWE",
+      "income_group": "HIC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SWZ",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SXM",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SYC",
+      "income_group": "HIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "SYR",
+      "income_group": "LIC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TCA",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TCD",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TGO",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "THA",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TJK",
+      "income_group": "LMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TKM",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TLS",
+      "income_group": "LMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TON",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TTO",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TUN",
+      "income_group": "LMC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TUR",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TUV",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TWN",
+      "income_group": "HIC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "TZA",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "UGA",
+      "income_group": "LIC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "UKR",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "URY",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "USA",
+      "income_group": "HIC",
+      "region": "North America",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "UZB",
+      "income_group": "LMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "VCT",
+      "income_group": "UMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "VEN",
+      "income_group": "LMC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "VGB",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "VIR",
+      "income_group": "HIC",
+      "region": "Latin America & Caribbean",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "VNM",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "VUT",
+      "income_group": "LMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "WSM",
+      "income_group": "UMC",
+      "region": "East Asia & Pacific",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "XKX",
+      "income_group": "UMC",
+      "region": "Europe & Central Asia",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "YEM",
+      "income_group": "LIC",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ZAF",
+      "income_group": "UMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ZMB",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    },
+    {
+      "country_code": "ZWE",
+      "income_group": "LMC",
+      "region": "Sub-Saharan Africa",
+      "vintage": "FY2027",
+      "source_id": "wb_income_fy2027"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "gsap_fall2026",
+      "url": "https://datacatalogfiles.worldbank.org/ddh-published/0042041/DR0052555/AM26%20-%20GSAP%20data.xlsx",
+      "sha256": "a4b47f19b3cac0d9a3604bdb174de1a6f2b56908e3afbb143e68f8a139330671",
+      "locator": "Dictionary rows poor300_ln / poor420_ln; Data 2024 columns code, geo_code, poor300_ln",
+      "description": "GSAP Fall 2026; 2024 lined-up subnational poverty; input rate fraction converted to percent. Archived originals in team library poverty_calibration_2026_11_25/original_sources_and_calibration.zip."
+    },
+    {
+      "source_id": "wb_income_fy2027",
+      "url": "https://ddh-openapi.worldbank.org/resources/DR0095333/download",
+      "sha256": "f164422e0c9868d12775727c88fc5fc4242512acc4006cc501fbcc5792c96b5d",
+      "locator": "List of economies: Code, Region, Income group; notes: FY27 definition",
+      "description": "World Bank FY2027 income-group membership. Groups select comparison population; they are not poverty thresholds."
+    },
+    {
+      "source_id": "borrelli2017_classes",
+      "url": "https://www.nature.com/articles/s41467-017-02142-7",
+      "sha256": "038980ec08aea6533b10ceb5f914cc96c6e0a3f8672ab95f24f7b6046f383315",
+      "locator": "Figure 1a soil-erosion legend (linked figure inspected visually); Results / Global perspective on soil erosion",
+      "description": "Published global model uses seven classes: 0-1, 1-3, 3-5, 5-10, 10-20, 20-50, >50 Mg/ha/year. Four-class collapse is RuralScan proposal, not source-defined four classes."
+    },
+    {
+      "source_id": "glosem2012_catalogue",
+      "url": "https://esdac.jrc.ec.europa.eu/content/global-soil-erosion",
+      "sha256": "26d6a851a85e3bef78a652786e90bfa5f03f0e8f3e2fac45ac65fb38dc434dad",
+      "locator": "Metadata / Data; RUSLE Soil loss in 2012; shared pixel size 25km",
+      "description": "Global GloSEM 2012 output at distributed 25km resolution. Original 250m resolution is not the resolution of this download. No raster acquired or geometry/sample values verified here."
+    }
+  ]
+}

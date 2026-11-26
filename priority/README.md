@@ -44,4 +44,6 @@ The API operates on aligned pixel sequences. A spatial caller remains responsibl
 
 Current consolidated route: [T5 profiles, routing and preservation](consolidation.md). Historical 0.1 proposals remain immutable; IPLC is now unscored in the current sidecar.
 
+The [contextual classification table](classifications/README.md) extends T5 with a rule-set reference: one variable can select a rule by country, region or World Bank income tier. It contains three provisional poverty rules and the next variable's published-band soil erosion proposal. CSVs are authoritative; generated JSON and review selection are checked in CI. These records do not activate a runtime release.
+
 Dataset follow-up: [first inspected binding candidates](bindings/README.md), with exact evidence pins, CSV-generated proposals and remaining adoption checks.

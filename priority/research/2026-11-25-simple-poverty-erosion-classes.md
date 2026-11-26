@@ -4,6 +4,8 @@
 
 **Poverty update:** the numerical draft below was withdrawn. Following the instruction to contextualize poverty and calibrate to lower-income settings, see the [computed low- and middle-income reference](2026-11-25-poverty-context-calibration.md). US thresholds remain excluded from that calibration; the earlier screening is retained as history.
 
+**Soil erosion update:** the European 1/2/10 draft below is superseded by the [global GloSEM classification proposal](2026-11-25-soil-erosion-global-classes.md), using published 1/3/5 boundaries and combining higher bands. Everything below records the earlier screening, not the current proposal.
+
 | Variable and raw measure | None / very little | Low | Medium | High |
 |---|---:|---:|---:|---:|
 | Poverty: population below the selected poverty line (%) | Withdrawn pending rationale | Withdrawn pending rationale | Withdrawn pending rationale | Withdrawn pending rationale |

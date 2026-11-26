@@ -1,5 +1,5 @@
 {
-  "format": "ruralscan.t5-extension-manifest.v1",
+  "format": "ruralscan.t5-extension-manifest.v2",
   "status": "proposed_not_accepted",
   "activation": "disabled",
   "table": "priority/T5_classification_refs.csv",
@@ -9,6 +9,7 @@
     "mcda_role",
     "concern_id",
     "profile_ref",
+    "classification_set_ref",
     "proposed_rule_ref",
     "accepted_rule_ref",
     "classification_status"
@@ -39,5 +40,6 @@
     "data-model/priority-contract.json": "a4969d7549f73486798c792100a4cfdcfae750bfb2526fe147ca51c2e13ae9e2",
     "priority/routing-directions.json": "a04cd8795e18274207d0004d9bcd5d21fc30ff6cf4a43acc18c9dd93017b7f32"
   },
-  "schema_issue": "https://github.com/RuralScan/method/issues/103"
+  "schema_issue": "https://github.com/RuralScan/method/issues/103",
+  "contextual_rules_manifest": "priority/classifications/columns.json"
 }

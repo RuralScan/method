@@ -9,6 +9,8 @@ file, with the same date; the build fails otherwise. `README.md` says when each 
 ## [0.24.0] - 2026-11-25
 
 - Require contextual poverty classification and global income-tier reference distributions; preserve raw rates and provenance.
+- Extend the T5 review table with contextual rule sets, pinned country membership and reproducible poverty terciles for three World Bank income tiers.
+- Propose soil erosion classes using the published global GloSEM bands, with an explicit four-class collapse and dataset limitations.
 
 ## [0.23.0] - 2026-11-26
 
