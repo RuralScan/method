@@ -576,6 +576,8 @@ def main():
             subprocess.run([sys.executable, "-B", str(method/"dashboard/check.py"), str(target)], check=True)
 
         add_version_selectors(site, editions, ciat, reference)
+        from publish_discovery import publish
+        publish(site, Path(__file__).with_name(".github") / "workflows/dashboard-pages.yml")
 
 
 if __name__ == "__main__":
