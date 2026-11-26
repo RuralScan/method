@@ -61,7 +61,7 @@
       if (!response.ok) throw Error('Snapshot unavailable');
       const model = validate(await response.json());
       const practices = [...new Set(model.records.flatMap(i => i.candidate.profile.scope.map(s => s.nbs_id)))].sort();
-      root.innerHTML = `<p class="ovr-notice"><strong>Pending proposals · inactive.</strong> Read source evidence, mechanism and authored policy choices separately. This pinned review snapshot does not change maps or approve relationships.</p><p>${link(model.summary_url,'Scientific review summary')} · ${link(model.source_csv,'Authoritative CSV')} · <a href="${esc(root.dataset.source)}">Download review snapshot</a><br><small>Evidence revision: <code>${esc(model.revision)}</code>. Source/finding status may have changed since this snapshot.</small></p><div class="ovr-filters"><label>Practice<select data-practice><option value="">All practices</option>${practices.map(p => `<option value="${esc(p)}">${esc(words(p))}</option>`).join('')}</select></label><label>Family<select data-family></select></label><a href="#overrides">Show all rules</a></div><p data-count role="status"></p><div data-cards></div>`;
+      root.innerHTML = `<p class="ovr-notice"><strong>Pending proposals · inactive.</strong> Read source evidence, mechanism and authored policy choices separately. This pinned review snapshot does not change maps or approve relationships.</p><p>${link(model.summary_url,'Scientific review summary')} · ${link(model.source_csv,'Authoritative CSV')} · <a href="${esc(root.dataset.source)}">Download review snapshot</a><br><small>Evidence revision: <code>${esc(model.revision)}</code>. Source/finding status may have changed since this snapshot.</small></p><div class="ovr-filters"><label>Practice<select data-practice><option value="">All practices</option>${practices.map(p => `<option value="${esc(p)}">${esc(words(p))}</option>`).join('')}</select></label><label>Family<select data-family></select></label><a href="#overrides" data-reset>Show all rules</a></div><p data-count role="status"></p><div data-cards></div>`;
       const practice = root.querySelector('[data-practice]'), family = root.querySelector('[data-family]');
       function families() {
         const fs = [...new Set(model.records.flatMap(i => i.candidate.profile.scope.filter(s => !practice.value || s.nbs_id === practice.value).map(s => s.family_id)))].sort();
@@ -76,6 +76,7 @@
       }
       function filter() { if (routeId(location.hash)) history.replaceState(null,'','#overrides'); render(); }
       practice.addEventListener('change',()=>{families();filter();}); family.addEventListener('change',filter);
+      root.querySelector('[data-reset]').addEventListener('click',event=>{event.preventDefault();practice.value='';families();history.replaceState(null,'','#overrides');render();});
       window.addEventListener('hashchange',()=>{if(location.hash === '#overrides'){practice.value='';families();}render();});
       families();render();
     } catch (error) { root.innerHTML='<p role="alert">Pending rule snapshot unavailable or unsupported. No active rule is inferred. Reload to retry.</p>'; }
