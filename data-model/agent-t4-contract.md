@@ -27,3 +27,25 @@ This is a partial mapping package, not a complete recipe or T4_RUN policy. It de
 Method owns this contract. Evidence owns preparation, validation, staging, receipt replay and packaging. The proposal, validation, human-acceptance and packaging interface is implemented; scientific acceptance of each mapping and spatial runtime integration remain separate. An existing accepted proposal must not be silently reinterpreted under a different contract. Reproducibility means replaying exact accepted bytes, not rerunning an AI model and assuming an identical scientific answer.
 
 [Versioned operating guide](https://github.com/RuralScan/evidence/blob/94a5b1c5e2bea65c79161388e78aecb20714cd66/workflows/t4_synthesis/README.md). Fixture tests verify the software route; they are not human scientific acceptance.
+
+## Version 1.1: exact composite and precomputed profiles
+
+Version 1.1 extends the representation contract. It does not approve the climate or mangrove relationships, adopt new variable/dataset definitions, or implement a raster consumer. The existing CSV mapping columns and authenticated scientific-acceptance route remain unchanged.
+
+Scalar `logistic` and `log_logistic` forms declare increasing `x20` and `x80` anchors in addition to the existing `unit` and `missing: null`. The logistic assigns membership 0.20 and 0.80 at those anchors. The log-logistic operates on positive input, preserves a zero-valued dry tail at input zero, and rejects negatives. Neither form estimates a success probability. No implicit clipping or fitted parameters are introduced.
+
+`composite_scoping` declares its input quantities, units, validity ranges and dataset IDs; an exact scope list; typed smooth-function leaves and nested minimum operators; an optional temperature-only monthly derivation; named component screens; and missing/conditional semantics. Its parameter object is the complete profile, including `type`, `unit` and `missing`. Screens use explicit `lt/le/gt/ge` endpoint conventions. Scores and screens are distinct outputs. Composite score cutoffs and criterion weights are not inferred.
+
+The declared thermal derivation reconstructs a no-leap 365-day climatology by periodic linear interpolation at month centres. It counts all days meeting the explicit temperature threshold and averages those days, without water or snow eligibility. Complete zero thermal days is distinct from missing data. Callers cannot inject precomputed derived values as replacements for the specified derivation. Raw storage decoding and spatial data acquisition belong to a separately reviewed binding/adapter.
+
+`precomputed_unit_index` preserves a native score in [0,1] conditional on positive modelled source area. Score and area must refer to the same dataset release. It retains separate unknown, invalid, zero-area and excluded states. Source area in km² converts to hectares by 100. Whole units retain source estimated hectares; partial units have unresolved allocation bounds from zero to those hectares, with no polygon-area proration. Missing source coverage cannot yield complete finite AOI bounds. Unit identity and geometry status are required; deduplication does not itself establish sound topology. A score-support polygon is not an opportunity footprint.
+
+All raw and derived profile input quantities must resolve against adopted VONT, T1 and preferred BIND definitions before an official mapping can validate. Subpractice scope must resolve to the proposal's current family; a candidate covering several practices is split into separate official family proposals. Existing evidence eligibility, reviewed claim scope, exact replacement fingerprints and authenticated human acceptance remain mandatory. Provenance-only source links cannot substitute for Evidence Register units.
+
+## Pending override catalogue
+
+The evidence repository keeps an authoritative pending override CSV with generated typed JSON. A candidate declares pending status and `activate=false`, an exact profile, structured rationale/mechanism/source-relationship/analyst-choice/transfer/binding/area/replacement/approval explanations, and edition-linked source references with locators. These are review records, not scientific acceptance events.
+
+The preparation interface exposes applicable candidates in the frozen input packet so the synthesis agent can inspect their intended relationships and scope. Candidate changes make the packet stale. Pending records never change accepted mappings or opportunity area automatically. The same metadata can support dashboard explanations without conflating source admission, source-claim review, relationship approval, implementation and runtime activation.
+
+Reference evaluation is available for reproducing declared examples. It carries no production activation. The accepted package continues to declare `runtime_implemented: false`; downstream integration must preserve component screens, unknown/conditional states, scope, separate area accounting and independent host/legal gates.
