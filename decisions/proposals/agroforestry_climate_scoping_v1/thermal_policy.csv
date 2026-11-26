@@ -1,0 +1,3 @@
+component,function,x20,x80,unit,screen_below,source_basis,interpretation
+season_temperature,logistic,3,10,degC,3,"Paulsen and Korner 2014 Table 2 climate belts; transferred from coupled source metrics to temperature-only season","20/80 membership and separate lower-edge screen are analyst decisions"
+season_length,log_logistic,30,130,days,30,"Paulsen and Korner 2014 Table 2 climate belts; transferred from coupled source metrics to temperature-only season","20/80 membership and separate lower-edge screen are analyst decisions"

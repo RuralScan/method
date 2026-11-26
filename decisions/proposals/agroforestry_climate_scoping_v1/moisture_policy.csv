@@ -1,0 +1,4 @@
+curve_id,ai_low,membership_low,ai_high,membership_high,screen_below_ai,disposition,anchor_basis
+fmnr_v3_classes,0.03,0.2,0.2,0.8,0.03,recommended_provisional_decision_convention,"Global-AI v3 climate-class boundaries; membership values and screening use are analyst decisions, not regeneration thresholds"
+fmnr_stricter_classes,0.05,0.2,0.2,0.8,0.05,sensitivity_only,"Alternative climate-class convention; not the named v3 classification and not a statistical confidence bound"
+generic_tree_component,0.2,0.2,0.46,0.8,,comparison_only_for_fmnr,"Earlier expert translation of ecological transitions; remains separate planted-tree recommendation"

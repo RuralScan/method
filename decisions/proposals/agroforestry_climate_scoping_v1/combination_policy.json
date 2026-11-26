@@ -1,0 +1,87 @@
+{
+  "status": "recommended_provisional_policy_pending_approval",
+  "activate": false,
+  "human_approval": false,
+  "thermal_metric_id": "temperature_only_climatological_season_v1",
+  "calendar_days": 365,
+  "daily_temperature_threshold_c": 0.9,
+  "daily_operator": ">=",
+  "temperature_input": "daily mean 2m air temperature climatology, degC",
+  "season_selection": "count all days meeting temperature threshold, not consecutive span; no soil moisture or rainfall selection",
+  "snow_treatment": "not modelled in this thermal-potential proxy; persistent snow and glacier/host exclusions remain separate, with explicit caveat",
+  "metric_transfer": "Analyst adaptation, not TREELIM reproduction. Published coupled season boundaries are transferred to temperature-only season.",
+  "cold_operator": "minimum",
+  "climate_operator": "minimum",
+  "combined_score_cutoff": null,
+  "screen_policy": "named component cutoffs only; never infer footprint from combined membership",
+  "families": {
+    "agroforestry__planted_silvoarable": {
+      "moisture_curve": "generic_tree_component",
+      "cold_screen": true,
+      "pathway": "planted",
+      "subpractice_ids": [
+        "alley_cropping",
+        "tree_intercropping"
+      ],
+      "establishment_pathways": [
+        "planted"
+      ]
+    },
+    "agroforestry__regeneration_farmland": {
+      "moisture_curve": "fmnr_v3_classes",
+      "cold_screen": true,
+      "pathway": "farmland_regeneration",
+      "subpractice_ids": [
+        "fmnr",
+        "anr_on_farm"
+      ],
+      "establishment_pathways": [
+        "regeneration"
+      ]
+    },
+    "agroforestry__silvopastoral": {
+      "moisture_curve": "generic_tree_component",
+      "cold_screen": true,
+      "pathway": "planted_only",
+      "subpractice_ids": [
+        "planted_silvopasture",
+        "agrosilvopasture"
+      ],
+      "establishment_pathways": [
+        "planted"
+      ]
+    }
+  },
+  "tree_form": "persistent upright trees; not low shrubs, clipped hedges or coppice survival alone",
+  "missing": "any unknown component makes combined membership unknown; known independent exclusions remain applicable",
+  "water_refuges": "cannot bypass cold, host or legal screen; conditional water pathway has no combined suitability score or default eligible area",
+  "production_binding": "Proposed explicit historical pair: Global-AI v3 1970\u20132000 and CHELSA v2.1 monthly tas 1981\u20132010 at native support. Baselines differ; not a matched-period climate reconstruction. Policy approval must acknowledge this transfer; a changed/matched-period binding needs re-evaluation.",
+  "forbidden_substitutes": [
+    "CHELSA released water-limited gsl/gst",
+    "soil temperature treated as air temperature",
+    "fixed elevation cutoff"
+  ],
+  "mcda_weight": null,
+  "numeric_scope": "isolated scoping preview only; no accepted runtime or T4 change",
+  "thermal_daily_derivation": "Periodic linear interpolation of monthly climatological tas at no-leap month midpoints to365daily means; explicit analyst approximation, not original TREELIM cubic interpolation. Compare monthly-step sensitivity.",
+  "snow_caveat": "Thermal potential can overstate usable season in persistent snow. Retain existing snow/ice/host exclusions; no claim of establishment or frost tolerance.",
+  "month_lengths": [
+    31,
+    28,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31
+  ],
+  "scope_revision": 7,
+  "excluded_subpractices": {
+    "parkland_retention": "Retention-only management cannot inherit recruitment/establishment screens. Existing assets remain context; renewal requires separate explicit proposal."
+  },
+  "scope_missing": "Missing or mismatched subpractice/pathway returns outside_review_scope, no score and no climate exclusion."
+}
