@@ -48,3 +48,7 @@ Complete named technical holds and pilot/context checks; register/acquire source
 ## Resolved holds
 
 [Resolution record](hold-resolution.md) distinguishes corrected encoding, tested replacement routes, completed LandMark acquisition and remaining context/scientific decisions. [Machine-readable hold status](holds.json) prevents treating successful access as pilot approval.
+
+## Follow-up overlays
+
+[KBA conservation importance](../conservation/README.md) is approved in scope, separate from biodiversity loss; its official acquisition route is identified, while polygon inspection/access and proximity distances remain pending. [Road infrastructure](../infrastructure/2026-11-26-roads-binding.md) is the next technical binding inspection. These records do not silently append unverified candidates to the fourteen-row evidence-pinned catalogue.
