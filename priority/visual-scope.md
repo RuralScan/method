@@ -12,7 +12,7 @@ The published [Opportunity space problem table](https://ciat.github.io/nbs_rural
 | Heat stress | Classification pending |
 | Rural poverty | Income-tier approach approved; numerical calibration provisional |
 | Food insecurity | IPC chronic four-class interpretation approved; applicable local assessment required |
-| Biodiversity loss | Classification and loss measure pending |
+| Biodiversity loss | [Four BII depletion classes proposed](research/2026-11-26-biodiversity-loss-classes.md) from published global map bands; interpretation approval and current binding pending |
 | Carbon loss | Classification and loss measure pending; legacy potential ID is not an accepted proxy |
 | Water stress | Aqueduct category mapping approved; runtime release remains pending |
 
