@@ -51,3 +51,5 @@ The active classification review follows [exactly nine visual-method problems](v
 While hazard confirmation is pending, [biodiversity loss](research/2026-11-26-biodiversity-loss-classes.md) has an approved four-class BII depletion interpretation based on UNEP's global map bands; input selection, transformation and release remain pending. Next proposal: [carbon loss](research/2026-11-26-carbon-loss-classes.md), using modelled gross forest emissions and fixed global positive-value terciles. No None class can be inferred from native nodata. Infrastructure stays in scope.
 
 Dataset follow-up: [first inspected binding candidates](bindings/README.md), with exact evidence pins, CSV-generated proposals and remaining adoption checks.
+
+[Conservation importance](conservation/README.md): KBA overlay approved separately from biodiversity loss. Pete proposed within/very-close/close/beyond codes 3/2/1/0; distance settings and authorised polygon binding remain pending. No default MCDA weight. Next infrastructure binding: [roads](infrastructure/2026-11-26-roads-binding.md).

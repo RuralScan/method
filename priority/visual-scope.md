@@ -25,3 +25,5 @@ The broader historical T5 table remains intact. Extra-variable notes and rules a
 Infrastructure is retained as an [active optional exposure overlay](infrastructure/README.md), as requested by the Bank and Pete. It does not create a tenth environmental or livelihood problem, and mapped exposure does not establish avoided damage or NbS protection benefits.
 
 Source check: inspected the currently published Stage 03 and Stage 05 HTML on 25 November 2026. The local retired-repository copy still contains an older soil-degradation row; the current published nine-row problem list governs this review. Existing local feedback dated 9 November 2026 records the Bank infrastructure request and the later exposure-only scope.
+
+26 November addition: Pete approved [KBA conservation importance](conservation/README.md) as a separate contextual overlay, with proposed 3/2/1/0 proximity codes and context-specific distances still to select. It does not replace biodiversity loss or expand the nine core problems. Infrastructure remains active.
