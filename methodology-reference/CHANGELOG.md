@@ -6,6 +6,12 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.28.0] - 2026-11-26
+
+- Add infrastructure exposure guidance for roads, power lines, buildings, schools and health facilities.
+- Require seeking and acquiring suitable national datasets to replace global fallbacks, with explicit coverage, geometry, date and overlap checks.
+- Keep missing inventories, hazard coverage and service-function limitations visible in scoping and hand-off outputs.
+
 ## [0.27.0] - 2026-11-25
 
 - Add a shared, read-only review of pending climate and mangrove suitability overrides, with source evidence, mechanism, analyst choices, bindings and area limitations.

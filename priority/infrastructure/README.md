@@ -4,6 +4,14 @@
 
 The project feedback log records the World Bank team and Pete's 9 November request to explore infrastructure exposure and optional prioritisation. Pete's later instruction that day restricts desk scoping to mapped exposure; potential protection benefits pass to feasibility. The current visual method implements this separation in [Stage 03, section 3.5](https://ciat.github.io/nbs_ruralscan/redesign/03-opportunity.html) and optional prioritisation in [Stage 05](https://ciat.github.io/nbs_ruralscan/redesign/05-hotspots.html). Its Haiti figures are illustrative, not data-backed results.
 
+## National data should replace global fallbacks where suitable
+
+26 November 2026, Pete: acquire and include national infrastructure datasets for country applications, including the Haiti examples. Seek the responsible ministries, utilities and national mapping agency at the start of an assessment. Use suitable national or local inventories to replace global versions through country/area-specific bindings; prefer spatial services where available. Global sources provide a provisional fallback, not an assumed complete national inventory.
+
+Before replacement, check the actual observation date, geographic and asset-type coverage, coordinates/geometry, identifiers and duplicates, operating-status fields and permitted use. A government source may be old, partial or non-spatial; its institutional origin alone does not establish fitness. Replace only the geography/types it supports, retain provenance and fallback flags elsewhere, and reconcile overlaps instead of concatenating inventories. Record who holds any missing authoritative data and what must be acquired.
+
+For every result, distinguish inventory coverage from hazard coverage. Report assessed and unassessed assets; absence from a map means not mapped, not absent on the ground. Power-line kilometres do not measure network capacity or reliability; building footprints do not establish occupancy, critical function or service capacity. The [Haiti national-source search and power/building checks](2026-11-26-haiti-national-infrastructure.md) records sources actually acquired, usable scope and remaining acquisition gaps.
+
 ## Minimum useful output where coverage permits
 
 - Overlay mapped roads, schools and health facilities with available hazard footprints within the declared screening area.
@@ -23,4 +31,4 @@ Current status: requirement and output specification retained; no pilot asset in
 
 26 November follow-up: [roads binding inspection](2026-11-26-roads-binding.md) checks a real provider extract and records the remaining inventory/geometry and hazard choices. Schools, health facilities, power lines and buildings remain in scope where coverage permits. The parallel [KBA overlay](../conservation/README.md) does not replace this work.
 
-[Health-facility and school follow-up](2026-11-26-facility-bindings.md): PAHO/WHO health Shapefile and OSM point/polygon fallback acquired and inspected; MENFP national school catalogue route identified. Source dates, operating-status gaps and inventory completeness remain explicit. Power lines and buildings remain next inventory candidates.
+[Health-facility and school follow-up](2026-11-26-facility-bindings.md): PAHO/WHO health Shapefile and OSM point/polygon fallback acquired and inspected; MENFP national school catalogue route identified. Source dates, operating-status gaps and inventory completeness remain explicit. Power-line and building candidates are now inspected in the [Haiti national-source follow-up](2026-11-26-haiti-national-infrastructure.md).
