@@ -8,8 +8,8 @@
     var button = document.querySelector('[data-' + kind + '-view][aria-pressed="true"]');
     return button ? button.dataset[kind + 'View'] : fallback;
   }
-  var queryRoutes = {evidence: '#evidence', relationships: '#relationships', explorer: '#evidence-explorer', hazards: '#hazard-ratings'};
-  // The Evidence section is the tab's view. The three earlier analysis views open only from existing links.
+  var queryRoutes = {evidence: '#evidence', overrides: '#overrides', relationships: '#relationships', explorer: '#evidence-explorer', hazards: '#hazard-ratings'};
+  // Findings and pending rule proposals are separate views; historical analysis links remain usable.
   var currentQuery = 'evidence';
   function syncRoute(tab) {
     if (restoringRoute) return;
@@ -17,14 +17,14 @@
     if (tab === 'tab-methods') route = '#methods/' + selectedView('method', 'rural');
     if (tab === 'tab-qaqc') route = { queue: window.DashboardPriority ? window.DashboardPriority.route() : '#review-queue', help: '#review-help', pipeline: '#pipeline-records' }[selectedView('review', 'queue')];
     if (tab === 'tab-stocktake') route = location.hash.startsWith('#source=') ? location.hash : '#bibliography';
-    if (tab === 'tab-interrogator') route = location.hash.startsWith('#t4/') ? location.hash : queryRoutes[currentQuery];
+    if (tab === 'tab-interrogator') route = (location.hash.startsWith('#t4/') || location.hash.startsWith('#overrides/')) ? location.hash : queryRoutes[currentQuery];
     if (route && location.hash !== route) history.replaceState(null, '', route);
   }
   function setView(kind, view) {
     var selector = '[data-' + kind + '-view]';
     var views = {
       review: { queue: 'review-queue-panel', help: 'review-help-panel', pipeline: 'review-pipeline-panel' },
-      query: { evidence: 'evidence-section-root', relationships: 'relationship-review-root', explorer: 'query-explorer-panel', hazards: 'hazard-panel' },
+      query: { evidence: 'evidence-section-root', overrides: 'override-review-root', relationships: 'relationship-review-root', explorer: 'query-explorer-panel', hazards: 'hazard-panel' },
       method: { rural: 'method-rural-panel', evidence: 'method-evidence-panel', search: 'method-search-panel' }
     };
     var panels = views[kind];
@@ -35,7 +35,7 @@
     if (route && location.hash !== route) history.replaceState(null, '', route);
     if (kind === 'query') {
       currentQuery = view;
-      var legacyNote = byId('legacy-analysis-note'); if (legacyNote) legacyNote.hidden = view === 'evidence';
+      var legacyNote = byId('legacy-analysis-note'); if (legacyNote) legacyNote.hidden = view === 'evidence' || view === 'overrides';
       if (view === 'evidence' && window.DashboardEvidence) window.DashboardEvidence.render();
     }
     if (kind === 'query' && view === 'hazards') DashboardTables.showHazards();
@@ -48,6 +48,7 @@
     try {
       if (window.DashboardPriority && window.DashboardPriority.openFromHash(location.hash)) return;
       if (location.hash === '#evidence') { open('btn-interrogator'); setView('query', 'evidence'); }
+      else if (location.hash === '#overrides' || location.hash.startsWith('#overrides/')) { open('btn-interrogator'); setView('query', 'overrides'); }
       else if (location.hash === '#relationships') { open('btn-interrogator'); setView('query', 'relationships'); }
       else if (location.hash === '#hazard-ratings') { open('btn-interrogator'); setView('query', 'hazards'); }
       else if (location.hash === '#evidence-explorer' || location.hash.startsWith('#t4/')) { open('btn-interrogator'); setView('query', 'explorer'); }
@@ -134,11 +135,11 @@
       var h = 0;
       var prefix = entry[0] === 'tab-interrogator' ? '3.2' : entry[1];
       root.querySelectorAll('h2, h3').forEach(function (heading) {
-        if (heading.closest('.shell-intro, #vf-cards, #vf-stats, #relationship-review-root, #evidence-section-root') || heading.id === 'family-hero-title' || heading.classList.contains('info-block-title')) return;
+        if (heading.closest('.shell-intro, #vf-cards, #vf-stats, #relationship-review-root, #evidence-section-root, #override-review-root') || heading.id === 'family-hero-title' || heading.classList.contains('info-block-title')) return;
         setNumber(heading, heading.closest('#review-queue-panel') ? '5.1' : prefix + '.' + (++h));
       });
       root.querySelectorAll('table').forEach(function (table, index) {
-        if (table.closest('#relationship-review-root, #evidence-section-root')) return;
+        if (table.closest('#relationship-review-root, #evidence-section-root, #override-review-root')) return;
         var caption = table.querySelector(':scope > caption');
         if (caption && !caption.classList.contains('shell-table-caption')) {
           setNumber(caption, 'Table ' + entry[1] + '.' + (index + 1) + '.');
@@ -149,7 +150,7 @@
         if (caption.textContent !== value) caption.textContent = value;
       });
       root.querySelectorAll('.chart-wrapper').forEach(function (chart, index) {
-        if (chart.closest('#relationship-review-root, #evidence-section-root')) return;
+        if (chart.closest('#relationship-review-root, #evidence-section-root, #override-review-root')) return;
         var caption = chart.parentElement.querySelector(':scope > .shell-figure-caption');
         if (!caption) { caption = document.createElement('p'); caption.className = 'shell-figure-caption'; chart.after(caption); }
         var title = chart.closest('.card-container');
@@ -162,7 +163,7 @@
   function init() {
     document.querySelectorAll('[data-shell-open]').forEach(function (button) { button.addEventListener('click', function () { open(button.dataset.shellOpen); }); });
     document.querySelectorAll('[data-review-view]').forEach(function (button) { button.addEventListener('click', function () { setView('review', button.dataset.reviewView); }); });
-    document.querySelectorAll('[data-query-view]').forEach(function (button) { button.addEventListener('click', function () { setView('query', button.dataset.queryView); history.replaceState(null, '', queryRoutes[button.dataset.queryView]); if (button.dataset.queryView === 'explorer' && typeof window.refreshQueryProvenance === 'function') window.refreshQueryProvenance(); }); });
+    document.querySelectorAll('[data-query-view]').forEach(function (button) { button.addEventListener('click', function () { setView('query', button.dataset.queryView); history.replaceState(null, '', queryRoutes[button.dataset.queryView]); if (button.dataset.queryView === 'overrides') window.dispatchEvent(new Event('hashchange')); if (button.dataset.queryView === 'explorer' && typeof window.refreshQueryProvenance === 'function') window.refreshQueryProvenance(); }); });
     document.querySelectorAll('[data-method-view]').forEach(function (button) { button.addEventListener('click', function () { setView('method', button.dataset.methodView); }); });
     ReviewWorkspace.mount();
     var controls = document.querySelector('#query-explorer-panel .sidebar-panel');

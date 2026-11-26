@@ -57,3 +57,7 @@ access does not grant a data reuse licence, and no durable archive is claimed. A
 licensor, preservation service and catalogue acceptance must be confirmed separately.
 
 Test with `python3 -m unittest discover -s tests -p test_discovery.py`.
+
+### Pending rule overrides
+
+Evidence has separate Findings and Rule overrides views (`#evidence`, `#overrides`, and `#overrides/<candidate-id>`). The latter uses the same pinned data and renderer as `reference/ch-t4-overrides.html`. The methodology build validates the evidence candidates and computes illustrative outputs with the official reference evaluator. All relationships remain pending and inactive; source admission, finding Keep, scientific acceptance and runtime activation remain separate. There are no acceptance controls or runtime writes.
