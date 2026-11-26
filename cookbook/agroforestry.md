@@ -81,3 +81,14 @@ Use `agroforestry` for the practice ID.
 - Cross-family context · `agroforestry__cross_family`
 
 </details>
+
+
+## Pending general climate scoping proposal
+
+[Open the exact proposed method decision](../decisions/proposals/agroforestry_climate_scoping_v1/README.md). The proposal combines family-specific aridity membership and temperature-only cold support by their minimum, with separate footprint screens. It remains an open method decision, not an accepted mapping or runtime rule.
+
+FMNR and assisted natural regeneration on farmland use a proposed 20/80 moisture membership at AI 0.03/0.20, with rainfed AI below 0.03 outside default opportunity. Planted silvoarable and explicitly planted livestock systems retain the 0.20/0.46 proposal. Temperature-only cold support has proposed 20/80 bands at 3/10°C and 30/130 thermal days. These are transparent scoping conventions informed by source climate classes and ecological transitions, not fitted probabilities of tree establishment.
+
+The exact proposal requires registered subpractice and establishment pathway. Retention-only parkland management receives no new recruitment score or exclusion. Missing or mismatched scope is outside this proposal, not unsuitable. No blanket aridity or cold exemption applies to FMNR. No new field-survey, rootstock, density or species-design prerequisite is introduced.
+
+Six core sources have been admitted with extraction pending; admission does not approve these functions. Source-claim review, the scientific decision, contract/definition changes and runtime implementation remain distinct. The current T4 contract cannot yet represent this complete smooth, nested, pathway-scoped policy unchanged; the packet lists the bounded publication prerequisites.
