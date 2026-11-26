@@ -1233,6 +1233,7 @@ def llms(descriptor, resources, tables, counts):
         "- [Practices and every compiled row](practices.html)",
         "- [Review queues and records](review.html)",
         "- [Editions and build checks](editions.html)",
+        "- [System, setup and human controls on agents](ch-system-setup.html)",
         "- [Glossary](glossary.html)",
         "",
     ]

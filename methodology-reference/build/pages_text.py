@@ -527,8 +527,12 @@ def build():
         ("editions.html", "About versions and changes"),
         ("status.html", "What is established"),
         ("reproduce.html", "Reproduce and check"),
+        ("ch-system-setup.html", "System and setup"),
         ("glossary.html", "Glossary"),
     ]
+    system_body, _ = chapter_body("system-setup")
+    page("ch-system-setup.html", "ch-system-setup.html", TITLES["system-setup"],
+         system_body, lead=esc(summary("system-setup")), numbered=True)
     chapter_pages("method.html", METHOD_CH, 2)
     chapter_pages("evidence-methods.html", EVIDENCE_CH, 3)
     # Preserve the published guide addresses without retaining duplicate chapters in navigation.
@@ -1300,6 +1304,8 @@ def build():
         "The exact inputs are recorded below. Current review decisions can be newer than this fixed evidence base.</p>"
         f"<p>{link('evidence-base.html', 'Browse and download this evidence base')}. "
         f"{link('#inputs', 'See its exact source revisions')}.</p>"
+        + '<p>For repository responsibilities, setup and continuing evidence work, open '
+        + link("ch-system-setup.html", "System and setup") + '</p>'
         + history
         + '<h2 id="inputs">What this version was built from</h2>'
         "<p>An edition is one fixed set of inputs. Everything in this methodology is read from the identifiers "

@@ -172,7 +172,7 @@ def _wiki(match, slug):
     target, _, label = rest.partition("|")
     target, label = target.strip(), label.strip()
     if kind == "ch":
-        known = set(METHOD_CH) | set(EVIDENCE_CH) | set(PRACTICE_CH) | set(GENERATED)
+        known = set(METHOD_CH) | set(EVIDENCE_CH) | set(PRACTICE_CH) | set(GENERATED) | {"system-setup"}
         if target not in known:
             PROBLEMS.append(f"{slug}: link to unknown chapter {target}")
             return esc(label or target)
@@ -196,7 +196,7 @@ TITLES = {}
 
 
 def titles():
-    for slug in METHOD_CH + EVIDENCE_CH + PRACTICE_CH:
+    for slug in METHOD_CH + EVIDENCE_CH + PRACTICE_CH + ["system-setup"]:
         meta, _ = read(slug)
         if meta:
             TITLES[slug] = meta.get("title", words(slug))

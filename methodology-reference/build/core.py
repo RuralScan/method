@@ -77,7 +77,7 @@ RUNTIME_REV = _published(RUNTIME)
 RUNTIME_URL = f"https://github.com/RuralScan/runtime/blob/{RUNTIME_REV}/"
 # The evidence revision whose operating procedures the chapter on continuing the work describes.
 # The build must run against exactly this checkout, so that chapter's text and links agree.
-EVIDENCE_OPERATING = "77a6c6d8ffb9bdd4864b1009a0e819626b7258ec"
+EVIDENCE_OPERATING = "94a5b1c5e2bea65c79161388e78aecb20714cd66"
 # The producer revision at which its evidence records became read-only (the retirement marker).
 CIAT_RETIRED = "4d53620f7a9f0f17a42a007fa0a653e5ed55c519"
 CIAT_RETIRED_URL = f"https://github.com/CIAT/nbs_ruralscan/blob/{CIAT_RETIRED}/"
@@ -591,6 +591,7 @@ NAV = [
     ("practices.html", "Practices"),
     ("evidence-base.html", "Evidence base"),
     ("editions.html", "Editions and checks"),
+    ("ch-system-setup.html", "System and setup"),
 ]
 # One line per part. Shown as the tooltip on each tab and in the overview's list of parts.
 NAV_TIP = {
@@ -601,6 +602,7 @@ NAV_TIP = {
     "practices.html": "Practice definitions, sub-practices and review progress.",
     "evidence-base.html": "Browse findings, check detailed review coverage, and download data.",
     "editions.html": "About versions, change history, what is established, how to reproduce, glossary.",
+    "ch-system-setup.html": "Repositories, setup, continuing evidence work and human controls on agents.",
 }
 SITE_NAME = "Rural NbS Scan methodology"
 SIDE = {}  # section file -> [(href, label)], filled by the build before pages are written
