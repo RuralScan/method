@@ -9,9 +9,9 @@ water_quality_risk,priority,water_quality,priority/profiles/t5-0.2.0.json#water_
 water_stress,priority,water_stress,priority/profiles/t5-0.2.0.json#water_stress,priority/classifications/rules.csv#water_stress_aqueduct,,,held
 rural_poverty,priority,rural_poverty,priority/profiles/t5-0.2.0.json#rural_poverty,priority/classifications/rules.csv#poverty_wb_income,,,held
 food_insecurity,priority,food_insecurity,priority/profiles/t5-0.2.0.json#food_insecurity,priority/classifications/rules.csv#food_insecurity_ipc_chronic,,,held
-production_gap,priority,production_gap,priority/profiles/t5-0.2.0.json#production_gap,priority/classifications/rules.csv#production_gap_crop_published,,,held
-agricultural_dependency,priority,agricultural_dependency,priority/profiles/t5-0.2.0.json#agricultural_dependency,priority/classifications/rules.csv#agricultural_dependency_local,,,held
-gender_inequity,priority,gender_inequity,priority/profiles/t5-0.2.0.json#gender_inequity,priority/classifications/rules.csv#gender_inequity_national_context,,,held
+production_gap,priority,production_gap,priority/profiles/t5-0.2.0.json#production_gap,priority/classifications/supplementary_rules.csv#production_gap_crop_published,,,held
+agricultural_dependency,priority,agricultural_dependency,priority/profiles/t5-0.2.0.json#agricultural_dependency,priority/classifications/supplementary_rules.csv#agricultural_dependency_local,,,held
+gender_inequity,priority,gender_inequity,priority/profiles/t5-0.2.0.json#gender_inequity,priority/classifications/supplementary_rules.csv#gender_inequity_national_context,,,held
 iplc_lands,descriptor,iplc_overlap_and_safeguards,priority/profiles/t5-0.2.0.json#iplc_lands,,,,descriptor
 rural_population,descriptor,rural_population,priority/profiles/t5-0.2.0.json#rural_population,,,,descriptor
 accessibility_travel_time,descriptor,accessibility,priority/profiles/t5-0.2.0.json#accessibility_travel_time,,,,descriptor

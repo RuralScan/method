@@ -1,0 +1,10 @@
+visual_key,variable_id,label
+drought,drought_hazard,Drought
+flood,flood_hazard,Flooding
+erosion,soil_erosion_risk,Soil erosion
+heat,heat_stress_hazard,Heat stress
+poverty,rural_poverty,Rural poverty
+food,food_insecurity,Food insecurity
+biod,biodiversity_priority,Biodiversity loss
+carbon,carbon_sequestration_potential,Carbon loss
+water,water_stress,Water stress

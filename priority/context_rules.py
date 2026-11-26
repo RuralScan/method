@@ -41,9 +41,17 @@ def quantiles(values):
 def bundle(root=ROOT):
     folder = root / FOLDER
     manifest = json.loads((folder / 'columns.json').read_text())
-    require(manifest['format'] == 'ruralscan.context-classification-tables.v2' and
+    require(manifest['format'] == 'ruralscan.context-classification-tables.v3' and
             manifest['schema_issue'].startswith('https://github.com/RuralScan/method/issues/'), 'Untracked table structure')
-    rules = read_table(root, manifest, 'rules')
+    core_rules = read_table(root, manifest, 'rules')
+    supplementary_rules = read_table(root, manifest, 'supplementary_rules')
+    visual_variables = read_table(root, manifest, 'visual_variables')
+    visual_ids = {r['variable_id'] for r in visual_variables}
+    require(len(visual_variables) == len(visual_ids) == 9 and
+            len({r['visual_key'] for r in visual_variables}) == 9, 'Visual scope must contain nine unique problems')
+    require(all(r['variable_id'] in visual_ids for r in core_rules), 'Core rule outside visual scope')
+    require(all(r['variable_id'] not in visual_ids for r in supplementary_rules), 'Visual rule filed as supplementary')
+    rules = core_rules + supplementary_rules
     samples = read_table(root, manifest, 'samples')
     countries = read_table(root, manifest, 'countries')
     sources = read_table(root, manifest, 'sources')
@@ -65,6 +73,7 @@ def bundle(root=ROOT):
     routes = {}
     with (root / 'priority/T5_classification_refs.csv').open() as stream:
         t5 = {r['variable_id']: r for r in csv.DictReader(stream)}
+    require(visual_ids <= set(t5), 'Visual scope has unknown T5 variables')
     for row in rules:
         require(re.fullmatch('[a-z][a-z0-9_]*', row['classification_id']) and
                 re.fullmatch(r'\d+\.\d+\.\d+', row['version']), 'Invalid rule identity')
@@ -74,7 +83,8 @@ def bundle(root=ROOT):
         require(row['status'] == 'proposed', 'Context table cannot assert scientific acceptance')
         route = t5.get(row['variable_id'])
         require(route and route['mcda_role'] == 'priority' and route['concern_id'] == row['concern_id'], 'Context rule conflicts with T5 routing')
-        require(route['classification_set_ref'] == f'{FOLDER}/rules.csv#{row["rule_set_id"]}', 'T5 does not link to rule set')
+        rule_file = 'rules.csv' if row['variable_id'] in visual_ids else 'supplementary_rules.csv'
+        require(route['classification_set_ref'] == f'{FOLDER}/{rule_file}#{row["rule_set_id"]}', 'T5 does not link to rule set')
         previous = routes.setdefault(row['rule_set_id'], (row['variable_id'], row['concern_id']))
         require(previous == (row['variable_id'], row['concern_id']), 'Rule set crosses variable/concern identities')
         require(row['context_type'] in {'global', 'wb_income_group', 'region', 'country'}, 'Unsupported context type')
@@ -176,12 +186,12 @@ def bundle(root=ROOT):
     for route in t5.values():
         reference = route['classification_set_ref']
         if reference:
-            require(reference.startswith(f'{FOLDER}/rules.csv#') and reference.split('#',1)[1] in routes, 'Unresolved classification set')
+            require(reference.startswith((f'{FOLDER}/rules.csv#', f'{FOLDER}/supplementary_rules.csv#')) and reference.split('#',1)[1] in routes, 'Unresolved classification set')
             require(not route['proposed_rule_ref'] and not route['accepted_rule_ref'], 'Single rule and contextual set conflict')
-    return {'format':'ruralscan.context-classification-review.v2', 'runtime_ready':False,
+    return {'format':'ruralscan.context-classification-review.v3', 'runtime_ready':False,
         'input_sha256':{f'{FOLDER}/{name}':sha256((folder/name).read_bytes()).hexdigest()
                         for name in ['columns.json'] + [s['file'] for s in manifest['tables'].values()]},
-        'rules':rules, 'countries':countries, 'sources':sources}
+        'rules':core_rules, 'supplementary_rules':supplementary_rules, 'visual_variables':visual_variables, 'countries':countries, 'sources':sources}
 
 
 def check(root=ROOT):
@@ -190,11 +200,12 @@ def check(root=ROOT):
     return actual
 
 
-def resolve(variable, country_code=None, *, vintage, region=None, for_runtime=False, root=ROOT):
-    """Resolve one review rule; explicit country > region > income tier > global."""
+def resolve(variable, country_code=None, *, vintage, region=None, for_runtime=False, include_supplementary=False, root=ROOT):
+    """Resolve a core review rule; supplementary work requires explicit opt-in."""
     require(not for_runtime, 'Context rules are not an accepted runtime release')
     data = check(root)
-    rules = [r for r in data['rules'] if r['variable_id'] == variable]
+    available = data['rules'] + (data['supplementary_rules'] if include_supplementary else [])
+    rules = [r for r in available if r['variable_id'] == variable]
     require(rules, 'No contextual rule set for variable')
     membership = [c for c in data['countries'] if c['country_code'] == country_code and c['vintage'] == vintage]
     if country_code is not None:
@@ -274,4 +285,4 @@ if __name__ == '__main__':
     if args.command == 'generate':
         (ROOT / FOLDER / 'rules.json').write_text(json.dumps(bundle(), indent=2, ensure_ascii=False) + '\n')
     data = check()
-    print(f'{len(data["rules"])} contextual rules; 0 accepted runtime rules')
+    print(f'{len(data["rules"])} core contextual rules; {len(data["supplementary_rules"])} supplementary rules; 0 accepted runtime rules')
