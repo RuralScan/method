@@ -12,7 +12,7 @@ The published [Opportunity space problem table](https://ciat.github.io/nbs_rural
 | Heat stress | Classification pending |
 | Rural poverty | Income-tier approach approved; numerical calibration provisional |
 | Food insecurity | IPC chronic four-class interpretation approved; applicable local assessment required |
-| Biodiversity priority | [One layer combining BII depletion and KBA proximity](conservation/README.md), requested by Pete; maximum-class rule proposed; bindings, distances and release pending |
+| Biodiversity priority | [One layer combining BII depletion and KBA proximity](conservation/README.md), requested by Pete; maximum-class rule approved; bindings, proposed 1.5/5 km distances and release pending |
 | Carbon loss | [Forest-emissions proxy and global positive-value terciles proposed](research/2026-11-26-carbon-loss-classes.md); no None class from native nodata; calibration and successor routing pending |
 | Water stress | Aqueduct category mapping approved; runtime release remains pending |
 
@@ -26,4 +26,4 @@ Infrastructure is retained as an [active optional exposure overlay](infrastructu
 
 Source check: inspected the currently published Stage 03 and Stage 05 HTML on 25 November 2026. The local retired-repository copy still contains an older soil-degradation row; the current published nine-row problem list governs this review. Existing local feedback dated 9 November 2026 records the Bank infrastructure request and the later exposure-only scope.
 
-26 November update: Pete requested merging BII and KBAs for simplicity, superseding the separate-overlay presentation. The same biodiversity entry is now labelled [Biodiversity priority](conservation/README.md), with depletion and KBA proximity retained as distinct inputs. Maximum-class combination is proposed; KBA distances remain to select. Nine core entries remain; infrastructure stays active.
+26 November update: Pete requested merging BII and KBAs for simplicity, superseding the separate-overlay presentation. The same biodiversity entry is now labelled [Biodiversity priority](conservation/README.md), with depletion and KBA proximity retained as distinct inputs. Maximum-class combination is approved; 1.5/5 km KBA distances are proposed from an explicit adaptation of IBAT screening bands. Nine core entries remain; infrastructure stays active.
