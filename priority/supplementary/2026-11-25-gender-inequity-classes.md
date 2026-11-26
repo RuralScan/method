@@ -4,7 +4,7 @@
 
 Approval (chat): “ok approved, capture the gender inequity approach and limitations, noting national context only and no none/very little cutoff, then proceed to the next variable”
 
-T5 links to `priority/classifications/rules.csv#gender_inequity_national_context`. `requires_reference_calibration` records the approach with blank cutoffs and no sample; scalar previews remain unknown. Global scope identifies the pooled reference approach, not local spatial coverage. The release-workflow state remains `proposed`; approach approval does not activate a dataset or runtime release.
+T5 links to `priority/classifications/supplementary_rules.csv#gender_inequity_national_context`. `requires_reference_calibration` records the approach with blank cutoffs and no sample; scalar previews remain unknown. Global scope identifies the pooled reference approach, not local spatial coverage. The release-workflow state remains `proposed`; approach approval does not activate a dataset or runtime release.
 
 The existing profile uses UNDP's national Gender Inequality Index (GII). It combines reproductive health, empowerment and labour-market dimensions. Values range from 0 to 1, with higher values indicating greater measured inequality. Its coverage is limited to countries with sufficient data. It is not an agriculture-specific measure of women's access to land, credit or decision-making. [UNDP: About GII](https://hdr.undp.org/data-center/thematic-composite-indices/gender-inequality-index).
 

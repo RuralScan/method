@@ -1,12 +1,14 @@
 {
-  "format": "ruralscan.context-classification-review.v2",
+  "format": "ruralscan.context-classification-review.v3",
   "runtime_ready": false,
   "input_sha256": {
-    "priority/classifications/columns.json": "95b0fd9cf114bcd7b6ee6ba6f10e4343722c5bab158cf63a6ad455bbe18b3112",
-    "priority/classifications/rules.csv": "01178125c01b6100946d0836b27c01fa11c3312701bda2199536ff80b848337e",
+    "priority/classifications/columns.json": "4d9fdadbb8c660787e1127c0e9522b2b81111ed23ea2e1840a938405af5fae2b",
+    "priority/classifications/rules.csv": "2342753c7702e49b216be819bbd8e7bd0dac3949a1b1847fc10ecc3a7e1a51ae",
     "priority/classifications/reference_samples.csv": "b80d52b46a1d0b1e0ce55dc2297ab981cb58ce72800486fae3ff783b856e9760",
     "priority/classifications/country_groups.csv": "ca84f757fb2c4006a4f6647adc16cb326b0f64b2a317de7b30bdc72cda1e9ce2",
-    "priority/classifications/sources.csv": "7f7293192ab91c3a74c7c1cd309d8065303482bcff660c55645d6da49797c3fb"
+    "priority/classifications/sources.csv": "7f7293192ab91c3a74c7c1cd309d8065303482bcff660c55645d6da49797c3fb",
+    "priority/classifications/supplementary_rules.csv": "d82a7001d8bd55f51e23cca0cc8e8f9da007bdd18fc7b48d7d5e223534300952",
+    "priority/classifications/visual_variables.csv": "cd19f8f7a1d058a40a3b794351ce041df91fc56f3b64fe8d0fd9d1ccd7e6f78f"
   },
   "rules": [
     {
@@ -448,7 +450,9 @@
       "missing": "unknown",
       "endpoint": "provider_category",
       "runtime_ready": false
-    },
+    }
+  ],
+  "supplementary_rules": [
     {
       "rule_set_id": "production_gap_crop_published",
       "classification_id": "production_gap_crop_fao",
@@ -489,7 +493,7 @@
         "medium": "Published significant crop yield gap",
         "high": "Published severe and very severe crop yield gaps combined"
       },
-      "rationale": "Pete approved these four crop production gap classes and limitations on 2026-11-25: Very little 0-20%; Low >20-40%; Medium >40-60%; High >60-100% of attainable yield. FAO SOLAW 2025 Figure 19 supplies five bands; RuralScan relabels, merges the top two and uses upper-inclusive endpoints. Annex 1.2 uses high-input GAEZ v5 attainable yields and FAOSTAT country yields, distinct from the pixel yield-achievement product. Initial demonstration covers maize/rice/wheat, 2001-2020; other crops and spatial transfer require contextual review. Not livestock, pasture NPP or mixed-system classes. Missing observations or nonpositive attainable yields remain unknown; negative gaps retain raw values for review, not clipping. Non-cropped land is outside the measure. Gap is baseline need, not NbS-closable benefit. Dataset selection and runtime release remain outstanding. See priority/research/2026-11-25-production-gap-classes.md.",
+      "rationale": "Pete approved these four crop production gap classes and limitations on 2026-11-25: Very little 0-20%; Low >20-40%; Medium >40-60%; High >60-100% of attainable yield. FAO SOLAW 2025 Figure 19 supplies five bands; RuralScan relabels, merges the top two and uses upper-inclusive endpoints. Annex 1.2 uses high-input GAEZ v5 attainable yields and FAOSTAT country yields, distinct from the pixel yield-achievement product. Initial demonstration covers maize/rice/wheat, 2001-2020; other crops and spatial transfer require contextual review. Not livestock, pasture NPP or mixed-system classes. Missing observations or nonpositive attainable yields remain unknown; negative gaps retain raw values for review, not clipping. Non-cropped land is outside the measure. Gap is baseline need, not NbS-closable benefit. Dataset selection and runtime release remain outstanding. See priority/supplementary/2026-11-25-production-gap-classes.md.",
       "status": "proposed",
       "reference_sample": null,
       "cuts": [
@@ -541,7 +545,7 @@
         "medium": "Middle third of comparable local observations within selected country; cuts pending",
         "high": "Upper third of comparable local observations within selected country; cuts pending"
       },
-      "rationale": "Pete approved the agricultural dependency approach and limitations on 2026-11-25: contextual Low/Medium/High terciles from comparable observed subnational employment shares within selected country; local data required, no None/Very little cutoff justified. This is a RuralScan relative convention, not published ILO severity bands. Retain raw percentages; employment share is not household income dependence. Select source, reference population, period and weighting and check sufficient distinct observations before calibration. National series cannot differentiate within-country hotspots. Do not rank countries using imputed national estimates. Missing values remain unknown; zero does not prove absence of agricultural livelihoods. No local data, numeric cuts or runtime release claimed. See priority/research/2026-11-25-agricultural-dependency-classes.md.",
+      "rationale": "Pete approved the agricultural dependency approach and limitations on 2026-11-25: contextual Low/Medium/High terciles from comparable observed subnational employment shares within selected country; local data required, no None/Very little cutoff justified. This is a RuralScan relative convention, not published ILO severity bands. Retain raw percentages; employment share is not household income dependence. Select source, reference population, period and weighting and check sufficient distinct observations before calibration. National series cannot differentiate within-country hotspots. Do not rank countries using imputed national estimates. Missing values remain unknown; zero does not prove absence of agricultural livelihoods. No local data, numeric cuts or runtime release claimed. See priority/supplementary/2026-11-25-agricultural-dependency-classes.md.",
       "status": "proposed",
       "binding_candidate": null,
       "reference_sample": null,
@@ -590,7 +594,7 @@
         "medium": "Middle third of national GII in pooled global LIC/LMC/UMC reference set; cuts pending",
         "high": "Upper third of national GII in pooled global LIC/LMC/UMC reference set; cuts pending"
       },
-      "rationale": "Pete approved the gender inequity approach and limitations on 2026-11-25: Low/Medium/High terciles across one global low-, lower-middle- and upper-middle-income reference set; equal weight per economy; retain raw GII values. National context only, with no None/Very little cutoff justified. This is a RuralScan relative convention, not UNDP severity bands; do not borrow HDI or GDI categories. Pin one UNDP release, common year, income-group vintage and eligible economies before calibration; no mixed latest-available years. Missing values remain unknown; low GII does not establish absence of all inequity. National values cannot locate within-country hotspots, and their cutoffs cannot transfer to a different local measure. No numeric cuts or runtime release claimed. See priority/research/2026-11-25-gender-inequity-classes.md.",
+      "rationale": "Pete approved the gender inequity approach and limitations on 2026-11-25: Low/Medium/High terciles across one global low-, lower-middle- and upper-middle-income reference set; equal weight per economy; retain raw GII values. National context only, with no None/Very little cutoff justified. This is a RuralScan relative convention, not UNDP severity bands; do not borrow HDI or GDI categories. Pin one UNDP release, common year, income-group vintage and eligible economies before calibration; no mixed latest-available years. Missing values remain unknown; low GII does not establish absence of all inequity. National values cannot locate within-country hotspots, and their cutoffs cannot transfer to a different local measure. No numeric cuts or runtime release claimed. See priority/supplementary/2026-11-25-gender-inequity-classes.md.",
       "status": "proposed",
       "binding_candidate": null,
       "reference_sample": null,
@@ -598,6 +602,53 @@
       "missing": "unknown",
       "endpoint": "not_calibrated",
       "runtime_ready": false
+    }
+  ],
+  "visual_variables": [
+    {
+      "visual_key": "drought",
+      "variable_id": "drought_hazard",
+      "label": "Drought"
+    },
+    {
+      "visual_key": "flood",
+      "variable_id": "flood_hazard",
+      "label": "Flooding"
+    },
+    {
+      "visual_key": "erosion",
+      "variable_id": "soil_erosion_risk",
+      "label": "Soil erosion"
+    },
+    {
+      "visual_key": "heat",
+      "variable_id": "heat_stress_hazard",
+      "label": "Heat stress"
+    },
+    {
+      "visual_key": "poverty",
+      "variable_id": "rural_poverty",
+      "label": "Rural poverty"
+    },
+    {
+      "visual_key": "food",
+      "variable_id": "food_insecurity",
+      "label": "Food insecurity"
+    },
+    {
+      "visual_key": "biod",
+      "variable_id": "biodiversity_priority",
+      "label": "Biodiversity loss"
+    },
+    {
+      "visual_key": "carbon",
+      "variable_id": "carbon_sequestration_potential",
+      "label": "Carbon loss"
+    },
+    {
+      "visual_key": "water",
+      "variable_id": "water_stress",
+      "label": "Water stress"
     }
   ],
   "countries": [

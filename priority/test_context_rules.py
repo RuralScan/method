@@ -37,6 +37,20 @@ class ContextRules(unittest.TestCase):
     def resolve(self, country, **kwargs):
         return rules.resolve('rural_poverty',country,vintage='FY2027',root=self.root,**kwargs)
 
+    def test_visual_scope_excludes_saved_supplementary_work_by_default(self):
+        data = rules.check(self.root)
+        self.assertEqual(len(data['visual_variables']), 9)
+        self.assertEqual({r['variable_id'] for r in data['supplementary_rules']},
+                         {'production_gap', 'agricultural_dependency', 'gender_inequity'})
+        for variable in ['production_gap', 'agricultural_dependency', 'gender_inequity']:
+            with self.assertRaisesRegex(ValueError, 'No contextual rule set'):
+                rules.resolve(variable, vintage='FY2027', root=self.root)
+        rows = self.read('rules.csv')
+        extra = self.read('supplementary_rules.csv')[0]
+        self.write('rules.csv', rows + [extra])
+        with self.assertRaisesRegex(ValueError, 'outside visual scope'):
+            rules.bundle(self.root)
+
     def test_three_tiers_and_reference_replay(self):
         expected = {'UGA':('LIC',339,19), 'KEN':('LMC',525,43), 'COL':('UMC',745,43)}
         for country, (group, n, countries) in expected.items():
@@ -112,7 +126,7 @@ class ContextRules(unittest.TestCase):
             self.assertEqual(rules.preview(rule,value,unit='tonnes_per_ha_per_year'),expected)
 
     def test_dependency_approach_cannot_classify_without_local_data(self):
-        rule = rules.resolve('agricultural_dependency', vintage='FY2027', root=self.root)
+        rule = rules.resolve('agricultural_dependency', vintage='FY2027', include_supplementary=True, root=self.root)
         self.assertEqual(rule['method'], 'terciles')
         self.assertEqual(rule['binding']['validation'], 'requires_local_data')
         self.assertIsNone(rule['cuts'])
@@ -121,46 +135,46 @@ class ContextRules(unittest.TestCase):
         self.assertFalse(rule['runtime_ready'])
         for value in [0, 25, 50, 100, None, -1, float('nan')]:
             self.assertIsNone(rules.preview(rule, value, unit='percent'))
-        rows = self.read('rules.csv')
+        rows = self.read('supplementary_rules.csv')
         row = next(r for r in rows if r['variable_id'] == 'agricultural_dependency')
         for key, value in [('none_upper', '0'), ('low_upper', '25'),
                            ('medium_upper', '50'), ('reference_sample_id', 'unselected')]:
             row[key] = value
-            self.write('rules.csv', rows)
+            self.write('supplementary_rules.csv', rows)
             with self.assertRaisesRegex(ValueError, 'Pending calibration cannot carry'):
                 rules.bundle(self.root)
             row[key] = ''
         binding = json.loads(row['binding'])
         binding['validation'] = 'table_inspected'
         row['binding'] = json.dumps(binding)
-        self.write('rules.csv', rows)
+        self.write('supplementary_rules.csv', rows)
         with self.assertRaisesRegex(ValueError, 'Missing reference sample'):
             rules.bundle(self.root)
 
     def test_gender_context_approach_cannot_classify_before_reference_calibration(self):
-        rule = rules.resolve('gender_inequity', vintage='FY2027', root=self.root)
+        rule = rules.resolve('gender_inequity', vintage='FY2027', include_supplementary=True, root=self.root)
         self.assertEqual(rule['binding']['validation'], 'requires_reference_calibration')
         self.assertIsNone(rule['cuts'])
         self.assertIsNone(rule['none_upper'])
         self.assertFalse(rule['runtime_ready'])
         for value in [0, .2, .5, 1, None, -1, float('nan')]:
             self.assertIsNone(rules.preview(rule, value, unit='unitless'))
-        rows = self.read('rules.csv')
+        rows = self.read('supplementary_rules.csv')
         row = next(r for r in rows if r['variable_id'] == 'gender_inequity')
         for key, value in [('none_upper', '0'), ('low_upper', '.2'),
                            ('medium_upper', '.5'), ('reference_sample_id', 'unselected')]:
             row[key] = value
-            self.write('rules.csv', rows)
+            self.write('supplementary_rules.csv', rows)
             with self.assertRaisesRegex(ValueError, 'Pending calibration cannot carry'):
                 rules.bundle(self.root)
             row[key] = ''
         row['method'] = 'thresholds'
-        self.write('rules.csv', rows)
+        self.write('supplementary_rules.csv', rows)
         with self.assertRaisesRegex(ValueError, 'only supports the tercile approach'):
             rules.bundle(self.root)
 
     def test_crop_gap_boundaries_domain_and_pending_spatial_binding(self):
-        rule = rules.resolve('production_gap', vintage='FY2027', root=self.root)
+        rule = rules.resolve('production_gap', vintage='FY2027', include_supplementary=True, root=self.root)
         self.assertEqual(rule['cuts'], [20, 40, 60])
         self.assertEqual(rule['binding']['validation'], 'documentation_only')
         self.assertFalse(rule['runtime_ready'])

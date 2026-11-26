@@ -1,5 +1,5 @@
 {
-  "format": "ruralscan.context-classification-tables.v2",
+  "format": "ruralscan.context-classification-tables.v3",
   "schema_issue": "https://github.com/RuralScan/method/issues/103",
   "tables": {
     "rules": {
@@ -77,6 +77,57 @@
         "sha256",
         "locator",
         "description"
+      ]
+    },
+    "supplementary_rules": {
+      "file": "supplementary_rules.csv",
+      "columns": [
+        "rule_set_id",
+        "classification_id",
+        "version",
+        "variable_id",
+        "concern_id",
+        "context_type",
+        "context_value",
+        "context_vintage",
+        "reference_scope",
+        "reference_year",
+        "method",
+        "unit",
+        "direction",
+        "none_upper",
+        "low_upper",
+        "medium_upper",
+        "domain_min",
+        "domain_max",
+        "reference_sample_id",
+        "source_ids",
+        "binding",
+        "category_map",
+        "class_meanings",
+        "rationale",
+        "status"
+      ],
+      "json_columns": [
+        "source_ids",
+        "binding",
+        "class_meanings",
+        "category_map"
+      ],
+      "number_columns": [
+        "none_upper",
+        "low_upper",
+        "medium_upper",
+        "domain_min",
+        "domain_max"
+      ]
+    },
+    "visual_variables": {
+      "file": "visual_variables.csv",
+      "columns": [
+        "visual_key",
+        "variable_id",
+        "label"
       ]
     }
   }
