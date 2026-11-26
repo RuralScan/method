@@ -8,7 +8,7 @@
   const link = (url, label) => safeUrl(url) ? `<a href="${esc(safeUrl(url))}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>` : esc(label);
   const details = (title, body) => `<details><summary>${esc(title)}</summary>${body}</details>`;
   const para = value => `<p>${esc(value)}</p>`;
-  const table = (caption, headings, rows) => `<div class="ovr-table"><table><caption>${esc(caption)}</caption><thead><tr>${headings.map(h => `<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${esc(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  const table = (caption, headings, rows) => `<div class="ovr-table" tabindex="0" role="region" aria-label="${esc(caption)}"><table><caption>${esc(caption)}</caption><thead><tr>${headings.map(h => `<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${esc(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
   function validate(model) {
     if (model.format !== 'ruralscan.override-review.v1' || !/^[a-f0-9]{40}$/.test(model.revision) || model.activate !== false || model.runtime_implemented !== false || model.scientific_acceptance !== 'pending' || !Array.isArray(model.records) || !model.records.length) throw Error('Unsupported review snapshot');
     const ids = new Set();

@@ -35,3 +35,20 @@ test('candidate deep links retain the complete identifier and minimum nesting',(
   assert.equal(view.routeId('#evidence'),'');
   assert.equal(view.expression({kind:'minimum',children:[{kind:'logistic',input:'aridity'},{kind:'minimum',children:[{kind:'logistic',input:'thermal_mean'},{kind:'logistic',input:'thermal_days'}]}]}),'minimum(aridity support, minimum(thermal mean support, thermal days support))');
 });
+test('show-all resets filters even when the URL already names the catalogue',async()=>{
+  const fs=require('node:fs'),vm=require('node:vm');
+  const nodes={};
+  const element=()=>({value:'',listeners:{},addEventListener(event,fn){this.listeners[event]=fn;},set innerHTML(value){this.html=value;this.value='';},get innerHTML(){return this.html;}});
+  for(const key of ['[data-practice]','[data-family]','[data-count]','[data-cards]','[data-reset]'])nodes[key]=element();
+  const root={dataset:{source:'data/t4-overrides.json'},querySelector:key=>nodes[key]};
+  const context={URL,module:{exports:{}},location:{hash:'#overrides'},history:{replaceState(a,b,h){context.location.hash=h;}},fetch:async()=>({ok:true,json:async()=>model()}),document:{baseURI:'https://example.org/',readyState:'complete',querySelectorAll:()=>[root]},window:{addEventListener(){}}};
+  vm.runInNewContext(fs.readFileSync(require.resolve('./override-review.js'),'utf8'),context);
+  await new Promise(resolve=>setImmediate(resolve));
+  nodes['[data-practice]'].value='one';nodes['[data-family]'].value='second';
+  nodes['[data-family]'].listeners.change();
+  assert.match(nodes['[data-count]'].textContent,/^0 pending/);
+  nodes['[data-reset]'].listeners.click({preventDefault(){}});
+  assert.equal(nodes['[data-practice]'].value,'');assert.equal(nodes['[data-family]'].value,'');
+  assert.match(nodes['[data-count]'].textContent,/^1 pending/);
+  assert.equal(context.location.hash,'#overrides');
+});

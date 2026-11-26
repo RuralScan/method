@@ -16,9 +16,9 @@
 .override-review dd { margin:.25rem 0 0; font-weight:600; color:var(--accent-amber); }
 .override-review details { border-top:1px solid var(--border-color); padding:.7rem 0; }
 .override-review summary { cursor:pointer; font-weight:600; padding:.2rem; }
-.override-review summary:focus-visible, .override-review a:focus-visible, .override-review select:focus-visible { outline:2px solid var(--accent-sky); outline-offset:3px; }
+.override-review .ovr-table:focus-visible, .override-review summary:focus-visible, .override-review a:focus-visible, .override-review select:focus-visible { outline:2px solid var(--accent-sky); outline-offset:3px; }
 .override-review .ovr-table { max-width:100%; overflow-x:auto; margin:.8rem 0; }
-.override-review table { border-collapse:collapse; width:100%; font-size:.85rem; }
+.override-review table { border-collapse:collapse; width:100%; min-width:36rem; font-size:.85rem; }
 .override-review caption { text-align:left; padding:.6rem 0; color:var(--text-secondary); }
 .override-review th, .override-review td { padding:.65rem; text-align:left; vertical-align:top; border-bottom:1px solid var(--border-color); overflow-wrap:anywhere; }
 .override-review th { background:var(--bg-tertiary); }
