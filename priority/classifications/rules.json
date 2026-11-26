@@ -3,10 +3,10 @@
   "runtime_ready": false,
   "input_sha256": {
     "priority/classifications/columns.json": "95b0fd9cf114bcd7b6ee6ba6f10e4343722c5bab158cf63a6ad455bbe18b3112",
-    "priority/classifications/rules.csv": "322215baa0bb9ec28c9b792eb73acc505f8dc04dab583c86d23a2fc555d395b6",
+    "priority/classifications/rules.csv": "1f8c5660d20d5f3c812fa16899f617f316461271a23cbcf5579ebd460643be72",
     "priority/classifications/reference_samples.csv": "b80d52b46a1d0b1e0ce55dc2297ab981cb58ce72800486fae3ff783b856e9760",
     "priority/classifications/country_groups.csv": "ca84f757fb2c4006a4f6647adc16cb326b0f64b2a317de7b30bdc72cda1e9ce2",
-    "priority/classifications/sources.csv": "b8ae2ccf4307f60c52c7d0b0ddcea63f514e00bb5188b6d0e31cffc22622885c"
+    "priority/classifications/sources.csv": "2be251e9219343e2d675d743141fbe42f762170ada8d3827b938bb23f18f6fe4"
   },
   "rules": [
     {
@@ -499,6 +499,55 @@
       ],
       "missing": "unknown",
       "endpoint": "upper_inclusive",
+      "runtime_ready": false
+    },
+    {
+      "rule_set_id": "agricultural_dependency_local",
+      "classification_id": "agricultural_dependency_local_terciles",
+      "version": "0.1.0",
+      "variable_id": "agricultural_dependency",
+      "concern_id": "agricultural_dependency",
+      "context_type": "global",
+      "context_value": "global",
+      "context_vintage": "",
+      "reference_scope": "Approach only: comparable observed admin1-or-finer employment shares within selected country; local data and reference population required",
+      "reference_year": "Local survey/census period not selected",
+      "method": "terciles",
+      "unit": "percent",
+      "direction": "higher_is_more_concern",
+      "none_upper": null,
+      "low_upper": null,
+      "medium_upper": null,
+      "domain_min": 0.0,
+      "domain_max": 100.0,
+      "reference_sample_id": "",
+      "source_ids": [
+        "wb_agricultural_employment_metadata"
+      ],
+      "binding": {
+        "dataset_id": "local_agricultural_employment_data_required",
+        "asset": "https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SL.AGR.EMPL.ZS",
+        "field": "Local agriculture employment share of total employment; exact source field pending selection",
+        "source_unit": "percent",
+        "scale": 1,
+        "offset": 0,
+        "spatial_support": "Requires observed admin1-or-finer census or labour-force survey data. National ILO series is qualified context only; metadata URL is not a local dataset asset.",
+        "validation": "requires_local_data"
+      },
+      "category_map": {},
+      "class_meanings": {
+        "none": "Not justified; no none/very-little cutoff",
+        "low": "Lower third of comparable local observations within selected country; cuts pending",
+        "medium": "Middle third of comparable local observations within selected country; cuts pending",
+        "high": "Upper third of comparable local observations within selected country; cuts pending"
+      },
+      "rationale": "Pete approved the agricultural dependency approach and limitations on 2026-11-25: contextual Low/Medium/High terciles from comparable observed subnational employment shares within selected country; local data required, no None/Very little cutoff justified. This is a RuralScan relative convention, not published ILO severity bands. Retain raw percentages; employment share is not household income dependence. Select source, reference population, period and weighting and check sufficient distinct observations before calibration. National series cannot differentiate within-country hotspots. Do not rank countries using imputed national estimates. Missing values remain unknown; zero does not prove absence of agricultural livelihoods. No local data, numeric cuts or runtime release claimed. See priority/research/2026-11-25-agricultural-dependency-classes.md.",
+      "status": "proposed",
+      "binding_candidate": null,
+      "reference_sample": null,
+      "cuts": null,
+      "missing": "unknown",
+      "endpoint": "not_calibrated",
       "runtime_ready": false
     }
   ],
@@ -2086,6 +2135,13 @@
       "sha256": "70c077173fcbb84ee4e7fee6d143c98dccb009c2d39d4ccddae062fed2a6b73e",
       "locator": "Figure 19, printed page 38 / PDF page 64; Annex 1.2, printed page 103 / PDF page 129",
       "description": "FAO SOLAW 2025: five crop yield-gap bands for country maize/rice/wheat comparisons, 2001-2020. RuralScan merges the top two. Official PDF visually verified and archived in production_gap_2026_11_25/classification_sources.zip; no spatial crop dataset selected."
+    },
+    {
+      "source_id": "wb_agricultural_employment_metadata",
+      "url": "https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SL.AGR.EMPL.ZS",
+      "sha256": "5cce11d075465315af4ca652596347f8a1ec2252bb1d3415d2e0c1c3395cf1dd",
+      "locator": "SL.AGR.EMPL.ZS: Long definition; Statistical concept and methodology; Limitations and exceptions",
+      "description": "World Bank WDI metadata for ILO modelled national agricultural employment shares. Definition and comparability limitations only; not local observations or published tercile thresholds. Original HTML archived in agricultural_dependency_2026_11_25/classification_sources.zip."
     }
   ]
 }

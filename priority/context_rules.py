@@ -93,12 +93,20 @@ def bundle(root=ROOT):
         binding = row['binding']
         require(set(binding) == {'dataset_id','asset','field','source_unit','scale','offset','spatial_support','validation'}, 'Incomplete binding')
         require(all(binding[k] for k in ('dataset_id','asset','field','source_unit','spatial_support')), 'Missing binding identity')
-        require(binding['validation'] in {'table_inspected','documentation_only','requires_local_assessment'} and finite(binding['scale']) and binding['scale'] > 0 and finite(binding['offset']), 'Invalid binding conversion/status')
+        require(binding['validation'] in {'table_inspected','documentation_only','requires_local_assessment','requires_local_data'} and finite(binding['scale']) and binding['scale'] > 0 and finite(binding['offset']), 'Invalid binding conversion/status')
         require(binding['validation'] != 'requires_local_assessment' or row['method'] == 'categories', 'Local assessment rule must preserve published categories')
         lo, hi = row['domain_min'], row['domain_max']
         require(finite(lo) and (hi is None or finite(hi) and lo < hi), 'Invalid classification domain')
         require(row['method'] in {'terciles','thresholds','categories'}, 'Invalid classification method')
         require(isinstance(row['category_map'], dict), 'Invalid category map')
+        if binding['validation'] == 'requires_local_data':
+            require(row['method'] == 'terciles', 'Pending local data only supports the tercile approach')
+            require(all(row[k] is None for k in ('none_upper','low_upper','medium_upper')) and
+                    not row['reference_sample_id'] and not row['category_map'],
+                    'Pending local data cannot carry cutoffs, a sample or category classes')
+            row.update(binding_candidate=None, reference_sample=None, cuts=None, missing='unknown',
+                       endpoint='not_calibrated', runtime_ready=False)
+            continue
         if row['method'] == 'categories':
             require(binding['scale'] == 1 and binding['offset'] == 0 and row['unit'] == binding['source_unit'],
                     'Category codes cannot be numerically transformed')
@@ -211,6 +219,8 @@ def preview(rule, value, *, unit):
     """Inspect already converted scalar values in the table's declared units."""
     require(unit == rule['unit'], 'Input units differ; convert explicitly')
     require(rule['method'] != 'categories', 'Category rules require raw value and category together')
+    if rule['binding']['validation'] == 'requires_local_data':
+        return None
     if value is None or not finite(value):
         return None
     if value < rule['domain_min'] or (rule['domain_max'] is not None and value > rule['domain_max']):

@@ -111,6 +111,32 @@ class ContextRules(unittest.TestCase):
                                (5,'medium'),(5.001,'high'),(-1,None),(None,None)]:
             self.assertEqual(rules.preview(rule,value,unit='tonnes_per_ha_per_year'),expected)
 
+    def test_dependency_approach_cannot_classify_without_local_data(self):
+        rule = rules.resolve('agricultural_dependency', vintage='FY2027', root=self.root)
+        self.assertEqual(rule['method'], 'terciles')
+        self.assertEqual(rule['binding']['validation'], 'requires_local_data')
+        self.assertIsNone(rule['cuts'])
+        self.assertIsNone(rule['reference_sample'])
+        self.assertIsNone(rule['none_upper'])
+        self.assertFalse(rule['runtime_ready'])
+        for value in [0, 25, 50, 100, None, -1, float('nan')]:
+            self.assertIsNone(rules.preview(rule, value, unit='percent'))
+        rows = self.read('rules.csv')
+        row = next(r for r in rows if r['variable_id'] == 'agricultural_dependency')
+        for key, value in [('none_upper', '0'), ('low_upper', '25'),
+                           ('medium_upper', '50'), ('reference_sample_id', 'unselected')]:
+            row[key] = value
+            self.write('rules.csv', rows)
+            with self.assertRaisesRegex(ValueError, 'Pending local data cannot carry'):
+                rules.bundle(self.root)
+            row[key] = ''
+        binding = json.loads(row['binding'])
+        binding['validation'] = 'table_inspected'
+        row['binding'] = json.dumps(binding)
+        self.write('rules.csv', rows)
+        with self.assertRaisesRegex(ValueError, 'Missing reference sample'):
+            rules.bundle(self.root)
+
     def test_crop_gap_boundaries_domain_and_pending_spatial_binding(self):
         rule = rules.resolve('production_gap', vintage='FY2027', root=self.root)
         self.assertEqual(rule['cuts'], [20, 40, 60])
