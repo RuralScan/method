@@ -51,4 +51,4 @@ Complete named technical holds and pilot/context checks; register/acquire source
 
 ## Follow-up overlays
 
-[KBA conservation importance](../conservation/README.md) is approved in scope, separate from biodiversity loss; its official acquisition route is identified, while polygon inspection/access and proximity distances remain pending. [Road infrastructure](../infrastructure/2026-11-26-roads-binding.md) is the next technical binding inspection. These records do not silently append unverified candidates to the fourteen-row evidence-pinned catalogue.
+[KBA conservation importance](../conservation/README.md) is approved as an input to the single Biodiversity priority layer requested by Pete; its official acquisition route is identified, while polygon inspection/access and proximity distances remain pending. [Road infrastructure](../infrastructure/2026-11-26-roads-binding.md) is the next technical binding inspection. These records do not silently append unverified candidates to the fourteen-row evidence-pinned catalogue.

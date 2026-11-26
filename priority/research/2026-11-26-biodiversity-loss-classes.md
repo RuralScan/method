@@ -6,7 +6,7 @@
 
 Use the abundance-based Biodiversity Intactness Index (BII) to represent **biodiversity depletion relative to a minimally disturbed reference**. The [Natural History Museum explanation](https://www.nhm.ac.uk/our-science/services/data/biodiversity-intactness-index.html), sections “About the Biodiversity Intactness Index” and “How does the Biodiversity Intactness Index work?”, describes a model combining abundance and compositional similarity. A single BII map describes condition relative to that reference; it does not measure recent annual loss, the percentage of species extinct, or species richness alone.
 
-The proposed display retains the nine-problem label “Biodiversity loss” with the subtitle “Modelled depletion relative to an undisturbed reference”. Greater depletion means greater concern for this criterion.
+The approved BII input describes “Modelled depletion relative to an undisturbed reference”. Greater depletion means greater concern for this input. Pete subsequently requested one [Biodiversity priority layer combining BII and KBA proximity](../conservation/README.md); that combined presentation replaces the loss-only menu label while retaining these BII classes unchanged.
 
 | RuralScan display | BII remaining (%) | Depletion score, 100 − BII |
 |---|---:|---:|
@@ -28,7 +28,7 @@ Alternative screened: *State of Nature 2016*, printed pages 70–71, Figure 46, 
 ## Scope and binding limitations
 
 - This measures terrestrial biodiversity condition. It is not a marine or freshwater biodiversity assessment, a threat forecast, or a direct estimate of ecosystem-service loss.
-- A low depletion class can contain highly valuable intact habitat. It must not imply low conservation importance or permission to convert that habitat. Key Biodiversity Areas and protected-area constraints retain their separate meanings; do not combine binary designation with BII as if they measured the same quantity.
+- A low depletion class can contain highly valuable intact habitat. It must not imply low conservation importance or permission to convert that habitat. KBA proximity and protected-area constraints retain their separate meanings. The subsequent combined-priority proposal combines ordinal decision classes, not raw BII with binary designation as if they measured the same quantity.
 - BII is modelled from biodiversity observations and mapped pressures. Inspect uncertainty and local ecological relevance; maps are screening evidence, not site surveys or predictions of recovery from a particular NbS.
 - The legacy `bii_nhm_global` pointer references the 2016 publication. Its circa-2005 layer must not be labelled current-year loss. *State of Nature 2016*, page 71, explicitly describes the 2005 pressure inputs. Prefer an appropriate newer edition if available and compatible, after confirming its reference state, native resolution, units, valid domain, masks, coverage and access conditions. Do not subtract different model editions to invent a trend.
 - The global class convention does not require World Bank income groups. Country/biome adjustments remain possible where better local evidence supports them; record and justify any override.
