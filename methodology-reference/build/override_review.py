@@ -85,8 +85,8 @@ def build():
              '<p role="status">Loading pinned pending rule proposals…</p></div>'
              '<script src="override-review.js" defer></script>')
     target = "ch-t4-overrides.html"
-    placeholder = '<div id="override-catalogue-mount"></div>'
+    placeholder = '<h2 id="pending-rule-catalogue">Pending rule catalogue</h2>'
     if core.PAGES[target].count(placeholder) != 1:
         raise ValueError("Pending override chapter must have one catalogue mount")
-    core.PAGES[target] = core.PAGES[target].replace(placeholder, mount)
+    core.PAGES[target] = core.PAGES[target].replace(placeholder, placeholder + mount)
     return model

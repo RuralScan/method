@@ -42,5 +42,3 @@ For each candidate, inspect the source edition and locator, what it reports, the
 [[ch:suitability-synthesis]] explains the acceptance and packaging route. [[ch:farming-systems-and-data]] distinguishes dataset choice from relationship transfer, and [[ch:m1-suitability]] explains opportunity-space interpretation. The expandable records below show the pinned candidate data, continuous curves, separate screens and worked reference outputs. They provide no control to accept or activate a rule. [src: evidence:suitability/overrides/README.md §Dashboard and methods integration]
 
 ## Pending rule catalogue
-
-<div id="override-catalogue-mount"></div>
