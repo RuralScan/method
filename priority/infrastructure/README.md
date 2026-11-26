@@ -22,3 +22,5 @@ The mock-up lists river flood, landslide and wildfire overlays. Check each sourc
 Current status: requirement and output specification retained; no pilot asset inventory selected, no new exposure computed, no operational weighting adopted. Source: retired producer `docs/redesign/FEEDBACK_LOG.md`, entries dated 2026-11-09, and current published Stages 03/05.
 
 26 November follow-up: [roads binding inspection](2026-11-26-roads-binding.md) checks a real provider extract and records the remaining inventory/geometry and hazard choices. Schools, health facilities, power lines and buildings remain in scope where coverage permits. The parallel [KBA overlay](../conservation/README.md) does not replace this work.
+
+[Health-facility and school follow-up](2026-11-26-facility-bindings.md): PAHO/WHO health Shapefile and OSM point/polygon fallback acquired and inspected; MENFP national school catalogue route identified. Source dates, operating-status gaps and inventory completeness remain explicit. Power lines and buildings remain next inventory candidates.
