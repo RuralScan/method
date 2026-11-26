@@ -68,3 +68,8 @@ The [current KBA terms](https://www.keybiodiversityareas.org/en/terms-service), 
 Binding status: **source route identified; authorised polygon package, release/schema/geometry inspection and deployment permissions pending**. No new accepted BIND row, source evidence registration or runtime release is claimed. Once obtained, inspect actual polygon geometry, stable site IDs, status/coverage metadata and release date before naming fields in a binding. Never turn failed access into a zero-overlap result.
 
 Reviewed provider pages and technical follow-up are preserved with the [roads binding inspection](../infrastructure/2026-11-26-roads-binding.md). Next binding work proceeds with [health facilities and schools](../infrastructure/2026-11-26-facility-bindings.md); KBA source access remains pending.
+
+
+## Interim BII resolution decision
+
+Pete approved the inspected NHM v2.1.1 2020 map as **coarse context** on 26 November 2026. Its native 5-arc-minute support is approximately 10 km; retain this label even if the display uses finer pixels. It cannot establish differences among nearby farms or along fine KBA boundaries. The [BII decision](../research/2026-11-26-biodiversity-loss-classes.md#approved-interim-use-coarse-context) preserves the approved bands, maximum rule, source driver and both-input-valid requirement. Until KBA data are available, display BII context separately in the details and leave the combined score Not assessed. Infrastructure remains in scope.

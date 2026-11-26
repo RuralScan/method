@@ -5,6 +5,8 @@ summary: Describe people, production and environmental concerns within candidate
 sources:
   - method:priority/README.md
   - method:priority/infrastructure/README.md
+  - method:priority/research/2026-11-26-biodiversity-loss-classes.md
+  - method:priority/conservation/README.md
   - method:data-model/priority-contract.json
   - methodology/modules/M3_characterisation.md
   - method:handbook/implement-a-scan.md
@@ -83,6 +85,12 @@ The reference evaluator reports correlations but does not automatically delete v
 Describe the opportunity space and its geographic subdivisions using quantities appropriate to each dataset: totals, shares or distributions with stated denominators. Examples include population, production value, dominant farming systems and the distribution of environmental concerns. Report missing-data coverage and use the family's valid footprint unit. [src: methodology/modules/M3_characterisation.md §6] [src: method:handbook/implement-a-scan.md §3. Build the scoping brief]
 
 A count of residents within a candidate zone is not a count of beneficiaries. It describes spatial overlap; whether those residents benefit depends on access, design, participation and where the intervention's effects occur. M5 addresses effect interpretation and M6 the local assessment. [src: methodology/modules/M3_characterisation.md §4] [src: methodology/modules/M5_scorecard.md §6]
+
+## Biodiversity context at its supported resolution
+
+Use the selected NHM Biodiversity Intactness Index v2.1.1 2020 raster provisionally as coarse landscape context. Its 5-arc-minute grid is approximately 10 km at the equator. State the year and native resolution in the display and methods; resampling does not reveal farm-scale variation or fine changes at conservation-site boundaries. Preserve missing cells and distinguish modelled condition relative to a reference from observed annual loss. [src: method:priority/research/2026-11-26-biodiversity-loss-classes.md §Approved interim use: coarse context]
+
+Retain the approved four BII classes and the higher-of-BII-and-KBA rule for the single Biodiversity priority entry. Keep each input's resolution and the controlling input visible. Both inputs must be valid: where KBA data are unavailable, the BII input may be shown as coarse context while the combined priority remains Not assessed. This interim use does not add another weight or claim that runtime adoption is complete. [src: method:priority/conservation/README.md §Interim BII resolution decision]
 
 ## Infrastructure exposure and national datasets
 
