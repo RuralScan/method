@@ -41,7 +41,7 @@ def quantiles(values):
 def bundle(root=ROOT):
     folder = root / FOLDER
     manifest = json.loads((folder / 'columns.json').read_text())
-    require(manifest['format'] == 'ruralscan.context-classification-tables.v1' and
+    require(manifest['format'] == 'ruralscan.context-classification-tables.v2' and
             manifest['schema_issue'].startswith('https://github.com/RuralScan/method/issues/'), 'Untracked table structure')
     rules = read_table(root, manifest, 'rules')
     samples = read_table(root, manifest, 'samples')
@@ -96,7 +96,38 @@ def bundle(root=ROOT):
         require(binding['validation'] in {'table_inspected','documentation_only'} and finite(binding['scale']) and binding['scale'] > 0 and finite(binding['offset']), 'Invalid binding conversion/status')
         lo, hi = row['domain_min'], row['domain_max']
         require(finite(lo) and (hi is None or finite(hi) and lo < hi), 'Invalid classification domain')
-        require(row['method'] in {'terciles','thresholds'}, 'Invalid classification method')
+        require(row['method'] in {'terciles','thresholds','categories'}, 'Invalid classification method')
+        require(isinstance(row['category_map'], dict), 'Invalid category map')
+        if row['method'] == 'categories':
+            require(binding['scale'] == 1 and binding['offset'] == 0 and row['unit'] == binding['source_unit'],
+                    'Category codes cannot be numerically transformed')
+            require(row['category_map'] and all(isinstance(k,str) and k and v in {'none','low','medium','high'}
+                    for k,v in row['category_map'].items()), 'Invalid category mapping')
+            require(not {'unknown','outside_domain'} & set(row['category_map']), 'Unknown cannot become a class')
+            require(all(row[k] is None for k in ('none_upper','low_upper','medium_upper')) and
+                    not row['reference_sample_id'], 'Category rule cannot carry numeric thresholds or a sample')
+            from binding_candidates import read_rows
+            candidates = [c for c in read_rows(root / 'priority/bindings')
+                          if c['variable_id'] == row['variable_id'] and c['asset'] == binding['asset']
+                          and c['dataset_id'] == binding['dataset_id'] and binding['field'] in c['auxiliary_fields']]
+            require(len(candidates) == 1 and candidates[0]['decode'] is not None, 'Unresolved category input binding')
+            candidate = candidates[0]
+            declared = candidate['selectors']['native_categories']
+            expected = {k for k,v in declared.items() if v != 'unknown'}
+            states = set(candidate['decode']['special_values'].values()) | {
+                v for g in candidate['decode']['guards'] for v in g['equals'].values()}
+            states -= {'unknown','outside_domain'}
+            require(set(row['category_map']) == expected | states, 'Category map must cover declared codes and special states')
+            require(all(row['category_map'][k] == row['category_map'][v]
+                        for k,v in declared.items() if v in states), 'Category and decoded flag disagree')
+            row['binding_candidate'] = candidate
+            row['reference_sample'] = None
+            row['cuts'] = None
+            row['missing'] = 'unknown'
+            row['endpoint'] = 'provider_category'
+            row['runtime_ready'] = False
+            continue
+        require(not row['category_map'], 'Numeric rule cannot carry a category map')
         cuts = [row['low_upper'], row['medium_upper']]
         if row['method'] == 'thresholds':
             cuts.insert(0, row['none_upper'])
@@ -129,7 +160,7 @@ def bundle(root=ROOT):
         if reference:
             require(reference.startswith(f'{FOLDER}/rules.csv#') and reference.split('#',1)[1] in routes, 'Unresolved classification set')
             require(not route['proposed_rule_ref'] and not route['accepted_rule_ref'], 'Single rule and contextual set conflict')
-    return {'format':'ruralscan.context-classification-review.v1', 'runtime_ready':False,
+    return {'format':'ruralscan.context-classification-review.v2', 'runtime_ready':False,
         'input_sha256':{f'{FOLDER}/{name}':sha256((folder/name).read_bytes()).hexdigest()
                         for name in ['columns.json'] + [s['file'] for s in manifest['tables'].values()]},
         'rules':rules, 'countries':countries, 'sources':sources}
@@ -169,6 +200,7 @@ def resolve(variable, country_code=None, *, vintage, region=None, for_runtime=Fa
 def preview(rule, value, *, unit):
     """Inspect already converted scalar values in the table's declared units."""
     require(unit == rule['unit'], 'Input units differ; convert explicitly')
+    require(rule['method'] != 'categories', 'Category rules require raw value and category together')
     if value is None or not finite(value):
         return None
     if value < rule['domain_min'] or (rule['domain_max'] is not None and value > rule['domain_max']):
@@ -177,6 +209,29 @@ def preview(rule, value, *, unit):
     if rule['direction'] == 'lower_is_more_concern':
         labels.reverse()
     return labels[bisect_left(rule['cuts'], value)]
+
+
+def preview_category_record(rule, raw, category):
+    """Review one bound record; retain its source category and decoded scarcity flag."""
+    from binding_candidates import inspect_numeric
+    require(rule['method'] == 'categories', 'Not a category rule')
+    candidate = rule['binding_candidate']
+    result = {'class':None, 'state':'unknown', 'raw':raw, 'category':category}
+    if not finite(raw) or not finite(category) or not float(category).is_integer():
+        return result
+    # Missing raw data takes precedence over an auxiliary category flag.
+    missing = {float(k) for k,v in candidate['decode']['special_values'].items() if v == 'unknown'}
+    if raw in missing:
+        return result
+    bounds = candidate['decode']['valid_range']
+    if bounds and ((bounds[0] is not None and raw < bounds[0]) or (bounds[1] is not None and raw > bounds[1])):
+        result['state'] = 'outside_domain'
+        return result
+    decoded = inspect_numeric(candidate, raw, {'category':category})
+    state = decoded['state']
+    key = str(int(category)) if state == 'numeric' else state
+    result.update(state=state, **{'class':rule['category_map'].get(key)})
+    return result
 
 
 if __name__ == '__main__':

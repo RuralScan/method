@@ -1,5 +1,5 @@
 {
-  "format": "ruralscan.context-classification-tables.v1",
+  "format": "ruralscan.context-classification-tables.v2",
   "schema_issue": "https://github.com/RuralScan/method/issues/103",
   "tables": {
     "rules": {
@@ -26,6 +26,7 @@
         "reference_sample_id",
         "source_ids",
         "binding",
+        "category_map",
         "class_meanings",
         "rationale",
         "status"
@@ -33,7 +34,8 @@
       "json_columns": [
         "source_ids",
         "binding",
-        "class_meanings"
+        "class_meanings",
+        "category_map"
       ],
       "number_columns": [
         "none_upper",

@@ -6,7 +6,7 @@ soil_erosion_risk,priority,soil_erosion,priority/profiles/t5-0.2.0.json#soil_ero
 carbon_sequestration_potential,priority,carbon_loss_need_pending_successor,priority/profiles/t5-0.2.0.json#carbon_sequestration_potential,,,,held
 biodiversity_priority,priority,biodiversity_restoration_need,priority/profiles/t5-0.2.0.json#biodiversity_priority,,,,held
 water_quality_risk,priority,water_quality,priority/profiles/t5-0.2.0.json#water_quality_risk,,,,held
-water_stress,priority,water_stress,priority/profiles/t5-0.2.0.json#water_stress,,priority/proposals/aqueduct_bws-0.1.0.json,,held
+water_stress,priority,water_stress,priority/profiles/t5-0.2.0.json#water_stress,priority/classifications/rules.csv#water_stress_aqueduct,,,held
 rural_poverty,priority,rural_poverty,priority/profiles/t5-0.2.0.json#rural_poverty,priority/classifications/rules.csv#poverty_wb_income,,,held
 food_insecurity,priority,food_insecurity,priority/profiles/t5-0.2.0.json#food_insecurity,,,,held
 production_gap,priority,production_gap,priority/profiles/t5-0.2.0.json#production_gap,,,,held

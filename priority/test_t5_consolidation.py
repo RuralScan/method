@@ -26,9 +26,11 @@ class Consolidation(unittest.TestCase):
             row = next(r for r in rows if r['variable_id'] == variable)
             rule = {'variables':[variable], 'concern_id':row['concern_id']}
             with self.assertRaisesRegex(ValueError,message): package.scoring_route(rule,legacy,rows,directions)
-        package.scoring_route({'variables':['water_stress'],'concern_id':'water_stress'},legacy,rows,directions)
+        with self.assertRaisesRegex(ValueError,'accepted release adapter'):
+            package.scoring_route({'variables':['water_stress'],'concern_id':'water_stress'},legacy,rows,directions)
+        package.scoring_route({'variables':['drought_hazard'],'concern_id':'drought'},legacy,rows,directions)
         with self.assertRaisesRegex(ValueError,'current concern'):
-            package.scoring_route({'variables':['water_stress'],'concern_id':'different_quantity'},legacy,rows,directions)
+            package.scoring_route({'variables':['drought_hazard'],'concern_id':'different_quantity'},legacy,rows,directions)
 
     def test_routing_change_invalidates_previously_prepared_package(self):
         from test_package import Release
