@@ -1,10 +1,14 @@
-# Production gap: published crop-yield bands for review
+# Production gap: approved crop-yield classes
 
-25 November 2026. Proposed crop component of `production_gap`; not yet approved or bound to a spatial dataset.
+25 November 2026. Pete approved the crop component of `production_gap`, its rationale and crop/spatial limitations. No spatial dataset is bound yet.
+
+Approval (chat): “ok approved, capture those four crop production gap classes and the rationale, noting the crop and spatial limitations, then proceed to the next variable”
+
+Captured in `priority/classifications/rules.csv#production_gap_crop_published` and linked from T5. The release-workflow state remains `proposed`; this does not negate approval of the classification interpretation. Dataset selection and runtime release remain outstanding.
 
 FAO's *The State of the World's Land and Water Resources for Food and Agriculture 2025*, Figure 19 (printed page 38; PDF page 64), reports five yield-gap bands: limited 0–20%, moderate 20–40%, significant 40–60%, severe 60–80% and very severe 80–100%. The figure compares maize, rice and wheat at country level, using 2001–2020 averages. [Official report and PDF](https://openknowledge.fao.org/bitstreams/934f7fed-ceb0-4245-adbd-04c108ba4d42/download#page=64).
 
-Proposed four-class collapse:
+Approved four-class collapse:
 
 | RuralScan class | Yield gap (% of attainable yield) | Published basis |
 |---|---:|---|

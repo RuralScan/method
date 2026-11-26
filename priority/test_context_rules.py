@@ -111,6 +111,20 @@ class ContextRules(unittest.TestCase):
                                (5,'medium'),(5.001,'high'),(-1,None),(None,None)]:
             self.assertEqual(rules.preview(rule,value,unit='tonnes_per_ha_per_year'),expected)
 
+    def test_crop_gap_boundaries_domain_and_pending_spatial_binding(self):
+        rule = rules.resolve('production_gap', vintage='FY2027', root=self.root)
+        self.assertEqual(rule['cuts'], [20, 40, 60])
+        self.assertEqual(rule['binding']['validation'], 'documentation_only')
+        self.assertFalse(rule['runtime_ready'])
+        for value, expected in [(0, 'none'), (20, 'none'),
+                (math.nextafter(20, math.inf), 'low'), (40, 'low'),
+                (math.nextafter(40, math.inf), 'medium'), (60, 'medium'),
+                (math.nextafter(60, math.inf), 'high'), (100, 'high'),
+                (-1, None), (101, None), (None, None), (float('nan'), None)]:
+            self.assertEqual(rules.preview(rule, value, unit='percent'), expected)
+        with self.assertRaisesRegex(ValueError, 'units differ'):
+            rules.preview(rule, .2, unit='fraction')
+
     def test_water_stress_uses_native_categories_and_retains_flags(self):
         rule=rules.resolve('water_stress',vintage='FY2027',root=self.root)
         for raw,category,expected,state in [(.05,0,'none','numeric'),(.15,1,'low','numeric'),

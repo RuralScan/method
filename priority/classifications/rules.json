@@ -3,10 +3,10 @@
   "runtime_ready": false,
   "input_sha256": {
     "priority/classifications/columns.json": "95b0fd9cf114bcd7b6ee6ba6f10e4343722c5bab158cf63a6ad455bbe18b3112",
-    "priority/classifications/rules.csv": "2342753c7702e49b216be819bbd8e7bd0dac3949a1b1847fc10ecc3a7e1a51ae",
+    "priority/classifications/rules.csv": "322215baa0bb9ec28c9b792eb73acc505f8dc04dab583c86d23a2fc555d395b6",
     "priority/classifications/reference_samples.csv": "b80d52b46a1d0b1e0ce55dc2297ab981cb58ce72800486fae3ff783b856e9760",
     "priority/classifications/country_groups.csv": "ca84f757fb2c4006a4f6647adc16cb326b0f64b2a317de7b30bdc72cda1e9ce2",
-    "priority/classifications/sources.csv": "793864b5b984a7806400807330729d86819386c5d880324d4b816c236fbec042"
+    "priority/classifications/sources.csv": "b8ae2ccf4307f60c52c7d0b0ddcea63f514e00bb5188b6d0e31cffc22622885c"
   },
   "rules": [
     {
@@ -447,6 +447,58 @@
       "cuts": null,
       "missing": "unknown",
       "endpoint": "provider_category",
+      "runtime_ready": false
+    },
+    {
+      "rule_set_id": "production_gap_crop_published",
+      "classification_id": "production_gap_crop_fao",
+      "version": "0.1.0",
+      "variable_id": "production_gap",
+      "concern_id": "production_gap",
+      "context_type": "global",
+      "context_value": "global",
+      "context_vintage": "",
+      "reference_scope": "Crop yield gap only; published maize/rice/wheat country comparison; other crops and finer spatial support require contextual review",
+      "reference_year": "2001-2020 source averages; spatial dataset period not selected",
+      "method": "thresholds",
+      "unit": "percent",
+      "direction": "higher_is_more_concern",
+      "none_upper": 20.0,
+      "low_upper": 40.0,
+      "medium_upper": 60.0,
+      "domain_min": 0.0,
+      "domain_max": 100.0,
+      "reference_sample_id": "",
+      "source_ids": [
+        "fao_solaw2025_crop_gap"
+      ],
+      "binding": {
+        "dataset_id": "crop_yield_gap_dataset_required",
+        "asset": "https://gaez.fao.org/",
+        "field": "100 * (1 - actual_yield / attainable_yield); compatible crop fields and asset pending selection",
+        "source_unit": "percent",
+        "scale": 1,
+        "offset": 0,
+        "spatial_support": "No spatial asset selected. Source demonstration uses country maize/rice/wheat averages; national figures cannot create within-country variation. Crop, water regime, management, units and period must match.",
+        "validation": "documentation_only"
+      },
+      "category_map": {},
+      "class_meanings": {
+        "none": "Very little: published limited crop yield gap; not zero gap",
+        "low": "Published moderate crop yield gap",
+        "medium": "Published significant crop yield gap",
+        "high": "Published severe and very severe crop yield gaps combined"
+      },
+      "rationale": "Pete approved these four crop production gap classes and limitations on 2026-11-25: Very little 0-20%; Low >20-40%; Medium >40-60%; High >60-100% of attainable yield. FAO SOLAW 2025 Figure 19 supplies five bands; RuralScan relabels, merges the top two and uses upper-inclusive endpoints. Annex 1.2 uses high-input GAEZ v5 attainable yields and FAOSTAT country yields, distinct from the pixel yield-achievement product. Initial demonstration covers maize/rice/wheat, 2001-2020; other crops and spatial transfer require contextual review. Not livestock, pasture NPP or mixed-system classes. Missing observations or nonpositive attainable yields remain unknown; negative gaps retain raw values for review, not clipping. Non-cropped land is outside the measure. Gap is baseline need, not NbS-closable benefit. Dataset selection and runtime release remain outstanding. See priority/research/2026-11-25-production-gap-classes.md.",
+      "status": "proposed",
+      "reference_sample": null,
+      "cuts": [
+        20.0,
+        40.0,
+        60.0
+      ],
+      "missing": "unknown",
+      "endpoint": "upper_inclusive",
       "runtime_ready": false
     }
   ],
@@ -2027,6 +2079,13 @@
       "sha256": "3008021f8cd6b516adce743bc50f4d34a613ed19124b022946dc834149e631f0",
       "locator": "Protocol 2.3: parameters b-c (purpose and four levels), e-f (area classification), i (validity); saved web-text excerpt lines 88-116",
       "description": "Publisher page retrieved through web text extraction; hash identifies the saved excerpt, not original HTML. Direct HTML fetch returned 403. Published classes and applicability, not a downloaded country dataset."
+    },
+    {
+      "source_id": "fao_solaw2025_crop_gap",
+      "url": "https://openknowledge.fao.org/bitstreams/934f7fed-ceb0-4245-adbd-04c108ba4d42/download",
+      "sha256": "70c077173fcbb84ee4e7fee6d143c98dccb009c2d39d4ccddae062fed2a6b73e",
+      "locator": "Figure 19, printed page 38 / PDF page 64; Annex 1.2, printed page 103 / PDF page 129",
+      "description": "FAO SOLAW 2025: five crop yield-gap bands for country maize/rice/wheat comparisons, 2001-2020. RuralScan merges the top two. Official PDF visually verified and archived in production_gap_2026_11_25/classification_sources.zip; no spatial crop dataset selected."
     }
   ]
 }
