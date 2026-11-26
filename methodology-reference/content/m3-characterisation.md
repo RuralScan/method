@@ -4,6 +4,7 @@ slug: m3-characterisation
 summary: Describe people, production and environmental concerns within candidate areas without confusing context with priority or benefit.
 sources:
   - method:priority/README.md
+  - method:priority/infrastructure/README.md
   - method:data-model/priority-contract.json
   - methodology/modules/M3_characterisation.md
   - method:handbook/implement-a-scan.md
@@ -82,6 +83,12 @@ The reference evaluator reports correlations but does not automatically delete v
 Describe the opportunity space and its geographic subdivisions using quantities appropriate to each dataset: totals, shares or distributions with stated denominators. Examples include population, production value, dominant farming systems and the distribution of environmental concerns. Report missing-data coverage and use the family's valid footprint unit. [src: methodology/modules/M3_characterisation.md §6] [src: method:handbook/implement-a-scan.md §3. Build the scoping brief]
 
 A count of residents within a candidate zone is not a count of beneficiaries. It describes spatial overlap; whether those residents benefit depends on access, design, participation and where the intervention's effects occur. M5 addresses effect interpretation and M6 the local assessment. [src: methodology/modules/M3_characterisation.md §4] [src: methodology/modules/M5_scorecard.md §6]
+
+## Infrastructure exposure and national datasets
+
+Roads, power lines, buildings, schools and health facilities may be overlaid with the selected hazards for desk scoping. Report mapped, assessed, potentially exposed and unassessed assets with their source dates and spatial coverage. Exposure does not establish damage, service disruption or protection by an NbS. Building footprints do not identify occupants or critical services, and mapped line length does not establish electricity-network capacity. [src: method:priority/infrastructure/README.md]
+
+Acquire suitable national datasets from the responsible ministries, utilities and mapping agencies for country applications, including worked examples. Use these to replace global versions through context-specific bindings after checking observation dates, completeness, geometry, asset definitions, duplicates and use conditions. National origin alone does not guarantee currency or fitness; replace only the coverage the source supports. Global layers remain explicitly labelled fallbacks where suitable national data are unavailable. Preserve source boundaries and reconcile overlaps rather than adding inventories together. Missing features or missing hazard coverage remain unknown, never zero exposure. Record outstanding national-data acquisition needs in the hand-off. [src: method:priority/infrastructure/README.md §National data should replace global fallbacks where suitable]
 
 ## Example: the production gap
 

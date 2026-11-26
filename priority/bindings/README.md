@@ -52,3 +52,5 @@ Complete named technical holds and pilot/context checks; register/acquire source
 ## Follow-up overlays
 
 [KBA conservation importance](../conservation/README.md) is approved as an input to the single Biodiversity priority layer requested by Pete; its official acquisition route is identified, with 1.5/5 km proximity bands approved; polygon inspection/access remain pending. [Road infrastructure](../infrastructure/2026-11-26-roads-binding.md) and [health facilities/schools](../infrastructure/2026-11-26-facility-bindings.md) now have technical inspection records; national source coverage and runtime adoption remain pending. These records do not silently append unverified candidates to the fourteen-row evidence-pinned catalogue.
+
+[Haiti national-source and power/building inspection](../infrastructure/2026-11-26-haiti-national-infrastructure.md) advances actual national-source acquisition and verifies the power/building fallbacks. It preserves partial/non-spatial/old-source limitations and does not activate unreviewed bindings.
