@@ -12,8 +12,8 @@ The published [Opportunity space problem table](https://ciat.github.io/nbs_rural
 | Heat stress | Classification pending |
 | Rural poverty | Income-tier approach approved; numerical calibration provisional |
 | Food insecurity | IPC chronic four-class interpretation approved; applicable local assessment required |
-| Biodiversity loss | [Four BII depletion classes proposed](research/2026-11-26-biodiversity-loss-classes.md) from published global map bands; interpretation approval and current binding pending |
-| Carbon loss | Classification and loss measure pending; legacy potential ID is not an accepted proxy |
+| Biodiversity loss | [Four BII depletion classes approved](research/2026-11-26-biodiversity-loss-classes.md); current input binding/transformation and release pending |
+| Carbon loss | [Forest-emissions proxy and global positive-value terciles proposed](research/2026-11-26-carbon-loss-classes.md); no None class from native nodata; calibration and successor routing pending |
 | Water stress | Aqueduct category mapping approved; runtime release remains pending |
 
 Visual labels anchor scope, not scientific thresholds or proxy choice. Existing approvals can refine placeholder metrics shown in the mock-up (for example, IPC chronic food insecurity). Carbon and biodiversity retain legacy T5 IDs only for traceability: this does not equate sequestration potential with observed carbon loss or biodiversity priority with observed biodiversity loss.
