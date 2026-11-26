@@ -1,0 +1,81 @@
+{
+  "format": "ruralscan.context-classification-tables.v1",
+  "schema_issue": "https://github.com/RuralScan/method/issues/103",
+  "tables": {
+    "rules": {
+      "file": "rules.csv",
+      "columns": [
+        "rule_set_id",
+        "classification_id",
+        "version",
+        "variable_id",
+        "concern_id",
+        "context_type",
+        "context_value",
+        "context_vintage",
+        "reference_scope",
+        "reference_year",
+        "method",
+        "unit",
+        "direction",
+        "none_upper",
+        "low_upper",
+        "medium_upper",
+        "domain_min",
+        "domain_max",
+        "reference_sample_id",
+        "source_ids",
+        "binding",
+        "class_meanings",
+        "rationale",
+        "status"
+      ],
+      "json_columns": [
+        "source_ids",
+        "binding",
+        "class_meanings"
+      ],
+      "number_columns": [
+        "none_upper",
+        "low_upper",
+        "medium_upper",
+        "domain_min",
+        "domain_max"
+      ]
+    },
+    "samples": {
+      "file": "reference_samples.csv",
+      "columns": [
+        "reference_sample_id",
+        "country_code",
+        "area_id",
+        "reference_year",
+        "value",
+        "survey_year"
+      ],
+      "number_columns": [
+        "value"
+      ]
+    },
+    "countries": {
+      "file": "country_groups.csv",
+      "columns": [
+        "country_code",
+        "income_group",
+        "region",
+        "vintage",
+        "source_id"
+      ]
+    },
+    "sources": {
+      "file": "sources.csv",
+      "columns": [
+        "source_id",
+        "url",
+        "sha256",
+        "locator",
+        "description"
+      ]
+    }
+  }
+}

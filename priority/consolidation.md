@@ -18,6 +18,8 @@ Pete's explicit directions are recorded in `routing-directions.json`, without cr
 
 The current table has 19 IDs: 14 priority candidates (including the held carbon successor slot) and five descriptors. The historical source CSV remains unchanged. This sidecar is not a runtime configuration update.
 
+The [contextual table extension](classifications/README.md) adds `classification_set_ref` for variables whose rule depends on context. Poverty selects among three World Bank income-tier records; soil erosion links to a global published-band proposal. These CSV-backed review records retain provenance and class meanings. They are separate from the historical source findings and cannot enter the existing accepted-package route without a release adapter and exact acceptance.
+
 ## Release protection
 
 A future accepted proposal must pin all five definition CSVs **plus** the current T5 reference CSV and routing-directions JSON. The package validator checks current and selected hashes, blocks unscored descriptors and unresolved successor variables, and matches each rule's concern to its current row. Old proposal bytes are preserved; they cannot bypass the new dependency requirements. Source keeping, binding acceptance, exact classification/context acceptance and storage acceptance remain necessary.

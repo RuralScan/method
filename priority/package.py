@@ -106,6 +106,7 @@ def scoring_route(rule, t5, routing_rows, directions):
         row = routing[variable]
         require(row['mcda_role'] == 'priority', 'Unscored descriptor cannot be released as a priority')
         require(row['concern_id'] == rule['concern_id'], 'Rule does not match the current concern')
+        require(not row.get('classification_set_ref'), 'Contextual table requires an accepted release adapter; review selection is not runtime activation')
 
 
 def build(method, revision, method_base, evidence, evidence_base, paths, fetch=github_pr):

@@ -6,7 +6,7 @@ from pathlib import Path
 from catalogue import ROOT, digest, require
 
 COLUMNS = ['variable_id', 'mcda_role', 'concern_id', 'profile_ref',
-           'proposed_rule_ref', 'accepted_rule_ref', 'classification_status']
+           'classification_set_ref', 'proposed_rule_ref', 'accepted_rule_ref', 'classification_status']
 PROFILE_FIELDS = {'quantity', 'unit', 'temporal_statistic', 'spatial_support', 'context',
                   'binding_candidates', 'binding_status', 'uncertainty', 'missing', 'blockers'}
 
@@ -35,6 +35,8 @@ def validate_rows(rows, profiles, legacy, bindings, rules, directions):
         descriptor = row['mcda_role'] == 'descriptor'
         require(row['classification_status'] == ('descriptor' if descriptor else 'held'), 'Cannot assert readiness')
         require(not descriptor or row['proposed_rule_ref'] == '', 'Descriptor cannot carry a scoring proposal')
+        require(not descriptor or row['classification_set_ref'] == '', 'Descriptor cannot carry contextual scoring rules')
+        require(not row['classification_set_ref'] or not row['proposed_rule_ref'], 'Single rule and contextual set conflict')
         if row['proposed_rule_ref']:
             require(row['proposed_rule_ref'] in rules, 'Unresolved proposed rule')
             rule = rules[row['proposed_rule_ref']]
@@ -59,7 +61,8 @@ def validate_rows(rows, profiles, legacy, bindings, rules, directions):
 
 def check(root=ROOT):
     manifest = json.loads((root/'priority/t5-structure.json').read_text())
-    require(manifest['format'] == 'ruralscan.t5-extension-manifest.v1' and manifest['status'] == 'proposed_not_accepted', 'Unexpected manifest')
+    require(manifest['format'] == 'ruralscan.t5-extension-manifest.v2' and manifest['status'] == 'proposed_not_accepted', 'Unexpected manifest')
+    require(manifest['contextual_rules_manifest'] == 'priority/classifications/columns.json', 'Unresolved contextual structure')
     require(manifest['activation'] == 'disabled' and manifest['accepted_rules'] == [], 'No production activation permitted')
     require(manifest['columns'] == COLUMNS and set(manifest['profile_fields']) == PROFILE_FIELDS, 'Changed frozen structure')
     require(manifest['readiness_states'] == ['held','descriptor'], 'Changed lifecycle')
@@ -78,6 +81,8 @@ def check(root=ROOT):
     directions = json.loads((root/'priority/routing-directions.json').read_text())
     require(directions['human_classification_acceptance'] is False, 'Routing instruction cannot accept a classification')
     validate_rows(rows, bundle['profiles'], legacy, bindings, rules, directions)
+    import context_rules
+    context_rules.check(root)
     preserved = json.loads((root/'priority/consolidation.json').read_text())
     for item in preserved['files']:
         require(sha256((root/item['preserved_path']).read_bytes()).hexdigest() == item['sha256'], 'Preserved T5 proposal changed')
