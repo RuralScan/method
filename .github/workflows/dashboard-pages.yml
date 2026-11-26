@@ -36,7 +36,7 @@ jobs:
         id: reference_source
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          ref: b719e5da68ba0b771ad37ff83e73b5d4bdc8286c
+          ref: bc1b09d3dd2a579ad215b4534c2a85d25ee6848b
           path: reference-src
           fetch-depth: 0
           persist-credentials: false
@@ -105,12 +105,27 @@ jobs:
           PYTHON
           test ! -e "$GITHUB_WORKSPACE/site/reference"
           mv "$stage/reference" "$GITHUB_WORKSPACE/site/reference"
+      - name: Test dashboard navigation and review components
+        run: |
+          node --test tests/*.test.cjs
+          python3 -B -m unittest discover -s tests -p 'test_*.py'
       - name: Require the consolidated evidence methods
         run: |
           test -s site/reference/ch-evidence-principles.html
           test -s site/reference/ch-compiling-evidence.html
           test -s site/reference/ch-suitability-synthesis.html
           test -s site/reference/ch-t4-legacy-compiler.html
+          test -s site/reference/ch-t4-overrides.html
+          test -s site/reference/data/t4-overrides.json
+          test -s site/reference/override-review.js
+          test -s site/reference/override-review.css
+          node - <<'JS'
+          const fs = require("node:fs");
+          const view = require("./site/reference/override-review.js");
+          const model = view.validate(JSON.parse(fs.readFileSync("site/reference/data/t4-overrides.json", "utf8")));
+          if (model.records.length !== 4) throw Error("Expected four pending specialist rules");
+          console.log("Four pending rules, no runtime activation");
+          JS
           test -s site/reference/ch-evidence-registry.html
           test -s site/reference/ch-combining-t4-evidence.html
       - name: Build and verify pinned methodology editions

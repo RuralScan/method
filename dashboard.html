@@ -1014,6 +1014,7 @@
 <link rel="stylesheet" href="dashboard-feedback.css?v=1.1.0">
 <!-- REVIEW:release -->
 <link rel="stylesheet" href="dashboard-shell.css?v=methodology-1">
+<link rel="stylesheet" href="reference/override-review.css">
 <link rel="stylesheet" href="review/workspace.css">
 <link rel="stylesheet" href="dashboard-evidence.css?v=1.0.0">
 <link rel="stylesheet" href="dashboard-relationships.css?v=1.2.0">
@@ -1133,7 +1134,9 @@
     
     <!-- ================= TAB 2: INTERROGATOR ================= -->
     <div id="tab-interrogator" class="tab-content">
-      <header class="shell-intro"><h2>3. Evidence</h2><p>What published sources say about each practice, one finding at a time. Every finding carries the source’s own words and the page they came from. Findings are rows of the evidence register in <a href="https://github.com/RuralScan/evidence" target="_blank" rel="noopener noreferrer">RuralScan/evidence ↗</a>. Nothing here is a combined result or a rating.</p></header>
+      <header class="shell-intro"><h2>3. Evidence</h2><p>What published sources say about each practice, one finding at a time. Every finding carries the source’s own words and the page they came from. Findings are rows of the evidence register in <a href="https://github.com/RuralScan/evidence" target="_blank" rel="noopener noreferrer">RuralScan/evidence ↗</a>. Findings remain individual source claims. Rule overrides is a separate review view of pending proposals; these proposals do not change maps or approve relationships.</p></header>
+      <nav class="shell-subnav" aria-label="Evidence views"><button type="button" data-query-view="evidence" aria-pressed="true">3.1 Findings</button><button type="button" data-query-view="overrides" aria-pressed="false">3.2 Rule overrides</button></nav>
+      <section id="override-review-root" hidden><h3>Pending rule overrides</h3><p>Read the <a href="reference/ch-t4-overrides.html">override review method</a> for scope, scientific acceptance and area accounting.</p><div class="override-review" data-override-review data-source="reference/data/t4-overrides.json"><p role="status">Loading pinned pending rule proposals…</p></div></section>
       <section id="evidence-section-root"><p class="ev-status" role="status">Loading the evidence registers…</p></section>
       <p id="legacy-analysis-note" class="shell-explainer" hidden>Earlier analysis view, kept so that existing links still open. It is no longer part of the Evidence section. <a href="#evidence">Back to Evidence</a></p>
       <section id="relationship-review-root" hidden><p>Loading relationship catalogue…</p></section>
@@ -1619,6 +1622,7 @@
         <h4>6.2.2 Methods for each output</h4>
         <ul class="shell-review-steps">
           <li><a href="reference/ch-suitability-synthesis.html">Agent-led suitability synthesis (T4)</a>: AI proposals from reviewed evidence, scientific approval and validation of accepted mappings.</li>
+          <li><a href="reference/ch-t4-overrides.html">Pending T4 rule overrides</a>: specialist proposals, worked examples and remaining approval; <a href="#overrides">inspect the rules</a>.</li>
           <li><a href="reference/ch-effect-synthesis.html">Hazard and scorecard effects (T3/T6)</a>: eligible outcome claims, direction, magnitude, confidence and transfer.</li>
           <li><a href="reference/ch-cost-profiles.html">Economic profiles (T6E)</a>: cost classes, denominators, context and the limits of monetary ranges.</li>
         </ul>
@@ -4456,6 +4460,7 @@
 <script src="review/priority-receipt.js"></script>
 <script src="review/priority-status.js?v=2"></script>
 <script src="dashboard-shell.js?v=methodology-1"></script>
+<script src="reference/override-review.js" defer></script>
 <!-- REVIEW:submission-dialogs -->
 <script src="review/local-library.js?v=1"></script>
 <script src="review/source-previews.js?v=2"></script>
