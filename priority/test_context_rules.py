@@ -127,7 +127,7 @@ class ContextRules(unittest.TestCase):
                            ('medium_upper', '50'), ('reference_sample_id', 'unselected')]:
             row[key] = value
             self.write('rules.csv', rows)
-            with self.assertRaisesRegex(ValueError, 'Pending local data cannot carry'):
+            with self.assertRaisesRegex(ValueError, 'Pending calibration cannot carry'):
                 rules.bundle(self.root)
             row[key] = ''
         binding = json.loads(row['binding'])
@@ -135,6 +135,28 @@ class ContextRules(unittest.TestCase):
         row['binding'] = json.dumps(binding)
         self.write('rules.csv', rows)
         with self.assertRaisesRegex(ValueError, 'Missing reference sample'):
+            rules.bundle(self.root)
+
+    def test_gender_context_approach_cannot_classify_before_reference_calibration(self):
+        rule = rules.resolve('gender_inequity', vintage='FY2027', root=self.root)
+        self.assertEqual(rule['binding']['validation'], 'requires_reference_calibration')
+        self.assertIsNone(rule['cuts'])
+        self.assertIsNone(rule['none_upper'])
+        self.assertFalse(rule['runtime_ready'])
+        for value in [0, .2, .5, 1, None, -1, float('nan')]:
+            self.assertIsNone(rules.preview(rule, value, unit='unitless'))
+        rows = self.read('rules.csv')
+        row = next(r for r in rows if r['variable_id'] == 'gender_inequity')
+        for key, value in [('none_upper', '0'), ('low_upper', '.2'),
+                           ('medium_upper', '.5'), ('reference_sample_id', 'unselected')]:
+            row[key] = value
+            self.write('rules.csv', rows)
+            with self.assertRaisesRegex(ValueError, 'Pending calibration cannot carry'):
+                rules.bundle(self.root)
+            row[key] = ''
+        row['method'] = 'thresholds'
+        self.write('rules.csv', rows)
+        with self.assertRaisesRegex(ValueError, 'only supports the tercile approach'):
             rules.bundle(self.root)
 
     def test_crop_gap_boundaries_domain_and_pending_spatial_binding(self):
