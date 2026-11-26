@@ -111,5 +111,42 @@ class ContextRules(unittest.TestCase):
                                (5,'medium'),(5.001,'high'),(-1,None),(None,None)]:
             self.assertEqual(rules.preview(rule,value,unit='tonnes_per_ha_per_year'),expected)
 
+    def test_water_stress_uses_native_categories_and_retains_flags(self):
+        rule=rules.resolve('water_stress',vintage='FY2027',root=self.root)
+        for raw,category,expected,state in [(.05,0,'none','numeric'),(.15,1,'low','numeric'),
+                (.3,2,'medium','numeric'),(.6,3,'high','numeric'),(2,4,'high','numeric'),
+                (1,-1,'high','arid_low_use'),(9999,4,'high','physical_scarcity')]:
+            result=rules.preview_category_record(rule,raw,category)
+            self.assertEqual((result['class'],result['state']),(expected,state))
+            self.assertEqual((result['raw'],result['category']),(raw,category))
+        # Provider category settles equality; no reclassification of rounded ratios.
+        self.assertEqual(rules.preview_category_record(rule,.1,0)['class'],'none')
+        self.assertEqual(rules.preview_category_record(rule,.1,1)['class'],'low')
+        with self.assertRaisesRegex(ValueError,'raw value and category together'):
+            rules.preview(rule,0,unit='provider_category')
+
+    def test_water_missing_and_invalid_inputs_never_become_low_stress(self):
+        rule=rules.resolve('water_stress',vintage='FY2027',root=self.root)
+        for raw,category in [(None,0),(None,-1),(-9999,-1),(-9999,0),(-2,-1),
+                (float('nan'),1),(float('inf'),4),(.2,None),(.2,-9999),(.2,9),(.2,1.5),(.2,False)]:
+            self.assertIsNone(rules.preview_category_record(rule,raw,category)['class'])
+
+    def test_category_structure_and_binding_changes_are_checked(self):
+        rows=self.read('rules.csv');water=next(r for r in rows if r['method']=='categories')
+        water['none_upper']='.1';self.write('rules.csv',rows)
+        with self.assertRaisesRegex(ValueError,'cannot carry numeric'):rules.bundle(self.root)
+        water['none_upper']='';mapping=json.loads(water['category_map']);del mapping['-1']
+        water['category_map']=json.dumps(mapping);self.write('rules.csv',rows)
+        with self.assertRaisesRegex(ValueError,'must cover declared'):rules.bundle(self.root)
+        shutil.copy2(rules.ROOT/rules.FOLDER/'rules.csv',self.root/rules.FOLDER/'rules.csv')
+        path=self.root/'priority/bindings/candidates.csv'
+        with path.open() as f:
+            reader=csv.DictReader(f);fields=reader.fieldnames;candidates=list(reader)
+        selected=next(c for c in candidates if c['binding_id']=='aqueduct_bws_annual_candidate')
+        selected['documentation']=json.dumps(['Changed source context'])
+        with path.open('w',newline='') as f:
+            writer=csv.DictWriter(f,fieldnames=fields);writer.writeheader();writer.writerows(candidates)
+        with self.assertRaisesRegex(ValueError,'Stale generated'):rules.check(self.root)
+
 
 if __name__ == '__main__':unittest.main()

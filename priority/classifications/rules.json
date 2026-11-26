@@ -1,12 +1,12 @@
 {
-  "format": "ruralscan.context-classification-review.v1",
+  "format": "ruralscan.context-classification-review.v2",
   "runtime_ready": false,
   "input_sha256": {
-    "priority/classifications/columns.json": "8be6b0e78e91bf9b8e4bf0341403272fcc3028ccb1189e9c79b06b7936a94af6",
-    "priority/classifications/rules.csv": "0aeb5b44b87bb4056f081efbe487a5b7547cbd2922de9cc50a859e28a7459c94",
+    "priority/classifications/columns.json": "95b0fd9cf114bcd7b6ee6ba6f10e4343722c5bab158cf63a6ad455bbe18b3112",
+    "priority/classifications/rules.csv": "eab0edf9d03b9d3a08d096fb57b7f5867ecff552b37365ffa63c5e3db02bc92c",
     "priority/classifications/reference_samples.csv": "b80d52b46a1d0b1e0ce55dc2297ab981cb58ce72800486fae3ff783b856e9760",
     "priority/classifications/country_groups.csv": "ca84f757fb2c4006a4f6647adc16cb326b0f64b2a317de7b30bdc72cda1e9ce2",
-    "priority/classifications/sources.csv": "43e8677e94020c88cc99fa39720ff7a904c3e9fd5445d5b64a32a11828a0f936"
+    "priority/classifications/sources.csv": "ff4d76676b837d9237dd78d89e7831deea39b23350614cf9fa5cbdc836e0c59d"
   },
   "rules": [
     {
@@ -43,6 +43,7 @@
         "spatial_support": "Published representative subnational survey areas; all-population estimates, not rural-only",
         "validation": "table_inspected"
       },
+      "category_map": {},
       "class_meanings": {
         "none": "Not established; no none class",
         "low": "Lower third within stated global income tier",
@@ -101,6 +102,7 @@
         "spatial_support": "Published representative subnational survey areas; all-population estimates, not rural-only",
         "validation": "table_inspected"
       },
+      "category_map": {},
       "class_meanings": {
         "none": "Not established; no none class",
         "low": "Lower third within stated global income tier",
@@ -159,6 +161,7 @@
         "spatial_support": "Published representative subnational survey areas; all-population estimates, not rural-only",
         "validation": "table_inspected"
       },
+      "category_map": {},
       "class_meanings": {
         "none": "Not established; no none class",
         "low": "Lower third within stated global income tier",
@@ -217,6 +220,7 @@
         "spatial_support": "Distributed 25km global raster; do not imply original 250m or finer information",
         "validation": "documentation_only"
       },
+      "category_map": {},
       "class_meanings": {
         "none": "Very little modelled water erosion; not zero or a safe-loss guarantee",
         "low": "Low modelled water erosion",
@@ -233,6 +237,162 @@
       ],
       "missing": "unknown",
       "endpoint": "upper_inclusive",
+      "runtime_ready": false
+    },
+    {
+      "rule_set_id": "water_stress_aqueduct",
+      "classification_id": "water_stress_aqueduct_categories",
+      "version": "0.1.0",
+      "variable_id": "water_stress",
+      "concern_id": "water_stress",
+      "context_type": "global",
+      "context_value": "global",
+      "context_vintage": "",
+      "reference_scope": "Aqueduct 4.0 annual baseline; sub-basin support",
+      "reference_year": "2019",
+      "method": "categories",
+      "unit": "provider_category",
+      "direction": "higher_is_more_concern",
+      "none_upper": null,
+      "low_upper": null,
+      "medium_upper": null,
+      "domain_min": -1.0,
+      "domain_max": 4.0,
+      "reference_sample_id": "",
+      "source_ids": [
+        "wri_aqueduct40_bands",
+        "wri_aqueduct40_faq"
+      ],
+      "binding": {
+        "dataset_id": "wri_aqueduct4_baseline_annual",
+        "asset": "WRI/Aqueduct_Water_Risk/V4/baseline_annual",
+        "field": "bws_cat",
+        "source_unit": "provider_category",
+        "scale": 1,
+        "offset": 0,
+        "spatial_support": "HydroBASINS sub-basin; retain source basin identity across intersected feature fragments",
+        "validation": "table_inspected"
+      },
+      "category_map": {
+        "0": "none",
+        "1": "low",
+        "2": "medium",
+        "3": "high",
+        "4": "high",
+        "-1": "high",
+        "arid_low_use": "high",
+        "physical_scarcity": "high"
+      },
+      "class_meanings": {
+        "none": "Very little: WRI low stress; not absence of scarcity",
+        "low": "WRI low-medium stress",
+        "medium": "WRI medium-high stress",
+        "high": "WRI high/extremely high; flagged arid/low-use or physical scarcity"
+      },
+      "rationale": "Pete approved the four classes and rationale on 2026-11-25: WRI Low -> Very little; Low-medium -> Low; Medium-high -> Medium; High and Extremely high -> High. Preserve native category endpoints. Arid/low-use and physical scarcity are High with flags retained per WRI guidance. Missing or invalid records remain unknown. Renaming and merging are RuralScan conventions, not a claim of absent scarcity. Approval covers this interpretation, not runtime release; see priority/research/2026-11-25-water-stress-four-classes.md.",
+      "status": "proposed",
+      "binding_candidate": {
+        "binding_id": "aqueduct_bws_annual_candidate",
+        "variable_id": "water_stress",
+        "registry": "T5",
+        "concern_id": "water_stress",
+        "mcda_role": "priority",
+        "dataset_id": "wri_aqueduct4_baseline_annual",
+        "route": "earth_engine_table",
+        "asset": "WRI/Aqueduct_Water_Risk/V4/baseline_annual",
+        "field": "bws_raw",
+        "auxiliary_fields": [
+          "bws_cat",
+          "bws_label",
+          "pfaf_id",
+          "aqid",
+          "string_id",
+          "gid_0",
+          "gid_1"
+        ],
+        "unit": "withdrawal_to_available_supply_ratio",
+        "spatial_support": "HydroBASINS sub-basin basis; annual feature geometry intersects admin/aquifer units",
+        "temporal_support": "2019 target baseline estimated from smoothed 1979–2019 inputs; annual is demand-weighted monthly ratios",
+        "selectors": {
+          "required": [
+            "AOI"
+          ],
+          "allowed": {},
+          "category_alias": "category <- bws_cat",
+          "aggregation": "Use actual fragment geometry; preserve pfaf_id identity, avoid counting intersections as independent basins.",
+          "native_categories": {
+            "-9999": "unknown",
+            "-1": "arid_low_use",
+            "0": "low",
+            "1": "low_medium",
+            "2": "medium_high",
+            "3": "high",
+            "4": "extremely_high"
+          },
+          "producer_encoding_verified": "Pinned WRI notebook retains raw ratios above 1. Read published native category and label; no clipping.",
+          "producer_annual_scarcity": "Published annual calculation replaces monthly 9999 by 2 for weighting, then forces annual 9999 when >=6 months have no supply; no-supply/arid overrides follow."
+        },
+        "decode": {
+          "scale": 1,
+          "offset": 0,
+          "valid_range": [
+            0,
+            null
+          ],
+          "special_values": {
+            "-9999": "unknown",
+            "9999": "physical_scarcity"
+          },
+          "guards": [
+            {
+              "field": "category",
+              "missing": "unknown",
+              "equals": {
+                "-9999": "unknown",
+                "-1": "arid_low_use"
+              },
+              "valid_values": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ]
+            }
+          ],
+          "missing_state": "unknown",
+          "clip": false
+        },
+        "inspection_status": "sample_checked",
+        "observation_refs": [
+          {
+            "observation_id": "aqueduct_live",
+            "path": "observations/aqueduct_live.json",
+            "sha256": "48e5b3c8f9aff7f3c9f04f134b8af51bf1b4de0001137d46e39da78fa99d30eb"
+          },
+          {
+            "observation_id": "aqueduct_production_semantics",
+            "path": "observations/aqueduct_production_semantics.json",
+            "sha256": "4a917a0913d56fa0f7b95736f791caf058d1d4722aecf1abf6ce83c3262fb375"
+          }
+        ],
+        "blocking": [
+          "Retain native category and special flags; no accepted four-class collapse.",
+          "Physical scarcity 9999 is not a percentage; category -1 controls arid/low-use state even when raw=1.",
+          "Missing monthly numeric properties remain unknown.",
+          "Context, seasonal relevance and geometry alignment remain to be checked."
+        ],
+        "documentation": [
+          "https://developers.google.com/earth-engine/datasets/catalog/WRI_Aqueduct_Water_Risk_V4_baseline_annual",
+          "https://www.wri.org/research/aqueduct-40-updated-decision-relevant-global-water-risk-indicators"
+        ],
+        "scientifically_accepted": false,
+        "runtime_ready": false
+      },
+      "reference_sample": null,
+      "cuts": null,
+      "missing": "unknown",
+      "endpoint": "provider_category",
       "runtime_ready": false
     }
   ],
@@ -1792,6 +1952,20 @@
       "sha256": "26d6a851a85e3bef78a652786e90bfa5f03f0e8f3e2fac45ac65fb38dc434dad",
       "locator": "Metadata / Data; RUSLE Soil loss in 2012; shared pixel size 25km",
       "description": "Global GloSEM 2012 output at distributed 25km resolution. Original 250m resolution is not the resolution of this download. No raster acquired or geometry/sample values verified here."
+    },
+    {
+      "source_id": "wri_aqueduct40_bands",
+      "url": "https://files.wri.org/d8/s3fs-public/2023-08/aqueduct-40-technical-note.pdf",
+      "sha256": "bb55ea20f39c4272dea87b1089725900ffbf45673709c18cb0dab8d361a97ae5",
+      "locator": "PDF/printed page 11, Baseline water stress; page 12, Limitations",
+      "description": "Existing pinned WRI 2023 source packet; five ordinary water-stress bands. Four-class collapse approved by Pete, not WRI terminology."
+    },
+    {
+      "source_id": "wri_aqueduct40_faq",
+      "url": "https://raw.githubusercontent.com/wri/Aqueduct40/7a836ec90a3530ecebd844a3f20e09eacfae2017/data_FAQ.md",
+      "sha256": "85105c9319f053802e44ddc59c4627e68a30276e99421cc4591fd04b574ed022",
+      "locator": "Water Risk Interpretation / How do I interpret scores?; Water Stress / raw values 9999 and -9999",
+      "description": "Pinned provider guidance: arid/low-use priority and physical-scarcity versus missing encoding. Snapshot retained in water-stress source archive."
     }
   ]
 }
