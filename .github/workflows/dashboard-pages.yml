@@ -36,7 +36,7 @@ jobs:
         id: reference_source
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          ref: 0bc7380aa579d876be2c42863245e21f8ed0e51f
+          ref: 735a07250bc09a3cae80ad8dc5221c8b3b4efa44
           path: reference-src
           fetch-depth: 0
           persist-credentials: false
