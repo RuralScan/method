@@ -12,6 +12,12 @@ Thresholds are the default. Specify three strictly increasing cutoffs in native 
 
 Terciles are an explicit relative alternative. Supply and identify a separate reference sample, with its area/population and period. Calculate its one-third and two-thirds quantiles using linear interpolation at `(n - 1) * q`; save sample hash, sample count and realized cutoffs. Apply these fixed cutoffs to comparison periods, rather than recalculating them for every map. Remove missing values and any explicitly defined no-problem observations before fitting. With no defensible no-problem condition, use only low, medium and high; never make the lowest tercile mean none. Keep tied values together. Collapsed cutoffs fail instead of arbitrarily splitting identical observations. Quintiles are not supported.
 
+### Poverty must be contextualized
+
+Choose the poverty measure, poverty line, reference year and classification for the setting. Prefer suitable published classifications; do not transfer US concentrated-poverty thresholds to international poverty estimates. A national poverty line may be appropriate for a country application; international comparisons require a consistent line and purchasing-power-parity vintage. Subnational all-population rates describe area context and must not be presented as rural-only estimates.
+
+Where no suitable published classes exist, the default poverty calibration uses a global reference distribution within each World Bank income tier: low, lower-middle and upper-middle income. Regional or national adaptations require documented contextual justification. Record the grouping vintage, included areas, weighting and fixed cutoffs. Income groups identify the comparison set; they do not themselves establish poverty severity. Review these choices against the intended setting before application. Missing remains unknown, and no positive “none/very little” band is assumed. The [initial low- and middle-income calibration](research/2026-11-25-poverty-context-calibration.md) includes the separate tier results and pooled comparisons; its numerical cutoffs remain provisional, not accepted runtime rules.
+
 Missing data remains unknown. Missingness cannot mean no problem. The rule reference records a justification; validators check structure and provenance fields, not the truth of that justification or the authenticity of scientific approval. Illustrative rules are marked as such and cannot be passed off as calibrated country defaults.
 
 ## Correlation and weighting
