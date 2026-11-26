@@ -77,7 +77,7 @@ RUNTIME_REV = _published(RUNTIME)
 RUNTIME_URL = f"https://github.com/RuralScan/runtime/blob/{RUNTIME_REV}/"
 # The evidence revision whose operating procedures the chapter on continuing the work describes.
 # The build must run against exactly this checkout, so that chapter's text and links agree.
-EVIDENCE_OPERATING = "94a5b1c5e2bea65c79161388e78aecb20714cd66"
+EVIDENCE_OPERATING = "e1af63844d03393ea407841e351cd06582e99bd5"
 # The producer revision at which its evidence records became read-only (the retirement marker).
 CIAT_RETIRED = "4d53620f7a9f0f17a42a007fa0a653e5ed55c519"
 CIAT_RETIRED_URL = f"https://github.com/CIAT/nbs_ruralscan/blob/{CIAT_RETIRED}/"

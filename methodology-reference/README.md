@@ -201,3 +201,9 @@ T3/T6 and T6E chapters own their numerical algorithms and table-specific gates. 
 these chapters; do not add a parallel registry dictionary or repeat numerical policies in a general guide.
 The former `ch-evidence-registry.html` and `ch-combining-t4-evidence.html` addresses redirect to the
 consolidated chapters so existing links remain usable.
+
+## Pending override review
+
+`build/override_review.py` reads the authoritative override CSV and its generated candidate JSON at `EVIDENCE_OPERATING`. It verifies exact committed bytes and calls that revision's official validator and reference evaluator. The shared `override-review.js` view appears in the override chapter and the published dashboard. The output `data/t4-overrides.json` is a pinned review snapshot, never an accepted mapping stream. Non-pending or active candidates fail this publication path; their later publication requires an explicit lifecycle integration. No acceptance or activation control is provided.
+
+Run `python3 -m unittest discover -s build -p test_override_review.py` and `node --test build/test_override_review.cjs` in addition to the full build.

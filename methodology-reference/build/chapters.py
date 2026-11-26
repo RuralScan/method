@@ -42,6 +42,7 @@ EVIDENCE_CH = [
     "review-and-quality",
     "compiling-evidence",
     "suitability-synthesis",
+    "t4-overrides",
     "effect-synthesis",
     "cost-profiles",
 ]

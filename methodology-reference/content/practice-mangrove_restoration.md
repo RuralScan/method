@@ -88,6 +88,10 @@ Three T0 operational inputs are deliberately left unset: the establishment perio
 - Welfare outcomes require a budgeted complementary livelihood package; the trees alone did not deliver them in the one ex-post evaluation held [src: methodology/feasibility_notes.md §2026-10-19 · mangrove_restoration · welfare outcomes came from the bundle, not the trees].
 - Establishment window, time to benefit and recurrent cost must be set per project, against a stated endpoint, before the M2b establishment-period adjustment is used [src: methodology/families/mangrove.md §Reading the practice definition (T0)].
 
+## Pending archived restoration index
+
+[[ch:t4-overrides]] exposes the proposed archived restoration index, its native score and separate whole/partial-unit hectare accounting. Support polygons are not restoration footprints. Scientific approval, dataset intake, binding adoption and spatial implementation remain separate prerequisites. [src: evidence:suitability/overrides/README.md]
+
 ## Where this is configured
 
 - Family: [[table:FAM]]; practice definition and unset timing fields: [[table:T0]].
