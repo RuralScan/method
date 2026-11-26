@@ -11,6 +11,7 @@ file, with the same date; the build fails otherwise. `README.md` says when each 
 - Add infrastructure exposure guidance for roads, power lines, buildings, schools and health facilities.
 - Require seeking and acquiring suitable national datasets to replace global fallbacks, with explicit coverage, geometry, date and overlap checks.
 - Keep missing inventories, hazard coverage and service-function limitations visible in scoping and hand-off outputs.
+- Record provisional Haiti infrastructure source choices and explain existing T1/BIND/T7 support for global, national and regional coverage, without claiming automatic runtime activation.
 
 ## [0.27.0] - 2026-11-25
 

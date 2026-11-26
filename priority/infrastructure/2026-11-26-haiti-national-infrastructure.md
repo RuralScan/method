@@ -60,3 +60,7 @@ National-source files and scoped project data are preserved for review. Power/bu
 ## Source preservation
 
 Original national road/school files, scoped school GeoJSON, historical Jérémie ZIP, public catalogue responses, power query/response, Earth Engine metadata/sample, source-page snapshots and inspection scripts/results are stored in the team-library mirror: `0_Methodology_&_Frameworks/priority_classification/haiti_national_infrastructure_2026_11_26/reviewed_sources.zip`. SHA-256: `4f2475317c7c8cadafb9e8e5d4b43d5e9cba53441b6ba431aed0786b932d6e30`. All members were read back and hash-verified; remote SharePoint/team access was not checked. The archived manifest provides member hashes. The national-data inspection is separate from formal evidence-register intake; no new dataset-intake adapter or accepted analytical rule was silently created.
+
+## Follow-up decision
+
+Pete approved using provisional fallbacks while the national gaps remain open. The [selected sources and acquisition-gap table](README.md#approved-haiti-fallbacks-and-remaining-national-gaps) now records the choice for each asset type and explains global/country/region handling in existing T1/BIND/T7 fields.
