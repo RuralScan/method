@@ -48,4 +48,6 @@ The active classification review follows [exactly nine visual-method problems](v
 
 [Drought intensity](research/2026-11-25-drought-four-classes.md): four-class interpretation approved and provider boundary equality verified. Selection as the core climate hazard awaits [Brayden's indicator confirmation](research/2026-11-25-climate-hazard-alignment.md), requested through Teams. Next proposal: [river-flood depth classes](research/2026-11-25-flood-hazard-classes.md), with return period still to confirm. The Bank's [infrastructure exposure request](infrastructure/README.md) remains active as a separate, optional desk-scoping overlay.
 
+While hazard confirmation is pending, the next non-climate review is [biodiversity loss](research/2026-11-26-biodiversity-loss-classes.md): a proposed four-class BII depletion crosswalk based on UNEP's published global map bands. The proposal distinguishes modelled depletion from recent loss and conservation importance; exact dataset selection and interpretation approval remain pending. Infrastructure stays in scope.
+
 Dataset follow-up: [first inspected binding candidates](bindings/README.md), with exact evidence pins, CSV-generated proposals and remaining adoption checks.
