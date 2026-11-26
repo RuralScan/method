@@ -7,6 +7,7 @@ sources:
   - method:priority/infrastructure/README.md
   - method:priority/research/2026-11-26-biodiversity-loss-classes.md
   - method:priority/conservation/README.md
+  - method:priority/research/2026-11-26-soil-erosion-binding.md
   - method:data-model/priority-contract.json
   - methodology/modules/M3_characterisation.md
   - method:handbook/implement-a-scan.md
@@ -91,6 +92,12 @@ A count of residents within a candidate zone is not a count of beneficiaries. It
 Use the selected NHM Biodiversity Intactness Index v2.1.1 2020 raster provisionally as coarse landscape context. Its 5-arc-minute grid is approximately 10 km at the equator. State the year and native resolution in the display and methods; resampling does not reveal farm-scale variation or fine changes at conservation-site boundaries. Preserve missing cells and distinguish modelled condition relative to a reference from observed annual loss. [src: method:priority/research/2026-11-26-biodiversity-loss-classes.md §Approved interim use: coarse context]
 
 Retain the approved four BII classes and the higher-of-BII-and-KBA rule for the single Biodiversity priority entry. Keep each input's resolution and the controlling input visible. Both inputs must be valid: where KBA data are unavailable, the BII input may be shown as coarse context while the combined priority remains Not assessed. This interim use does not add another weight or claim that runtime adoption is complete. [src: method:priority/conservation/README.md §Interim BII resolution decision]
+
+## Soil erosion within its supported land systems
+
+The inspected GloSEM 1.3 baseline represents modelled water erosion on cropland, including fractional cropland in mixed cells. Its approximately 100 m grid does not supply erosion estimates for every forest, rangeland or other rural land system. Unsupported cells remain Not assessed; neither missing values nor absent mapped crop support mean Very little erosion. Retain the source year, model version, native resolution and assessed crop footprint. Broader-coverage or suitable national sources require their own contextual binding and coverage checks. [src: method:priority/research/2026-11-26-soil-erosion-binding.md §Source choice by land-system coverage]
+
+Classify valid erosion rates using the approved bands: 0–1, >1–3, >3–5 and >5 tonnes/ha/year. The published rates are not multiplied by cropland fraction. Keep rate classification separate from any total soil-loss estimate, which requires actual cell area and valid cropland fractions. Do not treat these modelled rates as measured annual losses or apply the same numerical cutoffs to susceptibility categories, gully-line labels or river sediment yield. [src: method:priority/research/2026-11-26-soil-erosion-binding.md §Exact candidate inputs and interpretation]
 
 ## Infrastructure exposure and national datasets
 
