@@ -6,6 +6,11 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.26.0] - 2026-11-26
+
+- Show distinct source records beside retained finding counts and in filtered evidence views, using the same scope and review status.
+- Explain why findings, source records and independent studies differ, and why repeated or mixed results need synthesis review rather than automatic voting.
+
 ## [0.25.0] - 2026-11-26
 
 - Add a system and setup guide with repository responsibilities, an offline starting exercise and routes for continuing evidence work.

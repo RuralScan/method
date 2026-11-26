@@ -75,6 +75,12 @@ Keep three units distinct: extracted records, reporting publications and underly
 
 Historical records remain recoverable. Resolving duplication changes eligibility or influence, not the existence of the evidence trail. Use `lineage_of` where its semantics fit and record fuller overlap and study structure in the synthesis audit. Do not imply that author-group or sampling-covariance fields already exist in the registry. [src: schema/spec.md §EV] [src: method:data-model/evidence-classification.json]
 
+### Reading finding and source counts
+
+The evidence display reports two record counts for the same scope: distinct findings and distinct source records. Reviewed and kept / total retained is a **finding** ratio; retained includes pending and held findings and excludes rejected findings. The source count beside it includes each source ID once if any retained finding matches. Duplicate publications recorded under different source IDs need identity review; the display does not merge them by citation text. Keeping one finding does not approve every claim in that work. Sources can occur in several groups, so source counts must be recomputed for their combined scope rather than added. Independent studies are not counted by this display. [src: method:methodology-reference/README.md §Review coverage in sections 5 and 6]
+
+A publication with opposing findings is a reason to inspect the contexts, not a vote to average away. Different sub-practices, sites, years or outcome measures stay visible. Repeated presentations of the same result do not create extra support. A source-level “mixed” label, where used, describes the selected claims; it does not determine the accepted effect class. Synthesis must explain which distinctions matter to the target question and how dependence affects its judgement. T4 retains complete suitability profiles; T3/T6 retains contrasting effects. Both require origin accounting, without imposing the same numerical pooling rule. [src: method:data-model/evidence-classification.json] [src: evidence:workflows/synthesis/README.md]
+
 ### Worked illustration: nine records are not nine replications
 
 This hypothetical example concerns one outcome and target context. All four publications are relevant, but their data overlap.
