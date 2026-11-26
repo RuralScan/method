@@ -91,6 +91,10 @@ Global products can be dated, coarse or modelled. Tree cover can conflate natura
 
 Administrative statistics retain the spatial support of their source. A national indicator cannot explain variation within a country simply because it is displayed on a raster. Missing local inputs and uncertainty in host-system mapping remain visible in the scoping brief and become questions for local validation. [src: schema/spec.md §T1] [src: methodology/T4_developer_contract.md §Planted host and exclusion contracts]
 
+## Bindings for pending overrides
+
+The climate and mangrove candidates declare exact source releases, derivations and spatial support. Those proposed bindings do not become adopted by appearing in a review card. [[ch:t4-overrides]] separates dataset admission, relationship acceptance and runtime activation, including the limitations of mixed climate periods and irregular mangrove support units. [src: evidence:suitability/overrides/README.md]
+
 ## Where this is configured
 
 [[table:T1]] holds dataset metadata; [[table:BIND]] holds contextual choices and upload flags; [[table:T7]] defines geographic and farming-system contexts; [[table:VONT]] defines variables, units, scale and sensitivity. [[table:T4]] records response overrides separately. The application records the versions and processing actually used.

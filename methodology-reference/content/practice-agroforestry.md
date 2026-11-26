@@ -51,7 +51,7 @@ Host gate: cultivated land from a land-cover product; grassland qualifies only w
 
 ### Regeneration-based on farmland (`agroforestry__regeneration_farmland`)
 
-Sub-practices: farmer-managed natural regeneration (FMNR), parkland tree retention and assisted natural regeneration on farmland. The limiting factor is regeneration potential: living stumps and roots, seedbank, seed-source proximity, and tenure security that lets a farmer protect regrowth [src: schema/registers/FAM_family_registry.csv §fmnr]. It cannot be an override of the planted family because it needs a different variable set (woody-cover baseline and change, distance to seed source, tenure proxies), and overrides only re-parameterise existing variables [src: methodology/families/agroforestry.md §F2 — Regeneration-based on farmland]. Product: `area_suitability`, meaning where regeneration can be induced.
+Sub-practices: farmer-managed natural regeneration (FMNR), parkland tree retention and assisted natural regeneration on farmland. The limiting factor is regeneration potential: living stumps and roots, seedbank, seed-source proximity, and tenure security that lets a farmer protect regrowth [src: schema/registers/FAM_family_registry.csv §fmnr]. It cannot be an override of the planted family because it needs a different variable set (woody-cover baseline and change, distance to seed source, tenure proxies), and a contextual parameter adjustment does not establish a different family [src: methodology/families/agroforestry.md §F2 — Regeneration-based on farmland]. Product: `area_suitability`, meaning where regeneration can be induced.
 
 The parkland edge case is resolved by establishment driver: a planted Faidherbia parkland is planted silvoarable; a retained or FMNR parkland is regeneration-based [src: methodology/families/agroforestry.md §4. Edge cases the scheme deliberately resolves]. Host gate: cropland, with grass, shrub or bare classes admitted only where agricultural, fallow or former-farmland identity is established, not mere depletion [src: schema/recipes/agroforestry/README.md §Reviewed T4 — 20 October 2026].
 
@@ -129,6 +129,10 @@ The scheme note says only the planted family has T4 rows. That is out of date at
 - Boundary geometry, regional placement width, grazing confirmation and farmland identity are explicit inputs an application must supply.
 - The categorical and host evaluators operate on caller-supplied aligned arrays; they are not a complete raster acquisition or suitability runner [src: schema/recipes/agroforestry/README.md §Dataset bindings and execution limits].
 - Effect classes for drought rest on thin drought-year evidence. Feasibility must still test species, management, tenure, market and labour on site.
+
+## Pending climate overrides
+
+[[ch:t4-overrides]] exposes proposed climate profiles for named planted systems and regeneration to persistent upright trees. Retention-only parklands do not inherit recruitment constraints. All relationships remain pending and inactive, with source evidence, mechanism and policy transfer distinguished. [src: evidence:suitability/overrides/README.md]
 
 ## Where this is configured
 

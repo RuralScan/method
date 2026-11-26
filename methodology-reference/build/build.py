@@ -29,6 +29,7 @@ import pages_model
 import pages_practices
 import pages_text
 import versioning
+import override_review
 from display_captions import audit as audit_captions
 
 HERE = Path(__file__).resolve().parent
@@ -456,8 +457,12 @@ def main():
     pages_data.build()
     pages_text.build()
 
+    overrides = override_review.build()
     model = review_coverage.load()
     results = run_checks()
+    results.append(("Override review uses validated pending candidates and the pinned reference evaluator",
+                    all(r["candidate"]["activate"] is False for r in overrides["records"]),
+                    f"{len(overrides['records'])} pending records; no runtime activation"))
     results.append(("Coverage matches every finding and hierarchy count in the pinned review queue", True,
                     f"{len(model.findings):,} findings; {len(model.nodes)} scopes; revision {review_coverage.PIN['revision']}"))
     rows = [

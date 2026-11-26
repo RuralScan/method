@@ -118,6 +118,10 @@ Suitability scores express the recorded evidence and scoring convention, not a p
 
 Sensitivity to weights does not capture all uncertainty in data, responses or transfer. Held calibration remains unscored. Field assessment and feasibility work must establish the local conditions on which the intervention depends. [src: methodology/T4_generation_method.md §Directional evidence is distinct from numeric calibration] [src: methodology/T4_developer_contract.md §Module boundaries and output meaning]
 
+## Pending overrides and opportunity area
+
+Proposed climate and precomputed mangrove rules remain pending and inactive. Their scores, independent exclusion screens, conditional pathways and unknown states must stay separate. Membership does not multiply hectares; mangrove support polygons are not restoration footprints. Inspect scope and approval status in [[ch:t4-overrides]] before interpreting a candidate. [src: evidence:suitability/overrides/README.md]
+
 ## Where this is configured
 
 [[table:FAM]] defines families and product types. [[table:T4]] records mappings and evidence; [[table:T4_RUN]] records execution policy. [[table:VONT]], [[table:T1]], [[table:BIND]] and [[table:T7]] define variables, datasets and contexts. See [[ch:suitability-synthesis]] for T4 synthesis and [[ch:implementing-the-method]] for application reporting.

@@ -1,0 +1,36 @@
+.override-review { color:var(--text-primary); margin:1.5rem 0; min-width:0; }
+.override-review *, .override-review *::before, .override-review *::after { box-sizing:border-box; }
+.override-review a { color:var(--accent-emerald); }
+.override-review .ovr-notice { padding:1rem; border-left:4px solid var(--accent-amber); background:var(--bg-tertiary); }
+.override-review .ovr-filters { display:flex; flex-wrap:wrap; gap:1rem; align-items:end; margin:1rem 0; }
+.override-review label { display:grid; gap:.35rem; font-weight:600; }
+.override-review select { padding:.6rem; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); border-radius:var(--radius-md); max-width:100%; }
+.override-review .ovr-card { border:1px solid var(--border-color); border-radius:var(--radius-lg); background:var(--bg-secondary); padding:1.25rem; margin:1rem 0; box-shadow:var(--card-shadow); }
+.override-review h3 { font-family:var(--font-outfit); margin:0 0 .4rem; }
+.override-review h4 { margin:1rem 0 .4rem; }
+.override-review p { line-height:1.65; margin:.6rem 0; }
+.override-review .ovr-id, .override-review code, .override-review small { overflow-wrap:anywhere; color:var(--text-secondary); }
+.override-review .ovr-lifecycle { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.6rem; margin:1rem 0; }
+.override-review .ovr-lifecycle div { padding:.65rem; background:var(--bg-tertiary); border-radius:var(--radius-md); }
+.override-review dt { color:var(--text-secondary); font-size:.8rem; }
+.override-review dd { margin:.25rem 0 0; font-weight:600; color:var(--accent-amber); }
+.override-review details { border-top:1px solid var(--border-color); padding:.7rem 0; }
+.override-review summary { cursor:pointer; font-weight:600; padding:.2rem; }
+.override-review summary:focus-visible, .override-review a:focus-visible, .override-review select:focus-visible { outline:2px solid var(--accent-sky); outline-offset:3px; }
+.override-review .ovr-table { max-width:100%; overflow-x:auto; margin:.8rem 0; }
+.override-review table { border-collapse:collapse; width:100%; font-size:.85rem; }
+.override-review caption { text-align:left; padding:.6rem 0; color:var(--text-secondary); }
+.override-review th, .override-review td { padding:.65rem; text-align:left; vertical-align:top; border-bottom:1px solid var(--border-color); overflow-wrap:anywhere; }
+.override-review th { background:var(--bg-tertiary); }
+.override-review pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:.8rem; background:var(--bg-tertiary); padding:1rem; max-height:28rem; overflow:auto; }
+.override-review .ovr-formula { font-family:monospace; padding:.8rem; background:var(--bg-tertiary); overflow-wrap:anywhere; }
+.override-review .ovr-curves { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:.8rem; }
+.override-review figure { margin:0; min-width:0; }
+.override-review svg { width:100%; fill:var(--accent-emerald); }
+.override-review svg text { fill:var(--text-secondary); font-size:11px; }
+.override-review .ovr-axis { stroke:var(--text-secondary); fill:none; }
+.override-review .ovr-line { stroke:var(--accent-emerald); stroke-width:2; fill:none; }
+.override-review figcaption { font-size:.8rem; color:var(--text-secondary); }
+.override-review .ovr-sources { padding-left:1.3rem; }
+.override-review .ovr-sources li { margin:1rem 0; overflow-wrap:anywhere; }
+@media(max-width:700px) { .override-review .ovr-lifecycle { grid-template-columns:repeat(2,minmax(0,1fr)); } .override-review .ovr-card { padding:.8rem; } }
