@@ -1,6 +1,6 @@
-# Biodiversity loss: proposed four-class interpretation
+# Biodiversity loss: approved four-class interpretation; binding pending
 
-26 November 2026. Pete requested biodiversity review while climate-hazard confirmation is pending, retaining infrastructure. This is a concrete classification proposal, not an approved rule or dataset binding.
+26 November 2026. Pete requested biodiversity review while climate-hazard confirmation is pending, retaining infrastructure. Following presentation of this four-class proposal and its limitations, Pete replied “ok next?”. This records acceptance of the displayed interpretation. A current dataset binding and runtime release remain pending; that response does not verify a raster or approve a new dataset edition.
 
 ## Measure and proposed classes
 
@@ -33,7 +33,7 @@ Alternative screened: *State of Nature 2016*, printed pages 70–71, Figure 46, 
 - The legacy `bii_nhm_global` pointer references the 2016 publication. Its circa-2005 layer must not be labelled current-year loss. *State of Nature 2016*, page 71, explicitly describes the 2005 pressure inputs. Prefer an appropriate newer edition if available and compatible, after confirming its reference state, native resolution, units, valid domain, masks, coverage and access conditions. Do not subtract different model editions to invent a trend.
 - The global class convention does not require World Bank income groups. Country/biome adjustments remain possible where better local evidence supports them; record and justify any override.
 
-No current raster has been sampled or selected in this review. Existing profile and T5 routing remain held; the proposed interpretation does not turn an old dataset pointer into an inspected binding. After approval, the contextual row can record `method=thresholds`, depletion units, `direction=higher_is_more_concern`, cutoffs 10/20/40, the exact BII-to-depletion transformation, source/version, rationale and limitations. Until then, no core rule is activated.
+No current raster has been sampled or selected in this review. Existing profile and T5 routing remain held; interpretation approval does not turn an old dataset pointer into an inspected binding. Once the input is selected and its transformation verified, the contextual row can record `method=thresholds`, depletion units, `direction=higher_is_more_concern`, cutoffs 10/20/40, the exact BII-to-depletion transformation, source/version, rationale and limitations. The table's binding currently permits positive scale only, so do not encode `100 − BII` as a silently accepted negative scale or invent a derived input asset. No core rule is activated by this approval record.
 
 Climate hazards remain pending Brayden's reply. The Bank's [infrastructure exposure work](../infrastructure/README.md) stays active alongside the nine problems; this biodiversity proposal does not change that scope or add another problem variable.
 
