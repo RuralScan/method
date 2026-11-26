@@ -20,7 +20,7 @@ Retain a driver label: **depletion**, **KBA proximity**, or **both** when the tw
 
 Both inputs and distance settings must be valid before assigning the combined class. If either input is missing, combined priority remains **Not assessed**; any available input can still be shown in the details. Code 0 does not establish absence of biodiversity value. Preserve the shared ordinal-to-score lookup (0, 0.33, 0.66, 1) when the approved interpretation is implemented for priority scoring; do not divide the integer class by three or count the two inputs separately in the priority stack.
 
-The single presentation and maximum-class interpretation are approved. KBA distance approval, inspected bindings and runtime adoption remain pending; no accepted evaluator or schema is changed by this design note.
+The single presentation and maximum-class interpretation are approved. The 1.5/5 km KBA distance bands are also approved; inspected bindings and runtime adoption remain pending; no accepted evaluator or schema is changed by this design note.
 
 ## Meaning and display
 
@@ -36,19 +36,19 @@ Within the single Biodiversity priority layer, label the KBA input **Conservatio
 | 0 | Beyond selected distance | Distance is > the outer-distance setting, with valid source/search coverage |
 | Missing | Not assessed | Source unavailable, coverage/search extent insufficient, or geometry invalid |
 
-Require `0 < near_distance_m < outer_distance_m`, recorded with the context, rationale and source release. Neither setting has a silent numerical default. This captures Pete's proposed structure without inventing universal conservation thresholds. IBAT's [Proximity service](https://www.ibat-alliance.org/services), “Reports / PROXIMITY”, similarly allows user-specified buffers; this supports proximity screening, not any particular cutoffs or the 3/2/1/0 scores. The input codes are an ordinal project convention; the approved combined interpretation above defines how a single output could later enter the existing evaluator.
+Require `0 < near_distance_m < outer_distance_m`, recorded with the context, rationale and source release. The approved baseline explicitly sets near_distance_m=1500 and outer_distance_m=5000. Context overrides require a recorded rationale. This captures Pete's approved structure without claiming universal conservation thresholds. IBAT's [Proximity service](https://www.ibat-alliance.org/services), “Reports / PROXIMITY”, similarly allows user-specified buffers; this supports proximity screening, not any particular cutoffs or the 3/2/1/0 scores. The input codes are an ordinal project convention; the approved combined interpretation above defines how a single output could later enter the existing evaluator.
 
 Code 0 means beyond the selected buffer of mapped KBAs, **not no conservation importance**. Areas outside recognised KBAs can still matter nationally, locally or for connectivity; incomplete identification remains a limitation even where the database download itself is complete. Straight-line proximity does not establish ecological connection. Watershed pathways and species-specific connectivity require separate analysis.
 
-## Proposed distance settings: 1.5 km and 5 km
+## Approved distance settings: 1.5 km and 5 km
 
-For review: **within KBA = 3; outside but <1.5 km = 2; 1.5–5 km inclusive = 1; >5 km = 0**. Measure shortest distance to the polygon boundary. Polygon membership, including its boundary, takes precedence. Thus exactly 1,500 m receives 1 and exactly 5,000 m receives 1. Missing/search-incomplete data remain unknown.
+Approved on 26 November 2026: **within KBA = 3; outside but <1.5 km = 2; 1.5–5 km inclusive = 1; >5 km = 0**. Measure shortest distance to the polygon boundary. Polygon membership, including its boundary, takes precedence. Thus exactly 1,500 m receives 1 and exactly 5,000 m receives 1. Missing/search-incomplete data remain unknown.
 
-Published basis: [IBAT Biodiversity Disclosure](https://www.ibat-alliance.org/biodiversity-disclosure), proximity “Table 1” under the report methodology, assigns its low-input-agriculture row a 5 km buffer: High below 0.5 km, Medium 0.5 to below 1.5 km, Low 1.5–5 km, and None beyond 5 km. Our proposed adaptation reserves code 3 for actual KBA membership, merges the two outside bands below 1.5 km into code 2, and retains the 1.5/5 km breaks. It is not an exact reproduction of IBAT's significance classes.
+Published basis: [IBAT Biodiversity Disclosure](https://www.ibat-alliance.org/biodiversity-disclosure), proximity “Table 1” under the report methodology, assigns its low-input-agriculture row a 5 km buffer: High below 0.5 km, Medium 0.5 to below 1.5 km, Low 1.5–5 km, and None beyond 5 km. Our approved adaptation reserves code 3 for actual KBA membership, merges the two outside bands below 1.5 km into code 2, and retains the 1.5/5 km breaks. It is not an exact reproduction of IBAT's significance classes.
 
-These are screening distances borrowed from operational-impact assessment, not proven distances over which rural NbS deliver conservation benefits. IBAT varies buffers by operation, including 10 km for high-input agriculture; 5 km is not a universal agricultural impact limit. Use this as a simple proposed baseline, with documented setting-specific changes where needed. No automatic inference of connectivity or absence of biodiversity value follows.
+These are screening distances borrowed from operational-impact assessment, not proven distances over which rural NbS deliver conservation benefits. IBAT varies buffers by operation, including 10 km for high-input agriculture; 5 km is not a universal agricultural impact limit. Use this as a simple approved baseline, with documented setting-specific changes where needed. No automatic inference of connectivity or absence of biodiversity value follows.
 
-This evidence improves on the initial round-number suggestion of 1 km/5 km. Distance settings remain proposed until Pete approves them; the maximum-score rule is already approved.
+Pete approved these distance bands and their rationale on 26 November 2026, retaining the already approved maximum-of-BII-and-KBA rule. The earlier 1 km/5 km suggestion is superseded. Exactly 1.5 km and 5 km remain in the Close class.
 
 Source HTML and manifest retained in the team-library mirror at `0_Methodology_&_Frameworks/priority_classification/kba_distances_2026_11_26/reviewed_sources.zip`. Archive SHA-256: `a7d41558e8a8a8b01f747424b509625e54a779890c406edbb51ee6adf6ca856b`; HTML SHA-256: `ffd8510f6387a68c72e14ec4f6146129b84f99de1c1b824b007a1856eb62b316`. HTML read-back hash verified; remote team access not checked.
 
@@ -65,6 +65,6 @@ Preferred source: the **World Database of Key Biodiversity Areas**, managed by B
 
 The [current KBA terms](https://www.keybiodiversityareas.org/en/terms-service), version 3.0 (July 2026), distinguish access/use from redistribution, including restrictions on geospatial outputs. Check the route and permission covering this funded project's team use and intended demonstrator outputs; do not assume that a nonprofit affiliation alone settles permitted use. No KBA request, paid subscription or new terms submission was made in this step.
 
-Binding status: **source route identified; authorised polygon package, release/schema/geometry inspection and deployment permissions pending**. No new accepted BIND row, source evidence registration, distance calibration or runtime release is claimed. Once obtained, inspect actual polygon geometry, stable site IDs, status/coverage metadata and release date before naming fields in a binding. Never turn failed access into a zero-overlap result.
+Binding status: **source route identified; authorised polygon package, release/schema/geometry inspection and deployment permissions pending**. No new accepted BIND row, source evidence registration or runtime release is claimed. Once obtained, inspect actual polygon geometry, stable site IDs, status/coverage metadata and release date before naming fields in a binding. Never turn failed access into a zero-overlap result.
 
-Reviewed provider pages and technical follow-up are preserved with the [roads binding inspection](../infrastructure/2026-11-26-roads-binding.md). Next binding work proceeds with roads while KBA access and distance settings remain explicit.
+Reviewed provider pages and technical follow-up are preserved with the [roads binding inspection](../infrastructure/2026-11-26-roads-binding.md). Next binding work proceeds with [health facilities and schools](../infrastructure/2026-11-26-facility-bindings.md); KBA source access remains pending.

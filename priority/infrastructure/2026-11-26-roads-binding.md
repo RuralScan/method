@@ -37,7 +37,7 @@ The complete attribute inspection found 30,262 `path`, 11,814 `footway`, 533 `st
 
 Source access and actual road-layer fields are verified. Full geometry checks, pilot-country selection, local completeness comparison, configured class list, retained dated extract and compatible hazard selection remain outstanding. These limitations prevent a claim that the road binding is release-ready. No data-quality or exposure severity cutoffs are invented.
 
-Next inventory is **health facilities and schools**, prioritising suitable national inventories; retain power lines and buildings where coverage permits. Facility presence, absence and inventory completeness need separate checks. Brayden's hazard confirmation remains pending. The KBA work and infrastructure inventory work do not add problems to the nine-variable core menu.
+Follow-up inspection: [health facilities and schools](2026-11-26-facility-bindings.md), prioritising suitable national inventories; retain power lines and buildings where coverage permits. Facility presence, absence and inventory completeness need separate checks. Brayden's hazard confirmation remains pending. The KBA work and infrastructure inventory work do not add problems to the nine-variable core menu.
 
 ## Preserved inspection
 
