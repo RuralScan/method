@@ -60,7 +60,7 @@ The ZIP contains five GeoTIFFs and their year sidecars, README and licence. Read
 
 | Property | Verified value / interpretation |
 |---|---|
-| Proposed input | Latest year in this public package: **bii-2020_v2-1-1.tif**, band 1; a current candidate for acquisition/fit review, not an activated runtime binding |
+| Selected provisional input | **bii-2020_v2-1-1.tif**, band 1; Pete approved use as coarse context on 26 November 2026. Runtime activation remains separate |
 | Available observations | **2000, 2005, 2010, 2015, 2020**; not an annual time series |
 | Grid | EPSG:4326, 4,320 columns × 2,160 rows, **5 arc-minutes** (0.0833333333 degrees), about 10 km at the equator |
 | Coverage | Global raster extent; valid terrestrial support follows the native mask. Extent is not complete local coverage |
@@ -74,7 +74,7 @@ The original README confirms the percentage units, five years and 5-arc-minute g
 
 Three diagnostic Haiti locations returned finite 2020 BII values: (-72.325, 18.54) = 3.51; (-74.1, 18.64) = 63.40; (-72.2, 19.5) = 53.72. These verify readable land cells, not national completeness or an opportunity-space result. The diagnostic bounding-box read includes ocean and neighboring territory and must not be reported as Haiti statistics.
 
-**Remaining fit limit:** use this public edition as coarse landscape context only; resampling cannot recover farm-scale variation. Combining its classes with finer KBA distances retains two different spatial supports. Keep each input's resolution and driver visible. The producer offers a complete series and improved resolution on request; finer licensed data may be needed for pilot differentiation. Acquisition approval does not decide that trade-off, approve a new runtime release or waive source conditions. The existing positive-scale-only binding transform still cannot silently encode 100 − BII; an explicit reviewed transformation remains required. KBA polygon acquisition remains separate. No additional core variable is introduced.
+**Remaining fit limit:** use this public edition as coarse landscape context only; resampling cannot recover farm-scale variation. Combining its classes with finer KBA distances retains two different spatial supports. Keep each input's resolution and driver visible. The producer offers a complete series and improved resolution on request; finer licensed data may be needed for pilot differentiation. Pete subsequently approved using this edition as coarse context for now; this resolves the provisional source-use choice, while preserving the resolution limitation, source conditions and separate runtime release. The existing positive-scale-only binding transform still cannot silently encode 100 − BII; an explicit reviewed transformation remains required. KBA polygon acquisition remains separate. No additional core variable is introduced.
 
 ### Acquired source preservation
 
@@ -87,3 +87,14 @@ Source bytes, the DataCite record, acquisition log, reproducible raster probe an
 | 2020 GeoTIFF | 10,327,863 bytes; d2142dd8d6d0bf1a08268d9a9a03c7a9b9ab4d834714d7fea35de621559a72b4 |
 
 `probe_bii.py` runs with rasterio 1.5.2 and numpy 2.4.6. Its JSON retains per-raster hashes, grid metadata, domain and missing-value checks and diagnostic locations. Both original archives are preserved through the nested download; no producer executable code was run.
+
+
+## Approved interim use: coarse context
+
+26 November 2026, Pete: “capture the BII resolution limitation and use it as coarse context for now, then proceed to the next remaining dataset binding. Keep infrastructure in scope too.”
+
+Use NHM v2.1.1's **2020** raster provisionally as **coarse landscape biodiversity context**, retaining its native **5-arc-minute (approximately 10 km)** support. Show the source year and native resolution beside the input and in exported methods/limitations. A finer display or analysis grid does not provide finer biodiversity evidence: preserve the native-cell information and do not interpret interpolated variation as differences between neighboring farms, practices or KBA boundaries. No claim of current-year condition or observed annual biodiversity loss follows.
+
+Keep the four approved BII bands and the approved maximum-of-BII-and-KBA rule, including the driver and each input's spatial support. Until authorised KBA polygons and both inputs' valid coverage are available, show the available BII input as coarse context and the combined Biodiversity priority as **Not assessed**. Do not silently substitute a BII-only combined score. This interim choice adds no core variable or independent BII weight, changes no frozen table or released evaluator, and does not resolve the explicit depletion-transform implementation hold.
+
+Seek a suitable finer, permitted source for local differentiation when needed; its acquisition is not a prerequisite for this approved coarse-context use. National/local sources must retain their geography, period and reference definition rather than inherit global BII units by name. Next non-hazard binding inspection is [soil erosion](2026-11-26-soil-erosion-binding.md). The selected [infrastructure fallbacks and national acquisition gaps](../infrastructure/README.md#approved-haiti-fallbacks-and-remaining-national-gaps) remain active; hazard choices still await Brayden's confirmation.

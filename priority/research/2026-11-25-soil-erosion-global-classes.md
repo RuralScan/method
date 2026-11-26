@@ -24,3 +24,6 @@ Candidate dataset: [JRC GloSEM, 2012 output](https://esdac.jrc.ec.europa.eu/cont
 The rule and approval rationale are captured in [rules.csv](../classifications/rules.csv), linked from the single T5 soil erosion row. Source locators and snapshot hashes are in [sources.csv](../classifications/sources.csv). Source registration and the protected runtime-release decision remain outstanding; this does not negate Pete's approval of the four-class interpretation.
 
 Reviewed article, catalogue and figure snapshots are archived in the team-library mirror under `0_Methodology_&_Frameworks/priority_classification/soil_erosion_2026_11_25/reviewed_web_sources.zip`. All three members were verified byte-for-byte after writing. Archive SHA-256: `8796ab582cf57c2da06953bab8941278f2872f4ea1f4cac51c48bec437d437e3`. Remote team access has not been independently checked.
+
+
+26 November binding follow-up: [global versus cropland source inspection](2026-11-26-soil-erosion-binding.md) identifies the legitimate author-published 100 m 2019 cropland release and companion crop-fraction layer. The four bands above are unchanged; this narrower source is not substituted across all rural land systems.
