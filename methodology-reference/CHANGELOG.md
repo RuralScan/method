@@ -10,6 +10,7 @@ file, with the same date; the build fails otherwise. `README.md` says when each 
 
 - Adopt the inspected 2020 NHM BII layer provisionally as coarse context, retaining its approximately 10 km native support and source year.
 - Preserve approved BII/KBA classes, source drivers and missing-input handling; keep infrastructure fallbacks and national acquisition gaps in scope.
+- Clarify the finer GloSEM candidate's cropland-only support, missing-value treatment and the distinction between classifying soil-loss rates and estimating crop-area-weighted totals.
 
 ## [0.28.0] - 2026-11-26
 
