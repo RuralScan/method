@@ -1,6 +1,6 @@
 # Chapters kept out of the published methodology
 
-These chapters are complete but are not built into the public pages. They describe how the evidence base is operated, which a reader of the method does not need. They were removed after the first review round to shorten the published text.
+These historical drafts are not built into the public pages. The current short operating guide is `content/system-setup.md`; do not use these drafts as execution instructions. They describe how the evidence base is operated, which a reader of the method does not need. They were removed after the first review round to shorten the published text.
 
 | File | What it covers |
 |---|---|

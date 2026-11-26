@@ -6,6 +6,12 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.25.0] - 2026-11-26
+
+- Add a system and setup guide with repository responsibilities, an offline starting exercise and routes for continuing evidence work.
+- Explain how finding reviews, scientific acceptance and later holds constrain agents and accepted outputs.
+- Link technical implementation and reproducibility guidance, and refresh the operating-workflow revision.
+
 ## [0.24.0] - 2026-11-25
 
 - Require contextual poverty classification and global income-tier reference distributions; preserve raw rates and provenance.

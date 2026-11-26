@@ -111,6 +111,8 @@ Part 1 Method: `scope-and-framework` · `scoping-walkthrough` · `m0-setup` · `
 Part 2 Evidence methods (shared foundations, acquisition-to-review sequence, common synthesis, then table-specific synthesis workflows): `evidence-principles` · `discovery` · `acquisition` · `extraction` ·
 `review-and-quality` · `compiling-evidence` · `suitability-synthesis` · `effect-synthesis` · `cost-profiles`
 
+Part 8 System and setup: `system-setup`
+
 Not published (kept in `content/unpublished/`, do not link): `rulesets-and-learning` · `continue-with-ai`
 
 Part 4 Practices (family schemes): `practice-agroforestry` · `practice-forest_restoration` ·

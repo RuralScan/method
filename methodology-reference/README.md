@@ -141,7 +141,7 @@ personal attribution reaches a page.
 
 ## How it sits beside the live dashboard
 
-The live evidence dashboard stays the default view of the site. Every page of this reference carries the
+The site root opens the current methodology; existing review and finding links continue to open the review workspace. Every page of this reference carries the
 site's version menu in the live dashboard's three groups (Live, Under review, Earlier drafts), built from the
 site's edition catalogue at the pinned site revision, with this reference listed once and selected, and
 a Review queue link to the live queues. The overview starts with one finding followed end to end, opening
@@ -175,7 +175,9 @@ and `data-queries.html` holds query recipes in SQL, Python and R with the result
 The build also writes two files for programs: `llms.txt` (a plain-text guide for language-model agents) and
 `data/assets.json` (every downloadable file with address, revision, row count and checksum).
 
-Two chapters on operating the evidence base are kept in `content/unpublished/` and are not built: `continue-with-ai.md` and `rulesets-and-learning.md`. See the note in that folder for how to publish one again.
+The published **System and setup** section gives a short operating entry point, repository map and human-review gates. It links detailed workflows rather than duplicating them.
+
+Two older chapters on operating the evidence base are kept in `content/unpublished/` and are not built: `continue-with-ai.md` and `rulesets-and-learning.md`. See the note in that folder for how to publish one again.
 
 The review page describes the evidence repository's operating procedures at `EVIDENCE_OPERATING` in `build/core.py`; the build fails unless the evidence checkout is at exactly that revision, so the text and its links cannot drift apart. To move it, check out the newer evidence revision, re-read the review page against the submissions guides, then change the constant. Citations written
 `[src: retired:<path>]` open the producer repository at the revision where its evidence records became read-only.
