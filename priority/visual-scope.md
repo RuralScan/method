@@ -6,8 +6,8 @@ The published [Opportunity space problem table](https://ciat.github.io/nbs_rural
 
 | Problem | Current classification position |
 |---|---|
-| Drought | Next review: published FAO intensity categories; historical-frequency rule remains unresolved |
-| Flooding | Classification pending |
+| Drought | FAO intensity interpretation approved; numeric equality verified; core hazard metric awaits Brayden's confirmation |
+| Flooding | Published river-depth crosswalk proposed; return period, binding and hazard alignment pending |
 | Soil erosion | Four-class interpretation approved; binding/release work remains |
 | Heat stress | Classification pending |
 | Rural poverty | Income-tier approach approved; numerical calibration provisional |
@@ -17,6 +17,8 @@ The published [Opportunity space problem table](https://ciat.github.io/nbs_rural
 | Water stress | Aqueduct category mapping approved; runtime release remains pending |
 
 Visual labels anchor scope, not scientific thresholds or proxy choice. Existing approvals can refine placeholder metrics shown in the mock-up (for example, IPC chronic food insecurity). Carbon and biodiversity retain legacy T5 IDs only for traceability: this does not equate sequestration potential with observed carbon loss or biodiversity priority with observed biodiversity loss.
+
+Pete subsequently required alignment with Brayden's intended hazard variables. The [alignment record](research/2026-11-25-climate-hazard-alignment.md) distinguishes physical hazards from agricultural impacts, exposure and vulnerability. Confirmation was requested in Teams; it is not yet received. This does not expand the nine-variable scope.
 
 The broader historical T5 table remains intact. Extra-variable notes and rules are [saved separately](supplementary/README.md), excluded from default core selection. No new classification is approved by this scope correction. The generator checks nine unique visual entries and prevents supplementary rules from entering the core rule table.
 
