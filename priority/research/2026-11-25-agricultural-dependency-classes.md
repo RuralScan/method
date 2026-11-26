@@ -1,6 +1,10 @@
-# Agricultural dependency: measure and classification review
+# Agricultural dependency: approved approach and limitations
 
-25 November 2026. Next variable after approved crop production gap. No new classes approved, calibrated or linked from T5 in this pass.
+25 November 2026. Pete approved the approach and limitations. No numeric cutoffs calibrated.
+
+Approval (chat): “ok approved, capture the agricultural dependency approach and limitations, noting that local data are needed and no none/very little cutoff is justified, then proceed to the next variable”
+
+T5 now links to `priority/classifications/rules.csv#agricultural_dependency_local`. The row records the approach with `binding.validation=requires_local_data`, blank cutoffs and no reference sample. Its global selector makes the approach discoverable; it supplies no global calibration. All scalar previews remain unknown until local calibration is separately recorded. Release-workflow state remains `proposed`; the approach approval does not activate a dataset or runtime release.
 
 The existing profile defines this as agricultural employment share. World Bank indicator `SL.AGR.EMPL.ZS` reports annual agriculture employment as a percentage of total employment, sourced from ILO modelled estimates. Agriculture includes hunting, forestry and fishing. This is an employment measure, not household income dependence. The metadata cautions that imputed observations should not be used for country comparisons or rankings, and notes survey coverage and comparability limitations. [World Bank metadata: Long definition; Statistical concept and methodology; Limitations and exceptions](https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SL.AGR.EMPL.ZS).
 
@@ -8,7 +12,7 @@ The current candidate has national (admin0) support. Retain national values as q
 
 A bounded search found no transferable published four-band standard for this exact metric. World Development Report 2008's agriculture-based / transforming / urbanized typology uses agriculture's contribution to growth and the rural share of poverty; it is not a set of employment-share thresholds. Do not repurpose those categories. [Official overview, Figure 2 and accompanying text](https://documents.worldbank.org/curated/en/873611468174885835/pdf/414560ENGLISH018082137297501PUBLIC1.pdf).
 
-## Proposed approach for discussion
+## Approved approach
 
 Use contextual Low / Medium / High terciles of comparable observed subnational employment shares within the selected country. This is a RuralScan distribution-based convention, not an ILO severity standard. Keep raw percentages visible. Do not invent a None / Very little boundary; zero estimates do not establish absence of agricultural livelihoods. Missing observations remain unknown.
 
@@ -25,3 +29,5 @@ Primary-source search on 25 November 2026 covered ILO employment definitions, Wo
 - `site.worldbank.org "agriculture-based" "transforming" "rural poverty" "2008"`
 
 This is a bounded classification review, not an exhaustive literature search or formal source registration. No dataset acquired and no release decision recorded.
+
+Metadata source archived as original HTML in the team-library mirror under `0_Methodology_&_Frameworks/priority_classification/agricultural_dependency_2026_11_25/classification_sources.zip`. Member readback matched source bytes; remote team access not checked. HTML SHA-256: `5cce11d075465315af4ca652596347f8a1ec2252bb1d3415d2e0c1c3395cf1dd`. Archive SHA-256: `60f89294756ecd9451a048e407853ac03e3421c9722359cb681df92c6ee471c6`.
