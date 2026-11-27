@@ -1,0 +1,10 @@
+{
+  "wet_per": {
+    "url": "https://action-mapper.s3.amazonaws.com/naturebase_cog/wet_per_total.tif",
+    "status": 404
+  },
+  "wet_ipm": {
+    "url": null,
+    "reason": "Current metadata provides no cog_url"
+  }
+}

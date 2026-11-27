@@ -1,0 +1,22 @@
+{
+  "source_commit": "9eb9e12a434d997edaacd52f935d0d5fe9a819d7",
+  "boundary": "USDOS/LSIB_SIMPLE/2017; Haiti",
+  "points_sha256": "a1ecdff28a9fddd1ded22f1f25e64555590defe8ddb8b889eb332cb1685f88e0",
+  "scenarios": [
+    {
+      "scenario": "crop_MG",
+      "collection": "projects/soils-revealed-307010/assets/Future/scenario_crop_MG_dSOC",
+      "error": "ImageCollection.load: ImageCollection asset 'projects/soils-revealed-307010/assets/Future/scenario_crop_MG_dSOC' not found (does not exist or caller does not have access)."
+    },
+    {
+      "scenario": "crop_I",
+      "collection": "projects/soils-revealed-307010/assets/Future/scenario_crop_I_dSOC",
+      "error": "ImageCollection.load: ImageCollection asset 'projects/soils-revealed-307010/assets/Future/scenario_crop_I_dSOC' not found (does not exist or caller does not have access)."
+    },
+    {
+      "scenario": "crop_MGI",
+      "collection": "projects/soils-revealed-307010/assets/Future/scenario_crop_MGI_dSOC",
+      "error": "ImageCollection.load: ImageCollection asset 'projects/soils-revealed-307010/assets/Future/scenario_crop_MGI_dSOC' not found (does not exist or caller does not have access)."
+    }
+  ]
+}

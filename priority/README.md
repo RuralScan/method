@@ -60,3 +60,5 @@ Dataset follow-up: [first inspected binding candidates](bindings/README.md), wit
 26 November: [BII 2020 is approved as provisional coarse context](research/2026-11-26-biodiversity-loss-classes.md#approved-interim-use-coarse-context), with approximately 10 km native support and the existing combined BII/KBA rule retained. Next binding: [soil erosion](research/2026-11-26-soil-erosion-binding.md). [Infrastructure fallbacks and national acquisition gaps](infrastructure/README.md) remain active.
 
 [Other erosion datasets](research/2026-11-26-erosion-dataset-alternatives.md) compares broader GloSEM, EPM/mEPM, multi-process susceptibility, regional and Haiti local options. Coverage and process definitions govern substitution; the approved four soil-loss classes remain unchanged.
+
+26 November carbon/Naturebase handover: [progress, remaining holds and proposed Brayden/Diego follow-up](research/2026-11-26-handover-brayden-diego.md). [Research index](research/README.md) links all completed inspections and audit records. These are technical checks and source selections, not accepted runtime bindings. Nine core problems and optional infrastructure scope are unchanged.

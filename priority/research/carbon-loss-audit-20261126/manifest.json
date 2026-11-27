@@ -1,0 +1,86 @@
+{
+  "created_utc": "2026-11-27T01:21:25.102990+00:00",
+  "status": "Technical inspection only; not scientifically accepted or runtime ready",
+  "boundary_asset": "USDOS/LSIB_SIMPLE/2017",
+  "boundary_filter": {
+    "country_na": "Haiti"
+  },
+  "original_boundary_snapshot_sha256": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9",
+  "files": [
+    {
+      "file": "README.md",
+      "bytes": 2994,
+      "sha256": "c6703a9a1660827cbf4a6155f23f4ebea8881a772faaf6bd03b9d428fe550fba"
+    },
+    {
+      "file": "build_observations.py",
+      "bytes": 2778,
+      "sha256": "874a0458d107b198ae8a494ce7c2f100e97694144cd77d3e26ebe350ab347006"
+    },
+    {
+      "file": "ctrees_2000_metadata.json",
+      "bytes": 2161,
+      "sha256": "30477c649e5c582705c839a161a11bc26d64942b3a3a0c33bf1a42a7a0cce009"
+    },
+    {
+      "file": "ctrees_2022_metadata.json",
+      "bytes": 2161,
+      "sha256": "82c3118974cde7a7f79716798a6e6f3f5f7e838652910720e61b6587bf9ed922"
+    },
+    {
+      "file": "ctrees_2025_metadata.json",
+      "bytes": 2161,
+      "sha256": "82669d0ba23b173b9fd73912f75e9ff91bdaa9ec5f7a41a02ab4f4596976f5bf"
+    },
+    {
+      "file": "observations.json",
+      "bytes": 330735,
+      "sha256": "cf8e50e8d774397edf30985196ac911486bf067f9d63f864c971860d44ed123d"
+    },
+    {
+      "file": "probe_haiti.py",
+      "bytes": 2588,
+      "sha256": "156c6d620fc3a831c42874fcd11c66f57f74b2097c36e29d3691e06d9d88129f"
+    },
+    {
+      "file": "probe_index.json",
+      "bytes": 798,
+      "sha256": "305adbae4c25e70b3fade560174f060aabafd9ac335d606db7a2629406f6bc7a"
+    },
+    {
+      "file": "probe_soil_uncertainty.py",
+      "bytes": 2300,
+      "sha256": "d00b259feb7570056ef9d41e4b166d71b0d839b7f21b501bcb2318b9fe3105e0"
+    },
+    {
+      "file": "soil_2000_2005_metadata.json",
+      "bytes": 1633,
+      "sha256": "eb1027a3704c8b651e47e3bb432ae0c9f1abfae4eb90ea848c6718d25990b12c"
+    },
+    {
+      "file": "soil_2020_2022_metadata.json",
+      "bytes": 1633,
+      "sha256": "5a56c6506c47872e5804bd94188fa37932b9cf0c7d0fcfcf31be5682317ce670"
+    },
+    {
+      "file": "soil_uncertainty_all.json",
+      "bytes": 27969,
+      "sha256": "886871896c1ac192e8ae9392513a4392b6503004acd9b3fb5d5b134411e5e4c3"
+    },
+    {
+      "file": "summarize.py",
+      "bytes": 3092,
+      "sha256": "34759a22ee4515f47c25135b9448947a340b00e604ac00542bf8ba74eaad8398"
+    },
+    {
+      "file": "summary.json",
+      "bytes": 16479,
+      "sha256": "2476b5174fbe1715046343a3d89ad1c000178a86f48d05963daee1ddf101fc9e"
+    },
+    {
+      "file": "verify_audit.py",
+      "bytes": 2260,
+      "sha256": "4360cb32797c35ad6fa45289958e10bbc84f63a5a0fa7b4257aed7b64c3f9283"
+    }
+  ]
+}

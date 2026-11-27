@@ -1,0 +1,128 @@
+{
+  "boundary_sha256": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9",
+  "points_sha256": "a1ecdff28a9fddd1ded22f1f25e64555590defe8ddb8b889eb332cb1685f88e0",
+  "boundary_convention": "cell centres; totals are diagnostics, not exact administrative totals",
+  "rasters": [
+    {
+      "file": "bc_100_tech.tif",
+      "sha256": "a8992483b4ec9c737b50efb8647c975de3dc92fde9fe1dba37748fb74a25120b",
+      "md5": "9f231b78f3bea92d5d5a7670699a8c0e",
+      "bytes": 3572671,
+      "crs": "EPSG:4326",
+      "transform": [
+        0.083333,
+        0.0,
+        -180.0,
+        0.0,
+        -0.083333,
+        90.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "shape": [
+        2160,
+        4320
+      ],
+      "nodata": "NaN",
+      "dtype": [
+        "float32"
+      ],
+      "units": [
+        null
+      ],
+      "scales": [
+        1.0
+      ],
+      "offsets": [
+        0.0
+      ],
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      },
+      "band_tags": {
+        "STATISTICS_MAXIMUM": "39108.953125",
+        "STATISTICS_MEAN": "-9999",
+        "STATISTICS_MINIMUM": "0.001002095406875",
+        "STATISTICS_STDDEV": "-9999"
+      },
+      "boundary_cells": 329,
+      "valid": 314,
+      "missing": 15,
+      "positive": 314,
+      "zero": 0,
+      "negative": 0,
+      "min": 49.20858383178711,
+      "max": 3803.879638671875,
+      "sum_MgC_per_year_cell_centre_diagnostic": 368297.6015739441,
+      "sample_count": 1440,
+      "unique_sample_cells": 340,
+      "crop_samples": {
+        "n": 160,
+        "positive": 156,
+        "missing": 4
+      }
+    },
+    {
+      "file": "bc_100_constrained.tif",
+      "sha256": "ff3eaa0b84381070d94931006af7616e8a555c13d4b1dfe45b3e5a02c298ba89",
+      "md5": "f98ae2c373f36ccf8511bee52228914c",
+      "bytes": 3542817,
+      "crs": "EPSG:4326",
+      "transform": [
+        0.083333,
+        0.0,
+        -180.0,
+        0.0,
+        -0.083333,
+        90.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "shape": [
+        2160,
+        4320
+      ],
+      "nodata": "NaN",
+      "dtype": [
+        "float32"
+      ],
+      "units": [
+        null
+      ],
+      "scales": [
+        1.0
+      ],
+      "offsets": [
+        0.0
+      ],
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      },
+      "band_tags": {
+        "STATISTICS_MAXIMUM": "33852.8203125",
+        "STATISTICS_MEAN": "-9999",
+        "STATISTICS_MINIMUM": "0",
+        "STATISTICS_STDDEV": "-9999"
+      },
+      "boundary_cells": 329,
+      "valid": 281,
+      "missing": 48,
+      "positive": 281,
+      "zero": 0,
+      "negative": 0,
+      "min": 14.851377487182617,
+      "max": 2683.1611328125,
+      "sum_MgC_per_year_cell_centre_diagnostic": 174233.55801963806,
+      "sample_count": 1440,
+      "unique_sample_cells": 340,
+      "crop_samples": {
+        "n": 160,
+        "positive": 149,
+        "missing": 11
+      }
+    }
+  ],
+  "constrained_exceeds_technical_cells": 0
+}

@@ -1,0 +1,25 @@
+{
+  "inspection_date_local": "2026-11-26",
+  "zip_url": "https://naturebase-shared-docs.s3.amazonaws.com/Data-download/wet_cwr_total.zip",
+  "zip_http_headers": {
+    "Content-Length": "173730863",
+    "Last-Modified": "Thu, 19 Nov 2026 20:53:43 GMT",
+    "ETag": "\"30dcd4a9462a16aef9174802554f9eb4-2\"",
+    "Content-Type": "application/x-zip-compressed"
+  },
+  "catalogue_url": "https://app.naturebase.org/data/nb/16",
+  "cog_url": "https://action-mapper.s3.amazonaws.com/naturebase_cog/wet_cwr_total.tif",
+  "cog_http_status": 404,
+  "component_listing_url": "https://naturebase-shared-docs.s3.amazonaws.com/?list-type=2&prefix=Data-download%2Fwet_",
+  "component_listing_status": 200,
+  "upstream_mangrove_record_url": "https://zenodo.org/records/11283186",
+  "upstream_license": "CC BY 4.0, distinct from Naturebase platform conditions",
+  "upstream_acquired": "Data Exports.zip only; spatial typology and R scripts/data archives not acquired",
+  "accounting_pdf_url": "https://naturebase-shared-docs.s3.amazonaws.com/NCS_Accounting_rules_narrative.pdf",
+  "accounting_locator": "Version 1.0, section I(c), PDF page 6",
+  "accounting_sha256": "ba5cff6d9555b2fd23e7451ab9be18a253af21781636a73633910b62b070a01d",
+  "readme_sha256": "52490ec21b7b2b3f6ed0933cff03d73845e6aed00f03131460e01369083ebbb7",
+  "upstream_readme_sha256": "2033e7b9e67427ac1f24bdac96d1bfc653de1aca2a6fcfc83189eb1a23c8a96d",
+  "scientifically_accepted": false,
+  "runtime_ready": false
+}

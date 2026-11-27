@@ -1,0 +1,199 @@
+{
+  "record_counts": {
+    "adm0": 1,
+    "adm1": 10,
+    "adm2": 42
+  },
+  "national": [
+    {
+      "adm0_id": "HTI",
+      "adm0_name": "Haiti",
+      "adm0_ha": "2726111",
+      "crp_scc_tco2e": "97016.440991107",
+      "crp_scc_ha": "572200"
+    }
+  ],
+  "administrative_sums": {
+    "adm0": {
+      "crp_scc_tco2e": {
+        "valid_records": 1,
+        "sum": 97016.440991107
+      },
+      "crp_scc_ha": {
+        "valid_records": 1,
+        "sum": 572200.0
+      }
+    },
+    "adm1": {
+      "crp_scc_tco2e": {
+        "valid_records": 10,
+        "sum": 97015.19167747853
+      },
+      "crp_scc_ha": {
+        "valid_records": 10,
+        "sum": 572100.0
+      }
+    },
+    "adm2": {
+      "crp_scc_tco2e": {
+        "valid_records": 41,
+        "sum": 97015.38713771827
+      },
+      "crp_scc_ha": {
+        "valid_records": 41,
+        "sum": 572300.0
+      }
+    }
+  },
+  "raster": {
+    "member": "crp_scc_tco2eha.tif",
+    "sha256": "30848493d1cbd1e89b778c491617c3c1816f30d3745d519cd65c3199e40806ae",
+    "crs": "EPSG:4326",
+    "transform": [
+      0.00898315284119522,
+      0.0,
+      -180.00441663186973,
+      0.0,
+      -0.00898315284119522,
+      71.00284005680707,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "shape": [
+      14140,
+      40075
+    ],
+    "bands": 1,
+    "dtype": [
+      "float32"
+    ],
+    "nodata": -3.4028234663852886e+38,
+    "scales": [
+      1.0
+    ],
+    "offsets": [
+      0.0
+    ],
+    "units": [
+      null
+    ],
+    "descriptions": [
+      "Band_1"
+    ],
+    "tags": {
+      "DataType": "Generic",
+      "OVR_RESAMPLING_ALG": "NEAREST",
+      "AREA_OR_POINT": "Area"
+    },
+    "band_tags": {},
+    "bounds": [
+      -180.00441663186973,
+      -56.018941117693345,
+      179.99543347902875,
+      71.00284005680707
+    ],
+    "blocks": [
+      [
+        512,
+        512
+      ]
+    ],
+    "stratified_summary": {
+      "10": {
+        "valid": 160,
+        "zero": 144,
+        "positive": 16,
+        "negative": 0,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 1.0100195407867432
+      },
+      "20": {
+        "valid": 160,
+        "zero": 144,
+        "positive": 16,
+        "negative": 0,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.856368899345398
+      },
+      "30": {
+        "valid": 160,
+        "zero": 125,
+        "positive": 35,
+        "negative": 0,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 1.5403361320495605
+      },
+      "40": {
+        "valid": 160,
+        "zero": 16,
+        "positive": 144,
+        "negative": 0,
+        "min": 0.0,
+        "median": 0.3122829645872116,
+        "max": 1.3058286905288696
+      },
+      "50": {
+        "valid": 160,
+        "zero": 86,
+        "positive": 74,
+        "negative": 0,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 1.315932273864746
+      },
+      "60": {
+        "valid": 160,
+        "zero": 116,
+        "positive": 44,
+        "negative": 0,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 1.3710479736328125
+      },
+      "80": {
+        "valid": 160,
+        "zero": 141,
+        "positive": 19,
+        "negative": 0,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 1.0701944828033447
+      },
+      "90": {
+        "valid": 160,
+        "zero": 49,
+        "positive": 111,
+        "negative": 0,
+        "min": 0.0,
+        "median": 0.014386428985744715,
+        "max": 1.6304988861083984
+      },
+      "95": {
+        "valid": 160,
+        "zero": 148,
+        "positive": 12,
+        "negative": 0,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.10747174918651581
+      }
+    },
+    "unique_sample_pixels": 1292,
+    "haiti_cell_centre_summary": {
+      "valid": 28815,
+      "zero": 22742,
+      "positive": 6073,
+      "negative": 0,
+      "min": 0.0,
+      "median": 0.0,
+      "max": 1.9462019205093384
+    },
+    "haiti_cell_centres": 28815,
+    "haiti_missing_cells": 0,
+    "sample_file": "crp_scc_tco2eha_samples.json"
+  }
+}

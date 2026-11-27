@@ -1,0 +1,191 @@
+{
+  "package": {
+    "name": "wet_per_selected.zip",
+    "sha256": "32c6b8a5028f0e0edefbfde9f82aa2d172e1cd474e4605bf89c4c335a7d25ea7"
+  },
+  "input_hashes": {
+    "points": "a1ecdff28a9fddd1ded22f1f25e64555590defe8ddb8b889eb332cb1685f88e0",
+    "boundary": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9"
+  },
+  "members": [
+    {
+      "name": "ReadMe_wet_per_total.txt",
+      "bytes": 10191,
+      "crc32": 4269239691
+    },
+    {
+      "name": "wet_per_tco2e_adm0.csv",
+      "bytes": 8337,
+      "crc32": 2849675712
+    },
+    {
+      "name": "wet_per_tco2e_adm1.csv",
+      "bytes": 241148,
+      "crc32": 2321738906
+    },
+    {
+      "name": "wet_per_tco2e_adm2.csv",
+      "bytes": 5494997,
+      "crc32": 2385139153
+    },
+    {
+      "name": "wet_per_tco2eha.tif",
+      "bytes": 5051555,
+      "crc32": 1404369290
+    }
+  ],
+  "rasters": [
+    {
+      "member": "wet_per_tco2eha.tif",
+      "sha256": "77b1ba676c0030c2c353dc2552f9bd2bae9fe0360165727653df47df0247f685",
+      "crs": "EPSG:4326",
+      "transform": [
+        0.00898315284119522,
+        0.0,
+        -180.00441663186973,
+        0.0,
+        -0.00898315284119522,
+        71.00284005680707,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "shape": [
+        14140,
+        40076
+      ],
+      "bands": 1,
+      "dtype": [
+        "float32"
+      ],
+      "nodata": -3.4028234663852886e+38,
+      "scales": [
+        1.0
+      ],
+      "offsets": [
+        0.0
+      ],
+      "units": [
+        null
+      ],
+      "descriptions": [
+        "Band_1"
+      ],
+      "tags": {
+        "TIFFTAG_SOFTWARE": "GDAL 3.9.2e (3090211) (4.6.0;1710;3.0.3;2.1.6;;0x10400;5.4.7;4.0.0;), PROJ 9.4.1 (EPSG.VERSION=v11.006;EPSG.DATE=2024-03-13;ESRI.VERSION=ArcGIS Pro 3.3;ESRI.DATE=2024-05-07;PROJ_DATA.VERSION=1.18;)",
+        "DataType": "Generic",
+        "OVR_RESAMPLING_ALG": "NEAREST",
+        "AREA_OR_POINT": "Area"
+      },
+      "band_tags": {},
+      "bounds": [
+        -180.00441663186973,
+        -56.018941117693345,
+        180.0044166318699,
+        71.00284005680707
+      ],
+      "blocks": [
+        [
+          512,
+          512
+        ]
+      ],
+      "stratified_summary": {
+        "10": {
+          "valid": 160,
+          "zero": 160,
+          "positive": 0,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 0.0
+        },
+        "20": {
+          "valid": 160,
+          "zero": 160,
+          "positive": 0,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 0.0
+        },
+        "30": {
+          "valid": 160,
+          "zero": 160,
+          "positive": 0,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 0.0
+        },
+        "40": {
+          "valid": 160,
+          "zero": 160,
+          "positive": 0,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 0.0
+        },
+        "50": {
+          "valid": 160,
+          "zero": 160,
+          "positive": 0,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 0.0
+        },
+        "60": {
+          "valid": 160,
+          "zero": 160,
+          "positive": 0,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 0.0
+        },
+        "80": {
+          "valid": 160,
+          "zero": 160,
+          "positive": 0,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 0.0
+        },
+        "90": {
+          "valid": 160,
+          "zero": 160,
+          "positive": 0,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 0.0
+        },
+        "95": {
+          "valid": 160,
+          "zero": 160,
+          "positive": 0,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 0.0
+        }
+      },
+      "unique_sample_pixels": 1292,
+      "haiti_cell_centre_summary": {
+        "valid": 28815,
+        "zero": 28815,
+        "positive": 0,
+        "negative": 0,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "haiti_cell_centres": 28815,
+      "haiti_missing_cells": 0,
+      "sample_file": "wet_per_tco2eha_samples.json"
+    }
+  ]
+}

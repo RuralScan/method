@@ -1,0 +1,18 @@
+{
+  "inspection_date_local": "2026-11-26",
+  "timezone": "America/Bogota",
+  "audit_written_utc": "2026-11-27T03:06:48.436734+00:00",
+  "method_base": "cb94059a9636027a16517e06f9ab8548a911191b",
+  "scientifically_accepted": false,
+  "runtime_ready": false,
+  "binding_status": "held_haiti_drainage_and_eligible_area_unresolved",
+  "boundary": "USDOS/LSIB_SIMPLE/2017; country_na=Haiti",
+  "sampling": "160 points in each of 9 ESA WorldCover classes; 1440 points; 1292 distinct Naturebase pixels. Full country check uses native cell centres.",
+  "acquisition_scope": "Naturebase top-level CSV/TXT/TIF members fetched by HTTP ranges; selected member CRC verified and SHA256 recorded. Original whole ZIP not acquired/hashed; selected.zip hashes refer to locally assembled subsets. GDB members inventoried only, not inspected. PEATMAP North America original ZIP acquired and SHA256 recorded.",
+  "peatmap_source": "https://archive.researchdata.leeds.ac.uk/251/",
+  "peatmap_zip": "https://archive.researchdata.leeds.ac.uk/251/11/North_America.zip",
+  "gpd_source": "https://greifswaldmoor.de/global-peatland-database-en.html",
+  "gpd_host": "https://gee-community-catalog.org/projects/peatland/",
+  "fao_catalogue": "https://developers.google.com/earth-engine/datasets/catalog/FAO_GHG_1_DROSA_A",
+  "numeric_use": "No high/medium/low/none classification or carbon-loss threshold introduced. Naturebase zero-valued raster and NA tables do not establish absence of peat or opportunity."
+}

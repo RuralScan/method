@@ -1,0 +1,367 @@
+[
+  {
+    "name": "adm0-2.gdb/",
+    "bytes": 0,
+    "compressed_bytes": 0
+  },
+  {
+    "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.12728.25008.sr.lock",
+    "bytes": 0,
+    "compressed_bytes": 0
+  },
+  {
+    "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.20036.21452.sr.lock",
+    "bytes": 0,
+    "compressed_bytes": 0
+  },
+  {
+    "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.20896.32740.sr.lock",
+    "bytes": 0,
+    "compressed_bytes": 0
+  },
+  {
+    "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.23884.76296.sr.lock",
+    "bytes": 0,
+    "compressed_bytes": 0
+  },
+  {
+    "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.24052.21288.sr.lock",
+    "bytes": 0,
+    "compressed_bytes": 0
+  },
+  {
+    "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.24272.29896.sr.lock",
+    "bytes": 0,
+    "compressed_bytes": 0
+  },
+  {
+    "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.31932.24708.sr.lock",
+    "bytes": 0,
+    "compressed_bytes": 0
+  },
+  {
+    "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.70644.71056.sr.lock",
+    "bytes": 0,
+    "compressed_bytes": 0
+  },
+  {
+    "name": "adm0-2.gdb/a00000001.freelist",
+    "bytes": 4440,
+    "compressed_bytes": 60
+  },
+  {
+    "name": "adm0-2.gdb/a00000001.gdbindexes",
+    "bytes": 110,
+    "compressed_bytes": 81
+  },
+  {
+    "name": "adm0-2.gdb/a00000001.gdbtable",
+    "bytes": 458,
+    "compressed_bytes": 239
+  },
+  {
+    "name": "adm0-2.gdb/a00000001.gdbtablx",
+    "bytes": 5152,
+    "compressed_bytes": 78
+  },
+  {
+    "name": "adm0-2.gdb/a00000001.TablesByName.atx",
+    "bytes": 4118,
+    "compressed_bytes": 201
+  },
+  {
+    "name": "adm0-2.gdb/a00000002.gdbtable",
+    "bytes": 2055,
+    "compressed_bytes": 641
+  },
+  {
+    "name": "adm0-2.gdb/a00000002.gdbtablx",
+    "bytes": 5152,
+    "compressed_bytes": 133
+  },
+  {
+    "name": "adm0-2.gdb/a00000003.gdbindexes",
+    "bytes": 42,
+    "compressed_bytes": 33
+  },
+  {
+    "name": "adm0-2.gdb/a00000003.gdbtable",
+    "bytes": 758,
+    "compressed_bytes": 341
+  },
+  {
+    "name": "adm0-2.gdb/a00000003.gdbtablx",
+    "bytes": 5152,
+    "compressed_bytes": 41
+  },
+  {
+    "name": "adm0-2.gdb/a00000004.CatItemsByPhysicalName.atx",
+    "bytes": 4118,
+    "compressed_bytes": 111
+  },
+  {
+    "name": "adm0-2.gdb/a00000004.CatItemsByType.atx",
+    "bytes": 4118,
+    "compressed_bytes": 143
+  },
+  {
+    "name": "adm0-2.gdb/a00000004.FDO_UUID.atx",
+    "bytes": 4118,
+    "compressed_bytes": 184
+  },
+  {
+    "name": "adm0-2.gdb/a00000004.freelist",
+    "bytes": 57688,
+    "compressed_bytes": 1396
+  },
+  {
+    "name": "adm0-2.gdb/a00000004.gdbindexes",
+    "bytes": 310,
+    "compressed_bytes": 131
+  },
+  {
+    "name": "adm0-2.gdb/a00000004.gdbtable",
+    "bytes": 1100051,
+    "compressed_bytes": 104301
+  },
+  {
+    "name": "adm0-2.gdb/a00000004.gdbtablx",
+    "bytes": 5152,
+    "compressed_bytes": 67
+  },
+  {
+    "name": "adm0-2.gdb/a00000004.horizon",
+    "bytes": 32,
+    "compressed_bytes": 19
+  },
+  {
+    "name": "adm0-2.gdb/a00000004.spx",
+    "bytes": 12310,
+    "compressed_bytes": 47
+  },
+  {
+    "name": "adm0-2.gdb/a00000005.CatItemTypesByName.atx",
+    "bytes": 12310,
+    "compressed_bytes": 568
+  },
+  {
+    "name": "adm0-2.gdb/a00000005.CatItemTypesByParentTypeID.atx",
+    "bytes": 4118,
+    "compressed_bytes": 289
+  },
+  {
+    "name": "adm0-2.gdb/a00000005.CatItemTypesByUUID.atx",
+    "bytes": 4118,
+    "compressed_bytes": 984
+  },
+  {
+    "name": "adm0-2.gdb/a00000005.gdbindexes",
+    "bytes": 296,
+    "compressed_bytes": 117
+  },
+  {
+    "name": "adm0-2.gdb/a00000005.gdbtable",
+    "bytes": 2071,
+    "compressed_bytes": 1266
+  },
+  {
+    "name": "adm0-2.gdb/a00000005.gdbtablx",
+    "bytes": 5152,
+    "compressed_bytes": 134
+  },
+  {
+    "name": "adm0-2.gdb/a00000006.CatRelsByDestinationID.atx",
+    "bytes": 4118,
+    "compressed_bytes": 134
+  },
+  {
+    "name": "adm0-2.gdb/a00000006.CatRelsByOriginID.atx",
+    "bytes": 4118,
+    "compressed_bytes": 89
+  },
+  {
+    "name": "adm0-2.gdb/a00000006.CatRelsByType.atx",
+    "bytes": 4118,
+    "compressed_bytes": 88
+  },
+  {
+    "name": "adm0-2.gdb/a00000006.FDO_UUID.atx",
+    "bytes": 4118,
+    "compressed_bytes": 134
+  },
+  {
+    "name": "adm0-2.gdb/a00000006.freelist",
+    "bytes": 4440,
+    "compressed_bytes": 58
+  },
+  {
+    "name": "adm0-2.gdb/a00000006.gdbindexes",
+    "bytes": 318,
+    "compressed_bytes": 128
+  },
+  {
+    "name": "adm0-2.gdb/a00000006.gdbtable",
+    "bytes": 628,
+    "compressed_bytes": 426
+  },
+  {
+    "name": "adm0-2.gdb/a00000006.gdbtablx",
+    "bytes": 5152,
+    "compressed_bytes": 50
+  },
+  {
+    "name": "adm0-2.gdb/a00000007.CatRelTypesByBackwardLabel.atx",
+    "bytes": 12310,
+    "compressed_bytes": 444
+  },
+  {
+    "name": "adm0-2.gdb/a00000007.CatRelTypesByDestItemTypeID.atx",
+    "bytes": 4118,
+    "compressed_bytes": 321
+  },
+  {
+    "name": "adm0-2.gdb/a00000007.CatRelTypesByForwardLabel.atx",
+    "bytes": 12310,
+    "compressed_bytes": 331
+  },
+  {
+    "name": "adm0-2.gdb/a00000007.CatRelTypesByName.atx",
+    "bytes": 12310,
+    "compressed_bytes": 465
+  },
+  {
+    "name": "adm0-2.gdb/a00000007.CatRelTypesByOriginItemTypeID.atx",
+    "bytes": 4118,
+    "compressed_bytes": 497
+  },
+  {
+    "name": "adm0-2.gdb/a00000007.CatRelTypesByUUID.atx",
+    "bytes": 4118,
+    "compressed_bytes": 675
+  },
+  {
+    "name": "adm0-2.gdb/a00000007.gdbindexes",
+    "bytes": 602,
+    "compressed_bytes": 173
+  },
+  {
+    "name": "adm0-2.gdb/a00000007.gdbtable",
+    "bytes": 3626,
+    "compressed_bytes": 1675
+  },
+  {
+    "name": "adm0-2.gdb/a00000007.gdbtablx",
+    "bytes": 5152,
+    "compressed_bytes": 121
+  },
+  {
+    "name": "adm0-2.gdb/a0000000d.gdbindexes",
+    "bytes": 116,
+    "compressed_bytes": 71
+  },
+  {
+    "name": "adm0-2.gdb/a0000000d.gdbtable",
+    "bytes": 63964759,
+    "compressed_bytes": 47856187
+  },
+  {
+    "name": "adm0-2.gdb/a0000000d.gdbtablx",
+    "bytes": 5152,
+    "compressed_bytes": 919
+  },
+  {
+    "name": "adm0-2.gdb/a0000000d.horizon",
+    "bytes": 32,
+    "compressed_bytes": 19
+  },
+  {
+    "name": "adm0-2.gdb/a0000000d.spx",
+    "bytes": 4118,
+    "compressed_bytes": 466
+  },
+  {
+    "name": "adm0-2.gdb/a00000010.gdbindexes",
+    "bytes": 116,
+    "compressed_bytes": 71
+  },
+  {
+    "name": "adm0-2.gdb/a00000010.gdbtable",
+    "bytes": 70802686,
+    "compressed_bytes": 44950080
+  },
+  {
+    "name": "adm0-2.gdb/a00000010.gdbtablx",
+    "bytes": 20512,
+    "compressed_bytes": 9886
+  },
+  {
+    "name": "adm0-2.gdb/a00000010.horizon",
+    "bytes": 32,
+    "compressed_bytes": 19
+  },
+  {
+    "name": "adm0-2.gdb/a00000010.spx",
+    "bytes": 53270,
+    "compressed_bytes": 6742
+  },
+  {
+    "name": "adm0-2.gdb/a00000011.gdbindexes",
+    "bytes": 116,
+    "compressed_bytes": 71
+  },
+  {
+    "name": "adm0-2.gdb/a00000011.gdbtable",
+    "bytes": 123791037,
+    "compressed_bytes": 74754970
+  },
+  {
+    "name": "adm0-2.gdb/a00000011.gdbtablx",
+    "bytes": 250912,
+    "compressed_bytes": 137667
+  },
+  {
+    "name": "adm0-2.gdb/a00000011.horizon",
+    "bytes": 32,
+    "compressed_bytes": 19
+  },
+  {
+    "name": "adm0-2.gdb/a00000011.spx",
+    "bytes": 892950,
+    "compressed_bytes": 133363
+  },
+  {
+    "name": "adm0-2.gdb/gdb",
+    "bytes": 4,
+    "compressed_bytes": 9
+  },
+  {
+    "name": "adm0-2.gdb/timestamps",
+    "bytes": 400,
+    "compressed_bytes": 35
+  },
+  {
+    "name": "crp_scc_tco2e_adm0.csv",
+    "bytes": 10735,
+    "compressed_bytes": 5876
+  },
+  {
+    "name": "crp_scc_tco2e_adm1.csv",
+    "bytes": 284241,
+    "compressed_bytes": 109563
+  },
+  {
+    "name": "crp_scc_tco2e_adm2.csv",
+    "bytes": 6209015,
+    "compressed_bytes": 1652122
+  },
+  {
+    "name": "crp_scc_tco2eha.tif",
+    "bytes": 201898909,
+    "compressed_bytes": 199383271
+  },
+  {
+    "name": "ReadMe_crp_scc_total.txt",
+    "bytes": 5434,
+    "compressed_bytes": 2229
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "acquire_members.py": "92cf5665e042d6e6f4ca7e5b036035797cde401f2cafa0cf5e33d7646385ef02",
+  "archive_inventory.json": "d18f12c22c8351336d9389b3d5da14cc6d058200fa76ceaaf71d15e62d6634af",
+  "catalogue_records.json": "db6a09097f98139dfa404e2fe5d744deecbee3aaed7e2d41c21d2220c86c7c26",
+  "crp_scc/acquisition.json": "b5f69c23203fdeea0e397da646ed594d25e0edff03219f1a54e255921852b63b",
+  "crp_scc/crp_scc_tco2eha_samples.json": "9f8104e1a07c80a98ae451f11d792c4943036634970aabe5f9f86c62063d23bd",
+  "crp_scc/haiti_tables.json": "b88215f750577bfda487eb7895369aa9ba5c71b41746c6e07980e2470f684f0d",
+  "crp_scc/inspection.json": "56cf3f453a7d8610ea9a70b16deb4f448eaa159333c6de3bfe6deffffcb32161",
+  "hosted_access.json": "78da6d1cf507b5f3dbbf5ff029862d589d505e03631354cf11bf656d2f650d23",
+  "probe_crop_soil.py": "1454ec8db243385bd8bd1dba18a99d0486ea49e40f2acbf6d166995de7f3c911",
+  "provenance.json": "3926f3b929a815cc69e5cbad1b09fe79a38b237f62976b78196fc5d060568b7d",
+  "soils_revealed_datacite.json": "dfab509cd1f7546130aeeeeb6ad5473a4c580c96d2ded34b88f1c47589e78b62",
+  "summarize.py": "d1120b4c69716c1377f8b63bfe09dd0f6a66afb07990b12cb33b4ddc3cb441c5",
+  "summary.json": "8f875e19cbc3a12cce655fe101b1e1aa340a9ecb4bdd2f03f888a5683668b08a",
+  "verify_audit.py": "7cd62d4f8f7b5a4a7f13835b664bdbe4c30515bb5124a59d5b67044d5cd30eab"
+}

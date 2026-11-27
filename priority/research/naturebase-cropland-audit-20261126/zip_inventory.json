@@ -1,0 +1,446 @@
+[
+  {
+    "filename": "adm0-2.gdb/",
+    "size": 0,
+    "compressed_size": 0,
+    "crc": 0
+  },
+  {
+    "filename": "adm0-2.gdb/_gdb.CA887-FVZWHR3.12728.25008.sr.lock",
+    "size": 0,
+    "compressed_size": 0,
+    "crc": 0
+  },
+  {
+    "filename": "adm0-2.gdb/_gdb.CA887-FVZWHR3.20036.21452.sr.lock",
+    "size": 0,
+    "compressed_size": 0,
+    "crc": 0
+  },
+  {
+    "filename": "adm0-2.gdb/_gdb.CA887-FVZWHR3.20896.32740.sr.lock",
+    "size": 0,
+    "compressed_size": 0,
+    "crc": 0
+  },
+  {
+    "filename": "adm0-2.gdb/_gdb.CA887-FVZWHR3.23884.76296.sr.lock",
+    "size": 0,
+    "compressed_size": 0,
+    "crc": 0
+  },
+  {
+    "filename": "adm0-2.gdb/_gdb.CA887-FVZWHR3.24052.21288.sr.lock",
+    "size": 0,
+    "compressed_size": 0,
+    "crc": 0
+  },
+  {
+    "filename": "adm0-2.gdb/_gdb.CA887-FVZWHR3.24272.29896.sr.lock",
+    "size": 0,
+    "compressed_size": 0,
+    "crc": 0
+  },
+  {
+    "filename": "adm0-2.gdb/_gdb.CA887-FVZWHR3.31932.24708.sr.lock",
+    "size": 0,
+    "compressed_size": 0,
+    "crc": 0
+  },
+  {
+    "filename": "adm0-2.gdb/_gdb.CA887-FVZWHR3.70644.71056.sr.lock",
+    "size": 0,
+    "compressed_size": 0,
+    "crc": 0
+  },
+  {
+    "filename": "adm0-2.gdb/a00000001.freelist",
+    "size": 4440,
+    "compressed_size": 60,
+    "crc": 3538457319
+  },
+  {
+    "filename": "adm0-2.gdb/a00000001.gdbindexes",
+    "size": 110,
+    "compressed_size": 81,
+    "crc": 2529943236
+  },
+  {
+    "filename": "adm0-2.gdb/a00000001.gdbtable",
+    "size": 458,
+    "compressed_size": 237,
+    "crc": 2130525330
+  },
+  {
+    "filename": "adm0-2.gdb/a00000001.gdbtablx",
+    "size": 5152,
+    "compressed_size": 79,
+    "crc": 1114921168
+  },
+  {
+    "filename": "adm0-2.gdb/a00000001.TablesByName.atx",
+    "size": 4118,
+    "compressed_size": 201,
+    "crc": 110474461
+  },
+  {
+    "filename": "adm0-2.gdb/a00000002.gdbtable",
+    "size": 2055,
+    "compressed_size": 641,
+    "crc": 1868924595
+  },
+  {
+    "filename": "adm0-2.gdb/a00000002.gdbtablx",
+    "size": 5152,
+    "compressed_size": 133,
+    "crc": 2165908499
+  },
+  {
+    "filename": "adm0-2.gdb/a00000003.gdbindexes",
+    "size": 42,
+    "compressed_size": 33,
+    "crc": 279189289
+  },
+  {
+    "filename": "adm0-2.gdb/a00000003.gdbtable",
+    "size": 758,
+    "compressed_size": 341,
+    "crc": 2306748800
+  },
+  {
+    "filename": "adm0-2.gdb/a00000003.gdbtablx",
+    "size": 5152,
+    "compressed_size": 41,
+    "crc": 788637825
+  },
+  {
+    "filename": "adm0-2.gdb/a00000004.CatItemsByPhysicalName.atx",
+    "size": 4118,
+    "compressed_size": 111,
+    "crc": 1035239942
+  },
+  {
+    "filename": "adm0-2.gdb/a00000004.CatItemsByType.atx",
+    "size": 4118,
+    "compressed_size": 142,
+    "crc": 3915723510
+  },
+  {
+    "filename": "adm0-2.gdb/a00000004.FDO_UUID.atx",
+    "size": 4118,
+    "compressed_size": 184,
+    "crc": 2301705929
+  },
+  {
+    "filename": "adm0-2.gdb/a00000004.freelist",
+    "size": 57688,
+    "compressed_size": 1407,
+    "crc": 1420385332
+  },
+  {
+    "filename": "adm0-2.gdb/a00000004.gdbindexes",
+    "size": 310,
+    "compressed_size": 131,
+    "crc": 548459433
+  },
+  {
+    "filename": "adm0-2.gdb/a00000004.gdbtable",
+    "size": 1176993,
+    "compressed_size": 111823,
+    "crc": 2209274128
+  },
+  {
+    "filename": "adm0-2.gdb/a00000004.gdbtablx",
+    "size": 5152,
+    "compressed_size": 67,
+    "crc": 3368456993
+  },
+  {
+    "filename": "adm0-2.gdb/a00000004.horizon",
+    "size": 32,
+    "compressed_size": 19,
+    "crc": 810610692
+  },
+  {
+    "filename": "adm0-2.gdb/a00000004.spx",
+    "size": 12310,
+    "compressed_size": 47,
+    "crc": 3720050357
+  },
+  {
+    "filename": "adm0-2.gdb/a00000005.CatItemTypesByName.atx",
+    "size": 12310,
+    "compressed_size": 568,
+    "crc": 1956271410
+  },
+  {
+    "filename": "adm0-2.gdb/a00000005.CatItemTypesByParentTypeID.atx",
+    "size": 4118,
+    "compressed_size": 289,
+    "crc": 4121490029
+  },
+  {
+    "filename": "adm0-2.gdb/a00000005.CatItemTypesByUUID.atx",
+    "size": 4118,
+    "compressed_size": 984,
+    "crc": 2464174986
+  },
+  {
+    "filename": "adm0-2.gdb/a00000005.gdbindexes",
+    "size": 296,
+    "compressed_size": 117,
+    "crc": 2175196442
+  },
+  {
+    "filename": "adm0-2.gdb/a00000005.gdbtable",
+    "size": 2071,
+    "compressed_size": 1266,
+    "crc": 270753825
+  },
+  {
+    "filename": "adm0-2.gdb/a00000005.gdbtablx",
+    "size": 5152,
+    "compressed_size": 134,
+    "crc": 3890823955
+  },
+  {
+    "filename": "adm0-2.gdb/a00000006.CatRelsByDestinationID.atx",
+    "size": 4118,
+    "compressed_size": 134,
+    "crc": 2727756563
+  },
+  {
+    "filename": "adm0-2.gdb/a00000006.CatRelsByOriginID.atx",
+    "size": 4118,
+    "compressed_size": 89,
+    "crc": 1085695029
+  },
+  {
+    "filename": "adm0-2.gdb/a00000006.CatRelsByType.atx",
+    "size": 4118,
+    "compressed_size": 88,
+    "crc": 1943984577
+  },
+  {
+    "filename": "adm0-2.gdb/a00000006.FDO_UUID.atx",
+    "size": 4118,
+    "compressed_size": 134,
+    "crc": 1455884856
+  },
+  {
+    "filename": "adm0-2.gdb/a00000006.freelist",
+    "size": 4440,
+    "compressed_size": 60,
+    "crc": 3617177126
+  },
+  {
+    "filename": "adm0-2.gdb/a00000006.gdbindexes",
+    "size": 318,
+    "compressed_size": 128,
+    "crc": 297724318
+  },
+  {
+    "filename": "adm0-2.gdb/a00000006.gdbtable",
+    "size": 628,
+    "compressed_size": 429,
+    "crc": 3583974914
+  },
+  {
+    "filename": "adm0-2.gdb/a00000006.gdbtablx",
+    "size": 5152,
+    "compressed_size": 48,
+    "crc": 3508834839
+  },
+  {
+    "filename": "adm0-2.gdb/a00000007.CatRelTypesByBackwardLabel.atx",
+    "size": 12310,
+    "compressed_size": 444,
+    "crc": 3543266175
+  },
+  {
+    "filename": "adm0-2.gdb/a00000007.CatRelTypesByDestItemTypeID.atx",
+    "size": 4118,
+    "compressed_size": 321,
+    "crc": 574607566
+  },
+  {
+    "filename": "adm0-2.gdb/a00000007.CatRelTypesByForwardLabel.atx",
+    "size": 12310,
+    "compressed_size": 331,
+    "crc": 2627710260
+  },
+  {
+    "filename": "adm0-2.gdb/a00000007.CatRelTypesByName.atx",
+    "size": 12310,
+    "compressed_size": 465,
+    "crc": 1514706285
+  },
+  {
+    "filename": "adm0-2.gdb/a00000007.CatRelTypesByOriginItemTypeID.atx",
+    "size": 4118,
+    "compressed_size": 497,
+    "crc": 4216641027
+  },
+  {
+    "filename": "adm0-2.gdb/a00000007.CatRelTypesByUUID.atx",
+    "size": 4118,
+    "compressed_size": 675,
+    "crc": 1011060428
+  },
+  {
+    "filename": "adm0-2.gdb/a00000007.gdbindexes",
+    "size": 602,
+    "compressed_size": 173,
+    "crc": 3251437668
+  },
+  {
+    "filename": "adm0-2.gdb/a00000007.gdbtable",
+    "size": 3626,
+    "compressed_size": 1675,
+    "crc": 3116799455
+  },
+  {
+    "filename": "adm0-2.gdb/a00000007.gdbtablx",
+    "size": 5152,
+    "compressed_size": 121,
+    "crc": 632490471
+  },
+  {
+    "filename": "adm0-2.gdb/a0000000d.gdbindexes",
+    "size": 116,
+    "compressed_size": 71,
+    "crc": 1731915611
+  },
+  {
+    "filename": "adm0-2.gdb/a0000000d.gdbtable",
+    "size": 63964759,
+    "compressed_size": 47856187,
+    "crc": 4208529077
+  },
+  {
+    "filename": "adm0-2.gdb/a0000000d.gdbtablx",
+    "size": 5152,
+    "compressed_size": 919,
+    "crc": 3298530901
+  },
+  {
+    "filename": "adm0-2.gdb/a0000000d.horizon",
+    "size": 32,
+    "compressed_size": 19,
+    "crc": 810610692
+  },
+  {
+    "filename": "adm0-2.gdb/a0000000d.spx",
+    "size": 4118,
+    "compressed_size": 466,
+    "crc": 2816914900
+  },
+  {
+    "filename": "adm0-2.gdb/a00000010.gdbindexes",
+    "size": 116,
+    "compressed_size": 71,
+    "crc": 1731915611
+  },
+  {
+    "filename": "adm0-2.gdb/a00000010.gdbtable",
+    "size": 123791037,
+    "compressed_size": 74754970,
+    "crc": 2848337906
+  },
+  {
+    "filename": "adm0-2.gdb/a00000010.gdbtablx",
+    "size": 250912,
+    "compressed_size": 137667,
+    "crc": 1728467466
+  },
+  {
+    "filename": "adm0-2.gdb/a00000010.horizon",
+    "size": 32,
+    "compressed_size": 19,
+    "crc": 810610692
+  },
+  {
+    "filename": "adm0-2.gdb/a00000010.spx",
+    "size": 892950,
+    "compressed_size": 133363,
+    "crc": 3316601886
+  },
+  {
+    "filename": "adm0-2.gdb/a00000011.gdbindexes",
+    "size": 116,
+    "compressed_size": 71,
+    "crc": 1731915611
+  },
+  {
+    "filename": "adm0-2.gdb/a00000011.gdbtable",
+    "size": 70802686,
+    "compressed_size": 44950080,
+    "crc": 2633869666
+  },
+  {
+    "filename": "adm0-2.gdb/a00000011.gdbtablx",
+    "size": 20512,
+    "compressed_size": 9886,
+    "crc": 2738931062
+  },
+  {
+    "filename": "adm0-2.gdb/a00000011.horizon",
+    "size": 32,
+    "compressed_size": 19,
+    "crc": 810610692
+  },
+  {
+    "filename": "adm0-2.gdb/a00000011.spx",
+    "size": 53270,
+    "compressed_size": 6742,
+    "crc": 1270717992
+  },
+  {
+    "filename": "adm0-2.gdb/gdb",
+    "size": 4,
+    "compressed_size": 9,
+    "crc": 379203374
+  },
+  {
+    "filename": "adm0-2.gdb/timestamps",
+    "size": 400,
+    "compressed_size": 35,
+    "crc": 2370023460
+  },
+  {
+    "filename": "crp_cba_tco2e_adm0.csv",
+    "size": 9702,
+    "compressed_size": 5236,
+    "crc": 1144942742
+  },
+  {
+    "filename": "crp_cba_tco2e_adm1.csv",
+    "size": 269625,
+    "compressed_size": 100438,
+    "crc": 900990393
+  },
+  {
+    "filename": "crp_cba_tco2e_adm2.csv",
+    "size": 5876050,
+    "compressed_size": 1434781,
+    "crc": 117917879
+  },
+  {
+    "filename": "crp_cba_tco2eha.tif",
+    "size": 46591976,
+    "compressed_size": 43822564,
+    "crc": 1814696044
+  },
+  {
+    "filename": "crp_cba_total.zip",
+    "size": 213344256,
+    "compressed_size": 213335937,
+    "crc": 2938084738
+  },
+  {
+    "filename": "ReadMe_crp_cba_total.txt",
+    "size": 7066,
+    "compressed_size": 2947,
+    "crc": 3913392150
+  }
+]

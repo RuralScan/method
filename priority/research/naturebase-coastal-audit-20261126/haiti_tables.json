@@ -1,0 +1,575 @@
+{
+  "wet_cwr_tco2e_adm2.csv": {
+    "source_sha256": "deba2c8d3ab936d9aced69b91bfbc29d4f51ce2f3cd8b7056971f2aef77a1a4f",
+    "rows": [
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B96088034562700",
+        "adm1_name": "Nord-Est Department",
+        "adm2_id": "57096268B10864130869566",
+        "adm2_name": "Arrondissement de Fort-Libert\u00e9",
+        "adm2_ha": "34740",
+        "wet_cwr_tco2e": "696.9490264",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B18164660475406",
+        "adm1_name": "D\u00e9partement des Nippes",
+        "adm2_id": "57096268B12331201715811",
+        "adm2_name": "Arrondissement de Mirago\u00e2ne",
+        "adm2_ha": "39717",
+        "wet_cwr_tco2e": "78.12044118",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B56880358607712",
+        "adm1_name": "Artibonite Department",
+        "adm2_id": "57096268B12667844160065",
+        "adm2_name": "Arrondissement de Marmelade",
+        "adm2_ha": "71946",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B70742132222307",
+        "adm1_name": "D\u00e9partement du Nord",
+        "adm2_id": "57096268B13273891480647",
+        "adm2_name": "Arrondissement Grande-Rivi\u00e8re-Du-Nord",
+        "adm2_ha": "20656",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B70742132222307",
+        "adm1_name": "D\u00e9partement du Nord",
+        "adm2_id": "57096268B14042132739921",
+        "adm2_name": "Arrondissement Borgne",
+        "adm2_ha": "30407",
+        "wet_cwr_tco2e": "105.0879859",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B58932724679351",
+        "adm1_name": "Sud Department",
+        "adm2_id": "57096268B177802279293",
+        "adm2_name": "Arrondissement Port-Salut",
+        "adm2_ha": "17473",
+        "wet_cwr_tco2e": "1083.36787",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B32984500563227",
+        "adm1_name": "Centre Department",
+        "adm2_id": "57096268B18861401200296",
+        "adm2_name": "Arrondissement de Mirebalais",
+        "adm2_ha": "85760",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B58932724679351",
+        "adm1_name": "Sud Department",
+        "adm2_id": "57096268B19780609344191",
+        "adm2_name": "Arrondissement des Cayes",
+        "adm2_ha": "86209",
+        "wet_cwr_tco2e": "11923.2786",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B91757075506973",
+        "adm1_name": "Nord-Ouest Department",
+        "adm2_id": "57096268B27125670128287",
+        "adm2_name": "Arrondissement Saint-Louis du Nord",
+        "adm2_ha": "18007",
+        "wet_cwr_tco2e": "15.25845975",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B58932724679351",
+        "adm1_name": "Sud Department",
+        "adm2_id": "57096268B29705038467161",
+        "adm2_name": "Arrondissement d\u2019Aquin",
+        "adm2_ha": "104992",
+        "wet_cwr_tco2e": "902.70043",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B18164660475406",
+        "adm1_name": "D\u00e9partement des Nippes",
+        "adm2_id": "57096268B30356160161964",
+        "adm2_name": "Arrondissement de l\u2019Anse-\u00e0-Veau",
+        "adm2_ha": "57939",
+        "wet_cwr_tco2e": "143.0464748",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B57760347032633",
+        "adm1_name": "D\u00e9partement de la Grande-Anse",
+        "adm2_id": "57096268B32811427290887",
+        "adm2_name": "Arrondissement de Corail",
+        "adm2_ha": "77221",
+        "wet_cwr_tco2e": "796.1628507",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B58932724679351",
+        "adm1_name": "Sud Department",
+        "adm2_id": "57096268B32991656624453",
+        "adm2_name": "Arrondissement des Chardonni\u00e8res",
+        "adm2_ha": "38336",
+        "wet_cwr_tco2e": "1769.662744",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B56880358607712",
+        "adm1_name": "Artibonite Department",
+        "adm2_id": "57096268B35473133047669",
+        "adm2_name": "Arrondissement Gros Morne",
+        "adm2_ha": "101547",
+        "wet_cwr_tco2e": "310.5806802",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B32984500563227",
+        "adm1_name": "Centre Department",
+        "adm2_id": "57096268B36101678820445",
+        "adm2_name": "Arrondissement Lascahobas",
+        "adm2_ha": "61744",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B56880358607712",
+        "adm1_name": "Artibonite Department",
+        "adm2_id": "57096268B37402539332126",
+        "adm2_name": "Arrondissement des Gona\u00efves",
+        "adm2_ha": "95826",
+        "wet_cwr_tco2e": "4045.548285",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B87386787470583",
+        "adm1_name": "D\u00e9partement du Sud-Est",
+        "adm2_id": "57096268B37864859171197",
+        "adm2_name": "Arrondissement de Jacmel",
+        "adm2_ha": "79700",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B96088034562700",
+        "adm1_name": "Nord-Est Department",
+        "adm2_id": "57096268B40761153029526",
+        "adm2_name": "Arrondissement Trou-Du-Nord",
+        "adm2_ha": "49862",
+        "wet_cwr_tco2e": "442.3252204",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B96088034562700",
+        "adm1_name": "Nord-Est Department",
+        "adm2_id": "57096268B46256442272467",
+        "adm2_name": "Arrondissement Ouanaminthe",
+        "adm2_ha": "36988",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B70742132222307",
+        "adm1_name": "D\u00e9partement du Nord",
+        "adm2_id": "57096268B47073695413304",
+        "adm2_name": "Arrondissement Limb\u00e9",
+        "adm2_ha": "17106",
+        "wet_cwr_tco2e": "126.012831",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B87386787470583",
+        "adm1_name": "D\u00e9partement du Sud-Est",
+        "adm2_id": "57096268B49795400417952",
+        "adm2_name": "Arrondissement de Bainet",
+        "adm2_ha": "48032",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B56880358607712",
+        "adm1_name": "Artibonite Department",
+        "adm2_id": "57096268B54986286323173",
+        "adm2_name": "Arrondissement de Saint-Marc",
+        "adm2_ha": "105305",
+        "wet_cwr_tco2e": "2440.563501",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B96088034562700",
+        "adm1_name": "Nord-Est Department",
+        "adm2_id": "57096268B55617934237810",
+        "adm2_name": "Arrondissement Valli\u00e8res",
+        "adm2_ha": "41432",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B32984500563227",
+        "adm1_name": "Centre Department",
+        "adm2_id": "57096268B6056210372718",
+        "adm2_name": "Arrondissement Cerca La Source",
+        "adm2_ha": "60655",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B91757075506973",
+        "adm1_name": "Nord-Ouest Department",
+        "adm2_id": "57096268B61339172511637",
+        "adm2_name": "Arrondissement Port-de-Paix",
+        "adm2_ha": "80251",
+        "wet_cwr_tco2e": "357.696089",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B70742132222307",
+        "adm1_name": "D\u00e9partement du Nord",
+        "adm2_id": "57096268B62174897776861",
+        "adm2_name": "Arrondissement de Cap-Ha\u00eftien",
+        "adm2_ha": "23653",
+        "wet_cwr_tco2e": "401.944998",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B56880358607712",
+        "adm1_name": "Artibonite Department",
+        "adm2_id": "57096268B62997609407208",
+        "adm2_name": "Arrondissement de Dessalines",
+        "adm2_ha": "113257",
+        "wet_cwr_tco2e": "12699.63916",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B57760347032633",
+        "adm1_name": "D\u00e9partement de la Grande-Anse",
+        "adm2_id": "57096268B64462824705423",
+        "adm2_name": "Arrondissement de J\u00e9r\u00e9mie",
+        "adm2_ha": "80681",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B91988968603803",
+        "adm1_name": "D\u00e9partement de l'Ouest",
+        "adm2_id": "57096268B67842804061774",
+        "adm2_name": "Arrondissement de Croix-des-Bouquets",
+        "adm2_ha": "198490",
+        "wet_cwr_tco2e": "39.43652976",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B91988968603803",
+        "adm1_name": "D\u00e9partement de l'Ouest",
+        "adm2_id": "57096268B68264839364801",
+        "adm2_name": "Arrondissement de L\u00e9og\u00e2ne",
+        "adm2_ha": "101196",
+        "wet_cwr_tco2e": "81.18593097",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B58932724679351",
+        "adm1_name": "Sud Department",
+        "adm2_id": "57096268B71612732443021",
+        "adm2_name": "Arrondissement des C\u00f4teaux",
+        "adm2_ha": "17951",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B57760347032633",
+        "adm1_name": "D\u00e9partement de la Grande-Anse",
+        "adm2_id": "57096268B71778681331422",
+        "adm2_name": "Arrondissement d'Anse d'Hainault",
+        "adm2_ha": "32496",
+        "wet_cwr_tco2e": "11.18383594",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B70742132222307",
+        "adm1_name": "D\u00e9partement du Nord",
+        "adm2_id": "57096268B76360272208873",
+        "adm2_name": "Arrondissement Plaisance",
+        "adm2_ha": "25830",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B87386787470583",
+        "adm1_name": "D\u00e9partement du Sud-Est",
+        "adm2_id": "57096268B78477673147329",
+        "adm2_name": "Arrondissement Belle-Anse",
+        "adm2_ha": "76804",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B91988968603803",
+        "adm1_name": "D\u00e9partement de l'Ouest",
+        "adm2_id": "57096268B82804707709843",
+        "adm2_name": "Port-au-Prince",
+        "adm2_ha": "72246",
+        "wet_cwr_tco2e": "79.36409935",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B32984500563227",
+        "adm1_name": "Centre Department",
+        "adm2_id": "57096268B86585772768605",
+        "adm2_name": "Arrondissement de Hinche",
+        "adm2_ha": "140543",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B70742132222307",
+        "adm1_name": "D\u00e9partement du Nord",
+        "adm2_id": "57096268B90141402454331",
+        "adm2_name": "Arrondissement d'Acul-du-Nord",
+        "adm2_ha": "35668",
+        "wet_cwr_tco2e": "119.5470565",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B18164660475406",
+        "adm1_name": "D\u00e9partement des Nippes",
+        "adm2_id": "57096268B92442229342099",
+        "adm2_name": "Arrondissement de Barad\u00e8res",
+        "adm2_ha": "22003",
+        "wet_cwr_tco2e": "848.9582722",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B91757075506973",
+        "adm1_name": "Nord-Ouest Department",
+        "adm2_id": "57096268B94613960435878",
+        "adm2_name": "Arrondissement M\u00f4le-Saint-Nicolas",
+        "adm2_ha": "110278",
+        "wet_cwr_tco2e": "74.67490709",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B70742132222307",
+        "adm1_name": "D\u00e9partement du Nord",
+        "adm2_id": "57096268B94684972969241",
+        "adm2_name": "Arrondissement Saint-Rapha\u00ebl",
+        "adm2_ha": "56172",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B91988968603803",
+        "adm1_name": "D\u00e9partement de l'Ouest",
+        "adm2_id": "57096268B98520683120180",
+        "adm2_name": "Arrondissement de La Gon\u00e2ve",
+        "adm2_ha": "66871",
+        "wet_cwr_tco2e": "790.9540026",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B91988968603803",
+        "adm1_name": "D\u00e9partement de l'Ouest",
+        "adm2_id": "57096268B99356291190440",
+        "adm2_name": "Arrondissement de l\u2019Arcahaie",
+        "adm2_ha": "61680",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      }
+    ]
+  },
+  "wet_cwr_tco2e_adm0.csv": {
+    "source_sha256": "64d63529b2a8e43defce47c472add3325870f581b2f540ab5116378359e7267e",
+    "rows": [
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm0_ha": "2726111",
+        "wet_cwr_tco2e": "40383.25028"
+      }
+    ]
+  },
+  "wet_cwr_tco2e_adm1.csv": {
+    "source_sha256": "dcd99fa1109f59dab5fdb20b8b34a1b482e2b2290e5c099610f8eb23c3c42d45",
+    "rows": [
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B18164660475406",
+        "adm1_name": "D\u00e9partement des Nippes",
+        "adm1_ha": "119698",
+        "wet_cwr_tco2e": "1070.125188",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B32984500563227",
+        "adm1_name": "Centre Department",
+        "adm1_ha": "348160",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B56880358607712",
+        "adm1_name": "Artibonite Department",
+        "adm1_ha": "487834",
+        "wet_cwr_tco2e": "19496.33162",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B57760347032633",
+        "adm1_name": "D\u00e9partement de la Grande-Anse",
+        "adm1_ha": "190382",
+        "wet_cwr_tco2e": "807.3466866",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B58932724679351",
+        "adm1_name": "Sud Department",
+        "adm1_ha": "264857",
+        "wet_cwr_tco2e": "15679.00964",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B70742132222307",
+        "adm1_name": "D\u00e9partement du Nord",
+        "adm1_ha": "209593",
+        "wet_cwr_tco2e": "784.6414228",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B87386787470583",
+        "adm1_name": "D\u00e9partement du Sud-Est",
+        "adm1_ha": "204539",
+        "wet_cwr_tco2e": "0",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B91757075506973",
+        "adm1_name": "Nord-Ouest Department",
+        "adm1_ha": "208532",
+        "wet_cwr_tco2e": "447.6294558",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B91988968603803",
+        "adm1_name": "D\u00e9partement de l'Ouest",
+        "adm1_ha": "496777",
+        "wet_cwr_tco2e": "990.9405627",
+        "": ""
+      },
+      {
+        "adm0_id": "HTI",
+        "adm0_name": "Haiti",
+        "adm1_id": "49955354B96088034562700",
+        "adm1_name": "Nord-Est Department",
+        "adm1_ha": "162927",
+        "wet_cwr_tco2e": "1107.225695",
+        "": ""
+      }
+    ]
+  }
+}

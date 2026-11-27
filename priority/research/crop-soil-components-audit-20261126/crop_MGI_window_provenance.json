@@ -1,0 +1,27 @@
+{
+  "file_id": 4202145,
+  "original_shape": [
+    60934,
+    158159
+  ],
+  "original_transform": [
+    0.0022761882361674013,
+    0.0,
+    -179.999999853,
+    0.0,
+    -0.002276188236173565,
+    82.719284054,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "original_crs": "EPSG:4326",
+  "window": [
+    46356,
+    27514,
+    1259,
+    911
+  ],
+  "clip_file": "crop_MGI_haiti_native_window.tif",
+  "method": "HTTP Range GET through official public Dataverse datafile endpoint; native-grid subset only; signed transport URL not retained"
+}

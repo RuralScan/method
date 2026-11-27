@@ -1,0 +1,19 @@
+{
+  "inspected_local_date": "2026-11-26",
+  "zip_url": "https://naturebase-shared-docs.s3.amazonaws.com/Data-download/crp_cba_total.zip",
+  "zip_http_headers": {
+    "Content-Length": "426689183",
+    "Last-Modified": "Thu, 19 Nov 2026 20:52:54 GMT",
+    "ETag": "\"79b30ad612c30a1fdff9a25081a134a1-3\"",
+    "Content-Type": "application/x-zip-compressed"
+  },
+  "catalogue_url": "https://app.naturebase.org/data/nb/12",
+  "catalogue_cog_url": "https://action-mapper.s3.amazonaws.com/naturebase_cog/crp_cba_total.tif",
+  "catalogue_cog_result": "rasterio HTTP 404",
+  "accounting_pdf_url": "https://naturebase-shared-docs.s3.amazonaws.com/NCS_Accounting_rules_narrative.pdf",
+  "accounting_pdf_sha256": "ba5cff6d9555b2fd23e7451ab9be18a253af21781636a73633910b62b070a01d",
+  "accounting_locator": "Version 1.0, section I(c), PDF page 6",
+  "readme_sha256": "8d6d816b93554b60f30c3702cded69e8fcf1ffe04f3e7fac9c4c3f198a805f81",
+  "license": "CC BY-NC-SA 4.0 as displayed on catalogue; evaluate intended-use compatibility",
+  "status": "inspection_only; scientifically_accepted=false; runtime_ready=false"
+}

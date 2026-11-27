@@ -1,0 +1,349 @@
+{
+  "created": "2024-05-24T19:28:38.675270+00:00",
+  "modified": "2024-09-16T15:40:12.490075+00:00",
+  "id": 11283186,
+  "conceptrecid": "11283185",
+  "doi": "10.5281/zenodo.11283186",
+  "conceptdoi": "10.5281/zenodo.11283185",
+  "doi_url": "https://doi.org/10.5281/zenodo.11283186",
+  "metadata": {
+    "title": "The global biophysical potential for mangrove restoration dataset",
+    "doi": "10.5281/zenodo.11283186",
+    "publication_date": "2024-05-24",
+    "description": "<p>This dataset is the restoration potential area estimates, restoration potential index scores and ecosystem service values (carbon and fisheries) to accompany the paper \"The global biophysical potential for mangrove restoration\" -&nbsp; Worthington et al. (In Review).&nbsp;</p>\n<h2>Description of files</h2>\n<p><strong>R Scripts &amp; Data</strong></p>\n<ul>\n<li>This folder contain several R scripts and datafiles used to calculate the values in Worthington et al. (In Review)</li>\n</ul>\n<p><strong>Mangrove_Typology_v3_Composite</strong></p>\n<ul>\n<li>This folder contains a shapefile that is the spatial framework of the research. Full details of the mangrove typology can be found at <a href=\"../records/8340259\">A global biophysical typology of mangroves version 3</a>.\n<ul>\n<li>The data in 'Data Exports' can be joined to the mangrove spatial typology shapefile using the 'ID' column.</li>\n</ul>\n</li>\n</ul>\n<p><strong>Data Exports</strong></p>\n<ul>\n<li>This folder contains several data exports that summarise the data behind Worthington et al., (In Review)&nbsp;\n<ul>\n<li>Unit_Area_Data.csv: This spreadsheet has area statistic data for each of the 3983 mangrove typological units.</li>\n<li>Restoration_Index_Data.csv: This spreadsheet has the restoration potential index data for each of the 3983 mangrove typological units.</li>\n<li>Fisheries_Benefits_Data.csv: 3) Fisheries_Benefits_Data.csv: This spreadsheet has the potential additional individuals of 37 mangrove-affiliated marine fish and invertebrate species of commercial importance whose populations are estimated to increase with mangrove restoration.</li>\n<li>AGB_Carbon_Benefits_Data.csv: This spreadsheet has the potential secured and restored aboveground biomass (AGB) carbon stock (MgC) over a 40-year time horizon from restoration of mangroves.</li>\n<li>SOC_Carbon_Benefits_Data.csv: his spreadsheet has the potential secured and restored soil carbon stock (MgC, top 1 m) over a 40-year time horizon from restoration of mangroves</li>\n<li>Country_Statistics.csv: This spreadsheet summarises the restoration, fisheries and carbon benefits at the national level.</li>\n</ul>\n</li>\n</ul>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Worthington, Thomas",
+        "affiliation": "Conservation Science Group, Department of Zoology, University of Cambridge, Cambridge, UK",
+        "orcid": "0000-0002-8138-9075"
+      },
+      {
+        "name": "Walton, Rowana",
+        "affiliation": "Conservation Science Group, Department of Zoology, University of Cambridge; Cambridge, UK"
+      },
+      {
+        "name": "zu Ermgassen, Philine S.E.",
+        "affiliation": "Changing Oceans Group, School of Geosciences, University of Edinburgh; Edinburgh, UK",
+        "orcid": "0000-0002-3409-0644"
+      },
+      {
+        "name": "Friess, Daniel A.",
+        "affiliation": "Department of Earth and Environmental Sciences, Tulane University; New Orleans, USA",
+        "orcid": "0000-0002-3087-5233"
+      },
+      {
+        "name": "Murray, Nicholas J.",
+        "affiliation": "College of Science and Engineering, James Cook University; Townsville, Australia.",
+        "orcid": "0000-0002-4008-3053"
+      },
+      {
+        "name": "Cormier, Nicole",
+        "affiliation": "School of Natural Sciences, Macquarie University; Sydney, Australia"
+      },
+      {
+        "name": "Lovelock, Catherine",
+        "affiliation": "School of Biological Sciences, The University of Queensland; St Lucia, Australia",
+        "orcid": "0000-0002-2219-6855"
+      },
+      {
+        "name": "Adame, Maria Fernanda",
+        "affiliation": "Coastal and Marine Research Centre, Australian Rivers Institute, School of Environment and Science, Griffith University; Australia",
+        "orcid": "0000-0001-9620-9252"
+      },
+      {
+        "name": "Balmford, Andrew",
+        "affiliation": "Conservation Science Group, Department of Zoology, University of Cambridge; Cambridge, UK."
+      },
+      {
+        "name": "Bhomia, Rupesh Kumar",
+        "affiliation": "Center for International Forestry Research (CIFOR), International Centre for Research in Agroforestry (ICRAF); Colombo, Sri Lanka.",
+        "orcid": "0000-0002-6251-3595"
+      },
+      {
+        "name": "Blanco-Libreros, Juan F.",
+        "affiliation": "Institute of Biology, Faculty of Exact and Natural Sciences, Universidad de Antioquia; Medell\u00edn, Colombia",
+        "orcid": "0000-0003-0507-2401"
+      },
+      {
+        "name": "Bourgeois, Carine F.",
+        "affiliation": "Institute of Pacific Islands Forestry, Pacific Southwest Research Station, USDA Forest Service; Hilo, USA"
+      },
+      {
+        "name": "Buelow, Christina A.",
+        "affiliation": "Coastal and Marine Research Centre, Australian Rivers Institute, School of Environment and Science, Griffith University; Australia",
+        "orcid": "0000-0002-3084-2554"
+      },
+      {
+        "name": "Bunting, Pete",
+        "affiliation": "Department of Geography and Earth Sciences, Aberystwyth University; Aberystwyth, UK.",
+        "orcid": "0000-0002-7435-0148"
+      },
+      {
+        "name": "Canty, Steven W.J.",
+        "affiliation": "Smithsonian Environmental Research Center; Edgewater, USA"
+      },
+      {
+        "name": "Dahdouh-Guebas, Farid",
+        "affiliation": "Systems Ecology and Resource Management Research Unit (SERM), Department of Organism Biology, Universit\u00e9 Libre de Bruxelles \u2013 ULB; Brussels, Belgium",
+        "orcid": "0000-0002-5906-8996"
+      },
+      {
+        "name": "Datta, Debajit",
+        "affiliation": "Department of Geography, Faculty of Science, Jadavpur University; Kolkata, India"
+      },
+      {
+        "name": "Duncan, Clare",
+        "affiliation": "Institute of Zoology, Zoological Society of London; London, UK"
+      },
+      {
+        "name": "Fatoyinbo, Lola",
+        "affiliation": "Biospheric Sciences Laboratory, NASA Goddard Space Flight Center; Greenbelt, USA.",
+        "orcid": "0000-0002-1130-6748"
+      },
+      {
+        "name": "Hagger, Valerie",
+        "affiliation": "School of Biological Sciences, The University of Queensland; St Lucia, Australia.",
+        "orcid": "0000-0001-8408-8449"
+      },
+      {
+        "name": "Hengl, Tomislav",
+        "affiliation": "OpenGeoHub Foundation; Wageningen, the Netherlands"
+      },
+      {
+        "name": "Hilarides, Lammert",
+        "affiliation": "Wetlands International; Ede, the Netherlands",
+        "orcid": "0000-0002-4364-7547"
+      },
+      {
+        "name": "Hoyos-Santillan, Jorge",
+        "affiliation": "Environmental Biogeochemistry Laboratory, Antarctic Research Center (CIGA), University of Magallanes; Punta Arenas, Chile",
+        "orcid": "0000-0001-6295-9485"
+      },
+      {
+        "name": "Jayakody, Sevvandi",
+        "affiliation": "Department of Aquaculture and Fisheries, Faculty of Livestock, Fisheries and Nutrition, Wayamba University of Sri Lanka; Kuliyapitiya, Sri Lanka.",
+        "orcid": "0000-0001-9600-4986"
+      },
+      {
+        "name": "Krauss, Ken W.",
+        "affiliation": "U.S. Geological Survey, Wetland and Aquatic Research Center; Lafayette, USA"
+      },
+      {
+        "name": "Lagomasino, David",
+        "affiliation": "Department of Coastal Studies, Integrated Coastal Programs, East Carolina University; Greenville, USA."
+      },
+      {
+        "name": "Lee, Shing Yip",
+        "affiliation": "Coastal and Marine Research Centre, Australian Rivers Institute, School of Environment and Science, Griffith University; Australia.",
+        "orcid": "0000-0001-9336-2323"
+      },
+      {
+        "name": "Lin, Guanghui",
+        "affiliation": "Hainan International Blue Carbon Research Center; Haikou, China",
+        "orcid": "0000-0001-6108-3215"
+      },
+      {
+        "name": "Longley-Wood, Kate",
+        "affiliation": "The Nature Conservancy; Boston, USA.",
+        "orcid": "0000-0002-7067-1059"
+      },
+      {
+        "name": "Lucas, Richard",
+        "affiliation": "Department of Geography and Earth Sciences, Aberystwyth University; Aberystwyth, UK"
+      },
+      {
+        "name": "Maxwell, Tania L.",
+        "affiliation": "Conservation Science Group, Department of Zoology, University of Cambridge; Cambridge, UK",
+        "orcid": "0000-0002-8413-9186"
+      },
+      {
+        "name": "MacKenzie, Richard",
+        "affiliation": "Institute of Pacific Islands Forestry, Pacific Southwest Research Station, USDA Forest Service; Hilo, USA.",
+        "orcid": "0000-0003-3779-787X"
+      },
+      {
+        "name": "Narayan, Siddharth",
+        "affiliation": "Department of Coastal Studies, Integrated Coastal Programs, East Carolina University; Greenville, USA"
+      },
+      {
+        "name": "Naser, Humood Abdulla",
+        "affiliation": "Department of Biology, College of Science, University of Bahrain; Sakhir, Bahrain"
+      },
+      {
+        "name": "Parente, Leandro L.",
+        "affiliation": "OpenGeoHub Foundation; Wageningen, the Netherlands"
+      },
+      {
+        "name": "Pranchai, Aor",
+        "affiliation": "Department of Silviculture, Faculty of Forestry, Kasetsart University; Bangkok, Thailand",
+        "orcid": "0000-0001-8279-469X"
+      },
+      {
+        "name": "Rajkaran, Anusha",
+        "affiliation": "Department of Biodiversity and Conservation Biology, University of the Western Cape; Cape Town, South Africa",
+        "orcid": "0000-0001-7360-3660"
+      },
+      {
+        "name": "Rodr\u00edguez-Rodr\u00edguez, J. Alexandra",
+        "affiliation": "Marine Environmental Quality Research Program, Marine and Coastal Research Institute \"Jose Benito Vives de Andreis\" \u2013 Invemar; Santa Marta, Colombia"
+      },
+      {
+        "name": "Rovai, Andre",
+        "affiliation": "U.S. Army Engineer Reserach and Development Center; Vicksburg, USA",
+        "orcid": "0000-0003-4117-2055"
+      },
+      {
+        "name": "Saunders, Megan I.",
+        "affiliation": "Commonwealth Scientific Industrial Research Organisation; Hobart, Australia"
+      },
+      {
+        "name": "Sharma, Sahadev",
+        "affiliation": "Institute of Ocean and Earth Sciences, University of Malaya; Kuala Lumpur, Malaysia"
+      },
+      {
+        "name": "Sidik, Frida",
+        "affiliation": "Research Center for Oceanography, National Research and Innovation Agency; Jakarta, Indonesia"
+      },
+      {
+        "name": "Sievers, Michael",
+        "affiliation": "Coastal and Marine Research Centre, Australian Rivers Institute, School of Environment and Science, Griffith University; Australia",
+        "orcid": "0000-0001-7162-1830"
+      },
+      {
+        "name": "Smart, Lindsey S.",
+        "affiliation": "The Nature Conservancy; Arlington, USA"
+      },
+      {
+        "name": "Sutherland, William",
+        "affiliation": "Conservation Science Group, Department of Zoology, University of Cambridge; Cambridge, UK",
+        "orcid": "0000-0002-6498-0437"
+      },
+      {
+        "name": "Ulumuddin, Yaya Ihya",
+        "affiliation": "Research Center for Oceanography, National Research and Innovation Agency; Jakarta, Indonesia",
+        "orcid": "0000-0002-4169-9853"
+      },
+      {
+        "name": "Wodehouse, Dominic",
+        "affiliation": "Mangrove Action Project; Seattle, USA"
+      },
+      {
+        "name": "Spalding, Mark",
+        "affiliation": "The Nature Conservancy; Siena, Italy",
+        "orcid": "0000-0001-9456-4533"
+      }
+    ],
+    "resource_type": {
+      "title": "Dataset",
+      "type": "dataset"
+    },
+    "license": {
+      "id": "cc-by-4.0"
+    },
+    "communities": [
+      {
+        "id": "gcwl"
+      },
+      {
+        "id": "globalmangrovewatch"
+      }
+    ],
+    "relations": {
+      "version": [
+        {
+          "index": 0,
+          "is_last": true,
+          "parent": {
+            "pid_type": "recid",
+            "pid_value": "11283185"
+          }
+        }
+      ]
+    }
+  },
+  "title": "The global biophysical potential for mangrove restoration dataset",
+  "links": {
+    "self": "https://zenodo.org/api/records/11283186",
+    "self_html": "https://zenodo.org/records/11283186",
+    "preview_html": "https://zenodo.org/records/11283186?preview=1",
+    "doi": "https://doi.org/10.5281/zenodo.11283186",
+    "self_doi": "https://doi.org/10.5281/zenodo.11283186",
+    "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.11283186",
+    "reserve_doi": "https://zenodo.org/api/records/11283186/draft/pids/doi",
+    "parent": "https://zenodo.org/api/records/11283185",
+    "parent_html": "https://zenodo.org/records/11283185",
+    "parent_doi": "https://doi.org/10.5281/zenodo.11283185",
+    "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.11283185",
+    "self_iiif_manifest": "https://zenodo.org/api/iiif/record:11283186/manifest",
+    "self_iiif_sequence": "https://zenodo.org/api/iiif/record:11283186/sequence/default",
+    "files": "https://zenodo.org/api/records/11283186/files",
+    "media_files": "https://zenodo.org/api/records/11283186/media-files",
+    "latest": "https://zenodo.org/api/records/11283186/versions/latest",
+    "latest_html": "https://zenodo.org/records/11283186/latest",
+    "versions": "https://zenodo.org/api/records/11283186/versions",
+    "draft": "https://zenodo.org/api/records/11283186/draft",
+    "access_links": "https://zenodo.org/api/records/11283186/access/links",
+    "access_grants": "https://zenodo.org/api/records/11283186/access/grants",
+    "access_users": "https://zenodo.org/api/records/11283186/access/users",
+    "access_request": "https://zenodo.org/api/records/11283186/access/request",
+    "access": "https://zenodo.org/api/records/11283186/access",
+    "communities": "https://zenodo.org/api/records/11283186/communities",
+    "communities-suggestions": "https://zenodo.org/api/records/11283186/communities-suggestions",
+    "request_deletion": "https://zenodo.org/api/records/11283186/request-deletion",
+    "file_modification": "https://zenodo.org/api/records/11283186/file-modification",
+    "quota_increase": "https://zenodo.org/api/records/11283186/quota-increase",
+    "requests": "https://zenodo.org/api/records/11283186/requests"
+  },
+  "updated": "2024-09-16T15:40:12.490075+00:00",
+  "recid": "11283186",
+  "revision": 6,
+  "files": [
+    {
+      "id": "217a26ae-97fc-4cdf-b359-93b949b0c838",
+      "key": "R Scripts & Data.zip",
+      "size": 1158695560,
+      "checksum": "md5:865d7b4f41c2cbf92edef176ad797d3d",
+      "links": {
+        "self": "https://zenodo.org/api/records/11283186/files/R%20Scripts%20&%20Data.zip/content"
+      }
+    },
+    {
+      "id": "11951352-938b-4be0-ae03-58dc59bc3e6d",
+      "key": "Mangrove_Typology_v3_Composite.zip",
+      "size": 180108074,
+      "checksum": "md5:0f78a1e40fe6de62b1e05e64ac60809d",
+      "links": {
+        "self": "https://zenodo.org/api/records/11283186/files/Mangrove_Typology_v3_Composite.zip/content"
+      }
+    },
+    {
+      "id": "ffd7b604-22b9-435c-9e3a-06938e8d1f89",
+      "key": "Data Exports.zip",
+      "size": 979814,
+      "checksum": "md5:76af81cb677d0b989c0bb3b5bf83e54e",
+      "links": {
+        "self": "https://zenodo.org/api/records/11283186/files/Data%20Exports.zip/content"
+      }
+    }
+  ],
+  "swh": {},
+  "owners": [
+    {
+      "id": "597968"
+    }
+  ],
+  "status": "published",
+  "stats": {
+    "downloads": 855,
+    "unique_downloads": 683,
+    "views": 1397,
+    "unique_views": 1256,
+    "version_downloads": 855,
+    "version_unique_downloads": 683,
+    "version_unique_views": 1256,
+    "version_views": 1397
+  },
+  "state": "done",
+  "submitted": true
+}

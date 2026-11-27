@@ -1,0 +1,30 @@
+{
+  "inspection_date_local": "2026-11-26",
+  "zip_url": "https://naturebase-shared-docs.s3.amazonaws.com/Data-download/for_ref_total.zip",
+  "zip_http_headers": {
+    "Content-Length": "255776699",
+    "Last-Modified": "Thu, 19 Nov 2026 20:59:00 GMT",
+    "ETag": "\"a02d17db0e54a698c0ef8dc674502ca4-3\"",
+    "Content-Type": "application/x-zip-compressed"
+  },
+  "catalogue_url": "https://app.naturebase.org/data/nb/4",
+  "cog_url": "https://action-mapper.s3.amazonaws.com/naturebase_cog/for_ref_total.tif",
+  "cog_http_status": 404,
+  "paper_url": "https://www.nature.com/articles/s41467-025-59799-8",
+  "paper_locator": "Methods: Overlays and additional scenarios; PDF page 10",
+  "figshare_record_url": "https://api.figshare.com/v2/articles/27335799",
+  "figshare_version": 3,
+  "figshare_license": "CC BY 4.0; distinct from Naturebase platform conditions",
+  "accounting_pdf_url": "https://naturebase-shared-docs.s3.amazonaws.com/NCS_Accounting_rules_narrative.pdf",
+  "accounting_locator": "Version 1.0, section I(c), PDF page 6",
+  "accounting_sha256": "ba5cff6d9555b2fd23e7451ab9be18a253af21781636a73633910b62b070a01d",
+  "scientifically_accepted": false,
+  "runtime_ready": false,
+  "upstream_hashes": {
+    "figshare_Summarize_scenarios.js": "811b59b6281e66e0af7a9fdf0f000f15c84bd82c6dac63f3dc1551334e9242f7",
+    "figshare_record.json": "2b42911109ad9c06b96baecdc276f33921e33b822ec5346bef7a4c346764c8e9",
+    "figshare_README.txt": "8743566304d4efae9105a7d37938403195383874fac3035c5a5674437c18e48e",
+    "figshare_Additionality.js": "bda064292e10e13ab6f91ee800ce8cf22431ad39c3e566759caadb1960f9f9b0"
+  },
+  "readme_sha256": "b34716530f849ca61570ebc6281b32a96d4f34aa978976c36aaa9a4948497bd7"
+}

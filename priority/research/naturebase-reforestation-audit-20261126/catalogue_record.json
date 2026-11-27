@@ -1,0 +1,55 @@
+{
+  "url": "https://content.naturebase.io/items/spatial_metadata?limit=-1&sort=title&filter[status][_in]=published",
+  "data": [
+    {
+      "id": 4,
+      "status": "published",
+      "sort": null,
+      "user_created": "d62e48ea-42fb-41b4-b49d-d9066b9efa99",
+      "date_created": "2023-10-03T20:29:39.083Z",
+      "user_updated": "074c34c3-806a-4a6c-91c8-84b1b9372d8c",
+      "date_updated": "2026-10-07T17:16:22.820Z",
+      "title": "Reforestation",
+      "short_name": "for_ref_total",
+      "short_summary": "<p>Mitigation potential from re-establishing forest cover via tree planting or natural regrowth in places where forests are absent but naturally occur.&nbsp;</p>\n<p><strong>Units:&nbsp;</strong>all raster data (.tif) are in tCO2e/ha/yr. All tabular data (.csv) are summarised in tCO2e/yr.</p>",
+      "description": "<p>This layer shows the climate benefit, as increased sequestration, resulting from reforestation in places where forests are absent but naturally occur. This estimate is based on the combination of three spatial datasets: a conservative map of areas with reforestation potential (Fesenmyer et al., 2025), a map of potential annual carbon sequestration averaged over the first thirty years of natural regrowth (Cook-Patton et al. 2020), and a map of albedo offset (Hasler et al. 2024).&nbsp;</p>\n<p>Consistent with the naturebase accounting framework, areas of overlap between cropland and non-cropland pathway extents were resolved using a proportional allocation approach. Cropland pathway mitigation was weighted by the fraction of each 1 km&sup2; pixel classified as cropland, while non-cropland pathway mitigation was weighted by the inverse proportion. For a detailed description of this methodology, see Section I(c), Cropland Extent, in the <a href=\"https://naturebase-shared-docs.s3.amazonaws.com/NCS_Accounting_rules_narrative.pdf\" target=\"_blank\" rel=\"noopener\">NCS Accounting Framework Hierarchy</a>.</p>\n<p><strong>Units:&nbsp;</strong>all raster data (.tif) are in tCO2e/ha/yr. All tabular data (.csv) are summarised in tCO2e/yr.</p>\n<p class=\"MsoNormal\">To calculate the per hectare mitigation potential (density) of the <strong>NCS implementation extent</strong> in tCO2e/ha/yr:&nbsp;<br>1) Find the total mitigation value: this is provided in the spreadsheet as <u>[pathway]_tco2e</u><br>2) Find the NCS hectare extent: This is provided in the spreadsheet as <u>[pathway]_ha</u><br>3) Divide the mitigation value by the NCS hectare extent: <u>tCO2e/ha/yr = [pathway]_tco2e / [pathway]_ha</u>*</p>\n<p>*FLAG: As this is the hectares of NCS extent of the 1km2 raster, extent may be over-estimated. Use with caution. These area estimates are not recommended for pathways that have extents finer than 1km resolution</p>\n<p class=\"MsoNormal\"><br><br>To calculate the per hectare mitigation potential (density) for each <strong>administrative area</strong>* in tCO2e/ha/yr:&nbsp;<br>1) Find the total mitigation value: this is provided in the spreadsheet as <span style=\"text-decoration: underline;\">[pathway]_tco2e</span><br>2) Find the administrative extent: This is provided in the spreadsheet as '<span style=\"text-decoration: underline;\">admin_ha</span>'<br>3) Divide the mitigation value by the administrative extent: <span style=\"text-decoration: underline;\">tCO2e/ha/yr in each administrative area = [pathway]_tco2e / admin_ha</span></p>\n<p>*This is useful for comparison between administrative areas</p>\n<p class=\"MsoNormal\"><em>Please consult the download package under 'Download Now' for comprehensive metadata and a detailed description.</em></p>",
+      "data_updated": "2025-05-06",
+      "original_resolution": null,
+      "naturebase_resolution": 1,
+      "biome": "forests",
+      "action": "restore",
+      "cog_url": "https://action-mapper.s3.amazonaws.com/naturebase_cog/for_ref_total.tif",
+      "preferred_citation": "<p>Fesenmyer, K.A., Poor, E.E., Terasaki Hart, D.E. <em>et al.</em>&nbsp;Addressing critiques refines global estimates of reforestation potential for climate change mitigation.&nbsp;<em>Nat Commun</em>&nbsp;<strong>16</strong>, 4572 (2025). https://doi.org/10.1038/s41467-025-59799-8</p>",
+      "units": "MtCO2e/yr",
+      "data_caveats": "The map identifying areas with reforestation potential was developed using land use and land cover data from 2019-2020.",
+      "accounting_horizon": "2035",
+      "download_links": [
+        {
+          "link_type": "Download",
+          "url": "https://naturebase-shared-docs.s3.amazonaws.com/Data-download/for_ref_total.zip"
+        }
+      ],
+      "data_category": "pathway",
+      "ncs_pathway": "Reforestation",
+      "mapped_in_naturebase": true,
+      "subtitle": null,
+      "cobenefits_data": true,
+      "carbon_pools": [
+        "Aboveground Biomass (AGB)",
+        "Belowground Biomass (BGB)",
+        "Soil Organic Carbon (SOC)"
+      ],
+      "authors": "Kurt Fesenmyer, Susan Cook-Patton ",
+      "corresponding_author": "Kurt.fesenmyer@tnc.org, susan.cook-patton@tnc.org",
+      "publication_date": "2025-06-11",
+      "approach_and_methods": "<p><strong>Mapping areas with reforestation potential&nbsp;</strong></p>\n<p>We identified areas where reforestation could occur by first mapping forest suitability (i.e., where forests could occur), then excluding areas from that map based on based on implementation constraints (i.e., where reforestation cannot practically occur) or precautionary constraints (i.e., where reforestation may result in perverse outcomes). Previous reforestation maps have been criticized for over-mapping forest suitability to include grassland and savanna ecosystems where reforestation can conflict with ecosystem services and biodiversity (Veldman et al. 2015). In order to minimize the risk of these conflicts, we took a conservative approach to mapping forest suitability that leveraged two existing forest suitability models (Bastin et al. 2019 and Walker et al. 2022), applied a conservative definition of &ldquo;forest&rdquo; (&gt; 60% tree cover), and excluded fire-maintained and fire-adapted ecosystems. Next, we applied 5 implementation constraints, removing areas from the forest suitability map with existing forest, urban areas, open water, permanent ice/snow, and permanent bare ground. Finally, we applied 4 precautionary constraints, removing areas with potential net-negative climate outcomes due to albedo (Hasler et al. 2024), areas in peatlands or wetlands due to large soil organic carbon stocks that may be vulnerable to losses following the establishment of trees (Sacco et al. 2021), and croplands due to food supply and leakage concerns (Doelman and Stehfest 2022). The resulting map identifies the percentage of 1-km resolution pixels where reforestation could occur in the year 2020. &nbsp;</p>\n<p><strong>Estimating sequestration potential&nbsp;</strong></p>\n<p>We estimated the mitigation potential within each 1-km resolution pixel with reforestation potential using a model of predicted aboveground and belowground carbon sequestration potential during the first 30 years of natural regrowth (Cook-Patton et al. 2020) and a model of the reduction carbon sequestration resulting from a change in albedo (the change in maximum carbon storage that is offset by changes in the reflectivity of land cover with reforestation; Hasler et al. 2024). Finally, we estimated the proportion of each 1-km resolution pixel where reforestation is additional (i.e., exceeds the background reforestation rate) by evaluating broad-scale patterns of forest loss and gain (2000-2020) within one-degree grid cells (see Additionality). &nbsp;</p>\n<p>We produced the final climate benefit map by multiplying the per-pixel percent reforestation potential by the sequestration potential, by the albedo offset, by the additionality factor.&nbsp;</p>",
+      "additionality": "<p>This layer incorporates additionality by rescaling the climate benefit estimate based on patterns of forest loss and gain for the period 2000-2020 (Potapov et al. 2022). &nbsp;The analysis calculates the ratio of forest loss:gain within one-degree cells, then multiplies the reforestation mitigation by the ratio of loss:gain for cells where gains exceed losses.</p>",
+      "results": null,
+      "next_steps": null,
+      "footnotes": null,
+      "references": "<p>Bastin, J.-F. et al. The global tree restoration potential. Science 365, 76&ndash;79 (2019).&nbsp;</p>\n<p>Cook-Patton, S. C. et al. Mapping carbon accumulation potential from global natural forest regrowth. Nature 585, 545&ndash;550 (2020). &nbsp;</p>\n<p>Doelman, J. C. &amp; Stehfest, E. The risks of overstating the climate benefits of ecosystem restoration. Nature 609, E1&ndash;E3 (2022).&nbsp;</p>\n<p>Fesenmyer, K. A. et al.&nbsp;Addressing critiques refines global estimates of reforestation potential for climate change mitigation.&nbsp;<em>Nat Commun</em>&nbsp;<strong>16</strong>, 4572 (2025). https://doi.org/10.1038/s41467-025-59799-8</p>\n<p>Hasler, N. et al. Accounting for albedo change to identify climate-positive tree cover restoration. Nat. Commun. 15, 2275 (2024).&nbsp;</p>\n<p>Potapov, P. et al. The global 2000-2020 land cover and land use change dataset derived from the Landsat archive: first results. Frontiers in Remote Sensing 3 (2022).&nbsp;</p>\n<p>Sacco, A. D. et al. Ten golden rules for reforestation to optimize carbon sequestration, biodiversity recovery and livelihood benefits. Global Change Biol 27, 1328&ndash;1348 (2021).&nbsp;</p>\n<p>Veldman, J. W. et al. Where Tree Planting and Forest Expansion are Bad for Biodiversity and Ecosystem Services. Bioscience 65, 1011&ndash;1018 (2015). &nbsp;</p>\n<p>Walker, W. S. et al. The global potential for increased storage of carbon on land. Proc National Acad Sci 119, e2111312119 (2022).&nbsp;</p>",
+      "confidence": "<p>The climate benefit is based on a pixel-scale estimates of reforestation extent (via models of forest suitability and exclusions based on land use land cover data) and mitigation (via models of sequestration within natural regrowth and albedo offset).</p>",
+      "publication_date_note": null
+    }
+  ]
+}

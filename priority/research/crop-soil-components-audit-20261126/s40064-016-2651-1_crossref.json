@@ -1,0 +1,863 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          11,
+          23
+        ]
+      ],
+      "date-time": "2026-11-23T23:06:37Z",
+      "timestamp": 1795475197310,
+      "version": "4.11.0"
+    },
+    "reference-count": 57,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "1",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2016,
+              7,
+              4
+            ]
+          ],
+          "date-time": "2016-07-04T00:00:00Z",
+          "timestamp": 1467590400000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2016,
+              7,
+              4
+            ]
+          ],
+          "date-time": "2016-07-04T00:00:00Z",
+          "timestamp": 1467590400000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100000200",
+        "name": "United States Agency for International Development",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "Cooperative Agreement No. EPP -A-00-04-00013-00"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "Cooperative Agreement No. EPP -A-00-04-00013-00"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000200",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "SpringerPlus"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2016,
+          12
+        ]
+      ]
+    },
+    "DOI": "10.1186/s40064-016-2651-1",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2016,
+          7,
+          4
+        ]
+      ],
+      "date-time": "2016-07-04T12:18:15Z",
+      "timestamp": 1467634695000
+    },
+    "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 78,
+    "title": [
+      "Decomposition, nitrogen and carbon mineralization from food and cover crop residues in the central plateau of Haiti"
+    ],
+    "prefix": "10.1186",
+    "volume": "5",
+    "author": [
+      {
+        "given": "M. J.",
+        "family": "Lynch",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "M. J.",
+        "family": "Mulvaney",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "S. C.",
+        "family": "Hodges",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "T. L.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "W. E.",
+        "family": "Thomason",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2016,
+          7,
+          4
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "2651_CR1",
+        "doi-asserted-by": "publisher",
+        "first-page": "51",
+        "DOI": "10.1007/s00374-011-0607-8",
+        "volume": "48",
+        "author": "G Abera",
+        "year": "2012",
+        "unstructured": "Abera G, Wolde-Meskel E, Bakken L (2012) Carbon and nitrogen mineralization dynamics in different soils of the tropics amended with legume residues and contrasting soil moisture contents. Biol Fertility Soils 48:51\u201366",
+        "journal-title": "Biol Fertility Soils"
+      },
+      {
+        "key": "2651_CR2",
+        "doi-asserted-by": "publisher",
+        "first-page": "667",
+        "DOI": "10.1007/s13593-013-0172-7",
+        "volume": "34",
+        "author": "G Abera",
+        "year": "2014",
+        "unstructured": "Abera G, Wolde-Meskel E, Bakken L (2014) Unexpected high decomposition of legume residues in dry season soils from tropical coffee plantations and crop lands. Agron Sustain Dev 34:667\u2013676",
+        "journal-title": "Agron Sustain Dev"
+      },
+      {
+        "key": "2651_CR3",
+        "first-page": "525",
+        "volume": "3",
+        "author": "L Agenor",
+        "year": "1977",
+        "unstructured": "Agenor L (1977) Note on maize research in Haiti. Nouvelles Agronomiques des Antilles et de la Guyane 3:525\u2013534",
+        "journal-title": "Nouvelles Agronomiques des Antilles et de la Guyane"
+      },
+      {
+        "key": "2651_CR4",
+        "unstructured": "Badrie N (2007) Proceedings of the 26th West Indies Agricultural Economic Conference, Puerto Rico. 23\u201326 July 2006. Caribbean Agro-Economic Society. St. Augustine, West Indies"
+      },
+      {
+        "key": "2651_CR5",
+        "doi-asserted-by": "publisher",
+        "first-page": "77",
+        "DOI": "10.1007/s11104-005-2504-0",
+        "volume": "279",
+        "author": "FP Baijukya",
+        "year": "2006",
+        "unstructured": "Baijukya FP, de Ridder N, Giller KE (2006) Nitrogen release from decomposing residues of leguminous cover crops and their effect on maize yield on depleted soils of Bukoba District, Tanzania. Plant Soil 279:77\u201393",
+        "journal-title": "Plant Soil"
+      },
+      {
+        "key": "2651_CR6",
+        "doi-asserted-by": "publisher",
+        "first-page": "26",
+        "DOI": "10.2134/agronj2005.0026",
+        "volume": "97",
+        "author": "KS Balkcom",
+        "year": "2005",
+        "unstructured": "Balkcom KS, Reeves DW (2005) Sunn-hemp utilized as a legume cover crop for corn production. Agron J 97:26\u201331",
+        "journal-title": "Agron J"
+      },
+      {
+        "key": "2651_CR7",
+        "doi-asserted-by": "publisher",
+        "first-page": "139",
+        "DOI": "10.1079/SUM2003181",
+        "volume": "19",
+        "author": "F Bessam",
+        "year": "2003",
+        "unstructured": "Bessam F, Mrabet R (2003) Long-term changes in soil organic matter under conventional tillage and no-tillage systems in semiarid Morocco. Soil Use Manage 19:139\u2013143",
+        "journal-title": "Soil Use Manage"
+      },
+      {
+        "key": "2651_CR8",
+        "doi-asserted-by": "publisher",
+        "first-page": "1757",
+        "DOI": "10.1016/S0038-0717(98)00029-7",
+        "volume": "30",
+        "author": "SA Blagodatsky",
+        "year": "1998",
+        "unstructured": "Blagodatsky SA, Yevdokimov IV, Larionova AA, Richter J (1998) Microbial growth in soil and nitrogen turnover: model calibration with laboratory data. Soil Biol Biochem 30:1757\u20131764",
+        "journal-title": "Soil Biol Biochem"
+      },
+      {
+        "key": "2651_CR9",
+        "unstructured": "Clark A (2007) Managing cover crops profitably. Handbook series book 9 (3rd edn) Sustainable Agriculture Network, Beltsville"
+      },
+      {
+        "key": "2651_CR10",
+        "doi-asserted-by": "publisher",
+        "first-page": "1595",
+        "DOI": "10.2136/sssaj1995.03615995005900060013x",
+        "volume": "59",
+        "author": "A Clement",
+        "year": "1995",
+        "unstructured": "Clement A, Chalifour F-P, Ladha JK (1995) Crop residue effects on nitrogen mineralization, microbial biomass, and rice yield in submerged soils. Soil Sci Soc Am J 59:1595\u20131603",
+        "journal-title": "Soil Sci Soc Am J"
+      },
+      {
+        "key": "2651_CR11",
+        "volume-title": "Planting now: agricultural challenges and opportunities for Haiti\u2019s reconstruction",
+        "author": "M Cohen",
+        "year": "2010",
+        "unstructured": "Cohen M (2010) Planting now: agricultural challenges and opportunities for Haiti\u2019s reconstruction. Oxfam, London"
+      },
+      {
+        "key": "2651_CR12",
+        "doi-asserted-by": "publisher",
+        "first-page": "49",
+        "DOI": "10.1016/0038-0717(94)90194-5",
+        "volume": "26",
+        "author": "M Constantinides",
+        "year": "1994",
+        "unstructured": "Constantinides M, Fownes JH (1994) Nitrogen mineralization from leaves and litter of tropical plants: relationship to nitrogen, lignin and soluble polyphenol concentrations. Soil Biol Biochem 26:49\u201355",
+        "journal-title": "Soil Biol Biochem"
+      },
+      {
+        "key": "2651_CR13",
+        "doi-asserted-by": "publisher",
+        "first-page": "179",
+        "DOI": "10.1016/S0929-1393(97)00032-2",
+        "volume": "7",
+        "author": "WR Cookson",
+        "year": "1998",
+        "unstructured": "Cookson WR, Beare MH, Wilson PE (1998) Effects of prior crop residue management on microbial properties and crop residue decomposition. Appl Soil Ecol 7:179\u2013188",
+        "journal-title": "Appl Soil Ecol"
+      },
+      {
+        "key": "2651_CR14",
+        "doi-asserted-by": "publisher",
+        "first-page": "150",
+        "DOI": "10.2136/sssaj1974.03615995003800010046x",
+        "volume": "38",
+        "author": "BE Davies",
+        "year": "1974",
+        "unstructured": "Davies BE (1974) Loss-on-ignition as an estimate of soil organic matter. Soil Sci Soc Am J 38:150\u2013151",
+        "journal-title": "Soil Sci Soc Am J"
+      },
+      {
+        "key": "2651_CR15",
+        "doi-asserted-by": "publisher",
+        "first-page": "272",
+        "DOI": "10.2136/sssaj1992.03615995005600010042x",
+        "volume": "56",
+        "author": "CL Douglas",
+        "year": "1992",
+        "unstructured": "Douglas CL, Rickman RW (1992) Estimating crop residue decomposition from air temperature, initial nitrogen content, and residue placement. Soil Sci Soc Am J 56:272\u2013278",
+        "journal-title": "Soil Sci Soc Am J"
+      },
+      {
+        "key": "2651_CR16",
+        "volume-title": "Haiti country environmental profile: a field study",
+        "author": "M Erlich",
+        "year": "1987",
+        "unstructured": "Erlich M, Conway F, Adrien N, LeBeau F, Lewis L, Lauwerysen H (1987) Haiti country environmental profile: a field study. USAID, Port-au-Prince"
+      },
+      {
+        "key": "2651_CR17",
+        "unstructured": "FAO (2011) What is conservation agriculture? (Online). \n                    http://www.fao.org/ag/ca/1a.html\n                    \n                  . Accessed 8 Jan 2015"
+      },
+      {
+        "key": "2651_CR18",
+        "first-page": "632",
+        "volume": "7",
+        "author": "M Fosu",
+        "year": "2007",
+        "unstructured": "Fosu M, K\u00fchne RF, Vlek PL (2007) Mineralization and microbial biomass dynamics during decomposition of four leguminous residues. Am J Agric Biol Sci 7:632\u2013637",
+        "journal-title": "Am J Agric Biol Sci"
+      },
+      {
+        "key": "2651_CR19",
+        "doi-asserted-by": "crossref",
+        "first-page": "251",
+        "DOI": "10.1007/BF00032420",
+        "volume": "129",
+        "author": "RH Fox",
+        "year": "1990",
+        "unstructured": "Fox RH, Myers RJK, Vallis I (1990) The nitrogen mineralization rate of legume residues in soil as influenced by their polyphenol, lignin, and nitrogen contents. Plant Soil 129:251\u2013259",
+        "journal-title": "Plant Soil"
+      },
+      {
+        "key": "2651_CR20",
+        "doi-asserted-by": "publisher",
+        "first-page": "197",
+        "DOI": "10.1016/S0167-1987(02)00027-2",
+        "volume": "66",
+        "author": "AJ Franzluebbers",
+        "year": "2002",
+        "unstructured": "Franzluebbers AJ (2002) Water infiltration and soil structure related to organic matter and its stratification with depth. Soil Tillage Res 66:197\u2013205",
+        "journal-title": "Soil Tillage Res"
+      },
+      {
+        "key": "2651_CR21",
+        "first-page": "3",
+        "volume-title": "Driven by nature plant litter quality and decomposition",
+        "author": "OW Heal",
+        "year": "1997",
+        "unstructured": "Heal OW, Anderson JM, Swift MJ (1997) Plant litter quality and decomposition: a historical overview. In: Cadish G, Giller KE (eds) Driven by nature plant litter quality and decomposition. CAB International, New York, pp 3\u201330"
+      },
+      {
+        "key": "2651_CR22",
+        "doi-asserted-by": "publisher",
+        "first-page": "425",
+        "DOI": "10.2307/1939274",
+        "volume": "68",
+        "author": "EA Holland",
+        "year": "1987",
+        "unstructured": "Holland EA, Coleman DC (1987) Litter placement effects on microbial and organic-matter dynamics in an agroecosystem. Ecology 68:425\u2013433",
+        "journal-title": "Ecology"
+      },
+      {
+        "key": "2651_CR23",
+        "doi-asserted-by": "publisher",
+        "first-page": "131",
+        "DOI": "10.1023/A:1009846203062",
+        "volume": "57",
+        "author": "B Ibewiro",
+        "year": "2000",
+        "unstructured": "Ibewiro B, Sanginga N, Vanlauwe B, Merckx R (2000) Nitrogen contributions from decomposing cover crop residues to maize in a tropical derived savanna. Nutr Cycl Agroecosyst 57:131\u2013140",
+        "journal-title": "Nutr Cycl Agroecosyst"
+      },
+      {
+        "key": "2651_CR24",
+        "doi-asserted-by": "publisher",
+        "first-page": "215",
+        "DOI": "10.1023/A:1014932004926",
+        "volume": "218",
+        "author": "M Karpenstein-Machan",
+        "year": "2000",
+        "unstructured": "Karpenstein-Machan M, Stuelpnagel R (2000a) Biomass yield and nitrogen fixation of legumes monocropped and intercropped with rye and rotation effects on a subsequent maize crop. Plant Soil 218:215\u2013232",
+        "journal-title": "Plant Soil"
+      },
+      {
+        "key": "2651_CR25",
+        "doi-asserted-by": "publisher",
+        "first-page": "215",
+        "DOI": "10.1023/A:1014932004926",
+        "volume": "218",
+        "author": "M Karpenstein-Machan",
+        "year": "2000",
+        "unstructured": "Karpenstein-Machan M, Stuelpnagel R (2000b) Biomass yield and nitrogen fixation of legumes monocropped and intercropped with rye and rotation effects on a subsequent maize crop. Plant Soil 218:215\u2013232",
+        "journal-title": "Plant Soil"
+      },
+      {
+        "key": "2651_CR26",
+        "doi-asserted-by": "publisher",
+        "first-page": "1623",
+        "DOI": "10.1126/science.1097396",
+        "volume": "304",
+        "author": "R Lal",
+        "year": "2004",
+        "unstructured": "Lal R (2004) Soil carbon sequestration impacts on global climate change and food security. Science 304:1623\u20131627",
+        "journal-title": "Science"
+      },
+      {
+        "key": "2651_CR27",
+        "unstructured": "Maguire R, Heckendorn S (2011) Laboratory procedures: Virginia Tech Soil Testing Laboratory. VA cooperative extension publication #452-881. Virginia Cooperative Extension, Blacksburg, VA"
+      },
+      {
+        "key": "2651_CR28",
+        "volume-title": "Agricultural development politics 2010\u20132025",
+        "author": "MARNDR (Ministre de l\u00b4Agriculture des Ressources Naturelles et du D\u00e9veloppement Rural)",
+        "year": "2010",
+        "unstructured": "MARNDR (Ministre de l\u00b4Agriculture des Ressources Naturelles et du D\u00e9veloppement Rural) (2010) Agricultural development politics 2010\u20132025. Ministry of Agriculture, Natural Resources and Rural Development, Port-au-Prince"
+      },
+      {
+        "key": "2651_CR29",
+        "doi-asserted-by": "publisher",
+        "first-page": "3365",
+        "DOI": "10.1080/00103629409369270",
+        "volume": "25",
+        "author": "RP Matta-Machado",
+        "year": "1994",
+        "unstructured": "Matta-Machado RP, Neely CL, Cabrera ML (1994) Plant residue decomposition and nitrogen dynamics in an alley cropping and an annual legume-based cropping system. Comm Soil Sci Plant Anal 25:3365\u20133378",
+        "journal-title": "Comm Soil Sci Plant Anal"
+      },
+      {
+        "key": "2651_CR30",
+        "volume-title": "Regenerative agriculture for Haiti\u2019s Central Plateau\u2014a sustainable foundation for food and nutrition security",
+        "author": "N McClintock",
+        "year": "2004",
+        "unstructured": "McClintock N (2004) Regenerative agriculture for Haiti\u2019s Central Plateau\u2014a sustainable foundation for food and nutrition security. Zanmi Lasante, Paris"
+      },
+      {
+        "key": "2651_CR31",
+        "doi-asserted-by": "publisher",
+        "first-page": "637",
+        "DOI": "10.1080/00103627609366673",
+        "volume": "7",
+        "author": "A Mehlich",
+        "year": "1976",
+        "unstructured": "Mehlich A (1976) New buffer pH method for rapid estimation of exchangeable acidity and lime requirement of soils. Commun Soil Sci Plant Anal 7:637\u2013653",
+        "journal-title": "Commun Soil Sci Plant Anal"
+      },
+      {
+        "key": "2651_CR32",
+        "doi-asserted-by": "publisher",
+        "first-page": "935",
+        "DOI": "10.1016/j.soilbio.2004.02.008",
+        "volume": "36",
+        "author": "N Millar",
+        "year": "2004",
+        "unstructured": "Millar N, Baggs EM (2004) Chemical composition, or quality, of agroforestry residues influences N 2 O emissions after their addition to soil. Soil Biol Biochem 36:935\u2013943",
+        "journal-title": "Soil Biol Biochem"
+      },
+      {
+        "key": "2651_CR33",
+        "doi-asserted-by": "publisher",
+        "first-page": "15",
+        "DOI": "10.1007/s00374-010-0497-1",
+        "volume": "47",
+        "author": "W Muhammad",
+        "year": "2011",
+        "unstructured": "Muhammad W, Vaughan SM, Dalal RC, Menzies NW (2011) Crop residues and fertilizer nitrogen influence residue decomposition and nitrous oxide emission from a Vertisol. Biol Fertility Soils 47:15\u201323",
+        "journal-title": "Biol Fertility Soils"
+      },
+      {
+        "key": "2651_CR34",
+        "doi-asserted-by": "publisher",
+        "first-page": "1425",
+        "DOI": "10.2134/agronj2010.0129",
+        "volume": "102",
+        "author": "MJ Mulvaney",
+        "year": "2010",
+        "unstructured": "Mulvaney MJ, Wood CW, Balkcom KS, Shannon DA, Kemble JM (2010) Carbon and nitrogen mineralization and persistence of organic residues under conservation and conventional tillage. Agron J 102:1425\u20131433",
+        "journal-title": "Agron J"
+      },
+      {
+        "key": "2651_CR35",
+        "doi-asserted-by": "publisher",
+        "first-page": "115",
+        "DOI": "10.1007/s10705-010-9381-5",
+        "volume": "89",
+        "author": "FS Murungu",
+        "year": "2011",
+        "unstructured": "Murungu FS, Chiduza C, Muchaonyerwa P, Mnkeni PNS (2011) Decomposition, nitrogen and phosphorus mineralization from winter-grown cover crop residues and suitability for a smallholder farming system in South Africa. Nutr Cycl Agroecosyst 89:115\u2013123",
+        "journal-title": "Nutr Cycl Agroecosyst"
+      },
+      {
+        "key": "2651_CR36",
+        "unstructured": "Ndufa JK (2001) Nitrogen and soil organic matter benefits of maize by fast-growing pure and mixed species legume fallows in western Kenya. Doctoral Thesis. University of London"
+      },
+      {
+        "key": "2651_CR37",
+        "doi-asserted-by": "publisher",
+        "first-page": "1073",
+        "DOI": "10.2134/agronj2004.1073",
+        "volume": "96",
+        "author": "MN Njunie",
+        "year": "2004",
+        "unstructured": "Njunie MN, Wagger MG, Luna-Orea P (2004) Residue decomposition and nutrient release dynamics from two tropical forage legumes in a Kenyan environment. Agron J 96:1073\u20131081",
+        "journal-title": "Agron J"
+      },
+      {
+        "key": "2651_CR38",
+        "doi-asserted-by": "publisher",
+        "first-page": "37",
+        "DOI": "10.1016/j.agee.2011.12.010",
+        "volume": "149",
+        "author": "SM Ogle",
+        "year": "2012",
+        "unstructured": "Ogle SM, Swan A, Paustian K (2012) No-till management impacts on crop productivity, carbon input and soil carbon sequestration. Agric Ecosyst Environ 149:37\u201349",
+        "journal-title": "Agric Ecosyst Environ"
+      },
+      {
+        "key": "2651_CR39",
+        "unstructured": "Olsen SR, Cole CV, Watanabe FS, Dean LA (1954). Estimation of available phosphorus in soils by extraction with sodium bicarbonate. USDA circular 939. U.S. Government Printing Office, Washington"
+      },
+      {
+        "key": "2651_CR40",
+        "doi-asserted-by": "publisher",
+        "first-page": "351",
+        "DOI": "10.1016/j.geoderma.2009.05.001",
+        "volume": "151",
+        "author": "K Ono",
+        "year": "2009",
+        "unstructured": "Ono K, Hirai K, Morita S, Ohse K, Hiradate S (2009) Organic carbon accumulation processes on a forest floor during an early humification stage in a temperate deciduous forest in Japan: evaluations of chemical compositional changes by13C NMR and their decomposition rates from litterbag experiment. Geoderma 151:351\u2013356",
+        "journal-title": "Geoderma"
+      },
+      {
+        "key": "2651_CR41",
+        "doi-asserted-by": "publisher",
+        "first-page": "83",
+        "DOI": "10.1016/0038-0717(91)90166-H",
+        "volume": "23",
+        "author": "CA Palm",
+        "year": "1991",
+        "unstructured": "Palm CA, Sanchez PA (1991) Nitrogen release from the leaves of some tropical legumes as affected by their lignin and polyphenolic contents. Soil Biol Biochem 23:83\u201388",
+        "journal-title": "Soil Biol Biochem"
+      },
+      {
+        "key": "2651_CR42",
+        "doi-asserted-by": "publisher",
+        "first-page": "27",
+        "DOI": "10.1016/S0167-8809(00)00267-X",
+        "volume": "83",
+        "author": "CA Palm",
+        "year": "2001",
+        "unstructured": "Palm CA, Gachengo CN, Delve RJ, Cadisch G, Giller KE (2001) Organic inputs for soil fertility management in tropical agroecosystems: application of an organic resource database. Agric Ecosyst Environ 83:27\u201342",
+        "journal-title": "Agric Ecosyst Environ"
+      },
+      {
+        "key": "2651_CR43",
+        "first-page": "926",
+        "volume-title": "Handbook of soil analysis: mineralogical, organic and inorganic methods",
+        "author": "M Pansu",
+        "year": "2007",
+        "unstructured": "Pansu M, Gautheyrou J (2007) Handbook of soil analysis: mineralogical, organic and inorganic methods. Springer Science and Business Media, New York, pp 926\u2013927"
+      },
+      {
+        "key": "2651_CR44",
+        "doi-asserted-by": "publisher",
+        "first-page": "453",
+        "DOI": "10.1590/S0103-90162006000500006",
+        "volume": "63",
+        "author": "A Perin",
+        "year": "2006",
+        "unstructured": "Perin A, Santos RHS, Urguiagal SS, Cecon PR, Guerra JGM, de Freitas GB (2006) Sunnhemp and millet as green manure for tropical maize production. Scientia Agricola 63:453\u2013459",
+        "journal-title": "Scientia Agricola"
+      },
+      {
+        "key": "2651_CR45",
+        "unstructured": "JMP\u00ae Pro, Version 11 (2013) SAS Institute, Cary, NC, 1989\u20132007"
+      },
+      {
+        "key": "2651_CR46",
+        "unstructured": "Rotar PP, Joy RJ (1983) \u2018Tropic Sun\u2019 sunn hemp, Crotalaria juncea L. research. Extension Series 036 University of Hawaii, Honolulu, HI"
+      },
+      {
+        "key": "2651_CR47",
+        "doi-asserted-by": "publisher",
+        "first-page": "81",
+        "DOI": "10.1016/0167-1987(88)90033-5",
+        "volume": "11",
+        "author": "CH Roth",
+        "year": "1988",
+        "unstructured": "Roth CH, Meyer B, Frede HG, Derpsch R (1988) Effect of mulch rates and tillage systems on infiltrability and other soil physical properties of an Oxisol in Paran\u00e1, Brazil. Soil Tillage Res 11:81\u201391",
+        "journal-title": "Soil Tillage Res"
+      },
+      {
+        "key": "2651_CR48",
+        "doi-asserted-by": "publisher",
+        "first-page": "679",
+        "DOI": "10.1016/S0038-0717(99)00204-7",
+        "volume": "32",
+        "author": "WD Sakala",
+        "year": "2000",
+        "unstructured": "Sakala WD, Cadisch G, Giller KE (2000) Interactions between residues of maize and pigeonpea and mineral N fertilizers during decomposition and N mineralization. Soil Biol Biochem 32:679\u2013688",
+        "journal-title": "Soil Biol Biochem"
+      },
+      {
+        "key": "2651_CR49",
+        "doi-asserted-by": "publisher",
+        "first-page": "79",
+        "DOI": "10.1016/S0167-1987(96)01092-6",
+        "volume": "42",
+        "author": "JR Salinas-Garcia",
+        "year": "1997",
+        "unstructured": "Salinas-Garcia JR, Salinas-Garcia JR, Matocha JE, Hons FM (1997) Long-term tillage and nitrogen fertilization effects on soil properties of an Alfisol under dryland corn/cotton production. Soil Till Res 42:79\u201393",
+        "journal-title": "Soil Till Res"
+      },
+      {
+        "key": "2651_CR50",
+        "doi-asserted-by": "publisher",
+        "first-page": "137",
+        "DOI": "10.1007/s10457-007-9062-9",
+        "volume": "72",
+        "author": "S Thippayarugs",
+        "year": "2008",
+        "unstructured": "Thippayarugs S, Banyong T, Patma V, Viriya L, Aran P, Georg C (2008) Interactions in decomposition and N mineralization between tropical legume residue components. Agroforest Syst 72:137\u2013148",
+        "journal-title": "Agroforest Syst"
+      },
+      {
+        "key": "2651_CR51",
+        "doi-asserted-by": "publisher",
+        "first-page": "1351",
+        "DOI": "10.1016/0038-0717(93)90050-L",
+        "volume": "25",
+        "author": "RJ Thomas",
+        "year": "1993",
+        "unstructured": "Thomas RJ, Asakawa NM (1993) Decomposition of leaf litter from tropical forage grasses and legumes. Soil Biol Biochem 25:1351\u20131361",
+        "journal-title": "Soil Biol Biochem"
+      },
+      {
+        "key": "2651_CR52",
+        "doi-asserted-by": "publisher",
+        "first-page": "1051",
+        "DOI": "10.1016/0038-0717(92)90035-V",
+        "volume": "24",
+        "author": "G Tian",
+        "year": "1992",
+        "unstructured": "Tian G, Kang BT, Brussaard L (1992) Biological effects of plant residues with contrasting chemical compositions under humid tropical conditions\u2014decomposition and nutrient release. Soil Biol Biochem 24:1051\u20131060",
+        "journal-title": "Soil Biol Biochem"
+      },
+      {
+        "key": "2651_CR53",
+        "doi-asserted-by": "publisher",
+        "first-page": "25",
+        "DOI": "10.1016/0929-1393(94)00033-4",
+        "volume": "2",
+        "author": "G Tian",
+        "year": "1995",
+        "unstructured": "Tian G, Brussaard L, Kang BT (1995) An index for assessing the quality of plant residues and evaluating their effects on soil and crop in the (sub-) humid tropics. Appl Soil Ecol 2:25\u201332",
+        "journal-title": "Appl Soil Ecol"
+      },
+      {
+        "key": "2651_CR55",
+        "doi-asserted-by": "publisher",
+        "first-page": "923",
+        "DOI": "10.14358/PERS.77.9.923",
+        "volume": "77",
+        "author": "S Voigt",
+        "year": "2011",
+        "unstructured": "Voigt S, Schneiderhan T, Twele A, Gahler M, Stein E, Mehl H (2011) Rapid damage assessment and situation mapping: learning from the 2010 Haiti earthquake. Photogramm Eng Remote Sens 77:923\u2013931",
+        "journal-title": "Photogramm Eng Remote Sens"
+      },
+      {
+        "key": "2651_CR57",
+        "doi-asserted-by": "publisher",
+        "first-page": "41",
+        "DOI": "10.1017/S1742170507001585",
+        "volume": "22",
+        "author": "Q Wang",
+        "year": "2007",
+        "unstructured": "Wang Q, Yuncong L, Waldermar K, Zafar H (2007) Influence of cover crops and soil amendments on okra (Abelmoschus esculentus L.) production and soil nematodes. Renew Agric Food Syst 22:41\u201353",
+        "journal-title": "Renew Agric Food Syst"
+      },
+      {
+        "key": "2651_CR58",
+        "first-page": "7",
+        "volume": "50",
+        "author": "TA White",
+        "year": "1995",
+        "unstructured": "White TA, Jickling JL (1995) Peasants, experts, and land use in Haiti: lessons from indigenous and project technology. J Soil Water Conserv 50:7\u201314",
+        "journal-title": "J Soil Water Conserv"
+      },
+      {
+        "key": "2651_CR59",
+        "doi-asserted-by": "publisher",
+        "first-page": "85",
+        "DOI": "10.1093/jpe/rtn002",
+        "volume": "1",
+        "author": "D Zhang",
+        "year": "2008",
+        "unstructured": "Zhang D, Dafeng H, Yigi L, Guoyi Z (2008) Rates of litter decomposition in terrestrial ecosystems: global patterns and controlling factor. J Plant Ecol 1:85\u201393",
+        "journal-title": "J Plant Ecol"
+      }
+    ],
+    "container-title": [
+      "SpringerPlus"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.springer.com/content/pdf/10.1186/s40064-016-2651-1.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "http://link.springer.com/article/10.1186/s40064-016-2651-1/fulltext.html",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "http://link.springer.com/content/pdf/10.1186/s40064-016-2651-1",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      },
+      {
+        "URL": "http://link.springer.com/content/pdf/10.1186/s40064-016-2651-1.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2020,
+          5,
+          16
+        ]
+      ],
+      "date-time": "2020-05-16T22:24:27Z",
+      "timestamp": 1589667867000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://springerplus.springeropen.com/articles/10.1186/s40064-016-2651-1"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2016,
+          7,
+          4
+        ]
+      ]
+    },
+    "references-count": 57,
+    "journal-issue": {
+      "issue": "1",
+      "published-print": {
+        "date-parts": [
+          [
+            2016,
+            12
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "2651"
+    ],
+    "URL": "https://doi.org/10.1186/s40064-016-2651-1",
+    "relation": {},
+    "ISSN": [
+      "2193-1801"
+    ],
+    "issn-type": [
+      {
+        "value": "2193-1801",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2016,
+          7,
+          4
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "12 August 2015",
+        "order": 1,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "23 June 2016",
+        "order": 2,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "4 July 2016",
+        "order": 3,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      }
+    ],
+    "article-number": "973"
+  }
+}

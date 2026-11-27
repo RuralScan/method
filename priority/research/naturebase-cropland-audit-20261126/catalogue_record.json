@@ -1,0 +1,55 @@
+{
+  "url": "https://content.naturebase.io/items/spatial_metadata?limit=-1&sort=title&filter[status][_in]=published",
+  "data": [
+    {
+      "id": 12,
+      "status": "published",
+      "sort": null,
+      "user_created": "d62e48ea-42fb-41b4-b49d-d9066b9efa99",
+      "date_created": "2023-10-03T20:35:02.927Z",
+      "user_updated": "8f4b5133-5b06-4675-9179-32e6116aae4d",
+      "date_updated": "2026-08-27T21:18:38.312Z",
+      "title": "Cropland-based Agroforestry",
+      "short_name": "crp_cba_total",
+      "short_summary": "<p>Mitigation potential from establishing cropland-based agroforestry in place of agricultural lands that currently hold less than the recommended maximum biomass potential in cropping systems, as determined by expert elicitation.&nbsp;</p>\n<p><strong>Units:&nbsp;</strong>all raster data (.tif) are in tCO2e/ha/yr. All tabular data (.csv) are summarised in tCO2e/yr.</p>",
+      "description": "<p>This layer shows the climate benefit, as increased sequestration, resulting from establishing trees into croplands. These estimates are based on a modified layer derived from expert elicitations to identify tree cover in agricultural lands (Hyppolite et al., 2024) combined with regionally-specific carbon sequestration estimates for trees in croplands (Cardinael et al., 2018). Relevant agroforestry practices for trees in croplands include alley cropping, fallow, hedgerow, multistrata, parkland, shaded perennial, silvoarable (with open croplands as the starting condition).</p>\n<p>Consistent with the naturebase accounting framework, areas of overlap between cropland and non-cropland pathway extents were resolved using a proportional allocation approach. Cropland pathway mitigation was weighted by the fraction of each 1 km&sup2; pixel classified as cropland, while non-cropland pathway mitigation was weighted by the inverse proportion. For a detailed description of this methodology, see Section I(c), Cropland Extent, in the <a href=\"https://naturebase-shared-docs.s3.amazonaws.com/NCS_Accounting_rules_narrative.pdf\" target=\"_blank\" rel=\"noopener\">NCS Accounting Rules Narrative</a>.</p>\n<p><br><strong>Units:&nbsp;</strong>all raster data (.tif) are in tCO2e/ha/yr. All tabular data (.csv) are summarised in tCO2e/yr.</p>\n<p class=\"MsoNormal\">To calculate the per hectare mitigation potential (density) of the <strong>NCS implementation extent</strong> in tCO2e/ha/yr:&nbsp;<br>1) Find the total mitigation value: this is provided in the spreadsheet as <u>[pathway]_tco2e</u><br>2) Find the NCS hectare extent: This is provided in the spreadsheet as <u>[pathway]_ha</u><br>3) Divide the mitigation value by the NCS hectare extent: <u>tCO2e/ha/yr = [pathway]_tco2e / [pathway]_ha</u>*</p>\n<p>*FLAG: As this is the hectares of NCS extent of the 1km2 raster, extent may be over-estimated. Use with caution. These area estimates are not recommended for pathways that have extents finer than 1km resolution</p>\n<p><br>To calculate the per hectare mitigation potential (density) for each <strong>administrative area</strong>* in tCO2e/ha/yr:&nbsp;<br>1) Find the total mitigation value: this is provided in the spreadsheet as <span style=\"text-decoration: underline;\">[pathway]_tco2e</span><br>2) Find the administrative extent: This is provided in the spreadsheet as '<span style=\"text-decoration: underline;\">admin_ha</span>'<br>3) Divide the mitigation value by the administrative extent: <span style=\"text-decoration: underline;\">tCO2e/ha/yr in each administrative area = [pathway]_tco2e / admin_ha</span></p>\n<p>*This is useful for comparison between administrative areas</p>\n<p><em>Please consult the download package under 'Download Now' for comprehensive metadata and a detailed description.</em></p>",
+      "data_updated": "2025-05-06",
+      "original_resolution": null,
+      "naturebase_resolution": 1,
+      "biome": "croplands",
+      "action": "manage",
+      "cog_url": "https://action-mapper.s3.amazonaws.com/naturebase_cog/crp_cba_total.tif",
+      "preferred_citation": "<p>Naturebase (2025, April 15). Cropland-based Agroforestry: Trees in Croplands v3. Retrieved from https://naturebase.org &nbsp;</p>",
+      "units": "MtCO2e/yr",
+      "data_caveats": "The flux data from Cardinael et al. (2018) are similarly coarse and there is substantial opportunity to refine those estimates to reflect the configurations of specific rather than general system types (Terasaki Hart et al. 2023). The maximum extent was used for the trees in cropland data, derived from Sprenkle-Hyppolite et al., 2024",
+      "accounting_horizon": "2035",
+      "download_links": [
+        {
+          "link_type": "Download",
+          "url": "https://naturebase-shared-docs.s3.amazonaws.com/Data-download/crp_cba_total.zip"
+        }
+      ],
+      "data_category": "pathway",
+      "ncs_pathway": "Cropland-based Agroforestry",
+      "mapped_in_naturebase": null,
+      "subtitle": null,
+      "cobenefits_data": true,
+      "carbon_pools": [
+        "Aboveground Biomass (AGB)",
+        "Belowground Biomass (BGB)",
+        "Soil Organic Carbon (SOC)"
+      ],
+      "authors": "Sam Yeo, Susan Cook-Patton",
+      "corresponding_author": "samantha.yeo@tnc.org ",
+      "publication_date": null,
+      "approach_and_methods": "<p>To estimate the extent of potential for additional trees in croplands, we modified a recent study that used expert elicitation to identify how much tree cover is possible in agricultural lands without negatively impacting yield (Hyppolite et al., 2024). That paper combined the percentage of pixel area covered by trees in 2015 (Sexton et al., 2013) and 2019 cropland extent\u202f(Potapov et al., 2022). They then subtracted from that the estimated maximum extent of tree cover percentage recommended by experts for 53 regional cropping systems (Hyppolite et al., 2024). The remaining map shows the maximum extent of additional tree cover percentage possible. We applied an additional conservative filter to assess areas that fall in locations that are determined to be suitable for forest cover (Fesenmyer et al., 2025). From there, we applied multiplied flux values from Cardinael et al. (2018), averaging across the different relevant agroforestry practices per IPCC Climate Zone, by the possible additional tree cover percentage. Because not all biome by continent combinations have flux values in the Cardinael et al. dataset, we filled missing values with an increasingly coarse search. This means that we preferentially select biome by continent values first (e.g., Tropical Dry in Africa), then biome (e.g., Tropical Dry), followed by general zone (e.g., Tropical). We assumed SOC accumulation rates continued until 2035 based on Ma et al. (2020)</p>",
+      "additionality": "<p>We assumed that all additional expansion would be additional given that market forces on agricultural lands tend toward tree clearance.</p>",
+      "results": "<p>All results can be seen on naturebase.org&nbsp;</p>",
+      "next_steps": "<p>We are currently working on a substantial refinement to the flux data by reviewing over 25,000 publications to find field-derived estimates of carbon stocks in agroforestry systems. Our final database pulls information from more than 1000 papers and will ultimately be publicly available. We will use this information to determine the principal drivers of variation in carbon stocks in agroforestry systems, and use that information to help calculate more precise carbon stocks for specific systems. We also hope to use a more sophisticated map of where agroforestry could be expanded in future iterations.</p>",
+      "footnotes": null,
+      "references": "<p><em>Cardinael et al. (2018) Revisiting IPCC Tier 1 coefficients for soil organic and biomass carbon storage in agroforestry systems, Environmental Research Letters, https://doi.org/ 10.1088/1748-9326/aaeb5f&nbsp;</em></p>\n<p><em>Fesenmyer, K. A. et al.&nbsp;Addressing critiques refines global estimates of reforestation potential for climate change mitigation.&nbsp;Nat Commun&nbsp;<strong>16</strong>, 4572 (2025). https://doi.org/10.1038/s41467-025-59799-8</em></p>\n<p><em>Potapov, P., Turubanova, S., Hansen, M.C. et al. Global maps of cropland extent and change show accelerated cropland expansion in the twenty-first century. Nat Food 3, 19&ndash;28 (2022). https://doi.org/10.1038/s43016-021-00429-z&nbsp;</em></p>\n<p><em>Sexton, J. O., Song, X.-P., Feng, M., Noojipady, P., Anand, A., Huang, C., Kim, D.-H., Collins, K.M., Channan, S., DiMiceli, C., Townshend, J.R.G. (2013). Global, 30-m resolution continuous fields of tree cover: Landsat-based rescaling of MODIS Vegetation Continuous Fields with lidar-based estimates of error. International Journal of Digital Earth, 130321031236007. doi:10.1080/17538947.2013.786146.&nbsp;</em></p>\n<p><em>Sprenkle-Hyppolite, S., Griscom, B., Griffey, V. et al. Maximizing tree carbon in croplands and grazing lands while sustaining yields. Carbon Balance Manage 19, 23 (2024). https://doi.org/10.1186/s13021-024-00268-y&nbsp;</em></p>\n<p><em>Terasaki Hart et al. (2023) Priority Science Can Accelerate Agroforestry as a Natural Climate Solution, Nature Climate Change, https://doi.org/10.1038/s41558-023-01810-5&nbsp;</em></p>",
+      "confidence": null,
+      "publication_date_note": "Forthcoming"
+    }
+  ]
+}

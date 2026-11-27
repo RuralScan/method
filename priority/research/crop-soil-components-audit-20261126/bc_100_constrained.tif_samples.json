@@ -1,0 +1,10082 @@
+[
+  {
+    "id": "0",
+    "landcover": 10,
+    "row": 843,
+    "col": 1290,
+    "value": 147.6844482421875
+  },
+  {
+    "id": "1",
+    "landcover": 10,
+    "row": 843,
+    "col": 1285,
+    "value": 691.3464965820312
+  },
+  {
+    "id": "2",
+    "landcover": 10,
+    "row": 841,
+    "col": 1287,
+    "value": 201.71578979492188
+  },
+  {
+    "id": "3",
+    "landcover": 10,
+    "row": 852,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "4",
+    "landcover": 10,
+    "row": 853,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "5",
+    "landcover": 10,
+    "row": 861,
+    "col": 1296,
+    "value": 145.27496337890625
+  },
+  {
+    "id": "6",
+    "landcover": 10,
+    "row": 858,
+    "col": 1288,
+    "value": 1056.3912353515625
+  },
+  {
+    "id": "7",
+    "landcover": 10,
+    "row": 860,
+    "col": 1287,
+    "value": 403.4458923339844
+  },
+  {
+    "id": "8",
+    "landcover": 10,
+    "row": 858,
+    "col": 1274,
+    "value": 955.0760498046875
+  },
+  {
+    "id": "9",
+    "landcover": 10,
+    "row": 861,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "10",
+    "landcover": 10,
+    "row": 860,
+    "col": 1291,
+    "value": 362.53448486328125
+  },
+  {
+    "id": "11",
+    "landcover": 10,
+    "row": 861,
+    "col": 1277,
+    "value": null
+  },
+  {
+    "id": "12",
+    "landcover": 10,
+    "row": 842,
+    "col": 1280,
+    "value": 828.318359375
+  },
+  {
+    "id": "13",
+    "landcover": 10,
+    "row": 858,
+    "col": 1270,
+    "value": 627.4400024414062
+  },
+  {
+    "id": "14",
+    "landcover": 10,
+    "row": 859,
+    "col": 1277,
+    "value": 812.495849609375
+  },
+  {
+    "id": "15",
+    "landcover": 10,
+    "row": 861,
+    "col": 1271,
+    "value": 230.5962371826172
+  },
+  {
+    "id": "16",
+    "landcover": 10,
+    "row": 859,
+    "col": 1276,
+    "value": 686.9651489257812
+  },
+  {
+    "id": "17",
+    "landcover": 10,
+    "row": 851,
+    "col": 1299,
+    "value": 349.0684814453125
+  },
+  {
+    "id": "18",
+    "landcover": 10,
+    "row": 843,
+    "col": 1279,
+    "value": 653.5200805664062
+  },
+  {
+    "id": "19",
+    "landcover": 10,
+    "row": 850,
+    "col": 1290,
+    "value": 1379.5858154296875
+  },
+  {
+    "id": "20",
+    "landcover": 10,
+    "row": 842,
+    "col": 1287,
+    "value": 397.2994384765625
+  },
+  {
+    "id": "21",
+    "landcover": 10,
+    "row": 860,
+    "col": 1279,
+    "value": 723.0502319335938
+  },
+  {
+    "id": "22",
+    "landcover": 10,
+    "row": 857,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "23",
+    "landcover": 10,
+    "row": 841,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "24",
+    "landcover": 10,
+    "row": 861,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "25",
+    "landcover": 10,
+    "row": 844,
+    "col": 1293,
+    "value": 1414.2572021484375
+  },
+  {
+    "id": "26",
+    "landcover": 10,
+    "row": 860,
+    "col": 1283,
+    "value": 656.6140747070312
+  },
+  {
+    "id": "27",
+    "landcover": 10,
+    "row": 859,
+    "col": 1274,
+    "value": 531.328369140625
+  },
+  {
+    "id": "28",
+    "landcover": 10,
+    "row": 858,
+    "col": 1270,
+    "value": 627.4400024414062
+  },
+  {
+    "id": "29",
+    "landcover": 10,
+    "row": 858,
+    "col": 1281,
+    "value": 749.9769897460938
+  },
+  {
+    "id": "30",
+    "landcover": 10,
+    "row": 845,
+    "col": 1297,
+    "value": 582.9756469726562
+  },
+  {
+    "id": "31",
+    "landcover": 10,
+    "row": 857,
+    "col": 1269,
+    "value": 946.9385986328125
+  },
+  {
+    "id": "32",
+    "landcover": 10,
+    "row": 843,
+    "col": 1291,
+    "value": 340.6456604003906
+  },
+  {
+    "id": "33",
+    "landcover": 10,
+    "row": 860,
+    "col": 1291,
+    "value": 362.53448486328125
+  },
+  {
+    "id": "34",
+    "landcover": 10,
+    "row": 857,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "35",
+    "landcover": 10,
+    "row": 860,
+    "col": 1283,
+    "value": 656.6140747070312
+  },
+  {
+    "id": "36",
+    "landcover": 10,
+    "row": 860,
+    "col": 1295,
+    "value": 293.92608642578125
+  },
+  {
+    "id": "37",
+    "landcover": 10,
+    "row": 854,
+    "col": 1293,
+    "value": 229.2485809326172
+  },
+  {
+    "id": "38",
+    "landcover": 10,
+    "row": 844,
+    "col": 1297,
+    "value": 717.4120483398438
+  },
+  {
+    "id": "39",
+    "landcover": 10,
+    "row": 849,
+    "col": 1290,
+    "value": 974.633056640625
+  },
+  {
+    "id": "40",
+    "landcover": 10,
+    "row": 858,
+    "col": 1269,
+    "value": 592.8603515625
+  },
+  {
+    "id": "41",
+    "landcover": 10,
+    "row": 842,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "42",
+    "landcover": 10,
+    "row": 841,
+    "col": 1284,
+    "value": 359.4480895996094
+  },
+  {
+    "id": "43",
+    "landcover": 10,
+    "row": 860,
+    "col": 1290,
+    "value": 328.2083740234375
+  },
+  {
+    "id": "44",
+    "landcover": 10,
+    "row": 844,
+    "col": 1289,
+    "value": 849.7474975585938
+  },
+  {
+    "id": "45",
+    "landcover": 10,
+    "row": 859,
+    "col": 1276,
+    "value": 686.9651489257812
+  },
+  {
+    "id": "46",
+    "landcover": 10,
+    "row": 861,
+    "col": 1276,
+    "value": null
+  },
+  {
+    "id": "47",
+    "landcover": 10,
+    "row": 857,
+    "col": 1271,
+    "value": 847.6957397460938
+  },
+  {
+    "id": "48",
+    "landcover": 10,
+    "row": 845,
+    "col": 1290,
+    "value": 918.9019165039062
+  },
+  {
+    "id": "49",
+    "landcover": 10,
+    "row": 845,
+    "col": 1298,
+    "value": 681.1211547851562
+  },
+  {
+    "id": "50",
+    "landcover": 10,
+    "row": 857,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "51",
+    "landcover": 10,
+    "row": 843,
+    "col": 1288,
+    "value": 381.62628173828125
+  },
+  {
+    "id": "52",
+    "landcover": 10,
+    "row": 858,
+    "col": 1272,
+    "value": 860.8743896484375
+  },
+  {
+    "id": "53",
+    "landcover": 10,
+    "row": 858,
+    "col": 1296,
+    "value": 401.5264892578125
+  },
+  {
+    "id": "54",
+    "landcover": 10,
+    "row": 859,
+    "col": 1268,
+    "value": 490.7835693359375
+  },
+  {
+    "id": "55",
+    "landcover": 10,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "56",
+    "landcover": 10,
+    "row": 861,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "57",
+    "landcover": 10,
+    "row": 843,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "58",
+    "landcover": 10,
+    "row": 857,
+    "col": 1274,
+    "value": 629.4155883789062
+  },
+  {
+    "id": "59",
+    "landcover": 10,
+    "row": 847,
+    "col": 1298,
+    "value": 792.4210205078125
+  },
+  {
+    "id": "60",
+    "landcover": 10,
+    "row": 845,
+    "col": 1295,
+    "value": 642.1007690429688
+  },
+  {
+    "id": "61",
+    "landcover": 10,
+    "row": 856,
+    "col": 1267,
+    "value": 836.1727905273438
+  },
+  {
+    "id": "62",
+    "landcover": 10,
+    "row": 844,
+    "col": 1297,
+    "value": 717.4120483398438
+  },
+  {
+    "id": "63",
+    "landcover": 10,
+    "row": 861,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "64",
+    "landcover": 10,
+    "row": 859,
+    "col": 1294,
+    "value": 194.17645263671875
+  },
+  {
+    "id": "65",
+    "landcover": 10,
+    "row": 858,
+    "col": 1272,
+    "value": 860.8743896484375
+  },
+  {
+    "id": "66",
+    "landcover": 10,
+    "row": 860,
+    "col": 1282,
+    "value": 632.2918090820312
+  },
+  {
+    "id": "67",
+    "landcover": 10,
+    "row": 861,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "68",
+    "landcover": 10,
+    "row": 858,
+    "col": 1278,
+    "value": 721.0340576171875
+  },
+  {
+    "id": "69",
+    "landcover": 10,
+    "row": 847,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "70",
+    "landcover": 10,
+    "row": 844,
+    "col": 1296,
+    "value": 621.355712890625
+  },
+  {
+    "id": "71",
+    "landcover": 10,
+    "row": 861,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "72",
+    "landcover": 10,
+    "row": 846,
+    "col": 1296,
+    "value": 424.42877197265625
+  },
+  {
+    "id": "73",
+    "landcover": 10,
+    "row": 863,
+    "col": 1274,
+    "value": null
+  },
+  {
+    "id": "74",
+    "landcover": 10,
+    "row": 844,
+    "col": 1294,
+    "value": 384.0885314941406
+  },
+  {
+    "id": "75",
+    "landcover": 10,
+    "row": 860,
+    "col": 1270,
+    "value": 976.3115844726562
+  },
+  {
+    "id": "76",
+    "landcover": 10,
+    "row": 844,
+    "col": 1286,
+    "value": 474.9210205078125
+  },
+  {
+    "id": "77",
+    "landcover": 10,
+    "row": 844,
+    "col": 1291,
+    "value": 179.4977569580078
+  },
+  {
+    "id": "78",
+    "landcover": 10,
+    "row": 852,
+    "col": 1294,
+    "value": 189.41307067871094
+  },
+  {
+    "id": "79",
+    "landcover": 10,
+    "row": 860,
+    "col": 1290,
+    "value": 328.2083740234375
+  },
+  {
+    "id": "80",
+    "landcover": 10,
+    "row": 847,
+    "col": 1296,
+    "value": 679.9331665039062
+  },
+  {
+    "id": "81",
+    "landcover": 10,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "82",
+    "landcover": 10,
+    "row": 860,
+    "col": 1278,
+    "value": 353.2724914550781
+  },
+  {
+    "id": "83",
+    "landcover": 10,
+    "row": 858,
+    "col": 1279,
+    "value": 897.3553466796875
+  },
+  {
+    "id": "84",
+    "landcover": 10,
+    "row": 860,
+    "col": 1277,
+    "value": 389.67596435546875
+  },
+  {
+    "id": "85",
+    "landcover": 10,
+    "row": 859,
+    "col": 1289,
+    "value": 350.7096252441406
+  },
+  {
+    "id": "86",
+    "landcover": 10,
+    "row": 841,
+    "col": 1286,
+    "value": 825.1654052734375
+  },
+  {
+    "id": "87",
+    "landcover": 10,
+    "row": 841,
+    "col": 1287,
+    "value": 201.71578979492188
+  },
+  {
+    "id": "88",
+    "landcover": 10,
+    "row": 841,
+    "col": 1286,
+    "value": 825.1654052734375
+  },
+  {
+    "id": "89",
+    "landcover": 10,
+    "row": 858,
+    "col": 1282,
+    "value": 603.0033569335938
+  },
+  {
+    "id": "90",
+    "landcover": 10,
+    "row": 853,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "91",
+    "landcover": 10,
+    "row": 857,
+    "col": 1269,
+    "value": 946.9385986328125
+  },
+  {
+    "id": "92",
+    "landcover": 10,
+    "row": 857,
+    "col": 1275,
+    "value": 658.6134643554688
+  },
+  {
+    "id": "93",
+    "landcover": 10,
+    "row": 860,
+    "col": 1293,
+    "value": 376.096923828125
+  },
+  {
+    "id": "94",
+    "landcover": 10,
+    "row": 859,
+    "col": 1271,
+    "value": 228.3267059326172
+  },
+  {
+    "id": "95",
+    "landcover": 10,
+    "row": 842,
+    "col": 1289,
+    "value": 14.851377487182617
+  },
+  {
+    "id": "96",
+    "landcover": 10,
+    "row": 860,
+    "col": 1274,
+    "value": 1490.1400146484375
+  },
+  {
+    "id": "97",
+    "landcover": 10,
+    "row": 861,
+    "col": 1273,
+    "value": 1724.917236328125
+  },
+  {
+    "id": "98",
+    "landcover": 10,
+    "row": 859,
+    "col": 1277,
+    "value": 812.495849609375
+  },
+  {
+    "id": "99",
+    "landcover": 10,
+    "row": 844,
+    "col": 1297,
+    "value": 717.4120483398438
+  },
+  {
+    "id": "100",
+    "landcover": 10,
+    "row": 854,
+    "col": 1284,
+    "value": 393.52081298828125
+  },
+  {
+    "id": "101",
+    "landcover": 10,
+    "row": 861,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "102",
+    "landcover": 10,
+    "row": 846,
+    "col": 1292,
+    "value": 1217.4503173828125
+  },
+  {
+    "id": "103",
+    "landcover": 10,
+    "row": 860,
+    "col": 1267,
+    "value": null
+  },
+  {
+    "id": "104",
+    "landcover": 10,
+    "row": 846,
+    "col": 1297,
+    "value": 370.8498229980469
+  },
+  {
+    "id": "105",
+    "landcover": 10,
+    "row": 854,
+    "col": 1292,
+    "value": 542.636474609375
+  },
+  {
+    "id": "106",
+    "landcover": 10,
+    "row": 859,
+    "col": 1281,
+    "value": 987.5751953125
+  },
+  {
+    "id": "107",
+    "landcover": 10,
+    "row": 846,
+    "col": 1297,
+    "value": 370.8498229980469
+  },
+  {
+    "id": "108",
+    "landcover": 10,
+    "row": 862,
+    "col": 1299,
+    "value": null
+  },
+  {
+    "id": "109",
+    "landcover": 10,
+    "row": 843,
+    "col": 1285,
+    "value": 691.3464965820312
+  },
+  {
+    "id": "110",
+    "landcover": 10,
+    "row": 844,
+    "col": 1297,
+    "value": 717.4120483398438
+  },
+  {
+    "id": "111",
+    "landcover": 10,
+    "row": 846,
+    "col": 1298,
+    "value": 527.4957275390625
+  },
+  {
+    "id": "112",
+    "landcover": 10,
+    "row": 857,
+    "col": 1270,
+    "value": 951.6766967773438
+  },
+  {
+    "id": "113",
+    "landcover": 10,
+    "row": 859,
+    "col": 1288,
+    "value": 492.7197570800781
+  },
+  {
+    "id": "114",
+    "landcover": 10,
+    "row": 853,
+    "col": 1295,
+    "value": 148.6896209716797
+  },
+  {
+    "id": "115",
+    "landcover": 10,
+    "row": 850,
+    "col": 1289,
+    "value": 2516.48046875
+  },
+  {
+    "id": "116",
+    "landcover": 10,
+    "row": 839,
+    "col": 1286,
+    "value": 169.6007537841797
+  },
+  {
+    "id": "117",
+    "landcover": 10,
+    "row": 857,
+    "col": 1268,
+    "value": 978.1932983398438
+  },
+  {
+    "id": "118",
+    "landcover": 10,
+    "row": 842,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "119",
+    "landcover": 10,
+    "row": 861,
+    "col": 1297,
+    "value": 280.4397888183594
+  },
+  {
+    "id": "120",
+    "landcover": 10,
+    "row": 860,
+    "col": 1276,
+    "value": 691.470458984375
+  },
+  {
+    "id": "121",
+    "landcover": 10,
+    "row": 858,
+    "col": 1276,
+    "value": 897.3298950195312
+  },
+  {
+    "id": "122",
+    "landcover": 10,
+    "row": 859,
+    "col": 1277,
+    "value": 812.495849609375
+  },
+  {
+    "id": "123",
+    "landcover": 10,
+    "row": 860,
+    "col": 1292,
+    "value": 297.9771728515625
+  },
+  {
+    "id": "124",
+    "landcover": 10,
+    "row": 858,
+    "col": 1292,
+    "value": 228.478759765625
+  },
+  {
+    "id": "125",
+    "landcover": 10,
+    "row": 857,
+    "col": 1268,
+    "value": 978.1932983398438
+  },
+  {
+    "id": "126",
+    "landcover": 10,
+    "row": 858,
+    "col": 1277,
+    "value": 745.603759765625
+  },
+  {
+    "id": "127",
+    "landcover": 10,
+    "row": 859,
+    "col": 1272,
+    "value": 983.4107666015625
+  },
+  {
+    "id": "128",
+    "landcover": 10,
+    "row": 856,
+    "col": 1267,
+    "value": 836.1727905273438
+  },
+  {
+    "id": "129",
+    "landcover": 10,
+    "row": 842,
+    "col": 1288,
+    "value": 50.060577392578125
+  },
+  {
+    "id": "130",
+    "landcover": 10,
+    "row": 841,
+    "col": 1287,
+    "value": 201.71578979492188
+  },
+  {
+    "id": "131",
+    "landcover": 10,
+    "row": 856,
+    "col": 1268,
+    "value": 967.0623168945312
+  },
+  {
+    "id": "132",
+    "landcover": 10,
+    "row": 852,
+    "col": 1297,
+    "value": null
+  },
+  {
+    "id": "133",
+    "landcover": 10,
+    "row": 843,
+    "col": 1279,
+    "value": 653.5200805664062
+  },
+  {
+    "id": "134",
+    "landcover": 10,
+    "row": 859,
+    "col": 1277,
+    "value": 812.495849609375
+  },
+  {
+    "id": "135",
+    "landcover": 10,
+    "row": 858,
+    "col": 1278,
+    "value": 721.0340576171875
+  },
+  {
+    "id": "136",
+    "landcover": 10,
+    "row": 858,
+    "col": 1270,
+    "value": 627.4400024414062
+  },
+  {
+    "id": "137",
+    "landcover": 10,
+    "row": 843,
+    "col": 1279,
+    "value": 653.5200805664062
+  },
+  {
+    "id": "138",
+    "landcover": 10,
+    "row": 858,
+    "col": 1266,
+    "value": null
+  },
+  {
+    "id": "139",
+    "landcover": 10,
+    "row": 851,
+    "col": 1290,
+    "value": 992.82080078125
+  },
+  {
+    "id": "140",
+    "landcover": 10,
+    "row": 859,
+    "col": 1297,
+    "value": 433.34368896484375
+  },
+  {
+    "id": "141",
+    "landcover": 10,
+    "row": 859,
+    "col": 1281,
+    "value": 987.5751953125
+  },
+  {
+    "id": "142",
+    "landcover": 10,
+    "row": 858,
+    "col": 1268,
+    "value": 605.5155029296875
+  },
+  {
+    "id": "143",
+    "landcover": 10,
+    "row": 860,
+    "col": 1277,
+    "value": 389.67596435546875
+  },
+  {
+    "id": "144",
+    "landcover": 10,
+    "row": 853,
+    "col": 1291,
+    "value": 395.3133544921875
+  },
+  {
+    "id": "145",
+    "landcover": 10,
+    "row": 859,
+    "col": 1280,
+    "value": 912.3988037109375
+  },
+  {
+    "id": "146",
+    "landcover": 10,
+    "row": 860,
+    "col": 1270,
+    "value": 976.3115844726562
+  },
+  {
+    "id": "147",
+    "landcover": 10,
+    "row": 845,
+    "col": 1298,
+    "value": 681.1211547851562
+  },
+  {
+    "id": "148",
+    "landcover": 10,
+    "row": 860,
+    "col": 1270,
+    "value": 976.3115844726562
+  },
+  {
+    "id": "149",
+    "landcover": 10,
+    "row": 858,
+    "col": 1267,
+    "value": 716.66650390625
+  },
+  {
+    "id": "150",
+    "landcover": 10,
+    "row": 858,
+    "col": 1268,
+    "value": 605.5155029296875
+  },
+  {
+    "id": "151",
+    "landcover": 10,
+    "row": 859,
+    "col": 1293,
+    "value": 144.7055206298828
+  },
+  {
+    "id": "152",
+    "landcover": 10,
+    "row": 857,
+    "col": 1294,
+    "value": 1192.54150390625
+  },
+  {
+    "id": "153",
+    "landcover": 10,
+    "row": 857,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "154",
+    "landcover": 10,
+    "row": 860,
+    "col": 1292,
+    "value": 297.9771728515625
+  },
+  {
+    "id": "155",
+    "landcover": 10,
+    "row": 860,
+    "col": 1273,
+    "value": 1334.340576171875
+  },
+  {
+    "id": "156",
+    "landcover": 10,
+    "row": 844,
+    "col": 1286,
+    "value": 474.9210205078125
+  },
+  {
+    "id": "157",
+    "landcover": 10,
+    "row": 854,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "158",
+    "landcover": 10,
+    "row": 861,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "159",
+    "landcover": 10,
+    "row": 846,
+    "col": 1295,
+    "value": 699.56787109375
+  },
+  {
+    "id": "160",
+    "landcover": 20,
+    "row": 843,
+    "col": 1282,
+    "value": 388.9187316894531
+  },
+  {
+    "id": "161",
+    "landcover": 20,
+    "row": 853,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "162",
+    "landcover": 20,
+    "row": 840,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "163",
+    "landcover": 20,
+    "row": 843,
+    "col": 1281,
+    "value": 184.35362243652344
+  },
+  {
+    "id": "164",
+    "landcover": 20,
+    "row": 853,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "165",
+    "landcover": 20,
+    "row": 853,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "166",
+    "landcover": 20,
+    "row": 842,
+    "col": 1283,
+    "value": 596.2920532226562
+  },
+  {
+    "id": "167",
+    "landcover": 20,
+    "row": 843,
+    "col": 1282,
+    "value": 388.9187316894531
+  },
+  {
+    "id": "168",
+    "landcover": 20,
+    "row": 843,
+    "col": 1278,
+    "value": null
+  },
+  {
+    "id": "169",
+    "landcover": 20,
+    "row": 843,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "170",
+    "landcover": 20,
+    "row": 843,
+    "col": 1278,
+    "value": null
+  },
+  {
+    "id": "171",
+    "landcover": 20,
+    "row": 845,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "172",
+    "landcover": 20,
+    "row": 843,
+    "col": 1285,
+    "value": 691.3464965820312
+  },
+  {
+    "id": "173",
+    "landcover": 20,
+    "row": 843,
+    "col": 1281,
+    "value": 184.35362243652344
+  },
+  {
+    "id": "174",
+    "landcover": 20,
+    "row": 854,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "175",
+    "landcover": 20,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "176",
+    "landcover": 20,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "177",
+    "landcover": 20,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "178",
+    "landcover": 20,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "179",
+    "landcover": 20,
+    "row": 855,
+    "col": 1294,
+    "value": 135.8441925048828
+  },
+  {
+    "id": "180",
+    "landcover": 20,
+    "row": 843,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "181",
+    "landcover": 20,
+    "row": 853,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "182",
+    "landcover": 20,
+    "row": 844,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "183",
+    "landcover": 20,
+    "row": 859,
+    "col": 1296,
+    "value": 84.8567123413086
+  },
+  {
+    "id": "184",
+    "landcover": 20,
+    "row": 861,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "185",
+    "landcover": 20,
+    "row": 843,
+    "col": 1281,
+    "value": 184.35362243652344
+  },
+  {
+    "id": "186",
+    "landcover": 20,
+    "row": 842,
+    "col": 1280,
+    "value": 828.318359375
+  },
+  {
+    "id": "187",
+    "landcover": 20,
+    "row": 863,
+    "col": 1298,
+    "value": null
+  },
+  {
+    "id": "188",
+    "landcover": 20,
+    "row": 851,
+    "col": 1289,
+    "value": 686.0336303710938
+  },
+  {
+    "id": "189",
+    "landcover": 20,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "190",
+    "landcover": 20,
+    "row": 856,
+    "col": 1293,
+    "value": 1384.7991943359375
+  },
+  {
+    "id": "191",
+    "landcover": 20,
+    "row": 844,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "192",
+    "landcover": 20,
+    "row": 843,
+    "col": 1285,
+    "value": 691.3464965820312
+  },
+  {
+    "id": "193",
+    "landcover": 20,
+    "row": 851,
+    "col": 1286,
+    "value": 436.4045715332031
+  },
+  {
+    "id": "194",
+    "landcover": 20,
+    "row": 852,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "195",
+    "landcover": 20,
+    "row": 842,
+    "col": 1282,
+    "value": 736.6064453125
+  },
+  {
+    "id": "196",
+    "landcover": 20,
+    "row": 862,
+    "col": 1298,
+    "value": 300.67169189453125
+  },
+  {
+    "id": "197",
+    "landcover": 20,
+    "row": 853,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "198",
+    "landcover": 20,
+    "row": 846,
+    "col": 1289,
+    "value": 1327.6795654296875
+  },
+  {
+    "id": "199",
+    "landcover": 20,
+    "row": 850,
+    "col": 1288,
+    "value": 1596.958984375
+  },
+  {
+    "id": "200",
+    "landcover": 20,
+    "row": 859,
+    "col": 1295,
+    "value": 286.8637390136719
+  },
+  {
+    "id": "201",
+    "landcover": 20,
+    "row": 841,
+    "col": 1281,
+    "value": 249.984375
+  },
+  {
+    "id": "202",
+    "landcover": 20,
+    "row": 860,
+    "col": 1296,
+    "value": 233.1512451171875
+  },
+  {
+    "id": "203",
+    "landcover": 20,
+    "row": 843,
+    "col": 1278,
+    "value": null
+  },
+  {
+    "id": "204",
+    "landcover": 20,
+    "row": 845,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "205",
+    "landcover": 20,
+    "row": 845,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "206",
+    "landcover": 20,
+    "row": 854,
+    "col": 1284,
+    "value": 393.52081298828125
+  },
+  {
+    "id": "207",
+    "landcover": 20,
+    "row": 843,
+    "col": 1281,
+    "value": 184.35362243652344
+  },
+  {
+    "id": "208",
+    "landcover": 20,
+    "row": 843,
+    "col": 1282,
+    "value": 388.9187316894531
+  },
+  {
+    "id": "209",
+    "landcover": 20,
+    "row": 862,
+    "col": 1297,
+    "value": null
+  },
+  {
+    "id": "210",
+    "landcover": 20,
+    "row": 846,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "211",
+    "landcover": 20,
+    "row": 844,
+    "col": 1282,
+    "value": 78.45603942871094
+  },
+  {
+    "id": "212",
+    "landcover": 20,
+    "row": 844,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "213",
+    "landcover": 20,
+    "row": 844,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "214",
+    "landcover": 20,
+    "row": 843,
+    "col": 1278,
+    "value": null
+  },
+  {
+    "id": "215",
+    "landcover": 20,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "216",
+    "landcover": 20,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "217",
+    "landcover": 20,
+    "row": 853,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "218",
+    "landcover": 20,
+    "row": 844,
+    "col": 1282,
+    "value": 78.45603942871094
+  },
+  {
+    "id": "219",
+    "landcover": 20,
+    "row": 844,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "220",
+    "landcover": 20,
+    "row": 845,
+    "col": 1287,
+    "value": 544.6763305664062
+  },
+  {
+    "id": "221",
+    "landcover": 20,
+    "row": 853,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "222",
+    "landcover": 20,
+    "row": 844,
+    "col": 1282,
+    "value": 78.45603942871094
+  },
+  {
+    "id": "223",
+    "landcover": 20,
+    "row": 859,
+    "col": 1295,
+    "value": 286.8637390136719
+  },
+  {
+    "id": "224",
+    "landcover": 20,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "225",
+    "landcover": 20,
+    "row": 841,
+    "col": 1283,
+    "value": 74.98958587646484
+  },
+  {
+    "id": "226",
+    "landcover": 20,
+    "row": 853,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "227",
+    "landcover": 20,
+    "row": 852,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "228",
+    "landcover": 20,
+    "row": 843,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "229",
+    "landcover": 20,
+    "row": 843,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "230",
+    "landcover": 20,
+    "row": 860,
+    "col": 1273,
+    "value": 1334.340576171875
+  },
+  {
+    "id": "231",
+    "landcover": 20,
+    "row": 848,
+    "col": 1289,
+    "value": 1703.968505859375
+  },
+  {
+    "id": "232",
+    "landcover": 20,
+    "row": 859,
+    "col": 1296,
+    "value": 84.8567123413086
+  },
+  {
+    "id": "233",
+    "landcover": 20,
+    "row": 843,
+    "col": 1281,
+    "value": 184.35362243652344
+  },
+  {
+    "id": "234",
+    "landcover": 20,
+    "row": 853,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "235",
+    "landcover": 20,
+    "row": 853,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "236",
+    "landcover": 20,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "237",
+    "landcover": 20,
+    "row": 841,
+    "col": 1284,
+    "value": 359.4480895996094
+  },
+  {
+    "id": "238",
+    "landcover": 20,
+    "row": 854,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "239",
+    "landcover": 20,
+    "row": 841,
+    "col": 1283,
+    "value": 74.98958587646484
+  },
+  {
+    "id": "240",
+    "landcover": 20,
+    "row": 852,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "241",
+    "landcover": 20,
+    "row": 861,
+    "col": 1277,
+    "value": null
+  },
+  {
+    "id": "242",
+    "landcover": 20,
+    "row": 843,
+    "col": 1282,
+    "value": 388.9187316894531
+  },
+  {
+    "id": "243",
+    "landcover": 20,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "244",
+    "landcover": 20,
+    "row": 845,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "245",
+    "landcover": 20,
+    "row": 853,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "246",
+    "landcover": 20,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "247",
+    "landcover": 20,
+    "row": 853,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "248",
+    "landcover": 20,
+    "row": 851,
+    "col": 1288,
+    "value": 1164.66748046875
+  },
+  {
+    "id": "249",
+    "landcover": 20,
+    "row": 841,
+    "col": 1284,
+    "value": 359.4480895996094
+  },
+  {
+    "id": "250",
+    "landcover": 20,
+    "row": 844,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "251",
+    "landcover": 20,
+    "row": 841,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "252",
+    "landcover": 20,
+    "row": 843,
+    "col": 1281,
+    "value": 184.35362243652344
+  },
+  {
+    "id": "253",
+    "landcover": 20,
+    "row": 846,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "254",
+    "landcover": 20,
+    "row": 862,
+    "col": 1298,
+    "value": 300.67169189453125
+  },
+  {
+    "id": "255",
+    "landcover": 20,
+    "row": 852,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "256",
+    "landcover": 20,
+    "row": 860,
+    "col": 1296,
+    "value": 233.1512451171875
+  },
+  {
+    "id": "257",
+    "landcover": 20,
+    "row": 839,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "258",
+    "landcover": 20,
+    "row": 841,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "259",
+    "landcover": 20,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "260",
+    "landcover": 20,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "261",
+    "landcover": 20,
+    "row": 848,
+    "col": 1290,
+    "value": 991.3167114257812
+  },
+  {
+    "id": "262",
+    "landcover": 20,
+    "row": 842,
+    "col": 1280,
+    "value": 828.318359375
+  },
+  {
+    "id": "263",
+    "landcover": 20,
+    "row": 852,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "264",
+    "landcover": 20,
+    "row": 844,
+    "col": 1282,
+    "value": 78.45603942871094
+  },
+  {
+    "id": "265",
+    "landcover": 20,
+    "row": 858,
+    "col": 1295,
+    "value": 335.4012451171875
+  },
+  {
+    "id": "266",
+    "landcover": 20,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "267",
+    "landcover": 20,
+    "row": 843,
+    "col": 1282,
+    "value": 388.9187316894531
+  },
+  {
+    "id": "268",
+    "landcover": 20,
+    "row": 853,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "269",
+    "landcover": 20,
+    "row": 842,
+    "col": 1278,
+    "value": null
+  },
+  {
+    "id": "270",
+    "landcover": 20,
+    "row": 860,
+    "col": 1271,
+    "value": 579.50927734375
+  },
+  {
+    "id": "271",
+    "landcover": 20,
+    "row": 844,
+    "col": 1282,
+    "value": 78.45603942871094
+  },
+  {
+    "id": "272",
+    "landcover": 20,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "273",
+    "landcover": 20,
+    "row": 844,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "274",
+    "landcover": 20,
+    "row": 846,
+    "col": 1288,
+    "value": 1338.792236328125
+  },
+  {
+    "id": "275",
+    "landcover": 20,
+    "row": 842,
+    "col": 1279,
+    "value": 403.9322509765625
+  },
+  {
+    "id": "276",
+    "landcover": 20,
+    "row": 856,
+    "col": 1293,
+    "value": 1384.7991943359375
+  },
+  {
+    "id": "277",
+    "landcover": 20,
+    "row": 842,
+    "col": 1279,
+    "value": 403.9322509765625
+  },
+  {
+    "id": "278",
+    "landcover": 20,
+    "row": 854,
+    "col": 1291,
+    "value": 484.8450622558594
+  },
+  {
+    "id": "279",
+    "landcover": 20,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "280",
+    "landcover": 20,
+    "row": 846,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "281",
+    "landcover": 20,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "282",
+    "landcover": 20,
+    "row": 862,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "283",
+    "landcover": 20,
+    "row": 841,
+    "col": 1282,
+    "value": 797.9600830078125
+  },
+  {
+    "id": "284",
+    "landcover": 20,
+    "row": 854,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "285",
+    "landcover": 20,
+    "row": 843,
+    "col": 1281,
+    "value": 184.35362243652344
+  },
+  {
+    "id": "286",
+    "landcover": 20,
+    "row": 853,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "287",
+    "landcover": 20,
+    "row": 858,
+    "col": 1295,
+    "value": 335.4012451171875
+  },
+  {
+    "id": "288",
+    "landcover": 20,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "289",
+    "landcover": 20,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "290",
+    "landcover": 20,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "291",
+    "landcover": 20,
+    "row": 854,
+    "col": 1284,
+    "value": 393.52081298828125
+  },
+  {
+    "id": "292",
+    "landcover": 20,
+    "row": 842,
+    "col": 1278,
+    "value": null
+  },
+  {
+    "id": "293",
+    "landcover": 20,
+    "row": 855,
+    "col": 1294,
+    "value": 135.8441925048828
+  },
+  {
+    "id": "294",
+    "landcover": 20,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "295",
+    "landcover": 20,
+    "row": 862,
+    "col": 1298,
+    "value": 300.67169189453125
+  },
+  {
+    "id": "296",
+    "landcover": 20,
+    "row": 847,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "297",
+    "landcover": 20,
+    "row": 840,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "298",
+    "landcover": 20,
+    "row": 850,
+    "col": 1291,
+    "value": 430.7814636230469
+  },
+  {
+    "id": "299",
+    "landcover": 20,
+    "row": 854,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "300",
+    "landcover": 20,
+    "row": 843,
+    "col": 1298,
+    "value": null
+  },
+  {
+    "id": "301",
+    "landcover": 20,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "302",
+    "landcover": 20,
+    "row": 847,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "303",
+    "landcover": 20,
+    "row": 841,
+    "col": 1284,
+    "value": 359.4480895996094
+  },
+  {
+    "id": "304",
+    "landcover": 20,
+    "row": 843,
+    "col": 1278,
+    "value": null
+  },
+  {
+    "id": "305",
+    "landcover": 20,
+    "row": 841,
+    "col": 1281,
+    "value": 249.984375
+  },
+  {
+    "id": "306",
+    "landcover": 20,
+    "row": 858,
+    "col": 1296,
+    "value": 401.5264892578125
+  },
+  {
+    "id": "307",
+    "landcover": 20,
+    "row": 841,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "308",
+    "landcover": 20,
+    "row": 852,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "309",
+    "landcover": 20,
+    "row": 841,
+    "col": 1283,
+    "value": 74.98958587646484
+  },
+  {
+    "id": "310",
+    "landcover": 20,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "311",
+    "landcover": 20,
+    "row": 855,
+    "col": 1294,
+    "value": 135.8441925048828
+  },
+  {
+    "id": "312",
+    "landcover": 20,
+    "row": 853,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "313",
+    "landcover": 20,
+    "row": 853,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "314",
+    "landcover": 20,
+    "row": 847,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "315",
+    "landcover": 20,
+    "row": 848,
+    "col": 1289,
+    "value": 1703.968505859375
+  },
+  {
+    "id": "316",
+    "landcover": 20,
+    "row": 843,
+    "col": 1278,
+    "value": null
+  },
+  {
+    "id": "317",
+    "landcover": 20,
+    "row": 858,
+    "col": 1296,
+    "value": 401.5264892578125
+  },
+  {
+    "id": "318",
+    "landcover": 20,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "319",
+    "landcover": 20,
+    "row": 845,
+    "col": 1289,
+    "value": 1670.104736328125
+  },
+  {
+    "id": "320",
+    "landcover": 30,
+    "row": 858,
+    "col": 1274,
+    "value": 955.0760498046875
+  },
+  {
+    "id": "321",
+    "landcover": 30,
+    "row": 849,
+    "col": 1299,
+    "value": 334.6574401855469
+  },
+  {
+    "id": "322",
+    "landcover": 30,
+    "row": 855,
+    "col": 1298,
+    "value": 187.0891571044922
+  },
+  {
+    "id": "323",
+    "landcover": 30,
+    "row": 846,
+    "col": 1297,
+    "value": 370.8498229980469
+  },
+  {
+    "id": "324",
+    "landcover": 30,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "325",
+    "landcover": 30,
+    "row": 859,
+    "col": 1267,
+    "value": 613.6524658203125
+  },
+  {
+    "id": "326",
+    "landcover": 30,
+    "row": 859,
+    "col": 1298,
+    "value": 335.031494140625
+  },
+  {
+    "id": "327",
+    "landcover": 30,
+    "row": 856,
+    "col": 1269,
+    "value": 1086.7779541015625
+  },
+  {
+    "id": "328",
+    "landcover": 30,
+    "row": 845,
+    "col": 1287,
+    "value": 544.6763305664062
+  },
+  {
+    "id": "329",
+    "landcover": 30,
+    "row": 842,
+    "col": 1278,
+    "value": null
+  },
+  {
+    "id": "330",
+    "landcover": 30,
+    "row": 846,
+    "col": 1289,
+    "value": 1327.6795654296875
+  },
+  {
+    "id": "331",
+    "landcover": 30,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "332",
+    "landcover": 30,
+    "row": 859,
+    "col": 1288,
+    "value": 492.7197570800781
+  },
+  {
+    "id": "333",
+    "landcover": 30,
+    "row": 859,
+    "col": 1295,
+    "value": 286.8637390136719
+  },
+  {
+    "id": "334",
+    "landcover": 30,
+    "row": 855,
+    "col": 1292,
+    "value": 442.3324890136719
+  },
+  {
+    "id": "335",
+    "landcover": 30,
+    "row": 859,
+    "col": 1293,
+    "value": 144.7055206298828
+  },
+  {
+    "id": "336",
+    "landcover": 30,
+    "row": 861,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "337",
+    "landcover": 30,
+    "row": 858,
+    "col": 1281,
+    "value": 749.9769897460938
+  },
+  {
+    "id": "338",
+    "landcover": 30,
+    "row": 860,
+    "col": 1275,
+    "value": 846.7637939453125
+  },
+  {
+    "id": "339",
+    "landcover": 30,
+    "row": 860,
+    "col": 1268,
+    "value": null
+  },
+  {
+    "id": "340",
+    "landcover": 30,
+    "row": 850,
+    "col": 1292,
+    "value": 564.7584228515625
+  },
+  {
+    "id": "341",
+    "landcover": 30,
+    "row": 859,
+    "col": 1270,
+    "value": 631.2536010742188
+  },
+  {
+    "id": "342",
+    "landcover": 30,
+    "row": 846,
+    "col": 1292,
+    "value": 1217.4503173828125
+  },
+  {
+    "id": "343",
+    "landcover": 30,
+    "row": 849,
+    "col": 1293,
+    "value": 305.12310791015625
+  },
+  {
+    "id": "344",
+    "landcover": 30,
+    "row": 860,
+    "col": 1272,
+    "value": 625.3276977539062
+  },
+  {
+    "id": "345",
+    "landcover": 30,
+    "row": 851,
+    "col": 1296,
+    "value": 224.97071838378906
+  },
+  {
+    "id": "346",
+    "landcover": 30,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "347",
+    "landcover": 30,
+    "row": 854,
+    "col": 1296,
+    "value": 143.43246459960938
+  },
+  {
+    "id": "348",
+    "landcover": 30,
+    "row": 858,
+    "col": 1272,
+    "value": 860.8743896484375
+  },
+  {
+    "id": "349",
+    "landcover": 30,
+    "row": 854,
+    "col": 1292,
+    "value": 542.636474609375
+  },
+  {
+    "id": "350",
+    "landcover": 30,
+    "row": 851,
+    "col": 1286,
+    "value": 436.4045715332031
+  },
+  {
+    "id": "351",
+    "landcover": 30,
+    "row": 859,
+    "col": 1281,
+    "value": 987.5751953125
+  },
+  {
+    "id": "352",
+    "landcover": 30,
+    "row": 858,
+    "col": 1280,
+    "value": 919.634765625
+  },
+  {
+    "id": "353",
+    "landcover": 30,
+    "row": 844,
+    "col": 1295,
+    "value": 618.517333984375
+  },
+  {
+    "id": "354",
+    "landcover": 30,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "355",
+    "landcover": 30,
+    "row": 849,
+    "col": 1295,
+    "value": 93.19625091552734
+  },
+  {
+    "id": "356",
+    "landcover": 30,
+    "row": 847,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "357",
+    "landcover": 30,
+    "row": 862,
+    "col": 1272,
+    "value": null
+  },
+  {
+    "id": "358",
+    "landcover": 30,
+    "row": 859,
+    "col": 1281,
+    "value": 987.5751953125
+  },
+  {
+    "id": "359",
+    "landcover": 30,
+    "row": 855,
+    "col": 1292,
+    "value": 442.3324890136719
+  },
+  {
+    "id": "360",
+    "landcover": 30,
+    "row": 847,
+    "col": 1294,
+    "value": 548.2676391601562
+  },
+  {
+    "id": "361",
+    "landcover": 30,
+    "row": 861,
+    "col": 1296,
+    "value": 145.27496337890625
+  },
+  {
+    "id": "362",
+    "landcover": 30,
+    "row": 859,
+    "col": 1295,
+    "value": 286.8637390136719
+  },
+  {
+    "id": "363",
+    "landcover": 30,
+    "row": 849,
+    "col": 1295,
+    "value": 93.19625091552734
+  },
+  {
+    "id": "364",
+    "landcover": 30,
+    "row": 854,
+    "col": 1297,
+    "value": 128.03575134277344
+  },
+  {
+    "id": "365",
+    "landcover": 30,
+    "row": 841,
+    "col": 1285,
+    "value": 682.7393188476562
+  },
+  {
+    "id": "366",
+    "landcover": 30,
+    "row": 862,
+    "col": 1273,
+    "value": 679.125244140625
+  },
+  {
+    "id": "367",
+    "landcover": 30,
+    "row": 846,
+    "col": 1291,
+    "value": 649.9231567382812
+  },
+  {
+    "id": "368",
+    "landcover": 30,
+    "row": 859,
+    "col": 1295,
+    "value": 286.8637390136719
+  },
+  {
+    "id": "369",
+    "landcover": 30,
+    "row": 854,
+    "col": 1290,
+    "value": 935.3543701171875
+  },
+  {
+    "id": "370",
+    "landcover": 30,
+    "row": 859,
+    "col": 1293,
+    "value": 144.7055206298828
+  },
+  {
+    "id": "371",
+    "landcover": 30,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "372",
+    "landcover": 30,
+    "row": 851,
+    "col": 1298,
+    "value": 91.7537612915039
+  },
+  {
+    "id": "373",
+    "landcover": 30,
+    "row": 849,
+    "col": 1295,
+    "value": 93.19625091552734
+  },
+  {
+    "id": "374",
+    "landcover": 30,
+    "row": 851,
+    "col": 1295,
+    "value": 167.1812286376953
+  },
+  {
+    "id": "375",
+    "landcover": 30,
+    "row": 853,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "376",
+    "landcover": 30,
+    "row": 861,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "377",
+    "landcover": 30,
+    "row": 860,
+    "col": 1270,
+    "value": 976.3115844726562
+  },
+  {
+    "id": "378",
+    "landcover": 30,
+    "row": 852,
+    "col": 1288,
+    "value": 350.8717346191406
+  },
+  {
+    "id": "379",
+    "landcover": 30,
+    "row": 860,
+    "col": 1285,
+    "value": 308.0191345214844
+  },
+  {
+    "id": "380",
+    "landcover": 30,
+    "row": 853,
+    "col": 1298,
+    "value": 165.38555908203125
+  },
+  {
+    "id": "381",
+    "landcover": 30,
+    "row": 844,
+    "col": 1293,
+    "value": 1414.2572021484375
+  },
+  {
+    "id": "382",
+    "landcover": 30,
+    "row": 860,
+    "col": 1297,
+    "value": 591.5921630859375
+  },
+  {
+    "id": "383",
+    "landcover": 30,
+    "row": 861,
+    "col": 1296,
+    "value": 145.27496337890625
+  },
+  {
+    "id": "384",
+    "landcover": 30,
+    "row": 860,
+    "col": 1293,
+    "value": 376.096923828125
+  },
+  {
+    "id": "385",
+    "landcover": 30,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "386",
+    "landcover": 30,
+    "row": 845,
+    "col": 1287,
+    "value": 544.6763305664062
+  },
+  {
+    "id": "387",
+    "landcover": 30,
+    "row": 860,
+    "col": 1277,
+    "value": 389.67596435546875
+  },
+  {
+    "id": "388",
+    "landcover": 30,
+    "row": 851,
+    "col": 1295,
+    "value": 167.1812286376953
+  },
+  {
+    "id": "389",
+    "landcover": 30,
+    "row": 859,
+    "col": 1285,
+    "value": 336.9675598144531
+  },
+  {
+    "id": "390",
+    "landcover": 30,
+    "row": 858,
+    "col": 1291,
+    "value": 326.5380859375
+  },
+  {
+    "id": "391",
+    "landcover": 30,
+    "row": 858,
+    "col": 1269,
+    "value": 592.8603515625
+  },
+  {
+    "id": "392",
+    "landcover": 30,
+    "row": 859,
+    "col": 1298,
+    "value": 335.031494140625
+  },
+  {
+    "id": "393",
+    "landcover": 30,
+    "row": 850,
+    "col": 1290,
+    "value": 1379.5858154296875
+  },
+  {
+    "id": "394",
+    "landcover": 30,
+    "row": 859,
+    "col": 1294,
+    "value": 194.17645263671875
+  },
+  {
+    "id": "395",
+    "landcover": 30,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "396",
+    "landcover": 30,
+    "row": 851,
+    "col": 1292,
+    "value": 494.469482421875
+  },
+  {
+    "id": "397",
+    "landcover": 30,
+    "row": 852,
+    "col": 1297,
+    "value": null
+  },
+  {
+    "id": "398",
+    "landcover": 30,
+    "row": 848,
+    "col": 1292,
+    "value": 864.8527221679688
+  },
+  {
+    "id": "399",
+    "landcover": 30,
+    "row": 859,
+    "col": 1295,
+    "value": 286.8637390136719
+  },
+  {
+    "id": "400",
+    "landcover": 30,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "401",
+    "landcover": 30,
+    "row": 843,
+    "col": 1285,
+    "value": 691.3464965820312
+  },
+  {
+    "id": "402",
+    "landcover": 30,
+    "row": 852,
+    "col": 1292,
+    "value": 937.4644165039062
+  },
+  {
+    "id": "403",
+    "landcover": 30,
+    "row": 850,
+    "col": 1299,
+    "value": 608.1069946289062
+  },
+  {
+    "id": "404",
+    "landcover": 30,
+    "row": 849,
+    "col": 1300,
+    "value": 49.18196105957031
+  },
+  {
+    "id": "405",
+    "landcover": 30,
+    "row": 844,
+    "col": 1296,
+    "value": 621.355712890625
+  },
+  {
+    "id": "406",
+    "landcover": 30,
+    "row": 860,
+    "col": 1294,
+    "value": 311.12786865234375
+  },
+  {
+    "id": "407",
+    "landcover": 30,
+    "row": 853,
+    "col": 1292,
+    "value": 771.2615966796875
+  },
+  {
+    "id": "408",
+    "landcover": 30,
+    "row": 855,
+    "col": 1292,
+    "value": 442.3324890136719
+  },
+  {
+    "id": "409",
+    "landcover": 30,
+    "row": 858,
+    "col": 1293,
+    "value": 287.3689880371094
+  },
+  {
+    "id": "410",
+    "landcover": 30,
+    "row": 850,
+    "col": 1296,
+    "value": 220.30014038085938
+  },
+  {
+    "id": "411",
+    "landcover": 30,
+    "row": 847,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "412",
+    "landcover": 30,
+    "row": 846,
+    "col": 1293,
+    "value": 540.5985107421875
+  },
+  {
+    "id": "413",
+    "landcover": 30,
+    "row": 841,
+    "col": 1284,
+    "value": 359.4480895996094
+  },
+  {
+    "id": "414",
+    "landcover": 30,
+    "row": 855,
+    "col": 1294,
+    "value": 135.8441925048828
+  },
+  {
+    "id": "415",
+    "landcover": 30,
+    "row": 853,
+    "col": 1298,
+    "value": 165.38555908203125
+  },
+  {
+    "id": "416",
+    "landcover": 30,
+    "row": 853,
+    "col": 1298,
+    "value": 165.38555908203125
+  },
+  {
+    "id": "417",
+    "landcover": 30,
+    "row": 841,
+    "col": 1282,
+    "value": 797.9600830078125
+  },
+  {
+    "id": "418",
+    "landcover": 30,
+    "row": 845,
+    "col": 1299,
+    "value": 1382.0660400390625
+  },
+  {
+    "id": "419",
+    "landcover": 30,
+    "row": 848,
+    "col": 1295,
+    "value": 211.59434509277344
+  },
+  {
+    "id": "420",
+    "landcover": 30,
+    "row": 844,
+    "col": 1297,
+    "value": 717.4120483398438
+  },
+  {
+    "id": "421",
+    "landcover": 30,
+    "row": 859,
+    "col": 1268,
+    "value": 490.7835693359375
+  },
+  {
+    "id": "422",
+    "landcover": 30,
+    "row": 846,
+    "col": 1292,
+    "value": 1217.4503173828125
+  },
+  {
+    "id": "423",
+    "landcover": 30,
+    "row": 859,
+    "col": 1288,
+    "value": 492.7197570800781
+  },
+  {
+    "id": "424",
+    "landcover": 30,
+    "row": 860,
+    "col": 1276,
+    "value": 691.470458984375
+  },
+  {
+    "id": "425",
+    "landcover": 30,
+    "row": 859,
+    "col": 1296,
+    "value": 84.8567123413086
+  },
+  {
+    "id": "426",
+    "landcover": 30,
+    "row": 844,
+    "col": 1291,
+    "value": 179.4977569580078
+  },
+  {
+    "id": "427",
+    "landcover": 30,
+    "row": 860,
+    "col": 1286,
+    "value": 192.61050415039062
+  },
+  {
+    "id": "428",
+    "landcover": 30,
+    "row": 859,
+    "col": 1279,
+    "value": 906.3284912109375
+  },
+  {
+    "id": "429",
+    "landcover": 30,
+    "row": 845,
+    "col": 1294,
+    "value": 424.2345886230469
+  },
+  {
+    "id": "430",
+    "landcover": 30,
+    "row": 859,
+    "col": 1294,
+    "value": 194.17645263671875
+  },
+  {
+    "id": "431",
+    "landcover": 30,
+    "row": 855,
+    "col": 1296,
+    "value": 418.2691955566406
+  },
+  {
+    "id": "432",
+    "landcover": 30,
+    "row": 844,
+    "col": 1298,
+    "value": 690.0072021484375
+  },
+  {
+    "id": "433",
+    "landcover": 30,
+    "row": 857,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "434",
+    "landcover": 30,
+    "row": 851,
+    "col": 1295,
+    "value": 167.1812286376953
+  },
+  {
+    "id": "435",
+    "landcover": 30,
+    "row": 855,
+    "col": 1297,
+    "value": 325.747314453125
+  },
+  {
+    "id": "436",
+    "landcover": 30,
+    "row": 848,
+    "col": 1292,
+    "value": 864.8527221679688
+  },
+  {
+    "id": "437",
+    "landcover": 30,
+    "row": 850,
+    "col": 1293,
+    "value": 156.17657470703125
+  },
+  {
+    "id": "438",
+    "landcover": 30,
+    "row": 861,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "439",
+    "landcover": 30,
+    "row": 859,
+    "col": 1279,
+    "value": 906.3284912109375
+  },
+  {
+    "id": "440",
+    "landcover": 30,
+    "row": 851,
+    "col": 1297,
+    "value": 95.43240356445312
+  },
+  {
+    "id": "441",
+    "landcover": 30,
+    "row": 852,
+    "col": 1293,
+    "value": 162.0418701171875
+  },
+  {
+    "id": "442",
+    "landcover": 30,
+    "row": 843,
+    "col": 1287,
+    "value": 1503.6859130859375
+  },
+  {
+    "id": "443",
+    "landcover": 30,
+    "row": 854,
+    "col": 1298,
+    "value": 194.26808166503906
+  },
+  {
+    "id": "444",
+    "landcover": 30,
+    "row": 842,
+    "col": 1286,
+    "value": 686.1304931640625
+  },
+  {
+    "id": "445",
+    "landcover": 30,
+    "row": 859,
+    "col": 1294,
+    "value": 194.17645263671875
+  },
+  {
+    "id": "446",
+    "landcover": 30,
+    "row": 845,
+    "col": 1290,
+    "value": 918.9019165039062
+  },
+  {
+    "id": "447",
+    "landcover": 30,
+    "row": 860,
+    "col": 1296,
+    "value": 233.1512451171875
+  },
+  {
+    "id": "448",
+    "landcover": 30,
+    "row": 849,
+    "col": 1296,
+    "value": 193.64732360839844
+  },
+  {
+    "id": "449",
+    "landcover": 30,
+    "row": 858,
+    "col": 1291,
+    "value": 326.5380859375
+  },
+  {
+    "id": "450",
+    "landcover": 30,
+    "row": 860,
+    "col": 1280,
+    "value": 849.6115112304688
+  },
+  {
+    "id": "451",
+    "landcover": 30,
+    "row": 859,
+    "col": 1267,
+    "value": 613.6524658203125
+  },
+  {
+    "id": "452",
+    "landcover": 30,
+    "row": 851,
+    "col": 1288,
+    "value": 1164.66748046875
+  },
+  {
+    "id": "453",
+    "landcover": 30,
+    "row": 861,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "454",
+    "landcover": 30,
+    "row": 841,
+    "col": 1283,
+    "value": 74.98958587646484
+  },
+  {
+    "id": "455",
+    "landcover": 30,
+    "row": 858,
+    "col": 1271,
+    "value": 607.16455078125
+  },
+  {
+    "id": "456",
+    "landcover": 30,
+    "row": 859,
+    "col": 1273,
+    "value": 588.04296875
+  },
+  {
+    "id": "457",
+    "landcover": 30,
+    "row": 862,
+    "col": 1298,
+    "value": 300.67169189453125
+  },
+  {
+    "id": "458",
+    "landcover": 30,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "459",
+    "landcover": 30,
+    "row": 859,
+    "col": 1289,
+    "value": 350.7096252441406
+  },
+  {
+    "id": "460",
+    "landcover": 30,
+    "row": 844,
+    "col": 1286,
+    "value": 474.9210205078125
+  },
+  {
+    "id": "461",
+    "landcover": 30,
+    "row": 849,
+    "col": 1299,
+    "value": 334.6574401855469
+  },
+  {
+    "id": "462",
+    "landcover": 30,
+    "row": 852,
+    "col": 1297,
+    "value": null
+  },
+  {
+    "id": "463",
+    "landcover": 30,
+    "row": 861,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "464",
+    "landcover": 30,
+    "row": 848,
+    "col": 1298,
+    "value": 451.35992431640625
+  },
+  {
+    "id": "465",
+    "landcover": 30,
+    "row": 843,
+    "col": 1288,
+    "value": 381.62628173828125
+  },
+  {
+    "id": "466",
+    "landcover": 30,
+    "row": 858,
+    "col": 1294,
+    "value": 206.07827758789062
+  },
+  {
+    "id": "467",
+    "landcover": 30,
+    "row": 850,
+    "col": 1291,
+    "value": 430.7814636230469
+  },
+  {
+    "id": "468",
+    "landcover": 30,
+    "row": 848,
+    "col": 1291,
+    "value": 920.44580078125
+  },
+  {
+    "id": "469",
+    "landcover": 30,
+    "row": 855,
+    "col": 1293,
+    "value": 363.4326171875
+  },
+  {
+    "id": "470",
+    "landcover": 30,
+    "row": 859,
+    "col": 1281,
+    "value": 987.5751953125
+  },
+  {
+    "id": "471",
+    "landcover": 30,
+    "row": 859,
+    "col": 1296,
+    "value": 84.8567123413086
+  },
+  {
+    "id": "472",
+    "landcover": 30,
+    "row": 857,
+    "col": 1268,
+    "value": 978.1932983398438
+  },
+  {
+    "id": "473",
+    "landcover": 30,
+    "row": 860,
+    "col": 1293,
+    "value": 376.096923828125
+  },
+  {
+    "id": "474",
+    "landcover": 30,
+    "row": 849,
+    "col": 1296,
+    "value": 193.64732360839844
+  },
+  {
+    "id": "475",
+    "landcover": 30,
+    "row": 860,
+    "col": 1285,
+    "value": 308.0191345214844
+  },
+  {
+    "id": "476",
+    "landcover": 30,
+    "row": 850,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "477",
+    "landcover": 30,
+    "row": 858,
+    "col": 1278,
+    "value": 721.0340576171875
+  },
+  {
+    "id": "478",
+    "landcover": 30,
+    "row": 850,
+    "col": 1291,
+    "value": 430.7814636230469
+  },
+  {
+    "id": "479",
+    "landcover": 30,
+    "row": 861,
+    "col": 1297,
+    "value": 280.4397888183594
+  },
+  {
+    "id": "480",
+    "landcover": 40,
+    "row": 848,
+    "col": 1293,
+    "value": 142.87281799316406
+  },
+  {
+    "id": "481",
+    "landcover": 40,
+    "row": 851,
+    "col": 1299,
+    "value": 349.0684814453125
+  },
+  {
+    "id": "482",
+    "landcover": 40,
+    "row": 847,
+    "col": 1293,
+    "value": 1659.4520263671875
+  },
+  {
+    "id": "483",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "484",
+    "landcover": 40,
+    "row": 848,
+    "col": 1289,
+    "value": 1703.968505859375
+  },
+  {
+    "id": "485",
+    "landcover": 40,
+    "row": 851,
+    "col": 1291,
+    "value": 976.5990600585938
+  },
+  {
+    "id": "486",
+    "landcover": 40,
+    "row": 851,
+    "col": 1297,
+    "value": 95.43240356445312
+  },
+  {
+    "id": "487",
+    "landcover": 40,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "488",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "489",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "490",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "491",
+    "landcover": 40,
+    "row": 853,
+    "col": 1299,
+    "value": 491.9804992675781
+  },
+  {
+    "id": "492",
+    "landcover": 40,
+    "row": 850,
+    "col": 1290,
+    "value": 1379.5858154296875
+  },
+  {
+    "id": "493",
+    "landcover": 40,
+    "row": 848,
+    "col": 1292,
+    "value": 864.8527221679688
+  },
+  {
+    "id": "494",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "495",
+    "landcover": 40,
+    "row": 860,
+    "col": 1274,
+    "value": 1490.1400146484375
+  },
+  {
+    "id": "496",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "497",
+    "landcover": 40,
+    "row": 850,
+    "col": 1289,
+    "value": 2516.48046875
+  },
+  {
+    "id": "498",
+    "landcover": 40,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "499",
+    "landcover": 40,
+    "row": 845,
+    "col": 1298,
+    "value": 681.1211547851562
+  },
+  {
+    "id": "500",
+    "landcover": 40,
+    "row": 846,
+    "col": 1288,
+    "value": 1338.792236328125
+  },
+  {
+    "id": "501",
+    "landcover": 40,
+    "row": 849,
+    "col": 1290,
+    "value": 974.633056640625
+  },
+  {
+    "id": "502",
+    "landcover": 40,
+    "row": 844,
+    "col": 1297,
+    "value": 717.4120483398438
+  },
+  {
+    "id": "503",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "504",
+    "landcover": 40,
+    "row": 860,
+    "col": 1274,
+    "value": 1490.1400146484375
+  },
+  {
+    "id": "505",
+    "landcover": 40,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "506",
+    "landcover": 40,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "507",
+    "landcover": 40,
+    "row": 859,
+    "col": 1298,
+    "value": 335.031494140625
+  },
+  {
+    "id": "508",
+    "landcover": 40,
+    "row": 853,
+    "col": 1297,
+    "value": 145.62014770507812
+  },
+  {
+    "id": "509",
+    "landcover": 40,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "510",
+    "landcover": 40,
+    "row": 847,
+    "col": 1292,
+    "value": 1853.2103271484375
+  },
+  {
+    "id": "511",
+    "landcover": 40,
+    "row": 849,
+    "col": 1294,
+    "value": 217.30447387695312
+  },
+  {
+    "id": "512",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "513",
+    "landcover": 40,
+    "row": 851,
+    "col": 1290,
+    "value": 992.82080078125
+  },
+  {
+    "id": "514",
+    "landcover": 40,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "515",
+    "landcover": 40,
+    "row": 851,
+    "col": 1298,
+    "value": 91.7537612915039
+  },
+  {
+    "id": "516",
+    "landcover": 40,
+    "row": 851,
+    "col": 1290,
+    "value": 992.82080078125
+  },
+  {
+    "id": "517",
+    "landcover": 40,
+    "row": 844,
+    "col": 1293,
+    "value": 1414.2572021484375
+  },
+  {
+    "id": "518",
+    "landcover": 40,
+    "row": 851,
+    "col": 1291,
+    "value": 976.5990600585938
+  },
+  {
+    "id": "519",
+    "landcover": 40,
+    "row": 844,
+    "col": 1298,
+    "value": 690.0072021484375
+  },
+  {
+    "id": "520",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "521",
+    "landcover": 40,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "522",
+    "landcover": 40,
+    "row": 849,
+    "col": 1290,
+    "value": 974.633056640625
+  },
+  {
+    "id": "523",
+    "landcover": 40,
+    "row": 852,
+    "col": 1291,
+    "value": 1066.241943359375
+  },
+  {
+    "id": "524",
+    "landcover": 40,
+    "row": 844,
+    "col": 1299,
+    "value": 1532.6678466796875
+  },
+  {
+    "id": "525",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "526",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "527",
+    "landcover": 40,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "528",
+    "landcover": 40,
+    "row": 856,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "529",
+    "landcover": 40,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "530",
+    "landcover": 40,
+    "row": 850,
+    "col": 1290,
+    "value": 1379.5858154296875
+  },
+  {
+    "id": "531",
+    "landcover": 40,
+    "row": 852,
+    "col": 1297,
+    "value": null
+  },
+  {
+    "id": "532",
+    "landcover": 40,
+    "row": 851,
+    "col": 1296,
+    "value": 224.97071838378906
+  },
+  {
+    "id": "533",
+    "landcover": 40,
+    "row": 850,
+    "col": 1290,
+    "value": 1379.5858154296875
+  },
+  {
+    "id": "534",
+    "landcover": 40,
+    "row": 850,
+    "col": 1289,
+    "value": 2516.48046875
+  },
+  {
+    "id": "535",
+    "landcover": 40,
+    "row": 856,
+    "col": 1294,
+    "value": 1205.7025146484375
+  },
+  {
+    "id": "536",
+    "landcover": 40,
+    "row": 844,
+    "col": 1298,
+    "value": 690.0072021484375
+  },
+  {
+    "id": "537",
+    "landcover": 40,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "538",
+    "landcover": 40,
+    "row": 852,
+    "col": 1297,
+    "value": null
+  },
+  {
+    "id": "539",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "540",
+    "landcover": 40,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "541",
+    "landcover": 40,
+    "row": 853,
+    "col": 1297,
+    "value": 145.62014770507812
+  },
+  {
+    "id": "542",
+    "landcover": 40,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "543",
+    "landcover": 40,
+    "row": 848,
+    "col": 1289,
+    "value": 1703.968505859375
+  },
+  {
+    "id": "544",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "545",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "546",
+    "landcover": 40,
+    "row": 849,
+    "col": 1290,
+    "value": 974.633056640625
+  },
+  {
+    "id": "547",
+    "landcover": 40,
+    "row": 851,
+    "col": 1291,
+    "value": 976.5990600585938
+  },
+  {
+    "id": "548",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "549",
+    "landcover": 40,
+    "row": 850,
+    "col": 1289,
+    "value": 2516.48046875
+  },
+  {
+    "id": "550",
+    "landcover": 40,
+    "row": 847,
+    "col": 1292,
+    "value": 1853.2103271484375
+  },
+  {
+    "id": "551",
+    "landcover": 40,
+    "row": 850,
+    "col": 1289,
+    "value": 2516.48046875
+  },
+  {
+    "id": "552",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "553",
+    "landcover": 40,
+    "row": 848,
+    "col": 1293,
+    "value": 142.87281799316406
+  },
+  {
+    "id": "554",
+    "landcover": 40,
+    "row": 844,
+    "col": 1298,
+    "value": 690.0072021484375
+  },
+  {
+    "id": "555",
+    "landcover": 40,
+    "row": 848,
+    "col": 1289,
+    "value": 1703.968505859375
+  },
+  {
+    "id": "556",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "557",
+    "landcover": 40,
+    "row": 848,
+    "col": 1292,
+    "value": 864.8527221679688
+  },
+  {
+    "id": "558",
+    "landcover": 40,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "559",
+    "landcover": 40,
+    "row": 850,
+    "col": 1290,
+    "value": 1379.5858154296875
+  },
+  {
+    "id": "560",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "561",
+    "landcover": 40,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "562",
+    "landcover": 40,
+    "row": 851,
+    "col": 1297,
+    "value": 95.43240356445312
+  },
+  {
+    "id": "563",
+    "landcover": 40,
+    "row": 847,
+    "col": 1294,
+    "value": 548.2676391601562
+  },
+  {
+    "id": "564",
+    "landcover": 40,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "565",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "566",
+    "landcover": 40,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "567",
+    "landcover": 40,
+    "row": 850,
+    "col": 1290,
+    "value": 1379.5858154296875
+  },
+  {
+    "id": "568",
+    "landcover": 40,
+    "row": 847,
+    "col": 1293,
+    "value": 1659.4520263671875
+  },
+  {
+    "id": "569",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "570",
+    "landcover": 40,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "571",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "572",
+    "landcover": 40,
+    "row": 841,
+    "col": 1282,
+    "value": 797.9600830078125
+  },
+  {
+    "id": "573",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "574",
+    "landcover": 40,
+    "row": 853,
+    "col": 1297,
+    "value": 145.62014770507812
+  },
+  {
+    "id": "575",
+    "landcover": 40,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "576",
+    "landcover": 40,
+    "row": 860,
+    "col": 1299,
+    "value": 49.48301696777344
+  },
+  {
+    "id": "577",
+    "landcover": 40,
+    "row": 858,
+    "col": 1282,
+    "value": 603.0033569335938
+  },
+  {
+    "id": "578",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "579",
+    "landcover": 40,
+    "row": 851,
+    "col": 1291,
+    "value": 976.5990600585938
+  },
+  {
+    "id": "580",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "581",
+    "landcover": 40,
+    "row": 849,
+    "col": 1290,
+    "value": 974.633056640625
+  },
+  {
+    "id": "582",
+    "landcover": 40,
+    "row": 859,
+    "col": 1275,
+    "value": 757.9141845703125
+  },
+  {
+    "id": "583",
+    "landcover": 40,
+    "row": 852,
+    "col": 1297,
+    "value": null
+  },
+  {
+    "id": "584",
+    "landcover": 40,
+    "row": 857,
+    "col": 1294,
+    "value": 1192.54150390625
+  },
+  {
+    "id": "585",
+    "landcover": 40,
+    "row": 857,
+    "col": 1294,
+    "value": 1192.54150390625
+  },
+  {
+    "id": "586",
+    "landcover": 40,
+    "row": 850,
+    "col": 1290,
+    "value": 1379.5858154296875
+  },
+  {
+    "id": "587",
+    "landcover": 40,
+    "row": 844,
+    "col": 1293,
+    "value": 1414.2572021484375
+  },
+  {
+    "id": "588",
+    "landcover": 40,
+    "row": 843,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "589",
+    "landcover": 40,
+    "row": 846,
+    "col": 1288,
+    "value": 1338.792236328125
+  },
+  {
+    "id": "590",
+    "landcover": 40,
+    "row": 847,
+    "col": 1293,
+    "value": 1659.4520263671875
+  },
+  {
+    "id": "591",
+    "landcover": 40,
+    "row": 860,
+    "col": 1297,
+    "value": 591.5921630859375
+  },
+  {
+    "id": "592",
+    "landcover": 40,
+    "row": 862,
+    "col": 1274,
+    "value": null
+  },
+  {
+    "id": "593",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "594",
+    "landcover": 40,
+    "row": 850,
+    "col": 1299,
+    "value": 608.1069946289062
+  },
+  {
+    "id": "595",
+    "landcover": 40,
+    "row": 846,
+    "col": 1288,
+    "value": 1338.792236328125
+  },
+  {
+    "id": "596",
+    "landcover": 40,
+    "row": 846,
+    "col": 1292,
+    "value": 1217.4503173828125
+  },
+  {
+    "id": "597",
+    "landcover": 40,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "598",
+    "landcover": 40,
+    "row": 860,
+    "col": 1276,
+    "value": 691.470458984375
+  },
+  {
+    "id": "599",
+    "landcover": 40,
+    "row": 847,
+    "col": 1293,
+    "value": 1659.4520263671875
+  },
+  {
+    "id": "600",
+    "landcover": 40,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "601",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "602",
+    "landcover": 40,
+    "row": 849,
+    "col": 1290,
+    "value": 974.633056640625
+  },
+  {
+    "id": "603",
+    "landcover": 40,
+    "row": 851,
+    "col": 1290,
+    "value": 992.82080078125
+  },
+  {
+    "id": "604",
+    "landcover": 40,
+    "row": 855,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "605",
+    "landcover": 40,
+    "row": 860,
+    "col": 1274,
+    "value": 1490.1400146484375
+  },
+  {
+    "id": "606",
+    "landcover": 40,
+    "row": 860,
+    "col": 1276,
+    "value": 691.470458984375
+  },
+  {
+    "id": "607",
+    "landcover": 40,
+    "row": 853,
+    "col": 1294,
+    "value": 255.63870239257812
+  },
+  {
+    "id": "608",
+    "landcover": 40,
+    "row": 849,
+    "col": 1290,
+    "value": 974.633056640625
+  },
+  {
+    "id": "609",
+    "landcover": 40,
+    "row": 848,
+    "col": 1289,
+    "value": 1703.968505859375
+  },
+  {
+    "id": "610",
+    "landcover": 40,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "611",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "612",
+    "landcover": 40,
+    "row": 860,
+    "col": 1273,
+    "value": 1334.340576171875
+  },
+  {
+    "id": "613",
+    "landcover": 40,
+    "row": 844,
+    "col": 1293,
+    "value": 1414.2572021484375
+  },
+  {
+    "id": "614",
+    "landcover": 40,
+    "row": 846,
+    "col": 1289,
+    "value": 1327.6795654296875
+  },
+  {
+    "id": "615",
+    "landcover": 40,
+    "row": 850,
+    "col": 1290,
+    "value": 1379.5858154296875
+  },
+  {
+    "id": "616",
+    "landcover": 40,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "617",
+    "landcover": 40,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "618",
+    "landcover": 40,
+    "row": 853,
+    "col": 1298,
+    "value": 165.38555908203125
+  },
+  {
+    "id": "619",
+    "landcover": 40,
+    "row": 859,
+    "col": 1276,
+    "value": 686.9651489257812
+  },
+  {
+    "id": "620",
+    "landcover": 40,
+    "row": 845,
+    "col": 1288,
+    "value": 2128.634033203125
+  },
+  {
+    "id": "621",
+    "landcover": 40,
+    "row": 853,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "622",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "623",
+    "landcover": 40,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "624",
+    "landcover": 40,
+    "row": 844,
+    "col": 1292,
+    "value": 484.0130615234375
+  },
+  {
+    "id": "625",
+    "landcover": 40,
+    "row": 850,
+    "col": 1289,
+    "value": 2516.48046875
+  },
+  {
+    "id": "626",
+    "landcover": 40,
+    "row": 852,
+    "col": 1298,
+    "value": 304.2830810546875
+  },
+  {
+    "id": "627",
+    "landcover": 40,
+    "row": 853,
+    "col": 1298,
+    "value": 165.38555908203125
+  },
+  {
+    "id": "628",
+    "landcover": 40,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "629",
+    "landcover": 40,
+    "row": 850,
+    "col": 1289,
+    "value": 2516.48046875
+  },
+  {
+    "id": "630",
+    "landcover": 40,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "631",
+    "landcover": 40,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "632",
+    "landcover": 40,
+    "row": 851,
+    "col": 1291,
+    "value": 976.5990600585938
+  },
+  {
+    "id": "633",
+    "landcover": 40,
+    "row": 860,
+    "col": 1273,
+    "value": 1334.340576171875
+  },
+  {
+    "id": "634",
+    "landcover": 40,
+    "row": 852,
+    "col": 1291,
+    "value": 1066.241943359375
+  },
+  {
+    "id": "635",
+    "landcover": 40,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "636",
+    "landcover": 40,
+    "row": 848,
+    "col": 1290,
+    "value": 991.3167114257812
+  },
+  {
+    "id": "637",
+    "landcover": 40,
+    "row": 850,
+    "col": 1288,
+    "value": 1596.958984375
+  },
+  {
+    "id": "638",
+    "landcover": 40,
+    "row": 848,
+    "col": 1291,
+    "value": 920.44580078125
+  },
+  {
+    "id": "639",
+    "landcover": 40,
+    "row": 850,
+    "col": 1297,
+    "value": 174.39869689941406
+  },
+  {
+    "id": "640",
+    "landcover": 50,
+    "row": 858,
+    "col": 1296,
+    "value": 401.5264892578125
+  },
+  {
+    "id": "641",
+    "landcover": 50,
+    "row": 854,
+    "col": 1294,
+    "value": 257.0234069824219
+  },
+  {
+    "id": "642",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "643",
+    "landcover": 50,
+    "row": 846,
+    "col": 1288,
+    "value": 1338.792236328125
+  },
+  {
+    "id": "644",
+    "landcover": 50,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "645",
+    "landcover": 50,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "646",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "647",
+    "landcover": 50,
+    "row": 853,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "648",
+    "landcover": 50,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "649",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "650",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "651",
+    "landcover": 50,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "652",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "653",
+    "landcover": 50,
+    "row": 858,
+    "col": 1295,
+    "value": 335.4012451171875
+  },
+  {
+    "id": "654",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "655",
+    "landcover": 50,
+    "row": 850,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "656",
+    "landcover": 50,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "657",
+    "landcover": 50,
+    "row": 861,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "658",
+    "landcover": 50,
+    "row": 850,
+    "col": 1298,
+    "value": 62.884761810302734
+  },
+  {
+    "id": "659",
+    "landcover": 50,
+    "row": 857,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "660",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "661",
+    "landcover": 50,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "662",
+    "landcover": 50,
+    "row": 857,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "663",
+    "landcover": 50,
+    "row": 857,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "664",
+    "landcover": 50,
+    "row": 861,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "665",
+    "landcover": 50,
+    "row": 845,
+    "col": 1299,
+    "value": 1382.0660400390625
+  },
+  {
+    "id": "666",
+    "landcover": 50,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "667",
+    "landcover": 50,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "668",
+    "landcover": 50,
+    "row": 841,
+    "col": 1283,
+    "value": 74.98958587646484
+  },
+  {
+    "id": "669",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "670",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "671",
+    "landcover": 50,
+    "row": 856,
+    "col": 1293,
+    "value": 1384.7991943359375
+  },
+  {
+    "id": "672",
+    "landcover": 50,
+    "row": 861,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "673",
+    "landcover": 50,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "674",
+    "landcover": 50,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "675",
+    "landcover": 50,
+    "row": 856,
+    "col": 1270,
+    "value": 1100.8389892578125
+  },
+  {
+    "id": "676",
+    "landcover": 50,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "677",
+    "landcover": 50,
+    "row": 857,
+    "col": 1266,
+    "value": null
+  },
+  {
+    "id": "678",
+    "landcover": 50,
+    "row": 856,
+    "col": 1293,
+    "value": 1384.7991943359375
+  },
+  {
+    "id": "679",
+    "landcover": 50,
+    "row": 856,
+    "col": 1293,
+    "value": 1384.7991943359375
+  },
+  {
+    "id": "680",
+    "landcover": 50,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "681",
+    "landcover": 50,
+    "row": 843,
+    "col": 1291,
+    "value": 340.6456604003906
+  },
+  {
+    "id": "682",
+    "landcover": 50,
+    "row": 855,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "683",
+    "landcover": 50,
+    "row": 848,
+    "col": 1289,
+    "value": 1703.968505859375
+  },
+  {
+    "id": "684",
+    "landcover": 50,
+    "row": 856,
+    "col": 1294,
+    "value": 1205.7025146484375
+  },
+  {
+    "id": "685",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "686",
+    "landcover": 50,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "687",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "688",
+    "landcover": 50,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "689",
+    "landcover": 50,
+    "row": 860,
+    "col": 1267,
+    "value": null
+  },
+  {
+    "id": "690",
+    "landcover": 50,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "691",
+    "landcover": 50,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "692",
+    "landcover": 50,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "693",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "694",
+    "landcover": 50,
+    "row": 842,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "695",
+    "landcover": 50,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "696",
+    "landcover": 50,
+    "row": 860,
+    "col": 1277,
+    "value": 389.67596435546875
+  },
+  {
+    "id": "697",
+    "landcover": 50,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "698",
+    "landcover": 50,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "699",
+    "landcover": 50,
+    "row": 858,
+    "col": 1272,
+    "value": 860.8743896484375
+  },
+  {
+    "id": "700",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "701",
+    "landcover": 50,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "702",
+    "landcover": 50,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "703",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "704",
+    "landcover": 50,
+    "row": 857,
+    "col": 1294,
+    "value": 1192.54150390625
+  },
+  {
+    "id": "705",
+    "landcover": 50,
+    "row": 850,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "706",
+    "landcover": 50,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "707",
+    "landcover": 50,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "708",
+    "landcover": 50,
+    "row": 853,
+    "col": 1298,
+    "value": 165.38555908203125
+  },
+  {
+    "id": "709",
+    "landcover": 50,
+    "row": 861,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "710",
+    "landcover": 50,
+    "row": 843,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "711",
+    "landcover": 50,
+    "row": 843,
+    "col": 1291,
+    "value": 340.6456604003906
+  },
+  {
+    "id": "712",
+    "landcover": 50,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "713",
+    "landcover": 50,
+    "row": 843,
+    "col": 1287,
+    "value": 1503.6859130859375
+  },
+  {
+    "id": "714",
+    "landcover": 50,
+    "row": 844,
+    "col": 1296,
+    "value": 621.355712890625
+  },
+  {
+    "id": "715",
+    "landcover": 50,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "716",
+    "landcover": 50,
+    "row": 861,
+    "col": 1275,
+    "value": 203.96710205078125
+  },
+  {
+    "id": "717",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "718",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "719",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "720",
+    "landcover": 50,
+    "row": 850,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "721",
+    "landcover": 50,
+    "row": 850,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "722",
+    "landcover": 50,
+    "row": 840,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "723",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "724",
+    "landcover": 50,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "725",
+    "landcover": 50,
+    "row": 840,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "726",
+    "landcover": 50,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "727",
+    "landcover": 50,
+    "row": 846,
+    "col": 1288,
+    "value": 1338.792236328125
+  },
+  {
+    "id": "728",
+    "landcover": 50,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "729",
+    "landcover": 50,
+    "row": 846,
+    "col": 1288,
+    "value": 1338.792236328125
+  },
+  {
+    "id": "730",
+    "landcover": 50,
+    "row": 855,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "731",
+    "landcover": 50,
+    "row": 841,
+    "col": 1284,
+    "value": 359.4480895996094
+  },
+  {
+    "id": "732",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "733",
+    "landcover": 50,
+    "row": 856,
+    "col": 1293,
+    "value": 1384.7991943359375
+  },
+  {
+    "id": "734",
+    "landcover": 50,
+    "row": 854,
+    "col": 1290,
+    "value": 935.3543701171875
+  },
+  {
+    "id": "735",
+    "landcover": 50,
+    "row": 857,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "736",
+    "landcover": 50,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "737",
+    "landcover": 50,
+    "row": 857,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "738",
+    "landcover": 50,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "739",
+    "landcover": 50,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "740",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "741",
+    "landcover": 50,
+    "row": 858,
+    "col": 1291,
+    "value": 326.5380859375
+  },
+  {
+    "id": "742",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "743",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "744",
+    "landcover": 50,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "745",
+    "landcover": 50,
+    "row": 857,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "746",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "747",
+    "landcover": 50,
+    "row": 850,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "748",
+    "landcover": 50,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "749",
+    "landcover": 50,
+    "row": 850,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "750",
+    "landcover": 50,
+    "row": 857,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "751",
+    "landcover": 50,
+    "row": 857,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "752",
+    "landcover": 50,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "753",
+    "landcover": 50,
+    "row": 845,
+    "col": 1293,
+    "value": 317.0940856933594
+  },
+  {
+    "id": "754",
+    "landcover": 50,
+    "row": 858,
+    "col": 1292,
+    "value": 228.478759765625
+  },
+  {
+    "id": "755",
+    "landcover": 50,
+    "row": 857,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "756",
+    "landcover": 50,
+    "row": 858,
+    "col": 1292,
+    "value": 228.478759765625
+  },
+  {
+    "id": "757",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "758",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "759",
+    "landcover": 50,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "760",
+    "landcover": 50,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "761",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "762",
+    "landcover": 50,
+    "row": 859,
+    "col": 1297,
+    "value": 433.34368896484375
+  },
+  {
+    "id": "763",
+    "landcover": 50,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "764",
+    "landcover": 50,
+    "row": 856,
+    "col": 1268,
+    "value": 967.0623168945312
+  },
+  {
+    "id": "765",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "766",
+    "landcover": 50,
+    "row": 857,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "767",
+    "landcover": 50,
+    "row": 853,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "768",
+    "landcover": 50,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "769",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "770",
+    "landcover": 50,
+    "row": 860,
+    "col": 1275,
+    "value": 846.7637939453125
+  },
+  {
+    "id": "771",
+    "landcover": 50,
+    "row": 846,
+    "col": 1288,
+    "value": 1338.792236328125
+  },
+  {
+    "id": "772",
+    "landcover": 50,
+    "row": 856,
+    "col": 1293,
+    "value": 1384.7991943359375
+  },
+  {
+    "id": "773",
+    "landcover": 50,
+    "row": 850,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "774",
+    "landcover": 50,
+    "row": 859,
+    "col": 1274,
+    "value": 531.328369140625
+  },
+  {
+    "id": "775",
+    "landcover": 50,
+    "row": 856,
+    "col": 1293,
+    "value": 1384.7991943359375
+  },
+  {
+    "id": "776",
+    "landcover": 50,
+    "row": 845,
+    "col": 1299,
+    "value": 1382.0660400390625
+  },
+  {
+    "id": "777",
+    "landcover": 50,
+    "row": 842,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "778",
+    "landcover": 50,
+    "row": 860,
+    "col": 1274,
+    "value": 1490.1400146484375
+  },
+  {
+    "id": "779",
+    "landcover": 50,
+    "row": 855,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "780",
+    "landcover": 50,
+    "row": 850,
+    "col": 1295,
+    "value": 251.28025817871094
+  },
+  {
+    "id": "781",
+    "landcover": 50,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "782",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "783",
+    "landcover": 50,
+    "row": 840,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "784",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "785",
+    "landcover": 50,
+    "row": 850,
+    "col": 1288,
+    "value": 1596.958984375
+  },
+  {
+    "id": "786",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "787",
+    "landcover": 50,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "788",
+    "landcover": 50,
+    "row": 856,
+    "col": 1293,
+    "value": 1384.7991943359375
+  },
+  {
+    "id": "789",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "790",
+    "landcover": 50,
+    "row": 844,
+    "col": 1296,
+    "value": 621.355712890625
+  },
+  {
+    "id": "791",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "792",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "793",
+    "landcover": 50,
+    "row": 857,
+    "col": 1293,
+    "value": 1184.2764892578125
+  },
+  {
+    "id": "794",
+    "landcover": 50,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "795",
+    "landcover": 50,
+    "row": 858,
+    "col": 1282,
+    "value": 603.0033569335938
+  },
+  {
+    "id": "796",
+    "landcover": 50,
+    "row": 853,
+    "col": 1293,
+    "value": 225.50010681152344
+  },
+  {
+    "id": "797",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "798",
+    "landcover": 50,
+    "row": 857,
+    "col": 1292,
+    "value": 465.7694091796875
+  },
+  {
+    "id": "799",
+    "landcover": 50,
+    "row": 855,
+    "col": 1292,
+    "value": 442.3324890136719
+  },
+  {
+    "id": "800",
+    "landcover": 60,
+    "row": 860,
+    "col": 1289,
+    "value": 399.95086669921875
+  },
+  {
+    "id": "801",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "802",
+    "landcover": 60,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "803",
+    "landcover": 60,
+    "row": 845,
+    "col": 1294,
+    "value": 424.2345886230469
+  },
+  {
+    "id": "804",
+    "landcover": 60,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "805",
+    "landcover": 60,
+    "row": 859,
+    "col": 1296,
+    "value": 84.8567123413086
+  },
+  {
+    "id": "806",
+    "landcover": 60,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "807",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "808",
+    "landcover": 60,
+    "row": 857,
+    "col": 1268,
+    "value": 978.1932983398438
+  },
+  {
+    "id": "809",
+    "landcover": 60,
+    "row": 841,
+    "col": 1285,
+    "value": 682.7393188476562
+  },
+  {
+    "id": "810",
+    "landcover": 60,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "811",
+    "landcover": 60,
+    "row": 844,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "812",
+    "landcover": 60,
+    "row": 841,
+    "col": 1284,
+    "value": 359.4480895996094
+  },
+  {
+    "id": "813",
+    "landcover": 60,
+    "row": 856,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "814",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "815",
+    "landcover": 60,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "816",
+    "landcover": 60,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "817",
+    "landcover": 60,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "818",
+    "landcover": 60,
+    "row": 860,
+    "col": 1280,
+    "value": 849.6115112304688
+  },
+  {
+    "id": "819",
+    "landcover": 60,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "820",
+    "landcover": 60,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "821",
+    "landcover": 60,
+    "row": 858,
+    "col": 1291,
+    "value": 326.5380859375
+  },
+  {
+    "id": "822",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "823",
+    "landcover": 60,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "824",
+    "landcover": 60,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "825",
+    "landcover": 60,
+    "row": 844,
+    "col": 1282,
+    "value": 78.45603942871094
+  },
+  {
+    "id": "826",
+    "landcover": 60,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "827",
+    "landcover": 60,
+    "row": 841,
+    "col": 1284,
+    "value": 359.4480895996094
+  },
+  {
+    "id": "828",
+    "landcover": 60,
+    "row": 861,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "829",
+    "landcover": 60,
+    "row": 843,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "830",
+    "landcover": 60,
+    "row": 861,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "831",
+    "landcover": 60,
+    "row": 846,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "832",
+    "landcover": 60,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "833",
+    "landcover": 60,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "834",
+    "landcover": 60,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "835",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "836",
+    "landcover": 60,
+    "row": 841,
+    "col": 1284,
+    "value": 359.4480895996094
+  },
+  {
+    "id": "837",
+    "landcover": 60,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "838",
+    "landcover": 60,
+    "row": 846,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "839",
+    "landcover": 60,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "840",
+    "landcover": 60,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "841",
+    "landcover": 60,
+    "row": 861,
+    "col": 1296,
+    "value": 145.27496337890625
+  },
+  {
+    "id": "842",
+    "landcover": 60,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "843",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "844",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "845",
+    "landcover": 60,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "846",
+    "landcover": 60,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "847",
+    "landcover": 60,
+    "row": 846,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "848",
+    "landcover": 60,
+    "row": 859,
+    "col": 1270,
+    "value": 631.2536010742188
+  },
+  {
+    "id": "849",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "850",
+    "landcover": 60,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "851",
+    "landcover": 60,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "852",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "853",
+    "landcover": 60,
+    "row": 859,
+    "col": 1273,
+    "value": 588.04296875
+  },
+  {
+    "id": "854",
+    "landcover": 60,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "855",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "856",
+    "landcover": 60,
+    "row": 861,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "857",
+    "landcover": 60,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "858",
+    "landcover": 60,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "859",
+    "landcover": 60,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "860",
+    "landcover": 60,
+    "row": 848,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "861",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "862",
+    "landcover": 60,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "863",
+    "landcover": 60,
+    "row": 843,
+    "col": 1282,
+    "value": 388.9187316894531
+  },
+  {
+    "id": "864",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "865",
+    "landcover": 60,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "866",
+    "landcover": 60,
+    "row": 851,
+    "col": 1298,
+    "value": 91.7537612915039
+  },
+  {
+    "id": "867",
+    "landcover": 60,
+    "row": 858,
+    "col": 1296,
+    "value": 401.5264892578125
+  },
+  {
+    "id": "868",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "869",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "870",
+    "landcover": 60,
+    "row": 859,
+    "col": 1273,
+    "value": 588.04296875
+  },
+  {
+    "id": "871",
+    "landcover": 60,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "872",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "873",
+    "landcover": 60,
+    "row": 846,
+    "col": 1288,
+    "value": 1338.792236328125
+  },
+  {
+    "id": "874",
+    "landcover": 60,
+    "row": 848,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "875",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "876",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "877",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "878",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "879",
+    "landcover": 60,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "880",
+    "landcover": 60,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "881",
+    "landcover": 60,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "882",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "883",
+    "landcover": 60,
+    "row": 858,
+    "col": 1290,
+    "value": 347.9336242675781
+  },
+  {
+    "id": "884",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "885",
+    "landcover": 60,
+    "row": 860,
+    "col": 1273,
+    "value": 1334.340576171875
+  },
+  {
+    "id": "886",
+    "landcover": 60,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "887",
+    "landcover": 60,
+    "row": 841,
+    "col": 1283,
+    "value": 74.98958587646484
+  },
+  {
+    "id": "888",
+    "landcover": 60,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "889",
+    "landcover": 60,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "890",
+    "landcover": 60,
+    "row": 843,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "891",
+    "landcover": 60,
+    "row": 861,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "892",
+    "landcover": 60,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "893",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "894",
+    "landcover": 60,
+    "row": 861,
+    "col": 1273,
+    "value": 1724.917236328125
+  },
+  {
+    "id": "895",
+    "landcover": 60,
+    "row": 843,
+    "col": 1282,
+    "value": 388.9187316894531
+  },
+  {
+    "id": "896",
+    "landcover": 60,
+    "row": 861,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "897",
+    "landcover": 60,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "898",
+    "landcover": 60,
+    "row": 841,
+    "col": 1283,
+    "value": 74.98958587646484
+  },
+  {
+    "id": "899",
+    "landcover": 60,
+    "row": 841,
+    "col": 1284,
+    "value": 359.4480895996094
+  },
+  {
+    "id": "900",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "901",
+    "landcover": 60,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "902",
+    "landcover": 60,
+    "row": 856,
+    "col": 1294,
+    "value": 1205.7025146484375
+  },
+  {
+    "id": "903",
+    "landcover": 60,
+    "row": 843,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "904",
+    "landcover": 60,
+    "row": 843,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "905",
+    "landcover": 60,
+    "row": 848,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "906",
+    "landcover": 60,
+    "row": 843,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "907",
+    "landcover": 60,
+    "row": 845,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "908",
+    "landcover": 60,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "909",
+    "landcover": 60,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "910",
+    "landcover": 60,
+    "row": 841,
+    "col": 1283,
+    "value": 74.98958587646484
+  },
+  {
+    "id": "911",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "912",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "913",
+    "landcover": 60,
+    "row": 846,
+    "col": 1288,
+    "value": 1338.792236328125
+  },
+  {
+    "id": "914",
+    "landcover": 60,
+    "row": 851,
+    "col": 1297,
+    "value": 95.43240356445312
+  },
+  {
+    "id": "915",
+    "landcover": 60,
+    "row": 855,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "916",
+    "landcover": 60,
+    "row": 860,
+    "col": 1274,
+    "value": 1490.1400146484375
+  },
+  {
+    "id": "917",
+    "landcover": 60,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "918",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "919",
+    "landcover": 60,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "920",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "921",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "922",
+    "landcover": 60,
+    "row": 860,
+    "col": 1290,
+    "value": 328.2083740234375
+  },
+  {
+    "id": "923",
+    "landcover": 60,
+    "row": 846,
+    "col": 1288,
+    "value": 1338.792236328125
+  },
+  {
+    "id": "924",
+    "landcover": 60,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "925",
+    "landcover": 60,
+    "row": 843,
+    "col": 1286,
+    "value": 1232.608642578125
+  },
+  {
+    "id": "926",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "927",
+    "landcover": 60,
+    "row": 855,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "928",
+    "landcover": 60,
+    "row": 861,
+    "col": 1296,
+    "value": 145.27496337890625
+  },
+  {
+    "id": "929",
+    "landcover": 60,
+    "row": 858,
+    "col": 1289,
+    "value": 455.6750793457031
+  },
+  {
+    "id": "930",
+    "landcover": 60,
+    "row": 856,
+    "col": 1294,
+    "value": 1205.7025146484375
+  },
+  {
+    "id": "931",
+    "landcover": 60,
+    "row": 855,
+    "col": 1293,
+    "value": 363.4326171875
+  },
+  {
+    "id": "932",
+    "landcover": 60,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "933",
+    "landcover": 60,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "934",
+    "landcover": 60,
+    "row": 846,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "935",
+    "landcover": 60,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "936",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "937",
+    "landcover": 60,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "938",
+    "landcover": 60,
+    "row": 844,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "939",
+    "landcover": 60,
+    "row": 857,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "940",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "941",
+    "landcover": 60,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "942",
+    "landcover": 60,
+    "row": 843,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "943",
+    "landcover": 60,
+    "row": 859,
+    "col": 1280,
+    "value": 912.3988037109375
+  },
+  {
+    "id": "944",
+    "landcover": 60,
+    "row": 842,
+    "col": 1289,
+    "value": 14.851377487182617
+  },
+  {
+    "id": "945",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "946",
+    "landcover": 60,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "947",
+    "landcover": 60,
+    "row": 843,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "948",
+    "landcover": 60,
+    "row": 839,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "949",
+    "landcover": 60,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "950",
+    "landcover": 60,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "951",
+    "landcover": 60,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "952",
+    "landcover": 60,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "953",
+    "landcover": 60,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "954",
+    "landcover": 60,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "955",
+    "landcover": 60,
+    "row": 843,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "956",
+    "landcover": 60,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "957",
+    "landcover": 60,
+    "row": 853,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "958",
+    "landcover": 60,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "959",
+    "landcover": 60,
+    "row": 858,
+    "col": 1289,
+    "value": 455.6750793457031
+  },
+  {
+    "id": "960",
+    "landcover": 80,
+    "row": 861,
+    "col": 1272,
+    "value": 524.3870849609375
+  },
+  {
+    "id": "961",
+    "landcover": 80,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "962",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "963",
+    "landcover": 80,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "964",
+    "landcover": 80,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "965",
+    "landcover": 80,
+    "row": 856,
+    "col": 1296,
+    "value": 244.6589813232422
+  },
+  {
+    "id": "966",
+    "landcover": 80,
+    "row": 861,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "967",
+    "landcover": 80,
+    "row": 853,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "968",
+    "landcover": 80,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "969",
+    "landcover": 80,
+    "row": 842,
+    "col": 1279,
+    "value": 403.9322509765625
+  },
+  {
+    "id": "970",
+    "landcover": 80,
+    "row": 850,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "971",
+    "landcover": 80,
+    "row": 861,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "972",
+    "landcover": 80,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "973",
+    "landcover": 80,
+    "row": 840,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "974",
+    "landcover": 80,
+    "row": 862,
+    "col": 1274,
+    "value": null
+  },
+  {
+    "id": "975",
+    "landcover": 80,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "976",
+    "landcover": 80,
+    "row": 839,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "977",
+    "landcover": 80,
+    "row": 856,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "978",
+    "landcover": 80,
+    "row": 842,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "979",
+    "landcover": 80,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "980",
+    "landcover": 80,
+    "row": 845,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "981",
+    "landcover": 80,
+    "row": 862,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "982",
+    "landcover": 80,
+    "row": 852,
+    "col": 1292,
+    "value": 937.4644165039062
+  },
+  {
+    "id": "983",
+    "landcover": 80,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "984",
+    "landcover": 80,
+    "row": 843,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "985",
+    "landcover": 80,
+    "row": 861,
+    "col": 1296,
+    "value": 145.27496337890625
+  },
+  {
+    "id": "986",
+    "landcover": 80,
+    "row": 859,
+    "col": 1266,
+    "value": null
+  },
+  {
+    "id": "987",
+    "landcover": 80,
+    "row": 857,
+    "col": 1297,
+    "value": 293.42889404296875
+  },
+  {
+    "id": "988",
+    "landcover": 80,
+    "row": 848,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "989",
+    "landcover": 80,
+    "row": 861,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "990",
+    "landcover": 80,
+    "row": 852,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "991",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "992",
+    "landcover": 80,
+    "row": 862,
+    "col": 1272,
+    "value": null
+  },
+  {
+    "id": "993",
+    "landcover": 80,
+    "row": 852,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "994",
+    "landcover": 80,
+    "row": 856,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "995",
+    "landcover": 80,
+    "row": 851,
+    "col": 1290,
+    "value": 992.82080078125
+  },
+  {
+    "id": "996",
+    "landcover": 80,
+    "row": 861,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "997",
+    "landcover": 80,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "998",
+    "landcover": 80,
+    "row": 844,
+    "col": 1282,
+    "value": 78.45603942871094
+  },
+  {
+    "id": "999",
+    "landcover": 80,
+    "row": 844,
+    "col": 1283,
+    "value": 126.4444580078125
+  },
+  {
+    "id": "1000",
+    "landcover": 80,
+    "row": 845,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "1001",
+    "landcover": 80,
+    "row": 844,
+    "col": 1279,
+    "value": null
+  },
+  {
+    "id": "1002",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1003",
+    "landcover": 80,
+    "row": 861,
+    "col": 1283,
+    "value": null
+  },
+  {
+    "id": "1004",
+    "landcover": 80,
+    "row": 843,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "1005",
+    "landcover": 80,
+    "row": 853,
+    "col": 1295,
+    "value": 148.6896209716797
+  },
+  {
+    "id": "1006",
+    "landcover": 80,
+    "row": 861,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "1007",
+    "landcover": 80,
+    "row": 850,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "1008",
+    "landcover": 80,
+    "row": 855,
+    "col": 1292,
+    "value": 442.3324890136719
+  },
+  {
+    "id": "1009",
+    "landcover": 80,
+    "row": 853,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "1010",
+    "landcover": 80,
+    "row": 856,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1011",
+    "landcover": 80,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "1012",
+    "landcover": 80,
+    "row": 856,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1013",
+    "landcover": 80,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "1014",
+    "landcover": 80,
+    "row": 856,
+    "col": 1274,
+    "value": null
+  },
+  {
+    "id": "1015",
+    "landcover": 80,
+    "row": 845,
+    "col": 1285,
+    "value": 91.00714874267578
+  },
+  {
+    "id": "1016",
+    "landcover": 80,
+    "row": 861,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "1017",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1018",
+    "landcover": 80,
+    "row": 861,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1019",
+    "landcover": 80,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1020",
+    "landcover": 80,
+    "row": 853,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "1021",
+    "landcover": 80,
+    "row": 861,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "1022",
+    "landcover": 80,
+    "row": 856,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1023",
+    "landcover": 80,
+    "row": 839,
+    "col": 1287,
+    "value": 67.14262390136719
+  },
+  {
+    "id": "1024",
+    "landcover": 80,
+    "row": 860,
+    "col": 1276,
+    "value": 691.470458984375
+  },
+  {
+    "id": "1025",
+    "landcover": 80,
+    "row": 862,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1026",
+    "landcover": 80,
+    "row": 858,
+    "col": 1297,
+    "value": 370.0892028808594
+  },
+  {
+    "id": "1027",
+    "landcover": 80,
+    "row": 842,
+    "col": 1279,
+    "value": 403.9322509765625
+  },
+  {
+    "id": "1028",
+    "landcover": 80,
+    "row": 846,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1029",
+    "landcover": 80,
+    "row": 859,
+    "col": 1283,
+    "value": 884.5018920898438
+  },
+  {
+    "id": "1030",
+    "landcover": 80,
+    "row": 848,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1031",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1032",
+    "landcover": 80,
+    "row": 846,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1033",
+    "landcover": 80,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "1034",
+    "landcover": 80,
+    "row": 861,
+    "col": 1276,
+    "value": null
+  },
+  {
+    "id": "1035",
+    "landcover": 80,
+    "row": 853,
+    "col": 1295,
+    "value": 148.6896209716797
+  },
+  {
+    "id": "1036",
+    "landcover": 80,
+    "row": 861,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "1037",
+    "landcover": 80,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1038",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1039",
+    "landcover": 80,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1040",
+    "landcover": 80,
+    "row": 861,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "1041",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1042",
+    "landcover": 80,
+    "row": 861,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "1043",
+    "landcover": 80,
+    "row": 862,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1044",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1045",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1046",
+    "landcover": 80,
+    "row": 862,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "1047",
+    "landcover": 80,
+    "row": 863,
+    "col": 1298,
+    "value": null
+  },
+  {
+    "id": "1048",
+    "landcover": 80,
+    "row": 858,
+    "col": 1297,
+    "value": 370.0892028808594
+  },
+  {
+    "id": "1049",
+    "landcover": 80,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "1050",
+    "landcover": 80,
+    "row": 854,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "1051",
+    "landcover": 80,
+    "row": 852,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "1052",
+    "landcover": 80,
+    "row": 844,
+    "col": 1278,
+    "value": null
+  },
+  {
+    "id": "1053",
+    "landcover": 80,
+    "row": 843,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "1054",
+    "landcover": 80,
+    "row": 863,
+    "col": 1272,
+    "value": null
+  },
+  {
+    "id": "1055",
+    "landcover": 80,
+    "row": 856,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1056",
+    "landcover": 80,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "1057",
+    "landcover": 80,
+    "row": 857,
+    "col": 1268,
+    "value": 978.1932983398438
+  },
+  {
+    "id": "1058",
+    "landcover": 80,
+    "row": 861,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "1059",
+    "landcover": 80,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "1060",
+    "landcover": 80,
+    "row": 856,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1061",
+    "landcover": 80,
+    "row": 860,
+    "col": 1269,
+    "value": null
+  },
+  {
+    "id": "1062",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1063",
+    "landcover": 80,
+    "row": 859,
+    "col": 1266,
+    "value": null
+  },
+  {
+    "id": "1064",
+    "landcover": 80,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1065",
+    "landcover": 80,
+    "row": 859,
+    "col": 1283,
+    "value": 884.5018920898438
+  },
+  {
+    "id": "1066",
+    "landcover": 80,
+    "row": 861,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "1067",
+    "landcover": 80,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1068",
+    "landcover": 80,
+    "row": 843,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "1069",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1070",
+    "landcover": 80,
+    "row": 842,
+    "col": 1289,
+    "value": 14.851377487182617
+  },
+  {
+    "id": "1071",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1072",
+    "landcover": 80,
+    "row": 855,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1073",
+    "landcover": 80,
+    "row": 855,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "1074",
+    "landcover": 80,
+    "row": 863,
+    "col": 1298,
+    "value": null
+  },
+  {
+    "id": "1075",
+    "landcover": 80,
+    "row": 861,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "1076",
+    "landcover": 80,
+    "row": 850,
+    "col": 1289,
+    "value": 2516.48046875
+  },
+  {
+    "id": "1077",
+    "landcover": 80,
+    "row": 843,
+    "col": 1297,
+    "value": null
+  },
+  {
+    "id": "1078",
+    "landcover": 80,
+    "row": 855,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "1079",
+    "landcover": 80,
+    "row": 862,
+    "col": 1276,
+    "value": null
+  },
+  {
+    "id": "1080",
+    "landcover": 80,
+    "row": 852,
+    "col": 1292,
+    "value": 937.4644165039062
+  },
+  {
+    "id": "1081",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1082",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1083",
+    "landcover": 80,
+    "row": 856,
+    "col": 1296,
+    "value": 244.6589813232422
+  },
+  {
+    "id": "1084",
+    "landcover": 80,
+    "row": 861,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "1085",
+    "landcover": 80,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "1086",
+    "landcover": 80,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "1087",
+    "landcover": 80,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "1088",
+    "landcover": 80,
+    "row": 859,
+    "col": 1283,
+    "value": 884.5018920898438
+  },
+  {
+    "id": "1089",
+    "landcover": 80,
+    "row": 856,
+    "col": 1267,
+    "value": 836.1727905273438
+  },
+  {
+    "id": "1090",
+    "landcover": 80,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "1091",
+    "landcover": 80,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "1092",
+    "landcover": 80,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "1093",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1094",
+    "landcover": 80,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "1095",
+    "landcover": 80,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "1096",
+    "landcover": 80,
+    "row": 855,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "1097",
+    "landcover": 80,
+    "row": 843,
+    "col": 1287,
+    "value": 1503.6859130859375
+  },
+  {
+    "id": "1098",
+    "landcover": 80,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "1099",
+    "landcover": 80,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1100",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1101",
+    "landcover": 80,
+    "row": 861,
+    "col": 1271,
+    "value": 230.5962371826172
+  },
+  {
+    "id": "1102",
+    "landcover": 80,
+    "row": 856,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1103",
+    "landcover": 80,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1104",
+    "landcover": 80,
+    "row": 859,
+    "col": 1283,
+    "value": 884.5018920898438
+  },
+  {
+    "id": "1105",
+    "landcover": 80,
+    "row": 856,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1106",
+    "landcover": 80,
+    "row": 846,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1107",
+    "landcover": 80,
+    "row": 861,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "1108",
+    "landcover": 80,
+    "row": 862,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "1109",
+    "landcover": 80,
+    "row": 854,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "1110",
+    "landcover": 80,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "1111",
+    "landcover": 80,
+    "row": 852,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "1112",
+    "landcover": 80,
+    "row": 857,
+    "col": 1295,
+    "value": 608.7169799804688
+  },
+  {
+    "id": "1113",
+    "landcover": 80,
+    "row": 839,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "1114",
+    "landcover": 80,
+    "row": 859,
+    "col": 1266,
+    "value": null
+  },
+  {
+    "id": "1115",
+    "landcover": 80,
+    "row": 846,
+    "col": 1287,
+    "value": null
+  },
+  {
+    "id": "1116",
+    "landcover": 80,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "1117",
+    "landcover": 80,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1118",
+    "landcover": 80,
+    "row": 857,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1119",
+    "landcover": 80,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1120",
+    "landcover": 90,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "1121",
+    "landcover": 90,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "1122",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1123",
+    "landcover": 90,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "1124",
+    "landcover": 90,
+    "row": 841,
+    "col": 1283,
+    "value": 74.98958587646484
+  },
+  {
+    "id": "1125",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1126",
+    "landcover": 90,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "1127",
+    "landcover": 90,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "1128",
+    "landcover": 90,
+    "row": 842,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "1129",
+    "landcover": 90,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "1130",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1131",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1132",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1133",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1134",
+    "landcover": 90,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1135",
+    "landcover": 90,
+    "row": 857,
+    "col": 1277,
+    "value": null
+  },
+  {
+    "id": "1136",
+    "landcover": 90,
+    "row": 863,
+    "col": 1276,
+    "value": null
+  },
+  {
+    "id": "1137",
+    "landcover": 90,
+    "row": 861,
+    "col": 1275,
+    "value": 203.96710205078125
+  },
+  {
+    "id": "1138",
+    "landcover": 90,
+    "row": 843,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "1139",
+    "landcover": 90,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "1140",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1141",
+    "landcover": 90,
+    "row": 856,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "1142",
+    "landcover": 90,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "1143",
+    "landcover": 90,
+    "row": 842,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "1144",
+    "landcover": 90,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1145",
+    "landcover": 90,
+    "row": 862,
+    "col": 1274,
+    "value": null
+  },
+  {
+    "id": "1146",
+    "landcover": 90,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "1147",
+    "landcover": 90,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1148",
+    "landcover": 90,
+    "row": 848,
+    "col": 1289,
+    "value": 1703.968505859375
+  },
+  {
+    "id": "1149",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1150",
+    "landcover": 90,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "1151",
+    "landcover": 90,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "1152",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1153",
+    "landcover": 90,
+    "row": 856,
+    "col": 1294,
+    "value": 1205.7025146484375
+  },
+  {
+    "id": "1154",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1155",
+    "landcover": 90,
+    "row": 853,
+    "col": 1297,
+    "value": 145.62014770507812
+  },
+  {
+    "id": "1156",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1157",
+    "landcover": 90,
+    "row": 860,
+    "col": 1273,
+    "value": 1334.340576171875
+  },
+  {
+    "id": "1158",
+    "landcover": 90,
+    "row": 842,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "1159",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1160",
+    "landcover": 90,
+    "row": 862,
+    "col": 1276,
+    "value": null
+  },
+  {
+    "id": "1161",
+    "landcover": 90,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1162",
+    "landcover": 90,
+    "row": 844,
+    "col": 1297,
+    "value": 717.4120483398438
+  },
+  {
+    "id": "1163",
+    "landcover": 90,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1164",
+    "landcover": 90,
+    "row": 861,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "1165",
+    "landcover": 90,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1166",
+    "landcover": 90,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "1167",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1168",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1169",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1170",
+    "landcover": 90,
+    "row": 842,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "1171",
+    "landcover": 90,
+    "row": 861,
+    "col": 1275,
+    "value": 203.96710205078125
+  },
+  {
+    "id": "1172",
+    "landcover": 90,
+    "row": 863,
+    "col": 1276,
+    "value": null
+  },
+  {
+    "id": "1173",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1174",
+    "landcover": 90,
+    "row": 857,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "1175",
+    "landcover": 90,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "1176",
+    "landcover": 90,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "1177",
+    "landcover": 90,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "1178",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1179",
+    "landcover": 90,
+    "row": 861,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "1180",
+    "landcover": 90,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "1181",
+    "landcover": 90,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "1182",
+    "landcover": 90,
+    "row": 862,
+    "col": 1273,
+    "value": 679.125244140625
+  },
+  {
+    "id": "1183",
+    "landcover": 90,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1184",
+    "landcover": 90,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "1185",
+    "landcover": 90,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1186",
+    "landcover": 90,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "1187",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1188",
+    "landcover": 90,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "1189",
+    "landcover": 90,
+    "row": 841,
+    "col": 1284,
+    "value": 359.4480895996094
+  },
+  {
+    "id": "1190",
+    "landcover": 90,
+    "row": 853,
+    "col": 1297,
+    "value": 145.62014770507812
+  },
+  {
+    "id": "1191",
+    "landcover": 90,
+    "row": 842,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "1192",
+    "landcover": 90,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1193",
+    "landcover": 90,
+    "row": 860,
+    "col": 1275,
+    "value": 846.7637939453125
+  },
+  {
+    "id": "1194",
+    "landcover": 90,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "1195",
+    "landcover": 90,
+    "row": 861,
+    "col": 1275,
+    "value": 203.96710205078125
+  },
+  {
+    "id": "1196",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1197",
+    "landcover": 90,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "1198",
+    "landcover": 90,
+    "row": 858,
+    "col": 1280,
+    "value": 919.634765625
+  },
+  {
+    "id": "1199",
+    "landcover": 90,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "1200",
+    "landcover": 90,
+    "row": 858,
+    "col": 1266,
+    "value": null
+  },
+  {
+    "id": "1201",
+    "landcover": 90,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1202",
+    "landcover": 90,
+    "row": 857,
+    "col": 1266,
+    "value": null
+  },
+  {
+    "id": "1203",
+    "landcover": 90,
+    "row": 861,
+    "col": 1275,
+    "value": 203.96710205078125
+  },
+  {
+    "id": "1204",
+    "landcover": 90,
+    "row": 858,
+    "col": 1280,
+    "value": 919.634765625
+  },
+  {
+    "id": "1205",
+    "landcover": 90,
+    "row": 861,
+    "col": 1275,
+    "value": 203.96710205078125
+  },
+  {
+    "id": "1206",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1207",
+    "landcover": 90,
+    "row": 861,
+    "col": 1275,
+    "value": 203.96710205078125
+  },
+  {
+    "id": "1208",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1209",
+    "landcover": 90,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "1210",
+    "landcover": 90,
+    "row": 861,
+    "col": 1280,
+    "value": null
+  },
+  {
+    "id": "1211",
+    "landcover": 90,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "1212",
+    "landcover": 90,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1213",
+    "landcover": 90,
+    "row": 848,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1214",
+    "landcover": 90,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "1215",
+    "landcover": 90,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "1216",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1217",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1218",
+    "landcover": 90,
+    "row": 862,
+    "col": 1273,
+    "value": 679.125244140625
+  },
+  {
+    "id": "1219",
+    "landcover": 90,
+    "row": 842,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "1220",
+    "landcover": 90,
+    "row": 857,
+    "col": 1288,
+    "value": null
+  },
+  {
+    "id": "1221",
+    "landcover": 90,
+    "row": 863,
+    "col": 1276,
+    "value": null
+  },
+  {
+    "id": "1222",
+    "landcover": 90,
+    "row": 858,
+    "col": 1280,
+    "value": 919.634765625
+  },
+  {
+    "id": "1223",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1224",
+    "landcover": 90,
+    "row": 842,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "1225",
+    "landcover": 90,
+    "row": 857,
+    "col": 1277,
+    "value": null
+  },
+  {
+    "id": "1226",
+    "landcover": 90,
+    "row": 856,
+    "col": 1294,
+    "value": 1205.7025146484375
+  },
+  {
+    "id": "1227",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1228",
+    "landcover": 90,
+    "row": 842,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "1229",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1230",
+    "landcover": 90,
+    "row": 857,
+    "col": 1277,
+    "value": null
+  },
+  {
+    "id": "1231",
+    "landcover": 90,
+    "row": 863,
+    "col": 1276,
+    "value": null
+  },
+  {
+    "id": "1232",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1233",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1234",
+    "landcover": 90,
+    "row": 861,
+    "col": 1277,
+    "value": null
+  },
+  {
+    "id": "1235",
+    "landcover": 90,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1236",
+    "landcover": 90,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1237",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1238",
+    "landcover": 90,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "1239",
+    "landcover": 90,
+    "row": 860,
+    "col": 1275,
+    "value": 846.7637939453125
+  },
+  {
+    "id": "1240",
+    "landcover": 90,
+    "row": 860,
+    "col": 1267,
+    "value": null
+  },
+  {
+    "id": "1241",
+    "landcover": 90,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1242",
+    "landcover": 90,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1243",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1244",
+    "landcover": 90,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1245",
+    "landcover": 90,
+    "row": 856,
+    "col": 1294,
+    "value": 1205.7025146484375
+  },
+  {
+    "id": "1246",
+    "landcover": 90,
+    "row": 861,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "1247",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1248",
+    "landcover": 90,
+    "row": 857,
+    "col": 1289,
+    "value": null
+  },
+  {
+    "id": "1249",
+    "landcover": 90,
+    "row": 853,
+    "col": 1297,
+    "value": 145.62014770507812
+  },
+  {
+    "id": "1250",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1251",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1252",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1253",
+    "landcover": 90,
+    "row": 859,
+    "col": 1283,
+    "value": 884.5018920898438
+  },
+  {
+    "id": "1254",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1255",
+    "landcover": 90,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "1256",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1257",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1258",
+    "landcover": 90,
+    "row": 860,
+    "col": 1268,
+    "value": null
+  },
+  {
+    "id": "1259",
+    "landcover": 90,
+    "row": 859,
+    "col": 1283,
+    "value": 884.5018920898438
+  },
+  {
+    "id": "1260",
+    "landcover": 90,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "1261",
+    "landcover": 90,
+    "row": 857,
+    "col": 1277,
+    "value": null
+  },
+  {
+    "id": "1262",
+    "landcover": 90,
+    "row": 858,
+    "col": 1276,
+    "value": 897.3298950195312
+  },
+  {
+    "id": "1263",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1264",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1265",
+    "landcover": 90,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1266",
+    "landcover": 90,
+    "row": 862,
+    "col": 1276,
+    "value": null
+  },
+  {
+    "id": "1267",
+    "landcover": 90,
+    "row": 844,
+    "col": 1297,
+    "value": 717.4120483398438
+  },
+  {
+    "id": "1268",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1269",
+    "landcover": 90,
+    "row": 848,
+    "col": 1288,
+    "value": 2181.708251953125
+  },
+  {
+    "id": "1270",
+    "landcover": 90,
+    "row": 847,
+    "col": 1288,
+    "value": 233.03720092773438
+  },
+  {
+    "id": "1271",
+    "landcover": 90,
+    "row": 862,
+    "col": 1274,
+    "value": null
+  },
+  {
+    "id": "1272",
+    "landcover": 90,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1273",
+    "landcover": 90,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1274",
+    "landcover": 90,
+    "row": 849,
+    "col": 1288,
+    "value": 2683.1611328125
+  },
+  {
+    "id": "1275",
+    "landcover": 90,
+    "row": 861,
+    "col": 1274,
+    "value": 1505.1778564453125
+  },
+  {
+    "id": "1276",
+    "landcover": 90,
+    "row": 849,
+    "col": 1287,
+    "value": 940.8468017578125
+  },
+  {
+    "id": "1277",
+    "landcover": 90,
+    "row": 849,
+    "col": 1289,
+    "value": 2110.012451171875
+  },
+  {
+    "id": "1278",
+    "landcover": 90,
+    "row": 853,
+    "col": 1296,
+    "value": 118.9752197265625
+  },
+  {
+    "id": "1279",
+    "landcover": 90,
+    "row": 860,
+    "col": 1276,
+    "value": 691.470458984375
+  },
+  {
+    "id": "1280",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1281",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1282",
+    "landcover": 95,
+    "row": 860,
+    "col": 1268,
+    "value": null
+  },
+  {
+    "id": "1283",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1284",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1285",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1286",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1287",
+    "landcover": 95,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "1288",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1289",
+    "landcover": 95,
+    "row": 860,
+    "col": 1268,
+    "value": null
+  },
+  {
+    "id": "1290",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1291",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1292",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1293",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1294",
+    "landcover": 95,
+    "row": 842,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "1295",
+    "landcover": 95,
+    "row": 842,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "1296",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1297",
+    "landcover": 95,
+    "row": 855,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "1298",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1299",
+    "landcover": 95,
+    "row": 857,
+    "col": 1275,
+    "value": 658.6134643554688
+  },
+  {
+    "id": "1300",
+    "landcover": 95,
+    "row": 848,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1301",
+    "landcover": 95,
+    "row": 847,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1302",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1303",
+    "landcover": 95,
+    "row": 860,
+    "col": 1275,
+    "value": 846.7637939453125
+  },
+  {
+    "id": "1304",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1305",
+    "landcover": 95,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1306",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1307",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1308",
+    "landcover": 95,
+    "row": 863,
+    "col": 1276,
+    "value": null
+  },
+  {
+    "id": "1309",
+    "landcover": 95,
+    "row": 856,
+    "col": 1274,
+    "value": null
+  },
+  {
+    "id": "1310",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1311",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1312",
+    "landcover": 95,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1313",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1314",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1315",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1316",
+    "landcover": 95,
+    "row": 860,
+    "col": 1268,
+    "value": null
+  },
+  {
+    "id": "1317",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1318",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1319",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1320",
+    "landcover": 95,
+    "row": 847,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1321",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1322",
+    "landcover": 95,
+    "row": 856,
+    "col": 1274,
+    "value": null
+  },
+  {
+    "id": "1323",
+    "landcover": 95,
+    "row": 861,
+    "col": 1275,
+    "value": 203.96710205078125
+  },
+  {
+    "id": "1324",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1325",
+    "landcover": 95,
+    "row": 857,
+    "col": 1275,
+    "value": 658.6134643554688
+  },
+  {
+    "id": "1326",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1327",
+    "landcover": 95,
+    "row": 858,
+    "col": 1276,
+    "value": 897.3298950195312
+  },
+  {
+    "id": "1328",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1329",
+    "landcover": 95,
+    "row": 848,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1330",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1331",
+    "landcover": 95,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1332",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1333",
+    "landcover": 95,
+    "row": 843,
+    "col": 1297,
+    "value": null
+  },
+  {
+    "id": "1334",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1335",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1336",
+    "landcover": 95,
+    "row": 860,
+    "col": 1275,
+    "value": 846.7637939453125
+  },
+  {
+    "id": "1337",
+    "landcover": 95,
+    "row": 843,
+    "col": 1297,
+    "value": null
+  },
+  {
+    "id": "1338",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1339",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1340",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1341",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1342",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1343",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1344",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1345",
+    "landcover": 95,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1346",
+    "landcover": 95,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1347",
+    "landcover": 95,
+    "row": 861,
+    "col": 1275,
+    "value": 203.96710205078125
+  },
+  {
+    "id": "1348",
+    "landcover": 95,
+    "row": 856,
+    "col": 1274,
+    "value": null
+  },
+  {
+    "id": "1349",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1350",
+    "landcover": 95,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1351",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1352",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1353",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1354",
+    "landcover": 95,
+    "row": 842,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "1355",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1356",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1357",
+    "landcover": 95,
+    "row": 860,
+    "col": 1276,
+    "value": 691.470458984375
+  },
+  {
+    "id": "1358",
+    "landcover": 95,
+    "row": 842,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "1359",
+    "landcover": 95,
+    "row": 843,
+    "col": 1297,
+    "value": null
+  },
+  {
+    "id": "1360",
+    "landcover": 95,
+    "row": 861,
+    "col": 1275,
+    "value": 203.96710205078125
+  },
+  {
+    "id": "1361",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1362",
+    "landcover": 95,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1363",
+    "landcover": 95,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1364",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1365",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1366",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1367",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1368",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1369",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1370",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1371",
+    "landcover": 95,
+    "row": 847,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1372",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1373",
+    "landcover": 95,
+    "row": 854,
+    "col": 1282,
+    "value": null
+  },
+  {
+    "id": "1374",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1375",
+    "landcover": 95,
+    "row": 856,
+    "col": 1292,
+    "value": 1169.415771484375
+  },
+  {
+    "id": "1376",
+    "landcover": 95,
+    "row": 857,
+    "col": 1277,
+    "value": null
+  },
+  {
+    "id": "1377",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1378",
+    "landcover": 95,
+    "row": 843,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "1379",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1380",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1381",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1382",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1383",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1384",
+    "landcover": 95,
+    "row": 842,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "1385",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1386",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1387",
+    "landcover": 95,
+    "row": 857,
+    "col": 1275,
+    "value": 658.6134643554688
+  },
+  {
+    "id": "1388",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1389",
+    "landcover": 95,
+    "row": 843,
+    "col": 1292,
+    "value": null
+  },
+  {
+    "id": "1390",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1391",
+    "landcover": 95,
+    "row": 863,
+    "col": 1276,
+    "value": null
+  },
+  {
+    "id": "1392",
+    "landcover": 95,
+    "row": 843,
+    "col": 1293,
+    "value": null
+  },
+  {
+    "id": "1393",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1394",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1395",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1396",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1397",
+    "landcover": 95,
+    "row": 853,
+    "col": 1281,
+    "value": null
+  },
+  {
+    "id": "1398",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1399",
+    "landcover": 95,
+    "row": 860,
+    "col": 1279,
+    "value": 723.0502319335938
+  },
+  {
+    "id": "1400",
+    "landcover": 95,
+    "row": 843,
+    "col": 1296,
+    "value": null
+  },
+  {
+    "id": "1401",
+    "landcover": 95,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1402",
+    "landcover": 95,
+    "row": 857,
+    "col": 1277,
+    "value": null
+  },
+  {
+    "id": "1403",
+    "landcover": 95,
+    "row": 848,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1404",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1405",
+    "landcover": 95,
+    "row": 848,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1406",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1407",
+    "landcover": 95,
+    "row": 842,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "1408",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1409",
+    "landcover": 95,
+    "row": 862,
+    "col": 1275,
+    "value": null
+  },
+  {
+    "id": "1410",
+    "landcover": 95,
+    "row": 855,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "1411",
+    "landcover": 95,
+    "row": 842,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "1412",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1413",
+    "landcover": 95,
+    "row": 842,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "1414",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1415",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1416",
+    "landcover": 95,
+    "row": 861,
+    "col": 1275,
+    "value": 203.96710205078125
+  },
+  {
+    "id": "1417",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1418",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1419",
+    "landcover": 95,
+    "row": 847,
+    "col": 1287,
+    "value": 195.94882202148438
+  },
+  {
+    "id": "1420",
+    "landcover": 95,
+    "row": 843,
+    "col": 1298,
+    "value": null
+  },
+  {
+    "id": "1421",
+    "landcover": 95,
+    "row": 847,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1422",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1423",
+    "landcover": 95,
+    "row": 844,
+    "col": 1284,
+    "value": null
+  },
+  {
+    "id": "1424",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1425",
+    "landcover": 95,
+    "row": 842,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "1426",
+    "landcover": 95,
+    "row": 856,
+    "col": 1274,
+    "value": null
+  },
+  {
+    "id": "1427",
+    "landcover": 95,
+    "row": 856,
+    "col": 1274,
+    "value": null
+  },
+  {
+    "id": "1428",
+    "landcover": 95,
+    "row": 842,
+    "col": 1290,
+    "value": null
+  },
+  {
+    "id": "1429",
+    "landcover": 95,
+    "row": 840,
+    "col": 1285,
+    "value": null
+  },
+  {
+    "id": "1430",
+    "landcover": 95,
+    "row": 860,
+    "col": 1268,
+    "value": null
+  },
+  {
+    "id": "1431",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  },
+  {
+    "id": "1432",
+    "landcover": 95,
+    "row": 862,
+    "col": 1276,
+    "value": null
+  },
+  {
+    "id": "1433",
+    "landcover": 95,
+    "row": 844,
+    "col": 1297,
+    "value": 717.4120483398438
+  },
+  {
+    "id": "1434",
+    "landcover": 95,
+    "row": 843,
+    "col": 1295,
+    "value": null
+  },
+  {
+    "id": "1435",
+    "landcover": 95,
+    "row": 848,
+    "col": 1287,
+    "value": 846.1312255859375
+  },
+  {
+    "id": "1436",
+    "landcover": 95,
+    "row": 842,
+    "col": 1291,
+    "value": null
+  },
+  {
+    "id": "1437",
+    "landcover": 95,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1438",
+    "landcover": 95,
+    "row": 843,
+    "col": 1294,
+    "value": null
+  },
+  {
+    "id": "1439",
+    "landcover": 95,
+    "row": 849,
+    "col": 1286,
+    "value": null
+  }
+]

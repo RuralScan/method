@@ -13,7 +13,7 @@ The published [Opportunity space problem table](https://ciat.github.io/nbs_rural
 | Rural poverty | Income-tier approach approved; numerical calibration provisional |
 | Food insecurity | IPC chronic four-class interpretation approved; applicable local assessment required |
 | Biodiversity priority | [One layer combining BII depletion and KBA proximity](conservation/README.md), requested by Pete; maximum-class rule approved; 1.5/5 km distances approved; bindings and release pending |
-| Carbon loss | [Forest-emissions proxy and global positive-value terciles proposed](research/2026-11-26-carbon-loss-classes.md); no None class from native nodata; calibration and successor routing pending |
+| Carbon loss | [Broader-land-use soil and woody-biomass candidates checked for Haiti](research/2026-11-26-carbon-loss-followup.md); earlier forest-only proposal retained for its domain; pool/time alignment, uncertainty and four-class rules remain held |
 | Water stress | Aqueduct category mapping approved; runtime release remains pending |
 
 Visual labels anchor scope, not scientific thresholds or proxy choice. Existing approvals can refine placeholder metrics shown in the mock-up (for example, IPC chronic food insecurity). Carbon and biodiversity retain legacy T5 IDs only for traceability: this does not equate sequestration potential with observed carbon loss or biodiversity priority with observed biodiversity loss.

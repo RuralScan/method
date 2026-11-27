@@ -1,0 +1,22 @@
+{
+  "acquire_members.py": "92cf5665e042d6e6f4ca7e5b036035797cde401f2cafa0cf5e33d7646385ef02",
+  "catalogue_records.json": "7f33941290135de57c5ac2e88170d6bfd8421b5208275b83fa64145050d1f678",
+  "drainage_checks.json": "5e1fc54cd1a41a7de8afeb1489410adef6d84f79f11d65f60ef6657be6598f92",
+  "hosted_access.json": "278285fb775c5167721bf7021418c336b94743ff360e761e37f319b1766a3063",
+  "peatmap_checks.json": "406ec55d5eaf7507e6fb8ca56b51642a787b1d87ae8dddfa8869b21c67329158",
+  "positive_controls.json": "2cb776697987fa44c16421a038492a0e9242ec346aee135047651ce10b717e0a",
+  "probe_drainage.py": "cffb92661d2bb7f288c1733ed7b84f730e7994cadd986efc788a04f0f8213099",
+  "probe_peat.py": "1454ec8db243385bd8bd1dba18a99d0486ea49e40f2acbf6d166995de7f3c911",
+  "probe_peatmap.py": "5baec561b53fdc94f88104a6693e87a9a843724e1a21488c572bac78b54fffa3",
+  "probe_positive_controls.py": "9f54cb53c97aeecd92430c7a22b8afd2e18e35b8cae6e413bb6646f53fae83ef",
+  "provenance.json": "3a4dfda3b2de050a77cf171874bf637ac70fc05b167d867e47daa986d797a198",
+  "verify_audit.py": "12943d2a69186e76e47f8f94f9d27b6ca49bea02220902f5fac3546c84f9b329",
+  "wet_ipm/acquisition.json": "c009e17ae701c2a54d0732014ab9dbce065ef9b10d3bff0a3fa14c2b5ffd834a",
+  "wet_ipm/haiti_tables.json": "b2e52bd20e4cf257b1c0b6036e73d4b97fef6986e40e82d696455e96a8a1096a",
+  "wet_ipm/inspection.json": "e4219e72c9d36ec06cf87ab312cdf2cc153bd07092060b84892f94d99270b49d",
+  "wet_ipm/wet_ipm_tco2eha_samples.json": "e3cc4cf2c2faa75a772a73bdbaf08ed7aad2f4796f3d7616ea594516be7add83",
+  "wet_per/acquisition.json": "205cb3f5de1f434139a117f5aad058cdff1fdb5179f3cb5eb7556b007c99de96",
+  "wet_per/haiti_tables.json": "81dd8c470ae177132b7bd3323abb384317f8b14346073f14bfbef846954da673",
+  "wet_per/inspection.json": "4d43f963842b201832cc1b3647b7e6e0086ebc5520b562f41ee1c27e8ef1961d",
+  "wet_per/wet_per_tco2eha_samples.json": "e3cc4cf2c2faa75a772a73bdbaf08ed7aad2f4796f3d7616ea594516be7add83"
+}

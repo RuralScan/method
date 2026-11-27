@@ -1,0 +1,23 @@
+{
+  "inspection_date_local": "2026-11-26",
+  "zip_url": "https://naturebase-shared-docs.s3.amazonaws.com/Data-download/grs_sba_total.zip",
+  "zip_http_headers": {
+    "Content-Length": "186649911",
+    "Last-Modified": "Thu, 19 Nov 2026 20:57:59 GMT",
+    "ETag": "\"adc18433e2c49d1e99697b2dfff830ca-2\"",
+    "Content-Type": "application/x-zip-compressed"
+  },
+  "catalogue_url": "https://app.naturebase.org/data/nb/11",
+  "cog_url": "https://action-mapper.s3.amazonaws.com/naturebase_cog/grs_sba_total.tif",
+  "cog_http_status": 404,
+  "upstream_repo_readme_url": "https://raw.githubusercontent.com/Catalytic-Science-for-NCS/Trees_in_Agriculture/main/README.md",
+  "upstream_repo_readme_sha256": "02cdb94b2ff09980b0f6933ac21aa1ca35a453feac09aaa3197d42292312e373",
+  "upstream_gee_script_lead": "https://code.earthengine.google.com/3c27e1a6360bdcf0133ad04c625c0669",
+  "upstream_gee_status": "Producer repository link verified; script not executed or accepted as equivalent to Naturebase v3",
+  "accounting_pdf_url": "https://naturebase-shared-docs.s3.amazonaws.com/NCS_Accounting_rules_narrative.pdf",
+  "accounting_locator": "Version 1.0, section I(c), PDF page 6",
+  "accounting_sha256": "ba5cff6d9555b2fd23e7451ab9be18a253af21781636a73633910b62b070a01d",
+  "scientifically_accepted": false,
+  "runtime_ready": false,
+  "readme_sha256": "dbe89ecf6b96bf231feb41fc7c31aa332e6bd618d31f4f26b0c92314b3109123"
+}

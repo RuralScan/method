@@ -1,0 +1,498 @@
+{
+  "data": {
+    "id": "10.7910/dvn/y6ngfm",
+    "type": "dois",
+    "attributes": {
+      "doi": "10.7910/dvn/y6ngfm",
+      "prefix": "10.7910",
+      "suffix": "dvn/y6ngfm",
+      "identifiers": [],
+      "alternateIdentifiers": [],
+      "creators": [
+        {
+          "name": "Woolf, Dominic",
+          "nameType": "Personal",
+          "givenName": "Dominic",
+          "familyName": "Woolf",
+          "affiliation": [
+            "Cornell University"
+          ],
+          "nameIdentifiers": [
+            {
+              "schemeUri": "https://orcid.org",
+              "nameIdentifier": "https://orcid.org/0000-0001-9344-9496",
+              "nameIdentifierScheme": "ORCID"
+            }
+          ]
+        },
+        {
+          "name": "Karan, Shivesh Kishore",
+          "nameType": "Personal",
+          "givenName": "Shivesh Kishore",
+          "familyName": "Karan",
+          "affiliation": [
+            "Swedish University of Agricultural Sciences"
+          ],
+          "nameIdentifiers": [
+            {
+              "schemeUri": "https://orcid.org",
+              "nameIdentifier": "https://orcid.org/0000-0002-0037-6759",
+              "nameIdentifierScheme": "ORCID"
+            }
+          ]
+        },
+        {
+          "name": "Azzi, Elias Sebastian",
+          "nameType": "Personal",
+          "givenName": "Elias Sebastian",
+          "familyName": "Azzi",
+          "affiliation": [
+            "Swedish University of Agricultural Sciences"
+          ],
+          "nameIdentifiers": [
+            {
+              "schemeUri": "https://orcid.org",
+              "nameIdentifier": "https://orcid.org/0000-0002-4865-3401",
+              "nameIdentifierScheme": "ORCID"
+            }
+          ]
+        },
+        {
+          "name": "Sundberg, Cecilia",
+          "nameType": "Personal",
+          "givenName": "Cecilia",
+          "familyName": "Sundberg",
+          "affiliation": [
+            "Swedish University of Agricultural Sciences"
+          ],
+          "nameIdentifiers": [
+            {
+              "schemeUri": "https://orcid.org",
+              "nameIdentifier": "https://orcid.org/0000-0001-5979-9521",
+              "nameIdentifierScheme": "ORCID"
+            }
+          ]
+        },
+        {
+          "name": "Wood, Stephen A.",
+          "nameType": "Personal",
+          "givenName": "Stephen A.",
+          "familyName": "Wood",
+          "affiliation": [
+            "The Nature Conservancy"
+          ],
+          "nameIdentifiers": [
+            {
+              "schemeUri": "https://orcid.org",
+              "nameIdentifier": "https://orcid.org/0000-0002-9551-8165",
+              "nameIdentifierScheme": "ORCID"
+            }
+          ]
+        }
+      ],
+      "titles": [
+        {
+          "title": "Biochar from crop residues"
+        }
+      ],
+      "publisher": "Harvard Dataverse",
+      "container": {},
+      "publicationYear": 2023,
+      "subjects": [
+        {
+          "subject": "Agricultural Sciences"
+        },
+        {
+          "subject": "Earth and Environmental Sciences"
+        }
+      ],
+      "contributors": [
+        {
+          "name": "Woolf, Dominic",
+          "nameType": "Personal",
+          "givenName": "Dominic",
+          "familyName": "Woolf",
+          "affiliation": [
+            "Cornell University"
+          ],
+          "contributorType": "ContactPerson",
+          "nameIdentifiers": []
+        }
+      ],
+      "dates": [
+        {
+          "date": "2023-09-05",
+          "dateType": "Submitted"
+        },
+        {
+          "date": "2023-09-06",
+          "dateType": "Available"
+        },
+        {
+          "date": "2023",
+          "dateType": "Issued"
+        }
+      ],
+      "language": null,
+      "types": {
+        "ris": "DATA",
+        "bibtex": "misc",
+        "citeproc": "dataset",
+        "schemaOrg": "Dataset",
+        "resourceTypeGeneral": "Dataset"
+      },
+      "relatedIdentifiers": [],
+      "relatedItems": [],
+      "sizes": [
+        "3622225",
+        "3542817",
+        "3622671",
+        "3572671",
+        "3550592",
+        "2733",
+        "140297352",
+        "3550900",
+        "3550872"
+      ],
+      "formats": [
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "text/plain",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff"
+      ],
+      "version": "1.0",
+      "rightsList": [
+        {
+          "rightsUri": "info:eu-repo/semantics/openAccess"
+        },
+        {
+          "lang": "en",
+          "rights": "Creative Commons Zero v1.0 Universal",
+          "rightsUri": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+          "schemeUri": "https://spdx.org/licenses/",
+          "rightsIdentifier": "cc0-1.0",
+          "rightsIdentifierScheme": "SPDX"
+        }
+      ],
+      "descriptions": [
+        {
+          "description": "Global raster files (5 arc-minutes resolution) for biochar production from residues. See ReadMe.txt for details and metadata. Files are provided for a) crop-residue resource from 42 crops worldwide; b) the potential for biochar production from these residues; and c) how much of this biochar carbon would remain sequestered after 100 year's decomposition. The biomass resource assessment includes amounts that can be sustainably harvested, and also how much is available after allowing for competing use in livestock systems.",
+          "descriptionType": "Abstract"
+        }
+      ],
+      "geoLocations": [],
+      "fundingReferences": [],
+      "xml": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHJlc291cmNlIHhtbG5zPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHNpOnNjaGVtYUxvY2F0aW9uPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCBodHRwOi8vc2NoZW1hLmRhdGFjaXRlLm9yZy9tZXRhL2tlcm5lbC00LjUvbWV0YWRhdGEueHNkIj4KICA8aWRlbnRpZmllciBpZGVudGlmaWVyVHlwZT0iRE9JIj4xMC43OTEwL0RWTi9ZNk5HRk08L2lkZW50aWZpZXI+CiAgPGNyZWF0b3JzPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPldvb2xmLCBEb21pbmljPC9jcmVhdG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5Eb21pbmljPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPldvb2xmPC9mYW1pbHlOYW1lPgogICAgICA8bmFtZUlkZW50aWZpZXIgbmFtZUlkZW50aWZpZXJTY2hlbWU9Ik9SQ0lEIiBzY2hlbWVVUkk9Imh0dHBzOi8vb3JjaWQub3JnIj5odHRwczovL29yY2lkLm9yZy8wMDAwLTAwMDEtOTM0NC05NDk2PC9uYW1lSWRlbnRpZmllcj4KICAgICAgPGFmZmlsaWF0aW9uPkNvcm5lbGwgVW5pdmVyc2l0eTwvYWZmaWxpYXRpb24+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+S2FyYW4sIFNoaXZlc2ggS2lzaG9yZTwvY3JlYXRvck5hbWU+CiAgICAgIDxnaXZlbk5hbWU+U2hpdmVzaCBLaXNob3JlPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPkthcmFuPC9mYW1pbHlOYW1lPgogICAgICA8bmFtZUlkZW50aWZpZXIgbmFtZUlkZW50aWZpZXJTY2hlbWU9Ik9SQ0lEIiBzY2hlbWVVUkk9Imh0dHBzOi8vb3JjaWQub3JnIj5odHRwczovL29yY2lkLm9yZy8wMDAwLTAwMDItMDAzNy02NzU5PC9uYW1lSWRlbnRpZmllcj4KICAgICAgPGFmZmlsaWF0aW9uPlN3ZWRpc2ggVW5pdmVyc2l0eSBvZiBBZ3JpY3VsdHVyYWwgU2NpZW5jZXM8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPkF6emksIEVsaWFzIFNlYmFzdGlhbjwvY3JlYXRvck5hbWU+CiAgICAgIDxnaXZlbk5hbWU+RWxpYXMgU2ViYXN0aWFuPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPkF6emk8L2ZhbWlseU5hbWU+CiAgICAgIDxuYW1lSWRlbnRpZmllciBuYW1lSWRlbnRpZmllclNjaGVtZT0iT1JDSUQiIHNjaGVtZVVSST0iaHR0cHM6Ly9vcmNpZC5vcmciPmh0dHBzOi8vb3JjaWQub3JnLzAwMDAtMDAwMi00ODY1LTM0MDE8L25hbWVJZGVudGlmaWVyPgogICAgICA8YWZmaWxpYXRpb24+U3dlZGlzaCBVbml2ZXJzaXR5IG9mIEFncmljdWx0dXJhbCBTY2llbmNlczwvYWZmaWxpYXRpb24+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+U3VuZGJlcmcsIENlY2lsaWE8L2NyZWF0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPkNlY2lsaWE8L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+U3VuZGJlcmc8L2ZhbWlseU5hbWU+CiAgICAgIDxuYW1lSWRlbnRpZmllciBuYW1lSWRlbnRpZmllclNjaGVtZT0iT1JDSUQiIHNjaGVtZVVSST0iaHR0cHM6Ly9vcmNpZC5vcmciPmh0dHBzOi8vb3JjaWQub3JnLzAwMDAtMDAwMS01OTc5LTk1MjE8L25hbWVJZGVudGlmaWVyPgogICAgICA8YWZmaWxpYXRpb24+U3dlZGlzaCBVbml2ZXJzaXR5IG9mIEFncmljdWx0dXJhbCBTY2llbmNlczwvYWZmaWxpYXRpb24+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+V29vZCwgU3RlcGhlbiBBLjwvY3JlYXRvck5hbWU+CiAgICAgIDxnaXZlbk5hbWU+U3RlcGhlbiBBLjwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5Xb29kPC9mYW1pbHlOYW1lPgogICAgICA8bmFtZUlkZW50aWZpZXIgbmFtZUlkZW50aWZpZXJTY2hlbWU9Ik9SQ0lEIiBzY2hlbWVVUkk9Imh0dHBzOi8vb3JjaWQub3JnIj5odHRwczovL29yY2lkLm9yZy8wMDAwLTAwMDItOTU1MS04MTY1PC9uYW1lSWRlbnRpZmllcj4KICAgICAgPGFmZmlsaWF0aW9uPlRoZSBOYXR1cmUgQ29uc2VydmFuY3k8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogIDwvY3JlYXRvcnM+CiAgPHRpdGxlcz4KICAgIDx0aXRsZT5CaW9jaGFyIGZyb20gY3JvcCByZXNpZHVlczwvdGl0bGU+CiAgPC90aXRsZXM+CiAgPHB1Ymxpc2hlcj5IYXJ2YXJkIERhdGF2ZXJzZTwvcHVibGlzaGVyPgogIDxwdWJsaWNhdGlvblllYXI+MjAyMzwvcHVibGljYXRpb25ZZWFyPgogIDxzdWJqZWN0cz4KICAgIDxzdWJqZWN0PkFncmljdWx0dXJhbCBTY2llbmNlczwvc3ViamVjdD4KICAgIDxzdWJqZWN0PkVhcnRoIGFuZCBFbnZpcm9ubWVudGFsIFNjaWVuY2VzPC9zdWJqZWN0PgogIDwvc3ViamVjdHM+CiAgPGNvbnRyaWJ1dG9ycz4KICAgIDxjb250cmlidXRvciBjb250cmlidXRvclR5cGU9IkNvbnRhY3RQZXJzb24iPgogICAgICA8Y29udHJpYnV0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+V29vbGYsIERvbWluaWM8L2NvbnRyaWJ1dG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5Eb21pbmljPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPldvb2xmPC9mYW1pbHlOYW1lPgogICAgICA8YWZmaWxpYXRpb24+Q29ybmVsbCBVbml2ZXJzaXR5PC9hZmZpbGlhdGlvbj4KICAgIDwvY29udHJpYnV0b3I+CiAgPC9jb250cmlidXRvcnM+CiAgPGRhdGVzPgogICAgPGRhdGUgZGF0ZVR5cGU9IlN1Ym1pdHRlZCI+MjAyMy0wOS0wNTwvZGF0ZT4KICAgIDxkYXRlIGRhdGVUeXBlPSJBdmFpbGFibGUiPjIwMjMtMDktMDY8L2RhdGU+CiAgPC9kYXRlcz4KICA8cmVzb3VyY2VUeXBlIHJlc291cmNlVHlwZUdlbmVyYWw9IkRhdGFzZXQiLz4KICA8c2l6ZXM+CiAgICA8c2l6ZT4zNjIyMjI1PC9zaXplPgogICAgPHNpemU+MzU0MjgxNzwvc2l6ZT4KICAgIDxzaXplPjM2MjI2NzE8L3NpemU+CiAgICA8c2l6ZT4zNTcyNjcxPC9zaXplPgogICAgPHNpemU+MzU1MDU5Mjwvc2l6ZT4KICAgIDxzaXplPjI3MzM8L3NpemU+CiAgICA8c2l6ZT4xNDAyOTczNTI8L3NpemU+CiAgICA8c2l6ZT4zNTUwOTAwPC9zaXplPgogICAgPHNpemU+MzU1MDg3Mjwvc2l6ZT4KICA8L3NpemVzPgogIDxmb3JtYXRzPgogICAgPGZvcm1hdD5pbWFnZS90aWZmPC9mb3JtYXQ+CiAgICA8Zm9ybWF0PmltYWdlL3RpZmY8L2Zvcm1hdD4KICAgIDxmb3JtYXQ+aW1hZ2UvdGlmZjwvZm9ybWF0PgogICAgPGZvcm1hdD5pbWFnZS90aWZmPC9mb3JtYXQ+CiAgICA8Zm9ybWF0PmltYWdlL3RpZmY8L2Zvcm1hdD4KICAgIDxmb3JtYXQ+dGV4dC9wbGFpbjwvZm9ybWF0PgogICAgPGZvcm1hdD5pbWFnZS90aWZmPC9mb3JtYXQ+CiAgICA8Zm9ybWF0PmltYWdlL3RpZmY8L2Zvcm1hdD4KICAgIDxmb3JtYXQ+aW1hZ2UvdGlmZjwvZm9ybWF0PgogIDwvZm9ybWF0cz4KICA8dmVyc2lvbj4xLjA8L3ZlcnNpb24+CiAgPHJpZ2h0c0xpc3Q+CiAgICA8cmlnaHRzIHJpZ2h0c1VSST0iaW5mbzpldS1yZXBvL3NlbWFudGljcy9vcGVuQWNjZXNzIi8+CiAgICA8cmlnaHRzIHJpZ2h0c1VSST0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvcHVibGljZG9tYWluL3plcm8vMS4wIiByaWdodHNJZGVudGlmaWVyPSJDQzAtMS4wIiByaWdodHNJZGVudGlmaWVyU2NoZW1lPSJTUERYIiBzY2hlbWVVUkk9Imh0dHBzOi8vc3BkeC5vcmcvbGljZW5zZXMvIiB4bWw6bGFuZz0iZW4iPkNyZWF0aXZlIENvbW1vbnMgQ0MwIDEuMCBVbml2ZXJzYWwgUHVibGljIERvbWFpbiBEZWRpY2F0aW9uLjwvcmlnaHRzPgogIDwvcmlnaHRzTGlzdD4KICA8ZGVzY3JpcHRpb25zPgogICAgPGRlc2NyaXB0aW9uIGRlc2NyaXB0aW9uVHlwZT0iQWJzdHJhY3QiPkdsb2JhbCByYXN0ZXIgZmlsZXMgKDUgYXJjLW1pbnV0ZXMgcmVzb2x1dGlvbikgZm9yIGJpb2NoYXIgcHJvZHVjdGlvbiBmcm9tIHJlc2lkdWVzLiAgU2VlIFJlYWRNZS50eHQgZm9yIGRldGFpbHMgYW5kIG1ldGFkYXRhLiAgRmlsZXMgYXJlIHByb3ZpZGVkIGZvciBhKSBjcm9wLXJlc2lkdWUgcmVzb3VyY2UgZnJvbSA0MiBjcm9wcyB3b3JsZHdpZGU7ICBiKSB0aGUgcG90ZW50aWFsIGZvciBiaW9jaGFyIHByb2R1Y3Rpb24gZnJvbSB0aGVzZSByZXNpZHVlczsgYW5kIGMpIGhvdyBtdWNoIG9mIHRoaXMgYmlvY2hhciBjYXJib24gd291bGQgcmVtYWluIHNlcXVlc3RlcmVkIGFmdGVyIDEwMCB5ZWFyJmFtcDthcG9zO3MgZGVjb21wb3NpdGlvbi4gIFRoZSBiaW9tYXNzIHJlc291cmNlIGFzc2Vzc21lbnQgaW5jbHVkZXMgYW1vdW50cyB0aGF0IGNhbiBiZSBzdXN0YWluYWJseSBoYXJ2ZXN0ZWQsIGFuZCBhbHNvIGhvdyBtdWNoIGlzIGF2YWlsYWJsZSBhZnRlciBhbGxvd2luZyBmb3IgY29tcGV0aW5nIHVzZSBpbiBsaXZlc3RvY2sgc3lzdGVtcy48L2Rlc2NyaXB0aW9uPgogIDwvZGVzY3JpcHRpb25zPgo8L3Jlc291cmNlPg==",
+      "url": "https://dataverse.harvard.edu/citation?persistentId=doi:10.7910/DVN/Y6NGFM",
+      "contentUrl": null,
+      "metadataVersion": 2,
+      "schemaVersion": "http://datacite.org/schema/kernel-4",
+      "source": "mds",
+      "isActive": true,
+      "state": "findable",
+      "reason": null,
+      "viewCount": 339,
+      "viewsOverTime": [
+        {
+          "yearMonth": "2023-09",
+          "total": 21
+        },
+        {
+          "yearMonth": "2023-10",
+          "total": 29
+        },
+        {
+          "yearMonth": "2023-11",
+          "total": 18
+        },
+        {
+          "yearMonth": "2023-12",
+          "total": 2
+        },
+        {
+          "yearMonth": "2024-01",
+          "total": 11
+        },
+        {
+          "yearMonth": "2024-02",
+          "total": 8
+        },
+        {
+          "yearMonth": "2024-03",
+          "total": 10
+        },
+        {
+          "yearMonth": "2024-04",
+          "total": 11
+        },
+        {
+          "yearMonth": "2024-05",
+          "total": 10
+        },
+        {
+          "yearMonth": "2024-06",
+          "total": 25
+        },
+        {
+          "yearMonth": "2024-07",
+          "total": 22
+        },
+        {
+          "yearMonth": "2024-08",
+          "total": 19
+        },
+        {
+          "yearMonth": "2024-09",
+          "total": 8
+        },
+        {
+          "yearMonth": "2024-10",
+          "total": 7
+        },
+        {
+          "yearMonth": "2024-11",
+          "total": 4
+        },
+        {
+          "yearMonth": "2024-12",
+          "total": 2
+        },
+        {
+          "yearMonth": "2025-01",
+          "total": 6
+        },
+        {
+          "yearMonth": "2025-02",
+          "total": 6
+        },
+        {
+          "yearMonth": "2025-03",
+          "total": 3
+        },
+        {
+          "yearMonth": "2025-04",
+          "total": 2
+        },
+        {
+          "yearMonth": "2025-06",
+          "total": 4
+        },
+        {
+          "yearMonth": "2025-07",
+          "total": 12
+        },
+        {
+          "yearMonth": "2025-08",
+          "total": 13
+        },
+        {
+          "yearMonth": "2025-09",
+          "total": 4
+        },
+        {
+          "yearMonth": "2025-10",
+          "total": 4
+        },
+        {
+          "yearMonth": "2025-11",
+          "total": 11
+        },
+        {
+          "yearMonth": "2025-12",
+          "total": 7
+        },
+        {
+          "yearMonth": "2026-01",
+          "total": 9
+        },
+        {
+          "yearMonth": "2026-03",
+          "total": 16
+        },
+        {
+          "yearMonth": "2026-04",
+          "total": 12
+        },
+        {
+          "yearMonth": "2026-05",
+          "total": 7
+        },
+        {
+          "yearMonth": "2026-06",
+          "total": 5
+        },
+        {
+          "yearMonth": "2026-07",
+          "total": 2
+        },
+        {
+          "yearMonth": "2026-08",
+          "total": 9
+        }
+      ],
+      "downloadCount": 63,
+      "downloadsOverTime": [
+        {
+          "yearMonth": "2023-09",
+          "total": 3
+        },
+        {
+          "yearMonth": "2023-10",
+          "total": 7
+        },
+        {
+          "yearMonth": "2023-11",
+          "total": 4
+        },
+        {
+          "yearMonth": "2024-01",
+          "total": 2
+        },
+        {
+          "yearMonth": "2024-02",
+          "total": 3
+        },
+        {
+          "yearMonth": "2024-03",
+          "total": 2
+        },
+        {
+          "yearMonth": "2024-04",
+          "total": 2
+        },
+        {
+          "yearMonth": "2024-06",
+          "total": 3
+        },
+        {
+          "yearMonth": "2024-07",
+          "total": 1
+        },
+        {
+          "yearMonth": "2024-09",
+          "total": 1
+        },
+        {
+          "yearMonth": "2024-10",
+          "total": 5
+        },
+        {
+          "yearMonth": "2024-11",
+          "total": 2
+        },
+        {
+          "yearMonth": "2025-01",
+          "total": 2
+        },
+        {
+          "yearMonth": "2025-04",
+          "total": 2
+        },
+        {
+          "yearMonth": "2025-07",
+          "total": 3
+        },
+        {
+          "yearMonth": "2025-08",
+          "total": 1
+        },
+        {
+          "yearMonth": "2025-09",
+          "total": 1
+        },
+        {
+          "yearMonth": "2025-10",
+          "total": 1
+        },
+        {
+          "yearMonth": "2025-11",
+          "total": 3
+        },
+        {
+          "yearMonth": "2025-12",
+          "total": 2
+        },
+        {
+          "yearMonth": "2026-01",
+          "total": 2
+        },
+        {
+          "yearMonth": "2026-04",
+          "total": 5
+        },
+        {
+          "yearMonth": "2026-07",
+          "total": 2
+        },
+        {
+          "yearMonth": "2026-08",
+          "total": 4
+        }
+      ],
+      "referenceCount": 0,
+      "citationCount": 1,
+      "citationsOverTime": [
+        {
+          "year": "2023",
+          "total": 1
+        }
+      ],
+      "partCount": 0,
+      "partOfCount": 0,
+      "versionCount": 0,
+      "versionOfCount": 0,
+      "created": "2023-09-06T01:37:13.000Z",
+      "registered": "2023-09-07T01:49:49.000Z",
+      "published": "2023",
+      "updated": "2026-04-21T12:33:39.000Z"
+    },
+    "relationships": {
+      "client": {
+        "data": {
+          "id": "gdcc.harvard-dv",
+          "type": "clients"
+        }
+      },
+      "provider": {
+        "data": {
+          "id": "harvardu",
+          "type": "providers"
+        }
+      },
+      "media": {
+        "data": {
+          "id": "10.7910/dvn/y6ngfm",
+          "type": "media"
+        }
+      },
+      "references": {
+        "data": []
+      },
+      "citations": {
+        "data": [
+          {
+            "id": "10.1111/gcbb.13102",
+            "type": "dois"
+          }
+        ]
+      },
+      "parts": {
+        "data": []
+      },
+      "partOf": {
+        "data": []
+      },
+      "versions": {
+        "data": []
+      },
+      "versionOf": {
+        "data": []
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "archive_crc_failure": null,
+  "top_level_files": [
+    "for_ref_tco2e_adm0.csv",
+    "for_ref_tco2e_adm1.csv",
+    "for_ref_tco2e_adm2.csv",
+    "for_ref_tco2eha.tif",
+    "ReadMe_for_ref_total.txt"
+  ],
+  "haiti_boundary_bbox": [
+    -74.48294069528139,
+    18.020416262570535,
+    -71.62175400264564,
+    20.088388455605017
+  ],
+  "table_sums": {
+    "for_ref_tco2e_adm2.csv": {
+      "rows": 42,
+      "positive": 42,
+      "missing": 0,
+      "mitigation_sum": 3834314.75888955,
+      "footprint_sum": 934700.0
+    },
+    "for_ref_tco2e_adm1.csv": {
+      "rows": 10,
+      "positive": 10,
+      "missing": 0,
+      "mitigation_sum": 3828438.12865481,
+      "footprint_sum": 933800.0
+    },
+    "for_ref_tco2e_adm0.csv": {
+      "rows": 1,
+      "positive": 1,
+      "missing": 0,
+      "mitigation_sum": 3827519.92959,
+      "footprint_sum": 933600.0
+    }
+  }
+}
