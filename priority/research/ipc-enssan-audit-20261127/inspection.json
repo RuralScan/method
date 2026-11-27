@@ -1,0 +1,661 @@
+{
+  "checked_date": "2026-11-27",
+  "runtime_ready": false,
+  "four_class_decision": "proposed",
+  "input_sha256": {
+    "ipc_haiti_202610.geojson": "4c5f48bb6c217bf68fccb10c81c193b9a213d7e6bedd5b4a8fa39db9060536fe",
+    "ipc_haiti_population.xlsx": "a289aff8fd19f4aae1a84e1d0b20b70cc96e7f42d398e0f0473c809eadc63cc6",
+    "enssan-pdf-page-122-tables.json": "c30acebccdff4e85aaed9e59ad4aeb5d61feb0148ed6b84b017edeb2fe45d9ce",
+    "enssan-pdf-page-117-tables.json": "d99ffebdb89465753d23bc492c7c76e51f110ebbf055d3695c25e89912620b5e"
+  },
+  "boundary_sha256": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9",
+  "source_metadata": {
+    "analysis_id": "87143457",
+    "analysis_name": "Analyse de l'insécurité alimentaire aiguë – HT septembre 2026",
+    "country": "HT",
+    "condition": "A",
+    "export_timestamp": "2026-11-27T15:13:25.549Z",
+    "periods_included": 2,
+    "period_details": [
+      {
+        "period_id": "1484",
+        "period_code": "projected-1",
+        "period_name": "Projected 1",
+        "from_date": "2027-03-01T00:00:00.000Z",
+        "thru_date": "2027-06-30T00:00:00.000Z",
+        "active": false
+      },
+      {
+        "period_id": "1483",
+        "period_code": "current",
+        "period_name": "Current",
+        "from_date": "2026-09-01T00:00:00.000Z",
+        "thru_date": "2027-02-28T00:00:00.000Z",
+        "active": true
+      }
+    ]
+  },
+  "feature_count": 35,
+  "unique_assessment_areas": 30,
+  "geometry_types": {
+    "MultiPolygon": 9,
+    "Polygon": 13,
+    "Point": 13
+  },
+  "feature_validity_periods": [
+    [
+      "2026-09-01T00:00:00.000Z",
+      "2027-02-28T00:00:00.000Z"
+    ]
+  ],
+  "duplicate_area_representations": [
+    {
+      "area_id": 4152,
+      "name": "Bas plateau HT03",
+      "geometry_types": [
+        "Polygon",
+        "Point"
+      ]
+    },
+    {
+      "area_id": 4153,
+      "name": "Camp de deplacement",
+      "geometry_types": [
+        "Point",
+        "Point"
+      ]
+    },
+    {
+      "area_id": 4154,
+      "name": "Croix-Des-Bouquets et Tabarre P + TP",
+      "geometry_types": [
+        "Point",
+        "Point"
+      ]
+    },
+    {
+      "area_id": 4167,
+      "name": "Ouest HT06",
+      "geometry_types": [
+        "MultiPolygon",
+        "Point"
+      ]
+    },
+    {
+      "area_id": 4169,
+      "name": "Ouest_HT01- La gonave",
+      "geometry_types": [
+        "Polygon",
+        "Point"
+      ]
+    }
+  ],
+  "invalid_polygons": [
+    {
+      "area_id": 4159,
+      "name": "Nippes HT01",
+      "reason": "Self-intersection[-73.5611037473486 18.3466568072904]"
+    },
+    {
+      "area_id": 4168,
+      "name": "Ouest HT07+HT03",
+      "reason": "Self-intersection[-72.2847433224756 18.4658283387622]"
+    }
+  ],
+  "population_naive_feature_sum": 11959463,
+  "population_deduplicated": 11224797,
+  "phase3_plus_population_deduplicated": 5943469,
+  "unique_area_phase_counts": {
+    "4": 10,
+    "3": 20
+  },
+  "point_only_area_count": 8,
+  "point_only_population": 2664521,
+  "valid_polygons_only_coverage_percent": 85.64672806934252,
+  "valid_polygons_only_overlap_km2": 11.600802902259602,
+  "coverage_warning": "Incomplete diagnostic; invalid polygons excluded, points unbuffered; not full source coverage.",
+  "geometry_repaired": false,
+  "area_classes_aggregated": false,
+  "excel_totals": {
+    "Area Name": "ANALYSIS TOTALS",
+    "Projected 1 - Est Pop": 11224797,
+    "Projected 1 - Phase 1": 2076527,
+    "Projected 1 - Phase 1 %": 0.18499461504738127,
+    "Projected 1 - Phase 2": 2794855,
+    "Projected 1 - Phase 2 %": 0.2489893581148951,
+    "Projected 1 - Phase 3": 4379180,
+    "Projected 1 - Phase 3 %": 0.3901344496475081,
+    "Projected 1 - Phase 4": 1974240,
+    "Projected 1 - Phase 4 %": 0.17588202263256966,
+    "Projected 1 - Phase 5": 0,
+    "Projected 1 - Phase 5 %": 0,
+    "Projected 1 - Phase 3+": 6353420,
+    "Projected 1 - Phase 3+ %": 0.57,
+    "Projected 1 - From Date": "2027-03-01T00:00:00.000Z",
+    "Projected 1 - Thru Date": "2027-06-30T00:00:00.000Z",
+    "Projected 1 - Phase": null,
+    "Current - Est Pop": 11224797,
+    "Current - Phase 1": 2121695,
+    "Current - Phase 1 %": 0.18901856309739945,
+    "Current - Phase 2": 3159641,
+    "Current - Phase 2 %": 0.2814875850316046,
+    "Current - Phase 3": 4141611,
+    "Current - Phase 3 %": 0.3689697907231641,
+    "Current - Phase 4": 1801858,
+    "Current - Phase 4 %": 0.16052477385559846,
+    "Current - Phase 5": 0,
+    "Current - Phase 5 %": 0,
+    "Current - Phase 3+": 5943469,
+    "Current - Phase 3+ %": 0.53,
+    "Current - From Date": "2026-09-01T00:00:00.000Z",
+    "Current - Thru Date": "2027-02-28T00:00:00.000Z",
+    "Current - Phase": null
+  },
+  "areas": [
+    {
+      "area_id": 4149,
+      "name": "Artibonite HT03",
+      "native_phase": 4,
+      "population": 478840,
+      "phase3_plus_population": 263362,
+      "geometry_types": [
+        "Polygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 2,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "High",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4150,
+      "name": "Artibonite HT04",
+      "native_phase": 3,
+      "population": 381867,
+      "phase3_plus_population": 210027,
+      "geometry_types": [
+        "Polygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 1,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4151,
+      "name": "Artibonite_HT01+HT05+HT08",
+      "native_phase": 4,
+      "population": 753930,
+      "phase3_plus_population": 414662,
+      "geometry_types": [
+        "MultiPolygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 2,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "High",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4152,
+      "name": "Bas plateau HT03",
+      "native_phase": 3,
+      "population": 266806,
+      "phase3_plus_population": 133403,
+      "geometry_types": [
+        "Polygon",
+        "Point"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 2,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4153,
+      "name": "Camp de deplacement",
+      "native_phase": 4,
+      "population": 204750,
+      "phase3_plus_population": 143326,
+      "geometry_types": [
+        "Point",
+        "Point"
+      ],
+      "has_polygon": false,
+      "confidence_level": 3,
+      "hfa_value": 1,
+      "risk_of_famine": false,
+      "proposed_display_class": "High",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4154,
+      "name": "Croix-Des-Bouquets et Tabarre P + TP",
+      "native_phase": 4,
+      "population": 49483,
+      "phase3_plus_population": 27216,
+      "geometry_types": [
+        "Point",
+        "Point"
+      ],
+      "has_polygon": false,
+      "confidence_level": 3,
+      "hfa_value": 1,
+      "risk_of_famine": false,
+      "proposed_display_class": "High",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4155,
+      "name": "Delmas, Pétion-Ville et Carrefour P + TP",
+      "native_phase": 3,
+      "population": 720969,
+      "phase3_plus_population": 324436,
+      "geometry_types": [
+        "Point"
+      ],
+      "has_polygon": false,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4156,
+      "name": "Grande-Anse HT07.",
+      "native_phase": 4,
+      "population": 210893,
+      "phase3_plus_population": 137080,
+      "geometry_types": [
+        "Polygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "High",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4157,
+      "name": "Grande-Anse HT08 + Jérémie.",
+      "native_phase": 3,
+      "population": 431867,
+      "phase3_plus_population": 259120,
+      "geometry_types": [
+        "MultiPolygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4158,
+      "name": "Haut plateau HT04",
+      "native_phase": 3,
+      "population": 490629,
+      "phase3_plus_population": 245314,
+      "geometry_types": [
+        "Polygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4159,
+      "name": "Nippes HT01",
+      "native_phase": 3,
+      "population": 227663,
+      "phase3_plus_population": 125214,
+      "geometry_types": [
+        "MultiPolygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4160,
+      "name": "Nippes HT07 + HT08",
+      "native_phase": 4,
+      "population": 218999,
+      "phase3_plus_population": 109500,
+      "geometry_types": [
+        "Polygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "High",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4161,
+      "name": "Nord-est HT02 + HT03",
+      "native_phase": 3,
+      "population": 424785,
+      "phase3_plus_population": 191154,
+      "geometry_types": [
+        "Polygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4162,
+      "name": "Nord HT02",
+      "native_phase": 3,
+      "population": 674643,
+      "phase3_plus_population": 303589,
+      "geometry_types": [
+        "Polygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 2,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4163,
+      "name": "Nord HT03",
+      "native_phase": 3,
+      "population": 280648,
+      "phase3_plus_population": 140324,
+      "geometry_types": [
+        "Polygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 2,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4164,
+      "name": "Nord-ouest HT01",
+      "native_phase": 4,
+      "population": 368400,
+      "phase3_plus_population": 239460,
+      "geometry_types": [
+        "Polygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "High",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4165,
+      "name": "Nord-ouest HT02",
+      "native_phase": 3,
+      "population": 444972,
+      "phase3_plus_population": 266983,
+      "geometry_types": [
+        "MultiPolygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 1,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4166,
+      "name": "Ouest HT05",
+      "native_phase": 3,
+      "population": 203425,
+      "phase3_plus_population": 91542,
+      "geometry_types": [
+        "Polygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4167,
+      "name": "Ouest HT06",
+      "native_phase": 3,
+      "population": 111304,
+      "phase3_plus_population": 55652,
+      "geometry_types": [
+        "MultiPolygon",
+        "Point"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 2,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4168,
+      "name": "Ouest HT07+HT03",
+      "native_phase": 3,
+      "population": 699933,
+      "phase3_plus_population": 384963,
+      "geometry_types": [
+        "MultiPolygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4169,
+      "name": "Ouest_HT01- La gonave",
+      "native_phase": 4,
+      "population": 102323,
+      "phase3_plus_population": 51162,
+      "geometry_types": [
+        "Polygon",
+        "Point"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 1,
+      "risk_of_famine": false,
+      "proposed_display_class": "High",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4170,
+      "name": "Port-au-Prince et Cité Soleil P + TP",
+      "native_phase": 4,
+      "population": 916752,
+      "phase3_plus_population": 504213,
+      "geometry_types": [
+        "Point"
+      ],
+      "has_polygon": false,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "High",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4171,
+      "name": "Sud-Est HT01",
+      "native_phase": 3,
+      "population": 507761,
+      "phase3_plus_population": 253880,
+      "geometry_types": [
+        "MultiPolygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4172,
+      "name": "Sud-Est HT07",
+      "native_phase": 3,
+      "population": 360208,
+      "phase3_plus_population": 180104,
+      "geometry_types": [
+        "MultiPolygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4173,
+      "name": "Sud HT01 et HT07",
+      "native_phase": 3,
+      "population": 621804,
+      "phase3_plus_population": 341993,
+      "geometry_types": [
+        "Polygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4174,
+      "name": "Sud HT08",
+      "native_phase": 4,
+      "population": 298576,
+      "phase3_plus_population": 179146,
+      "geometry_types": [
+        "MultiPolygon"
+      ],
+      "has_polygon": true,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "High",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4175,
+      "name": "Ville de Ouanaminthe",
+      "native_phase": 3,
+      "population": 80520,
+      "phase3_plus_population": 40260,
+      "geometry_types": [
+        "Point"
+      ],
+      "has_polygon": false,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4176,
+      "name": "Ville des Cayes",
+      "native_phase": 3,
+      "population": 118827,
+      "phase3_plus_population": 59414,
+      "geometry_types": [
+        "Point"
+      ],
+      "has_polygon": false,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4177,
+      "name": "Ville des Gonaives",
+      "native_phase": 3,
+      "population": 251212,
+      "phase3_plus_population": 138167,
+      "geometry_types": [
+        "Point"
+      ],
+      "has_polygon": false,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    },
+    {
+      "area_id": 4178,
+      "name": "Ville du Cap Haitien",
+      "native_phase": 3,
+      "population": 322008,
+      "phase3_plus_population": 128803,
+      "geometry_types": [
+        "Point"
+      ],
+      "has_polygon": false,
+      "confidence_level": 3,
+      "hfa_value": 3,
+      "risk_of_famine": false,
+      "proposed_display_class": "Medium",
+      "proposal_status": "proposed"
+    }
+  ],
+  "enssan": {
+    "geographic_rows": 48,
+    "missing_cells": 2,
+    "geographies_2025": 12,
+    "geographic_support_counts_2025": {
+      "department_name": 9,
+      "population_group": 1,
+      "custom_geography": 2
+    },
+    "national_2025_severe_percent": 58.9,
+    "weighted_national_reconstruction_possible": false,
+    "source_table1_sample_total": 6500,
+    "source_narrative_sample_total": 6550,
+    "geographic_join_performed": false
+  },
+  "versions": {
+    "shapely": "2.1.2",
+    "pyproj": "3.7.2",
+    "openpyxl": "3.1.5"
+  }
+}

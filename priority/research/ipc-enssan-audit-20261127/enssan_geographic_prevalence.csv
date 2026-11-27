@@ -1,0 +1,49 @@
+source_geography,year,severe_fies_household_percent,value_status,geographic_support,join_status,source_table,printed_page,pdf_page
+Artibonite,2022,83.4,reported,department_name,candidate_admin1_name_only,41,121,122
+Artibonite,2023,82.0,reported,department_name,candidate_admin1_name_only,41,121,122
+Artibonite,2024,50.1,reported,department_name,candidate_admin1_name_only,41,121,122
+Artibonite,2025,54.4,reported,department_name,candidate_admin1_name_only,41,121,122
+Camps de déplacés,2022,,not_reported,population_group,no_area_join,41,121,122
+Camps de déplacés,2023,,not_reported,population_group,no_area_join,41,121,122
+Camps de déplacés,2024,80.2,reported,population_group,no_area_join,41,121,122
+Camps de déplacés,2025,65.8,reported,population_group,no_area_join,41,121,122
+Centre,2022,66.7,reported,department_name,candidate_admin1_name_only,41,121,122
+Centre,2023,56.5,reported,department_name,candidate_admin1_name_only,41,121,122
+Centre,2024,57.3,reported,department_name,candidate_admin1_name_only,41,121,122
+Centre,2025,68.8,reported,department_name,candidate_admin1_name_only,41,121,122
+Grand'Anse,2022,71.1,reported,department_name,candidate_admin1_name_only,41,121,122
+Grand'Anse,2023,73.6,reported,department_name,candidate_admin1_name_only,41,121,122
+Grand'Anse,2024,71.8,reported,department_name,candidate_admin1_name_only,41,121,122
+Grand'Anse,2025,40.0,reported,department_name,candidate_admin1_name_only,41,121,122
+Nippes,2022,58.9,reported,department_name,candidate_admin1_name_only,41,121,122
+Nippes,2023,63.7,reported,department_name,candidate_admin1_name_only,41,121,122
+Nippes,2024,87.1,reported,department_name,candidate_admin1_name_only,41,121,122
+Nippes,2025,60.6,reported,department_name,candidate_admin1_name_only,41,121,122
+Nord,2022,38.8,reported,department_name,candidate_admin1_name_only,41,121,122
+Nord,2023,55.4,reported,department_name,candidate_admin1_name_only,41,121,122
+Nord,2024,47.5,reported,department_name,candidate_admin1_name_only,41,121,122
+Nord,2025,68.0,reported,department_name,candidate_admin1_name_only,41,121,122
+Nord-Est,2022,82.4,reported,department_name,candidate_admin1_name_only,41,121,122
+Nord-Est,2023,58.5,reported,department_name,candidate_admin1_name_only,41,121,122
+Nord-Est,2024,51.3,reported,department_name,candidate_admin1_name_only,41,121,122
+Nord-Est,2025,45.2,reported,department_name,candidate_admin1_name_only,41,121,122
+Nord-Ouest,2022,60.6,reported,department_name,candidate_admin1_name_only,41,121,122
+Nord-Ouest,2023,67.2,reported,department_name,candidate_admin1_name_only,41,121,122
+Nord-Ouest,2024,75.6,reported,department_name,candidate_admin1_name_only,41,121,122
+Nord-Ouest,2025,76.1,reported,department_name,candidate_admin1_name_only,41,121,122
+Reste Ouest,2022,65.9,reported,custom_geography,exact_partition_required,41,121,122
+Reste Ouest,2023,37.6,reported,custom_geography,exact_partition_required,41,121,122
+Reste Ouest,2024,46.5,reported,custom_geography,exact_partition_required,41,121,122
+Reste Ouest,2025,57.6,reported,custom_geography,exact_partition_required,41,121,122
+Sud,2022,76.6,reported,department_name,candidate_admin1_name_only,41,121,122
+Sud,2023,62.2,reported,department_name,candidate_admin1_name_only,41,121,122
+Sud,2024,49.8,reported,department_name,candidate_admin1_name_only,41,121,122
+Sud,2025,60.9,reported,department_name,candidate_admin1_name_only,41,121,122
+Sud-est,2022,64.1,reported,department_name,candidate_admin1_name_only,41,121,122
+Sud-est,2023,44.2,reported,department_name,candidate_admin1_name_only,41,121,122
+Sud-est,2024,62.1,reported,department_name,candidate_admin1_name_only,41,121,122
+Sud-est,2025,36.7,reported,department_name,candidate_admin1_name_only,41,121,122
+Zone métropolitaine,2022,70.0,reported,custom_geography,exact_partition_required,41,121,122
+Zone métropolitaine,2023,52.4,reported,custom_geography,exact_partition_required,41,121,122
+Zone métropolitaine,2024,56.3,reported,custom_geography,exact_partition_required,41,121,122
+Zone métropolitaine,2025,62.4,reported,custom_geography,exact_partition_required,41,121,122
