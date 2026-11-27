@@ -32,3 +32,7 @@ To release a current binding, acquire an updated applicable chronic assessment f
 [IPC terms](https://www.ipcinfo.org/ipcinfo-website/privacy-policy/), section I.C, specify CC BY-NC-SA 3.0 IGO for IPC results and require source/licence/update-date attribution. The research inspection does not establish permission for every later deployment. Original materials retain their source terms, not the repository's MIT licence.
 
 Next non-climate binding check: Aqueduct water-stress coverage and basin aggregation for Haiti, against its existing approved category mapping. [Infrastructure](../infrastructure/README.md) remains active: roads, schools, health facilities, power lines and buildings keep their provisional sources and national replacement needs. Food-security classes are not physical hazard footprints for infrastructure exposure. Climate indicator selection remains pending Brayden's confirmation.
+
+## Newer-source follow-up — 27 November 2026
+
+[Seven-source comparison](2026-11-27-food-insecurity-alternatives-haiti.md) finds newer national IPC acute analysis, an acquired FEWS NET October 2026 polygon release, CNSA ENSSAN 2025 and FAO/WDI observations through 2024. This supersedes any inference that no newer food evidence exists; it does not resolve the old chronic metric’s applicability. Acute phases, household FIES groups and national prevalence require distinct interpretation and cannot inherit the approved chronic mapping.

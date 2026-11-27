@@ -1,0 +1,269 @@
+{
+  "checked_date": "2026-11-27",
+  "runtime_ready": false,
+  "approved_chronic_mapping_applicable": false,
+  "area_crs": "EPSG:6933",
+  "boundary_area_km2": 27116.83157346876,
+  "boundary_sha256": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9",
+  "input_sha256": {
+    "fews_haiti_202610.geojson": "fc9a5942d134d11cbcc3219d736a6eed55c44a7f47641705b0735205ca321172",
+    "wdi_fies_haiti.json": "cc6afba95b10d89cb51078d9efd031a056d96d7fa570bbcdb7ad54c5c01c318d",
+    "wdi_fies_metadata.json": "f48237f0553c7ccf111bcca17c620fd7ab6a4c2e45b534e8c8b9f8f0c4c5bc24"
+  },
+  "fews": {
+    "feature_count": 9,
+    "all_geometries_valid": true,
+    "scenarios": [
+      {
+        "scenario": "CS",
+        "features": 3,
+        "reporting_dates": [
+          "2026-10-01"
+        ],
+        "start": [
+          "2026-10-01"
+        ],
+        "end": [
+          "2026-10-31"
+        ],
+        "native_phases": [
+          2,
+          3,
+          4
+        ],
+        "haiti_coverage_percent": 98.68239402196174,
+        "unknown_area_km2": 357.2930197088465,
+        "overlap_km2": 1.1396079134319734,
+        "overlap_reconciled": false,
+        "assistance_flags": [
+          false
+        ],
+        "native_properties": [
+          {
+            "projection_start": "2026-10-01",
+            "projection_end": "2026-10-31",
+            "reporting_date": "2026-10-01",
+            "classification_scale": "IPC 3.1",
+            "scenario": "CS",
+            "datasourcedocument": 6545,
+            "datasourceorganization": 2028,
+            "value": 2,
+            "is_allowing_for_assistance": false,
+            "unit_type": "fsc_admin_lhz",
+            "country_code": "HT"
+          },
+          {
+            "projection_start": "2026-10-01",
+            "projection_end": "2026-10-31",
+            "reporting_date": "2026-10-01",
+            "classification_scale": "IPC 3.1",
+            "scenario": "CS",
+            "datasourcedocument": 6545,
+            "datasourceorganization": 2028,
+            "value": 3,
+            "is_allowing_for_assistance": false,
+            "unit_type": "fsc_admin_lhz",
+            "country_code": "HT"
+          },
+          {
+            "projection_start": "2026-10-01",
+            "projection_end": "2026-10-31",
+            "reporting_date": "2026-10-01",
+            "classification_scale": "IPC 3.1",
+            "scenario": "CS",
+            "datasourcedocument": 6545,
+            "datasourceorganization": 2028,
+            "value": 4,
+            "is_allowing_for_assistance": false,
+            "unit_type": "fsc_admin_lhz",
+            "country_code": "HT"
+          }
+        ]
+      },
+      {
+        "scenario": "ML1",
+        "features": 3,
+        "reporting_dates": [
+          "2026-10-01"
+        ],
+        "start": [
+          "2026-10-01"
+        ],
+        "end": [
+          "2027-01-31"
+        ],
+        "native_phases": [
+          2,
+          3,
+          4
+        ],
+        "haiti_coverage_percent": 98.68239402196174,
+        "unknown_area_km2": 357.2930197088465,
+        "overlap_km2": 1.1396079134319734,
+        "overlap_reconciled": false,
+        "assistance_flags": [
+          false
+        ],
+        "native_properties": [
+          {
+            "projection_start": "2026-10-01",
+            "projection_end": "2027-01-31",
+            "reporting_date": "2026-10-01",
+            "classification_scale": "IPC 3.1",
+            "scenario": "ML1",
+            "datasourcedocument": 6545,
+            "datasourceorganization": 2028,
+            "value": 2,
+            "is_allowing_for_assistance": false,
+            "unit_type": "fsc_admin_lhz",
+            "country_code": "HT"
+          },
+          {
+            "projection_start": "2026-10-01",
+            "projection_end": "2027-01-31",
+            "reporting_date": "2026-10-01",
+            "classification_scale": "IPC 3.1",
+            "scenario": "ML1",
+            "datasourcedocument": 6545,
+            "datasourceorganization": 2028,
+            "value": 3,
+            "is_allowing_for_assistance": false,
+            "unit_type": "fsc_admin_lhz",
+            "country_code": "HT"
+          },
+          {
+            "projection_start": "2026-10-01",
+            "projection_end": "2027-01-31",
+            "reporting_date": "2026-10-01",
+            "classification_scale": "IPC 3.1",
+            "scenario": "ML1",
+            "datasourcedocument": 6545,
+            "datasourceorganization": 2028,
+            "value": 4,
+            "is_allowing_for_assistance": false,
+            "unit_type": "fsc_admin_lhz",
+            "country_code": "HT"
+          }
+        ]
+      },
+      {
+        "scenario": "ML2",
+        "features": 3,
+        "reporting_dates": [
+          "2026-10-01"
+        ],
+        "start": [
+          "2027-02-01"
+        ],
+        "end": [
+          "2027-05-31"
+        ],
+        "native_phases": [
+          2,
+          3,
+          4
+        ],
+        "haiti_coverage_percent": 98.68239401999048,
+        "unknown_area_km2": 357.29301970884603,
+        "overlap_km2": 0.9009970982624509,
+        "overlap_reconciled": false,
+        "assistance_flags": [
+          false
+        ],
+        "native_properties": [
+          {
+            "projection_start": "2027-02-01",
+            "projection_end": "2027-05-31",
+            "reporting_date": "2026-10-01",
+            "classification_scale": "IPC 3.1",
+            "scenario": "ML2",
+            "datasourcedocument": 6545,
+            "datasourceorganization": 2028,
+            "value": 2,
+            "is_allowing_for_assistance": false,
+            "unit_type": "fsc_admin_lhz",
+            "country_code": "HT"
+          },
+          {
+            "projection_start": "2027-02-01",
+            "projection_end": "2027-05-31",
+            "reporting_date": "2026-10-01",
+            "classification_scale": "IPC 3.1",
+            "scenario": "ML2",
+            "datasourcedocument": 6545,
+            "datasourceorganization": 2028,
+            "value": 3,
+            "is_allowing_for_assistance": false,
+            "unit_type": "fsc_admin_lhz",
+            "country_code": "HT"
+          },
+          {
+            "projection_start": "2027-02-01",
+            "projection_end": "2027-05-31",
+            "reporting_date": "2026-10-01",
+            "classification_scale": "IPC 3.1",
+            "scenario": "ML2",
+            "datasourcedocument": 6545,
+            "datasourceorganization": 2028,
+            "value": 4,
+            "is_allowing_for_assistance": false,
+            "unit_type": "fsc_admin_lhz",
+            "country_code": "HT"
+          }
+        ]
+      }
+    ],
+    "area_classes_aggregated": false
+  },
+  "wdi": {
+    "latest_nonnull_observation": {
+      "indicator": {
+        "id": "SN.ITK.MSFI.ZS",
+        "value": "Prevalence of moderate or severe food insecurity in the population (%)"
+      },
+      "country": {
+        "id": "HT",
+        "value": "Haiti"
+      },
+      "countryiso3code": "HTI",
+      "date": "2024",
+      "value": 83.5,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    "metadata": [
+      {
+        "page": 1,
+        "pages": 1,
+        "per_page": "50",
+        "total": 1
+      },
+      [
+        {
+          "id": "SN.ITK.MSFI.ZS",
+          "name": "Prevalence of moderate or severe food insecurity in the population (%)",
+          "unit": "",
+          "source": {
+            "id": "2",
+            "value": "World Development Indicators"
+          },
+          "sourceNote": "The percentage of people in the population who live in households classified as moderately or severely food insecure. A household is classified as moderately or severely food insecure when at least one adult in the household has reported to have been exposed, at times during the year, to low quality diets and might have been forced to also reduce the quantity of food they would normally eat because of a lack of money or other resources.",
+          "sourceOrganization": "Food and Agriculture Organization of the United Nations (FAO)",
+          "topics": [
+            {
+              "id": "8",
+              "value": "Health "
+            }
+          ]
+        }
+      ]
+    ],
+    "grain": "national",
+    "averaging_interval_verified": false
+  },
+  "versions": {
+    "shapely": "2.1.2",
+    "pyproj": "3.7.2"
+  }
+}
