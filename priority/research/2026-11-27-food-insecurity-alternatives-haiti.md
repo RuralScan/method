@@ -1,5 +1,7 @@
 # Newer food-insecurity sources for Haiti
 
+**Later 27 November acquisition update:** [Official IPC export and ENSSAN geographic tables now acquired](2026-11-27-ipc-enssan-acquisition-and-classes.md). Public polygon access is resolved; geometry, geographic matching and the acute class proposal remain qualified. Earlier findings below are retained as the research trail.
+
 Review date: 27 November 2026. **Newer sources exist. Prefer the latest national IPC acute analysis for current severity; pursue CNSA's ENSSAN 2025 for nationally grounded food-access evidence.** These answer different questions. The existing 2015 chronic IPC source remains an unsuitable current default without renewed applicability evidence. No source or class replacement is activated here.
 
 ## Comparison

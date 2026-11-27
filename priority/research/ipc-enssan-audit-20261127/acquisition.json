@@ -1,0 +1,42 @@
+{
+  "retrieved": "2026-11-27",
+  "source_archive": "0_Methodology_&_Frameworks/priority_classification/ipc_enssan_haiti_2026_11_27/reviewed_sources.zip",
+  "archive_sha256": "e07735a9cdc3886c2e76dbdeef5c2f22c1315c697b6b8ee686e5547119b6551d",
+  "members": {
+    "ipc_haiti_202610.geojson": "4c5f48bb6c217bf68fccb10c81c193b9a213d7e6bedd5b4a8fa39db9060536fe",
+    "ipc_haiti_population.xlsx": "a289aff8fd19f4aae1a84e1d0b20b70cc96e7f42d398e0f0473c809eadc63cc6",
+    "ENSSAN_2025.pdf": "ad0157ddd13b0d527db844e2189b2da82e39102073071b40cc4db34e5d9be6e9",
+    "enssan-pdf-page-24-tables.json": "eda1e127882f64d950bda9af3aac2c23e43642bf0472fd321dd419f9ee886c37",
+    "enssan-pdf-page-117-tables.json": "d99ffebdb89465753d23bc492c7c76e51f110ebbf055d3695c25e89912620b5e",
+    "enssan-pdf-page-122-tables.json": "c30acebccdff4e85aaed9e59ad4aeb5d61feb0148ed6b84b017edeb2fe45d9ce",
+    "enssan-table41.png": "e3688b0efd107e358c48ff1f8bafe4010acba354b29701e955623f4aa45d58f1",
+    "enssan-table1.png": "baa0b23b2ca54edea10eddbfb6af41a8d996c8cacabd752ff10100d58bd8c8e6",
+    "pdf_acquisition.json": "f18403f92873ac7e700519c79eea037516bbb48d0e3b4506ea982f2261171eec"
+  },
+  "ipc_map_url": "https://map.ipcinfo.org/public/?anl_id=ht-2026-10-05&nofocus=y&period=C&table=true",
+  "ipc_release_url": "https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1165467/?iso3=HTI",
+  "ipc_acquisition_method": "Public browser Details controls: Download GeoJSON and Download Excel; no API key or request submitted",
+  "ipc_results_license": "CC BY-NC-SA 3.0 IGO",
+  "ipc_conditions_url": "https://www.ipcinfo.org/ipcinfo-website/privacy-policy/",
+  "ipc_browser_month_labels": "Current Aug 2026-Feb 2027 and Projected 1 Feb 2027-Jun 2027; source ISO dates and published report agree on Sep/Mar starts instead",
+  "enssan_url": "https://www.cnsahaiti.org/Web/Etudes/2025/Rapport%20ENSSAN%202025_vf.pdf",
+  "enssan_extraction": "pdfplumber page.extract_tables(); Table 41 grouped original 15 PDF cells into five columns; visually checked PDF page 122; empty cells preserved",
+  "enssan_locators": {
+    "table1": {
+      "printed_page": 23,
+      "pdf_page": 24
+    },
+    "table39": {
+      "printed_page": 116,
+      "pdf_page": 117
+    },
+    "table41": {
+      "printed_page": 121,
+      "pdf_page": 122
+    }
+  },
+  "boundary_sha256": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9",
+  "mirror_readback_verified": true,
+  "remote_team_access_verified": false,
+  "registration_status": "research acquisition and proposed display mapping only; no accepted rule or T1/BIND row"
+}

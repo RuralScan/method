@@ -4,6 +4,7 @@ Start with the [Brayden/Diego handover](2026-11-26-handover-brayden-diego.md) fo
 
 | Research question | Current report | Reproducible observations |
 |---|---|---|
+| Official IPC polygons, ENSSAN geographic tables and four acute classes? | [Acquisition, proposal and limitations](2026-11-27-ipc-enssan-acquisition-and-classes.md) | [30-area reconciliation and geographic table audit](ipc-enssan-audit-20261127/README.md) |
 | Aqueduct Haiti coverage and basin aggregation? | [Two-basin inspection and aggregation guidance](2026-11-27-aqueduct-haiti-coverage.md) | [Pinned vectors and offline probe](aqueduct-haiti-audit-20261127/README.md) |
 | Newer national/global Haiti food-insecurity sources? | [Seven-source comparison and recommendation](2026-11-27-food-insecurity-alternatives-haiti.md) | [Acquisition hashes, FEWS geometry and WDI checks](food-alternatives-audit-20261127/README.md) |
 | Current Haiti chronic food-insecurity binding? | [National source and remaining hold](2026-11-27-food-insecurity-haiti-binding.md) | [Inspection](food-binding-audit-20261127/inspection.json), [acquisition hashes](food-binding-audit-20261127/acquisition.json) |
@@ -21,4 +22,4 @@ Start with the [Brayden/Diego handover](2026-11-26-handover-brayden-diego.md) fo
 
 Run `python3 priority/research/verify_research.py` to check audit manifests, shared-input integrity, sample counts, saved scientific diagnostics and local report links without downloading data. Acquisition and probe commands in each audit README are separate network-dependent replays, not CI requirements.
 
-Run `python3 priority/research/verify_haiti_bindings.py` for the two 27 November Aqueduct/food snapshots. Their audit READMEs give spatial replay commands with pinned dependencies; the food replay uses archived original files.
+Run `python3 priority/research/verify_haiti_bindings.py` for the three 27 November Aqueduct/food snapshots. Their audit READMEs give replay commands with pinned dependencies; food-source replays use archived original files.

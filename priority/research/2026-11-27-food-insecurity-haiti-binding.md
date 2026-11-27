@@ -1,5 +1,7 @@
 # Haiti food insecurity: historical source verified, current binding held
 
+**Later 27 November acquisition update:** [Official IPC export and ENSSAN geographic tables now acquired](2026-11-27-ipc-enssan-acquisition-and-classes.md). Public polygon access is resolved; geometry, geographic matching and the acute class proposal remain qualified. Earlier findings below are retained as the research trail.
+
 27 November 2026. The next non-climate binding check covers the already approved IPC **chronic** food-insecurity interpretation. No classification, accepted dataset binding or runtime release changes here. The nine core variables and optional infrastructure scope remain unchanged.
 
 ## Result

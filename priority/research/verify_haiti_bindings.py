@@ -1,4 +1,4 @@
-"""Verify the bounded 27 November Aqueduct/food research snapshots offline."""
+"""Verify the bounded 27 November Aqueduct, food-search and IPC/ENSSAN snapshots offline."""
 import hashlib
 import json
 from pathlib import Path
@@ -11,7 +11,8 @@ def digest(path):
 
 
 def main():
-    names = ("aqueduct-haiti-audit-20261127", "food-alternatives-audit-20261127")
+    names = ("aqueduct-haiti-audit-20261127", "food-alternatives-audit-20261127",
+             "ipc-enssan-audit-20261127")
     for name in names:
         folder = ROOT / name
         manifest = json.loads((folder / "manifest.json").read_text())
@@ -39,7 +40,21 @@ def main():
     assert sum(s["features"] for s in scenarios) == food["fews"]["feature_count"]
     assert all(s["overlap_reconciled"] is False for s in scenarios)
     assert food["wdi"]["grain"] == "national" and food["wdi"]["averaging_interval_verified"] is False
-    print("Verified two frozen Haiti research audits; no runtime or class acceptance asserted.")
+    ipc = json.loads((ROOT / names[2] / "inspection.json").read_text())
+    ipc_acquisition = json.loads((ROOT / names[2] / "acquisition.json").read_text())
+    assert ipc["runtime_ready"] is False and ipc["four_class_decision"] == "proposed"
+    assert ipc["boundary_sha256"] == water["input_sha256"]["boundary"]
+    for name, value in ipc["input_sha256"].items():
+        assert ipc_acquisition["members"][name] == value
+    assert len(ipc["areas"]) == ipc["unique_assessment_areas"] == 30
+    assert len({a["area_id"] for a in ipc["areas"]}) == 30
+    assert sum(a["population"] for a in ipc["areas"]) == ipc["population_deduplicated"] == ipc["excel_totals"]["Current - Est Pop"]
+    assert sum(a["phase3_plus_population"] for a in ipc["areas"]) == ipc["phase3_plus_population_deduplicated"] == ipc["excel_totals"]["Current - Phase 3+"]
+    assert sum(not a["has_polygon"] for a in ipc["areas"]) == ipc["point_only_area_count"] == 8
+    assert len(ipc["invalid_polygons"]) == 2 and ipc["geometry_repaired"] is False
+    assert ipc["enssan"]["geographic_rows"] == 48 and ipc["enssan"]["missing_cells"] == 2
+    assert ipc["enssan"]["geographies_2025"] == 12 and ipc["enssan"]["geographic_join_performed"] is False
+    print("Verified three frozen Haiti research audits; no runtime or class acceptance asserted.")
 
 
 if __name__ == "__main__":

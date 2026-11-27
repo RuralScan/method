@@ -1,0 +1,6 @@
+native_ipc_acute_area_phase,native_label,proposed_display_class,proposed_score,critical_flag,decision_status
+1,Minimal,Very little,0,false,proposed
+2,Stressed,Low,1,false,proposed
+3,Crisis,Medium,2,false,proposed
+4,Emergency,High,3,false,proposed
+5,Famine,High,3,true,proposed
