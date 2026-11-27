@@ -1,5 +1,7 @@
 # Carbon loss: proposed forest-emissions classification
 
+> Scope update, 26 November 2026: this forest-only proposal does not represent the whole carbon concern. See [broader-land-use follow-up and Haiti checks](2026-11-26-carbon-loss-followup.md). Original forest-domain rationale and unapproved class proposal are retained below for traceability.
+
 26 November 2026. Next non-climate variable after biodiversity. Proposal for interpretation review; no class cutoffs, successor variable or runtime rule approved here. Climate hazards remain pending Brayden; [infrastructure exposure](../infrastructure/README.md) stays in scope.
 
 ## Measure

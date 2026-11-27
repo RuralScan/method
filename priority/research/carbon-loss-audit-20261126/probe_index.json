@@ -1,0 +1,27 @@
+[
+  {
+    "label": "soil_2000_2005",
+    "asset": "projects/global-pasture-watch/assets/gsm-30m/v1/oc_iso_10694_1995_mg_cm3/2000_2005_b0_30cm",
+    "samples": 1440
+  },
+  {
+    "label": "soil_2020_2022",
+    "asset": "projects/global-pasture-watch/assets/gsm-30m/v1/oc_iso_10694_1995_mg_cm3/2020_2022_b0_30cm",
+    "samples": 1440
+  },
+  {
+    "label": "ctrees_2000",
+    "asset": "projects/sat-io/open-datasets/CTREES-GLOBAL-AGB-100M/ctrees_global_agb_100m_2000",
+    "samples": 1440
+  },
+  {
+    "label": "ctrees_2022",
+    "asset": "projects/sat-io/open-datasets/CTREES-GLOBAL-AGB-100M/ctrees_global_agb_100m_2022",
+    "samples": 1440
+  },
+  {
+    "label": "ctrees_2025",
+    "asset": "projects/sat-io/open-datasets/CTREES-GLOBAL-AGB-100M/ctrees_global_agb_100m_2025",
+    "samples": 1440
+  }
+]

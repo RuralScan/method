@@ -1,0 +1,531 @@
+{
+  "package": {
+    "name": "for_ref_total.zip",
+    "sha256": "3d997a2a226f8496c97ed0f4e58e0dc1ffe2c49a02a3307b50f850f170d820cc"
+  },
+  "input_hashes": {
+    "points": "a1ecdff28a9fddd1ded22f1f25e64555590defe8ddb8b889eb332cb1685f88e0",
+    "boundary": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9"
+  },
+  "members": [
+    {
+      "name": "adm0-2.gdb/",
+      "bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.12728.25008.sr.lock",
+      "bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.20036.21452.sr.lock",
+      "bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.20896.32740.sr.lock",
+      "bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.23884.76296.sr.lock",
+      "bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.24052.21288.sr.lock",
+      "bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.24272.29896.sr.lock",
+      "bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.31932.24708.sr.lock",
+      "bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "adm0-2.gdb/_gdb.CA887-FVZWHR3.70644.71056.sr.lock",
+      "bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "adm0-2.gdb/a00000001.freelist",
+      "bytes": 4440,
+      "crc32": 1120833527
+    },
+    {
+      "name": "adm0-2.gdb/a00000001.gdbindexes",
+      "bytes": 110,
+      "crc32": 2529943236
+    },
+    {
+      "name": "adm0-2.gdb/a00000001.gdbtable",
+      "bytes": 458,
+      "crc32": 2563020422
+    },
+    {
+      "name": "adm0-2.gdb/a00000001.gdbtablx",
+      "bytes": 5152,
+      "crc32": 3062939220
+    },
+    {
+      "name": "adm0-2.gdb/a00000001.TablesByName.atx",
+      "bytes": 4118,
+      "crc32": 524065885
+    },
+    {
+      "name": "adm0-2.gdb/a00000002.gdbtable",
+      "bytes": 2055,
+      "crc32": 1868924595
+    },
+    {
+      "name": "adm0-2.gdb/a00000002.gdbtablx",
+      "bytes": 5152,
+      "crc32": 2165908499
+    },
+    {
+      "name": "adm0-2.gdb/a00000003.gdbindexes",
+      "bytes": 42,
+      "crc32": 279189289
+    },
+    {
+      "name": "adm0-2.gdb/a00000003.gdbtable",
+      "bytes": 758,
+      "crc32": 2306748800
+    },
+    {
+      "name": "adm0-2.gdb/a00000003.gdbtablx",
+      "bytes": 5152,
+      "crc32": 788637825
+    },
+    {
+      "name": "adm0-2.gdb/a00000004.CatItemsByPhysicalName.atx",
+      "bytes": 4118,
+      "crc32": 3502546771
+    },
+    {
+      "name": "adm0-2.gdb/a00000004.CatItemsByType.atx",
+      "bytes": 4118,
+      "crc32": 2667307014
+    },
+    {
+      "name": "adm0-2.gdb/a00000004.FDO_UUID.atx",
+      "bytes": 4118,
+      "crc32": 1460005936
+    },
+    {
+      "name": "adm0-2.gdb/a00000004.freelist",
+      "bytes": 57688,
+      "crc32": 2134221650
+    },
+    {
+      "name": "adm0-2.gdb/a00000004.gdbindexes",
+      "bytes": 310,
+      "crc32": 548459433
+    },
+    {
+      "name": "adm0-2.gdb/a00000004.gdbtable",
+      "bytes": 1100051,
+      "crc32": 1604163085
+    },
+    {
+      "name": "adm0-2.gdb/a00000004.gdbtablx",
+      "bytes": 5152,
+      "crc32": 2908315607
+    },
+    {
+      "name": "adm0-2.gdb/a00000004.horizon",
+      "bytes": 32,
+      "crc32": 810610692
+    },
+    {
+      "name": "adm0-2.gdb/a00000004.spx",
+      "bytes": 12310,
+      "crc32": 3720050357
+    },
+    {
+      "name": "adm0-2.gdb/a00000005.CatItemTypesByName.atx",
+      "bytes": 12310,
+      "crc32": 1956271410
+    },
+    {
+      "name": "adm0-2.gdb/a00000005.CatItemTypesByParentTypeID.atx",
+      "bytes": 4118,
+      "crc32": 4121490029
+    },
+    {
+      "name": "adm0-2.gdb/a00000005.CatItemTypesByUUID.atx",
+      "bytes": 4118,
+      "crc32": 2464174986
+    },
+    {
+      "name": "adm0-2.gdb/a00000005.gdbindexes",
+      "bytes": 296,
+      "crc32": 2175196442
+    },
+    {
+      "name": "adm0-2.gdb/a00000005.gdbtable",
+      "bytes": 2071,
+      "crc32": 270753825
+    },
+    {
+      "name": "adm0-2.gdb/a00000005.gdbtablx",
+      "bytes": 5152,
+      "crc32": 3890823955
+    },
+    {
+      "name": "adm0-2.gdb/a00000006.CatRelsByDestinationID.atx",
+      "bytes": 4118,
+      "crc32": 3855629275
+    },
+    {
+      "name": "adm0-2.gdb/a00000006.CatRelsByOriginID.atx",
+      "bytes": 4118,
+      "crc32": 2894985898
+    },
+    {
+      "name": "adm0-2.gdb/a00000006.CatRelsByType.atx",
+      "bytes": 4118,
+      "crc32": 2682603358
+    },
+    {
+      "name": "adm0-2.gdb/a00000006.FDO_UUID.atx",
+      "bytes": 4118,
+      "crc32": 718875702
+    },
+    {
+      "name": "adm0-2.gdb/a00000006.freelist",
+      "bytes": 4440,
+      "crc32": 1342316736
+    },
+    {
+      "name": "adm0-2.gdb/a00000006.gdbindexes",
+      "bytes": 318,
+      "crc32": 297724318
+    },
+    {
+      "name": "adm0-2.gdb/a00000006.gdbtable",
+      "bytes": 628,
+      "crc32": 3631592838
+    },
+    {
+      "name": "adm0-2.gdb/a00000006.gdbtablx",
+      "bytes": 5152,
+      "crc32": 2715888423
+    },
+    {
+      "name": "adm0-2.gdb/a00000007.CatRelTypesByBackwardLabel.atx",
+      "bytes": 12310,
+      "crc32": 3543266175
+    },
+    {
+      "name": "adm0-2.gdb/a00000007.CatRelTypesByDestItemTypeID.atx",
+      "bytes": 4118,
+      "crc32": 574607566
+    },
+    {
+      "name": "adm0-2.gdb/a00000007.CatRelTypesByForwardLabel.atx",
+      "bytes": 12310,
+      "crc32": 2627710260
+    },
+    {
+      "name": "adm0-2.gdb/a00000007.CatRelTypesByName.atx",
+      "bytes": 12310,
+      "crc32": 1514706285
+    },
+    {
+      "name": "adm0-2.gdb/a00000007.CatRelTypesByOriginItemTypeID.atx",
+      "bytes": 4118,
+      "crc32": 4216641027
+    },
+    {
+      "name": "adm0-2.gdb/a00000007.CatRelTypesByUUID.atx",
+      "bytes": 4118,
+      "crc32": 1011060428
+    },
+    {
+      "name": "adm0-2.gdb/a00000007.gdbindexes",
+      "bytes": 602,
+      "crc32": 3251437668
+    },
+    {
+      "name": "adm0-2.gdb/a00000007.gdbtable",
+      "bytes": 3626,
+      "crc32": 3116799455
+    },
+    {
+      "name": "adm0-2.gdb/a00000007.gdbtablx",
+      "bytes": 5152,
+      "crc32": 632490471
+    },
+    {
+      "name": "adm0-2.gdb/a0000000d.gdbindexes",
+      "bytes": 116,
+      "crc32": 1731915611
+    },
+    {
+      "name": "adm0-2.gdb/a0000000d.gdbtable",
+      "bytes": 63964759,
+      "crc32": 4208529077
+    },
+    {
+      "name": "adm0-2.gdb/a0000000d.gdbtablx",
+      "bytes": 5152,
+      "crc32": 3298530901
+    },
+    {
+      "name": "adm0-2.gdb/a0000000d.horizon",
+      "bytes": 32,
+      "crc32": 810610692
+    },
+    {
+      "name": "adm0-2.gdb/a0000000d.spx",
+      "bytes": 4118,
+      "crc32": 2816914900
+    },
+    {
+      "name": "adm0-2.gdb/a00000010.gdbindexes",
+      "bytes": 116,
+      "crc32": 1731915611
+    },
+    {
+      "name": "adm0-2.gdb/a00000010.gdbtable",
+      "bytes": 70802686,
+      "crc32": 2633869666
+    },
+    {
+      "name": "adm0-2.gdb/a00000010.gdbtablx",
+      "bytes": 20512,
+      "crc32": 2738931062
+    },
+    {
+      "name": "adm0-2.gdb/a00000010.horizon",
+      "bytes": 32,
+      "crc32": 810610692
+    },
+    {
+      "name": "adm0-2.gdb/a00000010.spx",
+      "bytes": 53270,
+      "crc32": 1270717992
+    },
+    {
+      "name": "adm0-2.gdb/a00000011.gdbindexes",
+      "bytes": 116,
+      "crc32": 1731915611
+    },
+    {
+      "name": "adm0-2.gdb/a00000011.gdbtable",
+      "bytes": 123791037,
+      "crc32": 2848337906
+    },
+    {
+      "name": "adm0-2.gdb/a00000011.gdbtablx",
+      "bytes": 250912,
+      "crc32": 1728467466
+    },
+    {
+      "name": "adm0-2.gdb/a00000011.horizon",
+      "bytes": 32,
+      "crc32": 810610692
+    },
+    {
+      "name": "adm0-2.gdb/a00000011.spx",
+      "bytes": 892950,
+      "crc32": 3316601886
+    },
+    {
+      "name": "adm0-2.gdb/gdb",
+      "bytes": 4,
+      "crc32": 379203374
+    },
+    {
+      "name": "adm0-2.gdb/timestamps",
+      "bytes": 400,
+      "crc32": 2239393966
+    },
+    {
+      "name": "for_ref_tco2e_adm0.csv",
+      "bytes": 9571,
+      "crc32": 419278987
+    },
+    {
+      "name": "for_ref_tco2e_adm1.csv",
+      "bytes": 267042,
+      "crc32": 1750751843
+    },
+    {
+      "name": "for_ref_tco2e_adm2.csv",
+      "bytes": 5813678,
+      "crc32": 2651838839
+    },
+    {
+      "name": "for_ref_tco2eha.tif",
+      "bytes": 90079966,
+      "crc32": 2784180743
+    },
+    {
+      "name": "ReadMe_for_ref_total.txt",
+      "bytes": 8053,
+      "crc32": 1137703749
+    }
+  ],
+  "rasters": [
+    {
+      "member": "for_ref_tco2eha.tif",
+      "sha256": "018ec40482df3e2f081651d93b8c330d88807f0bce827bc9f11a75a92a7b028c",
+      "crs": "EPSG:4326",
+      "transform": [
+        0.00898315284119522,
+        0.0,
+        -180.00441663186973,
+        0.0,
+        -0.00898315284119522,
+        83.63315295152756,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "shape": [
+        19329,
+        40076
+      ],
+      "bands": 1,
+      "dtype": [
+        "float32"
+      ],
+      "nodata": -3.4028234663852886e+38,
+      "scales": [
+        1.0
+      ],
+      "offsets": [
+        0.0
+      ],
+      "units": [
+        null
+      ],
+      "descriptions": [
+        "Band_1"
+      ],
+      "tags": {
+        "TIFFTAG_SOFTWARE": "GDAL 3.9.2e (3090211) (4.6.0;1710;3.0.3;2.1.6;;0x10400;5.4.7;4.0.0;), PROJ 9.4.1 (EPSG.VERSION=v11.006;EPSG.DATE=2024-03-13;ESRI.VERSION=ArcGIS Pro 3.3;ESRI.DATE=2024-05-07;PROJ_DATA.VERSION=1.18;)",
+        "DataType": "Generic",
+        "OVR_RESAMPLING_ALG": "NEAREST",
+        "AREA_OR_POINT": "Area"
+      },
+      "band_tags": {},
+      "bounds": [
+        -180.00441663186973,
+        -90.00220831593487,
+        180.0044166318699,
+        83.63315295152756
+      ],
+      "blocks": [
+        [
+          512,
+          512
+        ]
+      ],
+      "stratified_summary": {
+        "10": {
+          "valid": 160,
+          "zero": 75,
+          "positive": 85,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.09369298815727234,
+          "max": 9.07117748260498
+        },
+        "20": {
+          "valid": 160,
+          "zero": 158,
+          "positive": 2,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 9.01240348815918
+        },
+        "30": {
+          "valid": 160,
+          "zero": 110,
+          "positive": 50,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 12.834308624267578
+        },
+        "40": {
+          "valid": 160,
+          "zero": 152,
+          "positive": 8,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 11.934927940368652
+        },
+        "50": {
+          "valid": 160,
+          "zero": 150,
+          "positive": 10,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 10.310208320617676
+        },
+        "60": {
+          "valid": 160,
+          "zero": 146,
+          "positive": 14,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 9.426573753356934
+        },
+        "80": {
+          "valid": 160,
+          "zero": 154,
+          "positive": 6,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 11.563898086547852
+        },
+        "90": {
+          "valid": 160,
+          "zero": 135,
+          "positive": 25,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 9.82262134552002
+        },
+        "95": {
+          "valid": 160,
+          "zero": 152,
+          "positive": 8,
+          "negative": 0,
+          "min": 0.0,
+          "median": 0.0,
+          "max": 2.8978700637817383
+        }
+      },
+      "unique_sample_pixels": 1292,
+      "haiti_cell_centre_summary": {
+        "valid": 28815,
+        "zero": 18946,
+        "positive": 9869,
+        "negative": 0,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 15.811430931091309
+      },
+      "haiti_cell_centres": 28815,
+      "haiti_missing_cells": 0,
+      "sample_file": "for_ref_tco2eha_samples.json"
+    }
+  ]
+}

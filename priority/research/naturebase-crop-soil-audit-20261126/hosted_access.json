@@ -1,0 +1,10 @@
+{
+  "naturebase_cog": {
+    "url": "https://action-mapper.s3.amazonaws.com/naturebase_cog/crp_scc_total.tif",
+    "status": 404
+  },
+  "soils_revealed_dataverse_api": {
+    "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/HA17D3",
+    "status": 403
+  }
+}

@@ -52,6 +52,8 @@ jobs:
           python3 priority/binding_candidates.py check --evidence-repo _priority-evidence
           python3 priority/t5_review.py --evidence-repo _priority-evidence
           python3 -m unittest discover -v -s priority
+      - name: Verify carbon and Naturebase research audit records
+        run: python3 priority/research/verify_research.py
       - name: Check accepted package history against current evidence main
         env:
           GH_TOKEN: ${{ github.token }}

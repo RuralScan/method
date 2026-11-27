@@ -1,0 +1,203 @@
+{
+  "boundary": "USDOS/LSIB_SIMPLE/2017; country_na=Haiti",
+  "fao_images_2018": [
+    "FAO/GHG/1/DROSA_A/DROSA_A_2018"
+  ],
+  "results": [
+    {
+      "label": "FAO_2018",
+      "metadata": {
+        "type": "Image",
+        "bands": [
+          {
+            "id": "cropland",
+            "data_type": {
+              "type": "PixelType",
+              "precision": "float"
+            },
+            "dimensions": [
+              43200,
+              21600
+            ],
+            "crs": "EPSG:4326",
+            "crs_transform": [
+              0.008333333333333333,
+              0,
+              -180,
+              0,
+              -0.008333333333333333,
+              89.999999997
+            ]
+          },
+          {
+            "id": "grassland",
+            "data_type": {
+              "type": "PixelType",
+              "precision": "float"
+            },
+            "dimensions": [
+              43200,
+              21600
+            ],
+            "crs": "EPSG:4326",
+            "crs_transform": [
+              0.008333333333333333,
+              0,
+              -180,
+              0,
+              -0.008333333333333333,
+              89.999999997
+            ]
+          }
+        ],
+        "version": 1685085341308977,
+        "id": "FAO/GHG/1/DROSA_A/DROSA_A_2018",
+        "properties": {
+          "system:time_start": 1514764800000,
+          "system:footprint": {
+            "type": "LinearRing",
+            "coordinates": [
+              [
+                -180,
+                -90
+              ],
+              [
+                180,
+                -90
+              ],
+              [
+                180,
+                90
+              ],
+              [
+                -180,
+                90
+              ],
+              [
+                -180,
+                -90
+              ]
+            ]
+          },
+          "system:time_end": 1546214400000,
+          "system:asset_size": 7568772,
+          "system:index": "DROSA_A_2018"
+        }
+      },
+      "projection": {
+        "type": "Projection",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.008333333333333333,
+          0,
+          -180,
+          0,
+          -0.008333333333333333,
+          89.999999997
+        ]
+      },
+      "unmasked_counts": {
+        "cropland": 0,
+        "grassland": 0
+      },
+      "positive_cell_counts": {
+        "cropland": 0,
+        "grassland": 0
+      },
+      "native_grid_cell_count": {
+        "constant": 33487
+      },
+      "sum_raw_hectares": {
+        "cropland": 0,
+        "grassland": 0
+      }
+    },
+    {
+      "label": "GPD_2022",
+      "metadata": {
+        "type": "Image",
+        "bands": [
+          {
+            "id": "b1",
+            "data_type": {
+              "type": "PixelType",
+              "precision": "int",
+              "min": 0,
+              "max": 255
+            },
+            "dimensions": [
+              36017,
+              15295
+            ],
+            "crs": "EPSG:4326",
+            "crs_transform": [
+              0.009981387564983202,
+              0,
+              -179.766242816,
+              0,
+              -0.009981387564983202,
+              78.32251340541809
+            ]
+          }
+        ],
+        "version": 1720965606155097,
+        "id": "projects/sat-io/open-datasets/GLOBAL-PEATLAND-DATABASE",
+        "properties": {
+          "system:footprint": {
+            "type": "LinearRing",
+            "coordinates": [
+              [
+                -180,
+                -90
+              ],
+              [
+                180,
+                -90
+              ],
+              [
+                180,
+                90
+              ],
+              [
+                -180,
+                90
+              ],
+              [
+                -180,
+                -90
+              ]
+            ]
+          },
+          "system:asset_size": 5446840
+        }
+      },
+      "projection": {
+        "type": "Projection",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.009981387564983202,
+          0,
+          -179.766242816,
+          0,
+          -0.009981387564983202,
+          78.32251340541809
+        ]
+      },
+      "unmasked_counts": {
+        "b1": 266
+      },
+      "positive_cell_counts": {
+        "b1": 266
+      },
+      "native_grid_cell_count": {
+        "constant": 23322
+      },
+      "value_histogram": {
+        "b1": {
+          "1": 266,
+          "null": 23056
+        }
+      }
+    }
+  ]
+}

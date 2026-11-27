@@ -1,0 +1,541 @@
+{
+  "design": "Equal allocation 160 points per present WorldCover-2021 class on 100m UTM18N sampling grid; native image samples. Not area-weighted. Land cover labels are 2021 only.",
+  "coverage_rows": [
+    {
+      "landcover": 10,
+      "label": "Tree cover",
+      "n": 160,
+      "soil_valid_pairs": 160,
+      "agb_valid_triplets": 160,
+      "soil_median_stock_difference_tC_ha": 0.0,
+      "soil_negative_difference_n": 72,
+      "agb_median_difference_2000_2022_Mg_ha": -1.1,
+      "agb_median_difference_2000_2025_Mg_ha": -1.1,
+      "agb_negative_difference_2000_2025_n": 103
+    },
+    {
+      "landcover": 20,
+      "label": "Shrubland",
+      "n": 160,
+      "soil_valid_pairs": 160,
+      "agb_valid_triplets": 160,
+      "soil_median_stock_difference_tC_ha": -0.6,
+      "soil_negative_difference_n": 85,
+      "agb_median_difference_2000_2022_Mg_ha": -0.7,
+      "agb_median_difference_2000_2025_Mg_ha": -0.4,
+      "agb_negative_difference_2000_2025_n": 96
+    },
+    {
+      "landcover": 30,
+      "label": "Grassland",
+      "n": 160,
+      "soil_valid_pairs": 159,
+      "agb_valid_triplets": 160,
+      "soil_median_stock_difference_tC_ha": 0.0,
+      "soil_negative_difference_n": 77,
+      "agb_median_difference_2000_2022_Mg_ha": -0.9,
+      "agb_median_difference_2000_2025_Mg_ha": -0.4,
+      "agb_negative_difference_2000_2025_n": 98
+    },
+    {
+      "landcover": 40,
+      "label": "Cropland",
+      "n": 160,
+      "soil_valid_pairs": 160,
+      "agb_valid_triplets": 160,
+      "soil_median_stock_difference_tC_ha": -0.6,
+      "soil_negative_difference_n": 88,
+      "agb_median_difference_2000_2022_Mg_ha": 0.15,
+      "agb_median_difference_2000_2025_Mg_ha": -0.1,
+      "agb_negative_difference_2000_2025_n": 82
+    },
+    {
+      "landcover": 50,
+      "label": "Built-up",
+      "n": 160,
+      "soil_valid_pairs": 160,
+      "agb_valid_triplets": 159,
+      "soil_median_stock_difference_tC_ha": -4.65,
+      "soil_negative_difference_n": 141,
+      "agb_median_difference_2000_2022_Mg_ha": -0.7,
+      "agb_median_difference_2000_2025_Mg_ha": -0.6,
+      "agb_negative_difference_2000_2025_n": 90
+    },
+    {
+      "landcover": 60,
+      "label": "Bare/sparse",
+      "n": 160,
+      "soil_valid_pairs": 158,
+      "agb_valid_triplets": 160,
+      "soil_median_stock_difference_tC_ha": -2.1,
+      "soil_negative_difference_n": 124,
+      "agb_median_difference_2000_2022_Mg_ha": -0.4,
+      "agb_median_difference_2000_2025_Mg_ha": -0.2,
+      "agb_negative_difference_2000_2025_n": 87
+    },
+    {
+      "landcover": 80,
+      "label": "Permanent water",
+      "n": 160,
+      "soil_valid_pairs": 20,
+      "agb_valid_triplets": 154,
+      "soil_median_stock_difference_tC_ha": -4.65,
+      "soil_negative_difference_n": 16,
+      "agb_median_difference_2000_2022_Mg_ha": 0.0,
+      "agb_median_difference_2000_2025_Mg_ha": 0.65,
+      "agb_negative_difference_2000_2025_n": 51
+    },
+    {
+      "landcover": 90,
+      "label": "Herbaceous wetland",
+      "n": 160,
+      "soil_valid_pairs": 153,
+      "agb_valid_triplets": 160,
+      "soil_median_stock_difference_tC_ha": -0.9,
+      "soil_negative_difference_n": 88,
+      "agb_median_difference_2000_2022_Mg_ha": 0.5,
+      "agb_median_difference_2000_2025_Mg_ha": 0.45,
+      "agb_negative_difference_2000_2025_n": 67
+    },
+    {
+      "landcover": 95,
+      "label": "Mangroves",
+      "n": 160,
+      "soil_valid_pairs": 140,
+      "agb_valid_triplets": 159,
+      "soil_median_stock_difference_tC_ha": 0.3,
+      "soil_negative_difference_n": 66,
+      "agb_median_difference_2000_2022_Mg_ha": 0.5,
+      "agb_median_difference_2000_2025_Mg_ha": 0.0,
+      "agb_negative_difference_2000_2025_n": 72
+    }
+  ],
+  "uncertainty_diagnostics": [
+    {
+      "sample_id": "0",
+      "landcover": 10,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -0.6,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -66.0,
+        66.0
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 14.3,
+        "20000101_20051231_p16": 6.1000000000000005,
+        "20000101_20051231_p84": 28.1,
+        "20200101_20221231_m": 14.100000000000001,
+        "20200101_20221231_p16": 6.1000000000000005,
+        "20200101_20221231_p84": 28.1
+      }
+    },
+    {
+      "sample_id": "138",
+      "landcover": 10,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -2.1,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -71.7,
+        80.7
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 18.0,
+        "20000101_20051231_p16": 10.600000000000001,
+        "20000101_20051231_p84": 34.6,
+        "20200101_20221231_m": 17.3,
+        "20200101_20221231_p16": 10.700000000000001,
+        "20200101_20221231_p84": 37.5
+      }
+    },
+    {
+      "sample_id": "108",
+      "landcover": 10,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -1.5,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -52.5,
+        48.6
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 9.4,
+        "20000101_20051231_p16": 3.2,
+        "20000101_20051231_p84": 20.8,
+        "20200101_20221231_m": 8.9,
+        "20200101_20221231_p16": 3.3000000000000003,
+        "20200101_20221231_p84": 19.400000000000002
+      }
+    },
+    {
+      "sample_id": "35",
+      "landcover": 10,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -0.6,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -70.5,
+        75.6
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 18.5,
+        "20000101_20051231_p16": 7.800000000000001,
+        "20000101_20051231_p84": 32.2,
+        "20200101_20221231_m": 18.3,
+        "20200101_20221231_p16": 8.700000000000001,
+        "20200101_20221231_p84": 33.0
+      }
+    },
+    {
+      "sample_id": "160",
+      "landcover": 20,
+      "valid": true,
+      "mean_stock_difference_tC_ha": 0.3,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -45.3,
+        39.9
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 10.200000000000001,
+        "20000101_20051231_p16": 5.300000000000001,
+        "20000101_20051231_p84": 20.400000000000002,
+        "20200101_20221231_m": 10.3,
+        "20200101_20221231_p16": 5.300000000000001,
+        "20200101_20221231_p84": 18.6
+      }
+    },
+    {
+      "sample_id": "187",
+      "landcover": 20,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -5.4,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -40.2,
+        27.6
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 9.200000000000001,
+        "20000101_20051231_p16": 5.2,
+        "20000101_20051231_p84": 17.0,
+        "20200101_20221231_m": 7.4,
+        "20200101_20221231_p16": 3.6,
+        "20200101_20221231_p84": 14.4
+      }
+    },
+    {
+      "sample_id": "270",
+      "landcover": 20,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -4.8,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -49.2,
+        48.3
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 16.1,
+        "20000101_20051231_p16": 10.0,
+        "20000101_20051231_p84": 25.8,
+        "20200101_20221231_m": 14.5,
+        "20200101_20221231_p16": 9.4,
+        "20200101_20221231_p84": 26.1
+      }
+    },
+    {
+      "sample_id": "300",
+      "landcover": 20,
+      "valid": true,
+      "mean_stock_difference_tC_ha": 0.0,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -55.5,
+        60.3
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 12.9,
+        "20000101_20051231_p16": 6.800000000000001,
+        "20000101_20051231_p84": 24.1,
+        "20200101_20221231_m": 12.9,
+        "20200101_20221231_p16": 5.6000000000000005,
+        "20200101_20221231_p84": 26.900000000000002
+      }
+    },
+    {
+      "sample_id": "320",
+      "landcover": 30,
+      "valid": true,
+      "mean_stock_difference_tC_ha": 0.0,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -55.8,
+        55.2
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 19.3,
+        "20000101_20051231_p16": 12.3,
+        "20000101_20051231_p84": 30.700000000000003,
+        "20200101_20221231_m": 19.3,
+        "20200101_20221231_p16": 12.100000000000001,
+        "20200101_20221231_p84": 30.700000000000003
+      }
+    },
+    {
+      "sample_id": "418",
+      "landcover": 30,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -5.1,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -79.8,
+        64.5
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 12.5,
+        "20000101_20051231_p16": 5.9,
+        "20000101_20051231_p84": 31.1,
+        "20200101_20221231_m": 10.8,
+        "20200101_20221231_p16": 4.5,
+        "20200101_20221231_p84": 27.400000000000002
+      }
+    },
+    {
+      "sample_id": "329",
+      "landcover": 30,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -1.8,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -34.2,
+        23.4
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 5.5,
+        "20000101_20051231_p16": 2.1,
+        "20000101_20051231_p84": 13.3,
+        "20200101_20221231_m": 4.9,
+        "20200101_20221231_p16": 1.9000000000000001,
+        "20200101_20221231_p84": 9.9
+      }
+    },
+    {
+      "sample_id": "457",
+      "landcover": 30,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -4.8,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -54.6,
+        36.0
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 11.3,
+        "20000101_20051231_p16": 4.9,
+        "20000101_20051231_p84": 23.6,
+        "20200101_20221231_m": 9.700000000000001,
+        "20200101_20221231_p16": 5.4,
+        "20200101_20221231_p84": 16.900000000000002
+      }
+    },
+    {
+      "sample_id": "480",
+      "landcover": 40,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -1.5,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -43.5,
+        46.8
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 8.5,
+        "20000101_20051231_p16": 2.9000000000000004,
+        "20000101_20051231_p84": 16.8,
+        "20200101_20221231_m": 8.0,
+        "20200101_20221231_p16": 2.3000000000000003,
+        "20200101_20221231_p84": 18.5
+      }
+    },
+    {
+      "sample_id": "592",
+      "landcover": 40,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -0.6,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -84.6,
+        83.7
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 20.700000000000003,
+        "20000101_20051231_p16": 9.5,
+        "20000101_20051231_p84": 37.5,
+        "20200101_20221231_m": 20.5,
+        "20200101_20221231_p16": 9.3,
+        "20200101_20221231_p84": 37.4
+      }
+    },
+    {
+      "sample_id": "576",
+      "landcover": 40,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -0.3,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -61.8,
+        60.0
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 17.1,
+        "20000101_20051231_p16": 10.200000000000001,
+        "20000101_20051231_p84": 30.200000000000003,
+        "20200101_20221231_m": 17.0,
+        "20200101_20221231_p16": 9.600000000000001,
+        "20200101_20221231_p84": 30.200000000000003
+      }
+    },
+    {
+      "sample_id": "572",
+      "landcover": 40,
+      "valid": true,
+      "mean_stock_difference_tC_ha": 1.5,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -38.4,
+        49.2
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 8.8,
+        "20000101_20051231_p16": 4.800000000000001,
+        "20000101_20051231_p84": 16.6,
+        "20200101_20221231_m": 9.3,
+        "20200101_20221231_p16": 3.8000000000000003,
+        "20200101_20221231_p84": 21.200000000000003
+      }
+    },
+    {
+      "sample_id": "1120",
+      "landcover": 90,
+      "valid": true,
+      "mean_stock_difference_tC_ha": 0.3,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -55.2,
+        53.7
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 11.5,
+        "20000101_20051231_p16": 5.5,
+        "20000101_20051231_p84": 23.400000000000002,
+        "20200101_20221231_m": 11.600000000000001,
+        "20200101_20221231_p16": 5.0,
+        "20200101_20221231_p84": 23.400000000000002
+      }
+    },
+    {
+      "sample_id": "1200",
+      "landcover": 90,
+      "valid": true,
+      "mean_stock_difference_tC_ha": 2.1,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -94.2,
+        72.9
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 19.8,
+        "20000101_20051231_p16": 10.600000000000001,
+        "20000101_20051231_p84": 41.1,
+        "20200101_20221231_m": 20.5,
+        "20200101_20221231_p16": 9.700000000000001,
+        "20200101_20221231_p84": 34.9
+      }
+    },
+    {
+      "sample_id": "1280",
+      "landcover": 95,
+      "valid": true,
+      "mean_stock_difference_tC_ha": -2.1,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -66.3,
+        56.7
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 10.4,
+        "20000101_20051231_p16": 3.5,
+        "20000101_20051231_p84": 24.900000000000002,
+        "20200101_20221231_m": 9.700000000000001,
+        "20200101_20221231_p16": 2.8000000000000003,
+        "20200101_20221231_p84": 22.400000000000002
+      }
+    },
+    {
+      "sample_id": "1282",
+      "landcover": 95,
+      "valid": true,
+      "mean_stock_difference_tC_ha": 2.1,
+      "period_quantile_intervals_overlap": true,
+      "stock_difference_quantile_corner_envelope": [
+        -75.6,
+        86.1
+      ],
+      "values_kgC_m3": {
+        "20000101_20051231_m": 20.8,
+        "20000101_20051231_p16": 9.9,
+        "20000101_20051231_p84": 35.1,
+        "20200101_20221231_m": 21.5,
+        "20200101_20221231_p16": 9.9,
+        "20200101_20221231_p84": 38.6
+      }
+    }
+  ],
+  "uncertainty_warning": "20 deliberately spatially spread points, not random validation. Marginal prediction-interval overlap and corner envelopes are descriptive; neither is a confidence interval/test for temporal change.",
+  "ctrees_uncertainty_scale_check": [
+    {
+      "landcover": 10,
+      "n": 160,
+      "median_absolute_AGB_difference_Mg_ha": 2.6,
+      "median_uncertainty_2000_Mg_ha": 22.2,
+      "median_uncertainty_2025_Mg_ha": 22.05
+    },
+    {
+      "landcover": 20,
+      "n": 160,
+      "median_absolute_AGB_difference_Mg_ha": 1.2,
+      "median_uncertainty_2000_Mg_ha": 16.4,
+      "median_uncertainty_2025_Mg_ha": 16.95
+    },
+    {
+      "landcover": 30,
+      "n": 160,
+      "median_absolute_AGB_difference_Mg_ha": 1.15,
+      "median_uncertainty_2000_Mg_ha": 16.0,
+      "median_uncertainty_2025_Mg_ha": 14.9
+    },
+    {
+      "landcover": 40,
+      "n": 160,
+      "median_absolute_AGB_difference_Mg_ha": 1.2,
+      "median_uncertainty_2000_Mg_ha": 14.7,
+      "median_uncertainty_2025_Mg_ha": 15.55
+    },
+    {
+      "landcover": 90,
+      "n": 160,
+      "median_absolute_AGB_difference_Mg_ha": 1.7,
+      "median_uncertainty_2000_Mg_ha": 18.85,
+      "median_uncertainty_2025_Mg_ha": 18.8
+    },
+    {
+      "landcover": 95,
+      "n": 159,
+      "median_absolute_AGB_difference_Mg_ha": 3.6,
+      "median_uncertainty_2000_Mg_ha": 12.6,
+      "median_uncertainty_2025_Mg_ha": 11.3
+    }
+  ],
+  "ctrees_uncertainty_warning": "Comparison of stock-change magnitude with marginal stock uncertainty only; not a temporal-change significance test. Cross-time covariance not supplied in inspected bands."
+}

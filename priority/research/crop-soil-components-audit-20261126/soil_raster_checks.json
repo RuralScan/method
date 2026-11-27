@@ -1,0 +1,548 @@
+{
+  "acquisition_scope": "three full original global files",
+  "boundary_sha256": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9",
+  "points_sha256": "a1ecdff28a9fddd1ded22f1f25e64555590defe8ddb8b889eb332cb1685f88e0",
+  "boundary_convention": "native cell centres",
+  "units": "Mg C/ha stock change over 20 years, depth 0-30 cm; not annual observations",
+  "rasters": [
+    {
+      "scenario": "crop_MG",
+      "file": "scenario_crop_MG_dSOC_Y20.tif",
+      "sha256": "dd130bb1071a61462d51398edd53656fd883694f8e104334dca2750a5b75dce2",
+      "md5": "33158ed5ba77fd39c149648070298134",
+      "bytes": 511977917,
+      "crs": "EPSG:4326",
+      "transform": [
+        0.0022761882361674013,
+        0.0,
+        -179.999999853,
+        0.0,
+        -0.002276188236173565,
+        82.719284054,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "shape": [
+        60934,
+        158159
+      ],
+      "bands": 1,
+      "dtype": [
+        "float32"
+      ],
+      "compression": "Compression.lzw",
+      "block_shapes": [
+        [
+          1,
+          158159
+        ]
+      ],
+      "nodata": -3.3999999521443642e+38,
+      "scales": [
+        1.0
+      ],
+      "offsets": [
+        0.0
+      ],
+      "units_tag": [
+        null
+      ],
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      },
+      "band_tags": {
+        "STATISTICS_MAXIMUM": "23.595",
+        "STATISTICS_MEAN": "nan",
+        "STATISTICS_MINIMUM": "0.76",
+        "STATISTICS_STDDEV": "nan"
+      },
+      "boundary_cells": 448992,
+      "missing": 368805,
+      "haiti_statistics": {
+        "valid": 80187,
+        "positive": 80187,
+        "zero": 0,
+        "negative": 0,
+        "min": 1.779729962348938,
+        "median": 3.886080026626587,
+        "max": 6.800640106201172,
+        "mean": 3.973492378567835
+      },
+      "unique_sample_cells": 1429,
+      "sample_statistics": {
+        "10": {
+          "valid": 25,
+          "positive": 25,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.9670699834823608,
+          "median": 3.886080026626587,
+          "max": 5.82912015914917,
+          "mean": 4.160028057098389,
+          "missing": 135
+        },
+        "20": {
+          "valid": 15,
+          "positive": 15,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.9670699834823608,
+          "median": 3.886080026626587,
+          "max": 5.82912015914917,
+          "mean": 3.503880023956299,
+          "missing": 145
+        },
+        "30": {
+          "valid": 37,
+          "positive": 37,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.9670699834823608,
+          "median": 3.886080026626587,
+          "max": 5.82912015914917,
+          "mean": 3.935291551254891,
+          "missing": 123
+        },
+        "40": {
+          "valid": 49,
+          "positive": 49,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.9670699834823608,
+          "median": 3.886080026626587,
+          "max": 5.82912015914917,
+          "mean": 3.576695544379098,
+          "missing": 111
+        },
+        "50": {
+          "valid": 31,
+          "positive": 31,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.9670699834823608,
+          "median": 3.886080026626587,
+          "max": 5.82912015914917,
+          "mean": 3.9769308874683995,
+          "missing": 129
+        },
+        "60": {
+          "valid": 8,
+          "positive": 8,
+          "zero": 0,
+          "negative": 0,
+          "min": 3.886080026626587,
+          "median": 3.886080026626587,
+          "max": 5.82912015914917,
+          "mean": 4.12896004319191,
+          "missing": 152
+        },
+        "80": {
+          "valid": 5,
+          "positive": 5,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.9670699834823608,
+          "median": 3.886080026626587,
+          "max": 5.82912015914917,
+          "mean": 3.8908860445022584,
+          "missing": 155
+        },
+        "90": {
+          "valid": 30,
+          "positive": 30,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.9670699834823608,
+          "median": 3.886080026626587,
+          "max": 6.6063361167907715,
+          "mean": 4.0217575311660765,
+          "missing": 130
+        },
+        "95": {
+          "valid": 1,
+          "positive": 1,
+          "zero": 0,
+          "negative": 0,
+          "min": 3.6917760372161865,
+          "median": 3.6917760372161865,
+          "max": 3.6917760372161865,
+          "mean": 3.6917760372161865,
+          "missing": 159
+        }
+      }
+    },
+    {
+      "scenario": "crop_I",
+      "file": "scenario_crop.I_dSOC_Y20.tif",
+      "sha256": "9a57e7828f0182f507ff2cf4f23a84ccba068ae554c456754e5bb2daee510ad7",
+      "md5": "97b4f77c80e1da750390e3cf4e5cd229",
+      "bytes": 511913726,
+      "crs": "EPSG:4326",
+      "transform": [
+        0.0022761882361674013,
+        0.0,
+        -179.999999853,
+        0.0,
+        -0.002276188236173565,
+        82.719284054,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "shape": [
+        60934,
+        158159
+      ],
+      "bands": 1,
+      "dtype": [
+        "float32"
+      ],
+      "compression": "Compression.lzw",
+      "block_shapes": [
+        [
+          1,
+          158159
+        ]
+      ],
+      "nodata": -3.3999999521443642e+38,
+      "scales": [
+        1.0
+      ],
+      "offsets": [
+        0.0
+      ],
+      "units_tag": [
+        null
+      ],
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      },
+      "band_tags": {
+        "STATISTICS_MAXIMUM": "29.887",
+        "STATISTICS_MEAN": "nan",
+        "STATISTICS_MINIMUM": "0.2088",
+        "STATISTICS_STDDEV": "nan"
+      },
+      "boundary_cells": 448992,
+      "missing": 368805,
+      "haiti_statistics": {
+        "valid": 80187,
+        "positive": 80187,
+        "zero": 0,
+        "negative": 0,
+        "min": 0.9918000102043152,
+        "median": 3.6480000019073486,
+        "max": 6.383999824523926,
+        "mean": 3.652278917685876
+      },
+      "unique_sample_cells": 1429,
+      "sample_statistics": {
+        "10": {
+          "valid": 25,
+          "positive": 25,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.0961999893188477,
+          "median": 3.6480000019073486,
+          "max": 5.4720001220703125,
+          "mean": 3.845136032104492,
+          "missing": 135
+        },
+        "20": {
+          "valid": 15,
+          "positive": 15,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.0961999893188477,
+          "median": 3.6480000019073486,
+          "max": 5.4720001220703125,
+          "mean": 3.0891200065612794,
+          "missing": 145
+        },
+        "30": {
+          "valid": 37,
+          "positive": 37,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.0961999893188477,
+          "median": 3.6480000019073486,
+          "max": 5.4720001220703125,
+          "mean": 3.6333567709536165,
+          "missing": 123
+        },
+        "40": {
+          "valid": 49,
+          "positive": 49,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.0961999893188477,
+          "median": 3.6480000019073486,
+          "max": 5.4720001220703125,
+          "mean": 3.112555119456077,
+          "missing": 111
+        },
+        "50": {
+          "valid": 31,
+          "positive": 31,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.0961999893188477,
+          "median": 3.6480000019073486,
+          "max": 5.4720001220703125,
+          "mean": 3.636464541958224,
+          "missing": 129
+        },
+        "60": {
+          "valid": 8,
+          "positive": 8,
+          "zero": 0,
+          "negative": 0,
+          "min": 3.6480000019073486,
+          "median": 3.6480000019073486,
+          "max": 5.4720001220703125,
+          "mean": 3.876000016927719,
+          "missing": 152
+        },
+        "80": {
+          "valid": 5,
+          "positive": 5,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.0961999893188477,
+          "median": 3.6480000019073486,
+          "max": 5.4720001220703125,
+          "mean": 3.502440023422241,
+          "missing": 155
+        },
+        "90": {
+          "valid": 30,
+          "positive": 30,
+          "zero": 0,
+          "negative": 0,
+          "min": 1.0961999893188477,
+          "median": 3.6480000019073486,
+          "max": 6.201600074768066,
+          "mean": 3.4728400468826295,
+          "missing": 130
+        },
+        "95": {
+          "valid": 1,
+          "positive": 1,
+          "zero": 0,
+          "negative": 0,
+          "min": 3.46560001373291,
+          "median": 3.46560001373291,
+          "max": 3.46560001373291,
+          "mean": 3.46560001373291,
+          "missing": 159
+        }
+      }
+    },
+    {
+      "scenario": "crop_MGI",
+      "file": "scenario_crop.MGI_dSOC_Y20.tif",
+      "sha256": "5ae9b47f2113fd3f45a24f57f2323ce7afe6c1fa01b8d601af81280db23d8567",
+      "md5": "58a11550109c29d9269c6c6518f3f373",
+      "bytes": 511936588,
+      "crs": "EPSG:4326",
+      "transform": [
+        0.0022761882361674013,
+        0.0,
+        -179.999999853,
+        0.0,
+        -0.002276188236173565,
+        82.719284054,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "shape": [
+        60934,
+        158159
+      ],
+      "bands": 1,
+      "dtype": [
+        "float32"
+      ],
+      "compression": "Compression.lzw",
+      "block_shapes": [
+        [
+          1,
+          158159
+        ]
+      ],
+      "nodata": -3.3999999521443642e+38,
+      "scales": [
+        1.0
+      ],
+      "offsets": [
+        0.0
+      ],
+      "units_tag": [
+        null
+      ],
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      },
+      "band_tags": {
+        "STATISTICS_MAXIMUM": "56.07745",
+        "STATISTICS_MEAN": "nan",
+        "STATISTICS_MINIMUM": "1.131696",
+        "STATISTICS_STDDEV": "nan"
+      },
+      "boundary_cells": 448992,
+      "missing": 368805,
+      "haiti_statistics": {
+        "valid": 80187,
+        "positive": 80187,
+        "zero": 0,
+        "negative": 0,
+        "min": 2.940135955810547,
+        "median": 8.336640357971191,
+        "max": 14.589119911193848,
+        "mean": 8.423591526334222
+      },
+      "unique_sample_cells": 1429,
+      "sample_statistics": {
+        "10": {
+          "valid": 25,
+          "positive": 25,
+          "zero": 0,
+          "negative": 0,
+          "min": 3.249624013900757,
+          "median": 8.336640357971191,
+          "max": 12.504960060119629,
+          "mean": 8.846709365844726,
+          "missing": 135
+        },
+        "20": {
+          "valid": 15,
+          "positive": 15,
+          "zero": 0,
+          "negative": 0,
+          "min": 3.249624013900757,
+          "median": 8.336640357971191,
+          "max": 12.504960060119629,
+          "mean": 7.2579906463623045,
+          "missing": 145
+        },
+        "30": {
+          "valid": 37,
+          "positive": 37,
+          "zero": 0,
+          "negative": 0,
+          "min": 3.249624013900757,
+          "median": 8.336640357971191,
+          "max": 12.504960060119629,
+          "mean": 8.363542988493636,
+          "missing": 123
+        },
+        "40": {
+          "valid": 49,
+          "positive": 49,
+          "zero": 0,
+          "negative": 0,
+          "min": 3.249624013900757,
+          "median": 8.336640357971191,
+          "max": 12.504960060119629,
+          "mean": 7.35611578882957,
+          "missing": 111
+        },
+        "50": {
+          "valid": 31,
+          "positive": 31,
+          "zero": 0,
+          "negative": 0,
+          "min": 3.249624013900757,
+          "median": 8.336640357971191,
+          "max": 12.504960060119629,
+          "mean": 8.40634552125008,
+          "missing": 129
+        },
+        "60": {
+          "valid": 8,
+          "positive": 8,
+          "zero": 0,
+          "negative": 0,
+          "min": 8.336640357971191,
+          "median": 8.336640357971191,
+          "max": 12.504960060119629,
+          "mean": 8.857680320739746,
+          "missing": 152
+        },
+        "80": {
+          "valid": 5,
+          "positive": 5,
+          "zero": 0,
+          "negative": 0,
+          "min": 3.249624013900757,
+          "median": 8.336640357971191,
+          "max": 12.504960060119629,
+          "mean": 8.152901029586792,
+          "missing": 155
+        },
+        "90": {
+          "valid": 30,
+          "positive": 30,
+          "zero": 0,
+          "negative": 0,
+          "min": 3.249624013900757,
+          "median": 8.336640357971191,
+          "max": 14.172287940979004,
+          "mean": 8.2365243434906,
+          "missing": 130
+        },
+        "95": {
+          "valid": 1,
+          "positive": 1,
+          "zero": 0,
+          "negative": 0,
+          "min": 7.9198079109191895,
+          "median": 7.9198079109191895,
+          "max": 7.9198079109191895,
+          "mean": 7.9198079109191895,
+          "missing": 159
+        }
+      }
+    }
+  ],
+  "joint_vs_sum": {
+    "mask_disagreement_cells": 0,
+    "common_valid_cells": 80187,
+    "joint_minus_MG_minus_I": {
+      "valid": 80187,
+      "positive": 80187,
+      "zero": 0,
+      "negative": 0,
+      "min": 0.1686059832572937,
+      "median": 0.8025603294372559,
+      "max": 1.40447998046875,
+      "mean": 0.7978202300805106
+    },
+    "within_1e_minus_5_MgC_per_ha": 0,
+    "tolerance_role": "floating-point diagnostic only; no analytical class boundary",
+    "joint_over_sum_when_sum_positive": {
+      "valid": 80187,
+      "positive": 80187,
+      "zero": 0,
+      "negative": 0,
+      "min": 1.0608349846211356,
+      "median": 1.1065239984706436,
+      "max": 1.1065239984706436,
+      "mean": 1.101785119788065
+    },
+    "all_three_positive_cells": 80187,
+    "joint_minus_sum_on_all_positive": {
+      "valid": 80187,
+      "positive": 80187,
+      "zero": 0,
+      "negative": 0,
+      "min": 0.1686059832572937,
+      "median": 0.8025603294372559,
+      "max": 1.40447998046875,
+      "mean": 0.7978202300805106
+    },
+    "joint_below_either_single_beyond_tolerance": 0
+  }
+}

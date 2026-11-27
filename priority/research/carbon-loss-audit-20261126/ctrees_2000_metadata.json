@@ -1,0 +1,96 @@
+{
+  "type": "IMAGE",
+  "name": "projects/earthengine-legacy/assets/projects/sat-io/open-datasets/CTREES-GLOBAL-AGB-100M/ctrees_global_agb_100m_2000",
+  "id": "projects/sat-io/open-datasets/CTREES-GLOBAL-AGB-100M/ctrees_global_agb_100m_2000",
+  "properties": {
+    "year": 2000,
+    "agb_units": "Mg/ha",
+    "uncertainty_scale_factor": 0.1,
+    "uncertainty_units": "Mg/ha",
+    "carbon_conversion_factor": 0.5,
+    "co2e_conversion_factor": 3.667,
+    "agb_scale_factor": 0.1,
+    "spatial_resolution_m": 100
+  },
+  "updateTime": "2026-06-01T21:27:24.155129Z",
+  "startTime": "2000-01-01T00:00:00Z",
+  "endTime": "2001-01-01T00:00:00Z",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          "-Infinity",
+          "-Infinity"
+        ],
+        [
+          "Infinity",
+          "-Infinity"
+        ],
+        [
+          "Infinity",
+          "Infinity"
+        ],
+        [
+          "-Infinity",
+          "Infinity"
+        ],
+        [
+          "-Infinity",
+          "-Infinity"
+        ]
+      ]
+    ]
+  },
+  "bands": [
+    {
+      "id": "agb",
+      "dataType": {
+        "precision": "INT",
+        "range": {
+          "min": -32768,
+          "max": 32767
+        }
+      },
+      "grid": {
+        "crsCode": "EPSG:4326",
+        "dimensions": {
+          "width": 405000,
+          "height": 202500
+        },
+        "affineTransform": {
+          "scaleX": 0.0008888888888879225,
+          "translateX": -180,
+          "scaleY": -0.0008888888888879249,
+          "translateY": 90
+        }
+      },
+      "pyramidingPolicy": "MEAN"
+    },
+    {
+      "id": "uncertainty",
+      "dataType": {
+        "precision": "INT",
+        "range": {
+          "min": -32768,
+          "max": 32767
+        }
+      },
+      "grid": {
+        "crsCode": "EPSG:4326",
+        "dimensions": {
+          "width": 405000,
+          "height": 202500
+        },
+        "affineTransform": {
+          "scaleX": 0.0008888888888879225,
+          "translateX": -180,
+          "scaleY": -0.0008888888888879249,
+          "translateY": 90
+        }
+      },
+      "pyramidingPolicy": "MEAN"
+    }
+  ],
+  "sizeBytes": "59949889331"
+}

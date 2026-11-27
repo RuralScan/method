@@ -1,0 +1,61 @@
+{
+  "inspection_date_local": "2026-11-26",
+  "scope": "Separate upstream candidates, not an arithmetic decomposition of Naturebase combined total.",
+  "scientifically_accepted": false,
+  "runtime_ready": false,
+  "biochar_dataset": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/Y6NGFM",
+  "biochar_license": "CC0 1.0; verified repository page and DataCite metadata",
+  "biochar_files": {
+    "bc_100_tech.tif": 7354744,
+    "bc_100_constrained.tif": 7354742,
+    "biochar_ReadMe.txt": 7354746
+  },
+  "soil_dataset": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HA17D3",
+  "soil_license": "CC BY 4.0; repository Terms tab verified; user explicitly approved acceptance and the three downloads on 2026-11-26",
+  "soil_files": {
+    "scenario_crop.I_dSOC_Y20.tif": 4202142,
+    "scenario_crop_MG_dSOC_Y20.tif": 4202144,
+    "scenario_crop.MGI_dSOC_Y20.tif": 4202145
+  },
+  "soil_download_status": "all_originals_acquired_checked",
+  "soil_gee_status": "all three published collection paths not found or inaccessible to current caller; do not infer no Haiti coverage",
+  "source_repository": "https://github.com/Vizzuality/soils-revealed",
+  "source_commit": "9eb9e12a434d997edaacd52f935d0d5fe9a819d7",
+  "browser_access": "Public repository pages and biochar downloads succeeded after API 403 responses; no name/email submitted",
+  "boundary": "USDOS/LSIB_SIMPLE/2017; Haiti; native cell centres",
+  "local_sources": [
+    {
+      "url": "https://link.springer.com/article/10.1186/s40064-016-2651-1",
+      "role": "local residue process relevance; not long-term SOC calibration"
+    },
+    {
+      "url": "https://biochar-international.org/carbon-roots-international/",
+      "role": "historical project profile, not current national capacity or measured removal rate"
+    }
+  ],
+  "private_snapshots": {
+    "soil_terms.jpg": "d74a9cb8ea9af78b54ba031eebe62584e6a2e88f682f045a6af164b25f637d15",
+    "haiti_residue_study.html": "ef32791018c3292bbe518981ccd4c04c622a8222ec14b73cf76746972af89ae4",
+    "haiti_biochar_profile.html": "7892c1d0ec258b6f6ea7bd2c78afc8c3839e7122a3378b9646f82271b3f8806b",
+    "soil_joint_after_accept.jpg": "ef8bd3bcf58ffc870a7e79a788a5e16c0c2969217408f236206f38ac6954dddc"
+  },
+  "soil_approval": {
+    "date": "2026-11-26",
+    "answer": "Approve these downloads and licence",
+    "scope": "Accept Soils Revealed v3 CC BY 4.0 and download no-till, higher-input and joint scenarios for Haiti checks; no name/email submitted"
+  },
+  "soil_producer_md5": {
+    "scenario_crop_MG_dSOC_Y20.tif": "33158ed5ba77fd39c149648070298134",
+    "scenario_crop.I_dSOC_Y20.tif": "97b4f77c80e1da750390e3cf4e5cd229",
+    "scenario_crop.MGI_dSOC_Y20.tif": "58a11550109c29d9269c6c6518f3f373"
+  },
+  "soil_producer_md5_locator": "MD5 row of each Harvard Dataverse file.xhtml?fileId=<soil_files ID>&version=3.0 page, inspected 2026-11-26",
+  "soil_originals_verified": [
+    "scenario_crop.I_dSOC_Y20.tif",
+    "scenario_crop_MG_dSOC_Y20.tif",
+    "scenario_crop.MGI_dSOC_Y20.tif"
+  ],
+  "soil_haiti_access": "All three full global originals acquired through approved public browser downloads, with each producer MD5 matched. Native Haiti windows acquired earlier by HTTP Range GET were independently reproduced from full originals: identical native statistics, all 1440 sampled values, masks and joint comparison.",
+  "soil_browser_acceptance": "Approved Accept controls invoked for all three scenarios; no name or email submitted. Explicit browser download capture started successful transfers after earlier attempts failed to create files.",
+  "soil_window_scope": "Input and joint clip hashes identify native Haiti subsets, not full originals. Full original SHA256, MD5 and byte counts are recorded separately in soil_raster_checks.json."
+}

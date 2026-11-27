@@ -1,0 +1,1270 @@
+{
+  "source_url": "https://archive.researchdata.leeds.ac.uk/251/11/North_America.zip",
+  "zip_sha256": "126e54ec4fcacdebc592e83fa6e098b070235f27362844e5102d40665cbe991e",
+  "boundary_sha256": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9",
+  "layers": [
+    {
+      "member": "North America/Canada_Peatland.shp",
+      "crs": "ESRI:54034",
+      "schema": {
+        "properties": {
+          "AREA": "float:19.11",
+          "PEAT_PER": "float:19.11",
+          "PEAT_AREA": "float:13.11"
+        },
+        "geometry": "3D Polygon"
+      },
+      "total_features_before_filter": 4845,
+      "bounds": [
+        -15696419.138899088,
+        4240217.053136129,
+        -5878539.231761465,
+        6082155.947818005
+      ],
+      "bbox_candidates": 0,
+      "haiti_intersection_count": 0,
+      "positive_area_intersection_count": 0,
+      "haiti_intersections": []
+    },
+    {
+      "member": "North America/Other_North_American_Peatlands.shp",
+      "crs": "ESRI:54034",
+      "schema": {
+        "properties": {
+          "AREA": "float:19.11"
+        },
+        "geometry": "3D Polygon"
+      },
+      "total_features_before_filter": 39448,
+      "bounds": [
+        -12785123.584770046,
+        799255.5308476986,
+        -6817632.691117911,
+        3316582.455088012
+      ],
+      "bbox_candidates": 258,
+      "haiti_intersection_count": 171,
+      "positive_area_intersection_count": 171,
+      "haiti_intersections": [
+        {
+          "id": "29760",
+          "properties": {
+            "AREA": 0.0873329405834
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29766",
+          "properties": {
+            "AREA": 0.0101320036663
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29767",
+          "properties": {
+            "AREA": 0.286130308535
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29768",
+          "properties": {
+            "AREA": 0.0442223786323
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29769",
+          "properties": {
+            "AREA": 0.465511404104
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29770",
+          "properties": {
+            "AREA": 0.385553802194
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29771",
+          "properties": {
+            "AREA": 0.68314742129
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29781",
+          "properties": {
+            "AREA": 0.161003205933
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29792",
+          "properties": {
+            "AREA": 0.044244925506
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29794",
+          "properties": {
+            "AREA": 0.0442519929153
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29795",
+          "properties": {
+            "AREA": 0.22919168303
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29797",
+          "properties": {
+            "AREA": 0.0442532769363
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29799",
+          "properties": {
+            "AREA": 0.0884089806563
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29800",
+          "properties": {
+            "AREA": 0.0442552024107
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29804",
+          "properties": {
+            "AREA": 0.0442571272158
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29810",
+          "properties": {
+            "AREA": 0.426024678138
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29811",
+          "properties": {
+            "AREA": 1.41893528518
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29812",
+          "properties": {
+            "AREA": 0.197252510111
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29813",
+          "properties": {
+            "AREA": 0.0963589947767
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29834",
+          "properties": {
+            "AREA": 0.0434866910641
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29835",
+          "properties": {
+            "AREA": 0.0442731413285
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29838",
+          "properties": {
+            "AREA": 0.00748333941646
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29839",
+          "properties": {
+            "AREA": 0.149473069425
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29840",
+          "properties": {
+            "AREA": 0.0442739690978
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29841",
+          "properties": {
+            "AREA": 0.0442739690994
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29843",
+          "properties": {
+            "AREA": 0.0884504688864
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29844",
+          "properties": {
+            "AREA": 0.656772744841
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29849",
+          "properties": {
+            "AREA": 1.57744351677
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29851",
+          "properties": {
+            "AREA": 0.326036597835
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29857",
+          "properties": {
+            "AREA": 2.27162899943
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29912",
+          "properties": {
+            "AREA": 0.129837541915
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29914",
+          "properties": {
+            "AREA": 0.0443141130223
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "29920",
+          "properties": {
+            "AREA": 0.570614515109
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30441",
+          "properties": {
+            "AREA": 0.0385133980262
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30450",
+          "properties": {
+            "AREA": 0.0445776448554
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30461",
+          "properties": {
+            "AREA": 0.0445806599264
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30464",
+          "properties": {
+            "AREA": 1.27953447886
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30465",
+          "properties": {
+            "AREA": 0.0445812627173
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30511",
+          "properties": {
+            "AREA": 0.512704576083
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30515",
+          "properties": {
+            "AREA": 0.417908821873
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30518",
+          "properties": {
+            "AREA": 0.450847218574
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30523",
+          "properties": {
+            "AREA": 0.19117432935
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30526",
+          "properties": {
+            "AREA": 0.0445963082431
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30536",
+          "properties": {
+            "AREA": 0.0445987111983
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30544",
+          "properties": {
+            "AREA": 0.0445999122315
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30546",
+          "properties": {
+            "AREA": 0.039612380273
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30555",
+          "properties": {
+            "AREA": 0.267491275788
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30560",
+          "properties": {
+            "AREA": 0.0446029135048
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30602",
+          "properties": {
+            "AREA": 0.655181314541
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30603",
+          "properties": {
+            "AREA": 0.51381341073
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30618",
+          "properties": {
+            "AREA": 0.0446084874513
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30633",
+          "properties": {
+            "AREA": 0.0446107080883
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30702",
+          "properties": {
+            "AREA": 0.0881192773071
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30707",
+          "properties": {
+            "AREA": 0.0446178918953
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30926",
+          "properties": {
+            "AREA": 0.0446488975484
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30930",
+          "properties": {
+            "AREA": 0.0472260378065
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30931",
+          "properties": {
+            "AREA": 0.0446500860411
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30932",
+          "properties": {
+            "AREA": 0.0446500860411
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30939",
+          "properties": {
+            "AREA": 0.195560068589
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30950",
+          "properties": {
+            "AREA": 0.0446566174224
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30953",
+          "properties": {
+            "AREA": 0.0446573852904
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30962",
+          "properties": {
+            "AREA": 0.0446583971397
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30967",
+          "properties": {
+            "AREA": 0.297094236602
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30972",
+          "properties": {
+            "AREA": 0.0446595832449
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30973",
+          "properties": {
+            "AREA": 0.0446595832466
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30984",
+          "properties": {
+            "AREA": 0.0446607690508
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30985",
+          "properties": {
+            "AREA": 0.524842781505
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30986",
+          "properties": {
+            "AREA": 0.0446607690506
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30990",
+          "properties": {
+            "AREA": 0.0446615362445
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "30996",
+          "properties": {
+            "AREA": 0.0446625471999
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31000",
+          "properties": {
+            "AREA": 0.0106005557271
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31004",
+          "properties": {
+            "AREA": 0.0892595794563
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31018",
+          "properties": {
+            "AREA": 0.0584754658464
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31019",
+          "properties": {
+            "AREA": 0.0869622282082
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31027",
+          "properties": {
+            "AREA": 0.0446678776185
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31053",
+          "properties": {
+            "AREA": 0.000217263640541
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31061",
+          "properties": {
+            "AREA": 1.54827142988
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31067",
+          "properties": {
+            "AREA": 0.0418572698606
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31071",
+          "properties": {
+            "AREA": 0.0441474253556
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31086",
+          "properties": {
+            "AREA": 0.000679166095349
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31088",
+          "properties": {
+            "AREA": 0.0892572992726
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31089",
+          "properties": {
+            "AREA": 0.0698426888384
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31092",
+          "properties": {
+            "AREA": 0.0882417632826
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31097",
+          "properties": {
+            "AREA": 0.0653441029815
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31099",
+          "properties": {
+            "AREA": 0.0892608384506
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31100",
+          "properties": {
+            "AREA": 0.0426980088068
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31101",
+          "properties": {
+            "AREA": 0.0446802917262
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31102",
+          "properties": {
+            "AREA": 0.0882436990655
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31111",
+          "properties": {
+            "AREA": 3.26998619732
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31114",
+          "properties": {
+            "AREA": 0.0882483617782
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31124",
+          "properties": {
+            "AREA": 0.0418648587866
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31132",
+          "properties": {
+            "AREA": 0.200667533208
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31137",
+          "properties": {
+            "AREA": 0.0430209942326
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31142",
+          "properties": {
+            "AREA": 1.25545514062
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31148",
+          "properties": {
+            "AREA": 0.130931868003
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31158",
+          "properties": {
+            "AREA": 0.282607754124
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31173",
+          "properties": {
+            "AREA": 0.0439884718767
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31180",
+          "properties": {
+            "AREA": 2.22531300813
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31181",
+          "properties": {
+            "AREA": 0.0893131405645
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31182",
+          "properties": {
+            "AREA": 0.731965071048
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31196",
+          "properties": {
+            "AREA": 0.153350313762
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31211",
+          "properties": {
+            "AREA": 0.847775160411
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31244",
+          "properties": {
+            "AREA": 0.0447032590921
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31245",
+          "properties": {
+            "AREA": 0.044703259092
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31248",
+          "properties": {
+            "AREA": 0.0447040193229
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31252",
+          "properties": {
+            "AREA": 0.0447050211058
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31253",
+          "properties": {
+            "AREA": 0.0882173990334
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31258",
+          "properties": {
+            "AREA": 0.0882940937214
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "31259",
+          "properties": {
+            "AREA": 0.197261076102
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32347",
+          "properties": {
+            "AREA": 0.967902538802
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32422",
+          "properties": {
+            "AREA": 0.241796306394
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32464",
+          "properties": {
+            "AREA": 0.165899809562
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32475",
+          "properties": {
+            "AREA": 0.0621501866903
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32495",
+          "properties": {
+            "AREA": 0.0446834161975
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32496",
+          "properties": {
+            "AREA": 0.267055751122
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32578",
+          "properties": {
+            "AREA": 0.00591893947016
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32628",
+          "properties": {
+            "AREA": 0.0446879601429
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32629",
+          "properties": {
+            "AREA": 0.174744667927
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32666",
+          "properties": {
+            "AREA": 0.0892790005192
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32683",
+          "properties": {
+            "AREA": 0.0691572764132
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32712",
+          "properties": {
+            "AREA": 0.0354415307678
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32729",
+          "properties": {
+            "AREA": 0.0446916684312
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32789",
+          "properties": {
+            "AREA": 0.132274555913
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "32831",
+          "properties": {
+            "AREA": 0.0335928715397
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "33339",
+          "properties": {
+            "AREA": 5.98411073983e-05
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "35911",
+          "properties": {
+            "AREA": 0.00380268389868
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "35912",
+          "properties": {
+            "AREA": 0.030141564062
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "35913",
+          "properties": {
+            "AREA": 0.00253951849997
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "35917",
+          "properties": {
+            "AREA": 0.0113603968283
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "35919",
+          "properties": {
+            "AREA": 0.000701283729859
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "35920",
+          "properties": {
+            "AREA": 0.0184038229171
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "35921",
+          "properties": {
+            "AREA": 0.0092494349341
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "35922",
+          "properties": {
+            "AREA": 1.43372046233e-05
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "35923",
+          "properties": {
+            "AREA": 0.0192342539267
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "35924",
+          "properties": {
+            "AREA": 0.0111021642596
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39265",
+          "properties": {
+            "AREA": 0.0442897468378
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39267",
+          "properties": {
+            "AREA": 0.0442916596328
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39268",
+          "properties": {
+            "AREA": 0.0442929344575
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39269",
+          "properties": {
+            "AREA": 0.0442937592525
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39274",
+          "properties": {
+            "AREA": 0.0445558813257
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39275",
+          "properties": {
+            "AREA": 0.0445570929456
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39276",
+          "properties": {
+            "AREA": 0.0445576986425
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39277",
+          "properties": {
+            "AREA": 0.212365526642
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39278",
+          "properties": {
+            "AREA": 0.0445625415439
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39279",
+          "properties": {
+            "AREA": 1.3890794246
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39280",
+          "properties": {
+            "AREA": 0.0445633245711
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39281",
+          "properties": {
+            "AREA": 0.0445643563997
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39282",
+          "properties": {
+            "AREA": 0.314175416027
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39283",
+          "properties": {
+            "AREA": 0.0384445376815
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39285",
+          "properties": {
+            "AREA": 1.17533414445
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39286",
+          "properties": {
+            "AREA": 0.044569796949
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39287",
+          "properties": {
+            "AREA": 0.175185847829
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39288",
+          "properties": {
+            "AREA": 0.487521942853
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39289",
+          "properties": {
+            "AREA": 0.0445746279217
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39290",
+          "properties": {
+            "AREA": 0.117698947999
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39291",
+          "properties": {
+            "AREA": 0.0417643193028
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39292",
+          "properties": {
+            "AREA": 0.0434991165855
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39293",
+          "properties": {
+            "AREA": 0.0445772191124
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39294",
+          "properties": {
+            "AREA": 0.0445770416172
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39295",
+          "properties": {
+            "AREA": 0.0435001206066
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39296",
+          "properties": {
+            "AREA": 0.0445782480189
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39297",
+          "properties": {
+            "AREA": 0.0445800570604
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39298",
+          "properties": {
+            "AREA": 0.044580659926
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39300",
+          "properties": {
+            "AREA": 3.73877613736
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39301",
+          "properties": {
+            "AREA": 0.0445824680734
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39302",
+          "properties": {
+            "AREA": 0.0880504964711
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39305",
+          "properties": {
+            "AREA": 0.153009198619
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39306",
+          "properties": {
+            "AREA": 0.0445902956252
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39314",
+          "properties": {
+            "AREA": 0.0445945052406
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39402",
+          "properties": {
+            "AREA": 0.0344454090258
+          },
+          "positive_area_intersection": true
+        },
+        {
+          "id": "39403",
+          "properties": {
+            "AREA": 0.0400517603289
+          },
+          "positive_area_intersection": true
+        }
+      ]
+    },
+    {
+      "member": "North America/USA_Peatland.shp",
+      "crs": "ESRI:54034",
+      "schema": {
+        "properties": {
+          "Area": "float:13.11"
+        },
+        "geometry": "Polygon"
+      },
+      "total_features_before_filter": 2234,
+      "bounds": [
+        -19925103.339462403,
+        2005085.3772431414,
+        19977959.969132848,
+        5887129.023579723
+      ],
+      "bbox_candidates": 0,
+      "haiti_intersection_count": 0,
+      "positive_area_intersection_count": 0,
+      "haiti_intersections": []
+    }
+  ]
+}

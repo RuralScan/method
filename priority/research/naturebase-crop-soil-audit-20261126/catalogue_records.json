@@ -1,0 +1,53 @@
+{
+  "url": "https://content.naturebase.io/items/spatial_metadata?limit=-1&sort=title&filter[status][_in]=published",
+  "data": [
+    {
+      "id": 14,
+      "status": "published",
+      "sort": null,
+      "user_created": "d62e48ea-42fb-41b4-b49d-d9066b9efa99",
+      "date_created": "2023-10-03T20:35:53.375Z",
+      "user_updated": "8f4b5133-5b06-4675-9179-32e6116aae4d",
+      "date_updated": "2026-08-27T21:19:09.861Z",
+      "title": "Increased Soil Carbon in Croplands",
+      "short_name": "crp_scc_total",
+      "short_summary": "<p>Increased sequestration in agricultural soils by protecting and restoring soil health through activities such as cover crops, reduced tillage, green manure, and biochar.</p>\n<p><strong>Units:&nbsp;</strong>all raster data (.tif) are in tCO2e/ha/yr. All tabular data (.csv) are summarised in tCO2e/yr.</p>",
+      "description": "<p>This datalayer shows the increased sequestration in agricultural soils by protecting and restoring soil health through activities such as cover crops, reduced tillage, green manure, and biochar.</p>\n<p>Applied IPCC Tier 1 emissions factors to base soil carbon stock maps through the incorporation of cover crops, reduced tillage, and biochar.&nbsp;</p>\n<p>For cover crops, the emissions factors for residue incorporation represent &ldquo;significantly greater crop residue inputs over medium C input cropping systems due to additional practices, such as production of high residue yielding crops, use of green manures, cover crops, improved vegetated fallows, irrigation, frequent use of perennial grasses in annual crop rotations, but without manure applied&rdquo;. Steady state carbon stocks were assumed to be achieved over a 20-year period from a 2018 baseline. We extended this period to steady state to reach 2050, thus reducing the per annum sequestration rate in the original Soil Futures layer used by others, such as Roe et al. (2021).</p>\n<p>For reduced tillage, the emissions factors for residue incorporation represent no till compared to an assumed baseline of conventional tillage. Steady state carbon stocks were assumed to be achieved over a 20-year period from a 2018 baseline. We extended this period to steady state to reach 2050, thus reducing the per annum sequestration rate in the original Soil Futures layer used by others, such as Roe et al. (2021).</p>\n<p>For biochar, we used grid-cell level estimates of crop production, using MapSPAM, to develop a residue production model of crop residues. We then applied parameters quantifying the loss of carbon through pyrolysis and mineralization to determine the amount of carbon remaining after 100 years based on a fraction of mineralization.</p>\n<p>Consistent with the naturebase accounting framework, areas of overlap between cropland and non-cropland pathway extents were resolved using a proportional allocation approach. Cropland pathway mitigation was weighted by the fraction of each 1 km&sup2; pixel classified as cropland, while non-cropland pathway mitigation was weighted by the inverse proportion. For a detailed description of this methodology, see Section I(c), Cropland Extent, in the <a href=\"https://naturebase-shared-docs.s3.amazonaws.com/NCS_Accounting_rules_narrative.pdf\" target=\"_blank\" rel=\"noopener\">NCS Accounting Rules Narrative</a>.</p>\n<p><strong>Units:&nbsp;</strong>all raster data (.tif) are in tCO2e/ha/yr. All tabular data (.csv) are summarised in tCO2e/yr.</p>\n<p class=\"MsoNormal\">To calculate the per hectare mitigation potential (density) of the <strong>NCS implementation extent</strong> in tCO2e/ha/yr:&nbsp;<br>1) Find the total mitigation value: this is provided in the spreadsheet as <u>[pathway]_tco2e</u><br>2) Find the NCS hectare extent: This is provided in the spreadsheet as <u>[pathway]_ha</u><br>3) Divide the mitigation value by the NCS hectare extent: <u>tCO2e/ha/yr = [pathway]_tco2e / [pathway]_ha</u>*</p>\n<p>*FLAG: As this is the hectares of NCS extent of the 1km2 raster, extent may be over-estimated. Use with caution. These area estimates are not recommended for pathways that have extents finer than 1km resolution</p>\n<p class=\"MsoNormal\"><br><br>To calculate the per hectare mitigation potential (density) for each <strong>administrative area</strong>* in tCO2e/ha/yr:&nbsp;<br>1) Find the total mitigation value: this is provided in the spreadsheet as <span style=\"text-decoration: underline;\">[pathway]_tco2e</span><br>2) Find the administrative extent: This is provided in the spreadsheet as '<span style=\"text-decoration: underline;\">admin_ha</span>'<br>3) Divide the mitigation value by the administrative extent: <span style=\"text-decoration: underline;\">tCO2e/ha/yr in each administrative area = [pathway]_tco2e / admin_ha</span></p>\n<p>*This is useful for comparison between administrative areas</p>\n<p><em>Please consult the download package under 'Download Now' for comprehensive metadata and a detailed description.</em></p>",
+      "data_updated": "2024-06-06",
+      "original_resolution": null,
+      "naturebase_resolution": 1,
+      "biome": "croplands",
+      "action": "manage",
+      "cog_url": "https://action-mapper.s3.amazonaws.com/naturebase_cog/crp_scc_total.tif",
+      "preferred_citation": "<p>Naturebase (2024, June 6). Increased Soil Carbon in Croplands v2. Retrieved from https://naturebase.org &nbsp;</p>\n<p>For additional citations, please refer to:&nbsp;<br>Sanderman, Jonathan; Woolf, Dominic; Lehmann, Johannes; Rivard, Charlotte; Poggio, Laura; Heuvelink, Gerard; Bossio, Deborah, 2020, \"Soils Revealed soil carbon futures\", https://doi.org/10.7910/DVN/HA17D3, Harvard Dataverse, V3; scenario_crop_MG_dSOC_Y20.tif</p>",
+      "units": "MtCO2e/yr",
+      "data_caveats": "Annual mitigation was assumed to be constant throughout the accounting horizon periods (2035, 2050). Biochar is only generated from crop residues, though other sources could be used to produce biochar. ",
+      "accounting_horizon": null,
+      "download_links": [
+        {
+          "link_type": "Download",
+          "url": "https://naturebase-shared-docs.s3.amazonaws.com/Data-download/crp_scc_total.zip"
+        }
+      ],
+      "data_category": "pathway",
+      "ncs_pathway": "Increased Soil Carbon in Croplands",
+      "mapped_in_naturebase": true,
+      "subtitle": null,
+      "cobenefits_data": null,
+      "carbon_pools": [
+        "Soil Organic Carbon (SOC)"
+      ],
+      "authors": "Deborah Bossio, Steve Wood",
+      "corresponding_author": "deborah.bossio@tnc.org",
+      "publication_date": null,
+      "approach_and_methods": "<p>The historic soil organic carbon changes in agricultural lands are derived using a data-driven statistical model and the HYDE historic land-use dataset. Recent changes in soil organic carbon stocks are assessed using a UNCCD modified IPCC approach, while future soil organic carbon changes are predicted using a spatial implementation of IPCC improved management scenarios. In addition, a novel approach was used to model recent soil organic carbon change in Argentina as a pilot region. This modelling uses actual soil carbon data from national archives, and a statistical space-time method for mapping SOC stocks. A global implementation of this approach is on-going. More detailed information about the methods with references to the scientific literature is provided here: www.soilsrevealed.org</p>",
+      "additionality": null,
+      "results": null,
+      "next_steps": null,
+      "footnotes": null,
+      "references": null,
+      "confidence": null,
+      "publication_date_note": null
+    }
+  ]
+}

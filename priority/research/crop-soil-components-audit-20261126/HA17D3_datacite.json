@@ -1,0 +1,791 @@
+{
+  "data": {
+    "id": "10.7910/dvn/ha17d3",
+    "type": "dois",
+    "attributes": {
+      "doi": "10.7910/dvn/ha17d3",
+      "prefix": "10.7910",
+      "suffix": "dvn/ha17d3",
+      "identifiers": [],
+      "alternateIdentifiers": [],
+      "creators": [
+        {
+          "name": "Sanderman, Jonathan",
+          "nameType": "Personal",
+          "givenName": "Jonathan",
+          "familyName": "Sanderman",
+          "affiliation": [
+            "Woodwell Climate Research Center"
+          ],
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Woolf, Dominic",
+          "nameType": "Personal",
+          "givenName": "Dominic",
+          "familyName": "Woolf",
+          "affiliation": [
+            "Cornell University"
+          ],
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Lehmann, Johannes",
+          "nameType": "Personal",
+          "givenName": "Johannes",
+          "familyName": "Lehmann",
+          "affiliation": [
+            "Cornell University"
+          ],
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Rivard, Charlotte",
+          "nameType": "Personal",
+          "givenName": "Charlotte",
+          "familyName": "Rivard",
+          "affiliation": [
+            "Woodwell Climate Research Center"
+          ],
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Poggio, Laura",
+          "nameType": "Personal",
+          "givenName": "Laura",
+          "familyName": "Poggio",
+          "affiliation": [
+            "ISRIC - World Soils Information"
+          ],
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Heuvelink, Gerard",
+          "nameType": "Personal",
+          "givenName": "Gerard",
+          "familyName": "Heuvelink",
+          "affiliation": [
+            "ISRIC - World Soils Information"
+          ],
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Bossio, Deborah",
+          "nameType": "Personal",
+          "givenName": "Deborah",
+          "familyName": "Bossio",
+          "affiliation": [
+            "The Nature Conservancy"
+          ],
+          "nameIdentifiers": []
+        }
+      ],
+      "titles": [
+        {
+          "title": "Soils Revealed soil carbon futures"
+        }
+      ],
+      "publisher": "Harvard Dataverse",
+      "container": {},
+      "publicationYear": 2020,
+      "subjects": [
+        {
+          "subject": "Earth and Environmental Sciences"
+        },
+        {
+          "subject": "soil"
+        },
+        {
+          "subject": "climate mitigation"
+        },
+        {
+          "subject": "agriculture"
+        }
+      ],
+      "contributors": [
+        {
+          "name": "Sanderman, Jonathan",
+          "nameType": "Personal",
+          "givenName": "Jonathan",
+          "familyName": "Sanderman",
+          "affiliation": [
+            "Woodwell Climate Research Center"
+          ],
+          "contributorType": "ContactPerson",
+          "nameIdentifiers": []
+        }
+      ],
+      "dates": [
+        {
+          "date": "2020-12-01",
+          "dateType": "Submitted"
+        },
+        {
+          "date": "2020-12-01",
+          "dateType": "Available"
+        },
+        {
+          "date": "2021-04-27",
+          "dateType": "Updated"
+        },
+        {
+          "date": "2020",
+          "dateType": "Issued"
+        }
+      ],
+      "language": null,
+      "types": {
+        "ris": "DATA",
+        "bibtex": "misc",
+        "citeproc": "dataset",
+        "schemaOrg": "Dataset",
+        "resourceTypeGeneral": "Dataset"
+      },
+      "relatedIdentifiers": [
+        {
+          "schemeUri": "https://soilsrevealed.org",
+          "relationType": "IsSupplementTo",
+          "relatedIdentifier": "/",
+          "relatedIdentifierType": "URL"
+        }
+      ],
+      "relatedItems": [],
+      "sizes": [
+        "1105163",
+        "987",
+        "111844952",
+        "312903883",
+        "57742118",
+        "15756452",
+        "239011919",
+        "511913726",
+        "511977917",
+        "511936588",
+        "759677400",
+        "771862634",
+        "445199162",
+        "945659722",
+        "469885173",
+        "2184329",
+        "527435898",
+        "590946185"
+      ],
+      "formats": [
+        "application/pdf",
+        "text/tab-separated-values",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "image/tiff",
+        "application/pdf",
+        "image/tiff",
+        "image/tiff"
+      ],
+      "version": "3.0",
+      "rightsList": [
+        {
+          "rightsUri": "info:eu-repo/semantics/openAccess"
+        },
+        {
+          "rights": "Custom terms specific to this dataset",
+          "rightsUri": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions/3.0/customlicense?persistentId=doi:10.7910/DVN/HA17D3"
+        }
+      ],
+      "descriptions": [
+        {
+          "description": "These data are a fully spatial implementation of the IPCC (2019) Tier I bookkeeping approach to soil organic carbon stock change for a series of scenarios. Report describing methodologies (pdf) and summary table of country level soil carbon stock change (excel) are also included. For each of 9 different land use scenarios, maps of the 20 year change in SOC stocks (Mg C ha-1) are supplied. For a restoration to native vegetation scenario, the eventual steady state SOC stocks are also supplied.\n\nSpatial maps of IPCC climate zones, IPCC SOC reference stocks, and land classes are included. \n\nScenario file are named scenario_xxxx_dSOC_Yzz where: xxxx = scenario name, and zz = years after change in land use or management\n\nAll scenario rasters are in units of Mg C / ha to 30 cm depth\n\nScenarios --\n\ncrop_MG: Cropland, improved management only; \ncrop_MGI: Cropland, improved management and inputs; \ncrop_I: Cropland, improved inputs only; \ngrass-part: Grassland, partial restoration; \ngrass-full: Grassland, full restoration; \nrewilding: Restoration to natural vegetation; \ndegradation-ForestToGrass: Degradation (includes deforestation to degraded grassland condition); \ndegradation-ForestToCrop: Degradation (includes deforestation to cropland); \ndegradation-NoDeforestation: Degradation (no deforestation).",
+          "descriptionType": "Abstract"
+        }
+      ],
+      "geoLocations": [],
+      "fundingReferences": [],
+      "xml": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHJlc291cmNlIHhtbG5zPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHNpOnNjaGVtYUxvY2F0aW9uPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCBodHRwOi8vc2NoZW1hLmRhdGFjaXRlLm9yZy9tZXRhL2tlcm5lbC00LjUvbWV0YWRhdGEueHNkIj4KICA8aWRlbnRpZmllciBpZGVudGlmaWVyVHlwZT0iRE9JIj4xMC43OTEwL0RWTi9IQTE3RDM8L2lkZW50aWZpZXI+CiAgPGNyZWF0b3JzPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPlNhbmRlcm1hbiwgSm9uYXRoYW48L2NyZWF0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPkpvbmF0aGFuPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPlNhbmRlcm1hbjwvZmFtaWx5TmFtZT4KICAgICAgPGFmZmlsaWF0aW9uPldvb2R3ZWxsIENsaW1hdGUgUmVzZWFyY2ggQ2VudGVyPC9hZmZpbGlhdGlvbj4KICAgIDwvY3JlYXRvcj4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWUgbmFtZVR5cGU9IlBlcnNvbmFsIj5Xb29sZiwgRG9taW5pYzwvY3JlYXRvck5hbWU+CiAgICAgIDxnaXZlbk5hbWU+RG9taW5pYzwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5Xb29sZjwvZmFtaWx5TmFtZT4KICAgICAgPGFmZmlsaWF0aW9uPkNvcm5lbGwgVW5pdmVyc2l0eTwvYWZmaWxpYXRpb24+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+TGVobWFubiwgSm9oYW5uZXM8L2NyZWF0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPkpvaGFubmVzPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPkxlaG1hbm48L2ZhbWlseU5hbWU+CiAgICAgIDxhZmZpbGlhdGlvbj5Db3JuZWxsIFVuaXZlcnNpdHk8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPlJpdmFyZCwgQ2hhcmxvdHRlPC9jcmVhdG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5DaGFybG90dGU8L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+Uml2YXJkPC9mYW1pbHlOYW1lPgogICAgICA8YWZmaWxpYXRpb24+V29vZHdlbGwgQ2xpbWF0ZSBSZXNlYXJjaCBDZW50ZXI8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPlBvZ2dpbywgTGF1cmE8L2NyZWF0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPkxhdXJhPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPlBvZ2dpbzwvZmFtaWx5TmFtZT4KICAgICAgPGFmZmlsaWF0aW9uPklTUklDIC0gV29ybGQgU29pbHMgSW5mb3JtYXRpb248L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPkhldXZlbGluaywgR2VyYXJkPC9jcmVhdG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5HZXJhcmQ8L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+SGV1dmVsaW5rPC9mYW1pbHlOYW1lPgogICAgICA8YWZmaWxpYXRpb24+SVNSSUMgLSBXb3JsZCBTb2lscyBJbmZvcm1hdGlvbjwvYWZmaWxpYXRpb24+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+Qm9zc2lvLCBEZWJvcmFoPC9jcmVhdG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5EZWJvcmFoPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPkJvc3NpbzwvZmFtaWx5TmFtZT4KICAgICAgPGFmZmlsaWF0aW9uPlRoZSBOYXR1cmUgQ29uc2VydmFuY3k8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogIDwvY3JlYXRvcnM+CiAgPHRpdGxlcz4KICAgIDx0aXRsZT5Tb2lscyBSZXZlYWxlZCBzb2lsIGNhcmJvbiBmdXR1cmVzPC90aXRsZT4KICA8L3RpdGxlcz4KICA8cHVibGlzaGVyPkhhcnZhcmQgRGF0YXZlcnNlPC9wdWJsaXNoZXI+CiAgPHB1YmxpY2F0aW9uWWVhcj4yMDIwPC9wdWJsaWNhdGlvblllYXI+CiAgPHN1YmplY3RzPgogICAgPHN1YmplY3Q+RWFydGggYW5kIEVudmlyb25tZW50YWwgU2NpZW5jZXM8L3N1YmplY3Q+CiAgICA8c3ViamVjdD5zb2lsPC9zdWJqZWN0PgogICAgPHN1YmplY3Q+Y2xpbWF0ZSBtaXRpZ2F0aW9uPC9zdWJqZWN0PgogICAgPHN1YmplY3Q+YWdyaWN1bHR1cmU8L3N1YmplY3Q+CiAgPC9zdWJqZWN0cz4KICA8Y29udHJpYnV0b3JzPgogICAgPGNvbnRyaWJ1dG9yIGNvbnRyaWJ1dG9yVHlwZT0iQ29udGFjdFBlcnNvbiI+CiAgICAgIDxjb250cmlidXRvck5hbWUgbmFtZVR5cGU9IlBlcnNvbmFsIj5TYW5kZXJtYW4sIEpvbmF0aGFuPC9jb250cmlidXRvck5hbWU+CiAgICAgIDxnaXZlbk5hbWU+Sm9uYXRoYW48L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+U2FuZGVybWFuPC9mYW1pbHlOYW1lPgogICAgICA8YWZmaWxpYXRpb24+V29vZHdlbGwgQ2xpbWF0ZSBSZXNlYXJjaCBDZW50ZXI8L2FmZmlsaWF0aW9uPgogICAgPC9jb250cmlidXRvcj4KICA8L2NvbnRyaWJ1dG9ycz4KICA8ZGF0ZXM+CiAgICA8ZGF0ZSBkYXRlVHlwZT0iU3VibWl0dGVkIj4yMDIwLTEyLTAxPC9kYXRlPgogICAgPGRhdGUgZGF0ZVR5cGU9IkF2YWlsYWJsZSI+MjAyMC0xMi0wMTwvZGF0ZT4KICAgIDxkYXRlIGRhdGVUeXBlPSJVcGRhdGVkIj4yMDIxLTA0LTI3PC9kYXRlPgogIDwvZGF0ZXM+CiAgPHJlc291cmNlVHlwZSByZXNvdXJjZVR5cGVHZW5lcmFsPSJEYXRhc2V0Ii8+CiAgPHJlbGF0ZWRJZGVudGlmaWVycz4KICAgIDxyZWxhdGVkSWRlbnRpZmllciByZWxhdGlvblR5cGU9IklzU3VwcGxlbWVudFRvIiBzY2hlbWVVUkk9Imh0dHBzOi8vc29pbHNyZXZlYWxlZC5vcmciIHJlbGF0ZWRJZGVudGlmaWVyVHlwZT0iVVJMIj4vPC9yZWxhdGVkSWRlbnRpZmllcj4KICA8L3JlbGF0ZWRJZGVudGlmaWVycz4KICA8c2l6ZXM+CiAgICA8c2l6ZT4xMTA1MTYzPC9zaXplPgogICAgPHNpemU+OTg3PC9zaXplPgogICAgPHNpemU+MTExODQ0OTUyPC9zaXplPgogICAgPHNpemU+MzEyOTAzODgzPC9zaXplPgogICAgPHNpemU+NTc3NDIxMTg8L3NpemU+CiAgICA8c2l6ZT4xNTc1NjQ1Mjwvc2l6ZT4KICAgIDxzaXplPjIzOTAxMTkxOTwvc2l6ZT4KICAgIDxzaXplPjUxMTkxMzcyNjwvc2l6ZT4KICAgIDxzaXplPjUxMTk3NzkxNzwvc2l6ZT4KICAgIDxzaXplPjUxMTkzNjU4ODwvc2l6ZT4KICAgIDxzaXplPjc1OTY3NzQwMDwvc2l6ZT4KICAgIDxzaXplPjc3MTg2MjYzNDwvc2l6ZT4KICAgIDxzaXplPjQ0NTE5OTE2Mjwvc2l6ZT4KICAgIDxzaXplPjk0NTY1OTcyMjwvc2l6ZT4KICAgIDxzaXplPjQ2OTg4NTE3Mzwvc2l6ZT4KICAgIDxzaXplPjIxODQzMjk8L3NpemU+CiAgICA8c2l6ZT41Mjc0MzU4OTg8L3NpemU+CiAgICA8c2l6ZT41OTA5NDYxODU8L3NpemU+CiAgPC9zaXplcz4KICA8Zm9ybWF0cz4KICAgIDxmb3JtYXQ+YXBwbGljYXRpb24vcGRmPC9mb3JtYXQ+CiAgICA8Zm9ybWF0PnRleHQvdGFiLXNlcGFyYXRlZC12YWx1ZXM8L2Zvcm1hdD4KICAgIDxmb3JtYXQ+aW1hZ2UvdGlmZjwvZm9ybWF0PgogICAgPGZvcm1hdD5pbWFnZS90aWZmPC9mb3JtYXQ+CiAgICA8Zm9ybWF0PmltYWdlL3RpZmY8L2Zvcm1hdD4KICAgIDxmb3JtYXQ+aW1hZ2UvdGlmZjwvZm9ybWF0PgogICAgPGZvcm1hdD5pbWFnZS90aWZmPC9mb3JtYXQ+CiAgICA8Zm9ybWF0PmltYWdlL3RpZmY8L2Zvcm1hdD4KICAgIDxmb3JtYXQ+aW1hZ2UvdGlmZjwvZm9ybWF0PgogICAgPGZvcm1hdD5pbWFnZS90aWZmPC9mb3JtYXQ+CiAgICA8Zm9ybWF0PmltYWdlL3RpZmY8L2Zvcm1hdD4KICAgIDxmb3JtYXQ+aW1hZ2UvdGlmZjwvZm9ybWF0PgogICAgPGZvcm1hdD5pbWFnZS90aWZmPC9mb3JtYXQ+CiAgICA8Zm9ybWF0PmltYWdlL3RpZmY8L2Zvcm1hdD4KICAgIDxmb3JtYXQ+aW1hZ2UvdGlmZjwvZm9ybWF0PgogICAgPGZvcm1hdD5hcHBsaWNhdGlvbi9wZGY8L2Zvcm1hdD4KICAgIDxmb3JtYXQ+aW1hZ2UvdGlmZjwvZm9ybWF0PgogICAgPGZvcm1hdD5pbWFnZS90aWZmPC9mb3JtYXQ+CiAgPC9mb3JtYXRzPgogIDx2ZXJzaW9uPjMuMDwvdmVyc2lvbj4KICA8cmlnaHRzTGlzdD4KICAgIDxyaWdodHMgcmlnaHRzVVJJPSJpbmZvOmV1LXJlcG8vc2VtYW50aWNzL29wZW5BY2Nlc3MiLz4KICAgIDxyaWdodHMgcmlnaHRzVVJJPSJodHRwczovL2RhdGF2ZXJzZS5oYXJ2YXJkLmVkdS9hcGkvZGF0YXNldHMvOnBlcnNpc3RlbnRJZC92ZXJzaW9ucy8zLjAvY3VzdG9tbGljZW5zZT9wZXJzaXN0ZW50SWQ9ZG9pOjEwLjc5MTAvRFZOL0hBMTdEMyI+Q3VzdG9tIHRlcm1zIHNwZWNpZmljIHRvIHRoaXMgZGF0YXNldDwvcmlnaHRzPgogIDwvcmlnaHRzTGlzdD4KICA8ZGVzY3JpcHRpb25zPgogICAgPGRlc2NyaXB0aW9uIGRlc2NyaXB0aW9uVHlwZT0iQWJzdHJhY3QiPlRoZXNlIGRhdGEgYXJlIGEgZnVsbHkgc3BhdGlhbCBpbXBsZW1lbnRhdGlvbiBvZiB0aGUgSVBDQyAoMjAxOSkgVGllciBJIGJvb2trZWVwaW5nIGFwcHJvYWNoIHRvIHNvaWwgb3JnYW5pYyBjYXJib24gc3RvY2sgY2hhbmdlIGZvciBhIHNlcmllcyBvZiBzY2VuYXJpb3MuIFJlcG9ydCBkZXNjcmliaW5nIG1ldGhvZG9sb2dpZXMgKHBkZikgYW5kIHN1bW1hcnkgdGFibGUgb2YgY291bnRyeSBsZXZlbCBzb2lsIGNhcmJvbiBzdG9jayBjaGFuZ2UgKGV4Y2VsKSBhcmUgYWxzbyBpbmNsdWRlZC4gRm9yIGVhY2ggb2YgOSBkaWZmZXJlbnQgbGFuZCB1c2Ugc2NlbmFyaW9zLCBtYXBzIG9mIHRoZSAyMCB5ZWFyIGNoYW5nZSBpbiBTT0Mgc3RvY2tzIChNZyBDIGhhLTEpIGFyZSBzdXBwbGllZC4gRm9yIGEgcmVzdG9yYXRpb24gdG8gbmF0aXZlIHZlZ2V0YXRpb24gc2NlbmFyaW8sIHRoZSBldmVudHVhbCBzdGVhZHkgc3RhdGUgU09DIHN0b2NrcyBhcmUgYWxzbyBzdXBwbGllZC4KClNwYXRpYWwgbWFwcyBvZiBJUENDIGNsaW1hdGUgem9uZXMsIElQQ0MgU09DIHJlZmVyZW5jZSBzdG9ja3MsIGFuZCBsYW5kIGNsYXNzZXMgYXJlIGluY2x1ZGVkLiAKClNjZW5hcmlvIGZpbGUgYXJlIG5hbWVkIHNjZW5hcmlvX3h4eHhfZFNPQ19Zenogd2hlcmU6ICAgeHh4eCA9IHNjZW5hcmlvIG5hbWUsICBhbmQgenogPSB5ZWFycyBhZnRlciBjaGFuZ2UgaW4gbGFuZCB1c2Ugb3IgbWFuYWdlbWVudAoKQWxsIHNjZW5hcmlvIHJhc3RlcnMgYXJlIGluIHVuaXRzIG9mIE1nIEMgLyBoYSB0byAzMCBjbSBkZXB0aAoKU2NlbmFyaW9zIC0tCgpjcm9wX01HOiBDcm9wbGFuZCwgaW1wcm92ZWQgbWFuYWdlbWVudCBvbmx5OyAgCmNyb3BfTUdJOiBDcm9wbGFuZCwgaW1wcm92ZWQgbWFuYWdlbWVudCBhbmQgaW5wdXRzOyAgCmNyb3BfSTogQ3JvcGxhbmQsIGltcHJvdmVkIGlucHV0cyBvbmx5OyAgCmdyYXNzLXBhcnQ6IEdyYXNzbGFuZCwgcGFydGlhbCByZXN0b3JhdGlvbjsgIApncmFzcy1mdWxsOiBHcmFzc2xhbmQsIGZ1bGwgcmVzdG9yYXRpb247ICAKcmV3aWxkaW5nOiBSZXN0b3JhdGlvbiB0byBuYXR1cmFsIHZlZ2V0YXRpb247ICAKZGVncmFkYXRpb24tRm9yZXN0VG9HcmFzczogRGVncmFkYXRpb24gKGluY2x1ZGVzIGRlZm9yZXN0YXRpb24gdG8gZGVncmFkZWQgZ3Jhc3NsYW5kIGNvbmRpdGlvbik7IApkZWdyYWRhdGlvbi1Gb3Jlc3RUb0Nyb3A6IERlZ3JhZGF0aW9uIChpbmNsdWRlcyBkZWZvcmVzdGF0aW9uIHRvIGNyb3BsYW5kKTsgCmRlZ3JhZGF0aW9uLU5vRGVmb3Jlc3RhdGlvbjogRGVncmFkYXRpb24gKG5vIGRlZm9yZXN0YXRpb24pLjwvZGVzY3JpcHRpb24+CiAgPC9kZXNjcmlwdGlvbnM+CjwvcmVzb3VyY2U+",
+      "url": "https://dataverse.harvard.edu/citation?persistentId=doi:10.7910/DVN/HA17D3",
+      "contentUrl": null,
+      "metadataVersion": 3,
+      "schemaVersion": "http://datacite.org/schema/kernel-4",
+      "source": "mds",
+      "isActive": true,
+      "state": "findable",
+      "reason": null,
+      "viewCount": 1310,
+      "viewsOverTime": [
+        {
+          "yearMonth": "2020-12",
+          "total": 31
+        },
+        {
+          "yearMonth": "2021-01",
+          "total": 33
+        },
+        {
+          "yearMonth": "2021-02",
+          "total": 34
+        },
+        {
+          "yearMonth": "2021-03",
+          "total": 24
+        },
+        {
+          "yearMonth": "2021-04",
+          "total": 21
+        },
+        {
+          "yearMonth": "2021-05",
+          "total": 13
+        },
+        {
+          "yearMonth": "2021-06",
+          "total": 21
+        },
+        {
+          "yearMonth": "2021-07",
+          "total": 17
+        },
+        {
+          "yearMonth": "2021-08",
+          "total": 38
+        },
+        {
+          "yearMonth": "2021-09",
+          "total": 32
+        },
+        {
+          "yearMonth": "2021-10",
+          "total": 45
+        },
+        {
+          "yearMonth": "2021-11",
+          "total": 31
+        },
+        {
+          "yearMonth": "2021-12",
+          "total": 29
+        },
+        {
+          "yearMonth": "2022-01",
+          "total": 15
+        },
+        {
+          "yearMonth": "2022-02",
+          "total": 10
+        },
+        {
+          "yearMonth": "2022-03",
+          "total": 58
+        },
+        {
+          "yearMonth": "2022-04",
+          "total": 50
+        },
+        {
+          "yearMonth": "2022-05",
+          "total": 40
+        },
+        {
+          "yearMonth": "2022-06",
+          "total": 52
+        },
+        {
+          "yearMonth": "2022-07",
+          "total": 18
+        },
+        {
+          "yearMonth": "2022-08",
+          "total": 25
+        },
+        {
+          "yearMonth": "2022-09",
+          "total": 33
+        },
+        {
+          "yearMonth": "2022-10",
+          "total": 18
+        },
+        {
+          "yearMonth": "2022-11",
+          "total": 17
+        },
+        {
+          "yearMonth": "2022-12",
+          "total": 14
+        },
+        {
+          "yearMonth": "2023-01",
+          "total": 22
+        },
+        {
+          "yearMonth": "2023-02",
+          "total": 17
+        },
+        {
+          "yearMonth": "2023-03",
+          "total": 20
+        },
+        {
+          "yearMonth": "2023-04",
+          "total": 15
+        },
+        {
+          "yearMonth": "2023-05",
+          "total": 7
+        },
+        {
+          "yearMonth": "2023-06",
+          "total": 11
+        },
+        {
+          "yearMonth": "2023-07",
+          "total": 9
+        },
+        {
+          "yearMonth": "2023-08",
+          "total": 23
+        },
+        {
+          "yearMonth": "2023-09",
+          "total": 23
+        },
+        {
+          "yearMonth": "2023-10",
+          "total": 27
+        },
+        {
+          "yearMonth": "2023-11",
+          "total": 20
+        },
+        {
+          "yearMonth": "2023-12",
+          "total": 21
+        },
+        {
+          "yearMonth": "2024-01",
+          "total": 18
+        },
+        {
+          "yearMonth": "2024-02",
+          "total": 25
+        },
+        {
+          "yearMonth": "2024-04",
+          "total": 16
+        },
+        {
+          "yearMonth": "2024-05",
+          "total": 25
+        },
+        {
+          "yearMonth": "2024-06",
+          "total": 31
+        },
+        {
+          "yearMonth": "2024-07",
+          "total": 16
+        },
+        {
+          "yearMonth": "2024-08",
+          "total": 24
+        },
+        {
+          "yearMonth": "2024-11",
+          "total": 17
+        },
+        {
+          "yearMonth": "2024-12",
+          "total": 15
+        },
+        {
+          "yearMonth": "2025-01",
+          "total": 6
+        },
+        {
+          "yearMonth": "2025-02",
+          "total": 12
+        },
+        {
+          "yearMonth": "2025-03",
+          "total": 10
+        },
+        {
+          "yearMonth": "2025-04",
+          "total": 12
+        },
+        {
+          "yearMonth": "2025-05",
+          "total": 12
+        },
+        {
+          "yearMonth": "2025-06",
+          "total": 18
+        },
+        {
+          "yearMonth": "2025-07",
+          "total": 17
+        },
+        {
+          "yearMonth": "2025-08",
+          "total": 6
+        },
+        {
+          "yearMonth": "2025-09",
+          "total": 15
+        },
+        {
+          "yearMonth": "2025-10",
+          "total": 5
+        },
+        {
+          "yearMonth": "2025-11",
+          "total": 3
+        },
+        {
+          "yearMonth": "2026-01",
+          "total": 6
+        },
+        {
+          "yearMonth": "2026-02",
+          "total": 9
+        },
+        {
+          "yearMonth": "2026-03",
+          "total": 12
+        },
+        {
+          "yearMonth": "2026-04",
+          "total": 11
+        },
+        {
+          "yearMonth": "2026-05",
+          "total": 10
+        },
+        {
+          "yearMonth": "2026-06",
+          "total": 13
+        },
+        {
+          "yearMonth": "2026-07",
+          "total": 12
+        }
+      ],
+      "downloadCount": 308,
+      "downloadsOverTime": [
+        {
+          "yearMonth": "2020-12",
+          "total": 6
+        },
+        {
+          "yearMonth": "2021-01",
+          "total": 9
+        },
+        {
+          "yearMonth": "2021-02",
+          "total": 7
+        },
+        {
+          "yearMonth": "2021-03",
+          "total": 4
+        },
+        {
+          "yearMonth": "2021-04",
+          "total": 6
+        },
+        {
+          "yearMonth": "2021-05",
+          "total": 4
+        },
+        {
+          "yearMonth": "2021-06",
+          "total": 3
+        },
+        {
+          "yearMonth": "2021-07",
+          "total": 2
+        },
+        {
+          "yearMonth": "2021-08",
+          "total": 15
+        },
+        {
+          "yearMonth": "2021-09",
+          "total": 7
+        },
+        {
+          "yearMonth": "2021-10",
+          "total": 5
+        },
+        {
+          "yearMonth": "2021-11",
+          "total": 6
+        },
+        {
+          "yearMonth": "2021-12",
+          "total": 7
+        },
+        {
+          "yearMonth": "2022-01",
+          "total": 1
+        },
+        {
+          "yearMonth": "2022-02",
+          "total": 2
+        },
+        {
+          "yearMonth": "2022-03",
+          "total": 11
+        },
+        {
+          "yearMonth": "2022-04",
+          "total": 8
+        },
+        {
+          "yearMonth": "2022-05",
+          "total": 8
+        },
+        {
+          "yearMonth": "2022-06",
+          "total": 12
+        },
+        {
+          "yearMonth": "2022-07",
+          "total": 3
+        },
+        {
+          "yearMonth": "2022-08",
+          "total": 12
+        },
+        {
+          "yearMonth": "2022-09",
+          "total": 15
+        },
+        {
+          "yearMonth": "2022-10",
+          "total": 2
+        },
+        {
+          "yearMonth": "2022-11",
+          "total": 2
+        },
+        {
+          "yearMonth": "2022-12",
+          "total": 6
+        },
+        {
+          "yearMonth": "2023-01",
+          "total": 8
+        },
+        {
+          "yearMonth": "2023-02",
+          "total": 4
+        },
+        {
+          "yearMonth": "2023-03",
+          "total": 7
+        },
+        {
+          "yearMonth": "2023-04",
+          "total": 4
+        },
+        {
+          "yearMonth": "2023-06",
+          "total": 2
+        },
+        {
+          "yearMonth": "2023-07",
+          "total": 4
+        },
+        {
+          "yearMonth": "2023-08",
+          "total": 1
+        },
+        {
+          "yearMonth": "2023-09",
+          "total": 5
+        },
+        {
+          "yearMonth": "2023-10",
+          "total": 7
+        },
+        {
+          "yearMonth": "2023-11",
+          "total": 7
+        },
+        {
+          "yearMonth": "2023-12",
+          "total": 3
+        },
+        {
+          "yearMonth": "2024-01",
+          "total": 3
+        },
+        {
+          "yearMonth": "2024-02",
+          "total": 4
+        },
+        {
+          "yearMonth": "2024-04",
+          "total": 4
+        },
+        {
+          "yearMonth": "2024-05",
+          "total": 6
+        },
+        {
+          "yearMonth": "2024-06",
+          "total": 8
+        },
+        {
+          "yearMonth": "2024-07",
+          "total": 3
+        },
+        {
+          "yearMonth": "2024-08",
+          "total": 5
+        },
+        {
+          "yearMonth": "2024-11",
+          "total": 6
+        },
+        {
+          "yearMonth": "2024-12",
+          "total": 5
+        },
+        {
+          "yearMonth": "2025-02",
+          "total": 3
+        },
+        {
+          "yearMonth": "2025-03",
+          "total": 3
+        },
+        {
+          "yearMonth": "2025-04",
+          "total": 4
+        },
+        {
+          "yearMonth": "2025-05",
+          "total": 1
+        },
+        {
+          "yearMonth": "2025-06",
+          "total": 6
+        },
+        {
+          "yearMonth": "2025-07",
+          "total": 6
+        },
+        {
+          "yearMonth": "2025-08",
+          "total": 2
+        },
+        {
+          "yearMonth": "2025-09",
+          "total": 6
+        },
+        {
+          "yearMonth": "2025-11",
+          "total": 1
+        },
+        {
+          "yearMonth": "2026-01",
+          "total": 2
+        },
+        {
+          "yearMonth": "2026-03",
+          "total": 5
+        },
+        {
+          "yearMonth": "2026-04",
+          "total": 2
+        },
+        {
+          "yearMonth": "2026-05",
+          "total": 3
+        },
+        {
+          "yearMonth": "2026-06",
+          "total": 2
+        },
+        {
+          "yearMonth": "2026-07",
+          "total": 3
+        }
+      ],
+      "referenceCount": 0,
+      "citationCount": 2,
+      "citationsOverTime": [
+        {
+          "year": "2022",
+          "total": 1
+        },
+        {
+          "year": "2025",
+          "total": 1
+        }
+      ],
+      "partCount": 0,
+      "partOfCount": 0,
+      "versionCount": 0,
+      "versionOfCount": 0,
+      "created": "2020-12-01T14:00:24.000Z",
+      "registered": "2020-12-01T21:42:09.000Z",
+      "published": "2020",
+      "updated": "2026-04-18T09:26:50.000Z"
+    },
+    "relationships": {
+      "client": {
+        "data": {
+          "id": "gdcc.harvard-dv",
+          "type": "clients"
+        }
+      },
+      "provider": {
+        "data": {
+          "id": "harvardu",
+          "type": "providers"
+        }
+      },
+      "media": {
+        "data": {
+          "id": "10.7910/dvn/ha17d3",
+          "type": "media"
+        }
+      },
+      "references": {
+        "data": []
+      },
+      "citations": {
+        "data": [
+          {
+            "id": "10.1038/s43247-025-02724-0",
+            "type": "dois"
+          },
+          {
+            "id": "10.1126/sciadv.abm8999",
+            "type": "dois"
+          }
+        ]
+      },
+      "parts": {
+        "data": []
+      },
+      "partOf": {
+        "data": []
+      },
+      "versions": {
+        "data": []
+      },
+      "versionOf": {
+        "data": []
+      }
+    }
+  }
+}

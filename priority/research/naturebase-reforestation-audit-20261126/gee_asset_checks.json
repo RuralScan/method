@@ -1,0 +1,17 @@
+[
+  {
+    "asset": "projects/ee-kurtfesenmyer/assets/Reforestation/Inputs/GROA_agb_bgb_offset",
+    "result": "unavailable",
+    "error": "Asset 'projects/ee-kurtfesenmyer/assets/Reforestation/Inputs/GROA_agb_bgb_offset' does not exist or doesn't allow this operation."
+  },
+  {
+    "asset": "projects/ee-kurtfesenmyer/assets/Reforestation/Inputs/for_suit",
+    "result": "unavailable",
+    "error": "Asset 'projects/ee-kurtfesenmyer/assets/Reforestation/Inputs/for_suit' does not exist or doesn't allow this operation."
+  },
+  {
+    "asset": "projects/ee-kurtfesenmyer/assets/Reforestation/Finals/all_constr500m_1",
+    "result": "unavailable",
+    "error": "Asset 'projects/ee-kurtfesenmyer/assets/Reforestation/Finals/all_constr500m_1' does not exist or doesn't allow this operation."
+  }
+]

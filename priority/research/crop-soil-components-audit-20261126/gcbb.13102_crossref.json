@@ -1,0 +1,569 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          11,
+          23
+        ]
+      ],
+      "date-time": "2026-11-23T18:30:03Z",
+      "timestamp": 1795458603221,
+      "version": "4.11.0"
+    },
+    "reference-count": 52,
+    "publisher": "Wiley",
+    "issue": "12",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2023,
+              10,
+              13
+            ]
+          ],
+          "date-time": "2023-10-13T00:00:00Z",
+          "timestamp": 1697155200000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "onlinelibrary.wiley.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "GCB Bioenergy"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2023,
+          12
+        ]
+      ]
+    },
+    "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>\n                    Global warming necessitates urgent action to reduce carbon dioxide (CO\n                    <jats:sub>2</jats:sub>\n                    ) emissions and remove CO\n                    <jats:sub>2</jats:sub>\n                    from the atmosphere. Biochar, a type of carbonized biomass which can be produced from crop residues (CRs), offers a promising solution for carbon dioxide removal (CDR) when it is used to sequester photosynthetically fixed carbon that would otherwise have been returned to atmospheric CO\n                    <jats:sub>2</jats:sub>\n                    through respiration or combustion. However, high\u2010resolution spatially explicit maps of CR resources and their capacity for climate change mitigation through biochar production are currently lacking, with previous global studies relying on coarse (mostly country scale) aggregated statistics. By developing a comprehensive high spatial resolution global dataset of CR production, we show that, globally, CRs generate around 2.4 Pg C annually. If 100% of these residues were utilized, the maximum theoretical technical potential for biochar production from CRs amounts to 1.0 Pg C year\n                    <jats:sup>\u22121</jats:sup>\n                    (3.7 Pg CO\n                    <jats:sub>2</jats:sub>\n                    e year\n                    <jats:sup>\u22121</jats:sup>\n                    ). The permanence of biochar differs across regions, with the fraction of initial carbon that remains after 100\u2009years ranging from 60% in warm climates to nearly 100% in cryosols. Assuming that biochar is sequestered in soils close to point of production, approximately 0.72 Pg C year\n                    <jats:sup>\u22121</jats:sup>\n                    (2.6 Pg CO\n                    <jats:sub>2</jats:sub>\n                    e year\n                    <jats:sup>\u22121</jats:sup>\n                    ) of the technical potential would remain sequestered after 100\u2009years. However, when considering limitations on sustainable residue harvesting and competing livestock usage, the global biochar production potential decreases to 0.51 Pg C year\n                    <jats:sup>\u22121</jats:sup>\n                    (1.9 Pg CO\n                    <jats:sub>2</jats:sub>\n                    e year\n                    <jats:sup>\u22121</jats:sup>\n                    ), with 0.36 Pg C year\n                    <jats:sup>\u22121</jats:sup>\n                    (1.3 Pg CO\n                    <jats:sub>2</jats:sub>\n                    e year\n                    <jats:sup>\u22121</jats:sup>\n                    ) remaining sequestered after a century. Twelve countries have the technical potential to sequester over one fifth of their current emissions as biochar from CRs, with Bhutan (68%) and India (53%) having the largest ratios. The high\u2010resolution maps of CR production and biochar sequestration potential provided here will provide valuable insights and support decision\u2010making related to biochar production and investment in biochar production capacity.\n                  </jats:p>",
+    "DOI": "10.1111/gcbb.13102",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          13
+        ]
+      ],
+      "date-time": "2023-10-13T08:42:16Z",
+      "timestamp": 1697186536000
+    },
+    "page": "1424-1436",
+    "update-policy": "https://doi.org/10.1002/crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 58,
+    "title": [
+      "Potential for biochar carbon sequestration from crop residues: A global spatially explicit assessment"
+    ],
+    "prefix": "10.1111",
+    "volume": "15",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-0037-6759",
+        "authenticated-orcid": false,
+        "given": "Shivesh Kishore",
+        "family": "Karan",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Energy and Technology Swedish University of Agricultural Sciences  Uppsala Sweden"
+          },
+          {
+            "name": "Department of Geomatics Norwegian Institute of Bioeconomy Research  \u00c5s Norway"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-9344-9496",
+        "authenticated-orcid": false,
+        "given": "Dominic",
+        "family": "Woolf",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Integrative Plant Sciences Cornell University  Ithaca New York USA"
+          },
+          {
+            "name": "Atkinson Center for Sustainability Cornell University  Ithaca New York USA"
+          },
+          {
+            "name": "Institute of Digital Agriculture Cornell University  Ithaca New York USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-4865-3401",
+        "authenticated-orcid": false,
+        "given": "Elias Sebastian",
+        "family": "Azzi",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Energy and Technology Swedish University of Agricultural Sciences  Uppsala Sweden"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5979-9521",
+        "authenticated-orcid": false,
+        "given": "Cecilia",
+        "family": "Sundberg",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Energy and Technology Swedish University of Agricultural Sciences  Uppsala Sweden"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-9551-8165",
+        "authenticated-orcid": false,
+        "given": "Stephen A.",
+        "family": "Wood",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "The Nature Conservancy  Arlington Virginia USA"
+          },
+          {
+            "name": "Yale School of the Environment  New Haven Connecticut USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "311",
+    "published-online": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          13
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_2_10_2_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jclepro.2022.133074"
+      },
+      {
+        "key": "e_1_2_10_3_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1748\u20109326/aaf6e0"
+      },
+      {
+        "key": "e_1_2_10_4_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.pecs.2013.09.003"
+      },
+      {
+        "key": "e_1_2_10_5_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.scitotenv.2018.10.060"
+      },
+      {
+        "key": "e_1_2_10_6_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2134/agronj2012.0350"
+      },
+      {
+        "key": "e_1_2_10_7_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1371/journal.pone.0154617"
+      },
+      {
+        "key": "e_1_2_10_8_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature04514"
+      },
+      {
+        "key": "e_1_2_10_9_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3390/agronomy10060824"
+      },
+      {
+        "key": "e_1_2_10_10_1",
+        "unstructured": "Elsgaard L. &Eriksen R. L.(2023).Temperature control on biochar decomposition in soil\u2014Implications for long\u2010term carbon sequestration. In EGU General Assembly 2023 Vienna Austria 24\u201328 April 2023 EGU 23\u20109326.https://doi.org/10.5194/egusphere\u2010egu23\u20109326"
+      },
+      {
+        "key": "e_1_2_10_11_1",
+        "unstructured": "Eurostat. (2022).Quarterly greenhouse gas emissions in the EU.https://ec.europa.eu/eurostat/statistics\u2010explained/index.php?title=Quarterly_greenhouse_gas_emissions_in_the_EU"
+      },
+      {
+        "key": "e_1_2_10_12_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.rser.2019.109288"
+      },
+      {
+        "key": "e_1_2_10_13_1",
+        "unstructured": "FAO. (2022).Faostat. Crops and livestock products: Metadata.https://www.fao.org/faostat/en/#data/QCL/metadata"
+      },
+      {
+        "key": "e_1_2_10_14_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5194/essd\u201014\u20104811\u20102022"
+      },
+      {
+        "key": "e_1_2_10_15_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/gcbb.12604"
+      },
+      {
+        "key": "e_1_2_10_16_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/ldr.4464"
+      },
+      {
+        "key": "e_1_2_10_17_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1073/pnas.1710465114"
+      },
+      {
+        "key": "e_1_2_10_18_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1073/pnas.1308149110"
+      },
+      {
+        "key": "e_1_2_10_19_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "IPCC. (2022).Summary for policymakers. InH.\u2010O.P\u00f6rtner D. C.Roberts E. S.Poloczanska K.Mintenbeck M.Tignor A.Alegr\u00eda M.Craig S.Langsdorf S.L\u00f6schke V.M\u00f6ller &A.Okem(Eds.) Climate change 2022: Impacts adaptation and vulnerability(pp.3\u201333). Contribution of Working Group II to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change.Cambridge University Press.https://doi.org/10.1017/9781009325844.001",
+        "DOI": "10.1017/9781009325844.001"
+      },
+      {
+        "key": "e_1_2_10_20_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.soilbio.2016.07.021"
+      },
+      {
+        "key": "e_1_2_10_21_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/gcbb.12885"
+      },
+      {
+        "key": "e_1_2_10_22_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.resconrec.2020.105211"
+      },
+      {
+        "key": "e_1_2_10_23_1",
+        "unstructured": "Karan S. K. Woolf D. Azzi E. S. Sundberg C. &Wood S. A.(2023).Global crop residue production circa 2010 (No. V1). Harvard Dataversehttps://doi.org/10.7910/DVN/TSU0IE"
+      },
+      {
+        "key": "e_1_2_10_24_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.envint.2004.09.005"
+      },
+      {
+        "key": "e_1_2_10_25_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.4324/9780203762264-17"
+      },
+      {
+        "key": "e_1_2_10_26_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41561\u2010021\u201000852\u20108"
+      },
+      {
+        "key": "e_1_2_10_27_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/gcb.16060"
+      },
+      {
+        "key": "e_1_2_10_28_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s43247\u2010021\u201000097\u20108"
+      },
+      {
+        "key": "e_1_2_10_29_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5194/essd\u201012\u20101913\u20102020"
+      },
+      {
+        "key": "e_1_2_10_30_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/gcbb.12194"
+      },
+      {
+        "key": "e_1_2_10_31_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jclepro.2020.120998"
+      },
+      {
+        "key": "e_1_2_10_32_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1748\u20109326/aabf9b"
+      },
+      {
+        "key": "e_1_2_10_33_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.rser.2012.11.060"
+      },
+      {
+        "key": "e_1_2_10_34_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.rser.2014.12.033"
+      },
+      {
+        "key": "e_1_2_10_35_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.pecs.2011.01.001"
+      },
+      {
+        "key": "e_1_2_10_36_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.geoderma.2016.03.029"
+      },
+      {
+        "key": "e_1_2_10_37_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Proville J. Parkhurst R. Koller S. Kroopf S. Baker J. &Salas W.(2020).Agricultural offset potential in the United States: Economic and geospatial insights. Environmental Defense Fund Economics Discussion Paper Series EDF EDP 20\u201001.",
+        "DOI": "10.2139/ssrn.3699751"
+      },
+      {
+        "key": "e_1_2_10_38_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.geoderma.2019.114055"
+      },
+      {
+        "key": "e_1_2_10_39_1",
+        "unstructured": "Ritchie H. Roser M. &Rosado P.(2020).Our world in data.https://ourworldindata.org/co2\u2010and\u2010greenhouse\u2010gas\u2010emissions"
+      },
+      {
+        "key": "e_1_2_10_40_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/gcb.15873"
+      },
+      {
+        "key": "e_1_2_10_41_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1089/ind.2017.29078.tro"
+      },
+      {
+        "key": "e_1_2_10_42_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.biombioe.2019.01.021"
+      },
+      {
+        "key": "e_1_2_10_43_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.wasman.2010.04.016"
+      },
+      {
+        "key": "e_1_2_10_44_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/gcbb.12889"
+      },
+      {
+        "key": "e_1_2_10_45_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1098/rspb.2017.2798"
+      },
+      {
+        "key": "e_1_2_10_46_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3390/land8120179"
+      },
+      {
+        "key": "e_1_2_10_47_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/gcbb.12266"
+      },
+      {
+        "key": "e_1_2_10_48_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/ncomms1053"
+      },
+      {
+        "key": "e_1_2_10_49_1",
+        "unstructured": "Woolf D. Karan S. K. Azzi E. S. Sundberg C. &Wood S. A.(2023).Biochar from crop residues (no. V1). Harvard Dataversehttps://doi.org/10.7910/DVN/Y6NGFM"
+      },
+      {
+        "key": "e_1_2_10_50_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/es500474q"
+      },
+      {
+        "key": "e_1_2_10_51_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/ncomms13160"
+      },
+      {
+        "key": "e_1_2_10_52_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/acs.est.1c02425"
+      },
+      {
+        "key": "e_1_2_10_53_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5194/essd\u201012\u20103545\u20102020"
+      }
+    ],
+    "container-title": [
+      "GCB Bioenergy"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1111/gcbb.13102",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          11,
+          14
+        ]
+      ],
+      "date-time": "2023-11-14T01:04:15Z",
+      "timestamp": 1699923855000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://onlinelibrary.wiley.com/doi/10.1111/gcbb.13102"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          13
+        ]
+      ]
+    },
+    "references-count": 52,
+    "journal-issue": {
+      "issue": "12",
+      "published-print": {
+        "date-parts": [
+          [
+            2023,
+            12
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1111/gcbb.13102"
+    ],
+    "URL": "https://doi.org/10.1111/gcbb.13102",
+    "archive": [
+      "Portico"
+    ],
+    "relation": {},
+    "ISSN": [
+      "1757-1693",
+      "1757-1707"
+    ],
+    "issn-type": [
+      {
+        "value": "1757-1693",
+        "type": "print"
+      },
+      {
+        "value": "1757-1707",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          13
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2023-06-15",
+        "order": 0,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      },
+      {
+        "value": "2023-08-28",
+        "order": 1,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      },
+      {
+        "value": "2023-10-13",
+        "order": 2,
+        "name": "published",
+        "label": "Published",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      }
+    ]
+  }
+}

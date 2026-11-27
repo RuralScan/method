@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi%3A10.7910%2FDVN%2FY6NGFM",
+    "status": 403
+  },
+  {
+    "url": "https://dataverse.harvard.edu/api/datasets/export?exporter=dataverse_json&persistentId=doi:10.7910/DVN/Y6NGFM",
+    "status": 403
+  },
+  {
+    "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions/3.0/customlicense?persistentId=doi:10.7910/DVN/HA17D3",
+    "status": 403
+  }
+]

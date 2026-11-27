@@ -1,0 +1,33 @@
+{
+  "zip_sha256": "8e2ad5c579eedc3d4fef84f36536fd09bd59b208cf91a26d179a8cba7c114596",
+  "files": [
+    {
+      "name": "Data Exports/Country_Statistics.csv",
+      "sha256": "1fdcb7b030ee27781f8b85edae3b5481ec02d96bb3c4d7b6ae89d778b9a17349",
+      "rows": [
+        {
+          "Name": "Haiti",
+          "Area_2020_km2": "153.849579467108",
+          "Gross_Loss": "16.7649587365907",
+          "Restorable_km2": "8.42084982897028",
+          "OVERALL_SRE": "0.645970473016847",
+          "OVERALL_SCORE_MIN": "0.497473824422193",
+          "OVERALL_SCORE_MAX": "0.729970473016847",
+          "Min_Score": "0.600725830045025",
+          "Max_Score": "0.705970473016847",
+          "Total_Fish": "20979507.351529",
+          "Fish": "10174019.915667",
+          "Crab": "10805487.435862",
+          "Bivalve": "0",
+          "Shrimp": "0",
+          "MeanAGB_Secure": "2905.21124694779",
+          "MeanAGB_Restor": "2821.20623660966",
+          "MeanSOC_Secure": "158759.304992306",
+          "MeanSOC_Restor": "15258.4942497018",
+          "Area_Rank": "56",
+          "Proportion_Restorable": "5.47"
+        }
+      ]
+    }
+  ]
+}

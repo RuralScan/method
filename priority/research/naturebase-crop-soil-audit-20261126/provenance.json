@@ -1,0 +1,26 @@
+{
+  "inspection_date_local": "2026-11-26",
+  "timezone": "America/Bogota",
+  "recorded_utc": "2026-11-27T03:13:48.450767+00:00",
+  "scientifically_accepted": false,
+  "runtime_ready": false,
+  "status": "haiti_positive_coverage_verified_practice_specific_transfer_held",
+  "boundary": "USDOS/LSIB_SIMPLE/2017; country_na=Haiti; native cell centres",
+  "sample": "160 points for each of 9 ESA WorldCover classes; 1440 points, 1292 unique Naturebase pixels",
+  "method_base": "cb94059a9636027a16517e06f9ab8548a911191b",
+  "acquisition_scope": "Only top-level scientific members acquired via HTTP byte ranges. Original whole ZIP not downloaded or SHA256 hashed. Selected.zip is locally assembled subset. GDB members inventoried but not inspected.",
+  "datacite_doi_title_check": {
+    "url": "https://api.datacite.org/dois/10.7910/DVN/HA17D3",
+    "title": "Soils Revealed soil carbon futures",
+    "version": "3.0",
+    "result": "author-deposited metadata title matches Naturebase source citation; no formal SRC registration"
+  },
+  "additional_source": {
+    "url": "https://www.conservation.org/projects/mapping-the-climate-potential-of-insetting",
+    "locator": "Methods",
+    "snapshot_sha256": "650ac546cc0f8889cda36173dd4ee469363466343af35b9a8458342b0a9a84a3",
+    "finding": "Authors flag global uncertainty and aggregation of strategies. Their 61% discount derives from US evidence; not adopted for Haiti."
+  },
+  "source_snapshot_private": "../naturebase-crop-soil-20261126/ci_insetting.html",
+  "scope": "No class thresholds, carbon-loss rules, T4/T6 effects or infrastructure bindings changed."
+}

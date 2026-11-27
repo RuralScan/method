@@ -1,0 +1,76 @@
+{
+  "type": "IMAGE",
+  "name": "projects/global-pasture-watch/assets/gsm-30m/v1/oc_iso_10694_1995_mg_cm3/2020_2022_b0_30cm",
+  "id": "projects/global-pasture-watch/assets/gsm-30m/v1/oc_iso_10694_1995_mg_cm3/2020_2022_b0_30cm",
+  "properties": {
+    "depth_interval": "0_30",
+    "version": 1
+  },
+  "updateTime": "2025-03-28T10:06:05.680035Z",
+  "startTime": "2020-01-01T00:00:00Z",
+  "endTime": "2022-12-31T23:59:59Z",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          "-Infinity",
+          "-Infinity"
+        ],
+        [
+          "Infinity",
+          "-Infinity"
+        ],
+        [
+          "Infinity",
+          "Infinity"
+        ],
+        [
+          "-Infinity",
+          "Infinity"
+        ],
+        [
+          "-Infinity",
+          "-Infinity"
+        ]
+      ]
+    ]
+  },
+  "bands": [
+    {
+      "id": "mg_cm3",
+      "dataType": {
+        "precision": "INT",
+        "range": {
+          "max": 65535
+        }
+      },
+      "grid": {
+        "crsCode": "EPSG:4326",
+        "dimensions": {
+          "width": 1440004,
+          "height": 528004
+        },
+        "affineTransform": {
+          "scaleX": 0.00024999999999996845,
+          "translateX": -180.0005,
+          "scaleY": -0.00024999999999996845,
+          "translateY": 76.0005
+        }
+      },
+      "pyramidingPolicy": "MEAN"
+    }
+  ],
+  "tilesets": [
+    {
+      "id": "0",
+      "sources": [
+        {
+          "uris": [
+            "gs://wri-globalpasturewatch/gsm-30m/oc_iso.10694.1995.mg.cm3_m_30m_b0cm..30cm_20200101_20221231_g_epsg.4326_v20250204.tif"
+          ]
+        }
+      ]
+    }
+  ]
+}

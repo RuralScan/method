@@ -1,0 +1,23 @@
+{
+  "archive_crc_failure": null,
+  "top_level_files": [
+    "grs_sba_tco2e_adm0.csv",
+    "grs_sba_tco2e_adm1.csv",
+    "grs_sba_tco2e_adm2.csv",
+    "grs_sba_tco2eha.tif",
+    "ReadMe_grs_sba_total.txt"
+  ],
+  "global_positive_control": {
+    "lon": -6.750839360158096,
+    "lat": 58.278204057254044,
+    "value": 1.6909441947937012,
+    "row": 1416,
+    "col": 19286
+  },
+  "haiti_boundary_bbox": [
+    -74.48294069528139,
+    18.020416262570535,
+    -71.62175400264564,
+    20.088388455605017
+  ]
+}

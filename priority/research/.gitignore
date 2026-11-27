@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.tif
+*.tiff
+*.zip
+*.part
+*.crdownload
