@@ -28,3 +28,7 @@ Source and binding provenance already exist in the pinned WRI technical-note pac
 T5 now links to this contextual rule set. The immutable historical `aqueduct_bws-0.1.0.json` remains preserved. The chat approval is recorded here and in the CSV rationale; no protected runtime-release receipt is asserted. No seasonal-fit analysis is required to review the classes. Next proposal: [chronic food insecurity](2026-11-25-food-insecurity-classes.md).
 
 Pinned WRI FAQ snapshot retained in the team-library mirror under `0_Methodology_&_Frameworks/priority_classification/water_stress_2026_11_25/reviewed_web_sources.zip`; archive SHA-256 `71792ac6b7ca96691a2b17e5419ad7ef3c6a9224f22a242b1489aa2b04d52f4f`. The member was read back and verified byte-for-byte. Remote team access was not checked.
+
+## Haiti coverage follow-up — 27 November 2026
+
+[Bounded Aqueduct inspection](2026-11-27-aqueduct-haiti-coverage.md) confirms 99.58% valid boundary coverage but only two distinct basins. The existing classes decode successfully; source fragments must be dissolved by consistent basin identity before class-area summaries. The follow-up preserves nodata/uncovered area and explains why fragment means cannot become a national stress category. This is technical verification, not runtime acceptance.

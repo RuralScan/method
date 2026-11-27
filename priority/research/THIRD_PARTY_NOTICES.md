@@ -1,4 +1,4 @@
-# Third-party material in the carbon/Naturebase research records
+# Third-party material in dataset research records
 
 The repository's MIT licence covers original project code and documentation. It does not relicense third-party datasets, retained source code or sampled source-derived values. Attribution, source/version locators and acquisition hashes are preserved in each report and audit; no global rasters or ZIPs are included here.
 
@@ -9,3 +9,6 @@ The repository's MIT licence covers original project code and documentation. It 
 - **Shared diagnostic inputs:** the [input README](haiti-diagnostic-inputs-20261126/README.md) records public-domain LSIB boundary terms and ESA WorldCover CC BY 4.0 attribution. Points are generated diagnostic samples, not private observations.
 
 Other source metadata, published catalogue fields and small diagnostic observations retain the source URLs and conditions recorded in their reports. No new licence grant is asserted for those sources. Reacquire large originals through their documented official routes and retain source conditions during any subsequent binding release.
+
+- **World Resources Institute, Aqueduct 4.0:** the [bounded native Haiti candidate subset](aqueduct-haiti-audit-20261127/README.md) is retained with WRI attribution. The [GEE catalogue terms](https://developers.google.com/earth-engine/datasets/catalog/WRI_Aqueduct_Water_Risk_V4_baseline_annual) permit use and distribution and request attribution. Field/feature selection, clipping and diagnostics are our modifications; no endorsement is implied.
+- **FEWS NET, CNSA and FAO/WDI food-source research:** [source-specific notices and acquisition routes](food-alternatives-audit-20261127/README.md) govern original material. The public repository contains metadata and diagnostic findings, not survey microdata or the CNSA PDF. FEWS NET attribution must accompany onward sharing, including its [use policy](https://help.fews.net/fdp/data-and-information-use-and-attribution-policy); upstream third-party restrictions remain relevant.

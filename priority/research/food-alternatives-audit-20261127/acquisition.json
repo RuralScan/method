@@ -1,0 +1,31 @@
+{
+  "retrieved": "2026-11-27",
+  "source_archive": "0_Methodology_&_Frameworks/priority_classification/food_alternatives_haiti_2026_11_27/reviewed_sources.zip",
+  "archive_sha256": "daa77861c33f0764eb7ccfa173d90b867cb351457b8e6e2a15f95457457ae69a",
+  "members": {
+    "ENSSAN_2025.pdf": "ad0157ddd13b0d527db844e2189b2da82e39102073071b40cc4db34e5d9be6e9",
+    "fews_haiti_202610.geojson": "fc9a5942d134d11cbcc3219d736a6eed55c44a7f47641705b0735205ca321172",
+    "wdi_fies_haiti.json": "cc6afba95b10d89cb51078d9efd031a056d96d7fa570bbcdb7ad54c5c01c318d",
+    "wdi_fies_metadata.json": "f48237f0553c7ccf111bcca17c620fd7ab6a4c2e45b534e8c8b9f8f0c4c5bc24",
+    "fews_june2026.html": "3f2efb529abc305feb4006243ac692d6751442fe2d1a79fb662d66c125e6420c",
+    "fews_october_report.html": "4a30f3e4892c1b43af8548738b61b17d290a2a60a123904409ddf37b0cc97fa9",
+    "enssan_catalogue.html": "7c326a38b68f6fe3200a49a88d15d48e6682500400a5f8519ef9383416d72e8f",
+    "worldbank_jfsm.html": "27ff92216f507193126701211451e7bc8ef248b856f57dd329919d540e393aad",
+    "hungermap.html": "3cf8069152d64bd483e1ed3e161f57d9581d912774830c995f7f02e3904e04ed"
+  },
+  "urls": {
+    "ENSSAN_2025.pdf": "https://www.cnsahaiti.org/Web/Etudes/2025/Rapport%20ENSSAN%202025_vf.pdf",
+    "fews_haiti_202610.geojson": "https://fdw.fews.net/api/ipcphasemap/country/HT/2026-10-01.geojson",
+    "wdi_fies_haiti.json": "https://api.worldbank.org/v2/country/HTI/indicator/SN.ITK.MSFI.ZS?format=json&per_page=100",
+    "wdi_fies_metadata.json": "https://api.worldbank.org/v2/indicator/SN.ITK.MSFI.ZS?format=json",
+    "fews_june2026.html": "https://fews.net/haiti-acute-food-insecurity-classification-june-2026-january-2027",
+    "fews_october_report.html": "https://fews.net/latin-america-and-caribbean/haiti/food-security-outlook/october-2026",
+    "enssan_catalogue.html": "https://www.cnsahaiti.org/enquetes-etudes/",
+    "worldbank_jfsm.html": "https://microdata.worldbank.org/catalog/8016/",
+    "hungermap.html": "https://hungermap.wfp.org/"
+  },
+  "boundary_sha256": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9",
+  "mirror_readback_verified": true,
+  "remote_team_access_verified": false,
+  "registration_status": "research only; no SRC/EV or accepted T1/BIND row created"
+}

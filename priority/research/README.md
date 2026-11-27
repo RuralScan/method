@@ -4,6 +4,8 @@ Start with the [Brayden/Diego handover](2026-11-26-handover-brayden-diego.md) fo
 
 | Research question | Current report | Reproducible observations |
 |---|---|---|
+| Aqueduct Haiti coverage and basin aggregation? | [Two-basin inspection and aggregation guidance](2026-11-27-aqueduct-haiti-coverage.md) | [Pinned vectors and offline probe](aqueduct-haiti-audit-20261127/README.md) |
+| Newer national/global Haiti food-insecurity sources? | [Seven-source comparison and recommendation](2026-11-27-food-insecurity-alternatives-haiti.md) | [Acquisition hashes, FEWS geometry and WDI checks](food-alternatives-audit-20261127/README.md) |
 | Current Haiti chronic food-insecurity binding? | [National source and remaining hold](2026-11-27-food-insecurity-haiti-binding.md) | [Inspection](food-binding-audit-20261127/inspection.json), [acquisition hashes](food-binding-audit-20261127/acquisition.json) |
 | Carbon change beyond forests | [Soil, woody biomass and remaining pools](2026-11-26-carbon-loss-followup.md) | [Carbon audit](carbon-loss-audit-20261126/README.md) |
 | Which RuralScan families match Naturebase? | [Crosswalk and completed sequence](2026-11-26-naturebase-nbs-crosswalk.md) | Exact family/source revisions recorded in report |
@@ -18,3 +20,5 @@ Start with the [Brayden/Diego handover](2026-11-26-handover-brayden-diego.md) fo
 [Shared Haiti diagnostic inputs](haiti-diagnostic-inputs-20261126/README.md) preserve exact point and boundary bytes. [Third-party notices](THIRD_PARTY_NOTICES.md) distinguish data conditions from code licences. Global rasters/ZIPs and browser screenshots remain outside Git. Earlier research notes remain available; historical proposals are not erased or silently promoted.
 
 Run `python3 priority/research/verify_research.py` to check audit manifests, shared-input integrity, sample counts, saved scientific diagnostics and local report links without downloading data. Acquisition and probe commands in each audit README are separate network-dependent replays, not CI requirements.
+
+Run `python3 priority/research/verify_haiti_bindings.py` for the two 27 November Aqueduct/food snapshots. Their audit READMEs give spatial replay commands with pinned dependencies; the food replay uses archived original files.
