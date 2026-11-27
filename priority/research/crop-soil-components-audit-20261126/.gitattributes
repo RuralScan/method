@@ -1,0 +1,5 @@
+# Preserve producer bytes and their recorded hashes, including original line endings.
+biochar_ReadMe.txt -text whitespace=cr-at-eol,-blank-at-eof
+soc-stock-future-change.js -text whitespace=-blank-at-eof
+soc-stock-future-period.js -text whitespace=-blank-at-eof
+soils_revealed_constants.js -text whitespace=-blank-at-eof

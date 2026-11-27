@@ -29,5 +29,6 @@
   "soil_window_checks.json": "31a5566c21c7d3ec2eb7fe54fd8c0edfb3180433f5d3a509dd7441827ff2db36",
   "soils_revealed_constants.js": "43c0d2d56e014c8b3ea736690870c7818e0bec6c9bd687090e4f1da9ad5dcd8b",
   "verify_audit.py": "112ae64d60928857c27fa60e2e1cb50c9f9221b6d3e02e58a86ec605264ced28",
-  "soils_revealed_LICENSE.txt": "d03f341f005e1da0f6b30617780bf8ada9f1cba571619727b8976943c7cae16c"
+  "soils_revealed_LICENSE.txt": "d03f341f005e1da0f6b30617780bf8ada9f1cba571619727b8976943c7cae16c",
+  ".gitattributes": "8885621fbdbdd456de1d7fc18713a16b70ee770d4946dee4cdd8ee14a67fd863"
 }
