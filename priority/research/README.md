@@ -4,6 +4,7 @@ Start with the [Brayden/Diego handover](2026-11-26-handover-brayden-diego.md) fo
 
 | Research question | Current report | Reproducible observations |
 |---|---|---|
+| Current Haiti chronic food-insecurity binding? | [National source and remaining hold](2026-11-27-food-insecurity-haiti-binding.md) | [Inspection](food-binding-audit-20261127/inspection.json), [acquisition hashes](food-binding-audit-20261127/acquisition.json) |
 | Carbon change beyond forests | [Soil, woody biomass and remaining pools](2026-11-26-carbon-loss-followup.md) | [Carbon audit](carbon-loss-audit-20261126/README.md) |
 | Which RuralScan families match Naturebase? | [Crosswalk and completed sequence](2026-11-26-naturebase-nbs-crosswalk.md) | Exact family/source revisions recorded in report |
 | Cropland agroforestry | [Haiti inspection](2026-11-26-naturebase-cropland-binding.md) | [Audit](naturebase-cropland-audit-20261126/README.md) |

@@ -1,0 +1,13 @@
+{
+  "source_archive": "0_Methodology_&_Frameworks/priority_classification/food_binding_haiti_2026_11_27/reviewed_sources.zip",
+  "archive_sha256": "c01ab68bc3f8f2724f5e4cc141c778c9d038397299098623cdb686262d777910",
+  "members": {
+    "cnsa_haiti_chronic_2015.pdf": "c2e293ccac0eb18e5fe6ea2f3950f39720588f43556e0bccac274b5c90ed568b",
+    "cnsa_chronic_catalogue.html": "677279a7d419cc7fc415f5a3b778b214379a4029858e1293d27fe489bcb0ce38",
+    "ipc_chronic_map_ax.txt": "31debecce394ea9bda5bfce9f4a726590ac07c39055bee63ba7d2aefbbdb6d0a",
+    "inspection.json": "77620a3dd2dd4e6de09651772427e8b70b8324984a7163e4d3d43a1ce3ae491d"
+  },
+  "mirror_readback_verified": true,
+  "remote_team_access_verified": false,
+  "registration_status": "research only; no SRC/EV or accepted T1/BIND row created"
+}

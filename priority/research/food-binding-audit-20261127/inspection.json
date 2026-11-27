@@ -1,0 +1,90 @@
+{
+  "record_type": "research_inspection_not_accepted_binding",
+  "checked_on": "2026-11-27",
+  "variable_id": "food_insecurity",
+  "country": "HTI",
+  "classification_family": "IPC Chronic Food Insecurity",
+  "runtime_ready": false,
+  "current_haiti_status": "requires_local_assessment",
+  "historical_source": {
+    "publisher": "CNSA and IPC partners",
+    "title": "Aperçu de la situation d’insécurité alimentaire chronique en Haïti (10/2015)",
+    "assessment_month": "2015-10",
+    "catalogue_valid_from": "2015-10-01",
+    "catalogue_valid_to": "2020-10-31",
+    "catalogue_url": "https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/459668/?iso3=HTI",
+    "download_url": "https://www.cnsahaiti.org/Web/Bulletin_IPC/2014/Rapport%20IPC_chronique_version%20finale.pdf",
+    "filename": "cnsa_haiti_chronic_2015.pdf",
+    "sha256": "c2e293ccac0eb18e5fe6ea2f3950f39720588f43556e0bccac274b5c90ed568b",
+    "pages": 4,
+    "support": "Livelihood-based analysis areas; not a uniform administrative level",
+    "defined_areas": 15,
+    "assessed_areas": 13,
+    "unassessed_areas": 2,
+    "counts_locator": "page 1 footnote 1; page 4 population table",
+    "validity_locator": "page 3 protocol and update recommendations; IPC catalogue validity panel",
+    "polygon_package_acquired": false,
+    "source_level_field": null,
+    "source_join_id_field": null,
+    "current_applicability_verified": false
+  },
+  "approved_display_mapping": {
+    "1": "Very little",
+    "2": "Low",
+    "3": "Medium",
+    "4": "High"
+  },
+  "current_alternative": {
+    "family": "IPC Acute Food Insecurity",
+    "catalogue_url": "https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1165467/?iso3=HTI",
+    "released": "2026-10-28",
+    "current_period": [
+      "2026-09",
+      "2027-02"
+    ],
+    "projection_period": [
+      "2027-03",
+      "2027-06"
+    ],
+    "eligible_for_chronic_crosswalk": false,
+    "status": "lead_only_no_substitution"
+  },
+  "access": {
+    "cnsa_catalogue_http": 200,
+    "cnsa_pdf_http": 200,
+    "ipc_direct_http": 403,
+    "ipc_catalogue_metadata": "Inspected through web search/indexed official pages; original HTML not acquired",
+    "ipc_public_map": "Chronic mode inspected through browser; no downloadable Haiti polygons verified",
+    "api_url": "https://www.ipcinfo.org/ipc-country-analysis/api/",
+    "api_scope": "Provider documentation describes acute data; chronic listed as future addition. No API key requested."
+  },
+  "holds": [
+    "Current applicable chronic assessment",
+    "Exact assessment polygons and stable join IDs",
+    "Published area-level class field and missing-value codebook",
+    "Licence/use compatibility before deployment"
+  ],
+  "scope": {
+    "core_variables": 9,
+    "infrastructure": [
+      "roads",
+      "schools",
+      "health facilities",
+      "power lines",
+      "buildings"
+    ],
+    "climate_selection": "pending Brayden confirmation"
+  },
+  "sources": [
+    {
+      "url": "https://www.cnsahaiti.org/ipc-chronique/",
+      "locator": "IPC Chronique bulletin link",
+      "observation": "Catalogue links October 2015 report; no newer chronic bulletin found here."
+    },
+    {
+      "url": "https://www.ipcinfo.org/ipcinfo-website/privacy-policy/",
+      "locator": "I.C Data Licensing",
+      "observation": "IPC results: CC BY-NC-SA 3.0 IGO; date, source and licence attribution required. Deployment permission not established by inspection."
+    }
+  ]
+}
