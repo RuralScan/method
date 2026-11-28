@@ -6,6 +6,13 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.30.0] - 2026-11-27
+
+- Explain Haiti food-insecurity measures, assessment periods and geographic limitations, retaining the acute four-class display as a proposal.
+- Explain Aqueduct basin support and class-area reporting without treating broad coverage as fine local information.
+- Distinguish candidate carbon-stock changes from complete carbon-loss accounts and external mitigation-potential comparisons.
+- Preserve existing biodiversity, erosion and infrastructure guidance and all recorded scientific and runtime boundaries.
+
 ## [0.29.0] - 2026-11-26
 
 - Adopt the inspected 2020 NHM BII layer provisionally as coarse context, retaining its approximately 10 km native support and source year.
