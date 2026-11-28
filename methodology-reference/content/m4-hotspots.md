@@ -64,9 +64,7 @@ Keep M2b investment-risk screening separate. T2 now supplies individual climate-
 
 ### 4. Assess CRITIC without replacing user priorities
 
-CRITIC derives weights from variation and correlations in the supplied indicators. We tested the implementation against its original published example and ran controlled checks for duplicates, constant indicators, opposing signals, changing study areas and classifying values. It is useful for sensitivity analysis, but those weights answer a different question from the user's priorities. [src: method:methodology-reference/reviews/critic-assessment-2026-11-24.md]
-
-The tests show that changing the area, discretisation or scaling can materially change CRITIC weights. Identical indicators leave the method without identifiable weights; it must not invent an equal-weight fallback. Correlation also cannot decide which of two records is the canonical representation of a concern. Keep CRITIC **diagnostic only** in this version; there is no automatic CRITIC, entropy or AHP multiplier. [src: method:methodology-reference/reviews/critic-assessment-2026-11-24.md]
+CRITIC is a statistical comparison that derives weights from indicator variation and correlations. Its weights depend on the study area, scaling and classification; they do not express stakeholder priorities or resolve duplicated concerns. Use it only to test sensitivity alongside the declared user weights. It neither adjusts those weights automatically nor supplies equal weights when the data cannot identify them. The linked assessment contains the calculations and checks. [src: method:methodology-reference/reviews/critic-assessment-2026-11-24.md]
 
 ### 5. Test the shortlist
 

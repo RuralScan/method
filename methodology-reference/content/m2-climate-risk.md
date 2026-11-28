@@ -37,7 +37,7 @@ Table: Information required for a livelihood climate-risk assessment.
 
 [src: methodology/modules/M2_climate_risk.md §3]
 
-[[table:T2]] records named climate-risk variables and classification references; [[table:T3]] records practice responses to hazards. The current T2 registry preserves all eleven IDs, with candidate datasets and explicit blockers. None is yet an accepted, runnable classification. Historical mode and default-weight fields remain in the archived CSV, not the current interface. [src: method:priority/t2/README.md] Apply the data-selection checks in [[ch:farming-systems-and-data]]. [src: method:data-model/spec.md §T2] [src: method:priority/README.md]
+[[table:T2]] records climate-risk variables and their classification references; [[table:T3]] records practice responses to hazards. Select inputs with an applicable, accepted classification and dataset definition; listing a candidate in the registry does not approve its use. Apply the data-selection checks in [[ch:farming-systems-and-data]]. Historical mode and default-weight fields belong to earlier editions, not the current calculation. [src: method:priority/t2/README.md] [src: method:data-model/spec.md §T2] [src: method:priority/README.md]
 
 ## Method
 
@@ -63,7 +63,7 @@ Each variable records its unit, scenario, context, shared concern identity and c
 
 Use compatible hazard quantities, periods, units and reference scales. A difference between separately rescaled maps can reflect the scaling change as well as climate change. Do not interpret a change between unlike metrics as a change in physical risk. Record the scenario, future horizon and exposure assumptions with each comparison. [src: methodology/modules/M2_climate_risk.md §6.6]
 
-The T2 migration records unresolved proxy and comparability issues, including a rainfall-based flood proxy and different baseline and future drought inputs. Those entries cannot be treated as a validated paired change analysis. [src: method:priority/t2/variables.csv] The application must establish compatible inputs before making that comparison. [src: schema/T2_climate_risk.csv] [src: schema/registers/BIND_dataset_binding.csv]
+A rainfall-based flood proxy cannot supply a change in inundation depth. Likewise, different baseline and future drought measures cannot be subtracted as though they were the same quantity. Establish compatible inputs before reporting a change; the source definitions and comparison requirements remain with each T2 entry. [src: method:priority/t2/variables.csv] [src: schema/T2_climate_risk.csv] [src: schema/registers/BIND_dataset_binding.csv]
 
 ### 5. Summarise and test interpretation
 

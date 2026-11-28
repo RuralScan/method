@@ -6,6 +6,13 @@ change history on "About versions and changes", and the release notes on GitHub 
 Version numbers follow `VERSION.json`: major.minor.patch. The top entry here must be the version in that
 file, with the same date; the build fails otherwise. `README.md` says when each part of the number moves.
 
+## [0.30.1] - 2026-11-27
+
+- Link newer dataset assessments from the data-selection chapter while preserving the historical evidence edition.
+- Replace climate-registry development detail with the requirements for selecting and comparing inputs.
+- Reflect the recorded acute food-insecurity class approval, retaining geometry, binding and runtime limitations.
+- Shorten the statistical weighting comparison and keep its calculations in the linked assessment.
+
 ## [0.30.0] - 2026-11-27
 
 - Explain Haiti food-insecurity measures, assessment periods and geographic limitations, retaining the acute four-class display as a proposal.
