@@ -69,3 +69,7 @@ BIND's specified precedence is admin_region > admin_country > hydrobasin > farmi
 ## Full Haiti road geometry follow-up — 27 November 2026
 
 [Complete road inspection and national comparison](2026-11-27-haiti-road-geometry.md) now checks the dated OSM road layer, clips actual linework to Haiti, retains native-class lengths and inspects exact duplicates/IDs. CNIGS is processed separately. No hazard exposure, inventory completeness or automatic national replacement is claimed. Schools, health facilities, power lines and buildings remain active.
+
+## School and health-facility coverage — 27 November 2026
+
+[Haiti coverage and duplicate review](2026-11-27-haiti-facility-coverage.md) records OSM school/health features across all ten departments, boundary sensitivity and point/polygon identity candidates. PAHO missing locations and department disagreements prevent wholesale national replacement. No records merged or exposure computed; power lines/buildings and national master-list needs remain active.

@@ -4,6 +4,7 @@ Start with the [Brayden/Diego handover](2026-11-26-handover-brayden-diego.md) fo
 
 | Research question | Current report | Reproducible observations |
 |---|---|---|
+| Haiti school/health coverage and duplicates? | [Coverage, co-location and national-source flags](../infrastructure/2026-11-27-haiti-facility-coverage.md) | [Pinned audit and unresolved review queue](../infrastructure/facilities-haiti-audit-20261127/README.md) |
 | Haiti road geometry and national-source comparison? | [Complete geometry and class-length inspection](../infrastructure/2026-11-27-haiti-road-geometry.md) | [Pinned road members and offline audit](../infrastructure/roads-haiti-audit-20261127/README.md); no hazard overlay |
 | KBA polygon access and Haiti coverage? | [Submitted request and access hold](2026-11-27-kba-access-hold.md) | BirdLife manual review pending; restricted GEE route identified; no polygons acquired or coverage claim |
 | Approved acute food-insecurity classes and Phase 5 flag? | [Approval and retained limitations](2026-11-27-food-insecurity-approved.md) | [Approved crosswalk](food-insecurity-approval-20261127/classes.csv), [pinned decision](food-insecurity-approval-20261127/decision.json) |

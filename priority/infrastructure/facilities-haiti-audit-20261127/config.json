@@ -1,0 +1,12 @@
+{
+  "osm_classes": ["school", "hospital", "clinic", "doctors"],
+  "school_classes": ["school"],
+  "health_classes": ["hospital", "clinic", "doctors"],
+  "country_inclusion": "point covered by pinned Haiti boundary; polygon positive-area intersection",
+  "department_assignment": "source point, or interior representative point of country-clipped polygon; ambiguous/unmatched retained",
+  "name_normalization": "Unicode NFKD, remove combining marks, casefold, replace non-alphanumeric characters with spaces, collapse whitespace",
+  "duplicate_checks": ["qualified source ID", "exact normalized geometry", "point covered by polygon within theme", "positive polygon overlap within theme", "repeated normalized nonblank name within theme"],
+  "cross_source_check": "PAHO or CNIGS-school name equal to normalized OSM name within theme: retain all pairs and distance to geometry; no distance acceptance cutoff",
+  "automatic_merge": false,
+  "runtime_ready": false
+}

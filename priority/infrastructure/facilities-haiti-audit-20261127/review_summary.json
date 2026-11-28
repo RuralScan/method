@@ -1,0 +1,131 @@
+{
+  "decision": "unresolved_candidates_not_deleted",
+  "same_name_class_exact_point_groups": [
+    [
+      "osm_point:1958",
+      "osm_point:1968"
+    ],
+    [
+      "osm_point:3441",
+      "osm_point:3502"
+    ],
+    [
+      "osm_point:6105",
+      "osm_point:7042"
+    ],
+    [
+      "osm_point:13514",
+      "osm_point:13515"
+    ]
+  ],
+  "same_name_point_polygon_pairs": [
+    {
+      "point": "osm_point:19802",
+      "polygon": "osm_polygon:4077",
+      "theme": "health",
+      "name_relation": "same_normalized_name",
+      "same_native_class": true
+    },
+    {
+      "point": "osm_point:2915",
+      "polygon": "osm_polygon:239",
+      "theme": "school",
+      "name_relation": "same_normalized_name",
+      "same_native_class": true
+    },
+    {
+      "point": "osm_point:32684",
+      "polygon": "osm_polygon:14043",
+      "theme": "school",
+      "name_relation": "same_normalized_name",
+      "same_native_class": true
+    },
+    {
+      "point": "osm_point:5353",
+      "polygon": "osm_polygon:1175",
+      "theme": "school",
+      "name_relation": "same_normalized_name",
+      "same_native_class": true
+    },
+    {
+      "point": "osm_point:5366",
+      "polygon": "osm_polygon:1176",
+      "theme": "school",
+      "name_relation": "same_normalized_name",
+      "same_native_class": true
+    },
+    {
+      "point": "osm_point:6096",
+      "polygon": "osm_polygon:5938",
+      "theme": "school",
+      "name_relation": "same_normalized_name",
+      "same_native_class": true
+    },
+    {
+      "point": "osm_point:6603",
+      "polygon": "osm_polygon:1274",
+      "theme": "school",
+      "name_relation": "same_normalized_name",
+      "same_native_class": true
+    },
+    {
+      "point": "osm_point:6615",
+      "polygon": "osm_polygon:1276",
+      "theme": "school",
+      "name_relation": "same_normalized_name",
+      "same_native_class": true
+    },
+    {
+      "point": "osm_point:6616",
+      "polygon": "osm_polygon:1275",
+      "theme": "school",
+      "name_relation": "same_normalized_name",
+      "same_native_class": true
+    },
+    {
+      "point": "osm_point:6878",
+      "polygon": "osm_polygon:1284",
+      "theme": "school",
+      "name_relation": "same_normalized_name",
+      "same_native_class": true
+    },
+    {
+      "point": "osm_point:6944",
+      "polygon": "osm_polygon:1301",
+      "theme": "school",
+      "name_relation": "same_normalized_name",
+      "same_native_class": true
+    },
+    {
+      "point": "osm_point:835",
+      "polygon": "osm_polygon:14429",
+      "theme": "health",
+      "name_relation": "same_normalized_name",
+      "same_native_class": true
+    }
+  ],
+  "point_polygon_pair_counts": {
+    "school / different_names": 18,
+    "health / different_names": 9,
+    "school / missing_name": 75,
+    "health / missing_name": 22,
+    "health / same_normalized_name": 2,
+    "school / same_normalized_name": 10
+  },
+  "polygon_overlap_pair_counts": {
+    "school / missing_name": 10,
+    "school / same_normalized_name": 3,
+    "health / different_names": 4,
+    "health / missing_name": 2
+  },
+  "cross_source_name_distance_range_m": {
+    "paho_osm": [
+      0.0,
+      260615.653
+    ],
+    "cnigs_osm": [
+      6.969,
+      1200.575
+    ]
+  }
+}
