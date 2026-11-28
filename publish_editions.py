@@ -2,7 +2,7 @@
 import csv
 from review.build import compose as compose_review
 from datetime import date
-from html import escape
+from html import escape, unescape
 import io
 import json
 from pathlib import Path
@@ -287,13 +287,32 @@ def reference_version(site, reference):
     return label, "Current draft" if status == "draft" else "Current release"
 
 
-def publish_reference_menu(site, reference, labels, label, note):
+def reference_history(site, reference):
+    """Link the built change history, not a second hand-maintained version catalogue."""
+    history = (site / reference["href"]).with_name("editions.html")
+    try:
+        contents = history.read_text().split("<main", 1)[1]
+        entries = re.findall(r'<h3 id="v(\d+\.\d+\.\d+)">([^<]+)</h3>', contents)
+        current = json.loads(history.with_name("version.json").read_text())["version"]
+    except (OSError, IndexError, ValueError, KeyError):
+        raise ValueError("Methodology change history is unavailable; stop publication") from None
+    numbers = [tuple(map(int, version.split("."))) for version, _ in entries]
+    if (not entries or entries[0][0] != current
+            or numbers != sorted(set(numbers), reverse=True)
+            or any(not unescape(title).startswith(f"v{version} · ") for version, title in entries)):
+        raise ValueError("Methodology change history must start with the current version, newest first")
+    href = history.relative_to(site).as_posix()
+    return [(f"{href}#v{version}", escape(unescape(title))) for version, title in entries]
+
+
+def publish_reference_menu(site, reference, labels, label, note, history):
     """The publishing branch owns navigation, even when reference content is pinned earlier."""
     for path in (site / "reference").rglob("*.html"):
         base = "../" * len(path.parent.relative_to(site).parts)
         groups = [
             ("Current version", [(base + reference["href"], label, True)]),
-            ("Earlier drafts", [(base + f"editions/{key}/index.html", escape(value), False)
+            ("Version history (change notes)", [(base + url, title, False) for url, title in history]),
+            ("Archived draft sites", [(base + f"editions/{key}/index.html", escape(value), False)
                                 for key, value in reversed(labels.items())]),
         ]
         menu = "".join(f'<optgroup label="{group}">' + "".join(
@@ -376,6 +395,7 @@ def add_version_selectors(site, editions, ciat, reference):
                         for p in (site / "reference").rglob("*.html")):
         raise ValueError("Default Methodology is not approved for public listing")
     reference_label, reference_note = reference_version(site, reference) if reference_available else (None, None)
+    history = reference_history(site, reference) if promoted else []
     shared_navigation = methodology_navigation(site, reference) if promoted else None
     for asset in ("edition-selector.css", "edition-selector.js"):
         copyfile(Path(__file__).with_name(asset), site / asset)
@@ -429,7 +449,11 @@ def add_version_selectors(site, editions, ciat, reference):
                 href = base + escape(reference["href"], quote=True)
                 groups.append((reference["group"], f'<option value="{href}">{reference_label}</option>',
                                f'<a href="{href}">{reference_label}</a>'))
-        groups.append(("Earlier drafts", "".join(options), " · ".join(links)))
+        if history:
+            groups.append(("Version history (change notes)",
+                           "".join(f'<option value="{base}{url}">{title}</option>' for url, title in history),
+                           " · ".join(f'<a href="{base}{url}">{title}</a>' for url, title in history)))
+        groups.append(("Archived draft sites", "".join(options), " · ".join(links)))
         menu = "".join(f'<optgroup label="{escape(group)}">{items}</optgroup>' for group, items, _ in groups)
         plain_links = " · ".join(f'<strong>{escape(group)}</strong> {items}' for group, _, items in groups)
         kind = ' data-legacy="true"' if root_shell else ""
@@ -528,7 +552,7 @@ def add_version_selectors(site, editions, ciat, reference):
         # One dashboard. The old address of its superseded overview forwards to it.
         decorate(site / "dashboard.html", "review", "index.html")
         live.write_text(dashboard_forward())
-        publish_reference_menu(site, reference, labels, reference_label, reference_note)
+        publish_reference_menu(site, reference, labels, reference_label, reference_note, history)
         for name in ("index.html", "home-route.js"):
             copyfile(Path(__file__).with_name(name), site / name)
     else:

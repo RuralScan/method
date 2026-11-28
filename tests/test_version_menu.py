@@ -43,6 +43,10 @@ class VersionMenuTest(unittest.TestCase):
             for name in ('index.html', 'method.html', 'evidence-methods.html', 'help.html', 'row-t4-finding.html'):
                 (entry.parent / name).write_text(REFERENCE)
             (entry.parent / 'version.json').write_text(json.dumps(VERSION))
+            (entry.parent / 'editions.html').write_text(REFERENCE.replace('</main>',
+                '<h2 id="changes">What changed</h2>'
+                '<h3 id="v0.8.0">v0.8.0 · 18 November 2026</h3><ul><li>Latest change</li></ul>'
+                '<h3 id="v0.7.1">v0.7.1 · 17 November 2026</h3><ul><li>Earlier change</li></ul></main>'))
         return editions, reference
 
     def publish(self, site, editions, reference):
@@ -63,15 +67,22 @@ class VersionMenuTest(unittest.TestCase):
                 html=page.read_text()
                 menu=html.split('<select id="dashboard-version"',1)[1].split('>',1)[1].split('</select>',1)[0]
                 groups=dict(re.findall(r'<optgroup label="([^"]+)">(.*?)</optgroup>',menu))
-                self.assertEqual(list(groups),['Current version','Earlier drafts'])
+                self.assertEqual(list(groups),['Current version','Version history (change notes)','Archived draft sites'])
                 self.assertNotIn('legacy.html',menu)
                 self.assertNotIn('10 Nov 2026',menu)
                 self.assertEqual(menu.count('Evidence dashboard'),0)
                 self.assertEqual(groups['Current version'].count('<option '),1)
                 self.assertIn('>Methodology v0.8.0 · 18 Nov 2026</option>',groups['Current version'])
-                self.assertIn('v0.7.0 · Human review queues and finding cards · 13 Nov 2026',groups['Earlier drafts'])
-                self.assertIn('v0.1.0 · Methodology draft · 11 Nov 2026',groups['Earlier drafts'])
+                self.assertIn('v0.7.0 · Human review queues and finding cards · 13 Nov 2026',groups['Archived draft sites'])
+                self.assertIn('v0.1.0 · Methodology draft · 11 Nov 2026',groups['Archived draft sites'])
                 self.assertEqual(menu.count(' selected'),1)
+                history = groups['Version history (change notes)']
+                self.assertEqual(history.count('<option '), 2)
+                base = '' if page.parent == site else '../' if page.parent.name == 'reference' else '../../'
+                for version in ('0.8.0', '0.7.1'):
+                    target = f'{base}reference/editions.html#v{version}'
+                    self.assertIn(f'value="{target}"', history)
+                    self.assertIn(f'href="{target}"', html.split('<noscript>', 1)[1].split('</noscript>', 1)[0])
                 chosen=re.search(r'<option[^>]* selected[^>]*>(.*?)</option>',menu)[1]
                 if page.parent==site:
                     self.assertEqual(chosen,'Methodology v0.8.0 · 18 Nov 2026')
@@ -135,7 +146,7 @@ class VersionMenuTest(unittest.TestCase):
                     self.assertIn('<main><h1>Methodology</h1><p>Draft recipe edition; candidate, not released.</p></main>',html)
                 else:
                     self.assertIn(publish.tab_icon('methodology'),html)
-                    self.assertIn(f'data-edition="{editions[-1]["edition"]}" selected',groups['Earlier drafts'])
+                    self.assertIn(f'data-edition="{editions[-1]["edition"]}" selected',groups['Archived draft sites'])
                     self.assertIn('<option value="../../dashboard.html#',groups['Current version'])
                     self.assertIn('../../dashboard.html#review-queue',html)
 
@@ -224,6 +235,8 @@ class VersionMenuTest(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             site=Path(tmp);editions,reference=self.prepare(site)
             (site/'reference/version.json').write_text(json.dumps({**VERSION,'version':'1.2.0','date':'2027-01-05','status':'released'}))
+            history = site/'reference/editions.html'
+            history.write_text(history.read_text().replace('v0.8.0', 'v1.2.0').replace('18 November 2026', '5 January 2027'))
             self.publish(site,editions,reference)
             html=(site/'reference/index.html').read_text()
             self.assertIn(' selected>Methodology v1.2.0 · 05 Jan 2027</option>',html)
@@ -240,6 +253,24 @@ class VersionMenuTest(unittest.TestCase):
                 if problem=='bad status':path.write_text(json.dumps({**VERSION,'status':'final'}))
                 with self.assertRaisesRegex(ValueError,'states no version'):
                     self.publish(site,editions,reference)
+                self.assertFalse((site/'index.html').exists())
+
+    def test_missing_or_stale_change_history_stops_publication(self):
+        for problem in ('missing', 'stale', 'duplicate', 'out of order'):
+            with self.subTest(problem=problem), TemporaryDirectory() as tmp:
+                site = Path(tmp)
+                editions, reference = self.prepare(site)
+                path = site/'reference/editions.html'
+                if problem == 'missing':
+                    path.unlink()
+                elif problem == 'stale':
+                    path.write_text(path.read_text().replace('v0.8.0', 'v0.7.2'))
+                elif problem == 'duplicate':
+                    path.write_text(path.read_text().replace('v0.7.1', 'v0.8.0'))
+                else:
+                    path.write_text(path.read_text().replace('v0.7.1', 'v0.9.0'))
+                with self.assertRaisesRegex(ValueError, 'Methodology change history'):
+                    self.publish(site, editions, reference)
                 self.assertFalse((site/'index.html').exists())
 
     def test_finding_browser_noscript_download_help_survives_publication(self):
