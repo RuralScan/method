@@ -80,4 +80,4 @@ Pete approved the inspected NHM v2.1.1 2020 map as **coarse context** on 26 Nove
 
 ## KBA access follow-up — 27 November 2026
 
-[Request preparation and inspection scope](../research/2026-11-27-kba-access-hold.md) records the official restricted GEE lead and the Haiti-plus-cross-border-buffer request. Terms, CAPTCHA and submission await approval; no polygons acquired and Haiti KBA coverage remains unverified. Combined biodiversity stays Not assessed.
+[Request preparation and inspection scope](../research/2026-11-27-kba-access-hold.md) records the official restricted GEE lead and the Haiti-plus-cross-border-buffer request. Pete approved terms, CAPTCHA and submission on 27 November; the form confirmed receipt and manual review, up to 10 working days. No polygons acquired and Haiti KBA coverage remains unverified. Combined biodiversity stays Not assessed.
