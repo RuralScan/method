@@ -1,0 +1,748 @@
+{
+  "runtime_ready": false,
+  "automatic_merge": false,
+  "exposure_computed": false,
+  "input_sha256": {
+    "boundary.json": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9",
+    "departments.geojson": "18251fc8ec3512ae47bbcf18261022ab488060c9ab98603aba59f00f785f8812",
+    "config.json": "1c9aa540f8f940516002535c762564236b4e0b7e846f3ffefb2f5c7bcb08aab6",
+    "gis_osm_pois_free_1.cpg": "146d6789ffe033a5297c1ad046e6a62ee35319b86b021444f05b6ea2aa8a1f4a",
+    "gis_osm_pois_free_1.dbf": "ec1eb8b5d101c2e981f337a840511f0d97c3d9c19c01af20c8b37b9ef00d4d4b",
+    "gis_osm_pois_free_1.prj": "ffc9162903c37f0867d1e7f36c20036a165f7aa555dda24c1ae0ee4328d2977f",
+    "gis_osm_pois_free_1.shp": "f3d521f9bf5a1dcb3b8365cb493e36293c55661a74aaed34d0f6917e518a4775",
+    "gis_osm_pois_free_1.shx": "f9ca20b6110da6a4d220d94f9d536d28d93f399ad031ab65cbba5857e8d08c56",
+    "gis_osm_pois_a_free_1.cpg": "146d6789ffe033a5297c1ad046e6a62ee35319b86b021444f05b6ea2aa8a1f4a",
+    "gis_osm_pois_a_free_1.dbf": "21d56e4f187a0ac74422ea533c4463a6dc0e4c0984308832ece00fcfa9d37aa7",
+    "gis_osm_pois_a_free_1.prj": "ffc9162903c37f0867d1e7f36c20036a165f7aa555dda24c1ae0ee4328d2977f",
+    "gis_osm_pois_a_free_1.shp": "ac6e04277753e840cf16123241d6c1153d55466719625d173b8a5e773776879b",
+    "gis_osm_pois_a_free_1.shx": "50122abb9db911b81ac16dfa616a7f95e29a05c91bd9a024c240dcd0ea181951",
+    "paho_haiti_health_sites.zip": "69b1f85eb659b8ee1f143d78eba4101b2ef1c2b9ce0fae430b19133c5bfd6805",
+    "school_29.geojson": "6d1ed0cb9d0f93d83db8ec4bbbce8b3fe3e98576095f493a3be2ceaecdd9b35b",
+    "school_83.geojson": "09a5f99530a8e096e22af5e3f833f1294a9fba89d5bb74a2fc464430fb34de32"
+  },
+  "department_features": 10,
+  "sources": {
+    "cnigs_school_29": {
+      "records": 99,
+      "states": {
+        "in_haiti": 85,
+        "missing_geometry": 11,
+        "outside_pinned_boundary": 3
+      },
+      "inside_national_department_union": 88,
+      "inside_national_but_outside_pinned": 3,
+      "inside_pinned_but_outside_national": 0,
+      "classes_in_haiti": {
+        "school": 85
+      },
+      "classes_in_national_boundary": {
+        "school": 88
+      },
+      "national_department_counts": {
+        "Sud": 88
+      },
+      "department_class_counts": {
+        "AMBIGUOUS": {},
+        "Artibonite": {},
+        "Centre": {},
+        "Grande-Anse": {},
+        "Nippes": {},
+        "Nord": {},
+        "Nord-Est": {},
+        "Nord-Ouest": {},
+        "Ouest": {},
+        "Sud": {
+          "school": 85
+        },
+        "Sud-Est": {},
+        "UNMATCHED": {}
+      },
+      "blank_names_in_haiti": 0,
+      "missing_source_ids_all_records": 0,
+      "repeated_source_id_groups_all_records": [],
+      "exact_geometry_groups_in_haiti": [
+        [
+          "cnigs_school_29:31",
+          "cnigs_school_29:99"
+        ]
+      ],
+      "exact_geometry_excess_in_haiti": 1,
+      "distinct_located_coordinates_all_records": 87
+    },
+    "cnigs_school_83": {
+      "records": 5,
+      "states": {
+        "outside_pinned_boundary": 2,
+        "in_haiti": 3
+      },
+      "inside_national_department_union": 5,
+      "inside_national_but_outside_pinned": 2,
+      "inside_pinned_but_outside_national": 0,
+      "classes_in_haiti": {
+        "school": 3
+      },
+      "classes_in_national_boundary": {
+        "school": 5
+      },
+      "national_department_counts": {
+        "Nippes": 3,
+        "Ouest": 2
+      },
+      "department_class_counts": {
+        "AMBIGUOUS": {},
+        "Artibonite": {},
+        "Centre": {},
+        "Grande-Anse": {},
+        "Nippes": {
+          "school": 1
+        },
+        "Nord": {},
+        "Nord-Est": {},
+        "Nord-Ouest": {},
+        "Ouest": {
+          "school": 2
+        },
+        "Sud": {},
+        "Sud-Est": {},
+        "UNMATCHED": {}
+      },
+      "blank_names_in_haiti": 0,
+      "missing_source_ids_all_records": 0,
+      "repeated_source_id_groups_all_records": [],
+      "exact_geometry_groups_in_haiti": [],
+      "exact_geometry_excess_in_haiti": 0,
+      "distinct_located_coordinates_all_records": 5
+    },
+    "osm_point": {
+      "records": 7058,
+      "states": {
+        "outside_pinned_boundary": 1127,
+        "in_haiti": 5931
+      },
+      "inside_national_department_union": 6016,
+      "inside_national_but_outside_pinned": 88,
+      "inside_pinned_but_outside_national": 3,
+      "classes_in_haiti": {
+        "school": 4567,
+        "doctors": 65,
+        "hospital": 1145,
+        "clinic": 154
+      },
+      "classes_in_national_boundary": {
+        "school": 4625,
+        "doctors": 66,
+        "hospital": 1165,
+        "clinic": 160
+      },
+      "national_department_counts": {
+        "Ouest": 2913,
+        "Sud-Est": 268,
+        "Artibonite": 737,
+        "Nord": 533,
+        "Sud": 553,
+        "Nord-Est": 257,
+        "Nord-Ouest": 191,
+        "Nippes": 81,
+        "Grande-Anse": 231,
+        "Centre": 252
+      },
+      "department_class_counts": {
+        "AMBIGUOUS": {},
+        "Artibonite": {
+          "hospital": 180,
+          "school": 528,
+          "clinic": 11,
+          "doctors": 18
+        },
+        "Centre": {
+          "hospital": 69,
+          "clinic": 1,
+          "school": 182
+        },
+        "Grande-Anse": {
+          "hospital": 56,
+          "clinic": 5,
+          "school": 159
+        },
+        "Nippes": {
+          "hospital": 31,
+          "school": 37,
+          "clinic": 1
+        },
+        "Nord": {
+          "school": 388,
+          "hospital": 101,
+          "clinic": 28,
+          "doctors": 7
+        },
+        "Nord-Est": {
+          "school": 179,
+          "clinic": 23,
+          "hospital": 54,
+          "doctors": 1
+        },
+        "Nord-Ouest": {
+          "hospital": 86,
+          "school": 94,
+          "clinic": 1
+        },
+        "Ouest": {
+          "school": 2389,
+          "hospital": 387,
+          "clinic": 77,
+          "doctors": 30
+        },
+        "Sud": {
+          "school": 416,
+          "hospital": 109,
+          "clinic": 4,
+          "doctors": 8
+        },
+        "Sud-Est": {
+          "doctors": 1,
+          "school": 194,
+          "hospital": 70,
+          "clinic": 3
+        },
+        "UNMATCHED": {
+          "hospital": 2,
+          "school": 1
+        }
+      },
+      "blank_names_in_haiti": 543,
+      "missing_source_ids_all_records": 0,
+      "repeated_source_id_groups_all_records": [],
+      "exact_geometry_groups_in_haiti": [
+        [
+          "osm_point:810",
+          "osm_point:944"
+        ],
+        [
+          "osm_point:1209",
+          "osm_point:1215"
+        ],
+        [
+          "osm_point:1210",
+          "osm_point:1211",
+          "osm_point:1214",
+          "osm_point:1216",
+          "osm_point:1217",
+          "osm_point:1367"
+        ],
+        [
+          "osm_point:1219",
+          "osm_point:1225"
+        ],
+        [
+          "osm_point:1221",
+          "osm_point:1224"
+        ],
+        [
+          "osm_point:1222",
+          "osm_point:1223",
+          "osm_point:1226",
+          "osm_point:1227",
+          "osm_point:1228",
+          "osm_point:1229",
+          "osm_point:1230"
+        ],
+        [
+          "osm_point:1244",
+          "osm_point:1248"
+        ],
+        [
+          "osm_point:1257",
+          "osm_point:1265"
+        ],
+        [
+          "osm_point:1270",
+          "osm_point:1281"
+        ],
+        [
+          "osm_point:1283",
+          "osm_point:1297"
+        ],
+        [
+          "osm_point:1286",
+          "osm_point:1293"
+        ],
+        [
+          "osm_point:1289",
+          "osm_point:1291"
+        ],
+        [
+          "osm_point:1299",
+          "osm_point:1300",
+          "osm_point:1305",
+          "osm_point:1306"
+        ],
+        [
+          "osm_point:1302",
+          "osm_point:1303"
+        ],
+        [
+          "osm_point:1311",
+          "osm_point:1312",
+          "osm_point:1313",
+          "osm_point:1314"
+        ],
+        [
+          "osm_point:1318",
+          "osm_point:1319"
+        ],
+        [
+          "osm_point:1324",
+          "osm_point:1325",
+          "osm_point:1327",
+          "osm_point:1330"
+        ],
+        [
+          "osm_point:1337",
+          "osm_point:1340",
+          "osm_point:1347"
+        ],
+        [
+          "osm_point:1958",
+          "osm_point:1968"
+        ],
+        [
+          "osm_point:3441",
+          "osm_point:3502"
+        ],
+        [
+          "osm_point:6105",
+          "osm_point:7042"
+        ],
+        [
+          "osm_point:6437",
+          "osm_point:6457"
+        ],
+        [
+          "osm_point:8317",
+          "osm_point:8463"
+        ],
+        [
+          "osm_point:13514",
+          "osm_point:13515"
+        ],
+        [
+          "osm_point:16567",
+          "osm_point:16837"
+        ]
+      ],
+      "exact_geometry_excess_in_haiti": 41,
+      "distinct_located_coordinates_all_records": 7016
+    },
+    "osm_polygon": {
+      "records": 2115,
+      "states": {
+        "outside_pinned_boundary": 1395,
+        "in_haiti": 720
+      },
+      "inside_national_department_union": 739,
+      "inside_national_but_outside_pinned": 19,
+      "inside_pinned_but_outside_national": 0,
+      "classes_in_haiti": {
+        "hospital": 134,
+        "school": 572,
+        "clinic": 12,
+        "doctors": 2
+      },
+      "classes_in_national_boundary": {
+        "hospital": 136,
+        "school": 588,
+        "clinic": 13,
+        "doctors": 2
+      },
+      "national_department_counts": {
+        "Ouest": 269,
+        "Sud-Est": 59,
+        "Artibonite": 130,
+        "Nippes": 18,
+        "Nord": 49,
+        "Centre": 84,
+        "Sud": 58,
+        "Nord-Ouest": 21,
+        "Nord-Est": 8,
+        "Grande-Anse": 43
+      },
+      "department_class_counts": {
+        "AMBIGUOUS": {},
+        "Artibonite": {
+          "school": 106,
+          "hospital": 23,
+          "clinic": 1
+        },
+        "Centre": {
+          "school": 81,
+          "hospital": 3
+        },
+        "Grande-Anse": {
+          "hospital": 3,
+          "school": 37
+        },
+        "Nippes": {
+          "school": 11,
+          "hospital": 4
+        },
+        "Nord": {
+          "hospital": 9,
+          "school": 33,
+          "clinic": 7
+        },
+        "Nord-Est": {
+          "hospital": 4,
+          "school": 4
+        },
+        "Nord-Ouest": {
+          "hospital": 8,
+          "school": 13
+        },
+        "Ouest": {
+          "hospital": 53,
+          "school": 199,
+          "doctors": 2,
+          "clinic": 3
+        },
+        "Sud": {
+          "school": 36,
+          "hospital": 21
+        },
+        "Sud-Est": {
+          "hospital": 6,
+          "school": 52,
+          "clinic": 1
+        },
+        "UNMATCHED": {}
+      },
+      "blank_names_in_haiti": 215,
+      "missing_source_ids_all_records": 0,
+      "repeated_source_id_groups_all_records": [],
+      "exact_geometry_groups_in_haiti": [],
+      "exact_geometry_excess_in_haiti": 0,
+      "distinct_located_coordinates_all_records": null
+    },
+    "paho": {
+      "records": 730,
+      "states": {
+        "in_haiti": 469,
+        "missing_geometry": 250,
+        "outside_pinned_boundary": 11
+      },
+      "inside_national_department_union": 479,
+      "inside_national_but_outside_pinned": 10,
+      "inside_pinned_but_outside_national": 0,
+      "classes_in_haiti": {
+        "health_unspecified": 469
+      },
+      "classes_in_national_boundary": {
+        "health_unspecified": 479
+      },
+      "national_department_counts": {
+        "Ouest": 162,
+        "Nippes": 10,
+        "Artibonite": 66,
+        "Centre": 35,
+        "Nord": 43,
+        "Grande-Anse": 35,
+        "Nord-Est": 17,
+        "Nord-Ouest": 28,
+        "Sud": 53,
+        "Sud-Est": 30
+      },
+      "department_class_counts": {
+        "AMBIGUOUS": {},
+        "Artibonite": {
+          "health_unspecified": 66
+        },
+        "Centre": {
+          "health_unspecified": 35
+        },
+        "Grande-Anse": {
+          "health_unspecified": 31
+        },
+        "Nippes": {
+          "health_unspecified": 8
+        },
+        "Nord": {
+          "health_unspecified": 42
+        },
+        "Nord-Est": {
+          "health_unspecified": 17
+        },
+        "Nord-Ouest": {
+          "health_unspecified": 27
+        },
+        "Ouest": {
+          "health_unspecified": 160
+        },
+        "Sud": {
+          "health_unspecified": 53
+        },
+        "Sud-Est": {
+          "health_unspecified": 30
+        },
+        "UNMATCHED": {}
+      },
+      "blank_names_in_haiti": 0,
+      "missing_source_ids_all_records": 29,
+      "repeated_source_id_groups_all_records": [
+        [
+          "paho:386",
+          "paho:387",
+          "paho:388"
+        ],
+        [
+          "paho:428",
+          "paho:429"
+        ],
+        [
+          "paho:646",
+          "paho:647",
+          "paho:648"
+        ]
+      ],
+      "exact_geometry_groups_in_haiti": [
+        [
+          "paho:1",
+          "paho:2",
+          "paho:4",
+          "paho:5",
+          "paho:7",
+          "paho:8",
+          "paho:9",
+          "paho:10",
+          "paho:12",
+          "paho:13",
+          "paho:18",
+          "paho:21",
+          "paho:31",
+          "paho:37",
+          "paho:40",
+          "paho:380",
+          "paho:382",
+          "paho:384",
+          "paho:385",
+          "paho:389",
+          "paho:390",
+          "paho:394",
+          "paho:395",
+          "paho:396",
+          "paho:397",
+          "paho:398",
+          "paho:399"
+        ],
+        [
+          "paho:56",
+          "paho:57",
+          "paho:58"
+        ],
+        [
+          "paho:63",
+          "paho:64"
+        ],
+        [
+          "paho:66",
+          "paho:71",
+          "paho:72",
+          "paho:75"
+        ],
+        [
+          "paho:100",
+          "paho:107"
+        ],
+        [
+          "paho:121",
+          "paho:122"
+        ],
+        [
+          "paho:123",
+          "paho:124"
+        ],
+        [
+          "paho:129",
+          "paho:130",
+          "paho:140",
+          "paho:141"
+        ],
+        [
+          "paho:148",
+          "paho:149"
+        ],
+        [
+          "paho:158",
+          "paho:175"
+        ],
+        [
+          "paho:187",
+          "paho:192"
+        ],
+        [
+          "paho:202",
+          "paho:232"
+        ],
+        [
+          "paho:248",
+          "paho:249"
+        ],
+        [
+          "paho:250",
+          "paho:251"
+        ],
+        [
+          "paho:256",
+          "paho:257"
+        ],
+        [
+          "paho:265",
+          "paho:268"
+        ],
+        [
+          "paho:290",
+          "paho:292",
+          "paho:294"
+        ],
+        [
+          "paho:308",
+          "paho:313"
+        ],
+        [
+          "paho:347",
+          "paho:353"
+        ],
+        [
+          "paho:357",
+          "paho:359"
+        ],
+        [
+          "paho:401",
+          "paho:409",
+          "paho:421",
+          "paho:422",
+          "paho:423",
+          "paho:425",
+          "paho:433",
+          "paho:435",
+          "paho:436",
+          "paho:437",
+          "paho:438",
+          "paho:441"
+        ],
+        [
+          "paho:413",
+          "paho:439"
+        ],
+        [
+          "paho:428",
+          "paho:431"
+        ],
+        [
+          "paho:445",
+          "paho:447",
+          "paho:448",
+          "paho:449",
+          "paho:451",
+          "paho:453",
+          "paho:458",
+          "paho:465",
+          "paho:474",
+          "paho:477",
+          "paho:481",
+          "paho:483",
+          "paho:484"
+        ],
+        [
+          "paho:488",
+          "paho:489",
+          "paho:490",
+          "paho:491",
+          "paho:492",
+          "paho:494",
+          "paho:495",
+          "paho:496",
+          "paho:497"
+        ],
+        [
+          "paho:504",
+          "paho:507"
+        ],
+        [
+          "paho:526",
+          "paho:530",
+          "paho:548"
+        ],
+        [
+          "paho:584",
+          "paho:597"
+        ],
+        [
+          "paho:616",
+          "paho:618",
+          "paho:619",
+          "paho:623",
+          "paho:641"
+        ],
+        [
+          "paho:646",
+          "paho:650",
+          "paho:676"
+        ],
+        [
+          "paho:658",
+          "paho:660",
+          "paho:663"
+        ],
+        [
+          "paho:681",
+          "paho:682",
+          "paho:689",
+          "paho:692"
+        ],
+        [
+          "paho:705",
+          "paho:714"
+        ],
+        [
+          "paho:711",
+          "paho:712"
+        ],
+        [
+          "paho:715",
+          "paho:717",
+          "paho:718",
+          "paho:719",
+          "paho:720",
+          "paho:721"
+        ],
+        [
+          "paho:724",
+          "paho:725",
+          "paho:728"
+        ]
+      ],
+      "exact_geometry_excess_in_haiti": 108,
+      "distinct_located_coordinates_all_records": 371
+    }
+  },
+  "osm_point_polygon_pairs": 136,
+  "osm_point_polygon_by_theme_name": {
+    "school / different_names": 18,
+    "health / different_names": 9,
+    "school / missing_name": 75,
+    "health / missing_name": 22,
+    "health / same_normalized_name": 2,
+    "school / same_normalized_name": 10
+  },
+  "osm_polygon_overlap_pairs": 19,
+  "osm_polygon_overlap_by_theme_name": {
+    "school / missing_name": 10,
+    "school / same_normalized_name": 3,
+    "health / different_names": 4,
+    "health / missing_name": 2
+  },
+  "osm_repeated_nonblank_name_groups": 272,
+  "paho_osm_same_name_pairs": 67,
+  "cnigs_osm_same_name_pairs": 3,
+  "paho_department_mismatch_count": 443,
+  "review_queue_sha256": "6d48d180922b9b59ed18a5a24115c6f9068aec993a8196d2b7dcad4c89df12d2"
+}

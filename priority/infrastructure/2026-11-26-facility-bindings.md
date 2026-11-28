@@ -60,3 +60,7 @@ Technical acquisition/schema checks progressed for health facilities and the OSM
 Source metadata/pages, original PAHO/WHO ZIP, both OSM POI layers, inspection scripts and geometry checks are stored in the existing team-library mirror at `0_Methodology_&_Frameworks/priority_classification/facility_bindings_2026_11_26/reviewed_sources.zip`. Archive SHA-256: `95da36a51cd95bb594cc278198d36b9104307ae06110b9c5aa0d8d8bd50ec864`. Original PAHO/WHO ZIP SHA-256: `69b1f85eb659b8ee1f143d78eba4101b2ef1c2b9ce0fae430b19133c5bfd6805`. Individual member hashes are in the archived manifest; all archive members were read back and verified. Remote SharePoint/team access was not checked. No spreadsheet was acquired or formally ingested.
 
 Subsequent [national-source follow-up](2026-11-26-haiti-national-infrastructure.md) acquired the MENFP workbook: 4,122 records in four departments with no coordinates. It also acquired scoped Sud/Nippes school-point layers from CNIGS HaitiData. This supersedes the earlier workbook-not-inspected status; a current, georeferenced national school master remains outstanding.
+
+## Follow-up — 27 November 2026
+
+[Country coverage and duplicate diagnostics](2026-11-27-haiti-facility-coverage.md) now check the pinned OSM and PAHO geometry inside Haiti, cross-layer co-location, and geographic distribution against CNIGS/IHSI departments. This closes the bounded coverage/duplicate search, not identity reconciliation, inventory completeness or runtime release.

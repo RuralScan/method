@@ -1,0 +1,19 @@
+{
+  "facility_archive": "0_Methodology_&_Frameworks/priority_classification/facility_bindings_2026_11_26/reviewed_sources.zip",
+  "facility_archive_sha256": "95da36a51cd95bb594cc278198d36b9104307ae06110b9c5aa0d8d8bd50ec864",
+  "national_archive": "0_Methodology_&_Frameworks/priority_classification/haiti_national_infrastructure_2026_11_26/reviewed_sources.zip",
+  "national_archive_sha256": "4f2475317c7c8cadafb9e8e5d4b43d5e9cba53441b6ba431aed0786b932d6e30",
+  "osm_object_last_modified_utc": "2026-11-26T15:30:28Z",
+  "osm_etag": "\"beccd99-6612f9f91c52a\"",
+  "osm_url": "https://download.geofabrik.de/central-america/haiti-and-domrep/haiti-and-domrep-latest-free.shp.zip",
+  "osm_mutable_url_replay": "Use archived exact members, not the current latest object.",
+  "paho_source_url": "https://data.humdata.org/dataset/location-of-health-facilities-hospital-in-haiti",
+  "paho_catalogue_observation_period": "2019-07-24 to 2023-07-24",
+  "paho_catalogue_license": "Creative Commons Attribution International (CC BY)",
+  "national_school_catalogue_ids": [
+    29,
+    83
+  ],
+  "national_school_licence": "not_specified",
+  "department_licence": "not_specified"
+}

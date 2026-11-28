@@ -1,0 +1,22 @@
+{
+  "pk": "35",
+  "title": "Départements d'Haïti (CNIGS-IHSI 2026)",
+  "abstract": "Les 10 départements d'Haïti. Polygones sans remplissage : contour visible (limites) et noms. Source : CNIGS - IHSI, unités administratives 2026 (départements, arrondissements et communes du 8 mars 2026, sections communales du 13 mars 2026, chefs-lieux du 28 février 2026). Système de coordonnées : WGS 84 / UTM 18N (EPSG:32618).",
+  "attribution": "CNIGS - IHSI",
+  "alternate": "geonode:admin_departement",
+  "date": "2026-11-10T18:38:20.045483Z",
+  "license": {
+    "identifier": "not_specified"
+  },
+  "detail_url": "https://opendata.haitidata.org/catalogue/#/dataset/35",
+  "url": "https://opendata.haitidata.org/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typename=geonode%3Aadmin_departement&outputFormat=json&srs=EPSG%3A4326&srsName=EPSG%3A4326&maxFeatures=100",
+  "sha256": "18251fc8ec3512ae47bbcf18261022ab488060c9ab98603aba59f00f785f8812",
+  "totalFeatures": 10,
+  "features": 10,
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::4326"
+    }
+  }
+}
