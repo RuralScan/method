@@ -52,3 +52,7 @@ Road DBF SHA-256: `93489f4801cd53ba5ddf19199926773beed52f94c68742e38c5bd1ed02b7c
 Inspection JSON SHA-256: `61f4df3e2c675747103eec7eb499b5dca4ab7161aac2c475156e805c6d61a830`.
 
 Archive members were read back and hash-verified. Remote SharePoint/team access was not checked. This technical research does not bypass the formal dataset-intake/evidence route or create an acceptance receipt in the evidence-pinned binding catalogue. No KBA polygons were acquired in this archive.
+
+## Follow-up — 27 November 2026
+
+[Full geometry inspection](2026-11-27-haiti-road-geometry.md) closes the bounded road-member acquisition, Haiti clipping, native-class length and exact-duplicate/identity checks using a newer dated OSM object. Historical counts above are unchanged. Class inclusion, topology, national currency/completeness and hazard definition remain separate holds.

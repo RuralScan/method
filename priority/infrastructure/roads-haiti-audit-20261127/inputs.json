@@ -1,0 +1,17 @@
+{
+  "boundary": "priority/research/haiti-diagnostic-inputs-20261126/boundary.json",
+  "national_zip_sha256": "3f93244fec0582d77d7e73bad6692f60b18b0ca7f6664263b89ed886f4ec07dd",
+  "national_metadata_sha256": "07f77ccfdf33cbb4071d8557a710a834632f32fc0822f8d5980ba396e43bb127",
+  "national_metadata": {
+    "dataset_date": "[2013-02-22T00:00:00 TO 2019-05-22T23:59:59]",
+    "dataset_source": "Centre National de l'Information G\u00e9o Spatiale ( CNIGS)",
+    "archived": true,
+    "license_id": "other-pd-nr",
+    "license_title": "Public Domain / No restrictions (CC0)",
+    "isopen": false
+  },
+  "national_archive": "0_Methodology_&_Frameworks/priority_classification/haiti_national_infrastructure_2026_11_26/reviewed_sources.zip",
+  "national_archive_sha256": "4f2475317c7c8cadafb9e8e5d4b43d5e9cba53441b6ba431aed0786b932d6e30",
+  "national_member": "cnigs_roads.zip",
+  "provider_url": "https://data.humdata.org/dataset/haiti-roads"
+}
