@@ -1,0 +1,3753 @@
+{
+  "scope": "Country boundary / native-cell inspection; not an NbS footprint or combined biodiversity score",
+  "runtime_ready": false,
+  "combined_biodiversity": "Not assessed: KBA input unavailable",
+  "source_year": 2020,
+  "source_sha256": "d2142dd8d6d0bf1a08268d9a9a03c7a9b9ab4d834714d7fea35de621559a72b4",
+  "boundary_sha256": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9",
+  "contract_sha256": "19c50ce0c7403e2185e9757241593751428628373464b4f80f7f66a18a982b01",
+  "classes_sha256": "7a472b85c484f4bfba5b6a8af08fd28ce226c2151e130330adf4630a012e403b",
+  "metadata": {
+    "crs": "EPSG:4326",
+    "resolution_degrees": [
+      0.08333333333333869,
+      0.08333333333333869
+    ],
+    "shape": [
+      2160,
+      4320
+    ],
+    "transform": [
+      0.08333333333333869,
+      0.0,
+      -180.0,
+      0.0,
+      -0.08333333333333869,
+      90.00000000001157,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "dtype": "float64",
+    "nodata": "NaN"
+  },
+  "area_crs": "EPSG:6933",
+  "boundary_area_km2": 27116.83157346876,
+  "intersecting_native_cells": 453,
+  "valid_native_cells": 443,
+  "valid_area_km2": 27114.95409141252,
+  "unknown_area_km2": 1.877462231629375,
+  "valid_percent_of_boundary": 99.99307632216856,
+  "unknown_percent_of_boundary": 0.006923604723297736,
+  "bii_min": 3.51,
+  "bii_max": 89.12,
+  "out_of_domain_cells": 0,
+  "classes": [
+    {
+      "class": "Very little",
+      "native_intersecting_cells": 0,
+      "area_km2": 0,
+      "percent_of_boundary": 0.0,
+      "percent_of_valid_area": 0.0
+    },
+    {
+      "class": "Low",
+      "native_intersecting_cells": 2,
+      "area_km2": 24.317114258553932,
+      "percent_of_boundary": 0.08967535234590576,
+      "percent_of_valid_area": 0.08968156160830572
+    },
+    {
+      "class": "Medium",
+      "native_intersecting_cells": 117,
+      "area_km2": 7502.4020256456,
+      "percent_of_boundary": 27.666956610764164,
+      "percent_of_valid_area": 27.668872314342803
+    },
+    {
+      "class": "High",
+      "native_intersecting_cells": 324,
+      "area_km2": 19588.23495150837,
+      "percent_of_boundary": 72.23644435905851,
+      "percent_of_valid_area": 72.2414461240489
+    }
+  ],
+  "boundary_checks": [
+    {
+      "input": 0,
+      "depletion": 100,
+      "class": "High"
+    },
+    {
+      "input": 60,
+      "depletion": 40,
+      "class": "Medium"
+    },
+    {
+      "input": 80,
+      "depletion": 20,
+      "class": "Low"
+    },
+    {
+      "input": 90,
+      "depletion": 10,
+      "class": "Very little"
+    },
+    {
+      "input": 100,
+      "depletion": 0,
+      "class": "Very little"
+    },
+    {
+      "input": -1,
+      "depletion": null,
+      "class": null
+    },
+    {
+      "input": 101,
+      "depletion": null,
+      "class": null
+    },
+    {
+      "input": null,
+      "depletion": null,
+      "class": null
+    },
+    {
+      "input": "NaN",
+      "depletion": null,
+      "class": null
+    }
+  ],
+  "cells": [
+    {
+      "native_row": 838,
+      "native_col": 1285,
+      "bii_percent": 46.78,
+      "depletion": 53.22,
+      "class": "High",
+      "haiti_area_km2": 1.0218279542467292
+    },
+    {
+      "native_row": 838,
+      "native_col": 1286,
+      "bii_percent": 39.88,
+      "depletion": 60.12,
+      "class": "High",
+      "haiti_area_km2": 1.6670696141620927
+    },
+    {
+      "native_row": 839,
+      "native_col": 1284,
+      "bii_percent": 29.48,
+      "depletion": 70.52,
+      "class": "High",
+      "haiti_area_km2": 14.266280294835099
+    },
+    {
+      "native_row": 839,
+      "native_col": 1285,
+      "bii_percent": 32.9,
+      "depletion": 67.1,
+      "class": "High",
+      "haiti_area_km2": 47.47722870011992
+    },
+    {
+      "native_row": 839,
+      "native_col": 1286,
+      "bii_percent": 39.8,
+      "depletion": 60.2,
+      "class": "High",
+      "haiti_area_km2": 56.604228405302756
+    },
+    {
+      "native_row": 839,
+      "native_col": 1287,
+      "bii_percent": 47.16,
+      "depletion": 52.84,
+      "class": "High",
+      "haiti_area_km2": 47.659433641906375
+    },
+    {
+      "native_row": 839,
+      "native_col": 1288,
+      "bii_percent": 48.92,
+      "depletion": 51.08,
+      "class": "High",
+      "haiti_area_km2": 10.651124024843508
+    },
+    {
+      "native_row": 840,
+      "native_col": 1281,
+      "bii_percent": 46.85,
+      "depletion": 53.15,
+      "class": "High",
+      "haiti_area_km2": 1.5645271956135807
+    },
+    {
+      "native_row": 840,
+      "native_col": 1282,
+      "bii_percent": 40.4,
+      "depletion": 59.6,
+      "class": "High",
+      "haiti_area_km2": 6.1942076779246475
+    },
+    {
+      "native_row": 840,
+      "native_col": 1283,
+      "bii_percent": 47.24,
+      "depletion": 52.76,
+      "class": "High",
+      "haiti_area_km2": 1.443999542143302
+    },
+    {
+      "native_row": 840,
+      "native_col": 1284,
+      "bii_percent": 43.95,
+      "depletion": 56.05,
+      "class": "High",
+      "haiti_area_km2": 6.848120773367652
+    },
+    {
+      "native_row": 840,
+      "native_col": 1285,
+      "bii_percent": 39.99,
+      "depletion": 60.01,
+      "class": "High",
+      "haiti_area_km2": 19.37290866156271
+    },
+    {
+      "native_row": 840,
+      "native_col": 1286,
+      "bii_percent": 52.83,
+      "depletion": 47.17,
+      "class": "High",
+      "haiti_area_km2": 29.903678309219867
+    },
+    {
+      "native_row": 840,
+      "native_col": 1287,
+      "bii_percent": 58.88,
+      "depletion": 41.12,
+      "class": "High",
+      "haiti_area_km2": 13.10481853259052
+    },
+    {
+      "native_row": 840,
+      "native_col": 1288,
+      "bii_percent": 51.33,
+      "depletion": 48.67,
+      "class": "High",
+      "haiti_area_km2": 4.615846119007611
+    },
+    {
+      "native_row": 841,
+      "native_col": 1278,
+      "bii_percent": null,
+      "depletion": null,
+      "class": null,
+      "haiti_area_km2": 0.0009397876813913386
+    },
+    {
+      "native_row": 841,
+      "native_col": 1279,
+      "bii_percent": 50.92,
+      "depletion": 49.08,
+      "class": "High",
+      "haiti_area_km2": 6.743465095145065
+    },
+    {
+      "native_row": 841,
+      "native_col": 1280,
+      "bii_percent": 52.72,
+      "depletion": 47.28,
+      "class": "High",
+      "haiti_area_km2": 25.39420067999328
+    },
+    {
+      "native_row": 841,
+      "native_col": 1281,
+      "bii_percent": 54.52,
+      "depletion": 45.48,
+      "class": "High",
+      "haiti_area_km2": 64.92456240582361
+    },
+    {
+      "native_row": 841,
+      "native_col": 1282,
+      "bii_percent": 51.99,
+      "depletion": 48.01,
+      "class": "High",
+      "haiti_area_km2": 80.51273896403681
+    },
+    {
+      "native_row": 841,
+      "native_col": 1283,
+      "bii_percent": 51.6,
+      "depletion": 48.4,
+      "class": "High",
+      "haiti_area_km2": 79.65196798309832
+    },
+    {
+      "native_row": 841,
+      "native_col": 1284,
+      "bii_percent": 48.22,
+      "depletion": 51.78,
+      "class": "High",
+      "haiti_area_km2": 79.93673988921736
+    },
+    {
+      "native_row": 841,
+      "native_col": 1285,
+      "bii_percent": 49.0,
+      "depletion": 51.0,
+      "class": "High",
+      "haiti_area_km2": 80.51273896401817
+    },
+    {
+      "native_row": 841,
+      "native_col": 1286,
+      "bii_percent": 62.77,
+      "depletion": 37.23,
+      "class": "Medium",
+      "haiti_area_km2": 80.51273896402749
+    },
+    {
+      "native_row": 841,
+      "native_col": 1287,
+      "bii_percent": 68.72,
+      "depletion": 31.28,
+      "class": "Medium",
+      "haiti_area_km2": 80.44553973762143
+    },
+    {
+      "native_row": 841,
+      "native_col": 1288,
+      "bii_percent": 70.54,
+      "depletion": 29.459999999999994,
+      "class": "Medium",
+      "haiti_area_km2": 64.26383543853282
+    },
+    {
+      "native_row": 841,
+      "native_col": 1289,
+      "bii_percent": 70.97,
+      "depletion": 29.03,
+      "class": "Medium",
+      "haiti_area_km2": 26.88615427548204
+    },
+    {
+      "native_row": 841,
+      "native_col": 1290,
+      "bii_percent": null,
+      "depletion": null,
+      "class": null,
+      "haiti_area_km2": 0.0012990420565145763
+    },
+    {
+      "native_row": 842,
+      "native_col": 1278,
+      "bii_percent": 55.59,
+      "depletion": 44.41,
+      "class": "High",
+      "haiti_area_km2": 14.690757159681013
+    },
+    {
+      "native_row": 842,
+      "native_col": 1279,
+      "bii_percent": 53.29,
+      "depletion": 46.71,
+      "class": "High",
+      "haiti_area_km2": 69.4513747731929
+    },
+    {
+      "native_row": 842,
+      "native_col": 1280,
+      "bii_percent": 51.85,
+      "depletion": 48.15,
+      "class": "High",
+      "haiti_area_km2": 80.55398391899091
+    },
+    {
+      "native_row": 842,
+      "native_col": 1281,
+      "bii_percent": 54.72,
+      "depletion": 45.28,
+      "class": "High",
+      "haiti_area_km2": 80.55398391900026
+    },
+    {
+      "native_row": 842,
+      "native_col": 1282,
+      "bii_percent": 60.39,
+      "depletion": 39.61,
+      "class": "Medium",
+      "haiti_area_km2": 80.5539839190189
+    },
+    {
+      "native_row": 842,
+      "native_col": 1283,
+      "bii_percent": 55.89,
+      "depletion": 44.11,
+      "class": "High",
+      "haiti_area_km2": 80.55398391900958
+    },
+    {
+      "native_row": 842,
+      "native_col": 1284,
+      "bii_percent": 58.15,
+      "depletion": 41.85,
+      "class": "High",
+      "haiti_area_km2": 80.55398391899091
+    },
+    {
+      "native_row": 842,
+      "native_col": 1285,
+      "bii_percent": 62.61,
+      "depletion": 37.39,
+      "class": "Medium",
+      "haiti_area_km2": 80.55398391900026
+    },
+    {
+      "native_row": 842,
+      "native_col": 1286,
+      "bii_percent": 65.67,
+      "depletion": 34.33,
+      "class": "Medium",
+      "haiti_area_km2": 80.55398391900958
+    },
+    {
+      "native_row": 842,
+      "native_col": 1287,
+      "bii_percent": 67.29,
+      "depletion": 32.709999999999994,
+      "class": "Medium",
+      "haiti_area_km2": 80.55398391899091
+    },
+    {
+      "native_row": 842,
+      "native_col": 1288,
+      "bii_percent": 70.21,
+      "depletion": 29.790000000000006,
+      "class": "Medium",
+      "haiti_area_km2": 80.55398391900026
+    },
+    {
+      "native_row": 842,
+      "native_col": 1289,
+      "bii_percent": 72.23,
+      "depletion": 27.769999999999996,
+      "class": "Medium",
+      "haiti_area_km2": 80.48949890191773
+    },
+    {
+      "native_row": 842,
+      "native_col": 1290,
+      "bii_percent": 68.3,
+      "depletion": 31.700000000000003,
+      "class": "Medium",
+      "haiti_area_km2": 68.21382957474103
+    },
+    {
+      "native_row": 842,
+      "native_col": 1291,
+      "bii_percent": 63.69,
+      "depletion": 36.31,
+      "class": "Medium",
+      "haiti_area_km2": 40.63816577750608
+    },
+    {
+      "native_row": 842,
+      "native_col": 1292,
+      "bii_percent": 64.21,
+      "depletion": 35.790000000000006,
+      "class": "Medium",
+      "haiti_area_km2": 12.030523076911042
+    },
+    {
+      "native_row": 842,
+      "native_col": 1293,
+      "bii_percent": 52.8,
+      "depletion": 47.2,
+      "class": "High",
+      "haiti_area_km2": 21.960224183473816
+    },
+    {
+      "native_row": 843,
+      "native_col": 1278,
+      "bii_percent": 54.61,
+      "depletion": 45.39,
+      "class": "High",
+      "haiti_area_km2": 38.11480522015659
+    },
+    {
+      "native_row": 843,
+      "native_col": 1279,
+      "bii_percent": 60.23,
+      "depletion": 39.77,
+      "class": "Medium",
+      "haiti_area_km2": 80.59506096118528
+    },
+    {
+      "native_row": 843,
+      "native_col": 1280,
+      "bii_percent": 60.45,
+      "depletion": 39.55,
+      "class": "Medium",
+      "haiti_area_km2": 80.59506096116661
+    },
+    {
+      "native_row": 843,
+      "native_col": 1281,
+      "bii_percent": 47.38,
+      "depletion": 52.62,
+      "class": "High",
+      "haiti_area_km2": 80.59506096117595
+    },
+    {
+      "native_row": 843,
+      "native_col": 1282,
+      "bii_percent": 44.52,
+      "depletion": 55.48,
+      "class": "High",
+      "haiti_area_km2": 80.5950609611946
+    },
+    {
+      "native_row": 843,
+      "native_col": 1283,
+      "bii_percent": 44.74,
+      "depletion": 55.26,
+      "class": "High",
+      "haiti_area_km2": 80.59506096118528
+    },
+    {
+      "native_row": 843,
+      "native_col": 1284,
+      "bii_percent": 46.96,
+      "depletion": 53.04,
+      "class": "High",
+      "haiti_area_km2": 80.59506096116661
+    },
+    {
+      "native_row": 843,
+      "native_col": 1285,
+      "bii_percent": 59.22,
+      "depletion": 40.78,
+      "class": "High",
+      "haiti_area_km2": 80.59506096117595
+    },
+    {
+      "native_row": 843,
+      "native_col": 1286,
+      "bii_percent": 64.42,
+      "depletion": 35.58,
+      "class": "Medium",
+      "haiti_area_km2": 80.59506096118528
+    },
+    {
+      "native_row": 843,
+      "native_col": 1287,
+      "bii_percent": 62.77,
+      "depletion": 37.23,
+      "class": "Medium",
+      "haiti_area_km2": 80.59506096116661
+    },
+    {
+      "native_row": 843,
+      "native_col": 1288,
+      "bii_percent": 61.92,
+      "depletion": 38.08,
+      "class": "Medium",
+      "haiti_area_km2": 80.59506096117595
+    },
+    {
+      "native_row": 843,
+      "native_col": 1289,
+      "bii_percent": 67.74,
+      "depletion": 32.260000000000005,
+      "class": "Medium",
+      "haiti_area_km2": 80.59506096118528
+    },
+    {
+      "native_row": 843,
+      "native_col": 1290,
+      "bii_percent": 63.92,
+      "depletion": 36.08,
+      "class": "Medium",
+      "haiti_area_km2": 80.59506096117595
+    },
+    {
+      "native_row": 843,
+      "native_col": 1291,
+      "bii_percent": 56.78,
+      "depletion": 43.22,
+      "class": "High",
+      "haiti_area_km2": 78.67810913478903
+    },
+    {
+      "native_row": 843,
+      "native_col": 1292,
+      "bii_percent": 57.57,
+      "depletion": 42.43,
+      "class": "High",
+      "haiti_area_km2": 73.00018652892638
+    },
+    {
+      "native_row": 843,
+      "native_col": 1293,
+      "bii_percent": 39.0,
+      "depletion": 61.0,
+      "class": "High",
+      "haiti_area_km2": 77.5949239064273
+    },
+    {
+      "native_row": 843,
+      "native_col": 1294,
+      "bii_percent": 39.78,
+      "depletion": 60.22,
+      "class": "High",
+      "haiti_area_km2": 67.71714428908983
+    },
+    {
+      "native_row": 843,
+      "native_col": 1295,
+      "bii_percent": 40.92,
+      "depletion": 59.08,
+      "class": "High",
+      "haiti_area_km2": 43.661545719946815
+    },
+    {
+      "native_row": 843,
+      "native_col": 1296,
+      "bii_percent": 41.98,
+      "depletion": 58.02,
+      "class": "High",
+      "haiti_area_km2": 54.168532741941185
+    },
+    {
+      "native_row": 843,
+      "native_col": 1297,
+      "bii_percent": 40.65,
+      "depletion": 59.35,
+      "class": "High",
+      "haiti_area_km2": 38.01646516528413
+    },
+    {
+      "native_row": 843,
+      "native_col": 1298,
+      "bii_percent": 36.27,
+      "depletion": 63.73,
+      "class": "High",
+      "haiti_area_km2": 36.277503271585005
+    },
+    {
+      "native_row": 843,
+      "native_col": 1299,
+      "bii_percent": 42.32,
+      "depletion": 57.68,
+      "class": "High",
+      "haiti_area_km2": 0.16974360092403637
+    },
+    {
+      "native_row": 844,
+      "native_col": 1278,
+      "bii_percent": 50.68,
+      "depletion": 49.32,
+      "class": "High",
+      "haiti_area_km2": 3.2506521967530477
+    },
+    {
+      "native_row": 844,
+      "native_col": 1279,
+      "bii_percent": 50.87,
+      "depletion": 49.13,
+      "class": "High",
+      "haiti_area_km2": 36.611048992235666
+    },
+    {
+      "native_row": 844,
+      "native_col": 1280,
+      "bii_percent": 53.08,
+      "depletion": 46.92,
+      "class": "High",
+      "haiti_area_km2": 38.603703021987926
+    },
+    {
+      "native_row": 844,
+      "native_col": 1281,
+      "bii_percent": 47.45,
+      "depletion": 52.55,
+      "class": "High",
+      "haiti_area_km2": 25.889944478253696
+    },
+    {
+      "native_row": 844,
+      "native_col": 1282,
+      "bii_percent": 42.96,
+      "depletion": 57.04,
+      "class": "High",
+      "haiti_area_km2": 35.34112889657125
+    },
+    {
+      "native_row": 844,
+      "native_col": 1283,
+      "bii_percent": 41.67,
+      "depletion": 58.33,
+      "class": "High",
+      "haiti_area_km2": 47.457413447824386
+    },
+    {
+      "native_row": 844,
+      "native_col": 1284,
+      "bii_percent": 42.46,
+      "depletion": 57.54,
+      "class": "High",
+      "haiti_area_km2": 78.98716916529106
+    },
+    {
+      "native_row": 844,
+      "native_col": 1285,
+      "bii_percent": 45.39,
+      "depletion": 54.61,
+      "class": "High",
+      "haiti_area_km2": 80.63597002154785
+    },
+    {
+      "native_row": 844,
+      "native_col": 1286,
+      "bii_percent": 58.14,
+      "depletion": 41.86,
+      "class": "High",
+      "haiti_area_km2": 80.6359700215572
+    },
+    {
+      "native_row": 844,
+      "native_col": 1287,
+      "bii_percent": 61.68,
+      "depletion": 38.32,
+      "class": "Medium",
+      "haiti_area_km2": 80.63597002153851
+    },
+    {
+      "native_row": 844,
+      "native_col": 1288,
+      "bii_percent": 59.64,
+      "depletion": 40.36,
+      "class": "High",
+      "haiti_area_km2": 80.63597002154785
+    },
+    {
+      "native_row": 844,
+      "native_col": 1289,
+      "bii_percent": 63.01,
+      "depletion": 36.99,
+      "class": "Medium",
+      "haiti_area_km2": 80.6359700215572
+    },
+    {
+      "native_row": 844,
+      "native_col": 1290,
+      "bii_percent": 64.72,
+      "depletion": 35.28,
+      "class": "Medium",
+      "haiti_area_km2": 80.63597002154785
+    },
+    {
+      "native_row": 844,
+      "native_col": 1291,
+      "bii_percent": 63.41,
+      "depletion": 36.59,
+      "class": "Medium",
+      "haiti_area_km2": 80.6359700215572
+    },
+    {
+      "native_row": 844,
+      "native_col": 1292,
+      "bii_percent": 54.25,
+      "depletion": 45.75,
+      "class": "High",
+      "haiti_area_km2": 80.6359700215572
+    },
+    {
+      "native_row": 844,
+      "native_col": 1293,
+      "bii_percent": 49.9,
+      "depletion": 50.1,
+      "class": "High",
+      "haiti_area_km2": 80.63597002154785
+    },
+    {
+      "native_row": 844,
+      "native_col": 1294,
+      "bii_percent": 48.58,
+      "depletion": 51.42,
+      "class": "High",
+      "haiti_area_km2": 80.63597002153851
+    },
+    {
+      "native_row": 844,
+      "native_col": 1295,
+      "bii_percent": 38.33,
+      "depletion": 61.67,
+      "class": "High",
+      "haiti_area_km2": 80.6359700215572
+    },
+    {
+      "native_row": 844,
+      "native_col": 1296,
+      "bii_percent": 36.68,
+      "depletion": 63.32,
+      "class": "High",
+      "haiti_area_km2": 80.63597002154785
+    },
+    {
+      "native_row": 844,
+      "native_col": 1297,
+      "bii_percent": 40.51,
+      "depletion": 59.49,
+      "class": "High",
+      "haiti_area_km2": 80.14229262386971
+    },
+    {
+      "native_row": 844,
+      "native_col": 1298,
+      "bii_percent": 32.22,
+      "depletion": 67.78,
+      "class": "High",
+      "haiti_area_km2": 79.16558978903677
+    },
+    {
+      "native_row": 844,
+      "native_col": 1299,
+      "bii_percent": 27.56,
+      "depletion": 72.44,
+      "class": "High",
+      "haiti_area_km2": 8.132403070808921
+    },
+    {
+      "native_row": 845,
+      "native_col": 1284,
+      "bii_percent": 43.74,
+      "depletion": 56.26,
+      "class": "High",
+      "haiti_area_km2": 12.112867413762023
+    },
+    {
+      "native_row": 845,
+      "native_col": 1285,
+      "bii_percent": 42.52,
+      "depletion": 57.48,
+      "class": "High",
+      "haiti_area_km2": 46.20481561847483
+    },
+    {
+      "native_row": 845,
+      "native_col": 1286,
+      "bii_percent": 49.65,
+      "depletion": 50.35,
+      "class": "High",
+      "haiti_area_km2": 78.62013471076764
+    },
+    {
+      "native_row": 845,
+      "native_col": 1287,
+      "bii_percent": 55.14,
+      "depletion": 44.86,
+      "class": "High",
+      "haiti_area_km2": 80.67671103170834
+    },
+    {
+      "native_row": 845,
+      "native_col": 1288,
+      "bii_percent": 52.75,
+      "depletion": 47.25,
+      "class": "High",
+      "haiti_area_km2": 80.67671103171767
+    },
+    {
+      "native_row": 845,
+      "native_col": 1289,
+      "bii_percent": 60.56,
+      "depletion": 39.44,
+      "class": "Medium",
+      "haiti_area_km2": 80.67671103172701
+    },
+    {
+      "native_row": 845,
+      "native_col": 1290,
+      "bii_percent": 65.14,
+      "depletion": 34.86,
+      "class": "Medium",
+      "haiti_area_km2": 80.67671103171767
+    },
+    {
+      "native_row": 845,
+      "native_col": 1291,
+      "bii_percent": 64.98,
+      "depletion": 35.019999999999996,
+      "class": "Medium",
+      "haiti_area_km2": 80.67671103172701
+    },
+    {
+      "native_row": 845,
+      "native_col": 1292,
+      "bii_percent": 63.07,
+      "depletion": 36.93,
+      "class": "Medium",
+      "haiti_area_km2": 80.67671103172701
+    },
+    {
+      "native_row": 845,
+      "native_col": 1293,
+      "bii_percent": 61.57,
+      "depletion": 38.43,
+      "class": "Medium",
+      "haiti_area_km2": 80.67671103171767
+    },
+    {
+      "native_row": 845,
+      "native_col": 1294,
+      "bii_percent": 63.22,
+      "depletion": 36.78,
+      "class": "Medium",
+      "haiti_area_km2": 80.67671103170834
+    },
+    {
+      "native_row": 845,
+      "native_col": 1295,
+      "bii_percent": 57.39,
+      "depletion": 42.61,
+      "class": "High",
+      "haiti_area_km2": 80.67671103172701
+    },
+    {
+      "native_row": 845,
+      "native_col": 1296,
+      "bii_percent": 54.21,
+      "depletion": 45.79,
+      "class": "High",
+      "haiti_area_km2": 80.67671103171767
+    },
+    {
+      "native_row": 845,
+      "native_col": 1297,
+      "bii_percent": 64.84,
+      "depletion": 35.16,
+      "class": "Medium",
+      "haiti_area_km2": 80.67671103173636
+    },
+    {
+      "native_row": 845,
+      "native_col": 1298,
+      "bii_percent": 47.37,
+      "depletion": 52.63,
+      "class": "High",
+      "haiti_area_km2": 80.67671103169899
+    },
+    {
+      "native_row": 845,
+      "native_col": 1299,
+      "bii_percent": 28.87,
+      "depletion": 71.13,
+      "class": "High",
+      "haiti_area_km2": 37.28598594974746
+    },
+    {
+      "native_row": 846,
+      "native_col": 1286,
+      "bii_percent": 44.33,
+      "depletion": 55.67,
+      "class": "High",
+      "haiti_area_km2": 24.883278341733035
+    },
+    {
+      "native_row": 846,
+      "native_col": 1287,
+      "bii_percent": 36.84,
+      "depletion": 63.16,
+      "class": "High",
+      "haiti_area_km2": 64.76936654485688
+    },
+    {
+      "native_row": 846,
+      "native_col": 1288,
+      "bii_percent": 37.34,
+      "depletion": 62.66,
+      "class": "High",
+      "haiti_area_km2": 80.71728392332076
+    },
+    {
+      "native_row": 846,
+      "native_col": 1289,
+      "bii_percent": 53.76,
+      "depletion": 46.24,
+      "class": "High",
+      "haiti_area_km2": 80.71728392333011
+    },
+    {
+      "native_row": 846,
+      "native_col": 1290,
+      "bii_percent": 62.53,
+      "depletion": 37.47,
+      "class": "Medium",
+      "haiti_area_km2": 80.71728392332076
+    },
+    {
+      "native_row": 846,
+      "native_col": 1291,
+      "bii_percent": 65.0,
+      "depletion": 35.0,
+      "class": "Medium",
+      "haiti_area_km2": 80.71728392333011
+    },
+    {
+      "native_row": 846,
+      "native_col": 1292,
+      "bii_percent": 63.36,
+      "depletion": 36.64,
+      "class": "Medium",
+      "haiti_area_km2": 80.71728392333011
+    },
+    {
+      "native_row": 846,
+      "native_col": 1293,
+      "bii_percent": 53.72,
+      "depletion": 46.28,
+      "class": "High",
+      "haiti_area_km2": 80.71728392332076
+    },
+    {
+      "native_row": 846,
+      "native_col": 1294,
+      "bii_percent": 61.7,
+      "depletion": 38.3,
+      "class": "Medium",
+      "haiti_area_km2": 80.71728392331141
+    },
+    {
+      "native_row": 846,
+      "native_col": 1295,
+      "bii_percent": 59.76,
+      "depletion": 40.24,
+      "class": "High",
+      "haiti_area_km2": 80.71728392333011
+    },
+    {
+      "native_row": 846,
+      "native_col": 1296,
+      "bii_percent": 54.59,
+      "depletion": 45.41,
+      "class": "High",
+      "haiti_area_km2": 80.71728392332076
+    },
+    {
+      "native_row": 846,
+      "native_col": 1297,
+      "bii_percent": 58.19,
+      "depletion": 41.81,
+      "class": "High",
+      "haiti_area_km2": 80.71728392333945
+    },
+    {
+      "native_row": 846,
+      "native_col": 1298,
+      "bii_percent": 56.07,
+      "depletion": 43.93,
+      "class": "High",
+      "haiti_area_km2": 80.71728392330206
+    },
+    {
+      "native_row": 846,
+      "native_col": 1299,
+      "bii_percent": 43.1,
+      "depletion": 56.9,
+      "class": "High",
+      "haiti_area_km2": 61.04712990490526
+    },
+    {
+      "native_row": 847,
+      "native_col": 1286,
+      "bii_percent": 52.61,
+      "depletion": 47.39,
+      "class": "High",
+      "haiti_area_km2": 10.53966377019343
+    },
+    {
+      "native_row": 847,
+      "native_col": 1287,
+      "bii_percent": 51.05,
+      "depletion": 48.95,
+      "class": "High",
+      "haiti_area_km2": 60.84850655272283
+    },
+    {
+      "native_row": 847,
+      "native_col": 1288,
+      "bii_percent": 43.89,
+      "depletion": 56.11,
+      "class": "High",
+      "haiti_area_km2": 80.75768862851669
+    },
+    {
+      "native_row": 847,
+      "native_col": 1289,
+      "bii_percent": 45.43,
+      "depletion": 54.57,
+      "class": "High",
+      "haiti_area_km2": 80.75768862852603
+    },
+    {
+      "native_row": 847,
+      "native_col": 1290,
+      "bii_percent": 58.38,
+      "depletion": 41.62,
+      "class": "High",
+      "haiti_area_km2": 80.75768862851669
+    },
+    {
+      "native_row": 847,
+      "native_col": 1291,
+      "bii_percent": 62.0,
+      "depletion": 38.0,
+      "class": "Medium",
+      "haiti_area_km2": 80.75768862852603
+    },
+    {
+      "native_row": 847,
+      "native_col": 1292,
+      "bii_percent": 63.84,
+      "depletion": 36.16,
+      "class": "Medium",
+      "haiti_area_km2": 80.75768862852603
+    },
+    {
+      "native_row": 847,
+      "native_col": 1293,
+      "bii_percent": 54.66,
+      "depletion": 45.34,
+      "class": "High",
+      "haiti_area_km2": 80.75768862851669
+    },
+    {
+      "native_row": 847,
+      "native_col": 1294,
+      "bii_percent": 58.88,
+      "depletion": 41.12,
+      "class": "High",
+      "haiti_area_km2": 80.75768862850732
+    },
+    {
+      "native_row": 847,
+      "native_col": 1295,
+      "bii_percent": 60.12,
+      "depletion": 39.88,
+      "class": "Medium",
+      "haiti_area_km2": 80.75768862852603
+    },
+    {
+      "native_row": 847,
+      "native_col": 1296,
+      "bii_percent": 49.0,
+      "depletion": 51.0,
+      "class": "High",
+      "haiti_area_km2": 80.75768862851669
+    },
+    {
+      "native_row": 847,
+      "native_col": 1297,
+      "bii_percent": 50.03,
+      "depletion": 49.97,
+      "class": "High",
+      "haiti_area_km2": 80.75768862853539
+    },
+    {
+      "native_row": 847,
+      "native_col": 1298,
+      "bii_percent": 46.46,
+      "depletion": 53.54,
+      "class": "High",
+      "haiti_area_km2": 78.6685526340845
+    },
+    {
+      "native_row": 847,
+      "native_col": 1299,
+      "bii_percent": 50.15,
+      "depletion": 49.85,
+      "class": "High",
+      "haiti_area_km2": 35.92296954139748
+    },
+    {
+      "native_row": 848,
+      "native_col": 1286,
+      "bii_percent": 48.88,
+      "depletion": 51.12,
+      "class": "High",
+      "haiti_area_km2": 12.095720187918772
+    },
+    {
+      "native_row": 848,
+      "native_col": 1287,
+      "bii_percent": 47.41,
+      "depletion": 52.59,
+      "class": "High",
+      "haiti_area_km2": 70.67737243726963
+    },
+    {
+      "native_row": 848,
+      "native_col": 1288,
+      "bii_percent": 42.2,
+      "depletion": 57.8,
+      "class": "High",
+      "haiti_area_km2": 80.79792507953239
+    },
+    {
+      "native_row": 848,
+      "native_col": 1289,
+      "bii_percent": 34.5,
+      "depletion": 65.5,
+      "class": "High",
+      "haiti_area_km2": 80.79792507954174
+    },
+    {
+      "native_row": 848,
+      "native_col": 1290,
+      "bii_percent": 39.67,
+      "depletion": 60.33,
+      "class": "High",
+      "haiti_area_km2": 80.79792507953239
+    },
+    {
+      "native_row": 848,
+      "native_col": 1291,
+      "bii_percent": 58.75,
+      "depletion": 41.25,
+      "class": "High",
+      "haiti_area_km2": 80.79792507954174
+    },
+    {
+      "native_row": 848,
+      "native_col": 1292,
+      "bii_percent": 62.74,
+      "depletion": 37.26,
+      "class": "Medium",
+      "haiti_area_km2": 80.79792507954174
+    },
+    {
+      "native_row": 848,
+      "native_col": 1293,
+      "bii_percent": 63.81,
+      "depletion": 36.19,
+      "class": "Medium",
+      "haiti_area_km2": 80.79792507953239
+    },
+    {
+      "native_row": 848,
+      "native_col": 1294,
+      "bii_percent": 61.15,
+      "depletion": 38.85,
+      "class": "Medium",
+      "haiti_area_km2": 80.79792507952303
+    },
+    {
+      "native_row": 848,
+      "native_col": 1295,
+      "bii_percent": 61.13,
+      "depletion": 38.87,
+      "class": "Medium",
+      "haiti_area_km2": 80.79792507954174
+    },
+    {
+      "native_row": 848,
+      "native_col": 1296,
+      "bii_percent": 54.09,
+      "depletion": 45.91,
+      "class": "High",
+      "haiti_area_km2": 80.79792507953239
+    },
+    {
+      "native_row": 848,
+      "native_col": 1297,
+      "bii_percent": 48.93,
+      "depletion": 51.07,
+      "class": "High",
+      "haiti_area_km2": 80.7979250795511
+    },
+    {
+      "native_row": 848,
+      "native_col": 1298,
+      "bii_percent": 45.83,
+      "depletion": 54.17,
+      "class": "High",
+      "haiti_area_km2": 71.3991905266626
+    },
+    {
+      "native_row": 848,
+      "native_col": 1299,
+      "bii_percent": 47.75,
+      "depletion": 52.25,
+      "class": "High",
+      "haiti_area_km2": 9.739065335909748
+    },
+    {
+      "native_row": 849,
+      "native_col": 1286,
+      "bii_percent": 46.37,
+      "depletion": 53.63,
+      "class": "High",
+      "haiti_area_km2": 30.80022090132101
+    },
+    {
+      "native_row": 849,
+      "native_col": 1287,
+      "bii_percent": 43.95,
+      "depletion": 56.05,
+      "class": "High",
+      "haiti_area_km2": 80.83799320918827
+    },
+    {
+      "native_row": 849,
+      "native_col": 1288,
+      "bii_percent": 41.51,
+      "depletion": 58.49,
+      "class": "High",
+      "haiti_area_km2": 80.83799320919762
+    },
+    {
+      "native_row": 849,
+      "native_col": 1289,
+      "bii_percent": 36.8,
+      "depletion": 63.2,
+      "class": "High",
+      "haiti_area_km2": 80.83799320920699
+    },
+    {
+      "native_row": 849,
+      "native_col": 1290,
+      "bii_percent": 34.69,
+      "depletion": 65.31,
+      "class": "High",
+      "haiti_area_km2": 80.83799320919762
+    },
+    {
+      "native_row": 849,
+      "native_col": 1291,
+      "bii_percent": 46.11,
+      "depletion": 53.89,
+      "class": "High",
+      "haiti_area_km2": 80.83799320920699
+    },
+    {
+      "native_row": 849,
+      "native_col": 1292,
+      "bii_percent": 51.55,
+      "depletion": 48.45,
+      "class": "High",
+      "haiti_area_km2": 80.83799320920699
+    },
+    {
+      "native_row": 849,
+      "native_col": 1293,
+      "bii_percent": 43.84,
+      "depletion": 56.16,
+      "class": "High",
+      "haiti_area_km2": 80.83799320919762
+    },
+    {
+      "native_row": 849,
+      "native_col": 1294,
+      "bii_percent": 60.08,
+      "depletion": 39.92,
+      "class": "Medium",
+      "haiti_area_km2": 80.83799320918827
+    },
+    {
+      "native_row": 849,
+      "native_col": 1295,
+      "bii_percent": 62.47,
+      "depletion": 37.53,
+      "class": "Medium",
+      "haiti_area_km2": 80.83799320920699
+    },
+    {
+      "native_row": 849,
+      "native_col": 1296,
+      "bii_percent": 59.57,
+      "depletion": 40.43,
+      "class": "High",
+      "haiti_area_km2": 80.83799320919762
+    },
+    {
+      "native_row": 849,
+      "native_col": 1297,
+      "bii_percent": 52.14,
+      "depletion": 47.86,
+      "class": "High",
+      "haiti_area_km2": 80.83799320921635
+    },
+    {
+      "native_row": 849,
+      "native_col": 1298,
+      "bii_percent": 48.74,
+      "depletion": 51.26,
+      "class": "High",
+      "haiti_area_km2": 80.83799320917889
+    },
+    {
+      "native_row": 849,
+      "native_col": 1299,
+      "bii_percent": 46.62,
+      "depletion": 53.38,
+      "class": "High",
+      "haiti_area_km2": 75.82485157193179
+    },
+    {
+      "native_row": 849,
+      "native_col": 1300,
+      "bii_percent": 39.55,
+      "depletion": 60.45,
+      "class": "High",
+      "haiti_area_km2": 23.222216159842226
+    },
+    {
+      "native_row": 850,
+      "native_col": 1286,
+      "bii_percent": 45.0,
+      "depletion": 55.0,
+      "class": "High",
+      "haiti_area_km2": 5.102746446629944
+    },
+    {
+      "native_row": 850,
+      "native_col": 1287,
+      "bii_percent": 38.21,
+      "depletion": 61.79,
+      "class": "High",
+      "haiti_area_km2": 57.421371359157796
+    },
+    {
+      "native_row": 850,
+      "native_col": 1288,
+      "bii_percent": 42.14,
+      "depletion": 57.86,
+      "class": "High",
+      "haiti_area_km2": 80.87789295038337
+    },
+    {
+      "native_row": 850,
+      "native_col": 1289,
+      "bii_percent": 36.39,
+      "depletion": 63.61,
+      "class": "High",
+      "haiti_area_km2": 80.87789295039272
+    },
+    {
+      "native_row": 850,
+      "native_col": 1290,
+      "bii_percent": 35.97,
+      "depletion": 64.03,
+      "class": "High",
+      "haiti_area_km2": 80.87789295038337
+    },
+    {
+      "native_row": 850,
+      "native_col": 1291,
+      "bii_percent": 47.44,
+      "depletion": 52.56,
+      "class": "High",
+      "haiti_area_km2": 80.87789295039272
+    },
+    {
+      "native_row": 850,
+      "native_col": 1292,
+      "bii_percent": 58.38,
+      "depletion": 41.62,
+      "class": "High",
+      "haiti_area_km2": 80.87789295039272
+    },
+    {
+      "native_row": 850,
+      "native_col": 1293,
+      "bii_percent": 51.68,
+      "depletion": 48.32,
+      "class": "High",
+      "haiti_area_km2": 80.87789295038337
+    },
+    {
+      "native_row": 850,
+      "native_col": 1294,
+      "bii_percent": 59.15,
+      "depletion": 40.85,
+      "class": "High",
+      "haiti_area_km2": 80.87789295037399
+    },
+    {
+      "native_row": 850,
+      "native_col": 1295,
+      "bii_percent": 60.27,
+      "depletion": 39.73,
+      "class": "Medium",
+      "haiti_area_km2": 80.87789295039272
+    },
+    {
+      "native_row": 850,
+      "native_col": 1296,
+      "bii_percent": 62.4,
+      "depletion": 37.6,
+      "class": "Medium",
+      "haiti_area_km2": 80.87789295038337
+    },
+    {
+      "native_row": 850,
+      "native_col": 1297,
+      "bii_percent": 60.63,
+      "depletion": 39.37,
+      "class": "Medium",
+      "haiti_area_km2": 80.8778929504021
+    },
+    {
+      "native_row": 850,
+      "native_col": 1298,
+      "bii_percent": 58.87,
+      "depletion": 41.13,
+      "class": "High",
+      "haiti_area_km2": 80.87789295036463
+    },
+    {
+      "native_row": 850,
+      "native_col": 1299,
+      "bii_percent": 55.42,
+      "depletion": 44.58,
+      "class": "High",
+      "haiti_area_km2": 70.02577449895686
+    },
+    {
+      "native_row": 850,
+      "native_col": 1300,
+      "bii_percent": 47.29,
+      "depletion": 52.71,
+      "class": "High",
+      "haiti_area_km2": 11.396751166486652
+    },
+    {
+      "native_row": 851,
+      "native_col": 1286,
+      "bii_percent": 44.79,
+      "depletion": 55.21,
+      "class": "High",
+      "haiti_area_km2": 53.800806310329435
+    },
+    {
+      "native_row": 851,
+      "native_col": 1287,
+      "bii_percent": 39.44,
+      "depletion": 60.56,
+      "class": "High",
+      "haiti_area_km2": 80.91762423640046
+    },
+    {
+      "native_row": 851,
+      "native_col": 1288,
+      "bii_percent": 50.98,
+      "depletion": 49.02,
+      "class": "High",
+      "haiti_area_km2": 80.91762423640982
+    },
+    {
+      "native_row": 851,
+      "native_col": 1289,
+      "bii_percent": 51.86,
+      "depletion": 48.14,
+      "class": "High",
+      "haiti_area_km2": 80.9176242364192
+    },
+    {
+      "native_row": 851,
+      "native_col": 1290,
+      "bii_percent": 47.93,
+      "depletion": 52.07,
+      "class": "High",
+      "haiti_area_km2": 80.91762423640982
+    },
+    {
+      "native_row": 851,
+      "native_col": 1291,
+      "bii_percent": 52.34,
+      "depletion": 47.66,
+      "class": "High",
+      "haiti_area_km2": 80.9176242364192
+    },
+    {
+      "native_row": 851,
+      "native_col": 1292,
+      "bii_percent": 59.37,
+      "depletion": 40.63,
+      "class": "High",
+      "haiti_area_km2": 80.9176242364192
+    },
+    {
+      "native_row": 851,
+      "native_col": 1293,
+      "bii_percent": 62.87,
+      "depletion": 37.13,
+      "class": "Medium",
+      "haiti_area_km2": 80.91762423640982
+    },
+    {
+      "native_row": 851,
+      "native_col": 1294,
+      "bii_percent": 61.33,
+      "depletion": 38.67,
+      "class": "Medium",
+      "haiti_area_km2": 80.91762423640046
+    },
+    {
+      "native_row": 851,
+      "native_col": 1295,
+      "bii_percent": 63.16,
+      "depletion": 36.84,
+      "class": "Medium",
+      "haiti_area_km2": 80.9176242364192
+    },
+    {
+      "native_row": 851,
+      "native_col": 1296,
+      "bii_percent": 62.87,
+      "depletion": 37.13,
+      "class": "Medium",
+      "haiti_area_km2": 80.91762423640982
+    },
+    {
+      "native_row": 851,
+      "native_col": 1297,
+      "bii_percent": 62.72,
+      "depletion": 37.28,
+      "class": "Medium",
+      "haiti_area_km2": 80.85266724149388
+    },
+    {
+      "native_row": 851,
+      "native_col": 1298,
+      "bii_percent": 61.96,
+      "depletion": 38.04,
+      "class": "Medium",
+      "haiti_area_km2": 67.50757725342106
+    },
+    {
+      "native_row": 851,
+      "native_col": 1299,
+      "bii_percent": 60.23,
+      "depletion": 39.77,
+      "class": "Medium",
+      "haiti_area_km2": 14.270909606838256
+    },
+    {
+      "native_row": 852,
+      "native_col": 1280,
+      "bii_percent": 57.94,
+      "depletion": 42.06,
+      "class": "High",
+      "haiti_area_km2": 22.992964429545168
+    },
+    {
+      "native_row": 852,
+      "native_col": 1281,
+      "bii_percent": 61.25,
+      "depletion": 38.75,
+      "class": "Medium",
+      "haiti_area_km2": 45.68043367252699
+    },
+    {
+      "native_row": 852,
+      "native_col": 1282,
+      "bii_percent": 61.43,
+      "depletion": 38.57,
+      "class": "Medium",
+      "haiti_area_km2": 17.989192546017858
+    },
+    {
+      "native_row": 852,
+      "native_col": 1283,
+      "bii_percent": 58.85,
+      "depletion": 41.15,
+      "class": "High",
+      "haiti_area_km2": 2.471230315226472
+    },
+    {
+      "native_row": 852,
+      "native_col": 1286,
+      "bii_percent": 41.75,
+      "depletion": 58.25,
+      "class": "High",
+      "haiti_area_km2": 0.12607737542541914
+    },
+    {
+      "native_row": 852,
+      "native_col": 1287,
+      "bii_percent": 33.6,
+      "depletion": 66.4,
+      "class": "High",
+      "haiti_area_km2": 50.036708274253016
+    },
+    {
+      "native_row": 852,
+      "native_col": 1288,
+      "bii_percent": 54.71,
+      "depletion": 45.29,
+      "class": "High",
+      "haiti_area_km2": 80.32542896361828
+    },
+    {
+      "native_row": 852,
+      "native_col": 1289,
+      "bii_percent": 58.42,
+      "depletion": 41.58,
+      "class": "High",
+      "haiti_area_km2": 80.95718700086502
+    },
+    {
+      "native_row": 852,
+      "native_col": 1290,
+      "bii_percent": 58.77,
+      "depletion": 41.23,
+      "class": "High",
+      "haiti_area_km2": 80.95718700085563
+    },
+    {
+      "native_row": 852,
+      "native_col": 1291,
+      "bii_percent": 55.65,
+      "depletion": 44.35,
+      "class": "High",
+      "haiti_area_km2": 80.95718700086502
+    },
+    {
+      "native_row": 852,
+      "native_col": 1292,
+      "bii_percent": 56.88,
+      "depletion": 43.12,
+      "class": "High",
+      "haiti_area_km2": 80.95718700086502
+    },
+    {
+      "native_row": 852,
+      "native_col": 1293,
+      "bii_percent": 58.02,
+      "depletion": 41.98,
+      "class": "High",
+      "haiti_area_km2": 80.95718700085563
+    },
+    {
+      "native_row": 852,
+      "native_col": 1294,
+      "bii_percent": 57.68,
+      "depletion": 42.32,
+      "class": "High",
+      "haiti_area_km2": 80.95718700084625
+    },
+    {
+      "native_row": 852,
+      "native_col": 1295,
+      "bii_percent": 61.23,
+      "depletion": 38.77,
+      "class": "Medium",
+      "haiti_area_km2": 80.95718700086502
+    },
+    {
+      "native_row": 852,
+      "native_col": 1296,
+      "bii_percent": 62.96,
+      "depletion": 37.04,
+      "class": "Medium",
+      "haiti_area_km2": 80.95718700085563
+    },
+    {
+      "native_row": 852,
+      "native_col": 1297,
+      "bii_percent": 63.73,
+      "depletion": 36.27,
+      "class": "Medium",
+      "haiti_area_km2": 65.28692519680607
+    },
+    {
+      "native_row": 852,
+      "native_col": 1298,
+      "bii_percent": 62.16,
+      "depletion": 37.84,
+      "class": "Medium",
+      "haiti_area_km2": 29.519550640139983
+    },
+    {
+      "native_row": 853,
+      "native_col": 1280,
+      "bii_percent": 52.94,
+      "depletion": 47.06,
+      "class": "High",
+      "haiti_area_km2": 18.925198321959744
+    },
+    {
+      "native_row": 853,
+      "native_col": 1281,
+      "bii_percent": 55.57,
+      "depletion": 44.43,
+      "class": "High",
+      "haiti_area_km2": 76.5571621432007
+    },
+    {
+      "native_row": 853,
+      "native_col": 1282,
+      "bii_percent": 60.51,
+      "depletion": 39.49,
+      "class": "Medium",
+      "haiti_area_km2": 80.99658117763263
+    },
+    {
+      "native_row": 853,
+      "native_col": 1283,
+      "bii_percent": 65.87,
+      "depletion": 34.129999999999995,
+      "class": "Medium",
+      "haiti_area_km2": 72.79676803235931
+    },
+    {
+      "native_row": 853,
+      "native_col": 1284,
+      "bii_percent": 59.79,
+      "depletion": 40.21,
+      "class": "High",
+      "haiti_area_km2": 32.03396157340792
+    },
+    {
+      "native_row": 853,
+      "native_col": 1285,
+      "bii_percent": 37.11,
+      "depletion": 62.89,
+      "class": "High",
+      "haiti_area_km2": 7.730286134331708
+    },
+    {
+      "native_row": 853,
+      "native_col": 1288,
+      "bii_percent": 40.12,
+      "depletion": 59.88,
+      "class": "High",
+      "haiti_area_km2": 33.8010903931756
+    },
+    {
+      "native_row": 853,
+      "native_col": 1289,
+      "bii_percent": 44.48,
+      "depletion": 55.52,
+      "class": "High",
+      "haiti_area_km2": 80.92320138868787
+    },
+    {
+      "native_row": 853,
+      "native_col": 1290,
+      "bii_percent": 51.36,
+      "depletion": 48.64,
+      "class": "High",
+      "haiti_area_km2": 80.99658117761386
+    },
+    {
+      "native_row": 853,
+      "native_col": 1291,
+      "bii_percent": 53.78,
+      "depletion": 46.22,
+      "class": "High",
+      "haiti_area_km2": 80.99658117762324
+    },
+    {
+      "native_row": 853,
+      "native_col": 1292,
+      "bii_percent": 50.9,
+      "depletion": 49.1,
+      "class": "High",
+      "haiti_area_km2": 80.99658117762324
+    },
+    {
+      "native_row": 853,
+      "native_col": 1293,
+      "bii_percent": 45.85,
+      "depletion": 54.15,
+      "class": "High",
+      "haiti_area_km2": 80.99658117761386
+    },
+    {
+      "native_row": 853,
+      "native_col": 1294,
+      "bii_percent": 49.36,
+      "depletion": 50.64,
+      "class": "High",
+      "haiti_area_km2": 80.99658117760448
+    },
+    {
+      "native_row": 853,
+      "native_col": 1295,
+      "bii_percent": 58.55,
+      "depletion": 41.45,
+      "class": "High",
+      "haiti_area_km2": 80.99658117762324
+    },
+    {
+      "native_row": 853,
+      "native_col": 1296,
+      "bii_percent": 61.92,
+      "depletion": 38.08,
+      "class": "Medium",
+      "haiti_area_km2": 80.99658117761386
+    },
+    {
+      "native_row": 853,
+      "native_col": 1297,
+      "bii_percent": 62.95,
+      "depletion": 37.05,
+      "class": "Medium",
+      "haiti_area_km2": 80.99658117763263
+    },
+    {
+      "native_row": 853,
+      "native_col": 1298,
+      "bii_percent": 60.99,
+      "depletion": 39.01,
+      "class": "Medium",
+      "haiti_area_km2": 78.01378821899246
+    },
+    {
+      "native_row": 853,
+      "native_col": 1299,
+      "bii_percent": 51.01,
+      "depletion": 48.99,
+      "class": "High",
+      "haiti_area_km2": 15.083453728488093
+    },
+    {
+      "native_row": 854,
+      "native_col": 1281,
+      "bii_percent": 51.83,
+      "depletion": 48.17,
+      "class": "High",
+      "haiti_area_km2": 1.7906130898213604
+    },
+    {
+      "native_row": 854,
+      "native_col": 1282,
+      "bii_percent": 54.29,
+      "depletion": 45.71,
+      "class": "High",
+      "haiti_area_km2": 22.266510248249542
+    },
+    {
+      "native_row": 854,
+      "native_col": 1283,
+      "bii_percent": 54.66,
+      "depletion": 45.34,
+      "class": "High",
+      "haiti_area_km2": 67.01072923795286
+    },
+    {
+      "native_row": 854,
+      "native_col": 1284,
+      "bii_percent": 54.45,
+      "depletion": 45.55,
+      "class": "High",
+      "haiti_area_km2": 81.0358067008865
+    },
+    {
+      "native_row": 854,
+      "native_col": 1285,
+      "bii_percent": 51.99,
+      "depletion": 48.01,
+      "class": "High",
+      "haiti_area_km2": 78.46873278159235
+    },
+    {
+      "native_row": 854,
+      "native_col": 1286,
+      "bii_percent": 43.99,
+      "depletion": 56.01,
+      "class": "High",
+      "haiti_area_km2": 13.739428822227739
+    },
+    {
+      "native_row": 854,
+      "native_col": 1289,
+      "bii_percent": 30.11,
+      "depletion": 69.89,
+      "class": "High",
+      "haiti_area_km2": 49.046926137423085
+    },
+    {
+      "native_row": 854,
+      "native_col": 1290,
+      "bii_percent": 25.72,
+      "depletion": 74.28,
+      "class": "High",
+      "haiti_area_km2": 77.03118502962593
+    },
+    {
+      "native_row": 854,
+      "native_col": 1291,
+      "bii_percent": 33.18,
+      "depletion": 66.82,
+      "class": "High",
+      "haiti_area_km2": 81.03580670090528
+    },
+    {
+      "native_row": 854,
+      "native_col": 1292,
+      "bii_percent": 41.75,
+      "depletion": 58.25,
+      "class": "High",
+      "haiti_area_km2": 81.03580670090528
+    },
+    {
+      "native_row": 854,
+      "native_col": 1293,
+      "bii_percent": 36.6,
+      "depletion": 63.4,
+      "class": "High",
+      "haiti_area_km2": 81.03580670089589
+    },
+    {
+      "native_row": 854,
+      "native_col": 1294,
+      "bii_percent": 42.32,
+      "depletion": 57.68,
+      "class": "High",
+      "haiti_area_km2": 81.0358067008865
+    },
+    {
+      "native_row": 854,
+      "native_col": 1295,
+      "bii_percent": 55.24,
+      "depletion": 44.76,
+      "class": "High",
+      "haiti_area_km2": 81.03580670090528
+    },
+    {
+      "native_row": 854,
+      "native_col": 1296,
+      "bii_percent": 59.5,
+      "depletion": 40.5,
+      "class": "High",
+      "haiti_area_km2": 81.03580670089589
+    },
+    {
+      "native_row": 854,
+      "native_col": 1297,
+      "bii_percent": 57.58,
+      "depletion": 42.42,
+      "class": "High",
+      "haiti_area_km2": 81.03580670091466
+    },
+    {
+      "native_row": 854,
+      "native_col": 1298,
+      "bii_percent": 51.26,
+      "depletion": 48.74,
+      "class": "High",
+      "haiti_area_km2": 81.03580670087712
+    },
+    {
+      "native_row": 854,
+      "native_col": 1299,
+      "bii_percent": 49.58,
+      "depletion": 50.42,
+      "class": "High",
+      "haiti_area_km2": 24.092889305418037
+    },
+    {
+      "native_row": 855,
+      "native_col": 1268,
+      "bii_percent": null,
+      "depletion": null,
+      "class": null,
+      "haiti_area_km2": 0.23477544659437802
+    },
+    {
+      "native_row": 855,
+      "native_col": 1269,
+      "bii_percent": 78.23,
+      "depletion": 21.769999999999996,
+      "class": "Medium",
+      "haiti_area_km2": 3.741619748452032
+    },
+    {
+      "native_row": 855,
+      "native_col": 1270,
+      "bii_percent": null,
+      "depletion": null,
+      "class": null,
+      "haiti_area_km2": 0.009123696343815347
+    },
+    {
+      "native_row": 855,
+      "native_col": 1283,
+      "bii_percent": null,
+      "depletion": null,
+      "class": null,
+      "haiti_area_km2": 0.8830479019231264
+    },
+    {
+      "native_row": 855,
+      "native_col": 1284,
+      "bii_percent": 53.59,
+      "depletion": 46.41,
+      "class": "High",
+      "haiti_area_km2": 9.493419919140761
+    },
+    {
+      "native_row": 855,
+      "native_col": 1285,
+      "bii_percent": 51.13,
+      "depletion": 48.87,
+      "class": "High",
+      "haiti_area_km2": 26.357761804152563
+    },
+    {
+      "native_row": 855,
+      "native_col": 1286,
+      "bii_percent": 55.54,
+      "depletion": 44.46,
+      "class": "High",
+      "haiti_area_km2": 15.637475214236568
+    },
+    {
+      "native_row": 855,
+      "native_col": 1290,
+      "bii_percent": 31.7,
+      "depletion": 68.3,
+      "class": "High",
+      "haiti_area_km2": 17.759391921043296
+    },
+    {
+      "native_row": 855,
+      "native_col": 1291,
+      "bii_percent": 24.25,
+      "depletion": 75.75,
+      "class": "High",
+      "haiti_area_km2": 51.62476942194058
+    },
+    {
+      "native_row": 855,
+      "native_col": 1292,
+      "bii_percent": 26.8,
+      "depletion": 73.2,
+      "class": "High",
+      "haiti_area_km2": 79.69706040367522
+    },
+    {
+      "native_row": 855,
+      "native_col": 1293,
+      "bii_percent": 35.65,
+      "depletion": 64.35,
+      "class": "High",
+      "haiti_area_km2": 81.07486350519761
+    },
+    {
+      "native_row": 855,
+      "native_col": 1294,
+      "bii_percent": 41.93,
+      "depletion": 58.07,
+      "class": "High",
+      "haiti_area_km2": 81.07486350518823
+    },
+    {
+      "native_row": 855,
+      "native_col": 1295,
+      "bii_percent": 50.35,
+      "depletion": 49.65,
+      "class": "High",
+      "haiti_area_km2": 81.074863505207
+    },
+    {
+      "native_row": 855,
+      "native_col": 1296,
+      "bii_percent": 53.48,
+      "depletion": 46.52,
+      "class": "High",
+      "haiti_area_km2": 81.07486350519761
+    },
+    {
+      "native_row": 855,
+      "native_col": 1297,
+      "bii_percent": 50.79,
+      "depletion": 49.21,
+      "class": "High",
+      "haiti_area_km2": 81.07486350521638
+    },
+    {
+      "native_row": 855,
+      "native_col": 1298,
+      "bii_percent": 48.31,
+      "depletion": 51.69,
+      "class": "High",
+      "haiti_area_km2": 56.56774593416136
+    },
+    {
+      "native_row": 855,
+      "native_col": 1299,
+      "bii_percent": 45.37,
+      "depletion": 54.63,
+      "class": "High",
+      "haiti_area_km2": 5.096185121351281
+    },
+    {
+      "native_row": 856,
+      "native_col": 1266,
+      "bii_percent": 76.99,
+      "depletion": 23.010000000000005,
+      "class": "Medium",
+      "haiti_area_km2": 3.3544436482470865
+    },
+    {
+      "native_row": 856,
+      "native_col": 1267,
+      "bii_percent": 72.19,
+      "depletion": 27.810000000000002,
+      "class": "Medium",
+      "haiti_area_km2": 52.093791404118775
+    },
+    {
+      "native_row": 856,
+      "native_col": 1268,
+      "bii_percent": 70.52,
+      "depletion": 29.480000000000004,
+      "class": "Medium",
+      "haiti_area_km2": 71.00001859299033
+    },
+    {
+      "native_row": 856,
+      "native_col": 1269,
+      "bii_percent": 64.46,
+      "depletion": 35.540000000000006,
+      "class": "Medium",
+      "haiti_area_km2": 81.08525256975267
+    },
+    {
+      "native_row": 856,
+      "native_col": 1270,
+      "bii_percent": 63.4,
+      "depletion": 36.6,
+      "class": "Medium",
+      "haiti_area_km2": 61.89364079466578
+    },
+    {
+      "native_row": 856,
+      "native_col": 1271,
+      "bii_percent": 67.83,
+      "depletion": 32.17,
+      "class": "Medium",
+      "haiti_area_km2": 19.89497217652633
+    },
+    {
+      "native_row": 856,
+      "native_col": 1272,
+      "bii_percent": 73.64,
+      "depletion": 26.36,
+      "class": "Medium",
+      "haiti_area_km2": 10.913315092155011
+    },
+    {
+      "native_row": 856,
+      "native_col": 1273,
+      "bii_percent": null,
+      "depletion": null,
+      "class": null,
+      "haiti_area_km2": 0.10008145638789448
+    },
+    {
+      "native_row": 856,
+      "native_col": 1274,
+      "bii_percent": 79.45,
+      "depletion": 20.549999999999997,
+      "class": "Medium",
+      "haiti_area_km2": 26.281184751248507
+    },
+    {
+      "native_row": 856,
+      "native_col": 1275,
+      "bii_percent": 80.35,
+      "depletion": 19.650000000000006,
+      "class": "Low",
+      "haiti_area_km2": 24.03497291087346
+    },
+    {
+      "native_row": 856,
+      "native_col": 1276,
+      "bii_percent": 89.12,
+      "depletion": 10.879999999999995,
+      "class": "Low",
+      "haiti_area_km2": 0.28214134768047294
+    },
+    {
+      "native_row": 856,
+      "native_col": 1277,
+      "bii_percent": null,
+      "depletion": null,
+      "class": null,
+      "haiti_area_km2": 0.4181463432625307
+    },
+    {
+      "native_row": 856,
+      "native_col": 1291,
+      "bii_percent": 32.56,
+      "depletion": 67.44,
+      "class": "High",
+      "haiti_area_km2": 9.484226171736884
+    },
+    {
+      "native_row": 856,
+      "native_col": 1292,
+      "bii_percent": 17.63,
+      "depletion": 82.37,
+      "class": "High",
+      "haiti_area_km2": 79.04873250626895
+    },
+    {
+      "native_row": 856,
+      "native_col": 1293,
+      "bii_percent": 24.0,
+      "depletion": 76.0,
+      "class": "High",
+      "haiti_area_km2": 81.11375152539685
+    },
+    {
+      "native_row": 856,
+      "native_col": 1294,
+      "bii_percent": 28.98,
+      "depletion": 71.02,
+      "class": "High",
+      "haiti_area_km2": 81.11375152538747
+    },
+    {
+      "native_row": 856,
+      "native_col": 1295,
+      "bii_percent": 39.8,
+      "depletion": 60.2,
+      "class": "High",
+      "haiti_area_km2": 80.6014034437156
+    },
+    {
+      "native_row": 856,
+      "native_col": 1296,
+      "bii_percent": 48.37,
+      "depletion": 51.63,
+      "class": "High",
+      "haiti_area_km2": 35.74974302389404
+    },
+    {
+      "native_row": 856,
+      "native_col": 1297,
+      "bii_percent": 53.6,
+      "depletion": 46.4,
+      "class": "High",
+      "haiti_area_km2": 28.798174157702697
+    },
+    {
+      "native_row": 856,
+      "native_col": 1298,
+      "bii_percent": 46.88,
+      "depletion": 53.12,
+      "class": "High",
+      "haiti_area_km2": 10.50952198456297
+    },
+    {
+      "native_row": 857,
+      "native_col": 1266,
+      "bii_percent": 73.93,
+      "depletion": 26.069999999999993,
+      "class": "Medium",
+      "haiti_area_km2": 19.079332337385676
+    },
+    {
+      "native_row": 857,
+      "native_col": 1267,
+      "bii_percent": 69.93,
+      "depletion": 30.069999999999993,
+      "class": "Medium",
+      "haiti_area_km2": 81.15247069653618
+    },
+    {
+      "native_row": 857,
+      "native_col": 1268,
+      "bii_percent": 69.62,
+      "depletion": 30.379999999999995,
+      "class": "Medium",
+      "haiti_area_km2": 81.15247069654559
+    },
+    {
+      "native_row": 857,
+      "native_col": 1269,
+      "bii_percent": 61.55,
+      "depletion": 38.45,
+      "class": "Medium",
+      "haiti_area_km2": 81.15247069653618
+    },
+    {
+      "native_row": 857,
+      "native_col": 1270,
+      "bii_percent": 53.08,
+      "depletion": 46.92,
+      "class": "High",
+      "haiti_area_km2": 81.15247069652678
+    },
+    {
+      "native_row": 857,
+      "native_col": 1271,
+      "bii_percent": 57.32,
+      "depletion": 42.68,
+      "class": "High",
+      "haiti_area_km2": 81.15247069654559
+    },
+    {
+      "native_row": 857,
+      "native_col": 1272,
+      "bii_percent": 67.39,
+      "depletion": 32.61,
+      "class": "Medium",
+      "haiti_area_km2": 81.03956345585391
+    },
+    {
+      "native_row": 857,
+      "native_col": 1273,
+      "bii_percent": 68.44,
+      "depletion": 31.560000000000002,
+      "class": "Medium",
+      "haiti_area_km2": 66.5850272630735
+    },
+    {
+      "native_row": 857,
+      "native_col": 1274,
+      "bii_percent": 70.89,
+      "depletion": 29.11,
+      "class": "Medium",
+      "haiti_area_km2": 45.83189840117852
+    },
+    {
+      "native_row": 857,
+      "native_col": 1275,
+      "bii_percent": 74.77,
+      "depletion": 25.230000000000004,
+      "class": "Medium",
+      "haiti_area_km2": 56.11758385980412
+    },
+    {
+      "native_row": 857,
+      "native_col": 1276,
+      "bii_percent": 79.29,
+      "depletion": 20.709999999999994,
+      "class": "Medium",
+      "haiti_area_km2": 27.405647384445125
+    },
+    {
+      "native_row": 857,
+      "native_col": 1277,
+      "bii_percent": 77.24,
+      "depletion": 22.760000000000005,
+      "class": "Medium",
+      "haiti_area_km2": 20.189960902883264
+    },
+    {
+      "native_row": 857,
+      "native_col": 1278,
+      "bii_percent": 73.57,
+      "depletion": 26.430000000000007,
+      "class": "Medium",
+      "haiti_area_km2": 21.95322140962695
+    },
+    {
+      "native_row": 857,
+      "native_col": 1279,
+      "bii_percent": 61.33,
+      "depletion": 38.67,
+      "class": "Medium",
+      "haiti_area_km2": 9.8155198846479
+    },
+    {
+      "native_row": 857,
+      "native_col": 1280,
+      "bii_percent": null,
+      "depletion": null,
+      "class": null,
+      "haiti_area_km2": 0.039760506398677446
+    },
+    {
+      "native_row": 857,
+      "native_col": 1288,
+      "bii_percent": 35.59,
+      "depletion": 64.41,
+      "class": "High",
+      "haiti_area_km2": 41.33893543257254
+    },
+    {
+      "native_row": 857,
+      "native_col": 1289,
+      "bii_percent": 33.79,
+      "depletion": 66.21000000000001,
+      "class": "High",
+      "haiti_area_km2": 49.07633674254411
+    },
+    {
+      "native_row": 857,
+      "native_col": 1290,
+      "bii_percent": 29.97,
+      "depletion": 70.03,
+      "class": "High",
+      "haiti_area_km2": 43.58142246721824
+    },
+    {
+      "native_row": 857,
+      "native_col": 1291,
+      "bii_percent": 16.59,
+      "depletion": 83.41,
+      "class": "High",
+      "haiti_area_km2": 45.03060832039211
+    },
+    {
+      "native_row": 857,
+      "native_col": 1292,
+      "bii_percent": 3.51,
+      "depletion": 96.49,
+      "class": "High",
+      "haiti_area_km2": 81.15247069654559
+    },
+    {
+      "native_row": 857,
+      "native_col": 1293,
+      "bii_percent": 14.65,
+      "depletion": 85.35,
+      "class": "High",
+      "haiti_area_km2": 81.15247069653618
+    },
+    {
+      "native_row": 857,
+      "native_col": 1294,
+      "bii_percent": 29.45,
+      "depletion": 70.55,
+      "class": "High",
+      "haiti_area_km2": 81.15247069652678
+    },
+    {
+      "native_row": 857,
+      "native_col": 1295,
+      "bii_percent": 39.24,
+      "depletion": 60.76,
+      "class": "High",
+      "haiti_area_km2": 81.15247069654559
+    },
+    {
+      "native_row": 857,
+      "native_col": 1296,
+      "bii_percent": 43.79,
+      "depletion": 56.21,
+      "class": "High",
+      "haiti_area_km2": 71.89058711500192
+    },
+    {
+      "native_row": 857,
+      "native_col": 1297,
+      "bii_percent": 47.39,
+      "depletion": 52.61,
+      "class": "High",
+      "haiti_area_km2": 9.932720128178264
+    },
+    {
+      "native_row": 858,
+      "native_col": 1266,
+      "bii_percent": 66.65,
+      "depletion": 33.349999999999994,
+      "class": "Medium",
+      "haiti_area_km2": 48.60541103418948
+    },
+    {
+      "native_row": 858,
+      "native_col": 1267,
+      "bii_percent": 69.99,
+      "depletion": 30.010000000000005,
+      "class": "Medium",
+      "haiti_area_km2": 81.1910209540101
+    },
+    {
+      "native_row": 858,
+      "native_col": 1268,
+      "bii_percent": 70.41,
+      "depletion": 29.590000000000003,
+      "class": "Medium",
+      "haiti_area_km2": 81.1910209540195
+    },
+    {
+      "native_row": 858,
+      "native_col": 1269,
+      "bii_percent": 65.62,
+      "depletion": 34.379999999999995,
+      "class": "Medium",
+      "haiti_area_km2": 81.1910209540101
+    },
+    {
+      "native_row": 858,
+      "native_col": 1270,
+      "bii_percent": 56.18,
+      "depletion": 43.82,
+      "class": "High",
+      "haiti_area_km2": 81.19102095400069
+    },
+    {
+      "native_row": 858,
+      "native_col": 1271,
+      "bii_percent": 56.47,
+      "depletion": 43.53,
+      "class": "High",
+      "haiti_area_km2": 81.1910209540195
+    },
+    {
+      "native_row": 858,
+      "native_col": 1272,
+      "bii_percent": 58.35,
+      "depletion": 41.65,
+      "class": "High",
+      "haiti_area_km2": 81.1910209540101
+    },
+    {
+      "native_row": 858,
+      "native_col": 1273,
+      "bii_percent": 63.45,
+      "depletion": 36.55,
+      "class": "Medium",
+      "haiti_area_km2": 81.1910209540195
+    },
+    {
+      "native_row": 858,
+      "native_col": 1274,
+      "bii_percent": 62.45,
+      "depletion": 37.55,
+      "class": "Medium",
+      "haiti_area_km2": 81.19102095400069
+    },
+    {
+      "native_row": 858,
+      "native_col": 1275,
+      "bii_percent": 61.91,
+      "depletion": 38.09,
+      "class": "Medium",
+      "haiti_area_km2": 81.1910209540101
+    },
+    {
+      "native_row": 858,
+      "native_col": 1276,
+      "bii_percent": 64.12,
+      "depletion": 35.879999999999995,
+      "class": "Medium",
+      "haiti_area_km2": 80.75080423378394
+    },
+    {
+      "native_row": 858,
+      "native_col": 1277,
+      "bii_percent": 63.62,
+      "depletion": 36.38,
+      "class": "Medium",
+      "haiti_area_km2": 81.19102095400069
+    },
+    {
+      "native_row": 858,
+      "native_col": 1278,
+      "bii_percent": 58.88,
+      "depletion": 41.12,
+      "class": "High",
+      "haiti_area_km2": 81.1910209540195
+    },
+    {
+      "native_row": 858,
+      "native_col": 1279,
+      "bii_percent": 48.84,
+      "depletion": 51.16,
+      "class": "High",
+      "haiti_area_km2": 81.1910209540195
+    },
+    {
+      "native_row": 858,
+      "native_col": 1280,
+      "bii_percent": 49.15,
+      "depletion": 50.85,
+      "class": "High",
+      "haiti_area_km2": 66.91781654200581
+    },
+    {
+      "native_row": 858,
+      "native_col": 1281,
+      "bii_percent": 59.12,
+      "depletion": 40.88,
+      "class": "High",
+      "haiti_area_km2": 63.07895706811646
+    },
+    {
+      "native_row": 858,
+      "native_col": 1282,
+      "bii_percent": 68.15,
+      "depletion": 31.849999999999994,
+      "class": "Medium",
+      "haiti_area_km2": 45.50846373799371
+    },
+    {
+      "native_row": 858,
+      "native_col": 1283,
+      "bii_percent": 65.28,
+      "depletion": 34.72,
+      "class": "Medium",
+      "haiti_area_km2": 41.35400691715021
+    },
+    {
+      "native_row": 858,
+      "native_col": 1284,
+      "bii_percent": 63.47,
+      "depletion": 36.53,
+      "class": "Medium",
+      "haiti_area_km2": 41.32476840829608
+    },
+    {
+      "native_row": 858,
+      "native_col": 1285,
+      "bii_percent": 55.77,
+      "depletion": 44.23,
+      "class": "High",
+      "haiti_area_km2": 18.828592104033653
+    },
+    {
+      "native_row": 858,
+      "native_col": 1286,
+      "bii_percent": 56.83,
+      "depletion": 43.17,
+      "class": "High",
+      "haiti_area_km2": 16.621829585266802
+    },
+    {
+      "native_row": 858,
+      "native_col": 1287,
+      "bii_percent": 56.93,
+      "depletion": 43.07,
+      "class": "High",
+      "haiti_area_km2": 20.845325664439518
+    },
+    {
+      "native_row": 858,
+      "native_col": 1288,
+      "bii_percent": 40.67,
+      "depletion": 59.33,
+      "class": "High",
+      "haiti_area_km2": 80.73723931247707
+    },
+    {
+      "native_row": 858,
+      "native_col": 1289,
+      "bii_percent": 41.44,
+      "depletion": 58.56,
+      "class": "High",
+      "haiti_area_km2": 81.1910209540195
+    },
+    {
+      "native_row": 858,
+      "native_col": 1290,
+      "bii_percent": 39.55,
+      "depletion": 60.45,
+      "class": "High",
+      "haiti_area_km2": 81.1910209540101
+    },
+    {
+      "native_row": 858,
+      "native_col": 1291,
+      "bii_percent": 37.63,
+      "depletion": 62.37,
+      "class": "High",
+      "haiti_area_km2": 81.1910209540195
+    },
+    {
+      "native_row": 858,
+      "native_col": 1292,
+      "bii_percent": 36.88,
+      "depletion": 63.12,
+      "class": "High",
+      "haiti_area_km2": 81.1910209540195
+    },
+    {
+      "native_row": 858,
+      "native_col": 1293,
+      "bii_percent": 41.44,
+      "depletion": 58.56,
+      "class": "High",
+      "haiti_area_km2": 81.1910209540101
+    },
+    {
+      "native_row": 858,
+      "native_col": 1294,
+      "bii_percent": 45.86,
+      "depletion": 54.14,
+      "class": "High",
+      "haiti_area_km2": 81.19102095400069
+    },
+    {
+      "native_row": 858,
+      "native_col": 1295,
+      "bii_percent": 49.93,
+      "depletion": 50.07,
+      "class": "High",
+      "haiti_area_km2": 81.1910209540195
+    },
+    {
+      "native_row": 858,
+      "native_col": 1296,
+      "bii_percent": 46.41,
+      "depletion": 53.59,
+      "class": "High",
+      "haiti_area_km2": 81.1910209540101
+    },
+    {
+      "native_row": 858,
+      "native_col": 1297,
+      "bii_percent": 46.15,
+      "depletion": 53.85,
+      "class": "High",
+      "haiti_area_km2": 33.248714223826376
+    },
+    {
+      "native_row": 859,
+      "native_col": 1266,
+      "bii_percent": 65.0,
+      "depletion": 35.0,
+      "class": "Medium",
+      "haiti_area_km2": 34.75078967534689
+    },
+    {
+      "native_row": 859,
+      "native_col": 1267,
+      "bii_percent": 62.39,
+      "depletion": 37.61,
+      "class": "Medium",
+      "haiti_area_km2": 81.16233807833606
+    },
+    {
+      "native_row": 859,
+      "native_col": 1268,
+      "bii_percent": 61.73,
+      "depletion": 38.27,
+      "class": "Medium",
+      "haiti_area_km2": 81.22940223363064
+    },
+    {
+      "native_row": 859,
+      "native_col": 1269,
+      "bii_percent": 54.97,
+      "depletion": 45.03,
+      "class": "High",
+      "haiti_area_km2": 81.22940223362124
+    },
+    {
+      "native_row": 859,
+      "native_col": 1270,
+      "bii_percent": 56.83,
+      "depletion": 43.17,
+      "class": "High",
+      "haiti_area_km2": 81.22940223361182
+    },
+    {
+      "native_row": 859,
+      "native_col": 1271,
+      "bii_percent": 58.99,
+      "depletion": 41.01,
+      "class": "High",
+      "haiti_area_km2": 81.22940223363064
+    },
+    {
+      "native_row": 859,
+      "native_col": 1272,
+      "bii_percent": 60.81,
+      "depletion": 39.19,
+      "class": "Medium",
+      "haiti_area_km2": 81.22940223362124
+    },
+    {
+      "native_row": 859,
+      "native_col": 1273,
+      "bii_percent": 60.05,
+      "depletion": 39.95,
+      "class": "Medium",
+      "haiti_area_km2": 81.22940223363064
+    },
+    {
+      "native_row": 859,
+      "native_col": 1274,
+      "bii_percent": 53.14,
+      "depletion": 46.86,
+      "class": "High",
+      "haiti_area_km2": 81.22940223361182
+    },
+    {
+      "native_row": 859,
+      "native_col": 1275,
+      "bii_percent": 49.73,
+      "depletion": 50.27,
+      "class": "High",
+      "haiti_area_km2": 81.22940223362124
+    },
+    {
+      "native_row": 859,
+      "native_col": 1276,
+      "bii_percent": 54.53,
+      "depletion": 45.47,
+      "class": "High",
+      "haiti_area_km2": 81.22940223364004
+    },
+    {
+      "native_row": 859,
+      "native_col": 1277,
+      "bii_percent": 56.89,
+      "depletion": 43.11,
+      "class": "High",
+      "haiti_area_km2": 81.22940223361182
+    },
+    {
+      "native_row": 859,
+      "native_col": 1278,
+      "bii_percent": 53.62,
+      "depletion": 46.38,
+      "class": "High",
+      "haiti_area_km2": 81.22940223363064
+    },
+    {
+      "native_row": 859,
+      "native_col": 1279,
+      "bii_percent": 48.09,
+      "depletion": 51.91,
+      "class": "High",
+      "haiti_area_km2": 81.22940223363064
+    },
+    {
+      "native_row": 859,
+      "native_col": 1280,
+      "bii_percent": 53.95,
+      "depletion": 46.05,
+      "class": "High",
+      "haiti_area_km2": 81.22940223361182
+    },
+    {
+      "native_row": 859,
+      "native_col": 1281,
+      "bii_percent": 60.58,
+      "depletion": 39.42,
+      "class": "Medium",
+      "haiti_area_km2": 81.22940223362124
+    },
+    {
+      "native_row": 859,
+      "native_col": 1282,
+      "bii_percent": 62.06,
+      "depletion": 37.94,
+      "class": "Medium",
+      "haiti_area_km2": 81.22940223364004
+    },
+    {
+      "native_row": 859,
+      "native_col": 1283,
+      "bii_percent": 64.9,
+      "depletion": 35.099999999999994,
+      "class": "Medium",
+      "haiti_area_km2": 81.22940223363064
+    },
+    {
+      "native_row": 859,
+      "native_col": 1284,
+      "bii_percent": 58.29,
+      "depletion": 41.71,
+      "class": "High",
+      "haiti_area_km2": 81.22940223361182
+    },
+    {
+      "native_row": 859,
+      "native_col": 1285,
+      "bii_percent": 45.33,
+      "depletion": 54.67,
+      "class": "High",
+      "haiti_area_km2": 81.22940223362124
+    },
+    {
+      "native_row": 859,
+      "native_col": 1286,
+      "bii_percent": 47.92,
+      "depletion": 52.08,
+      "class": "High",
+      "haiti_area_km2": 81.22940223363064
+    },
+    {
+      "native_row": 859,
+      "native_col": 1287,
+      "bii_percent": 50.66,
+      "depletion": 49.34,
+      "class": "High",
+      "haiti_area_km2": 81.22940223361182
+    },
+    {
+      "native_row": 859,
+      "native_col": 1288,
+      "bii_percent": 47.16,
+      "depletion": 52.84,
+      "class": "High",
+      "haiti_area_km2": 81.22940223362124
+    },
+    {
+      "native_row": 859,
+      "native_col": 1289,
+      "bii_percent": 44.57,
+      "depletion": 55.43,
+      "class": "High",
+      "haiti_area_km2": 81.22940223363064
+    },
+    {
+      "native_row": 859,
+      "native_col": 1290,
+      "bii_percent": 44.16,
+      "depletion": 55.84,
+      "class": "High",
+      "haiti_area_km2": 81.22940223362124
+    },
+    {
+      "native_row": 859,
+      "native_col": 1291,
+      "bii_percent": 46.7,
+      "depletion": 53.3,
+      "class": "High",
+      "haiti_area_km2": 81.22940223363064
+    },
+    {
+      "native_row": 859,
+      "native_col": 1292,
+      "bii_percent": 45.86,
+      "depletion": 54.14,
+      "class": "High",
+      "haiti_area_km2": 81.22940223363064
+    },
+    {
+      "native_row": 859,
+      "native_col": 1293,
+      "bii_percent": 50.42,
+      "depletion": 49.58,
+      "class": "High",
+      "haiti_area_km2": 81.22940223362124
+    },
+    {
+      "native_row": 859,
+      "native_col": 1294,
+      "bii_percent": 52.07,
+      "depletion": 47.93,
+      "class": "High",
+      "haiti_area_km2": 81.22940223361182
+    },
+    {
+      "native_row": 859,
+      "native_col": 1295,
+      "bii_percent": 54.88,
+      "depletion": 45.12,
+      "class": "High",
+      "haiti_area_km2": 81.22940223363064
+    },
+    {
+      "native_row": 859,
+      "native_col": 1296,
+      "bii_percent": 50.13,
+      "depletion": 49.87,
+      "class": "High",
+      "haiti_area_km2": 81.22940223362124
+    },
+    {
+      "native_row": 859,
+      "native_col": 1297,
+      "bii_percent": 49.84,
+      "depletion": 50.16,
+      "class": "High",
+      "haiti_area_km2": 81.03570917287675
+    },
+    {
+      "native_row": 859,
+      "native_col": 1298,
+      "bii_percent": 55.44,
+      "depletion": 44.56,
+      "class": "High",
+      "haiti_area_km2": 46.50341084617677
+    },
+    {
+      "native_row": 859,
+      "native_col": 1299,
+      "bii_percent": 56.61,
+      "depletion": 43.39,
+      "class": "High",
+      "haiti_area_km2": 10.870469311900601
+    },
+    {
+      "native_row": 860,
+      "native_col": 1267,
+      "bii_percent": 57.46,
+      "depletion": 42.54,
+      "class": "High",
+      "haiti_area_km2": 28.288448766903425
+    },
+    {
+      "native_row": 860,
+      "native_col": 1268,
+      "bii_percent": 53.93,
+      "depletion": 46.07,
+      "class": "High",
+      "haiti_area_km2": 37.94828249762519
+    },
+    {
+      "native_row": 860,
+      "native_col": 1269,
+      "bii_percent": 39.2,
+      "depletion": 60.8,
+      "class": "High",
+      "haiti_area_km2": 36.66021295516388
+    },
+    {
+      "native_row": 860,
+      "native_col": 1270,
+      "bii_percent": 37.58,
+      "depletion": 62.42,
+      "class": "High",
+      "haiti_area_km2": 74.19156161609503
+    },
+    {
+      "native_row": 860,
+      "native_col": 1271,
+      "bii_percent": 37.75,
+      "depletion": 62.25,
+      "class": "High",
+      "haiti_area_km2": 81.26761447142124
+    },
+    {
+      "native_row": 860,
+      "native_col": 1272,
+      "bii_percent": 47.42,
+      "depletion": 52.58,
+      "class": "High",
+      "haiti_area_km2": 81.26761447141183
+    },
+    {
+      "native_row": 860,
+      "native_col": 1273,
+      "bii_percent": 37.57,
+      "depletion": 62.43,
+      "class": "High",
+      "haiti_area_km2": 81.26761447142124
+    },
+    {
+      "native_row": 860,
+      "native_col": 1274,
+      "bii_percent": 32.62,
+      "depletion": 67.38,
+      "class": "High",
+      "haiti_area_km2": 81.26761447140242
+    },
+    {
+      "native_row": 860,
+      "native_col": 1275,
+      "bii_percent": 41.22,
+      "depletion": 58.78,
+      "class": "High",
+      "haiti_area_km2": 81.26761447141183
+    },
+    {
+      "native_row": 860,
+      "native_col": 1276,
+      "bii_percent": 54.72,
+      "depletion": 45.28,
+      "class": "High",
+      "haiti_area_km2": 81.17463563928862
+    },
+    {
+      "native_row": 860,
+      "native_col": 1277,
+      "bii_percent": 55.59,
+      "depletion": 44.41,
+      "class": "High",
+      "haiti_area_km2": 79.24551387517126
+    },
+    {
+      "native_row": 860,
+      "native_col": 1278,
+      "bii_percent": 57.09,
+      "depletion": 42.91,
+      "class": "High",
+      "haiti_area_km2": 76.9690907132856
+    },
+    {
+      "native_row": 860,
+      "native_col": 1279,
+      "bii_percent": 50.24,
+      "depletion": 49.76,
+      "class": "High",
+      "haiti_area_km2": 74.50503144186625
+    },
+    {
+      "native_row": 860,
+      "native_col": 1280,
+      "bii_percent": 53.56,
+      "depletion": 46.44,
+      "class": "High",
+      "haiti_area_km2": 81.26761447140242
+    },
+    {
+      "native_row": 860,
+      "native_col": 1281,
+      "bii_percent": 62.09,
+      "depletion": 37.91,
+      "class": "Medium",
+      "haiti_area_km2": 81.26761447141183
+    },
+    {
+      "native_row": 860,
+      "native_col": 1282,
+      "bii_percent": 65.81,
+      "depletion": 34.19,
+      "class": "Medium",
+      "haiti_area_km2": 81.26761447143066
+    },
+    {
+      "native_row": 860,
+      "native_col": 1283,
+      "bii_percent": 61.14,
+      "depletion": 38.86,
+      "class": "Medium",
+      "haiti_area_km2": 81.26761447142124
+    },
+    {
+      "native_row": 860,
+      "native_col": 1284,
+      "bii_percent": 53.2,
+      "depletion": 46.8,
+      "class": "High",
+      "haiti_area_km2": 81.26761447140242
+    },
+    {
+      "native_row": 860,
+      "native_col": 1285,
+      "bii_percent": 47.03,
+      "depletion": 52.97,
+      "class": "High",
+      "haiti_area_km2": 81.26761447141183
+    },
+    {
+      "native_row": 860,
+      "native_col": 1286,
+      "bii_percent": 38.74,
+      "depletion": 61.26,
+      "class": "High",
+      "haiti_area_km2": 81.26761447142124
+    },
+    {
+      "native_row": 860,
+      "native_col": 1287,
+      "bii_percent": 45.71,
+      "depletion": 54.29,
+      "class": "High",
+      "haiti_area_km2": 81.26761447140242
+    },
+    {
+      "native_row": 860,
+      "native_col": 1288,
+      "bii_percent": 49.94,
+      "depletion": 50.06,
+      "class": "High",
+      "haiti_area_km2": 81.26761447141183
+    },
+    {
+      "native_row": 860,
+      "native_col": 1289,
+      "bii_percent": 42.3,
+      "depletion": 57.7,
+      "class": "High",
+      "haiti_area_km2": 81.26761447142124
+    },
+    {
+      "native_row": 860,
+      "native_col": 1290,
+      "bii_percent": 47.3,
+      "depletion": 52.7,
+      "class": "High",
+      "haiti_area_km2": 81.26761447141183
+    },
+    {
+      "native_row": 860,
+      "native_col": 1291,
+      "bii_percent": 52.72,
+      "depletion": 47.28,
+      "class": "High",
+      "haiti_area_km2": 81.26761447142124
+    },
+    {
+      "native_row": 860,
+      "native_col": 1292,
+      "bii_percent": 50.9,
+      "depletion": 49.1,
+      "class": "High",
+      "haiti_area_km2": 81.26761447142124
+    },
+    {
+      "native_row": 860,
+      "native_col": 1293,
+      "bii_percent": 50.27,
+      "depletion": 49.73,
+      "class": "High",
+      "haiti_area_km2": 81.26761447141183
+    },
+    {
+      "native_row": 860,
+      "native_col": 1294,
+      "bii_percent": 48.74,
+      "depletion": 51.26,
+      "class": "High",
+      "haiti_area_km2": 81.26761447140242
+    },
+    {
+      "native_row": 860,
+      "native_col": 1295,
+      "bii_percent": 47.8,
+      "depletion": 52.2,
+      "class": "High",
+      "haiti_area_km2": 81.26761447142124
+    },
+    {
+      "native_row": 860,
+      "native_col": 1296,
+      "bii_percent": 46.69,
+      "depletion": 53.31,
+      "class": "High",
+      "haiti_area_km2": 81.26761447141183
+    },
+    {
+      "native_row": 860,
+      "native_col": 1297,
+      "bii_percent": 45.84,
+      "depletion": 54.16,
+      "class": "High",
+      "haiti_area_km2": 81.26761447143066
+    },
+    {
+      "native_row": 860,
+      "native_col": 1298,
+      "bii_percent": 47.65,
+      "depletion": 52.35,
+      "class": "High",
+      "haiti_area_km2": 81.21629284997171
+    },
+    {
+      "native_row": 860,
+      "native_col": 1299,
+      "bii_percent": 61.44,
+      "depletion": 38.56,
+      "class": "Medium",
+      "haiti_area_km2": 21.718249182618298
+    },
+    {
+      "native_row": 861,
+      "native_col": 1270,
+      "bii_percent": 39.09,
+      "depletion": 60.91,
+      "class": "High",
+      "haiti_area_km2": 2.504394127881603
+    },
+    {
+      "native_row": 861,
+      "native_col": 1271,
+      "bii_percent": 33.77,
+      "depletion": 66.22999999999999,
+      "class": "High",
+      "haiti_area_km2": 47.61686871051244
+    },
+    {
+      "native_row": 861,
+      "native_col": 1272,
+      "bii_percent": 30.92,
+      "depletion": 69.08,
+      "class": "High",
+      "haiti_area_km2": 81.30565760364506
+    },
+    {
+      "native_row": 861,
+      "native_col": 1273,
+      "bii_percent": 32.92,
+      "depletion": 67.08,
+      "class": "High",
+      "haiti_area_km2": 81.30565760365447
+    },
+    {
+      "native_row": 861,
+      "native_col": 1274,
+      "bii_percent": 36.75,
+      "depletion": 63.25,
+      "class": "High",
+      "haiti_area_km2": 76.53200754889254
+    },
+    {
+      "native_row": 861,
+      "native_col": 1275,
+      "bii_percent": 49.54,
+      "depletion": 50.46,
+      "class": "High",
+      "haiti_area_km2": 34.84601849642861
+    },
+    {
+      "native_row": 861,
+      "native_col": 1276,
+      "bii_percent": 63.0,
+      "depletion": 37.0,
+      "class": "Medium",
+      "haiti_area_km2": 24.40255160891716
+    },
+    {
+      "native_row": 861,
+      "native_col": 1277,
+      "bii_percent": 56.78,
+      "depletion": 43.22,
+      "class": "High",
+      "haiti_area_km2": 14.281390743736011
+    },
+    {
+      "native_row": 861,
+      "native_col": 1278,
+      "bii_percent": 62.33,
+      "depletion": 37.67,
+      "class": "Medium",
+      "haiti_area_km2": 0.36119986724910824
+    },
+    {
+      "native_row": 861,
+      "native_col": 1279,
+      "bii_percent": 54.92,
+      "depletion": 45.08,
+      "class": "High",
+      "haiti_area_km2": 13.273983177999941
+    },
+    {
+      "native_row": 861,
+      "native_col": 1280,
+      "bii_percent": 54.11,
+      "depletion": 45.89,
+      "class": "High",
+      "haiti_area_km2": 26.556468664867968
+    },
+    {
+      "native_row": 861,
+      "native_col": 1281,
+      "bii_percent": 57.82,
+      "depletion": 42.18,
+      "class": "High",
+      "haiti_area_km2": 40.325170405061
+    },
+    {
+      "native_row": 861,
+      "native_col": 1282,
+      "bii_percent": 59.98,
+      "depletion": 40.02,
+      "class": "High",
+      "haiti_area_km2": 57.4305318192541
+    },
+    {
+      "native_row": 861,
+      "native_col": 1283,
+      "bii_percent": 51.04,
+      "depletion": 48.96,
+      "class": "High",
+      "haiti_area_km2": 67.23084783411643
+    },
+    {
+      "native_row": 861,
+      "native_col": 1284,
+      "bii_percent": 45.77,
+      "depletion": 54.23,
+      "class": "High",
+      "haiti_area_km2": 79.97032605719149
+    },
+    {
+      "native_row": 861,
+      "native_col": 1285,
+      "bii_percent": 45.28,
+      "depletion": 54.72,
+      "class": "High",
+      "haiti_area_km2": 81.30565760364506
+    },
+    {
+      "native_row": 861,
+      "native_col": 1286,
+      "bii_percent": 45.92,
+      "depletion": 54.08,
+      "class": "High",
+      "haiti_area_km2": 80.03682435082113
+    },
+    {
+      "native_row": 861,
+      "native_col": 1287,
+      "bii_percent": 51.23,
+      "depletion": 48.77,
+      "class": "High",
+      "haiti_area_km2": 71.83038683428765
+    },
+    {
+      "native_row": 861,
+      "native_col": 1288,
+      "bii_percent": 51.12,
+      "depletion": 48.88,
+      "class": "High",
+      "haiti_area_km2": 67.49068639075534
+    },
+    {
+      "native_row": 861,
+      "native_col": 1289,
+      "bii_percent": 48.79,
+      "depletion": 51.21,
+      "class": "High",
+      "haiti_area_km2": 49.32903453255435
+    },
+    {
+      "native_row": 861,
+      "native_col": 1290,
+      "bii_percent": 57.99,
+      "depletion": 42.01,
+      "class": "High",
+      "haiti_area_km2": 28.55275917203863
+    },
+    {
+      "native_row": 861,
+      "native_col": 1291,
+      "bii_percent": 64.55,
+      "depletion": 35.45,
+      "class": "Medium",
+      "haiti_area_km2": 20.401015447581035
+    },
+    {
+      "native_row": 861,
+      "native_col": 1292,
+      "bii_percent": 61.15,
+      "depletion": 38.85,
+      "class": "Medium",
+      "haiti_area_km2": 25.256987135649204
+    },
+    {
+      "native_row": 861,
+      "native_col": 1293,
+      "bii_percent": 56.72,
+      "depletion": 43.28,
+      "class": "High",
+      "haiti_area_km2": 28.003404453020618
+    },
+    {
+      "native_row": 861,
+      "native_col": 1294,
+      "bii_percent": 55.51,
+      "depletion": 44.49,
+      "class": "High",
+      "haiti_area_km2": 19.785314160642525
+    },
+    {
+      "native_row": 861,
+      "native_col": 1295,
+      "bii_percent": 54.08,
+      "depletion": 45.92,
+      "class": "High",
+      "haiti_area_km2": 28.435620991627573
+    },
+    {
+      "native_row": 861,
+      "native_col": 1296,
+      "bii_percent": 49.1,
+      "depletion": 50.9,
+      "class": "High",
+      "haiti_area_km2": 56.719820867624875
+    },
+    {
+      "native_row": 861,
+      "native_col": 1297,
+      "bii_percent": 49.27,
+      "depletion": 50.73,
+      "class": "High",
+      "haiti_area_km2": 81.09117515460925
+    },
+    {
+      "native_row": 861,
+      "native_col": 1298,
+      "bii_percent": 46.25,
+      "depletion": 53.75,
+      "class": "High",
+      "haiti_area_km2": 60.750573005171766
+    },
+    {
+      "native_row": 862,
+      "native_col": 1271,
+      "bii_percent": null,
+      "depletion": null,
+      "class": null,
+      "haiti_area_km2": 0.1266917773005487
+    },
+    {
+      "native_row": 862,
+      "native_col": 1272,
+      "bii_percent": 33.43,
+      "depletion": 66.57,
+      "class": "High",
+      "haiti_area_km2": 40.51631291547665
+    },
+    {
+      "native_row": 862,
+      "native_col": 1273,
+      "bii_percent": 46.81,
+      "depletion": 53.19,
+      "class": "High",
+      "haiti_area_km2": 77.02918163143218
+    },
+    {
+      "native_row": 862,
+      "native_col": 1274,
+      "bii_percent": 54.73,
+      "depletion": 45.27,
+      "class": "High",
+      "haiti_area_km2": 7.272654168379098
+    },
+    {
+      "native_row": 862,
+      "native_col": 1275,
+      "bii_percent": 67.55,
+      "depletion": 32.45,
+      "class": "Medium",
+      "haiti_area_km2": 7.986725757547544
+    },
+    {
+      "native_row": 862,
+      "native_col": 1276,
+      "bii_percent": 65.5,
+      "depletion": 34.5,
+      "class": "Medium",
+      "haiti_area_km2": 5.034921343333715
+    },
+    {
+      "native_row": 862,
+      "native_col": 1284,
+      "bii_percent": 44.11,
+      "depletion": 55.89,
+      "class": "High",
+      "haiti_area_km2": 2.9096178299804905
+    },
+    {
+      "native_row": 862,
+      "native_col": 1285,
+      "bii_percent": 43.62,
+      "depletion": 56.38,
+      "class": "High",
+      "haiti_area_km2": 19.660896466408502
+    },
+    {
+      "native_row": 862,
+      "native_col": 1286,
+      "bii_percent": 47.98,
+      "depletion": 52.02,
+      "class": "High",
+      "haiti_area_km2": 19.14037213136333
+    },
+    {
+      "native_row": 862,
+      "native_col": 1287,
+      "bii_percent": null,
+      "depletion": null,
+      "class": null,
+      "haiti_area_km2": 0.06359627368049786
+    },
+    {
+      "native_row": 862,
+      "native_col": 1297,
+      "bii_percent": 48.7,
+      "depletion": 51.3,
+      "class": "High",
+      "haiti_area_km2": 25.884965604481163
+    },
+    {
+      "native_row": 862,
+      "native_col": 1298,
+      "bii_percent": 48.79,
+      "depletion": 51.21,
+      "class": "High",
+      "haiti_area_km2": 75.72793363509095
+    },
+    {
+      "native_row": 862,
+      "native_col": 1299,
+      "bii_percent": 51.76,
+      "depletion": 48.24,
+      "class": "High",
+      "haiti_area_km2": 4.2204869203293685
+    },
+    {
+      "native_row": 863,
+      "native_col": 1272,
+      "bii_percent": 51.69,
+      "depletion": 48.31,
+      "class": "High",
+      "haiti_area_km2": 1.4190523298575548
+    },
+    {
+      "native_row": 863,
+      "native_col": 1273,
+      "bii_percent": 46.62,
+      "depletion": 53.38,
+      "class": "High",
+      "haiti_area_km2": 55.55152001713478
+    },
+    {
+      "native_row": 863,
+      "native_col": 1274,
+      "bii_percent": 53.0,
+      "depletion": 47.0,
+      "class": "High",
+      "haiti_area_km2": 24.009681329332427
+    },
+    {
+      "native_row": 863,
+      "native_col": 1275,
+      "bii_percent": 42.64,
+      "depletion": 57.36,
+      "class": "High",
+      "haiti_area_km2": 5.939085872530013
+    },
+    {
+      "native_row": 863,
+      "native_col": 1276,
+      "bii_percent": 45.07,
+      "depletion": 54.93,
+      "class": "High",
+      "haiti_area_km2": 27.14390725652994
+    },
+    {
+      "native_row": 863,
+      "native_col": 1277,
+      "bii_percent": 60.33,
+      "depletion": 39.67,
+      "class": "Medium",
+      "haiti_area_km2": 1.7015005231446714
+    },
+    {
+      "native_row": 863,
+      "native_col": 1298,
+      "bii_percent": 47.62,
+      "depletion": 52.38,
+      "class": "High",
+      "haiti_area_km2": 27.067831189980048
+    },
+    {
+      "native_row": 863,
+      "native_col": 1299,
+      "bii_percent": 43.21,
+      "depletion": 56.79,
+      "class": "High",
+      "haiti_area_km2": 3.69294348987314
+    }
+  ],
+  "versions": {
+    "rasterio": "1.5.2",
+    "shapely": "2.1.2",
+    "pyproj": "3.7.2"
+  }
+}

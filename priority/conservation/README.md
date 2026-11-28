@@ -73,3 +73,7 @@ Reviewed provider pages and technical follow-up are preserved with the [roads bi
 ## Interim BII resolution decision
 
 Pete approved the inspected NHM v2.1.1 2020 map as **coarse context** on 26 November 2026. Its native 5-arc-minute support is approximately 10 km; retain this label even if the display uses finer pixels. It cannot establish differences among nearby farms or along fine KBA boundaries. The [BII decision](../research/2026-11-26-biodiversity-loss-classes.md#approved-interim-use-coarse-context) preserves the approved bands, maximum rule, source driver and both-input-valid requirement. Until KBA data are available, display BII context separately in the details and leave the combined score Not assessed. Infrastructure remains in scope.
+
+## Haiti BII coverage and conversion checked — 27 November 2026
+
+[Native-cell inspection](../research/2026-11-27-bii-haiti-binding.md) confirms 99.99308% valid coverage of the pinned Haiti boundary and checks the explicit 100 − BII conversion with existing class boundaries. This closes the bounded coverage/arithmetic checks, not runtime adapter adoption. Native 2020/approximately 10 km support remains mandatory. KBA input is still unavailable in the inspected workstream; combined priority stays Not assessed.

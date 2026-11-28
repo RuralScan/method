@@ -1,5 +1,7 @@
 # Haiti food insecurity: official IPC acquisition, ENSSAN tables and four-class proposal
 
+**Subsequent decision, 27 November 2026:** Pete [approved these four classes and limitations with the Phase 5 flag](2026-11-27-food-insecurity-approved.md). The original proposal/acquisition snapshot below is preserved; runtime and geometry holds remain.
+
 27 November 2026. **The current official IPC spatial export and population workbook are acquired. ENSSAN's published geographic prevalence table is extracted and visually checked.** Access is no longer the main hold for these products; interpretation, geometry and geographic matching remain explicit. Four display classes below are **proposed**, not activated or accepted.
 
 ## Acquired products and verified identity

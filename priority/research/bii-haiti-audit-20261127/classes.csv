@@ -1,0 +1,5 @@
+class,ordinal_code,depletion_upper_inclusive
+Very little,0,10
+Low,1,20
+Medium,2,40
+High,3,100

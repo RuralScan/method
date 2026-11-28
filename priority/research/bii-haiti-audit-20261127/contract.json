@@ -1,0 +1,18 @@
+{
+  "dataset": "NHM BII v2.1.1 limited release",
+  "source_file": "bii-2020_v2-1-1.tif",
+  "source_sha256": "d2142dd8d6d0bf1a08268d9a9a03c7a9b9ab4d834714d7fea35de621559a72b4",
+  "source_year": 2020,
+  "source_unit": "percent_bii_remaining",
+  "valid_min": 0,
+  "valid_max": 100,
+  "transform": "reference_minus_input",
+  "reference": 100,
+  "output_unit": "percentage_points_depleted_relative_to_reference",
+  "nodata": "NaN",
+  "invalid_policy": "unknown_no_clipping",
+  "class_source": "classes.csv",
+  "interpretation_approval": "2026-11-26; see ../2026-11-26-biodiversity-loss-classes.md",
+  "combined_requires": "valid BII and valid KBA; otherwise Not assessed",
+  "runtime_ready": false
+}
