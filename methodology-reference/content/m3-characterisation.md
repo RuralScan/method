@@ -8,6 +8,9 @@ sources:
   - method:priority/research/2026-11-26-biodiversity-loss-classes.md
   - method:priority/conservation/README.md
   - method:priority/research/2026-11-26-soil-erosion-binding.md
+  - method:priority/research/2026-11-27-ipc-enssan-acquisition-and-classes.md
+  - method:priority/research/2026-11-27-aqueduct-haiti-coverage.md
+  - method:priority/research/2026-11-26-carbon-loss-followup.md
   - method:data-model/priority-contract.json
   - methodology/modules/M3_characterisation.md
   - method:handbook/implement-a-scan.md
@@ -98,6 +101,26 @@ Retain the approved four BII classes and the higher-of-BII-and-KBA rule for the 
 The inspected GloSEM 1.3 baseline represents modelled water erosion on cropland, including fractional cropland in mixed cells. Its approximately 100 m grid does not supply erosion estimates for every forest, rangeland or other rural land system. Unsupported cells remain Not assessed; neither missing values nor absent mapped crop support mean Very little erosion. Retain the source year, model version, native resolution and assessed crop footprint. Broader-coverage or suitable national sources require their own contextual binding and coverage checks. [src: method:priority/research/2026-11-26-soil-erosion-binding.md §Source choice by land-system coverage]
 
 Classify valid erosion rates using the approved bands: 0–1, >1–3, >3–5 and >5 tonnes/ha/year. The published rates are not multiplied by cropland fraction. Keep rate classification separate from any total soil-loss estimate, which requires actual cell area and valid cropland fractions. Do not treat these modelled rates as measured annual losses or apply the same numerical cutoffs to susceptibility categories, gully-line labels or river sediment yield. [src: method:priority/research/2026-11-26-soil-erosion-binding.md §Exact candidate inputs and interpretation]
+
+## Food insecurity: retain the measure, period and geography
+
+Acute food-insecurity phases and household food-access prevalence describe different conditions. The Integrated Food Security Phase Classification (IPC) reports area severity; Haiti's National Food and Nutrition Security Survey (ENSSAN) reports household prevalence. Do not apply IPC phase classes to survey percentages or mix current assessments with projections. Acute need also reflects conflict, prices, displacement and assistance; it does not measure the share an NbS could remedy. [src: method:priority/research/2026-11-27-ipc-enssan-acquisition-and-classes.md §IPC limitations and checks] [src: method:priority/research/2026-11-27-ipc-enssan-acquisition-and-classes.md §ENSSAN use and geographic limitations]
+
+The Haiti IPC export covers September 2026 to February 2027. Its proposed four-class display remains a proposal, separate from existing chronic-food-insecurity rules. Preserve native phase names, the distinction between an area classified Famine and a risk-of-famine flag, and the assessment dates. Missing or unassessed inputs are not the lowest class. [src: method:priority/research/2026-11-27-ipc-enssan-acquisition-and-classes.md §Four proposed classes]
+
+Acquisition alone does not establish a usable footprint. Some IPC areas have point-only representations, duplicate features or invalid polygons; these cannot yet support complete class-area totals. Deduplicate populations by assessment area, without adding departmental totals again. ENSSAN's metropolitan, remaining-Ouest and displaced-camp groups need verified geographic definitions before spatial joins. Keep its published table as qualified context meanwhile. [src: method:priority/research/2026-11-27-ipc-enssan-acquisition-and-classes.md §IPC limitations and checks] [src: method:priority/research/2026-11-27-ipc-enssan-acquisition-and-classes.md §ENSSAN use and geographic limitations]
+
+## Water stress: summarise classes at basin support
+
+Aqueduct's inspected baseline has valid values across about 99.58% of the Haiti diagnostic boundary, but represents only two distinct basins. Broad coverage therefore supplies little local differentiation. Retain native basin support and the historical baseline; a finer output grid cannot create finer hydrological information. These country diagnostics are not percentages of an NbS opportunity footprint. [src: method:priority/research/2026-11-27-aqueduct-haiti-coverage.md §Result] [src: method:priority/research/2026-11-27-aqueduct-haiti-coverage.md §Coverage and interpretation limits]
+
+For an application, intersect the basin data with its actual footprint. Check and dissolve repeated basin fragments, then report area in each class with whole-footprint and assessed-area denominators plus unknown area. Do not average fragment rows or basin ratios to assign a national stress class. This baseline describes demand relative to supply, not drinking-water access, seasonal drought or infrastructure damage. [src: method:priority/research/2026-11-27-aqueduct-haiti-coverage.md §Basin aggregation to use] [src: method:priority/research/2026-11-27-aqueduct-haiti-coverage.md §Coverage and interpretation limits]
+
+## Carbon loss: distinguish components from a complete account
+
+Inspected soil-carbon and woody-biomass change products remain complementary candidates. Their Haiti checks do not establish a four-class map of total ecosystem carbon loss. Preserve each product's pools, depth, units, periods and change uncertainty; missing roots or other pools are not zero. Finite values alone do not establish applicability to every land system. [src: method:priority/research/2026-11-26-carbon-loss-followup.md §Decision supported by these checks] [src: method:priority/research/2026-11-26-carbon-loss-followup.md §Coverage actually checked]
+
+Modelled stock differences are not automatically annual emissions, and uncertainties for separate stock estimates do not establish uncertainty in their difference. Retain these qualifications before classifying or combining change. Practice-specific mitigation potential answers a different question; [[ch:m5-scorecard]] explains its use as a separate comparison. [src: method:priority/research/2026-11-26-carbon-loss-followup.md §OpenLandMap soil-carbon lead] [src: method:priority/research/2026-11-26-carbon-loss-followup.md §CTrees biomass lead]
 
 ## Infrastructure exposure and national datasets
 

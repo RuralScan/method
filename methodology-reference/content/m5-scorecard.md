@@ -3,6 +3,7 @@ title: "M5: NbS scorecard and response"
 slug: m5-scorecard
 summary: Compare evidence-supported benefits, harms, confidence, context and indicative costs without turning them into site-level predictions.
 sources:
+  - method:priority/research/2026-11-26-naturebase-nbs-crosswalk.md
   - methodology/modules/M5_scorecard.md
   - schema/spec.md
   - methodology/T3_T6_generation_method.md
@@ -78,6 +79,12 @@ Keep different outcomes visible rather than reducing the comparison to one overa
 ## Reading the comparison
 
 High local need and positive response evidence together support further investigation. They do not establish a causal project benefit. Show suitability, local need, response evidence and investment risk alongside one another, with a clear path from each rating to its evidence units, source and locator. [src: methodology/modules/M5_scorecard.md §8]
+
+## External mitigation-potential comparisons
+
+Naturebase layers describe potential climate mitigation under specified interventions and counterfactuals. They may inform a separate comparison where the intervention matches the RuralScan family. They do not measure present carbon loss, replace T4 suitability or supply an accepted T6 effect merely because a layer is available. The inspected crosswalk remains research, with numerical-transfer holds. [src: method:priority/research/2026-11-26-naturebase-nbs-crosswalk.md §Main finding] [src: method:priority/research/2026-11-26-naturebase-nbs-crosswalk.md §Appropriate use in RuralScan]
+
+Retain the pathway's carbon pools, time horizon, counterfactual and area denominator. A raster cell is not entirely eligible implementation area; applying its fractional-area weighting twice gives a false total. Narrow buffers and shelterbelts need their physical footprints. Overlapping pathway or family labels cannot earn several full benefits for one intervention. A missing pathway means the product does not represent that action, not that the action has no carbon benefit. [src: method:priority/research/2026-11-26-naturebase-nbs-crosswalk.md §Appropriate use in RuralScan] [src: method:priority/research/2026-11-26-naturebase-nbs-crosswalk.md §Important gaps and non-equivalences]
 
 ## Outputs
 
