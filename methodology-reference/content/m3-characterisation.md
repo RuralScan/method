@@ -9,6 +9,7 @@ sources:
   - method:priority/conservation/README.md
   - method:priority/research/2026-11-26-soil-erosion-binding.md
   - method:priority/research/2026-11-27-ipc-enssan-acquisition-and-classes.md
+  - method:priority/research/2026-11-27-food-insecurity-approved.md
   - method:priority/research/2026-11-27-aqueduct-haiti-coverage.md
   - method:priority/research/2026-11-26-carbon-loss-followup.md
   - method:data-model/priority-contract.json
@@ -106,7 +107,7 @@ Classify valid erosion rates using the approved bands: 0–1, >1–3, >3–5 and
 
 Acute food-insecurity phases and household food-access prevalence describe different conditions. The Integrated Food Security Phase Classification (IPC) reports area severity; Haiti's National Food and Nutrition Security Survey (ENSSAN) reports household prevalence. Do not apply IPC phase classes to survey percentages or mix current assessments with projections. Acute need also reflects conflict, prices, displacement and assistance; it does not measure the share an NbS could remedy. [src: method:priority/research/2026-11-27-ipc-enssan-acquisition-and-classes.md §IPC limitations and checks] [src: method:priority/research/2026-11-27-ipc-enssan-acquisition-and-classes.md §ENSSAN use and geographic limitations]
 
-The Haiti IPC export covers September 2026 to February 2027. Its proposed four-class display remains a proposal, separate from existing chronic-food-insecurity rules. Preserve native phase names, the distinction between an area classified Famine and a risk-of-famine flag, and the assessment dates. Missing or unassessed inputs are not the lowest class. [src: method:priority/research/2026-11-27-ipc-enssan-acquisition-and-classes.md §Four proposed classes]
+The Haiti IPC export covers September 2026 to February 2027. An approved four-class interpretation is available for applicable acute assessments, separate from chronic-food-insecurity rules. Preserve native phase names alongside the project labels, the mandatory Phase 5 critical flag and the separate risk-of-famine flag. Missing or unassessed inputs are not the lowest class. Approval of this interpretation does not resolve footprint limitations or establish an accepted spatial binding or runtime release. [src: method:priority/research/2026-11-27-food-insecurity-approved.md]
 
 Acquisition alone does not establish a usable footprint. Some IPC areas have point-only representations, duplicate features or invalid polygons; these cannot yet support complete class-area totals. Deduplicate populations by assessment area, without adding departmental totals again. ENSSAN's metropolitan, remaining-Ouest and displaced-camp groups need verified geographic definitions before spatial joins. Keep its published table as qualified context meanwhile. [src: method:priority/research/2026-11-27-ipc-enssan-acquisition-and-classes.md §IPC limitations and checks] [src: method:priority/research/2026-11-27-ipc-enssan-acquisition-and-classes.md §ENSSAN use and geographic limitations]
 

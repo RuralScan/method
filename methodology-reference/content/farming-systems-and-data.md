@@ -3,6 +3,8 @@ title: Farming systems, contexts and data
 slug: farming-systems-and-data
 summary: Select context-appropriate spatial inputs and understand the limits of farming-system classes, dataset bindings and global defaults.
 sources:
+  - method:priority/research/README.md
+  - method:priority/bindings/README.md
   - schema/spec.md
   - schema/registers/FS_DIXON_CROSSWALK.md
   - methodology/farming_system_classifier.md
@@ -58,6 +60,8 @@ Table: Checks when selecting a spatial input.
 [src: schema/spec.md §T1] [src: methodology/T4_developer_contract.md §Dataset preparation proposals and source compatibility]
 
 The dataset and binding tables displayed in this methodology belong to the **published evidence edition**. They are not a definitive list of the latest pilot inputs or planned replacements. Each application must name the dataset versions it actually used. A replacement is recorded through the dataset registry and binding, not silently substituted in this narrative. [src: schema/spec.md §T1] [src: schema/spec.md §BIND]
+
+For newer dataset assessments, follow the source-linked research catalogue and binding notes. They distinguish inspected candidates, approved interpretations and unresolved adoption requirements. [[ch:m3-characterisation]] explains their practical implications for biodiversity, erosion, food insecurity, water, carbon and infrastructure. A successful download or an approved class interpretation does not establish an accepted spatial binding. [src: method:priority/research/README.md] [src: method:priority/bindings/README.md]
 
 ## Server-side-first sourcing
 
