@@ -4,6 +4,7 @@ Start with the [Brayden/Diego handover](2026-11-26-handover-brayden-diego.md) fo
 
 | Research question | Current report | Reproducible observations |
 |---|---|---|
+| KBA polygon access and Haiti coverage? | [Prepared request and access hold](2026-11-27-kba-access-hold.md) | Official restricted GEE route identified; no polygons acquired or coverage claim |
 | Approved acute food-insecurity classes and Phase 5 flag? | [Approval and retained limitations](2026-11-27-food-insecurity-approved.md) | [Approved crosswalk](food-insecurity-approval-20261127/classes.csv), [pinned decision](food-insecurity-approval-20261127/decision.json) |
 | BII Haiti coverage and depletion conversion? | [Native-cell result and coarse-context limits](2026-11-27-bii-haiti-binding.md) | [Reproducible probe and contract](bii-haiti-audit-20261127/README.md) |
 | Official IPC polygons, ENSSAN geographic tables and four acute classes? | [Acquisition, proposal and limitations](2026-11-27-ipc-enssan-acquisition-and-classes.md) | [30-area reconciliation and geographic table audit](ipc-enssan-audit-20261127/README.md) |

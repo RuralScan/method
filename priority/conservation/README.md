@@ -77,3 +77,7 @@ Pete approved the inspected NHM v2.1.1 2020 map as **coarse context** on 26 Nove
 ## Haiti BII coverage and conversion checked — 27 November 2026
 
 [Native-cell inspection](../research/2026-11-27-bii-haiti-binding.md) confirms 99.99308% valid coverage of the pinned Haiti boundary and checks the explicit 100 − BII conversion with existing class boundaries. This closes the bounded coverage/arithmetic checks, not runtime adapter adoption. Native 2020/approximately 10 km support remains mandatory. KBA input is still unavailable in the inspected workstream; combined priority stays Not assessed.
+
+## KBA access follow-up — 27 November 2026
+
+[Request preparation and inspection scope](../research/2026-11-27-kba-access-hold.md) records the official restricted GEE lead and the Haiti-plus-cross-border-buffer request. Terms, CAPTCHA and submission await approval; no polygons acquired and Haiti KBA coverage remains unverified. Combined biodiversity stays Not assessed.
