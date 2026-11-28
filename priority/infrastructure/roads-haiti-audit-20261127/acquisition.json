@@ -1,0 +1,30 @@
+{
+  "url": "https://download.geofabrik.de/central-america/haiti-and-domrep/haiti-and-domrep-261126-free.shp.zip",
+  "etag": "\"becdb28-6613cf094b657\"",
+  "last_modified_utc": "Fri, 27 Nov 2026 07:23:42 GMT",
+  "archive_size": 200071976,
+  "full_archive_acquired": false,
+  "members": {
+    "gis_osm_roads_free_1.cpg": {
+      "bytes": 6,
+      "sha256": "146d6789ffe033a5297c1ad046e6a62ee35319b86b021444f05b6ea2aa8a1f4a"
+    },
+    "gis_osm_roads_free_1.dbf": {
+      "bytes": 60777765,
+      "sha256": "26f4bd0f81b4abfe2a2b1e5ab5ddcc8142cd085f36df3b709c76ec5b7ce69665"
+    },
+    "gis_osm_roads_free_1.prj": {
+      "bytes": 144,
+      "sha256": "ffc9162903c37f0867d1e7f36c20036a165f7aa555dda24c1ae0ee4328d2977f"
+    },
+    "gis_osm_roads_free_1.shp": {
+      "bytes": 80733980,
+      "sha256": "a864004829db3a3087b8c6fc0cb69a87464f954d4f96aaccf820770feffaea66"
+    },
+    "gis_osm_roads_free_1.shx": {
+      "bytes": 2657036,
+      "sha256": "d536eb580149b879fcc1833ed25ad5fc9e8b927e4d965fee6799db149c20b120"
+    }
+  },
+  "range_bytes_transferred": 53246041
+}

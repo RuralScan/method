@@ -65,3 +65,7 @@ BIND's specified precedence is admin_region > admin_country > hydrobasin > farmi
 
 
 26 November erosion follow-up: the [dataset comparison](../research/2026-11-26-erosion-dataset-alternatives.md#haiti-follow-up-actually-checked) identifies an acquired HaitiData local gully/bank-erosion line layer. Its partial geography, missing geometry and unspecified reuse terms are recorded. It is a possible local-context input for later assessment, not an approved replacement for the selected infrastructure hazard footprints or evidence of avoided damage. Existing roads, power, buildings, school and health-facility fallbacks remain in scope.
+
+## Full Haiti road geometry follow-up — 27 November 2026
+
+[Complete road inspection and national comparison](2026-11-27-haiti-road-geometry.md) now checks the dated OSM road layer, clips actual linework to Haiti, retains native-class lengths and inspects exact duplicates/IDs. CNIGS is processed separately. No hazard exposure, inventory completeness or automatic national replacement is claimed. Schools, health facilities, power lines and buildings remain active.

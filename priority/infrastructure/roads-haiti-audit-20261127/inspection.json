@@ -1,0 +1,375 @@
+{
+  "runtime_ready": false,
+  "hazard_overlay_performed": false,
+  "opportunity_space_overlay_performed": false,
+  "boundary_sha256": "dd853929ae8e731442f4a0d207eab6ea418b3d084e3a9599f6b3eb35c47277b9",
+  "osm_acquisition_sha256": "7930e9cf0c3eb9610e43075e17ea58e270920a2a7eedbed4bbfd5df85c43685f",
+  "national_zip_sha256": "3f93244fec0582d77d7e73bad6692f60b18b0ca7f6664263b89ed886f4ec07dd",
+  "length_method": "WGS84 ellipsoidal geodesic length after exact polygon clipping; no resampling",
+  "osm": {
+    "source_crs": "EPSG:4326",
+    "class_field": "fclass",
+    "id_field": "osm_id",
+    "haiti_blank_attribute_counts": {
+      "name": 114250,
+      "ref": 128415
+    },
+    "counts": {
+      "empty_source_geometry": 0,
+      "exact_duplicate_clipped_geometry_km": 0,
+      "exact_duplicate_clipped_geometry_records": 0,
+      "haiti_nonsimple_source_geometry": 239,
+      "haiti_positive_length_records": 130800,
+      "haiti_touch_only_or_zero_length": 0,
+      "invalid_source_geometry": 0,
+      "nonline_source_geometry": 0,
+      "nonsimple_source_geometry": 770,
+      "source_records": 332117
+    },
+    "haiti_classes": {
+      "bridleway": {
+        "records": 3,
+        "mapped_line_km": 0.564282,
+        "bridge_values": {
+          "F": 3
+        },
+        "tunnel_values": {
+          "F": 3
+        }
+      },
+      "cycleway": {
+        "records": 8,
+        "mapped_line_km": 0.761187,
+        "bridge_values": {
+          "F": 8
+        },
+        "tunnel_values": {
+          "F": 8
+        }
+      },
+      "footway": {
+        "records": 5515,
+        "mapped_line_km": 847.367309,
+        "bridge_values": {
+          "F": 5378,
+          "T": 137
+        },
+        "tunnel_values": {
+          "F": 5512,
+          "T": 3
+        }
+      },
+      "living_street": {
+        "records": 469,
+        "mapped_line_km": 105.390486,
+        "bridge_values": {
+          "F": 467,
+          "T": 2
+        },
+        "tunnel_values": {
+          "F": 469
+        }
+      },
+      "path": {
+        "records": 27825,
+        "mapped_line_km": 7463.726968,
+        "bridge_values": {
+          "F": 27613,
+          "T": 212
+        },
+        "tunnel_values": {
+          "F": 27825
+        }
+      },
+      "pedestrian": {
+        "records": 91,
+        "mapped_line_km": 10.170275,
+        "bridge_values": {
+          "F": 86,
+          "T": 5
+        },
+        "tunnel_values": {
+          "F": 91
+        }
+      },
+      "primary": {
+        "records": 1147,
+        "mapped_line_km": 1037.919038,
+        "bridge_values": {
+          "F": 949,
+          "T": 198
+        },
+        "tunnel_values": {
+          "F": 1147
+        }
+      },
+      "primary_link": {
+        "records": 18,
+        "mapped_line_km": 2.174753,
+        "bridge_values": {
+          "F": 18
+        },
+        "tunnel_values": {
+          "F": 18
+        }
+      },
+      "residential": {
+        "records": 39483,
+        "mapped_line_km": 8714.975653,
+        "bridge_values": {
+          "F": 39057,
+          "T": 426
+        },
+        "tunnel_values": {
+          "F": 39478,
+          "T": 5
+        }
+      },
+      "secondary": {
+        "records": 1312,
+        "mapped_line_km": 1616.24342,
+        "bridge_values": {
+          "F": 1131,
+          "T": 181
+        },
+        "tunnel_values": {
+          "F": 1311,
+          "T": 1
+        }
+      },
+      "secondary_link": {
+        "records": 29,
+        "mapped_line_km": 1.19936,
+        "bridge_values": {
+          "F": 29
+        },
+        "tunnel_values": {
+          "F": 29
+        }
+      },
+      "service": {
+        "records": 11125,
+        "mapped_line_km": 1094.053918,
+        "bridge_values": {
+          "F": 10982,
+          "T": 143
+        },
+        "tunnel_values": {
+          "F": 11115,
+          "T": 10
+        }
+      },
+      "steps": {
+        "records": 123,
+        "mapped_line_km": 4.834238,
+        "bridge_values": {
+          "F": 123
+        },
+        "tunnel_values": {
+          "F": 123
+        }
+      },
+      "tertiary": {
+        "records": 1668,
+        "mapped_line_km": 1991.22961,
+        "bridge_values": {
+          "F": 1523,
+          "T": 145
+        },
+        "tunnel_values": {
+          "F": 1668
+        }
+      },
+      "tertiary_link": {
+        "records": 15,
+        "mapped_line_km": 0.4946,
+        "bridge_values": {
+          "F": 15
+        },
+        "tunnel_values": {
+          "F": 15
+        }
+      },
+      "track": {
+        "records": 25686,
+        "mapped_line_km": 9949.793828,
+        "bridge_values": {
+          "F": 25507,
+          "T": 179
+        },
+        "tunnel_values": {
+          "F": 25685,
+          "T": 1
+        }
+      },
+      "track_grade1": {
+        "records": 52,
+        "mapped_line_km": 16.220541,
+        "bridge_values": {
+          "F": 51,
+          "T": 1
+        },
+        "tunnel_values": {
+          "F": 52
+        }
+      },
+      "track_grade2": {
+        "records": 101,
+        "mapped_line_km": 39.258896,
+        "bridge_values": {
+          "F": 100,
+          "T": 1
+        },
+        "tunnel_values": {
+          "F": 101
+        }
+      },
+      "track_grade3": {
+        "records": 108,
+        "mapped_line_km": 45.885775,
+        "bridge_values": {
+          "F": 107,
+          "T": 1
+        },
+        "tunnel_values": {
+          "F": 108
+        }
+      },
+      "track_grade4": {
+        "records": 125,
+        "mapped_line_km": 42.946829,
+        "bridge_values": {
+          "F": 125
+        },
+        "tunnel_values": {
+          "F": 125
+        }
+      },
+      "track_grade5": {
+        "records": 56,
+        "mapped_line_km": 23.754693,
+        "bridge_values": {
+          "F": 56
+        },
+        "tunnel_values": {
+          "F": 56
+        }
+      },
+      "unclassified": {
+        "records": 15840,
+        "mapped_line_km": 11730.483076,
+        "bridge_values": {
+          "F": 15445,
+          "T": 395
+        },
+        "tunnel_values": {
+          "F": 15839,
+          "T": 1
+        }
+      },
+      "unknown": {
+        "records": 1,
+        "mapped_line_km": 0.366336,
+        "bridge_values": {
+          "F": 1
+        },
+        "tunnel_values": {
+          "F": 1
+        }
+      }
+    },
+    "all_classes_mapped_line_km": 44739.815071,
+    "haiti_distinct_nonblank_ids": 130800,
+    "haiti_blank_id_records": 0,
+    "haiti_repeated_nonblank_ids": 0,
+    "haiti_extra_records_sharing_nonblank_id": 0,
+    "duplicate_examples": [],
+    "geometry_repaired": false,
+    "deduplication_applied": false
+  },
+  "cnigs": {
+    "source_crs": "EPSG:32618",
+    "class_field": "type_tronc",
+    "id_field": "OBJECTID",
+    "haiti_blank_attribute_counts": {
+      "NomRue": 33643,
+      "Rclassment": 46853,
+      "RouteFER": 46853,
+      "cls_admin": 46853,
+      "cls_tcn_fn": 46853,
+      "cod_admin": 46853,
+      "cod_tronc": 46853,
+      "code_urbai": 46853,
+      "etat_util": 46853,
+      "noeud_deb": 46853,
+      "noeud_fin": 46853,
+      "nom_off": 46853,
+      "nom_sec": 46853,
+      "sens_circu": 46853,
+      "separat": 46853,
+      "source": 46853,
+      "type_rev": 46853,
+      "type_sed": 46853
+    },
+    "counts": {
+      "empty_source_geometry": 0,
+      "exact_duplicate_clipped_geometry_km": 0,
+      "exact_duplicate_clipped_geometry_records": 0,
+      "haiti_nonsimple_source_geometry": 1,
+      "haiti_positive_length_records": 46853,
+      "haiti_touch_only_or_zero_length": 0,
+      "invalid_source_geometry": 0,
+      "nonline_source_geometry": 0,
+      "nonsimple_source_geometry": 1,
+      "source_records": 47317
+    },
+    "haiti_classes": {
+      "RA": {
+        "records": 12988,
+        "mapped_line_km": 9714.464805,
+        "bridge_values": {},
+        "tunnel_values": {}
+      },
+      "RC": {
+        "records": 813,
+        "mapped_line_km": 861.563798,
+        "bridge_values": {},
+        "tunnel_values": {}
+      },
+      "RD": {
+        "records": 1883,
+        "mapped_line_km": 1577.557681,
+        "bridge_values": {},
+        "tunnel_values": {}
+      },
+      "RI": {
+        "records": 3,
+        "mapped_line_km": 18.16319,
+        "bridge_values": {},
+        "tunnel_values": {}
+      },
+      "RN": {
+        "records": 1831,
+        "mapped_line_km": 886.292476,
+        "bridge_values": {},
+        "tunnel_values": {}
+      },
+      "RU": {
+        "records": 29335,
+        "mapped_line_km": 3944.708005,
+        "bridge_values": {},
+        "tunnel_values": {}
+      }
+    },
+    "all_classes_mapped_line_km": 17002.749955,
+    "haiti_distinct_nonblank_ids": 46853,
+    "haiti_blank_id_records": 0,
+    "haiti_repeated_nonblank_ids": 0,
+    "haiti_extra_records_sharing_nonblank_id": 0,
+    "duplicate_examples": [],
+    "geometry_repaired": false,
+    "deduplication_applied": false,
+    "member": "Réseau_Routier.shp"
+  },
+  "comparison_limit": "Different dates, classes and mapping conventions; lengths are not accuracy or completeness estimates. Sources are not concatenated."
+}
