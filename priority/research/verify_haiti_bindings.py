@@ -1,6 +1,7 @@
 """Verify the bounded 27 November Aqueduct, food-search and IPC/ENSSAN snapshots offline."""
 import hashlib
 import json
+import csv
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -54,7 +55,40 @@ def main():
     assert len(ipc["invalid_polygons"]) == 2 and ipc["geometry_repaired"] is False
     assert ipc["enssan"]["geographic_rows"] == 48 and ipc["enssan"]["missing_cells"] == 2
     assert ipc["enssan"]["geographies_2025"] == 12 and ipc["enssan"]["geographic_join_performed"] is False
-    print("Verified three frozen Haiti research audits; no runtime or class acceptance asserted.")
+    for name in ('food-insecurity-approval-20261127', 'bii-haiti-audit-20261127'):
+        folder = ROOT / name
+        for filename, expected in json.loads((folder / 'manifest.json').read_text()).items():
+            assert digest(folder / filename) == expected, f'Changed snapshot: {name}/{filename}'
+    approval_folder = ROOT / 'food-insecurity-approval-20261127'
+    approval = json.loads((approval_folder / 'decision.json').read_text())
+    assert approval['interpretation_status'] == 'approved' and approval['runtime_ready'] is False
+    assert approval['source_proposal_sha256'] == digest(ROOT / 'ipc-enssan-audit-20261127/four_class_proposal.csv')
+    assert approval['source_inspection_sha256'] == digest(ROOT / 'ipc-enssan-audit-20261127/inspection.json')
+    assert approval['approved_crosswalk_sha256'] == digest(approval_folder / 'classes.csv')
+    with (approval_folder / 'classes.csv').open() as stream:
+        approved = list(csv.DictReader(stream))
+    assert [r['native_ipc_acute_area_phase'] for r in approved] == ['1','2','3','4','5']
+    assert all(r['interpretation_status'] == 'approved' for r in approved)
+    assert [r['ordinal_code'] for r in approved] == ['0','1','2','3','3']
+    assert [r['critical_phase_5'] for r in approved] == ['false','false','false','false','true']
+    assert approval['phase_5_flag_required'] is True
+    bii_folder = ROOT / 'bii-haiti-audit-20261127'
+    bii = json.loads((bii_folder / 'inspection.json').read_text())
+    contract = json.loads((bii_folder / 'contract.json').read_text())
+    assert bii['source_sha256'] == contract['source_sha256']
+    assert bii['contract_sha256'] == digest(bii_folder / 'contract.json')
+    assert bii['classes_sha256'] == digest(bii_folder / 'classes.csv')
+    assert bii['boundary_sha256'] == water['input_sha256']['boundary']
+    assert bii['runtime_ready'] is False and bii['combined_biodiversity'].startswith('Not assessed')
+    assert len(bii['cells']) == bii['intersecting_native_cells'] == 453
+    assert sum(c['class'] is not None for c in bii['cells']) == bii['valid_native_cells'] == 443
+    assert abs(sum(c['haiti_area_km2'] for c in bii['cells']) - bii['boundary_area_km2']) < 1e-3
+    assert abs(sum(c['area_km2'] for c in bii['classes']) - bii['valid_area_km2']) < 1e-3
+    for cell in bii['cells']:
+        if cell['class'] is not None:
+            assert abs(cell['bii_percent'] + cell['depletion'] - contract['reference']) < 1e-12
+    compile((bii_folder / 'probe.py').read_text(), str(bii_folder / 'probe.py'), 'exec')
+    print('Verified four frozen Haiti research audits and approved food crosswalk with Phase 5 flag; no runtime release asserted.')
 
 
 if __name__ == "__main__":

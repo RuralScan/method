@@ -1,0 +1,6 @@
+native_ipc_acute_area_phase,native_label,display_class,ordinal_code,critical_phase_5,interpretation_status
+1,Minimal,Very little,0,false,approved
+2,Stressed,Low,1,false,approved
+3,Crisis,Medium,2,false,approved
+4,Emergency,High,3,false,approved
+5,Famine,High,3,true,approved

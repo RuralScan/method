@@ -4,6 +4,8 @@ Start with the [Brayden/Diego handover](2026-11-26-handover-brayden-diego.md) fo
 
 | Research question | Current report | Reproducible observations |
 |---|---|---|
+| Approved acute food-insecurity classes and Phase 5 flag? | [Approval and retained limitations](2026-11-27-food-insecurity-approved.md) | [Approved crosswalk](food-insecurity-approval-20261127/classes.csv), [pinned decision](food-insecurity-approval-20261127/decision.json) |
+| BII Haiti coverage and depletion conversion? | [Native-cell result and coarse-context limits](2026-11-27-bii-haiti-binding.md) | [Reproducible probe and contract](bii-haiti-audit-20261127/README.md) |
 | Official IPC polygons, ENSSAN geographic tables and four acute classes? | [Acquisition, proposal and limitations](2026-11-27-ipc-enssan-acquisition-and-classes.md) | [30-area reconciliation and geographic table audit](ipc-enssan-audit-20261127/README.md) |
 | Aqueduct Haiti coverage and basin aggregation? | [Two-basin inspection and aggregation guidance](2026-11-27-aqueduct-haiti-coverage.md) | [Pinned vectors and offline probe](aqueduct-haiti-audit-20261127/README.md) |
 | Newer national/global Haiti food-insecurity sources? | [Seven-source comparison and recommendation](2026-11-27-food-insecurity-alternatives-haiti.md) | [Acquisition hashes, FEWS geometry and WDI checks](food-alternatives-audit-20261127/README.md) |
@@ -22,4 +24,4 @@ Start with the [Brayden/Diego handover](2026-11-26-handover-brayden-diego.md) fo
 
 Run `python3 priority/research/verify_research.py` to check audit manifests, shared-input integrity, sample counts, saved scientific diagnostics and local report links without downloading data. Acquisition and probe commands in each audit README are separate network-dependent replays, not CI requirements.
 
-Run `python3 priority/research/verify_haiti_bindings.py` for the three 27 November Aqueduct/food snapshots. Their audit READMEs give replay commands with pinned dependencies; food-source replays use archived original files.
+Run `python3 priority/research/verify_haiti_bindings.py` for the four 27 November Aqueduct/food/BII snapshots and the acute food-class approval/Phase 5 flag. Audit READMEs give replay commands with pinned dependencies; source replays use archived original files.

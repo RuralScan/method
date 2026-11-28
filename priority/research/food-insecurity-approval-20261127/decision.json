@@ -1,0 +1,22 @@
+{
+  "decision_date": "2026-11-27",
+  "decision_maker": "Pete Steward",
+  "user_approval": "ok approved, capture those four food insecurity classes and limitations, retain the Phase 5 flag, then proceed to the next remaining dataset binding. Keep infrastructure in scope while we wait for Brayden.",
+  "interpretation_status": "approved",
+  "runtime_ready": false,
+  "source_proposal": "../ipc-enssan-audit-20261127/four_class_proposal.csv",
+  "source_proposal_sha256": "0ade07620d1187a95c01cefc0a2faf672d2fe27d85741f32241d89ae973f31ab",
+  "source_inspection_sha256": "fb571ef98269137416b7993f3de4d51e6180377bfb015f31095fba6c454721f4",
+  "approved_crosswalk": "classes.csv",
+  "approved_crosswalk_sha256": "61dece483ab9a63d5264ab280379adf32cf3b14c7db869cea5152415b26dffc5",
+  "native_unit": "ipc_acute_area_phase",
+  "missing": "Not assessed; no score",
+  "phase_5_flag_required": true,
+  "other_flags_to_preserve": [
+    "risk_of_famine",
+    "hfa_value",
+    "confidence_level"
+  ],
+  "limitations_record": "../2026-11-27-food-insecurity-approved.md",
+  "chronic_configuration": "kept separate; acute input cannot be passed as chronic level"
+}
